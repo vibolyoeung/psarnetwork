@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><?php echo $__env->yieldContent('title'); ?></title>
+</head>
+<body>
+    <div class="header">
+          <?php echo $__env->make('frontend.partials.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    </div>
+    <div class="breadcrumb">
+        <?php echo $__env->yieldContent('breadcrumb'); ?>
+    </div>
+    <div class="menu">
+         <?php echo $__env->make('frontend.partials.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    </div>
+    <div class="left">
+         <?php echo $__env->make('frontend.partials.left', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    </div>
+    <div class="right">
+         <?php echo $__env->make('frontend.partials.right', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    </div>
+    <div class="slider">
+         <?php echo $__env->make('frontend.partials.slider', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    </div>
+    <div class="content">
+        <?php echo $__env->yieldContent('content'); ?>
+    </div>
+    <div class="footer">
+         <?php echo $__env->make('frontend.partials.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    </div>
+</body>
+</html>

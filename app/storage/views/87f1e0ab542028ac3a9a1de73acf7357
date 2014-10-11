@@ -1,0 +1,12 @@
+<?php $__env->startSection('title'); ?>
+    Home
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('breadcrumb'); ?>
+    <ul class="breadcrumb">
+        <li>Home</li>
+    </ul>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+    this is content
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontend.layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
