@@ -18,22 +18,32 @@
               <h3 class="panel-title">Edit</h3>
             </div>
             <div class="panel-body">
-              <form role="form">
+             {{Form::open(array('url'=>'admin/edit'))}}
+             	<div class="form-group">
+                  <label>Name</label>
+                 {{ Form::text('name',null, array('class' => 'form-control','placeholder'=>'Enter Name'))}}
+                 {{$errors->first('name')}}
+                </div>
+             
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                  <label>Email address</label>
+                 {{ Form::text('email',null, array('class' => 'form-control','placeholder'=>'Enter Email'))}}
+                 {{$errors->first('email')}}
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  <label>Password</label>
+                  {{ Form::password('password',array('class' => 'form-control','placeholder'=>'Enter Password'))}}
+               		{{$errors->first('password')}}
                 </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"> Check me out
-                  </label>
+                
+                <div class="form-group">
+                  <label>User Role</label>
+               	  {{Form::select('Role', array(''=>'Select Role','1' => 'Super Administrator','2' => 'Administrator','3' => 'Admin'), 'key', array('class' => 'form-control'));}}
+               	{{$errors->first('Role')}}
                 </div>
-                <button type="submit" class="btn btn-success" data-original-title="" title="">Submit</button>
-              </form>
+                
+                {{Form::submit('Create', array('class' => 'btn btn-success','name'=>'btnSubmit'))}}
+              {{Form::close()}}
             </div>
           </div>
         </div>

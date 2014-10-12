@@ -33,7 +33,7 @@ class BeLoginController extends BaseController {
 				);
 			$validator = Validator::make(Input::all(), $rules);
 			if ($validator->passes()) {
-				$user = array('email' => $email, 'password' => $password);
+				$user = array('email' => $email, 'password' => $password,'status'=>1);
 				 if (Auth::attempt($user)) {
 				 	Session::put('SESSION_USER_ID', Auth::user()->email);
 					Session::put('SESSION_USER_EMAIL', Auth::user()->email);

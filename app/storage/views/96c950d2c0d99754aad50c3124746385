@@ -33,30 +33,34 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>First Name</th>
-                      <th>Last Name</th>
-                      <th>User Name</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Role</th>
+                      <th>Status</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Lucky</td>
-                      <td>Honey</td>
-                      <td>@honey</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Jacob</td>
-                      <td>Nani</td>
-                      <td>@nani</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Harris</td>
-                      <td>Handsome</td>
-                      <td>@Mr.Perfect</td>
-                    </tr>
+                  		<?php $i=1;?>
+                  		<?php foreach($users as $user): ?>
+                  			<tr>
+                  				<td><?php echo $i; ?></td>
+                  				<td><?php echo $user->name; ?></td>
+                  				<td><?php echo $user->email; ?></td>
+                  				<td>
+                  					<?php if($user->user_role_id == Config::get('constants.SUPER_ADMINISTRATOR')): ?>
+                  						Super Admistrator
+                  					<?php elseif($user->user_role_id == Config::get('constants.ADMINISTRATOR')): ?>
+                  						Administrator
+                  					<?php elseif($user->user_role_id == Config::get('constants.ADMIN')): ?>
+                  						Admin
+                  					<?php endif; ?>
+                  				</td>
+                  				<td><?php echo $user->status; ?></td>
+                  				<td><a href="<?php echo URL::to('admin/edit'); ?>/<?php echo $user->id; ?>" >Edit</a>|<a href="" >Delete</a></td>
+                  			</tr>
+                  			<?php $i++;?>
+                  		<?php endforeach; ?>
                   </tbody>
                 </table>
               </div>

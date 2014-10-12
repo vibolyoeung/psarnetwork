@@ -19,20 +19,37 @@
             <div class="panel-body">
              <?php echo Form::open(array('url'=>'admin/create')); ?>
 
+             	<div class="form-group">
+                  <label>Name</label>
+                 <?php echo Form::text('name',null, array('class' => 'form-control','placeholder'=>'Enter Name')); ?>
+
+                 <?php echo $errors->first('name'); ?>
+
+                </div>
+             
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
+                  <label>Email address</label>
                  <?php echo Form::text('email',null, array('class' => 'form-control','placeholder'=>'Enter Email')); ?>
 
                  <?php echo $errors->first('email'); ?>
 
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
+                  <label>Password</label>
                   <?php echo Form::password('password',array('class' => 'form-control','placeholder'=>'Enter Password')); ?>
 
                		<?php echo $errors->first('password'); ?>
 
                 </div>
+                
+                <div class="form-group">
+                  <label>User Role</label>
+               	  <?php echo Form::select('Role', array(''=>'Select Role','1' => 'Super Administrator','2' => 'Administrator','3' => 'Admin'), 'key', array('class' => 'form-control'));; ?>
+
+               	<?php echo $errors->first('Role'); ?>
+
+                </div>
+                
                 <?php echo Form::submit('Create', array('class' => 'btn btn-success','name'=>'btnSubmit')); ?>
 
               <?php echo Form::close(); ?>
