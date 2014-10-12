@@ -34,30 +34,34 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>First Name</th>
-                      <th>Last Name</th>
-                      <th>User Name</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Role</th>
+                      <th>Status</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Lucky</td>
-                      <td>Honey</td>
-                      <td>@honey</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Jacob</td>
-                      <td>Nani</td>
-                      <td>@nani</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Harris</td>
-                      <td>Handsome</td>
-                      <td>@Mr.Perfect</td>
-                    </tr>
+                  		<?php $i=1;?>
+                  		@foreach($users as $user)
+                  			<tr>
+                  				<td>{{$i}}</td>
+                  				<td>{{$user->name}}</td>
+                  				<td>{{$user->email}}</td>
+                  				<td>
+                  					@if($user->user_role_id == Config::get('constants.SUPER_ADMINISTRATOR'))
+                  						Super Admistrator
+                  					@elseif($user->user_role_id == Config::get('constants.ADMINISTRATOR'))
+                  						Administrator
+                  					@elseif($user->user_role_id == Config::get('constants.ADMIN'))
+                  						Admin
+                  					@endif
+                  				</td>
+                  				<td>{{$user->status}}</td>
+                  				<td><a href="{{URL::to('admin/edit')}}/{{$user->id}}" >Edit</a>|<a href="" >Delete</a></td>
+                  			</tr>
+                  			<?php $i++;?>
+                  		@endforeach
                   </tbody>
                 </table>
               </div>
