@@ -13,7 +13,7 @@ class BeUserController extends BaseController {
 	 * @return users object
 	 */
 	public function listUser(){
-		$users = $this->user->where('id','!=',Session::get('SESSION_USER_ID'))->get();
+		$users = $this->user->where('id','!=',Session::get('SESSION_USER_ID'))->orderBy('id','DESC')->get();
 		return View::make('backend.modules.user.list')->with('users',$users);
 	}
 	
@@ -84,6 +84,52 @@ class BeUserController extends BaseController {
 		}
 		$this->user->where('id','=',$id)->update(array('status'=>$status));
 		return Redirect::to('admin/users')->with('SECCESS_MESSAGE','User status has been changed successfully');
+	}
+	
+	/**
+	 * 
+	 * updateProfileUser: this function using for updating user profile
+	 * @return true
+	 */
+	public function updateProfileUser(){
+		if(Input::has('btnSubmit')){
+			$this->user->where('id','=',Session::get('SESSION_USER_ID'))->update(array('name'=>trim(Input::get('name'))));
+			return Redirect::to('admin/profile')->with('SECCESS_MESSAGE','Profile has been changed successfully');
+		}else{
+			$users = $this->user->where('id','=',Session::get('SESSION_USER_ID'))->first();
+			return View::make('backend.modules.user.user_profile')->with('users',$users);
+		}
+	}
+	
+	/**
+	 * changePasswordUser: this function using changing password of user
+	 * @return true
+	 */
+	public function changePasswordUser(){
+		if(Input::has('btnSubmit')){
+			$rules = array(
+				'old_password' => 'required',
+				'password' => 'required|min:8',
+				'password_confirm'=>'required|same:password',
+			);
+			$validator = Validator::make(Input::all(), $rules);
+			if ($validator->passes()) {
+				$oldPassword = Input::get('old_password');
+				$isOldPassword = Auth::attempt(array('password' => $oldPassword,'id'=>Session::get('SESSION_USER_ID')));
+				if($isOldPassword){
+					$this->user->where('id','=',Session::get('SESSION_USER_ID'))->update(array('password'=>Hash::make(Input::get('password'))));
+					return Redirect::to('admin/changepassword')->with('SECCESS_MESSAGE','Password has been changed');
+					
+				}else{
+					return Redirect::to('admin/changepassword')->with('ERROR_MESSAGE','Old password is not matched');
+				}
+				return Redirect::to('admin/changepassword');
+			}else{
+				return Redirect::to('admin/changepassword')->withErrors($validator);
+			}
+		}else{
+			return View::make('backend.modules.user.change_password');
+		}
 	}
 	
 	/**

@@ -46,8 +46,8 @@
                 	@endif
                 <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">My Account</a></li>
-                    <li><a href="#">My Inbox</a></li>
+                    <li><a href="{{URL::to('admin/profile')}}">My Profile</a></li>
+                    <li><a href="{{URL::to('admin/changepassword')}}">Change Password</a></li>
                     <li class="divider"></li>
                     <li><a href="{{URL::to('admin/logout')}}">Logout</a></li>
                 </ul>

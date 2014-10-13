@@ -23,7 +23,9 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('/admin/edit/{id}', 'BeUserController@editUser');
 	Route::post('/admin/edit/', 'BeUserController@editUser');
 	Route::any('/admin/delete/{id}', 'BeUserController@deleteUser');
-	Route::any('/admin/status/{status}/{id}', 'BeUserController@changeStatusUser');
+	Route::get('/admin/status/{status}/{id}', 'BeUserController@changeStatusUser');
+	Route::any('/admin/profile', 'BeUserController@updateProfileUser');
+	Route::any('/admin/changepassword','BeUserController@changePasswordUser');
 });
 
 Route::get('/', 'FePageController@index');
