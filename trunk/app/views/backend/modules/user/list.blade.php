@@ -4,7 +4,7 @@
 @endsection
 @section('breadcrumb')
     <ul class="breadcrumb">
-        <li>Dashboard</li>
+        <li><a href="{{URL::to('admin/dashboard')}}">Dashboard</a></li>
         <li>Users</li>
     </ul>
 @endsection
@@ -20,12 +20,12 @@
              <h3 class="panel-title">Users</h3>
             </div>
             <div class="panel-body">
-            @if(Session::has('successCreate'))
+            @if(Session::has('SECCESS_MESSAGE'))
             <div class="alert alert-block alert-success fade in">
                 <button data-dismiss="alert" class="close" type="button" data-original-title="">
                   x
                 </button>
-                <p>{{Session::get('successCreate')}}</p>
+                <p>{{Session::get('SECCESS_MESSAGE')}}</p>
               </div>
               @endif
               <br />
@@ -37,8 +37,8 @@
                       <th>Name</th>
                       <th>Email</th>
                       <th>Role</th>
-                      <th>Status</th>
-                      <th>Action</th>
+                      <th class="class-center">Status</th>
+                      <th class="class-center">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -57,8 +57,20 @@
                   						Admin
                   					@endif
                   				</td>
-                  				<td>{{$user->status}}</td>
-                  				<td><a href="{{URL::to('admin/edit')}}/{{$user->id}}" >Edit</a>|<a href="" >Delete</a></td>
+                  				<td align="center">
+                  					<a href='{{URL::to("admin/status")}}/{{$user->status}}/{{$user->id}}'>
+                  						@if($user->status == 1)
+                  							<i class="btn btn-xs btn-success">Active</i>
+                  						@else
+                  							<i class="btn btn-xs btn-danger">In Active</i>
+                  						@endif
+                  					
+                  					</a>
+                  				</td>
+                  				<td align="center">
+	                  				<a href="{{URL::to('admin/edit')}}/{{$user->id}}" ><i class="icon-edit"></i></a>
+	                  				<a  href="{{URL::to('admin/delete')}}/{{$user->id}}" onclick="return confirm('Are you sure you want to delete this item?');"><i class='icon-trash'></i></a>
+	                  			</td>
                   			</tr>
                   			<?php $i++;?>
                   		@endforeach

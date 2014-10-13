@@ -12,6 +12,7 @@
     {{HTML::style('backend/css/main.css')}}
     <!-- Font Awesome CSS -->
     {{HTML::style('backend/fonts/font-awesome.css')}}
+    {{HTML::style('backend/css/custom.css')}}
     <!--[if IE 7]>
     {{HTML::style('backend/fonts/font-awesome.css')}}
     <![endif]-->

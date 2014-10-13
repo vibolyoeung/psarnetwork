@@ -35,7 +35,7 @@ class BeLoginController extends BaseController {
 			if ($validator->passes()) {
 				$user = array('email' => $email, 'password' => $password,'status'=>1);
 				 if (Auth::attempt($user)) {
-				 	Session::put('SESSION_USER_ID', Auth::user()->email);
+				 	Session::put('SESSION_USER_ID', Auth::user()->id);
 					Session::put('SESSION_USER_EMAIL', Auth::user()->email);
 					Session::put('SESSION_USER_ROLE',Auth::user()->user_role_id);
 					Session::put('SESSION_LOGIN_NAME',Auth::user()->name);

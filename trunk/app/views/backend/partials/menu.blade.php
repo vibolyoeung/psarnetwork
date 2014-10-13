@@ -11,23 +11,10 @@
 
         <ul class="nav navbar-nav">
             <li class="active">
-                <a href="./index.html">Dashboard</a>
+                <a href="{{URL::to('admin/dashboard')}}">Dashboard</a>
             </li>
             <li>
-                <a href="./graphs.html">Graphs</a>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">UI elements <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="./buttons.html">Buttons</a></li>
-                    <li><a href="./panels.html">Panels &amp; List Groups</a></li>
-                    <li><a href="./notifications.html">Notifications</a></li>
-                    <li><a href="./typography.html">Typography</a></li>
-                    <li class="divider"></li>
-                    <li><a href="./grid.html">Grid</a></li>
-                    <li class="divider"></li>
-                    <li><a href="./ui-elements.html">More UI Elements...</a></li>
-                </ul>
+                <a href="{{URL::to('admin/users')}}">Users</a>
             </li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Forms <b class="caret"></b></a>

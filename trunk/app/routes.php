@@ -20,8 +20,10 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('/admin/logout', 'BeLoginController@doLogout');
 	Route::get('/admin/users', 'BeUserController@listUser');
 	Route::any('/admin/create', 'BeUserController@createUser');
-	Route::any('/admin/edit/{id}', 'BeUserController@editUser');
-	Route::any('/admin/edit/', 'BeUserController@editUser');
+	Route::get('/admin/edit/{id}', 'BeUserController@editUser');
+	Route::post('/admin/edit/', 'BeUserController@editUser');
+	Route::any('/admin/delete/{id}', 'BeUserController@deleteUser');
+	Route::any('/admin/status/{status}/{id}', 'BeUserController@changeStatusUser');
 });
 
 Route::get('/', 'FePageController@index');
