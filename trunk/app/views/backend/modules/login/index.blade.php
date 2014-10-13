@@ -48,7 +48,7 @@
                 <h3><span>Administrator</span></h3>
                 <h5>Please sign in to get access.</h5>
               	 @if (Session::has('invalid'))
-              	 	<div class="alert alert-success">
+              	 	<div class="alert alert-danger">
                         {{Session::get('invalid')}}
                     </div>
               	 @endif
