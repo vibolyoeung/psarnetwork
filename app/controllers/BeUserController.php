@@ -13,7 +13,7 @@ class BeUserController extends BaseController {
 	 * @return users object
 	 */
 	public function listUser(){
-		$users = $this->user->where('id','!=',Session::get('SESSION_USER_ID'))->orderBy('id','DESC')->get();
+		$users = $this->user->where('id','!=',Session::get('SESSION_USER_ID'))->orderBy('id','DESC')->paginate(1);
 		return View::make('backend.modules.user.list')->with('users',$users);
 	}
 	
