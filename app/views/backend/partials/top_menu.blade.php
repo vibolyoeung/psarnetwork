@@ -1,7 +1,5 @@
-
-
 <div class="logo">
-    Cloud<sup><i class="icon-cloud"></i></sup>
+   <a href="{{URL::to('admin/dashboard')}}">Psar<sup><i class="icon-cloud"></i></sup></a> 
 </div>
 
 <!-- Icon nav start -->

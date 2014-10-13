@@ -4,7 +4,7 @@
 @endsection
 @section('breadcrumb')
     <ul class="breadcrumb">
-        <li>Dashboard</li>
+        <li><a href="{{URL::to('admin/dashboard')}}">Dashboard</a></li>
         <li><a href="{{URL::to('admin/users')}}">Users</a></li>
         <li>Edit</li>
     </ul>
@@ -21,28 +21,21 @@
              {{Form::open(array('url'=>'admin/edit'))}}
              	<div class="form-group">
                   <label>Name</label>
-                 {{ Form::text('name',null, array('class' => 'form-control','placeholder'=>'Enter Name'))}}
+                 {{ Form::text('name',$users->name, array('class' => 'form-control','placeholder'=>'Enter Name'))}}
                  {{$errors->first('name')}}
                 </div>
-             
                 <div class="form-group">
                   <label>Email address</label>
-                 {{ Form::text('email',null, array('class' => 'form-control','placeholder'=>'Enter Email'))}}
+                 {{ Form::text('email',$users->email, array('class' => 'form-control','placeholder'=>'Enter Email'))}}
                  {{$errors->first('email')}}
                 </div>
                 <div class="form-group">
-                  <label>Password</label>
-                  {{ Form::password('password',array('class' => 'form-control','placeholder'=>'Enter Password'))}}
-               		{{$errors->first('password')}}
-                </div>
-                
-                <div class="form-group">
                   <label>User Role</label>
-               	  {{Form::select('Role', array(''=>'Select Role','1' => 'Super Administrator','2' => 'Administrator','3' => 'Admin'), 'key', array('class' => 'form-control'));}}
-               	{{$errors->first('Role')}}
+               	  {{Form::select('role', array(''=>'Select Role','1' => 'Super Administrator','2' => 'Administrator','3' => 'Admin'), $users->user_role_id, array('class' => 'form-control'));}}
+               	{{$errors->first('role')}}
                 </div>
-                
-                {{Form::submit('Create', array('class' => 'btn btn-success','name'=>'btnSubmit'))}}
+                {{Form::hidden('id',$users->id)}}
+                {{Form::submit('Update', array('class' => 'btn btn-success','name'=>'btnSubmit'))}}
               {{Form::close()}}
             </div>
           </div>
