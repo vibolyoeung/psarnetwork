@@ -13,8 +13,14 @@
 
 App::before(function($request)
 {
-	//
+ if (Request::segment(1)) {
+ 		Session::put('lang',Request::segment(1));
+        App::setLocale(Session::get('lang'));
+    } else {
+        Session::put('lang', Config::get('app.locale'));
+    }
 });
+
 
 
 App::after(function($request, $response)
@@ -47,6 +53,8 @@ Route::filter('auth', function()
 		}
 	}
 });
+
+
 
 
 Route::filter('auth.basic', function()
@@ -88,3 +96,5 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+
