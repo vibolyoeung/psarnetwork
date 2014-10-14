@@ -28,4 +28,6 @@ Route::group(array('before' => 'auth'), function() {
 	Route::any('/admin/changepassword','BeUserController@changePasswordUser');
 });
 
-Route::get('/', 'FePageController@index');
+Route::any('/{lang}', 'FePageController@index');
+Route::any('/', 'FePageController@index');
+ 
