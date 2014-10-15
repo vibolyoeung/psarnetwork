@@ -1,5 +1,4 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    {{HTML::script('backend/js/jquery.js')}}
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     {{HTML::script('backend/js/bootstrap.min.js')}}
     <!-- Flot Charts -->
@@ -20,6 +19,6 @@
     {{HTML::script('backend/js/daterange/daterangepicker.js')}}
     <!-- Custom JS -->
     {{HTML::script('backend/js/custom-index.js')}}
-    {{HTML::script('backend/js/custom.js')}}
+   
   </body>
 </html>

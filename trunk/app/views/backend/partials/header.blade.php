@@ -13,6 +13,8 @@
     <!-- Font Awesome CSS -->
     {{HTML::style('backend/fonts/font-awesome.css')}}
     {{HTML::style('backend/css/custom.css')}}
+    {{HTML::script('backend/js/jquery.js')}}
+    {{HTML::script('backend/js/custom.js')}}
     <!--[if IE 7]>
     {{HTML::style('backend/fonts/font-awesome.css')}}
     <![endif]-->
