@@ -378,7 +378,7 @@ CREATE TABLE `user` (
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`name`,`email`,`password`,`password_temp`,`status`,`create_at`,`update_at`,`remember_token`,`user_type`,`account_type`,`client_type`) values (2,'KOCH Doeund','doeunkoch@gmail.com','$2y$10$Xx3gjfYStUo5ES3OrVTly.BCINmd3JILCXZ8vFrckEeKLftBeN6IO',NULL,1,NULL,NULL,'AUXmdbni9xELgy543YXg4iIE3csJWFUXN5nwT1IdLxAw9vf72o7yQuqx9r8W',1,NULL,NULL),(3,'HOM Kimhim-updated','kimhim.hom-updated@gmail.com','$2y$10$RY3WZxvzq9K4X/4ZGdQP.uj.usxhCXU2vmhYcC6SXuX/irnlmiJum',NULL,0,NULL,'2014-10-13','iRRSpAoXclQzUsLLraQAQGYfoP2X3P4SrMRaOl4ojXjhVknPJk7Sib5ogLzk',1,NULL,NULL),(12,'testing','updoc.year4@gmail.com','$2y$10$2lny7ZDko15CSgCnyCBn..bLq18zQpEpRE7CPJUGLbVeOcn/cg63C',NULL,1,'2014-10-13',NULL,NULL,2,NULL,NULL);
+insert  into `user`(`id`,`name`,`email`,`password`,`password_temp`,`status`,`create_at`,`update_at`,`remember_token`,`user_type`,`account_type`,`client_type`) values (2,'KOCH Doeund','doeunkoch@gmail.com','$2y$10$Xx3gjfYStUo5ES3OrVTly.BCINmd3JILCXZ8vFrckEeKLftBeN6IO',NULL,1,NULL,NULL,'lGQ22RK8rYxiTeJIRrkhMc4uBArWdVY4k4p17LlGs00gQX0sI0qh7ccbOoLI',1,NULL,NULL),(3,'HOM Kimhim-updated','kimhim.hom-updated@gmail.com','$2y$10$RY3WZxvzq9K4X/4ZGdQP.uj.usxhCXU2vmhYcC6SXuX/irnlmiJum',NULL,0,NULL,'2014-10-13','iRRSpAoXclQzUsLLraQAQGYfoP2X3P4SrMRaOl4ojXjhVknPJk7Sib5ogLzk',1,NULL,NULL),(12,'testing','updoc.year4@gmail.com','$2y$10$2lny7ZDko15CSgCnyCBn..bLq18zQpEpRE7CPJUGLbVeOcn/cg63C',NULL,1,'2014-10-13','2014-10-15',NULL,0,NULL,NULL);
 
 /*Table structure for table `user_type` */
 
