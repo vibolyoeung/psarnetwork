@@ -68,7 +68,7 @@
                   					</a>
                   				</td>
                   				<td align="center">
-	                  				<a title="Edit" href="{{URL::to('admin/edit')}}/{{$user->id}}" ><i class="icon-edit success"></i></a>
+	                  				<a title="Edit" href="{{URL::to('admin/edit')}}/{{$user->id}}" ><i class="icon-edit primary"></i></a>
 	                  				<a title="Delete" href="{{URL::to('admin/delete')}}/{{$user->id}}" onclick="return confirm('Are you sure you want to delete this item?');"><i class='icon-trash danger'></i></a>
 	                  			</td>
                   			</tr>
