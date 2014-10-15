@@ -35,7 +35,7 @@
                 <p>{{Session::get('ERROR_MESSAGE')}}</p>
               </div>
               @endif
-             {{Form::open(array('url'=>'admin/changepassword'))}}
+             {{Form::open(array('url'=>'admin/change_password'))}}
              	<div class="form-group">
                   <label>Old Password</label>
                  {{ Form::password('old_password', array('class' => 'form-control','placeholder'=>'Old Password'))}}

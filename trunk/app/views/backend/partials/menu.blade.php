@@ -13,27 +13,21 @@
             <li class="active">
                 <a href="{{URL::to('admin/dashboard')}}">Dashboard</a>
             </li>
-            <li>
-                <a href="{{URL::to('admin/users')}}">Users</a>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">System<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li> <a href="{{URL::to('admin/users')}}">Users</a></li>
+                </ul>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Forms <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalog <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="./forms.html">Form Elements</a></li>
-                    <li><a href="./wizards.html">Form Wizards</a></li>
+                    <li><a href="./forms.html">Product</a></li>
+                    <li><a href="./wizards.html">Category</a></li>
                 </ul>
             </li>
             <li>
-                <a href="./tables.html">Tables</a>
-            </li>
-            <li>
-                <a href="./gallery.html">Gallery</a>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bonus Pages <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="./invoice.html">Invoice</a></li>
-                </ul>
+                <a href="{{URL::to('admin/pages')}}">Page</a>
             </li>
         </ul>
 
@@ -47,7 +41,7 @@
                 <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="{{URL::to('admin/profile')}}">My Profile</a></li>
-                    <li><a href="{{URL::to('admin/changepassword')}}">Change Password</a></li>
+                    <li><a href="{{URL::to('admin/change_password')}}">Change Password</a></li>
                     <li class="divider"></li>
                     <li><a href="{{URL::to('admin/logout')}}">Logout</a></li>
                 </ul>
