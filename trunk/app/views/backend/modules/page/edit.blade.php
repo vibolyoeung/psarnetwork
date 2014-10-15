@@ -20,7 +20,7 @@
             <div class="panel-body">
              {{Form::open(array('url'=>'admin/edit_page'))}}
              	<div class="form-group">
-                  <label>Title</label>
+                  <label>Title<span class="class-required">*</span></label>
                  {{ Form::text('title',$pages->title, array('class' => 'form-control','placeholder'=>'Enter Title'))}}
                  <span class="class-error">{{$errors->first('title')}}</span>
                 </div>

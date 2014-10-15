@@ -52,16 +52,16 @@
                   				<td align="center">
                   					<a href='{{URL::to("admin/status_page")}}/{{$page->status}}/{{$page->id}}'>
                   						@if($page->status == 1)
-                  							<i class="btn btn-xs btn-success">Active</i>
+                  							<span class="icon-ok success"></span>
                   						@else
-                  							<i class="btn btn-xs btn-danger">In Active</i>
+                  							<span class="icon-remove danger"></span>
                   						@endif
                   					
                   					</a>
                   				</td>
                   				<td align="center">
-	                  				<a href="{{URL::to('admin/edit_page')}}/{{$page->id}}" ><i class="icon-edit"></i></a>
-	                  				<a  href="{{URL::to('admin/delete_page')}}/{{$page->id}}" onclick="return confirm('Are you sure you want to delete this item?');"><i class='icon-trash'></i></a>
+	                  				<a title="Edit" href="{{URL::to('admin/edit_page')}}/{{$page->id}}" ><i class="icon-edit success"></i></a>
+	                  				<a title="Delete" href="{{URL::to('admin/delete_page')}}/{{$page->id}}" onclick="return confirm('Are you sure you want to delete this item?');"><i class='icon-trash danger'></i></a>
 	                  			</td>
                   			</tr>
                   			<?php $i++;?>

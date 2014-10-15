@@ -34,7 +34,7 @@ class BePageController extends BaseController {
 				return Redirect::to('admin/create_page')->withInput()->withErrors($validator);
 			}
 		}
-				return View::make('backend.modules.page.add');
+		return View::make('backend.modules.page.add');
 	}
 	
 	/**
