@@ -7,6 +7,10 @@
 	"require": {
 		"laravel/framework": "4.2.*"
 	},
+	 "require-dev":
+	{
+		"intervention/image" : "dev-master"
+	},
 	"autoload": {
 		"classmap": [
 			"app/commands",

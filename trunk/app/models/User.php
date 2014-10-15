@@ -5,7 +5,7 @@
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
-	protected $table = "system_user";
+	protected $table = "user";
 
 	public  $timestamps = false;
 

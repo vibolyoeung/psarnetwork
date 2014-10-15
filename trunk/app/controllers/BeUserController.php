@@ -24,7 +24,7 @@ class BeUserController extends BaseController {
 	public function createUser(){
 		if(Input::has('btnSubmit')){
 			$rules = array(
-				'email' => 'required|email|unique:system_user',
+				'email' => 'required|email|unique:user',
 				'password' => 'required|min:8',
 				'password_confirm'=>'required|same:password',
 				'name'=>'required',
@@ -142,7 +142,7 @@ class BeUserController extends BaseController {
 		$data = array(
 					'email'=>trim(Input::get('email')),
 					'name'=>trim(Input::get('name')),
-					'user_role_id'=>Input::get('role')
+					'user_type'=>Input::get('role')
 				);
 		if($param == 'add'){
 				$password = trim(Input::get('password'));
