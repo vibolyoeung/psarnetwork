@@ -13,7 +13,7 @@ class BeUserController extends BaseController {
 	 * @return users object
 	 */
 	public function listUser(){
-		$users = $this->user->where('id','!=',Session::get('SESSION_USER_ID'))->orderBy('id','DESC')->paginate(1);
+		$users = $this->user->where('id','!=',Session::get('SESSION_USER_ID'))->orderBy('id','DESC')->paginate(Config::get('constants.BACKEND_PAGINATION_USER'));
 		return View::make('backend.modules.user.list')->with('users',$users);
 	}
 	
@@ -118,14 +118,14 @@ class BeUserController extends BaseController {
 				$isOldPassword = Auth::attempt(array('password' => $oldPassword,'id'=>Session::get('SESSION_USER_ID')));
 				if($isOldPassword){
 					$this->user->where('id','=',Session::get('SESSION_USER_ID'))->update(array('password'=>Hash::make(Input::get('password'))));
-					return Redirect::to('admin/changepassword')->with('SECCESS_MESSAGE','Password has been changed');
+					return Redirect::to('admin/change_password')->with('SECCESS_MESSAGE','Password has been changed');
 					
 				}else{
-					return Redirect::to('admin/changepassword')->with('ERROR_MESSAGE','Old password is not matched');
+					return Redirect::to('admin/change_password')->with('ERROR_MESSAGE','Old password is not matched');
 				}
-				return Redirect::to('admin/changepassword');
+				return Redirect::to('admin/change_password');
 			}else{
-				return Redirect::to('admin/changepassword')->withErrors($validator);
+				return Redirect::to('admin/change_password')->withErrors($validator);
 			}
 		}else{
 			return View::make('backend.modules.user.change_password');
