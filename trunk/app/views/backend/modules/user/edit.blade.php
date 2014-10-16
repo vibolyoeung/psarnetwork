@@ -31,7 +31,7 @@
                 </div>
                 <div class="form-group">
                   <label>User Role</label>
-               	  {{Form::select('role', array(''=>'Select Role','1' => 'Super Administrator','2' => 'Administrator','3' => 'Admin'), $users->user_role_id, array('class' => 'form-control'));}}
+               	  {{Form::select('role',$userType,$users->user_type, array('class' => 'form-control'));}}
                	{{$errors->first('role')}}
                 </div>
                 {{Form::hidden('id',$users->id)}}

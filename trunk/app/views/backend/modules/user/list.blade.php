@@ -49,11 +49,11 @@
                   				<td>{{$user->name}}</td>
                   				<td>{{$user->email}}</td>
                   				<td>
-                  					@if($user->user_role_id == Config::get('constants.SUPER_ADMINISTRATOR'))
+                  					@if($user->user_type == Config::get('constants.SUPER_ADMINISTRATOR'))
                   						Super Admistrator
-                  					@elseif($user->user_role_id == Config::get('constants.ADMINISTRATOR'))
+                  					@elseif($user->user_type == Config::get('constants.ADMINISTRATOR'))
                   						Administrator
-                  					@elseif($user->user_role_id == Config::get('constants.ADMIN'))
+                  					@elseif($user->user_type == Config::get('constants.ADMIN'))
                   						Admin
                   					@endif
                   				</td>
