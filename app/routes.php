@@ -32,6 +32,12 @@ Route::group(array('before' => 'auth'), function() {
 	Route::post('/admin/edit_page','BePageController@editPage');
 	Route::get('/admin/delete_page/{id}','BePageController@deletePage');
 	Route::get('/admin/status_page/{status}/{id}','BePageController@isEnablePage');
+	Route::get('/admin/slideshows','BeSlideshowController@listSlideshow');
+	Route::any('/admin/create_slideshow','BeSlideshowController@createSlideshow');
+	Route::get('/admin/edit_slideshow/{id}','BeSlideshowController@editSlideshow');
+	Route::post('/admin/edit_slideshow','BeSlideshowController@editSlideshow');
+	Route::get('/admin/delete_slideshow/{id}','BeSlideshowController@deleteSlideshow');
+	Route::get('/admin/status_slideshow/{id}/{status}','BeSlideshowController@isPublicSlideshow');
 	
 });
 

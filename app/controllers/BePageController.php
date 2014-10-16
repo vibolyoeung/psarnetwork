@@ -5,6 +5,7 @@ class BePageController extends BaseController {
 	public $m_page;
 
 	function __construct(){
+		
 		$this->m_page = new MPage();
 	}
 
@@ -24,7 +25,7 @@ class BePageController extends BaseController {
 	 */
 	public function createPage(){
 		if(Input::has('btnSubmit')){
-			$rules = array('title' => 'required');
+			$rules = array('title' => 'required|unique:m_page');
 			$validator = Validator::make(Input::all(), $rules);
 			if ($validator->passes()) {
 				$data = $this->prepareDataBind('add');

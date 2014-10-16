@@ -29,6 +29,9 @@
             <li>
                 <a href="{{URL::to('admin/pages')}}">Page</a>
             </li>
+            <li>
+                <a href="{{URL::to('admin/slideshows')}}">Slideshow</a>
+            </li>
         </ul>
 
         <!-- Mini navigation start -->
