@@ -157,6 +157,12 @@ class BeUserController extends BaseController {
 		return $data;
 	}
 	
+	/**
+	 * 
+	 * listingUserType: this function using for listing all user types
+	 * @return array of user type
+	 * @access public 
+	 */
 	public function listingUserType(){
 		$dataArrayUserType = array();
 		$listingUserType = DB::table('user_type')->select('*')->where('id','!=',4)->get();
