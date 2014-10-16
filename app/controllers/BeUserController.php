@@ -39,7 +39,9 @@ class BeUserController extends BaseController {
 				return Redirect::to('admin/create')->withInput()->withErrors($validator);
 			}
 		}
-		return View::make('backend.modules.user.add');
+		
+		$userType = $this->listingUserType();
+		return View::make('backend.modules.user.add')->with('userType', $userType);
 	}
 	
 	/**
@@ -54,9 +56,10 @@ class BeUserController extends BaseController {
 			$this->user->where('id','=',$id)->update($data);
 			return Redirect::to('admin/users')->with('SECCESS_MESSAGE','A user has been updated successfully');
 		}else{
+			$userType = $this->listingUserType();
 			$id = (integer)$id;
 			$users = $this->user->where('id','=',$id)->where('id','!=',Session::get('SESSION_USER_ID'))->first();
-			return View::make('backend.modules.user.edit')->with('users',$users);
+			return View::make('backend.modules.user.edit')->with('users',$users)->with('userType',$userType);
 		}
 	}
 	
@@ -152,5 +155,14 @@ class BeUserController extends BaseController {
 				$data['update_at']= date('Y-m-d');	
 		}
 		return $data;
+	}
+	
+	public function listingUserType(){
+		$dataArrayUserType = array();
+		$listingUserType = DB::table('user_type')->select('*')->where('id','!=',4)->get();
+		foreach ($listingUserType as $userType){
+			$dataArrayUserType[$userType->id] = $userType->name;
+		}
+		return $dataArrayUserType;
 	}
 }

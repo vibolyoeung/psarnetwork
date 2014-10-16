@@ -1,6 +1,6 @@
 <?php 
 // This is the zh one.
 return array(
-    'home' => 'Startpagina',
-    'about' => 'Over Mij'
+    'home' => '关于',
+    'about' => '关于'
 );
