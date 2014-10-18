@@ -728,6 +728,7 @@ strong.number-display{color:red;}
   margin-bottom: 35px;
   padding-bottom: 20px;
   padding-top: 15px;
+  overflow: hidden;
 }
 .left-sidebar h2, .brands_products h2 {
   color: #428bca;
