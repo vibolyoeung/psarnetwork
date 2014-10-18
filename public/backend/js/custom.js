@@ -1,3 +1,7 @@
+$(document).ready(function() {
+	$( '.datepicker' ).datepicker();
+});
+
 /**
  * isClientUser: this function using for showing user type
  */
