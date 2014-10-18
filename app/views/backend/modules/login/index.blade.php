@@ -65,7 +65,6 @@
                 	{{$errors->first('password')}}
                 </div>
                {{Form::close()}}
-                <a href="./index.html" class="btn btn-default">Forgot Password?</a>
             </div>
         </div>
     </body>

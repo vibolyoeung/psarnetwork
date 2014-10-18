@@ -1,13 +1,13 @@
 /**
  * isClientUser: this function using for showing user type
  */
-function isClientUser(){
-	$("#user_type").change(function(){
-		var user_type = $('#user_type').val();
-		if(4 == user_type){
-			$('#isShowOption').show();
+function isAdvertiserDisplay(){
+	$("#isAdvertiser").change(function(){
+		var is_advertiser = $('#isAdvertiser').val();
+		if(1 == is_advertiser){
+			$('#isAdvertiserOption').show();
 		}else{
-			$('#isShowOption').hide();
+			$('#isAdvertiserOption').hide();
 		}
 	});
 }

@@ -18,6 +18,7 @@ Route::post('/admin/login', 'BeLoginController@doLogin');
 Route::group(array('before' => 'auth'), function() {
 	Route::get('/admin/dashboard', 'BeLoginController@dashboard');
 	Route::get('/admin/logout', 'BeLoginController@doLogout');
+
 	Route::get('/admin/users', 'BeUserController@listUser');
 	Route::any('/admin/create', 'BeUserController@createUser');
 	Route::get('/admin/edit/{id}', 'BeUserController@editUser');
@@ -26,21 +27,23 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('/admin/status/{status}/{id}', 'BeUserController@changeStatusUser');
 	Route::any('/admin/profile', 'BeUserController@updateProfileUser');
 	Route::any('/admin/change_password','BeUserController@changePasswordUser');
+
 	Route::any('/admin/pages','BePageController@listPage');
 	Route::any('/admin/create_page','BePageController@createPage');
 	Route::get('/admin/edit_page/{id}','BePageController@editPage');
 	Route::post('/admin/edit_page','BePageController@editPage');
 	Route::get('/admin/delete_page/{id}','BePageController@deletePage');
 	Route::get('/admin/status_page/{status}/{id}','BePageController@isEnablePage');
+
 	Route::get('/admin/slideshows','BeSlideshowController@listSlideshow');
-	Route::any('/admin/create_slideshow','BeSlideshowController@createSlideshow');
-	Route::get('/admin/edit_slideshow/{id}','BeSlideshowController@editSlideshow');
-	Route::post('/admin/edit_slideshow','BeSlideshowController@editSlideshow');
-	Route::get('/admin/delete_slideshow/{id}','BeSlideshowController@deleteSlideshow');
-	Route::get('/admin/status_slideshow/{id}/{status}','BeSlideshowController@isPublicSlideshow');
-	
+	Route::any('/admin/create-slideshow','BeSlideshowController@createSlideshow');
+	Route::get('/admin/edit-slideshow/{id}','BeSlideshowController@editSlideshow');
+	Route::post('/admin/edit-slideshow','BeSlideshowController@editSlideshow');
+	Route::get('/admin/delete-slideshow/{id}','BeSlideshowController@deleteSlideshow');
+	Route::get('/admin/status-slideshow/{id}/{status}','BeSlideshowController@isPublicSlideshow');
+
 });
 
 Route::any('/{lang}', 'FePageController@index');
 Route::any('/', 'FePageController@index');
- 
+
