@@ -18,16 +18,26 @@
               <h3 class="panel-title">Pages</h3>
             </div>
             <div class="panel-body">
-             {{Form::open(array('url'=>'admin/create_page'))}}
+             {{Form::open(array('url'=>'admin/create-page'))}}
              	<div class="form-group">
-                  <label>Title<span class="class-required">*</span></label>
-                 {{ Form::text('title',null, array('class' => 'form-control','placeholder'=>'Enter Title'))}}
-                 <span class="class-error">{{$errors->first('title')}}</span>
+                  <label>Title En<span class="class-required">*</span></label>
+                 {{ Form::text('title_en',null, array('class' => 'form-control','placeholder'=>'Enter Title'))}}
+                 <span class="class-error">{{$errors->first('title_en')}}</span>
                 </div>
-                
+
                 <div class="form-group">
-                  <label>Short Description</label>
-                 {{ Form::textarea('desc',null, array('class' => 'form-control','placeholder'=>'Enter description'))}}
+                  <label>Title Zh<span class="class-required">*</span></label>
+                 {{ Form::text('title_zh',null, array('class' => 'form-control','placeholder'=>'Enter Title'))}}
+                 <span class="class-error">{{$errors->first('title_zh')}}</span>
+                </div>
+
+                <div class="form-group">
+                  <label>Short Description En</label>
+                 {{ Form::textarea('desc_en',null, array('class' => 'form-control','placeholder'=>'Enter description'))}}
+                </div>
+                 <div class="form-group">
+                  <label>Short Description Zh</label>
+                 {{ Form::textarea('desc_zh',null, array('class' => 'form-control','placeholder'=>'Enter description'))}}
                 </div>
                 {{Form::submit('Create', array('class' => 'btn btn-success','name'=>'btnSubmit'))}}
               {{Form::close()}}

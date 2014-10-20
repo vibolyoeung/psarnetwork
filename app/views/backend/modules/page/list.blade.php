@@ -10,11 +10,11 @@
 @endsection
 @section('content')
 <div class="row">
-		
+
         <div class="col-md-12 col-sm-12 col-sx-12">
           <div class="panel panel-default">
             <div class="panel-heading clearfix">
-            <a href="{{URL::to('admin/create_page')}}">
+            <a href="{{URL::to('admin/create-page')}}">
               <i class="icon-plus btn btn-xs btn-info rounded-buttons" >&nbsp;Add</i>
              </a>
              <h3 class="panel-title">Pages</h3>
@@ -34,7 +34,8 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Page Title</th>
+                      <th>Page Title En</th>
+                      <th>Page Title Zh</th>
                       <th>Created Date</th>
                       <th>Modified Date</th>
                       <th class="class-center">Status</th>
@@ -46,28 +47,29 @@
                   		@foreach($pages as $page)
                   			<tr>
                   				<td>{{$i}}</td>
-                  				<td>{{$page->title}}</td>
+                  				<td>{{$page->title_en}}</td>
+                  				<td>{{$page->title_zh}}</td>
                   				<td>{{$page->create_at}}</td>
                   				<td>{{$page->update_at}}</td>
                   				<td align="center">
-                  					<a href='{{URL::to("admin/status_page")}}/{{$page->status}}/{{$page->id}}'>
+                  					<a href='{{URL::to("admin/status-page")}}/{{$page->status}}/{{$page->id}}'>
                   						@if($page->status == 1)
                   							<span class="icon-ok success"></span>
                   						@else
                   							<span class="icon-remove danger"></span>
                   						@endif
-                  					
+
                   					</a>
                   				</td>
                   				<td align="center">
-	                  				<a title="Edit" href="{{URL::to('admin/edit_page')}}/{{$page->id}}" ><i class="icon-edit primary"></i></a>
-	                  				<a title="Delete" href="{{URL::to('admin/delete_page')}}/{{$page->id}}" onclick="return confirm('Are you sure you want to delete this item?');"><i class='icon-trash danger'></i></a>
+	                  				<a title="Edit" href="{{URL::to('admin/edit-page')}}/{{$page->id}}" ><i class="icon-edit primary"></i></a>
+	                  				<a title="Delete" href="{{URL::to('admin/delete-page')}}/{{$page->id}}" onclick="return confirm('Are you sure you want to delete this item?');"><i class='icon-trash danger'></i></a>
 	                  			</td>
                   			</tr>
                   			<?php $i++;?>
                   		@endforeach
                   </tbody>
-                  
+
                 </table>
               </div>
               {{$pages->links()}}
