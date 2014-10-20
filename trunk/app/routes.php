@@ -29,7 +29,7 @@ Route::group(array('before' => 'auth'), function() {
 	Route::any('/admin/delete/{id}', 'BeUserController@deleteUser');
 	Route::get('/admin/status/{status}/{id}', 'BeUserController@changeStatusUser');
 	Route::any('/admin/profile', 'BeUserController@updateProfileUser');
-	Route::any('/admin/change_password','BeUserController@changePasswordUser');
+	Route::any('/admin/change-password','BeUserController@changePasswordUser');
 
 	Route::any('/admin/pages','BePageController@listPage');
 	Route::any('/admin/create-page','BePageController@createPage');

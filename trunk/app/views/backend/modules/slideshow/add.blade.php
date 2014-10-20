@@ -93,9 +93,9 @@
 	</div>
 
 	<script type="text/javascript">
-		$(document).ready(function(){
+
 			$('#isAdvertiserOption').hide();
 			isAdvertiserDisplay();
-		});
+
 	</script>
  @endsection

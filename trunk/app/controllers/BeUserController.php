@@ -7,7 +7,7 @@ class BeUserController extends BaseController {
 	public function __construct() {
 		$this->user = new User();
 	}
-	
+
 	/**
 	 * listUser: listing all users
 	 * @return users object
@@ -16,7 +16,7 @@ class BeUserController extends BaseController {
 		$users = $this->user->where('id','!=',Session::get('SESSION_USER_ID'))->orderBy('id','DESC')->paginate(Config::get('constants.BACKEND_PAGINATION_USER'));
 		return View::make('backend.modules.user.list')->with('users',$users);
 	}
-	
+
 	/**
 	 * createUser: this function is using for creating for new user
 	 * @return true
@@ -39,13 +39,13 @@ class BeUserController extends BaseController {
 				return Redirect::to('admin/create')->withInput()->withErrors($validator);
 			}
 		}
-		
+
 		$userType = $this->listingUserType();
 		return View::make('backend.modules.user.add')->with('userType', $userType);
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * editUser: this is function using for updatation of existing user
 	 * @param $id: this id of user
 	 */
@@ -62,7 +62,7 @@ class BeUserController extends BaseController {
 			return View::make('backend.modules.user.edit')->with('users',$users)->with('userType',$userType);
 		}
 	}
-	
+
 	/**
 	 * deleteUser: this function using for delete a existing user
 	 * @return true
@@ -73,9 +73,9 @@ class BeUserController extends BaseController {
 		$this->user->where('id','=',$id)->where('id','!=',Session::get('SESSION_USER_ID'))->delete();
 		return Redirect::to('admin/users')->with('SECCESS_MESSAGE','User has been deleted successfully');
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * changeStatusUser: this is function for changing status of user
 	 * @param  status: the status of user
 	 */
@@ -88,9 +88,9 @@ class BeUserController extends BaseController {
 		$this->user->where('id','=',$id)->update(array('status'=>$status));
 		return Redirect::to('admin/users')->with('SECCESS_MESSAGE','User status has been changed successfully');
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * updateProfileUser: this function using for updating user profile
 	 * @return true
 	 */
@@ -103,7 +103,7 @@ class BeUserController extends BaseController {
 			return View::make('backend.modules.user.user_profile')->with('users',$users);
 		}
 	}
-	
+
 	/**
 	 * changePasswordUser: this function using changing password of user
 	 * @return true
@@ -121,22 +121,22 @@ class BeUserController extends BaseController {
 				$isOldPassword = Auth::attempt(array('password' => $oldPassword,'id'=>Session::get('SESSION_USER_ID')));
 				if($isOldPassword){
 					$this->user->where('id','=',Session::get('SESSION_USER_ID'))->update(array('password'=>Hash::make(Input::get('password'))));
-					return Redirect::to('admin/change_password')->with('SECCESS_MESSAGE','Password has been changed');
-					
+					return Redirect::to('admin/change-password')->with('SECCESS_MESSAGE','Password has been changed');
+
 				}else{
-					return Redirect::to('admin/change_password')->with('ERROR_MESSAGE','Old password is not matched');
+					return Redirect::to('admin/change-password')->with('ERROR_MESSAGE','Old password is not matched');
 				}
-				return Redirect::to('admin/change_password');
+				return Redirect::to('admin/change-password');
 			}else{
-				return Redirect::to('admin/change_password')->withErrors($validator);
+				return Redirect::to('admin/change-password')->withErrors($validator);
 			}
 		}else{
 			return View::make('backend.modules.user.change_password');
 		}
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * prepareDataBind: this function handling with preparing data bine
 	 * @param param: add or edit
 	 * @param id: the id of user
@@ -152,16 +152,16 @@ class BeUserController extends BaseController {
 				$data['password'] = Hash::make($password);
 				$data['create_at']= date('Y-m-d');
 		}else if($param == 'edit'){
-				$data['update_at']= date('Y-m-d');	
+				$data['update_at']= date('Y-m-d');
 		}
 		return $data;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * listingUserType: this function using for listing all user types
 	 * @return array of user type
-	 * @access public 
+	 * @access public
 	 */
 	public function listingUserType(){
 		$dataArrayUserType = array();

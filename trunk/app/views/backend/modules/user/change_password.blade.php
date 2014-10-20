@@ -35,25 +35,25 @@
                 <p>{{Session::get('ERROR_MESSAGE')}}</p>
               </div>
               @endif
-             {{Form::open(array('url'=>'admin/change_password'))}}
+             {{Form::open(array('url'=>'admin/change-password'))}}
              	<div class="form-group">
                   <label>Old Password</label>
                  {{ Form::password('old_password', array('class' => 'form-control','placeholder'=>'Old Password'))}}
                  <span class="class-error">{{$errors->first('old_password')}}</span>
                 </div>
-                
+
                 <div class="form-group">
                   <label>New Password</label>
                  {{ Form::password('password', array('class' => 'form-control','placeholder'=>'New Password'))}}
                  <span class="class-error">{{$errors->first('password')}}</span>
                 </div>
-                
+
                 <div class="form-group">
                   <label>Re-Password</label>
                  {{ Form::password('password_confirm',array('class' => 'form-control','placeholder'=>'Re-Password'))}}
                  <span class="class-error">{{$errors->first('password_confirm')}}</span>
                 </div>
-                
+
                 {{Form::submit('Save', array('class' =>'btn btn-success','name'=>'btnSubmit'))}}
               {{Form::close()}}
             </div>
