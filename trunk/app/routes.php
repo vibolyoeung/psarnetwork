@@ -14,6 +14,9 @@
 Route::get('/admin', 'BeLoginController@showLogin');
 Route::get('/login', 'BeLoginController@showLogin');
 Route::post('/admin/login', 'BeLoginController@doLogin');
+Route::get('/admin/send-forget-password', 'BeLoginController@sendResetPassword');
+Route::post('/admin/send-forget-password', 'BeLoginController@sendResetPassword');
+Route::get('/admin/forget-password', 'BeLoginController@resetPassword');
 
 Route::group(array('before' => 'auth'), function() {
 	Route::get('/admin/dashboard', 'BeLoginController@dashboard');
@@ -29,11 +32,11 @@ Route::group(array('before' => 'auth'), function() {
 	Route::any('/admin/change_password','BeUserController@changePasswordUser');
 
 	Route::any('/admin/pages','BePageController@listPage');
-	Route::any('/admin/create_page','BePageController@createPage');
-	Route::get('/admin/edit_page/{id}','BePageController@editPage');
-	Route::post('/admin/edit_page','BePageController@editPage');
-	Route::get('/admin/delete_page/{id}','BePageController@deletePage');
-	Route::get('/admin/status_page/{status}/{id}','BePageController@isEnablePage');
+	Route::any('/admin/create-page','BePageController@createPage');
+	Route::get('/admin/edit-page/{id}','BePageController@editPage');
+	Route::post('/admin/edit-page','BePageController@editPage');
+	Route::get('/admin/delete-page/{id}','BePageController@deletePage');
+	Route::get('/admin/status-page/{status}/{id}','BePageController@isEnablePage');
 
 	Route::get('/admin/slideshows','BeSlideshowController@listSlideshow');
 	Route::any('/admin/create-slideshow','BeSlideshowController@createSlideshow');
