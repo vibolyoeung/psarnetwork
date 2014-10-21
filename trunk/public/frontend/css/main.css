@@ -7,7 +7,6 @@
 @import url(http://fonts.googleapis.com/css?family=Abel);
 body {
   font-family: 'Roboto', sans-serif;
-  background:;
   position: relative;
   font-weight:400px;
 }
@@ -15,31 +14,7 @@ body {
 ul li {
   list-style: none;
 }
-.header-bottom #breadcrumb{left:50%;right:50%;}
-.row .language-bar{
-	z-index: 99999;
-	margin-bottom:10px;
-	overflow:hidden;
-	left:25%;
-	position: absolute;
-	top:8px;
-}
-.row .language-bar ul{
-	top:78%;
-	padding:0;
-	width:100%;
-}
-.row .language-bar ul li img{
-	float:right;
-	margin-top:4px;
-}
-.row .language-bar ul li{
-	background: #f0f0e9;
-	width:95%;
-	padding:3px 5px 3px 5px;
-	display:list-item;
-	border-bottom: 1px solid #ffffff;
-}
+
 
 strong.current-language{
 	padding:5px;
@@ -105,7 +80,34 @@ a#scrollUp i{
 .header_top {
   background: none repeat scroll 0 0 #428bca;
   position: relative;
+  line-height: 20px;
 }
+.header_top .language-bar{
+	z-index: 99999;
+	margin-bottom:10px;
+	overflow:hidden;
+	left:35%;
+	position: absolute;
+	top:1px;
+}
+.header_top .language-bar ul{
+	top:78%;
+	padding:0;
+	width:100%;
+}
+.header_top .language-bar ul li img{
+	float:right;
+	margin-top:4px;
+}
+.header_top .language-bar ul li{
+	background: #f0f0e9;
+	width:95%;
+	padding:3px 5px 3px 5px;
+	display:list-item;
+	border-bottom: 1px solid #ffffff;
+}
+.header_top .contactinfo ul li a{padding: 0 15px;}
+.header_top .social-icons ul li a i{padding: 5px 4px;font-size: 13px}
 
 .contactinfo ul li:first-child{
     margin-left: -15px;
@@ -124,7 +126,7 @@ a#scrollUp i{
 }
 
 .social-icons{
-	margin-top:4px;
+	margin-top:0;
 }
 .social-icons ul.navbar-nav li a {
   border: 0 none;
@@ -270,13 +272,22 @@ a#scrollUp i{
   padding-bottom: 30px;
   padding-top: 0;
 }
+.header-bottom #breadcrumb{left:50%;right:50%;}
+.header-bottom .top-a-menu{height: 36px;overflow: hidden;margin-bottom: 10px;}
+.header-bottom .menu-left ul li{padding: 7px 8px 0;font-size: 10px}
+.header-bottom .menu-left ul li a{font-size: 12px}
+.header-bottom .category-tab ul{margin:0;background: #428bca;}
+.header-bottom .container .row {margin: 0;border-bottom: 1px solid #2B7EB2;height: 36px;overflow: hidden}
+.header-bottom .container .row .col-sm-5 {padding-left: 0}
+.header-bottom .container .row .col-sm-7 {padding-right: 0}
+.header-bottom .container .row .imgmenu {height: 150px;width: 40px;float: left;}
 
 .navbar-collapse.collapse{
   padding-left: 0;
 }
 
 .mainmenu ul li{
-  padding: 10px 14px 0;
+  padding: 10px 8px 0;
 }
 
 .mainmenu ul li:first-child{
@@ -294,7 +305,6 @@ a#scrollUp i{
 
 .mainmenu ul li a:hover, .mainmenu ul li a.active,  .shop-menu ul li a.active{
 	background:none;
-	color:;
 }
 
 .search_box input {
@@ -1094,7 +1104,7 @@ h2.title {
   display: block;
   font-weight:bold;
   font-family: 'Roboto', sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   text-transform: uppercase;
 }
 
