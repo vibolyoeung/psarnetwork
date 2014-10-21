@@ -49,7 +49,7 @@
 							<li><a href="#"><i class="fa">Sign in /</i></a></li>
 							<li><a href="#"><i class="fa">Free Register</i></a></li>
 						</ul>
-						<div class="social-icons language-bar">
+						<div class="language-bar">
 							<strong class="current-language" id="show">Language&nbsp;<img
 								src="{{Config::get('app.url')}}/frontend/images/en.png" alt="" title="" /></strong> <strong
 								class="current-language" id="hide">Language&nbsp;<img
