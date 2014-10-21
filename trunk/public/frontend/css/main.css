@@ -268,7 +268,7 @@ a#scrollUp i{
 
 .header-bottom {
   padding-bottom: 30px;
-  padding-top: 30px;
+  padding-top: 0;
 }
 
 .navbar-collapse.collapse{
@@ -1016,7 +1016,12 @@ h2.title {
   color:#ffffff;
 }
 
-
+.nav-tabs  li  a {
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 4px 4px 0 0;
+  line-height: 1.42857;
+  margin-right:0;
+}
 
 .add-to-cart {
   background:#F5F5ED;
@@ -1074,7 +1079,8 @@ h2.title {
 }
 
 .category-tab ul {
-  background:#428bca;
+  background:#40403E;
+  border-bottom: 1px solid #428bca;
   list-style: none outside none;
   margin: 0 0 30px;
   padding: 0;
@@ -1102,9 +1108,9 @@ h2.title {
   -moz-border-left-colors: none;
   -moz-border-right-colors: none;
   -moz-border-top-colors: none;
-  background-color:transparent;
-  color:saddlebrown;
+  background-color: #428bca;
   border:0px;
+  color: #FFFFFF;
   cursor: default;
   margin-right:0;
   margin-left:0;
@@ -1633,7 +1639,7 @@ h2.title {
 }
 
 .breadcrumbs .breadcrumb > li + li:before {
-  content: " ";
+  content: "ï¿½";
 }
 
 #cart_items .cart_info {
