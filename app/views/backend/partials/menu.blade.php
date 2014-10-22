@@ -23,7 +23,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalog <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="./forms.html">Product</a></li>
-                    <li><a href="./wizards.html">Category</a></li>
+                    <li><a href="{{URL::to('admin/categories')}}">Category</a></li>
                 </ul>
             </li>
             <li>
@@ -37,7 +37,7 @@
         <!-- Mini navigation start -->
         <ul class="nav navbar-nav navbar-right hidden-sm hidden-xs">
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> 
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>
                 	@if(Session::has('SESSION_LOGIN_NAME'))
                 		{{Session::get('SESSION_LOGIN_NAME')}}
                 	@endif

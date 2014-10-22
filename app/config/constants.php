@@ -10,6 +10,7 @@ return array(
 	'BACKEND_PAGINATION_SLIDESHOW'=>10,
 	'SLIDESHOW_RESIZE_WIDTH'=>100,
 	'SLIDESHOW_RESIZE_HEGHT'=>100,
+
 	'TABLE_NAME'=>array(
 
 						'ACCOUNT_TYPE'=>'account_type',
