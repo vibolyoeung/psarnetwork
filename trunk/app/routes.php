@@ -45,6 +45,13 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('/admin/delete-slideshow/{id}','BeSlideshowController@deleteSlideshow');
 	Route::get('/admin/status-slideshow/{id}/{status}','BeSlideshowController@isPublicSlideshow');
 
+	Route::get('/admin/categories','BeCategoryController@listCategory');
+	Route::any('/admin/create-category','BeCategoryController@createCategory');
+	Route::get('/admin/edit-category/{id}','BeCategoryController@editCategory');
+	Route::post('/admin/edit-category','BeCategoryController@editCategory');
+	Route::get('/admin/delete-category/{id}','BeCategoryController@deleteCategory');
+	Route::get('/admin/status-category/{id}/{status}','BeCategoryController@isPublicCategory');
+
 });
 
 Route::any('/{lang}', 'FePageController@index');
