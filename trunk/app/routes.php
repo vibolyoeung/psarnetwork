@@ -45,13 +45,19 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('/admin/delete-slideshow/{id}','BeSlideshowController@deleteSlideshow');
 	Route::get('/admin/status-slideshow/{id}/{status}','BeSlideshowController@isPublicSlideshow');
 
+	Route::get('/admin/advertisements','BeAdvertisementController@listAdvertisement');
+	Route::any('/admin/create-advertisement','BeAdvertisementController@createAdvertisement');
+	Route::any('/admin/list-ads-positions/{id}','BeAdvertisementController@listAdvertisemntPositions');
+	Route::get('/admin/edit-advertisement/{id}','BeAdvertisementController@editAvertisement');
+	Route::post('/admin/delete-advertisement','BeAdvertisementController@deleteAdvertisement');
+	Route::get('/admin/status-advertisement/{id}/{status}','BeAdvertisementController@isEnableAdvertisement');
+
 	Route::get('/admin/categories','BeCategoryController@listCategory');
 	Route::any('/admin/create-category','BeCategoryController@createCategory');
 	Route::get('/admin/edit-category/{id}','BeCategoryController@editCategory');
 	Route::post('/admin/edit-category','BeCategoryController@editCategory');
 	Route::get('/admin/delete-category/{id}','BeCategoryController@deleteCategory');
 	Route::get('/admin/status-category/{id}/{status}','BeCategoryController@isPublicCategory');
-
 });
 
 Route::any('/{lang}', 'FePageController@index');

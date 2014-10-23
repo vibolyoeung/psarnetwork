@@ -1,7 +1,8 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
     "hash": "0c9865aa0fea69f0d43869c3d61bc257",
     "packages": [
@@ -1638,12 +1639,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/image.git",
-                "reference": "4b2ec8d9989c9479d4a00d72b3ce8e485734dbe4"
+                "reference": "48777cde5e5a21b0fef0d4015e9f5ad5d32c22d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image/zipball/4b2ec8d9989c9479d4a00d72b3ce8e485734dbe4",
-                "reference": "4b2ec8d9989c9479d4a00d72b3ce8e485734dbe4",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/48777cde5e5a21b0fef0d4015e9f5ad5d32c22d3",
+                "reference": "48777cde5e5a21b0fef0d4015e9f5ad5d32c22d3",
                 "shasum": ""
             },
             "require": {
@@ -1686,20 +1687,15 @@
                 "thumbnail",
                 "watermark"
             ],
-            "time": "2014-10-12 17:43:57"
+            "time": "2014-10-15 17:55:53"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "intervention/image": 20
     },
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "prefer-stable": false,
+    "platform": [],
+    "platform-dev": []
 }

@@ -1,5 +1,11 @@
 $(document).ready(function() {
 	$( '.datepicker' ).datepicker();
+	
+	$('#ads-page').change(function() {
+		var id = $(this).val();
+		console.log(id);
+		listAllPositions(id);
+	});
 });
 
 /**
@@ -13,5 +19,14 @@ function isAdvertiserDisplay(){
 		}else{
 			$('#isAdvertiserOption').hide();
 		}
+	});
+}
+
+function listAllPositions(id) {
+	$.ajax({
+		url: '/admin/list-ads-positions/' + id,
+		success: function(data) {
+			console.log(data);
+		},
 	});
 }
