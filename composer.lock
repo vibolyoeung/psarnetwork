@@ -1639,12 +1639,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/image.git",
+<<<<<<< .mine
+                "reference": "38dfffeb09e6a7b170dbbb525e925c88c9cab2fb"
+=======
                 "reference": "48777cde5e5a21b0fef0d4015e9f5ad5d32c22d3"
+>>>>>>> .r45
             },
             "dist": {
                 "type": "zip",
+<<<<<<< .mine
+                "url": "https://api.github.com/repos/Intervention/image/zipball/38dfffeb09e6a7b170dbbb525e925c88c9cab2fb",
+                "reference": "38dfffeb09e6a7b170dbbb525e925c88c9cab2fb",
+=======
                 "url": "https://api.github.com/repos/Intervention/image/zipball/48777cde5e5a21b0fef0d4015e9f5ad5d32c22d3",
                 "reference": "48777cde5e5a21b0fef0d4015e9f5ad5d32c22d3",
+>>>>>>> .r45
                 "shasum": ""
             },
             "require": {
@@ -1687,7 +1696,11 @@
                 "thumbnail",
                 "watermark"
             ],
+<<<<<<< .mine
+            "time": "2014-10-18 09:53:09"
+=======
             "time": "2014-10-15 17:55:53"
+>>>>>>> .r45
         }
     ],
     "aliases": [],
