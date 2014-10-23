@@ -14,11 +14,10 @@
     {{HTML::script('backend/js/sparkline.js')}}
     <!-- Tyny Scrollbar -->
     {{HTML::script('backend/js/tiny-scrollbar.js')}}
-    <!-- Date Range -->
-    {{HTML::script('backend/js/daterange/moment.js')}}
-    {{HTML::script('backend/js/daterange/daterangepicker.js')}}
+
+    {{HTML::script('backend/js/jquery-ui.js')}}
     <!-- Custom JS -->
     {{HTML::script('backend/js/custom-index.js')}}
-   
+
   </body>
 </html>

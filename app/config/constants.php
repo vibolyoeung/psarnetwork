@@ -10,12 +10,14 @@ return array(
 	'BACKEND_PAGINATION_SLIDESHOW'=>10,
 	'SLIDESHOW_RESIZE_WIDTH'=>100,
 	'SLIDESHOW_RESIZE_HEGHT'=>100,
-
+	'ADVERTISEMENT_RESIZE_WIDTH'=>100,
+	'ADVERTISEMENT_RESIZE_HEGHT'=>100,
 	'TABLE_NAME'=>array(
 
 						'ACCOUNT_TYPE'=>'account_type',
 						'ADV_PAGE'=>'adv_page',
 						'ADV_POSITION'=>'adv_position',
+						'ADV_PAGE_POSITION_MM'=>'adv_page_position_mm',
 						'ADVERTISEMENT'=>'advertisement',
 						'ADVERTISER_PROFILE'=>'advertiser_profile',
 						'CLIENT_TYPE'=>'client_type',
