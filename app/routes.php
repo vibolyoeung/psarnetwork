@@ -56,4 +56,5 @@ Route::group(array('before' => 'auth'), function() {
 
 Route::any('/{lang}', 'FePageController@index');
 Route::any('/', 'FePageController@index');
+Route::any('/{lang}/search/{category_name}', 'FeSearchController@index');
 
