@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="col-sm-7">
-                <img class="imgmenu" src="{{Config::get('app.url')}}frontend/images/home/right-menu.png"/>
+                <img class="imgmenu" src="{{Config::get('app.url')}}/frontend/images/home/right-menu.png"/>
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse"
                             data-target=".navbar-collapse">
