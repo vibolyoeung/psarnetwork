@@ -27,7 +27,6 @@ function listAllPositions(id) {
 		success: function(data) {
 			var option = '';
 			$.each(data, function(id, name) {
-				console.log(name);
 				option += '<option value="' + id + '">' + name + '</option>';
 			});
 			$('#ads-position').html(option);
