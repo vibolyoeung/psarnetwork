@@ -3,7 +3,6 @@ $(document).ready(function() {
 	
 	$('#ads-page').change(function() {
 		var id = $(this).val();
-		console.log(id);
 		listAllPositions(id);
 	});
 });
@@ -26,7 +25,12 @@ function listAllPositions(id) {
 	$.ajax({
 		url: '/admin/list-ads-positions/' + id,
 		success: function(data) {
-			console.log(data);
+			var option = '';
+			$.each(data, function(id, name) {
+				console.log(name);
+				option += '<option value="' + id + '">' + name + '</option>';
+			});
+			$('#ads-position').html(option);
 		},
 	});
 }
