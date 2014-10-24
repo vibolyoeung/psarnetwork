@@ -281,6 +281,7 @@ a#scrollUp i{
 .header-bottom .container .row .col-sm-5 {padding-left: 0}
 .header-bottom .container .row .col-sm-7 {padding-right: 0}
 .header-bottom .container .row .imgmenu {height: 150px;width: 40px;float: left;}
+.header-bottom .row .category-tab{padding:0}
 
 .navbar-collapse.collapse{
   padding-left: 0;

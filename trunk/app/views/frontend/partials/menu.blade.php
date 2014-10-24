@@ -1,7 +1,7 @@
 <!--=============Menu==========-->
 <div class="header-bottom">
     <div class="container">
-        <div class="row">
+        <div class="row visible-lg">
             <div class="col-sm-5">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -47,9 +47,17 @@
             </div>
         </div>
         <div class="row">
-            <div class="category-tab">
+            <div class="category-tab col-sm-12">
                 <div class="mainmenu">
-                    <ul class="nav nav-tabs navbar-nav collapse navbar-collapse">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <ul class="nav navbar-nav collapse navbar-collapse">
                         <li><a href="#tshirt" data-toggle="tab">Phone</a></li>
                         <li><a href="#blazers" data-toggle="tab">Tablet</a></li>
                         <li><a href="#blazers" data-toggle="tab">Laptop</a></li>

@@ -54,7 +54,7 @@
 								src="{{Config::get('app.url')}}/frontend/images/en.png" alt="" title="" /></strong> <strong
 								class="current-language" id="hide">Language&nbsp;<img
 								src="{{Config::get('app.url')}}/frontend/images/en.png" alt="" title="" /></strong>
-							<ul>
+                                                    <ul style="display: none">
 								<li><a href="#">Englsih <img src="{{Config::get('app.url')}}/frontend/images/en.png" alt="" title="" /></a></li>
 								<li><a href="#">Chinese <img src="{{Config::get('app.url')}}/frontend/images/cn.png" alt="" title="" /></a></li>
 							</ul>
