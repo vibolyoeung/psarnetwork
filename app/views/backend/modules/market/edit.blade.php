@@ -5,7 +5,7 @@
 @section('breadcrumb')
 	<ul class="breadcrumb">
 		<li><a href="{{URL::to('admin/dashboard')}}">Dashboard</a></li>
-		<li><a href="{{URL::to('admin/pages')}}">Markets</a></li>
+		<li><a href="{{URL::to('admin/markets')}}">Markets</a></li>
 		<li>Edit</li>
 	</ul>
 @endsection
@@ -63,6 +63,12 @@
 								$mk->title_en,array())}}
 					</div>
 					<br/>
+
+					<div class="form-group col-md-6 col-sm-12 col-xs-6">
+						<label>Amount of Stair<span class="class-required">*</span></label>
+						{{Form::text('amount_stair',$mk->amount_stair, array('class' => 'form-control','placeholder'=>'Enter Amount of stair'))}}
+						<span class="class-error">{{$errors->first('amount_stair')}}</span>
+					</div>
 					<div class="form-group col-md-12">
 						{{Form::submit('Update', array('class' => 'btn btn-success','name'=>'btnSubmit'))}}
 						{{Form::close()}}
