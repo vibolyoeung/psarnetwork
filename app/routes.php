@@ -64,8 +64,12 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('/admin/edit-market/{id}','BeMarketController@editMarket');
 	Route::post('/admin/edit-market','BeMarketController@editMarket');
 	Route::get('/admin/delete-market/{id}','BeMarketController@deleteMarket');
-	Route::get('/admin/status-market/{id}/{status}','BeMarketController@isPublicMarket');
 	Route::get('/admin/list-district/{id}','BeMarketController@listingDistricts');
+
+	Route::get('/admin/market/store/{store_name}/{id}','BeStoreController@listStore');
+	Route::any('/admin/market/store/create/{store_name}/{id}','BeStoreController@createStore');
+	Route::any('/admin/market/store/edit/{stor_id}/{store_name}/{id}','BeStoreController@editStore');
+	Route::get('/admin/market/store/delete/{stor_id}/{store_name}/{id}','BeStoreController@deleteStore');
 });
 
 Route::any('/{lang}', 'FePageController@index');
