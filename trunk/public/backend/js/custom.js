@@ -5,6 +5,11 @@ $(document).ready(function() {
 		var id = $(this).val();
 		listAllPositions(id);
 	});
+	
+	$('#provinces').change(function(){
+		var id = $(this).val();
+		listAllDistrictsByProvinceId(id);
+	});
 });
 
 /**
@@ -30,6 +35,19 @@ function listAllPositions(id) {
 				option += '<option value="' + id + '">' + name + '</option>';
 			});
 			$('#ads-position').html(option);
+		},
+	});
+}
+
+function listAllDistrictsByProvinceId(id) {
+	$.ajax({
+		url: '/admin/list-district/' + id,
+		success: function(data) {
+			var option = '';
+			$.each(data, function(id, name) {
+				option += '<option value="' + id + '">' + name + '</option>';
+			});
+			$('#district_option').html(option);
 		},
 	});
 }
