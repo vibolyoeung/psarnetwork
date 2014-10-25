@@ -5,7 +5,7 @@
 @section('breadcrumb')
 	<ul class="breadcrumb">
 		<li><a href="{{URL::to('admin/dashboard')}}">Dashboard</a></li>
-		<li><a href="{{URL::to('admin/pages')}}">Markets</a></li>
+		<li><a href="{{URL::to('admin/markets')}}">Markets</a></li>
 		<li>Create</li>
 	</ul>
 @endsection
@@ -57,6 +57,12 @@
 						<label>Image <span class="class-required">*</span></label>
 						{{ Form::file('file',array('class' => 'form-control'))}}
 						<span class="class-error">{{$errors->first('file')}}</span>
+					</div>
+
+					<div class="form-group col-md-6 col-sm-12 col-xs-6">
+						<label>Amount of Stair<span class="class-required">*</span></label>
+						{{Form::text('amount_stair',null, array('class' => 'form-control','placeholder'=>'Enter Amount of stair'))}}
+						<span class="class-error">{{$errors->first('amount_stair')}}</span>
 					</div>
 
 					<div class="form-group col-md-12">

@@ -34,7 +34,8 @@ class BeMarketController extends BaseController {
 						'title_en'=>'required',
 						'title_zh'=>'required',
 						'province_id'=>'required',
-						'district_id'=>'required'
+						'district_id'=>'required',
+						'amount_stair'=>'required'
 						);
 
 						$validator = Validator::make(Input::all(), $rules);
@@ -78,7 +79,8 @@ class BeMarketController extends BaseController {
 						'title_en'=>'required',
 						'title_zh'=>'required',
 						'province_id'=>'required',
-						'district_id'=>'required'
+						'district_id'=>'required',
+						'amount_stair'=>'required'
 						);
 						if(Input::hasfile('file')){
 							$rules['file'] = 'mimes:jpeg,png,bmp,gif|image';
@@ -158,8 +160,9 @@ class BeMarketController extends BaseController {
 				'title_zh'=>trim(Input::get('title_zh')),
 				'desc_en'=>trim(Input::get('desc_en')),
 				'desc_zh'=>trim(Input::get('desc_zh')),
-				'province_id'=>trim(Input::get('district_id')),
-				'district_id'=>trim(Input::get('district_id'))
+				'province_id'=>trim(Input::get('province_id')),
+				'district_id'=>trim(Input::get('district_id')),
+				'amount_stair'=>trim(Input::get('amount_stair'))
 		);
 
 		if($param == 'add'){

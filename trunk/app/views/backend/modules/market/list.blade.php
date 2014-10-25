@@ -30,6 +30,7 @@
 			<th>Images</th>
 			<th>Market Title En</th>
 			<th>Market Title Zh</th>
+			<th>Amount Of Stair</th>
 			<th width="10%">View Stores</th>
 			<th class="class-center">Action</th>
 		</tr>
@@ -43,15 +44,25 @@
 			$mk->title_en,array())}}</td>
 			<td>{{$mk->title_en}}</td>
 			<td>{{$mk->title_zh}}</td>
-			<td><a href="{{URL::to('admin/market/store')}}/{{$mk->id}"><i
+			<td width="10%">{{$mk->amount_stair}}</td>
+			<td><a href="{{URL::to('admin/market/store')}}/{{strtolower($mk->title_en)}}/{{$mk->id}}"><i
 				class="icon-plus btn btn-xs btn-info rounded-buttons">&nbsp;Add
 			Store</i></a></td>
 			<td align="center"><a title="Edit"
 				href="{{URL::to('admin/edit-market')}}/{{$mk->id}}"> <i
-				class="icon-edit primary"></i> </a> <a title="Delete"
+				class="icon-edit primary"></i> </a>
+				@if(Market::listingStoreInSuperMarket($mk->id)==0)
+				<a title="Delete"
 				href="{{URL::to('admin/delete-market')}}/{{$mk->id}}"
 				onclick="return confirm('Are you sure you want to delete this item?');">
-			<i class='icon-trash danger'></i> </a></td>
+				<i class='icon-trash danger'></i> </a>
+			@else
+				<a title="Delete"
+				href="#"
+				onclick="return confirm('Sorry, this item can not delete because it can be affected to child! ');">
+			<i class='icon-trash danger'></i> </a>
+			@endif
+			</td>
 		</tr>
 		<?php $i++;?>
 		@endforeach

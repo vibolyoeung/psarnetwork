@@ -175,4 +175,12 @@ class Market extends Eloquent{
 		return $response;
 	}
 
+	public static function listingStoreInSuperMarket($sup_id){
+			$result = DB::table(Config::get('constants.TABLE_NAME.STORE'))
+			->select('*')
+			->where('sup_id','=',$sup_id)
+			->get();
+			return  count($result);
+	}
+
 }
