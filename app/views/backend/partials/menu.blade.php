@@ -16,13 +16,7 @@
 			<ul class="dropdown-menu">
 				<li><a href="{{URL::to('admin/users')}}">Users</a></li>
 			</ul></li>
-		<li class="dropdown"><a href="#" class="dropdown-toggle"
-			data-toggle="dropdown">Catalog <b class="caret"></b></a>
-			<ul class="dropdown-menu">
-				<li><a href="./forms.html">Product</a></li>
-				<li><a href="./wizards.html">Category</a></li>
-			</ul>
-		</li>
+
 		 <li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalog <b class="caret"></b></a>
 			<ul class="dropdown-menu">
@@ -31,6 +25,7 @@
 			</ul>
 		</li>
 		<li><a href="{{URL::to('admin/pages')}}">Page</a></li>
+		<li><a href="{{URL::to('admin/markets')}}">Market</a></li>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown">Media <b class="caret"></b></a>
 			<ul class="dropdown-menu">
