@@ -19,37 +19,37 @@
 			</div>
 			<div class="panel-body">
 				{{Form::open(array('url'=>'admin/create-slideshow','enctype'=>'multipart/form-data','file' => true))}}
-				<div class="form-group">
+				<div class="form-group col-md-6 col-sm-12 col-xs-6">
 					<label>Title<span class="class-required">*</span></label>
 					{{ Form::text('title',null, array('class' => 'form-control','placeholder'=>'Enter Title'))}}
 					<span class="class-error">{{$errors->first('title')}}</span>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group col-md-6 col-sm-12 col-xs-6">
 					<label>Link URL<span class="class-required">*</span></label>
 					{{ Form::text('url',null, array('class' => 'form-control','placeholder'=>'Enter URL'))}}
 					<span class="class-error">{{$errors->first('url')}}</span>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group col-md-6 col-sm-12 col-xs-6">
 					<label>Create Date <span class="class-required">*</span></label>
-					{{ Form::text('createdDate',null, array('class' => 'form-control datepicker','placeholder'=>'Enter Create Date'))}}
+					{{ Form::text('createdDate',null, array('class' => 'form-control datepicker','placeholder'=>'dd/mm/yyyy'))}}
 					<span class="class-error">{{$errors->first('createdDate')}}</span>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group col-md-6 col-sm-12 col-xs-6">
 					<label>Expire Date <span class="class-required">*</span></label>
-					{{ Form::text('ExpireDate',null, array('class' => 'form-control datepicker','placeholder'=>'Enter Expire Date'))}}
+					{{ Form::text('ExpireDate',null, array('class' => 'form-control datepicker','placeholder'=>'dd/mm/yyyy'))}}
 					<span class="class-error">{{$errors->first('ExpireDate')}}</span>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group col-md-6 col-sm-12 col-xs-6">
 					<label>Picture<span class="class-required">*</span></label>
 					{{ Form::file('file',array('class' => 'form-control'))}}
 					<span class="class-error">{{$errors->first('file')}}</span>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group col-md-6 col-sm-12 col-xs-6">
 					<label>Enter Advertiser</label>
 					{{Form::select('isAdvertiser',array(''=>'Select Advertiser','1'=>'Advertiser'),'key', array('class' => 'form-control','id'=>'isAdvertiser'));}}
 				</div>
