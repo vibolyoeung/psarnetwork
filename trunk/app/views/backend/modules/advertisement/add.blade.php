@@ -45,12 +45,12 @@
 					<span class="class-error">{{$errors->first('file')}}</span>
 				</div>
 
-				<div class="form-group col-md-6 col-sm-6 col-xs-6">
+				<div class="form-group col-md-3 col-sm-3 col-xs-3">
 					<label>Advertise On Page</label>
 					{{ Form::select('advertisementPage',$advPage, null , array('class' => 'form-control', 'id' => 'ads-page'))}}
 				</div>
 
-				<div class="form-group col-md-6 col-sm-6 col-xs-6">
+				<div class="form-group col-md-3 col-sm-3 col-xs-3" style="display: none">
 					<label>Position</label>
 					{{ Form::select('advertisementPage', array(), null , array('class' => 'form-control', 'id' => 'ads-position'))}}
 				</div>
