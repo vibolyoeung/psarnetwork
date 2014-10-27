@@ -1,9 +1,14 @@
 $(document).ready(function() {
-	$( '.datepicker' ).datepicker();
+	$( '.datepicker' ).datepicker({ dateFormat: 'dd/mm/yy' });
 	
 	$('#ads-page').change(function() {
 		var id = $(this).val();
-		listAllPositions(id);
+		if (0 == id) {
+			$('#ads-position').parent().hide();
+		} else {
+			$('#ads-position').parent().show();
+			listAllPositions(id);
+		}
 	});
 	
 	$('#provinces').change(function(){
