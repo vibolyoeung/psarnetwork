@@ -1,4 +1,7 @@
-@extends('backend/layout') @section('title') dashboard @endsection
+@extends('backend/layout')
+@section('title')
+	Administration-Dashboard
+@endsection
 @section('breadcrumb')
 	<ul class="breadcrumb">
 		<li>Dashboard</li>
@@ -13,7 +16,9 @@
 			</div>
 			<div class="panel-body">
 				<div class="daily-stats">
-				{{HTML::image('backend/images/icons/clients.png','Clients', array('class'=>'control-image'))}}
+					<a href="#">
+						{{HTML::image('backend/images/icons/clients.png','Clients', array('class'=>'control-image'))}}
+					</a>
 			</div>
 			</div>
 			<div class="panel-footer clearfix">
@@ -30,11 +35,13 @@
 			</div>
 			<div class="panel-body">
 			<div class="daily-stats">
-				{{HTML::image('backend/images/icons/category-icon.png','Category', array('class'=>'control-image'))}}
+				<a href="{{URL::to('admin/categories')}}">
+					{{HTML::image('backend/images/icons/category-icon.png','Category', array('class'=>'control-image'))}}
+				</a>
 			</div>
 			</div>
 			<div class="panel-footer clearfix">
-				<a href="#" class="pull-left">View more...</a>
+				<a href="{{URL::to('admin/categories')}}" class="pull-left">View more...</a>
 			<span class="pull-right" id="products"></span>
 			</div>
 		</div>
@@ -47,7 +54,9 @@
 			</div>
 			<div class="panel-body">
 				<div class="daily-stats">
-					{{HTML::image('backend/images/icons/product-icon.png','Products', array('class'=>'control-image'))}}
+					<a href="#">
+						{{HTML::image('backend/images/icons/product-icon.png','Products', array('class'=>'control-image'))}}
+					</a>
 				</div>
 			</div>
 			<div class="panel-footer clearfix">
@@ -64,11 +73,13 @@
 			</div>
 			<div class="panel-body">
 				<div class="daily-stats">
-					{{HTML::image('backend/images/icons/advertisement-icon.png','Advertisement', array('class'=>'control-image'))}}
+					<a href="{{URL::to('admin/advertisements')}}">
+						{{HTML::image('backend/images/icons/advertisement-icon.png','Advertisement', array('class'=>'control-image'))}}
+					</a>
 				</div>
 			</div>
 			<div class="panel-footer clearfix">
-				<a href="#" class="pull-left">View more...</a>
+				<a href="{{URL::to('admin/advertisements')}}" class="pull-left">View more...</a>
 				<span class="pull-right" id="new-users"></span>
 			</div>
 		</div>
@@ -81,11 +92,13 @@
 			</div>
 			<div class="panel-body">
 				<div class="daily-stats">
-					{{HTML::image('backend/images/icons/slideshow-con.jpg','Slideshow', array('class'=>'control-image'))}}
+					<a href="{{URL::to('admin/slideshows')}}">
+						{{HTML::image('backend/images/icons/slideshow-con.jpg','Slideshow', array('class'=>'control-image'))}}
+					</a>
 				</div>
 			</div>
 			<div class="panel-footer clearfix">
-				<a href="#" class="pull-left">View more...</a>
+				<a href="{{URL::to('admin/slideshows')}}" class="pull-left">View more...</a>
 				<span class="pull-right" id="new-users"></span>
 			</div>
 		</div>
@@ -98,11 +111,13 @@
 			</div>
 			<div class="panel-body">
 				<div class="daily-stats">
+					<a href="{{URL::to('admin/slideshows')}}">
 					 {{HTML::image('backend/images/icons/setting-icon.png','Setting', array('class'=>'control-image'))}}
+					</a>
 				</div>
 			</div>
 			<div class="panel-footer clearfix">
-				<a href="#" class="pull-left">View more...</a>
+				<a href="{{URL::to('admin/slideshows')}}" class="pull-left">View more...</a>
 				<span class="pull-right" id="new-users"></span>
 			</div>
 		</div>
@@ -115,11 +130,13 @@
 			</div>
 			<div class="panel-body">
 				<div class="daily-stats">
-					{{HTML::image('backend/images/icons/report-icon.jpg','Reports', array('class'=>'control-image'))}}
+					<a href="{{URL::to('admin/slideshows')}}">
+						{{HTML::image('backend/images/icons/report-icon.jpg','Reports', array('class'=>'control-image'))}}
+					</a>
 				</div>
 			</div>
 			<div class="panel-footer clearfix">
-				<a href="#" class="pull-left">View more...</a>
+				<a href="{{URL::to('admin/slideshows')}}" class="pull-left">View more...</a>
 				<span class="pull-right" id="new-users"></span>
 			</div>
 		</div>
@@ -132,11 +149,13 @@
 			</div>
 			<div class="panel-body">
 				<div class="daily-stats">
-					 {{HTML::image('backend/images/icons/super-market.jpg','Super Market', array('class'=>'control-image'))}}
+					<a href="{{URL::to('admin/markets')}}">
+						{{HTML::image('backend/images/icons/super-market.jpg','Super Market', array('class'=>'control-image'))}}
+					</a>
 				</div>
 			</div>
 			<div class="panel-footer clearfix">
-				<a href="#" class="pull-left">View more...</a>
+				<a href="{{URL::to('admin/markets')}}" class="pull-left">View more...</a>
 				<span class="pull-right" id="new-users"></span>
 			</div>
 		</div>
