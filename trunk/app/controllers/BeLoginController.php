@@ -35,14 +35,12 @@ class BeLoginController extends BaseController {
 			$validator = Validator::make(Input::all(), $rules);
 			if ($validator->passes()) {
 				$user = array('email' => $email, 'password' => $password,'status'=>1);
-				 if (Auth::attempt($user)) {
+				 if (Auth::attempt($user, true)) {
 				 	if(4 != Auth::user()->user_type){
-
 				 	Session::put('SESSION_USER_ID', Auth::user()->id);
 					Session::put('SESSION_USER_EMAIL', Auth::user()->email);
 					Session::put('SESSION_USER_ROLE',Auth::user()->user_type);
 					Session::put('SESSION_LOGIN_NAME',Auth::user()->name);
-
 					return Redirect::to('admin/dashboard');
 				 	}else{
 				 		return Redirect::to('admin')->with('invalid','User name and Password are not matched!');
@@ -101,4 +99,6 @@ class BeLoginController extends BaseController {
 	public function resetPassword(){
 		return View::make('backend.modules.login.reset_password');
 	}
+
+
 }
