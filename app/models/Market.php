@@ -93,6 +93,30 @@ class Market extends Eloquent{
 		return $response;
 	}
 
+/**
+	 *
+	 * listingMarketsType: this function using for listing all market types
+	 * @return array: the object market types
+	 * @access public
+	 */
+	public function listingMarketsType(){
+		$response = new stdClass();
+		$arr = array();
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.CLIENT_TYPE'))
+			->select('id','name','account_type_id')
+			->where('account_type_id','!=',1)
+			->get();
+			foreach ($result as $marketType) {
+				$arr[$marketType->id] = $marketType->name;
+			}
+			$response->data = $arr;
+		}catch (\Exception $e){
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+		}
+		return $response;
+	}
+
 	/**
 	 *
 	 * saveAddMarket: this function using for saving data into market

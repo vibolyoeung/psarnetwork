@@ -38,9 +38,26 @@ CREATE TABLE `adv_page` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 /*Data for the table `adv_page` */
+
+insert  into `adv_page`(`id`,`name`) values (1,'Home page'),(2,'Category Page'),(3,'Page Detail'),(4,'Market Place'),(5,'Market Place Detail'),(6,'Interprise-page'),(7,'Free-user page'),(8,'Register'),(9,'Login');
+
+/*Table structure for table `adv_page_position_mm` */
+
+DROP TABLE IF EXISTS `adv_page_position_mm`;
+
+CREATE TABLE `adv_page_position_mm` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `adv_page_id` int(11) NOT NULL,
+  `adv_position_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+
+/*Data for the table `adv_page_position_mm` */
+
+insert  into `adv_page_position_mm`(`id`,`adv_page_id`,`adv_position_id`) values (1,1,1),(2,1,2),(3,1,3),(4,1,4),(5,1,5),(6,1,6),(7,1,7),(8,1,8),(9,1,9),(10,1,10),(11,2,2),(12,2,3),(13,2,4),(14,2,5),(15,2,6),(16,2,7),(17,2,8),(18,2,9),(19,2,10),(20,3,2),(21,3,3),(22,3,4),(23,3,5),(24,4,2),(25,4,3),(26,4,5),(27,4,8),(28,4,9),(29,4,10),(30,5,11),(31,5,4),(32,5,5),(33,5,6),(34,5,7),(35,6,4),(36,7,4),(37,8,4),(38,9,4);
 
 /*Table structure for table `adv_position` */
 
@@ -51,9 +68,11 @@ CREATE TABLE `adv_position` (
   `name` varchar(200) DEFAULT NULL,
   `adv_page_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 /*Data for the table `adv_position` */
+
+insert  into `adv_position`(`id`,`name`,`adv_page_id`) values (1,'Slide Show',NULL),(2,'Top',NULL),(3,'Buttom',NULL),(4,'V-Left-Meduim',NULL),(5,'V-Right-Meduim',NULL),(6,'V-Left-Samll',NULL),(7,'V-Right-Samll',NULL),(8,'H-Midlle-top-Large',NULL),(9,'H-Middle-centre-Large',NULL),(10,'H-Middle-Buttom-Large',NULL),(11,'Market-Slide-Show',NULL),(12,'H-Top-Meduim',NULL);
 
 /*Table structure for table `advertisement` */
 
@@ -86,9 +105,11 @@ CREATE TABLE `advertiser_profile` (
   `email` varchar(100) DEFAULT NULL,
   `address` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `advertiser_profile` */
+
+insert  into `advertiser_profile`(`id`,`name`,`phone`,`email`,`address`) values (1,'Englishss','097 27 93 573','updoc.year4@gmail.com','PP'),(2,'Englishss','097 27 93 573','updoc.year4@gmail.com','PP'),(3,'KOCH DOEN','097 27 93 573','doeunkoch@gmail.com','PHP');
 
 /*Table structure for table `client_type` */
 
@@ -97,12 +118,13 @@ DROP TABLE IF EXISTS `client_type`;
 CREATE TABLE `client_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
+  `account_type_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `client_type` */
 
-insert  into `client_type`(`id`,`name`) values (1,'Individual'),(2,'Homeshop'),(3,'Private company'),(4,'Traditional Market'),(5,'Supermarket');
+insert  into `client_type`(`id`,`name`,`account_type_id`) values (1,'Individual',1),(2,'Homeshop',2),(3,'Private company',2),(4,'Traditional Market',2),(5,'Supermarket',2);
 
 /*Table structure for table `district` */
 
@@ -158,13 +180,16 @@ DROP TABLE IF EXISTS `m_category`;
 
 CREATE TABLE `m_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` int(11) DEFAULT NULL,
+  `name_en` varchar(100) DEFAULT NULL,
+  `name_zh` varchar(100) DEFAULT NULL,
   `parent_id` int(11) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 /*Data for the table `m_category` */
+
+insert  into `m_category`(`id`,`name_en`,`name_zh`,`parent_id`,`status`) values (13,'testing','testing',11,0),(14,'Vichicle','Vichicle',0,1),(15,'Car','Car',14,1),(16,'luxis','luxis',15,1),(17,'Luxis-330','Luxis-330',16,1),(18,'TV','TV',0,1);
 
 /*Table structure for table `m_page` */
 
@@ -173,17 +198,19 @@ DROP TABLE IF EXISTS `m_page`;
 CREATE TABLE `m_page` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sys_user_id` int(11) DEFAULT NULL,
-  `title` varchar(100) DEFAULT NULL,
-  `short_desc` text,
+  `title_en` varchar(100) DEFAULT NULL,
+  `title_zh` varchar(50) DEFAULT NULL,
+  `short_desc_en` text,
+  `short_desc_zh` text,
   `status` int(1) DEFAULT '1',
   `create_at` varchar(50) DEFAULT NULL,
   `update_at` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 /*Data for the table `m_page` */
 
-insert  into `m_page`(`id`,`sys_user_id`,`title`,`short_desc`,`status`,`create_at`,`update_at`) values (8,2,'About','',1,'2014-10-15',NULL);
+insert  into `m_page`(`id`,`sys_user_id`,`title_en`,`title_zh`,`short_desc_en`,`short_desc_zh`,`status`,`create_at`,`update_at`) values (15,2,'About','關於','About','關於',1,'2014-10-20','2014-10-20');
 
 /*Table structure for table `market` */
 
@@ -191,17 +218,23 @@ DROP TABLE IF EXISTS `market`;
 
 CREATE TABLE `market` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) DEFAULT NULL,
+  `title_en` varchar(100) DEFAULT NULL,
+  `title_zh` varchar(100) DEFAULT NULL,
   `created_date` varchar(100) DEFAULT NULL,
   `modify_date` varchar(100) DEFAULT NULL,
-  `short_desc` text,
-  `description` text,
+  `desc_en` text,
+  `desc_zh` text,
   `province_id` int(11) DEFAULT NULL,
   `district_id` int(11) DEFAULT NULL,
+  `image` varchar(100) DEFAULT NULL,
+  `amount_stair` varchar(100) DEFAULT NULL,
+  `market_type` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 /*Data for the table `market` */
+
+insert  into `market`(`id`,`title_en`,`title_zh`,`created_date`,`modify_date`,`desc_en`,`desc_zh`,`province_id`,`district_id`,`image`,`amount_stair`,`market_type`) values (8,'esss','ss','2014-11-11','2014-11-11','sfds','sss',2,68,'1415719636.jpg','10',2);
 
 /*Table structure for table `product` */
 
@@ -318,13 +351,17 @@ CREATE TABLE `slideshow` (
   `short_desc` text,
   `description` text,
   `link_url` varchar(200) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT '0',
   `product_id` int(11) DEFAULT NULL,
   `advertiser_id` int(11) DEFAULT NULL,
+  `created_date` varchar(100) DEFAULT NULL,
+  `expire_date` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 /*Data for the table `slideshow` */
+
+insert  into `slideshow`(`id`,`title`,`image`,`short_desc`,`description`,`link_url`,`status`,`product_id`,`advertiser_id`,`created_date`,`expire_date`) values (6,'title-updated','1413631121.jpg','title-updated','title-updated','http://psarnetwork.local/admin/create_slideshow-title-updated',1,NULL,3,'243214title-updated','23432title-updated'),(7,'New Care Arrival','1415712839.png','This is the best time for me This is the best time for me This is the best time for me This is the best time for me This is the best time for me','This is the best time for me This is the best time for me This is the best time for me This is the best time for me This is the best time for me','http://psarnetwork.local/admin/create_slideshow-updated',1,NULL,NULL,'06/11/2014','28/11/2014');
 
 /*Table structure for table `store` */
 
@@ -334,15 +371,19 @@ CREATE TABLE `store` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `sup_id` int(11) DEFAULT NULL,
-  `title` varchar(100) DEFAULT NULL,
-  `short_desc` text,
-  `description` text,
+  `title_en` varchar(100) DEFAULT NULL,
+  `title_zh` varchar(100) DEFAULT NULL,
+  `desc_en` text,
+  `desc_zh` text,
   `view` int(11) DEFAULT NULL,
   `stair` varchar(100) DEFAULT NULL,
+  `image` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `store` */
+
+insert  into `store`(`id`,`user_id`,`sup_id`,`title_en`,`title_zh`,`desc_en`,`desc_zh`,`view`,`stair`,`image`) values (4,NULL,6,'Store1','sdd','SF','SFS',NULL,'23','1414236547.jpg');
 
 /*Table structure for table `template` */
 
@@ -374,11 +415,11 @@ CREATE TABLE `user` (
   `account_type` int(11) DEFAULT NULL,
   `client_type` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`name`,`email`,`password`,`password_temp`,`status`,`create_at`,`update_at`,`remember_token`,`user_type`,`account_type`,`client_type`) values (2,'KOCH Doeund','doeunkoch@gmail.com','$2y$10$Xx3gjfYStUo5ES3OrVTly.BCINmd3JILCXZ8vFrckEeKLftBeN6IO',NULL,1,NULL,NULL,'lGQ22RK8rYxiTeJIRrkhMc4uBArWdVY4k4p17LlGs00gQX0sI0qh7ccbOoLI',1,NULL,NULL),(3,'HOM Kimhim-updated','kimhim.hom-updated@gmail.com','$2y$10$RY3WZxvzq9K4X/4ZGdQP.uj.usxhCXU2vmhYcC6SXuX/irnlmiJum',NULL,0,NULL,'2014-10-13','iRRSpAoXclQzUsLLraQAQGYfoP2X3P4SrMRaOl4ojXjhVknPJk7Sib5ogLzk',1,NULL,NULL),(12,'testing','updoc.year4@gmail.com','$2y$10$2lny7ZDko15CSgCnyCBn..bLq18zQpEpRE7CPJUGLbVeOcn/cg63C',NULL,1,'2014-10-13','2014-10-15',NULL,0,NULL,NULL);
+insert  into `user`(`id`,`name`,`email`,`password`,`password_temp`,`status`,`create_at`,`update_at`,`remember_token`,`user_type`,`account_type`,`client_type`) values (2,'KOCH Doeund','doeunkoch@gmail.com','$2y$10$gBGqu4Jo/dHIrusgJILwxOCvwT/dAS/91AaifWz38wtD7SecUOO/q',NULL,1,NULL,NULL,'DPadTF8KJ3TkqTa78BG4LYJK6laPBDxr5LSu8p9NtyI2z2CND6udCIR0xOQj',1,NULL,NULL),(3,'HOM Kimhim-updated','kimhim.hom-updated@gmail.com','$2y$10$RY3WZxvzq9K4X/4ZGdQP.uj.usxhCXU2vmhYcC6SXuX/irnlmiJum',NULL,0,NULL,'2014-10-13','',1,NULL,NULL);
 
 /*Table structure for table `user_type` */
 
@@ -392,7 +433,7 @@ CREATE TABLE `user_type` (
 
 /*Data for the table `user_type` */
 
-insert  into `user_type`(`id`,`name`) values (1,'Super administrator'),(2,'Administrator'),(3,'Admin'),(4,'client');
+insert  into `user_type`(`id`,`name`) values (1,'Observer '),(2,'Supervisor'),(3,'Watcher'),(4,'client');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
