@@ -31,6 +31,7 @@
 			<th>Market Title En</th>
 			<th>Market Title Zh</th>
 			<th>Amount Of Stair</th>
+			<th>Market Type</th>
 			<th class="class-center">Action</th>
 		</tr>
 	</thead>
@@ -44,6 +45,24 @@
 			<td>{{$mk->title_en}}</td>
 			<td>{{$mk->title_zh}}</td>
 			<td width="10%">{{$mk->amount_stair}}</td>
+			<td width="10%">
+				<?php
+					switch ($mk->market_type) {
+						case 2:
+							echo 'Homeshop';
+						break;
+						case 3:
+							echo 'Private company';
+						break;
+						case 4:
+							echo 'Traditional Market';
+						break;
+						case 5:
+							echo 'Supermarket';
+						break;
+					}
+				?>
+			</td>
 			<td align="center"><a title="Edit"
 				href="{{URL::to('admin/edit-market')}}/{{$mk->id}}"> <i
 				class="icon-edit primary"></i> </a>

@@ -65,6 +65,12 @@
 						<span class="class-error">{{$errors->first('amount_stair')}}</span>
 					</div>
 
+					<div class="form-group col-md-6 col-sm-12 col-xs-6">
+						<label>Market Type<span class="class-required">*</span></label>
+						{{ Form::select('market_type',$marketTypes, null , array('class' => 'form-control', 'id' => 'district_option'))}}
+						<span class="class-error">{{$errors->first('amount_stair')}}</span>
+					</div>
+
 					<div class="form-group col-md-12">
 						{{Form::submit('Create', array('class' => 'btn btn-success','name'=>'btnSubmit'))}}
 						{{Form::close()}}

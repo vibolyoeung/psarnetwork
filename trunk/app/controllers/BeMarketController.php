@@ -35,7 +35,8 @@ class BeMarketController extends BaseController {
 						'title_zh'=>'required',
 						'province_id'=>'required',
 						'district_id'=>'required',
-						'amount_stair'=>'required'
+						'amount_stair'=>'required',
+						'market_type'=>'required'
 						);
 
 						$validator = Validator::make(Input::all(), $rules);
@@ -49,19 +50,22 @@ class BeMarketController extends BaseController {
 							$data = self::prepareDataBind('add', $fileName);
 							$result = $this->mod_market->saveAddMarket($data);
 							$file->move($destinationPath, $fileName);
-							Image::make($destinationPath . $fileName)->resize(Config::get('constants.MARKET_RESIZE_WIDTH'), Config::get('constants.MARKET_RESIZE_HEGHT'))->save($destinationPathThumb . $fileName);
+							Image::make($destinationPath . $fileName)
+							->resize(Config::get('constants.MARKET_RESIZE_WIDTH'), Config::get('constants.MARKET_RESIZE_HEGHT'))
+							->save($destinationPathThumb . $fileName);
 							return Redirect::to('admin/markets')->with('SECCESS_MESSAGE','Market has been added successfully');
 						}else{
 							return Redirect::to('admin/create-market')->withInput()->withErrors($validator);
 						}
 		}
-
+		$marketType = $this->mod_market->listingMarketsType();
 		$provinces = $this->mod_market->listingProvinces();
 		$districts = $this->mod_market->listingDistricts();
 
 		return View::make('backend.modules.market.add')
 		->with('provinces', $provinces->data)
-		->with('districts', $districts->data);
+		->with('districts', $districts->data)
+		->with('marketTypes', $marketType->data);
 	}
 
 	/**
@@ -80,7 +84,8 @@ class BeMarketController extends BaseController {
 						'title_zh'=>'required',
 						'province_id'=>'required',
 						'district_id'=>'required',
-						'amount_stair'=>'required'
+						'amount_stair'=>'required',
+						'market_type'=>'required'
 						);
 						if(Input::hasfile('file')){
 							$rules['file'] = 'mimes:jpeg,png,bmp,gif|image';
@@ -89,7 +94,6 @@ class BeMarketController extends BaseController {
 						if ($validator->passes()) {
 							$id = Input::get('id');
 							if(Input::hasfile('file')){
-
 								$destinationPath = base_path() . '/public/upload/market/';
 								self::generateFolderUpload($destinationPath);
 								$destinationPathThumb = $destinationPath.'thumb/';
@@ -113,13 +117,15 @@ class BeMarketController extends BaseController {
 		}
 
 		$id = (integer) $id;
+		$marketType = $this->mod_market->listingMarketsType();
 		$provinces = $this->mod_market->listingProvinces();
 		$districts = $this->mod_market->listingDistricts();
 		$mk = $this->mod_market->listingEditData($id);
 		return View::make('backend.modules.market.edit')
 		->with('provinces', $provinces->data)
 		->with('districts', $districts->data)
-		->with('mk', $mk->data);
+		->with('mk', $mk->data)
+		->with('marketTypes', $marketType->data);
 	}
 
 	/**
@@ -162,7 +168,8 @@ class BeMarketController extends BaseController {
 				'desc_zh'=>trim(Input::get('desc_zh')),
 				'province_id'=>trim(Input::get('province_id')),
 				'district_id'=>trim(Input::get('district_id')),
-				'amount_stair'=>trim(Input::get('amount_stair'))
+				'amount_stair'=>trim(Input::get('amount_stair')),
+				'market_type'=>trim(Input::get('market_type'))
 		);
 
 		if($param == 'add'){
