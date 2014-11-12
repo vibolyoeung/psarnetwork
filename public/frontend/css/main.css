@@ -1399,14 +1399,14 @@ h2.title {
 	padding-left: 0;
 	padding-right: 0;
 }
-.shop-detail-tab {
+.shop-detail {
   border: 1px solid #F7F7F0;
-  margin-bottom: 75px;
-  margin-left: 0;
-  margin-right: 0;
-  padding-bottom: 10px;
+  margin-bottom: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
+  padding: 10px;
 }
-.shop-detail-tab .col-sm-12 {
+.shop-detail .col-sm-12,.shop-detail .col-sm-4,.shop-detail .col-sm-8 {
 	padding-left: 0;
 	padding-right: 0;
 }
@@ -1420,6 +1420,7 @@ h2.title {
   text-transform: uppercase;
   margin-bottom: 20px;
 }
+.shop-details-tab .meta {font-size: 12px;margin: 10px;}
 .pro-detail{padding: 0 0 0 10px}
 .shop-detail-tab h3{padding: 0 0 0 10px;margin: -15px 0 0 0}
 #reviews ul {
@@ -2635,5 +2636,4 @@ h2.title {
 .contact-info .social-networks ul li a:hover{
   color: #428bca;
 }
-
-
+.clear {clear: both}

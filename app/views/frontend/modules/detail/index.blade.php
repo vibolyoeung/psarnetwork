@@ -12,6 +12,21 @@ Search
 @section('content')
 <div class="col-sm-8">
     <!--product detail-->
+    <div class="shop-detail">
+        <div class="col-sm-4">
+            <i class="fa fa-user" style="font-size: 20px"></i> Tola Phone Shop 339
+        </div>
+        <div class="col-sm-8">
+            <img src="{{Config::get('app.url')}}/upload/banner/banner728.png" alt="" style="width:100%" />
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    <div class="shop-detail">
+
+        <div class="clear"></div>
+    </div>
+
     <div class="category-tab shop-details-tab">
         <!--category-tab-->
         <div class="col-sm-12">
@@ -25,6 +40,22 @@ Search
             <div class="tab-pane fade active in" id="pdetail">
                 <div class="col-sm-12">
                     <h2 class="titles">Girls Pink T Shirt arrived in store</h2>
+                    <div class="blog-post-area">
+                    <div class="post-meta">
+                        <ul>
+                            <li><i class="fa fa-user"></i> Mac Doe</li>
+                            <li><i class="fa fa-clock-o"></i> 1:33 pm</li>
+                            <li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
+                        </ul>
+                        <span>
+                            <i class="fa fa-tags"></i> Electronic
+                            <i class="fa fa-map-marker"></i> Phnom Penh, Mode: <b>New</b>
+                        </span>
+                    </div>
+                    </div>
+                    <div class="meta">
+                        Location  : Phnom Penh    Main Category  :  Electronic     Sell Place  :  HomeShop    Mode  :  New Arrival      Address  :   http://www.phsarnetwork.com/dara          Post Date   :  2/jan/2013 
+                    </div>
                     <div class="row">
                         <!--product describe-->
 
