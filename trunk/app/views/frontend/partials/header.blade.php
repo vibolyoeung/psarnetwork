@@ -13,6 +13,7 @@
 		{{HTML::style('frontend/css/animate.css')}}
 		{{HTML::style('frontend/css/main.css')}}
 		{{HTML::style('frontend/css/responsive.css')}}
+                {{HTML::script('frontend/js/jquery.js')}}
 		<!--[if lt IE 9]>
 			{{HTML::script('frontend/js/html5shiv.js')}}
 			{{HTML::script('frontend/js/respond.min.js')}}
