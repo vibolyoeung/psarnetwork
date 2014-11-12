@@ -35,6 +35,7 @@
                 <div class="category-tab">
                     <div class="mainmenu">
                         <ul class="nav nav-tabs navbar-nav collapse navbar-collapse">
+                        	<li></li>
                             <li><a href="#tshirt" data-toggle="tab">Home</a></li>
                             <li><a href="#blazers" data-toggle="tab">Super Market</a></li>
                             <li><a href="#blazers" data-toggle="tab">Tradictional Market</a></li>
@@ -46,7 +47,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row sub-menu">
             <div class="category-tab col-sm-12">
                 <div class="mainmenu">
                     <div class="navbar-header">
@@ -57,7 +58,7 @@
                             <span class="icon-bar"></span>
                         </button>
                     </div>
-                    <ul class="nav navbar-nav collapse navbar-collapse">
+                    <ul class="nav navbar-nav collapse navbar-collapse submenu">
                         <li><a href="#tshirt" data-toggle="tab">Phone</a></li>
                         <li><a href="#blazers" data-toggle="tab">Tablet</a></li>
                         <li><a href="#blazers" data-toggle="tab">Laptop</a></li>
@@ -75,9 +76,8 @@
                         <li><a href="#blazers" data-toggle="tab">Fussiness Service</a></li>
                     </ul>
                 </div>
-            </div>
+            </div><br /><br /><br />
         </div>
-
         <div class="row">
             <!-- ========Start Breadcrumb here============ -->
             <session id="breadcrumb">

@@ -33,7 +33,7 @@
 						</div>
 						<div class="col-sm-6">
 							<img src="{{Config::get('app.url')}}/frontend/images/home/girl2.jpg" class="girl img-responsive"
-								alt="" /> <img src="images/home/pricing.png" class="pricing"
+								alt="" /> <img src="{{Config::get('app.url')}}/frontend/images/home/pricing.png" class="pricing"
 								alt="" />
 						</div>
 					</div>
@@ -47,7 +47,7 @@
 						</div>
 						<div class="col-sm-6">
 							<img src="{{Config::get('app.url')}}/frontend/images/home/girl3.jpg" class="girl img-responsive"
-								alt="" /> <img src="images/home/pricing.png" class="pricing"
+								alt="" /> <img src="{{Config::get('app.url')}}/frontend/images/home/pricing.png" class="pricing"
 								alt="" />
 						</div>
 					</div>
