@@ -26,7 +26,6 @@
 			</div>
 		</div>
 </footer><!--/Footer-->
-		 {{HTML::script('frontend/js/jquery.js')}}
 		 {{HTML::script('frontend/js/bootstrap.min.js')}}
 		 {{HTML::script('frontend/js/jquery.scrollUp.min.js')}}
 		 {{HTML::script('frontend/js/price-range.js')}}

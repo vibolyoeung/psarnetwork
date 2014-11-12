@@ -9,6 +9,7 @@ body {
   font-family: 'Roboto', sans-serif;
   position: relative;
   font-weight:400px;
+  height: 100%;
 }
 
 ul li {
@@ -1409,6 +1410,17 @@ h2.title {
 	padding-left: 0;
 	padding-right: 0;
 }
+
+.shop-details-tab h2.titles {
+  color: #428bca;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin: -15px 0 0 10px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.pro-detail{padding: 0 0 0 10px}
 .shop-detail-tab h3{padding: 0 0 0 10px;margin: -15px 0 0 0}
 #reviews ul {
   background: #FFFFFF;

@@ -24,10 +24,69 @@ Search
         <div class="tab-content">
             <div class="tab-pane fade active in" id="pdetail">
                 <div class="col-sm-12">
-                    <h3>Girls Pink T Shirt arrived in store</h3>
+                    <h2 class="titles">Girls Pink T Shirt arrived in store</h2>
                     <div class="row">
-                        <div class="col-xs-12 col-md-8">.col-xs-12 .col-md-8</div>
-                        <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+                        <!--product describe-->
+
+                        <div class="col-xs-12 col-md-8">
+                            <div class="pro-detail">
+                                <p>Carousels in WordPress just got a thousand times better. carouFredSel takes the awesome power of the carouFredSel jQuery plugin and integrates it into WordPress so you can create unlimited carousels in your WordPress site without touching any code. Simply upload your images, drag and drop re-order them, add some captions and you’re good to go.</p>
+                                <h3>Simple or Advanced Configuration</h3>
+                                <p>carouFredSel comes with three configurations modes, “Basic” mode where you can choose some of our built in layout styles and keep things uber simple, “Advanced” mode or “Super User” mode where you can literally edit the configuration like you would when using the jQuery plugin for ultimate control and flexibility.</p>
+                                <h3>500px, Flickr &#038; Instagram Integration</h3>
+                                <p>Sometimes you don’t want to upload images manually, you would rather pull them from your favorite image service. carouFredSel integrates with 500px, Flickr &#038; Instagram so you can automatically pull your latest mug shots from Instagram, get images from Flickr tagged “beach”, see your friends latest 500px shots, etc. You get the idea.</p>
+                            </div>
+                        </div>
+                        <!--end product describe-->
+
+                        <!--product image list-->
+                        <div class="col-xs-6 col-md-4">
+                            <!-- Insert to your webpage where you want to display the carousel -->
+                            <div id="amazingcarousel-container-1">
+                                <div id="amazingcarousel-1" style="display:block;position:relative;width:100%;max-width:240px;margin:0px auto 0px;">
+                                    <div class="amazingcarousel-list-container">
+                                        <ul class="amazingcarousel-list">
+                                            <li class="amazingcarousel-item">
+                                                <div class="amazingcarousel-item-container">
+                                                    <div class="amazingcarousel-image">
+                                                        <a href="{{Config::get('app.url')}}/frontend/images/blog/blog-one.jpg" title="746C2338412E4D5486B0BD6E2C8E7B13"  class="html5lightbox" data-group="amazingcarousel-1"><img src="{{Config::get('app.url')}}/frontend/images/home/product1.jpg"  alt="746C2338412E4D5486B0BD6E2C8E7B13" /></a>
+                                                        <div class="amazingcarousel-text">
+                                                            <div class="amazingcarousel-text-bg"></div>
+                                                            <div class="amazingcarousel-title">746C2338412E4D5486B0BD6E2C8E7B13</div>
+                                                        </div>
+                                                    </div>                    </div>
+                                            </li>
+                                            <li class="amazingcarousel-item">
+                                                <div class="amazingcarousel-item-container">
+                                                    <div class="amazingcarousel-image">
+                                                        <a href="{{Config::get('app.url')}}/frontend/images/blog/blog-two.jpg" title="746C2338412E4D5486B0BD6E2C8E7B13"  class="html5lightbox" data-group="amazingcarousel-1"><img src="{{Config::get('app.url')}}/frontend/images/home/product2.jpg"  alt="746C2338412E4D5486B0BD6E2C8E7B13" /></a>
+                                                        <div class="amazingcarousel-text">
+                                                            <div class="amazingcarousel-text-bg"></div>
+                                                            <div class="amazingcarousel-title">746C2338412E4D5486B0BD6E2C8E7B13</div>
+                                                        </div>
+                                                    </div>                    </div>
+                                            </li>
+                                            <li class="amazingcarousel-item">
+                                                <div class="amazingcarousel-item-container">
+                                                    <div class="amazingcarousel-image">
+                                                        <a href="{{Config::get('app.url')}}/frontend/images/blog/blog-three.jpg" title="3593f75"  class="html5lightbox" data-group="amazingcarousel-1"><img src="{{Config::get('app.url')}}/frontend/images/home/product3.jpg"  alt="3593f75" /></a>
+                                                        <div class="amazingcarousel-text">
+                                                            <div class="amazingcarousel-text-bg"></div>
+                                                            <div class="amazingcarousel-title">3593f75</div>
+                                                        </div>
+                                                    </div>                    </div>
+                                            </li>
+                                        </ul>
+                                        <div class="amazingcarousel-prev"></div>
+                                        <div class="amazingcarousel-next"></div>
+                                    </div>
+                                    <div class="amazingcarousel-nav"></div>
+                                    <div class="amazingcarousel-engine"><a href="http://amazingcarousel.com">jQuery Image Scroller</a></div>
+                                </div>
+                            </div>
+                            <!-- End of body section HTML codes -->
+                        </div>
+                        <!-- end product image list-->
                     </div>
                 </div>
             </div>
@@ -336,5 +395,7 @@ Search
         <img src="{{Config::get('app.url')}}/upload/banner/banner728.png" alt="" style="width:100%" />
     </div>
 </div>
-
+<script src="{{Config::get('app.url')}}/frontend/js/carouselengine/amazingcarousel.js"></script>
+<link rel="stylesheet" type="text/css" href="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.css">
+<script src="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.js"></script>
 @endsection
