@@ -74,5 +74,13 @@ Route::group(array('before' => 'auth'), function() {
 
 Route::any('/{lang}', 'FePageController@index');
 Route::any('/', 'FePageController@index');
-Route::any('/{lang}/search/{category_name}', 'FeSearchController@index');
 
+/*for categoy page*/
+Route::any('/{lang}/search/{category_name}', 'FeSearchController@index');
+Route::any('/search/{category_name}', 'FeSearchController@index');
+
+/*for detail page*/
+Route::any('/{lang}/{y}/{m}/{d}/{product_name}/{pro_id}', 'FeDetailController@index');
+Route::any('/{y}/{m}/{d}/{product_name}/{pro_id}', 'FeDetailController@index');
+Route::any('/{lang}/{product_name}/{pro_id}', 'FeDetailController@index');
+Route::any('/{product_name}/{pro_id}', 'FeDetailController@index');
