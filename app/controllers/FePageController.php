@@ -7,4 +7,5 @@ class FePageController extends BaseController {
 		
 		return View::make('frontend.partials.home');
 	}
+
 }

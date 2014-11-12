@@ -72,8 +72,12 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('/admin/market/store/delete/{stor_id}/{store_name}/{id}','BeStoreController@deleteStore');
 });
 
+//=============Routes for front end page==============
+
 Route::any('/{lang}', 'FePageController@index');
 Route::any('/', 'FePageController@index');
+Route::any('/{lang}/user/signin', 'FeUserController@signIn');
+Route::any('/{lang}/user/signup', 'FeUserController@signUp');
 
 /*for categoy page*/
 Route::any('/{lang}/search/{category_name}', 'FeSearchController@index');

@@ -14,8 +14,8 @@
 				</div>
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordian" href="#"> Moto
-							: Scopy<strong class="number-display">&nbsp;2200 $</strong>
+						<a data-toggle="collapse" data-parent="#accordian" href="#">
+						Moto : Scopy<strong class="number-display">&nbsp;2200 $</strong>
 						</a>
 					</h4>
 				</div>
