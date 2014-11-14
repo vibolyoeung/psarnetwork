@@ -1,0 +1,9 @@
+/** * ------------------------------------------------------------------------
+ * JA Wall Template for J25 & J30
+ * ------------------------------------------------------------------------
+ * Copyright (C) 2004-2011 J.O.O.M Solutions Co., Ltd. All Rights Reserved.
+ * @license - Copyrighted Commercial Software
+ * Author: J.O.O.M Solutions Co., Ltd
+ * Websites:  http://www.joomlart.com -  http://www.joomlancers.com
+ * This file may not be redistributed in whole or significant part.
+ * ------------------------------------------------------------------------ */html {  height: 100%;  margin-bottom: 1px;}body {  background: #FFFFFF;  font-family: Arial, Helvetica, sans-serif;  font-weight: normal;  height: 100%;  overflow: hidden;  margin: 0;  padding: 0;}.error {  margin-left: auto;  margin-right: auto;}#outline {  background: url(fnf-bg.png) no-repeat left top;  height: 312px;  margin: 100px auto 0;  overflow: hidden;  position: relative;  width: 653px;}#errorboxoutline { margin: 0; padding: 0; }#error-code {  color: #FFF;  font-family: 'Pacifico', cursive, sans-serif;  font-size: 500%;  left: 180px;  line-height: 1;  position: absolute;  text-shadow: 1px 1px 0 rgba(0,0,0,.3);  top: 20px;}#error-message {  color: #FFF;  margin: 105px 170px 0;  overflow: hidden;}#back-home {  background: url(icon-home.png) no-repeat left top;  display: block;  height: 56px;  left: 0;  overflow: hidden;  position: absolute;  text-indent: -999em;  top: 220px;  width: 48px;}#text-tip {  background: url(txt-tip.png) no-repeat left top;  display: block;  height: 45px;  left: 0;  overflow: hidden;  position: absolute;  text-indent: -999em;  top: 180px;  width: 134px;}
