@@ -84,7 +84,11 @@ Route::any('/{lang}/search/{category_name}', 'FeSearchController@index');
 Route::any('/search/{category_name}', 'FeSearchController@index');
 
 /*for detail page*/
-Route::any('/{lang}/{y}/{m}/{d}/{product_name}/{pro_id}', 'FeDetailController@index');
-Route::any('/{y}/{m}/{d}/{product_name}/{pro_id}', 'FeDetailController@index');
-Route::any('/{lang}/{product_name}/{pro_id}', 'FeDetailController@index');
-Route::any('/{product_name}/{pro_id}', 'FeDetailController@index');
+Route::any('/{lang}/pro/{y}/{m}/{d}/{product_name}/{pro_id}', 'FeDetailController@index');
+Route::any('/pro/{y}/{m}/{d}/{product_name}/{pro_id}', 'FeDetailController@index');
+Route::any('/pro/{lang}/{product_name}/{pro_id}', 'FeDetailController@index');
+Route::any('/pro/{product_name}/{pro_id}', 'FeDetailController@index');
+
+/*for member page*/
+Route::any('/{lang}/member/login', 'FeMemberController@index');
+Route::any('/member/login', 'FeMemberController@index');
