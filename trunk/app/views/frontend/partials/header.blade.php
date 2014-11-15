@@ -35,7 +35,7 @@
 				<div class="col-sm-3">
 					<div class="contactinfo">
 						<ul class="nav nav-pills">
-							<li><a href="www.psarkhmer.com" taget="_blank">www.psarkhmer.com</a></li>
+							<li><a href="{{Config::get('app.url')}}" taget="_blank">www.psarkhmer.com</a></li>
 						</ul>
 					</div>
 				</div>
