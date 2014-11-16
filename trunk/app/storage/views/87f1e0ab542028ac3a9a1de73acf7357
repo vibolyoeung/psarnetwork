@@ -17,7 +17,7 @@
 		<div class="category-tab lastest-post">
 			<div class="col-sm-4">
 				<ul class="nav nav-tabs">
-					<li><a href=""><strong>The latest Comercial Ads</strong></a></li>
+					<li><a href="#"><strong>The latest Comercial Ads</strong></a></li>
 				</ul>
 			</div>
 			<div class="col-sm-8">
