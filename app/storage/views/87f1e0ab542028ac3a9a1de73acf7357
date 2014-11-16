@@ -1,0 +1,607 @@
+ 
+<?php $__env->startSection('title'); ?> 
+	Home 
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('breadcrumb'); ?>
+	<ol class="breadcrumb">
+		<li><a href="<?php echo Config::get('app.url'); ?>">Home</a></li>
+		<li><a href="#">Library</a></li>
+		<li class="active">Data</li>
+	</ol>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<div class="col-sm-8">
+	<div class="features_items">	
+		<?php echo $__env->make('frontend.partials.slider', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<!-- ============Slider end here========= -->
+		<div class="category-tab lastest-post">
+			<div class="col-sm-4">
+				<ul class="nav nav-tabs">
+					<li><a href=""><strong>The latest Comercial Ads</strong></a></li>
+				</ul>
+			</div>
+			<div class="col-sm-8">
+				<ul class="nav nav-tabs">
+					<li><a href="#">T-Shirt</a></li>
+					<li><a href="#">Blazers</a></li>
+					<li><a href="#">Sunglass</a></li>
+					<li><a href="#">Kids</a></li>
+					<li><a href="#">Polo shirt</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="col-sm-3">
+			<div class="product-image-wrapper">
+				<div class="single-products">
+					<div class="productinfo text-center">
+						<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/product1.jpg" alt="" />
+						<h2>$56</h2>
+						<p>Easy Polo Black Edition</p>
+						<a href="#" class="btn btn-default add-to-cart"><i
+							class="fa fa-shopping-cart"></i>View Details</a>
+					</div>
+					<div class="product-overlay">
+						<div class="overlay-content">
+							<h2>$56</h2>
+							<p>Easy Polo Black Edition</p>
+							<a href="#" class="btn btn-default add-to-cart"><i
+								class="fa fa-shopping-cart"></i>View Details</a>
+						</div>
+					</div>
+					<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/sale.png" class="new" alt="" />
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="product-image-wrapper">
+				<div class="single-products">
+					<div class="productinfo text-center">
+						<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/product2.jpg" alt="" />
+						<h2>$56</h2>
+						<p>Easy Polo Black Edition</p>
+						<a href="#" class="btn btn-default add-to-cart"><i
+							class="fa fa-shopping-cart"></i>View Details</a>
+					</div>
+					<div class="product-overlay">
+						<div class="overlay-content">
+							<h2>$56</h2>
+							<p>Easy Polo Black Edition</p>
+							<a href="#" class="btn btn-default add-to-cart"><i
+								class="fa fa-shopping-cart"></i>View Details</a>
+						</div>
+					</div>
+					<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/sale.png" class="new" alt="" />
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="product-image-wrapper">
+				<div class="single-products">
+					<div class="productinfo text-center">
+						<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/product3.jpg" alt="" />
+						<h2>$56</h2>
+						<p>Easy Polo Black Edition</p>
+						<a href="#" class="btn btn-default add-to-cart"><i
+							class="fa fa-shopping-cart"></i>View Details</a>
+					</div>
+					<div class="product-overlay">
+						<div class="overlay-content">
+							<h2>$56</h2>
+							<p>Easy Polo Black Edition</p>
+							<a href="#" class="btn btn-default add-to-cart"><i
+								class="fa fa-shopping-cart"></i>View Details</a>
+						</div>
+					</div>
+					<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/sale.png" class="new" alt="" />
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="product-image-wrapper">
+				<div class="single-products">
+					<div class="productinfo text-center">
+						<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/product4.jpg" alt="" />
+						<h2>$56</h2>
+						<p>Easy Polo Black Edition</p>
+						<a href="#" class="btn btn-default add-to-cart"><i
+							class="fa fa-shopping-cart"></i>View Details</a>
+					</div>
+					<div class="product-overlay">
+						<div class="overlay-content">
+							<h2>$56</h2>
+							<p>Easy Polo Black Edition</p>
+							<a href="#" class="btn btn-default add-to-cart"><i
+								class="fa fa-shopping-cart"></i>View Details</a>
+						</div>
+					</div>
+					<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/sale.png" class="new" alt="" />
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="product-image-wrapper">
+				<div class="single-products">
+					<div class="productinfo text-center">
+						<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/product5.jpg" alt="" />
+						<h2>$56</h2>
+						<p>Easy Polo Black Edition</p>
+						<a href="#" class="btn btn-default add-to-cart"><i
+							class="fa fa-shopping-cart"></i>View Details</a>
+					</div>
+					<div class="product-overlay">
+						<div class="overlay-content">
+							<h2>$56</h2>
+							<p>Easy Polo Black Edition</p>
+							<a href="#" class="btn btn-default add-to-cart"><i
+								class="fa fa-shopping-cart"></i>View Details</a>
+						</div>
+					</div>
+					<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/new.png" class="new" alt="" />
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="product-image-wrapper">
+				<div class="single-products">
+					<div class="productinfo text-center">
+						<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/product6.jpg" alt="" />
+						<h2>$56</h2>
+						<p>Easy Polo Black Edition</p>
+						<a href="#" class="btn btn-default add-to-cart"><i
+							class="fa fa-shopping-cart"></i>View Details</a>
+					</div>
+					<div class="product-overlay">
+						<div class="overlay-content">
+							<h2>$56</h2>
+							<p>Easy Polo Black Edition</p>
+							<a href="#" class="btn btn-default add-to-cart"><i
+								class="fa fa-shopping-cart"></i>View Details</a>
+						</div>
+					</div>
+					<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/new.png" class="new" alt="" />
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="product-image-wrapper">
+				<div class="single-products">
+					<div class="productinfo text-center">
+						<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/product5.jpg" alt="" />
+						<h2>$56</h2>
+						<p>Easy Polo Black Edition</p>
+						<a href="#" class="btn btn-default add-to-cart"><i
+							class="fa fa-shopping-cart"></i>View Details</a>
+					</div>
+					<div class="product-overlay">
+						<div class="overlay-content">
+							<h2>$56</h2>
+							<p>Easy Polo Black Edition</p>
+							<a href="#" class="btn btn-default add-to-cart"><i
+								class="fa fa-shopping-cart"></i>View Details</a>
+						</div>
+					</div>
+					<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/new.png" class="new" alt="" />
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="product-image-wrapper">
+				<div class="single-products">
+					<div class="productinfo text-center">
+						<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/product6.jpg" alt="" />
+						<h2>$56</h2>
+						<p>Easy Polo Black Edition</p>
+						<a href="#" class="btn btn-default add-to-cart"><i
+							class="fa fa-shopping-cart"></i>View Details</a>
+					</div>
+					<div class="product-overlay">
+						<div class="overlay-content">
+							<h2>$56</h2>
+							<p>Easy Polo Black Edition</p>
+							<a href="#" class="btn btn-default add-to-cart"><i
+								class="fa fa-shopping-cart"></i>View Details</a>
+						</div>
+					</div>
+					<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/new.png" class="new" alt="" />
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<!--features_items-->
+
+	<div class="category-tab feature-ad">
+		<!--category-tab-->
+		<div class="col-sm-4">
+			<ul class="nav nav-tabs">
+				<li><a href="#" ><strong>Comercial Consummer Ads</strong></a></li>
+			</ul>
+		</div>
+		<div class="col-sm-8">
+			<ul class="nav nav-tabs">
+				<li><a href="#" data-toggle="tab">T-Shirt</a></li>
+				<li><a href="#" data-toggle="tab">Blazers</a></li>
+				<li><a href="#" data-toggle="tab">Sunglass</a></li>
+				<li><a href="#" data-toggle="tab">Kids</a></li>
+				<li><a href="#" data-toggle="tab">Polo shirt</a></li>
+			</ul>
+		</div>
+		<div class="tab-content">
+			<div class="tab-pane fade active in" id="tshirt">
+				<div class="col-sm-3">
+					<div class="product-image-wrapper">
+						<div class="single-products">
+							<div class="productinfo text-center">
+								<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/product1.jpg" alt="" />
+								<h2>$56</h2>
+								<p>Easy Polo Black Edition</p>
+								<a href="#" class="btn btn-default add-to-cart"><i
+									class="fa fa-shopping-cart"></i>View Details</a>
+							</div>
+							<div class="product-overlay">
+								<div class="overlay-content">
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" class="btn btn-default add-to-cart"><i
+										class="fa fa-shopping-cart"></i>View Details</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-3">
+					<div class="product-image-wrapper">
+						<div class="single-products">
+							<div class="productinfo text-center">
+								<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/product1.jpg" alt="" />
+								<h2>$56</h2>
+								<p>Easy Polo Black Edition</p>
+								<a href="#" class="btn btn-default add-to-cart"><i
+									class="fa fa-shopping-cart"></i>View Details</a>
+							</div>
+							<div class="product-overlay">
+								<div class="overlay-content">
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" class="btn btn-default add-to-cart"><i
+										class="fa fa-shopping-cart"></i>View Details</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="col-sm-3">
+					<div class="product-image-wrapper">
+						<div class="single-products">
+							<div class="productinfo text-center">
+								<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/product1.jpg" alt="" />
+								<h2>$56</h2>
+								<p>Easy Polo Black Edition</p>
+								<a href="#" class="btn btn-default add-to-cart"><i
+									class="fa fa-shopping-cart"></i>View Details</a>
+							</div>
+							<div class="product-overlay">
+								<div class="overlay-content">
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" class="btn btn-default add-to-cart"><i
+										class="fa fa-shopping-cart"></i>View Details</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-3">
+					<div class="product-image-wrapper">
+						<div class="single-products">
+							<div class="productinfo text-center">
+								<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/product1.jpg" alt="" />
+								<h2>$56</h2>
+								<p>Easy Polo Black Edition</p>
+								<a href="#" class="btn btn-default add-to-cart"><i
+									class="fa fa-shopping-cart"></i>View Details</a>
+							</div>
+							<div class="product-overlay">
+								<div class="overlay-content">
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" class="btn btn-default add-to-cart"><i
+										class="fa fa-shopping-cart"></i>View Details</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-sm-3">
+					<div class="product-image-wrapper">
+						<div class="single-products">
+							<div class="productinfo text-center">
+								<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/product1.jpg" alt="" />
+								<h2>$56</h2>
+								<p>Easy Polo Black Edition</p>
+								<a href="#" class="btn btn-default add-to-cart"><i
+									class="fa fa-shopping-cart"></i>View Details</a>
+							</div>
+							<div class="product-overlay">
+								<div class="overlay-content">
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" class="btn btn-default add-to-cart"><i
+										class="fa fa-shopping-cart"></i>View Details</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-sm-3">
+					<div class="product-image-wrapper">
+						<div class="single-products">
+							<div class="productinfo text-center">
+								<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/product1.jpg" alt="" />
+								<h2>$56</h2>
+								<p>Easy Polo Black Edition</p>
+								<a href="#" class="btn btn-default add-to-cart"><i
+									class="fa fa-shopping-cart"></i>View Details</a>
+							</div>
+							<div class="product-overlay">
+								<div class="overlay-content">
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" class="btn btn-default add-to-cart"><i
+										class="fa fa-shopping-cart"></i>View Details</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-sm-3">
+					<div class="product-image-wrapper">
+						<div class="single-products">
+							<div class="productinfo text-center">
+								<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/product1.jpg" alt="" />
+								<h2>$56</h2>
+								<p>Easy Polo Black Edition</p>
+								<a href="#" class="btn btn-default add-to-cart"><i
+									class="fa fa-shopping-cart"></i>View Details</a>
+							</div>
+							<div class="product-overlay">
+								<div class="overlay-content">
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" class="btn btn-default add-to-cart"><i
+										class="fa fa-shopping-cart"></i>View Details</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="product-image-wrapper">
+						<div class="single-products">
+							<div class="productinfo text-center">
+								<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/product1.jpg" alt="" />
+								<h2>$56</h2>
+								<p>Easy Polo Black Edition</p>
+								<a href="#" class="btn btn-default add-to-cart"><i
+									class="fa fa-shopping-cart"></i>View Details</a>
+							</div>
+							<div class="product-overlay">
+								<div class="overlay-content">
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" class="btn btn-default add-to-cart"><i
+										class="fa fa-shopping-cart"></i>View Details</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/category-tab-->
+
+	<div class="recommended_items">
+		<!--recommended_items-->
+		<h2 class="title text-center">recommended items</h2>
+
+		<div id="recommended-item-carousel" class="carousel slide"
+			data-ride="carousel">
+			<div class="carousel-inner">
+				<div class="item active">
+					<div class="col-sm-3">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/recommend1.jpg" alt="" />
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" class="btn btn-default add-to-cart"><i
+										class="fa fa-shopping-cart"></i>Add to cart</a>
+								</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="#" class="btn btn-default add-to-cart"><i
+											class="fa fa-shopping-cart"></i>View Details</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/recommend2.jpg" alt="" />
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" class="btn btn-default add-to-cart"><i
+										class="fa fa-shopping-cart"></i>Add to cart</a>
+								</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="#" class="btn btn-default add-to-cart"><i
+											class="fa fa-shopping-cart"></i>View Details</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/recommend3.jpg" alt="" />
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" class="btn btn-default add-to-cart"><i
+										class="fa fa-shopping-cart"></i>Add to cart</a>
+								</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="#" class="btn btn-default add-to-cart"><i
+											class="fa fa-shopping-cart"></i>View Details</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/recommend2.jpg" alt="" />
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" class="btn btn-default add-to-cart"><i
+										class="fa fa-shopping-cart"></i>Add to cart</a>
+								</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="#" class="btn btn-default add-to-cart"><i
+											class="fa fa-shopping-cart"></i>View Details</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="col-sm-3">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/recommend1.jpg" alt="" />
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" class="btn btn-default add-to-cart"><i
+										class="fa fa-shopping-cart"></i>Add to cart</a>
+								</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="#" class="btn btn-default add-to-cart"><i
+											class="fa fa-shopping-cart"></i>View Details</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/recommend2.jpg" alt="" />
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" class="btn btn-default add-to-cart"><i
+										class="fa fa-shopping-cart"></i>Add to cart</a>
+								</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="#" class="btn btn-default add-to-cart"><i
+											class="fa fa-shopping-cart"></i>View Details</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/recommend3.jpg" alt="" />
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" class="btn btn-default add-to-cart"><i
+										class="fa fa-shopping-cart"></i>Add to cart</a>
+								</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="#" class="btn btn-default add-to-cart"><i
+											class="fa fa-shopping-cart"></i>View Details</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/recommend2.jpg" alt="" />
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" class="btn btn-default add-to-cart"><i
+										class="fa fa-shopping-cart"></i>Add to cart</a>
+								</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="#" class="btn btn-default add-to-cart"><i
+											class="fa fa-shopping-cart"></i>View Details</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<a class="left recommended-item-control"
+				href="#recommended-item-carousel" data-slide="prev"> <i
+				class="fa fa-angle-left"></i>
+			</a> <a class="right recommended-item-control"
+				href="#recommended-item-carousel" data-slide="next"> <i
+				class="fa fa-angle-right"></i>
+			</a>
+		</div>
+	</div>
+	<!--/recommended_items-->
+
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('frontend.layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
