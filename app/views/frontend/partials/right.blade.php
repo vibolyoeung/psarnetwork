@@ -22,7 +22,7 @@
 				<div class="panel-heading">
 					<h4 class="panel-title">
 						<a data-toggle="collapse" data-parent="#accordian" href="#"> Phone
-							:Iphone5<strong class="number-display">&nbsp;850 $</strong>
+							: Iphone5 <strong class="number-display">&nbsp;850 $</strong>
 						</a>
 					</h4>
 				</div>
