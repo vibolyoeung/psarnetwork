@@ -14,24 +14,23 @@
 	<div class="features_items">	
 		<?php echo $__env->make('frontend.partials.slider', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 		<!-- ============Slider end here========= -->
-		<div class="category-tab lastest-post">
-			<div class="col-sm-4">
-				<ul class="nav nav-tabs">
-					<li><a href="#"><strong>The latest Comercial Ads</strong></a></li>
-				</ul>
-			</div>
-			<div class="col-sm-8">
-				<ul class="nav nav-tabs">
-					<li><a href="#">T-Shirt</a></li>
-					<li><a href="#">Blazers</a></li>
-					<li><a href="#">Sunglass</a></li>
-					<li><a href="#">Kids</a></li>
-					<li><a href="#">Polo shirt</a></li>
-				</ul>
+		<div class="features_items">
+			<div class="category-tab lastest-post">
+				<div class="col-sm-12">
+					<ul class="nav nav-tabs">
+						<li><a href="#"><strong>The latest Comercial Ads</strong> &nbsp;&nbsp;&nbsp; &frasl;</a></li> 
+						<li><a href="#">Products : <strong class="number-display">25</strong></a></li>
+						<li><a href="#">Stores :<strong class="number-display">25</strong></a></li>
+						<li><a href="#">Market :<strong class="number-display">25</strong></a></li>
+						<li><a href="#">Companies :<strong class="number-display">25</strong></a></li>
+						<li><a href="#">Home Shop :<strong class="number-display">25</strong></a></li>
+						<li><a href="#">Individual : <strong class="number-display">25</strong></a></li>
+						<li><a href="#">View :<strong class="number-display">25</strong></a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
-
-		<div class="col-sm-3">
+		<div class="col-sm-2">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -53,7 +52,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-2">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -75,7 +74,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-2">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -97,7 +96,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-2">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -119,7 +118,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-2">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -141,7 +140,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-2">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -163,7 +162,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-2">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -185,7 +184,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-2">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -213,23 +212,21 @@
 
 	<div class="category-tab feature-ad">
 		<!--category-tab-->
-		<div class="col-sm-4">
+		<div class="col-sm-12">
 			<ul class="nav nav-tabs">
-				<li><a href="#" ><strong>Comercial Consummer Ads</strong></a></li>
-			</ul>
-		</div>
-		<div class="col-sm-8">
-			<ul class="nav nav-tabs">
-				<li><a href="#" data-toggle="tab">T-Shirt</a></li>
-				<li><a href="#" data-toggle="tab">Blazers</a></li>
-				<li><a href="#" data-toggle="tab">Sunglass</a></li>
-				<li><a href="#" data-toggle="tab">Kids</a></li>
-				<li><a href="#" data-toggle="tab">Polo shirt</a></li>
+				<li><a href="#" ><strong>Comercial Consummer Ads</strong>  &nbsp;&nbsp;&nbsp; &frasl;</a></li>
+				<li><a href="#">Products : <strong class="number-display">25</strong></a></li>
+				<li><a href="#">Stores :<strong class="number-display">25</strong></a></li>
+				<li><a href="#">Market :<strong class="number-display">25</strong></a></li>
+				<li><a href="#">Companies :<strong class="number-display">25</strong></a></li>
+				<li><a href="#">Home Shop :<strong class="number-display">25</strong></a></li>
+				<li><a href="#">Individual : <strong class="number-display">25</strong></a></li>
+				<li><a href="#">View :<strong class="number-display">25</strong></a></li>
 			</ul>
 		</div>
 		<div class="tab-content">
 			<div class="tab-pane fade active in" id="tshirt">
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -251,7 +248,7 @@
 					</div>
 				</div>
 
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -274,7 +271,7 @@
 				</div>
 
 
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -296,7 +293,7 @@
 					</div>
 				</div>
 
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -318,7 +315,7 @@
 					</div>
 				</div>
 				
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -340,7 +337,7 @@
 					</div>
 				</div>
 				
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -362,7 +359,7 @@
 					</div>
 				</div>
 				
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -383,7 +380,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -409,15 +406,25 @@
 	</div>
 	<!--/category-tab-->
 
-	<div class="recommended_items">
+	<div class="category-tab feature-ad">
 		<!--recommended_items-->
-		<h2 class="title text-center">recommended items</h2>
-
+		<div class="col-sm-12">
+			<ul class="nav nav-tabs">
+				<li><a href="#" ><strong>Comercial Consummer Ads</strong>  &nbsp;&nbsp;&nbsp; &frasl;</a></li>
+				<li><a href="#">Products : <strong class="number-display">25</strong></a></li>
+				<li><a href="#">Stores :<strong class="number-display">25</strong></a></li>
+				<li><a href="#">Market :<strong class="number-display">25</strong></a></li>
+				<li><a href="#">Companies :<strong class="number-display">25</strong></a></li>
+				<li><a href="#">Home Shop :<strong class="number-display">25</strong></a></li>
+				<li><a href="#">Individual : <strong class="number-display">25</strong></a></li>
+				<li><a href="#">View :<strong class="number-display">25</strong></a></li>
+			</ul>
+		</div>
 		<div id="recommended-item-carousel" class="carousel slide"
 			data-ride="carousel">
 			<div class="carousel-inner">
 				<div class="item active">
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<div class="product-image-wrapper">
 							<div class="single-products">
 								<div class="productinfo text-center">
@@ -438,7 +445,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<div class="product-image-wrapper">
 							<div class="single-products">
 								<div class="productinfo text-center">
@@ -459,7 +466,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<div class="product-image-wrapper">
 							<div class="single-products">
 								<div class="productinfo text-center">
@@ -480,7 +487,49 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/recommend2.jpg" alt="" />
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" class="btn btn-default add-to-cart"><i
+										class="fa fa-shopping-cart"></i>Add to cart</a>
+								</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="#" class="btn btn-default add-to-cart"><i
+											class="fa fa-shopping-cart"></i>View Details</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/recommend2.jpg" alt="" />
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" class="btn btn-default add-to-cart"><i
+										class="fa fa-shopping-cart"></i>Add to cart</a>
+								</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="#" class="btn btn-default add-to-cart"><i
+											class="fa fa-shopping-cart"></i>View Details</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-2">
 						<div class="product-image-wrapper">
 							<div class="single-products">
 								<div class="productinfo text-center">
@@ -503,7 +552,7 @@
 					</div>
 				</div>
 				<div class="item">
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<div class="product-image-wrapper">
 							<div class="single-products">
 								<div class="productinfo text-center">
@@ -524,7 +573,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<div class="product-image-wrapper">
 							<div class="single-products">
 								<div class="productinfo text-center">
@@ -545,7 +594,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<div class="product-image-wrapper">
 							<div class="single-products">
 								<div class="productinfo text-center">
@@ -566,7 +615,48 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/recommend2.jpg" alt="" />
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" class="btn btn-default add-to-cart"><i
+										class="fa fa-shopping-cart"></i>Add to cart</a>
+								</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="#" class="btn btn-default add-to-cart"><i
+											class="fa fa-shopping-cart"></i>View Details</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/recommend2.jpg" alt="" />
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" class="btn btn-default add-to-cart"><i
+										class="fa fa-shopping-cart"></i>Add to cart</a>
+								</div>
+								<div class="product-overlay">
+									<div class="overlay-content">
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="#" class="btn btn-default add-to-cart"><i
+											class="fa fa-shopping-cart"></i>View Details</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div><div class="col-sm-2">
 						<div class="product-image-wrapper">
 							<div class="single-products">
 								<div class="productinfo text-center">
@@ -588,6 +678,7 @@
 						</div>
 					</div>
 				</div>
+				
 			</div>
 			<a class="left recommended-item-control"
 				href="#recommended-item-carousel" data-slide="prev"> <i

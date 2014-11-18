@@ -76,7 +76,7 @@
                         <li><a href="#blazers" data-toggle="tab">Fussiness Service</a></li>
                     </ul>
                 </div>
-            </div><br /><br /><br />
+            </div>
         </div>
         <div class="row">
             <!-- ========Start Breadcrumb here============ -->
