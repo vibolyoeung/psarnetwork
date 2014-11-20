@@ -29,7 +29,7 @@
 				<div class="panel-heading">
 					<h4 class="panel-title">
 						<a data-toggle="collapse" data-parent="#accordian" href="#">
-							Desktop : Dell<strong class="number-display">&nbsp;150 $</strong>
+							Desktop : Dell<strong class="number-display">&nbsp; 150 $</strong>
 						</a>
 					</h4>
 				</div>

@@ -2783,3 +2783,10 @@ strong {
 	font-weight: lighter;
 	color: #428bca;
 }
+@media(min-width:1200px)
+{
+	.container{
+		width:100%;
+		max-width: 2000px;
+	}
+}
