@@ -1097,7 +1097,6 @@ h2.title {
 }
 
 .product-overlay h2 {
-	color: #ffffff;
 	font-family: 'Roboto', sans-serif;
 	font-size: 24px;
 	font-weight: 700;
@@ -1119,7 +1118,6 @@ h2.title {
 }
 
 .product-overlay {
-	/*background:#428bca;*/
 	top: 0;
 	display: none;
 	height: 0;
@@ -1127,8 +1125,8 @@ h2.title {
 	transition: height 500ms ease 0s;
 	width: 100%;
 	display: block;
-	background-color: rgb(0, 0, 255);
-	background-color: rgba(0, 0, 255, 0.4);
+	background-color: rgb(0, 0,4);
+	background-color: rgba(0, 0,4, 0.08);
 	cursor: pointer;
 }
 
@@ -1170,7 +1168,6 @@ h2.title {
 	font-family: 'Roboto', sans-serif;
 	font-size: 14px;
 	font-weight: 400;
-	color: #ffffff;
 }
 
 .nav-tabs  li  a {
