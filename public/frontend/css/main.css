@@ -400,7 +400,7 @@ a#scrollUp i {
 .mainmenu ul li a {
 	font-size: 14px;
 }
-
+.advertise {margin:0 0 20px 0}
 .advertise-hight-price {
 	border: 1px solid #f7f7f0;
 	padding: 10px;
@@ -523,7 +523,6 @@ translateY
 }
 }
 .clear {
-	height: 50px;
 	clear: both;
 }
 /*************************
@@ -1716,6 +1715,7 @@ strong.number-display {
 /*************************
 *******login page CSS******
 **************************/
+.memberlogin .constug{margin:0 0 50px 0}
 .memberlogin {
 	margin-bottom: 30px
 }
@@ -1734,7 +1734,7 @@ strong.number-display {
 	
 }
 
-.login-form h2,.signup-form h2 {
+.register-form  h2,.login-form h2,.signup-form h2 {
 	color: #696763;
 	font-family: 'Roboto', sans-serif;
 	font-size: 20px;
@@ -1806,6 +1806,43 @@ strong.number-display {
 	margin-top: 75px;
 	text-align: center;
 	width: 50px;
+}
+.register-form, .login-form {
+	padding: 3px;
+	border: 3px solid #428bca;
+	overflow: hidden;
+}
+
+.register-form  h2, .login-form h2 {
+	text-align: center;
+	color: #ffffff;
+	background-color: #428bca;
+	padding: 10px;
+	margin-top: 0;
+	border: 3px solid #4289ED;
+	font-weight: bold;
+}
+.register-form .checkbox{margin-bottom:40px}
+.register-form .checkbox input[type=checkbox]{width:25px;height:25px}
+.register-form .checkbox .des{clear:both;margin-left:-20px}
+.register-form label {font-size:140%;width:100%}
+
+
+/*************************
+*********** REGISTER *****
+*************************/
+.register-form{}
+.register-form .conent{padding:15px}
+.register-form h2{margin-bottom:5px}
+.register-form h3{text-align:center;padding:5px 0 0 0;margin-top:5px}
+.register-form form button,.register-form form button {
+	background: #428bca;
+	border: medium none;
+	border-radius: 0;
+	color: #FFFFFF;
+	display: block;
+	font-family: 'Roboto', sans-serif;
+	padding: 6px 25px;
 }
 
 /*************************
@@ -2743,21 +2780,7 @@ strong.number-display {
 	color: #428bca;
 }
 
-.login-form {
-	padding: 3px;
-	border: 3px solid #428bca;
-	overflow: hidden;
-}
 
-.login-form h2 {
-	text-align: center;
-	color: #ffffff;
-	background-color: #428bca;
-	padding: 10px;
-	margin-top: 0;
-	border: 3px solid #4289ED;
-	font-weight: bold;
-}
 
 .container .ad-login {
 	border: 3px solid #428bca;

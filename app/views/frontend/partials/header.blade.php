@@ -47,8 +47,8 @@
 							<li><a href="#"><i class="fa">User Agreement</i></a></li>
 							<li><a href="#"><i class="fa">Policy</i></a></li>
 							<li><a href="#"><i class="fa">Usage</i></a></li>
-							<li><a href="#"><i class="fa">Sign in /</i></a></li>
-							<li><a href="#"><i class="fa">Free Register</i></a></li>
+							<li><a href="{{Config::get('app.url')}}/member/login"><i class="fa">Sign in /</i></a></li>
+							<li><a href="{{Config::get('app.url')}}/member/register"><i class="fa">Free Register</i></a></li>
 						</ul>
 						<div class="language-bar">
 							<a href="#" >

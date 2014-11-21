@@ -14,22 +14,22 @@
 				</div>
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordian" href="#">
-						Moto : Scopy<strong class="number-display">&nbsp;2200 $</strong>
+						<a data-toggle="collapse" data-parent="#accordian" href="#"> Moto
+							: Scopy<strong class="number-display">&nbsp;2200 $</strong>
 						</a>
 					</h4>
 				</div>
 				<div class="panel-heading">
 					<h4 class="panel-title">
 						<a data-toggle="collapse" data-parent="#accordian" href="#"> Phone
-							: Iphone5 <strong class="number-display">&nbsp;850 $</strong>
+							:Iphone5<strong class="number-display">&nbsp;850 $</strong>
 						</a>
 					</h4>
 				</div>
 				<div class="panel-heading">
 					<h4 class="panel-title">
 						<a data-toggle="collapse" data-parent="#accordian" href="#">
-							Desktop : Dell<strong class="number-display">&nbsp; 150 $</strong>
+							Desktop : Dell<strong class="number-display">&nbsp;150 $</strong>
 						</a>
 					</h4>
 				</div>
