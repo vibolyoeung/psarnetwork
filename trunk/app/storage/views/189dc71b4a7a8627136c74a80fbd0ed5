@@ -2,21 +2,20 @@
 	<div class="header-middle"><!--header-middle-->
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-2">
+					<div class="col-sm-4">
 						<div class="logo pull-left">
 							<a href="index.html"><img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/logo.png" alt="" /></a>
 						</div>
 					</div>
-					<div class="col-sm-6">
-						<div class="search_box">
-							<form class="navbar-form" role="search">
-							    <div class="form-group col-sm-12">
-							        <input type="text" class="form-control pull-left search-box" placeholder="Search">
-							        <button type="submit" class="btn btn-success pull-right">
-							    		<span class="glyphicon glyphicon-search"></span>
-							    	</button>
-							    </div>
-							</form>
+					<div class="col-sm-8">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+								<li><a href="#"><li class="fa"><a href="#">
+									<div class="search_box pull-right">
+										<input type="text" placeholder="Search">
+									</div>
+								</li></a></li>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -29,6 +28,7 @@
 				<?php echo $__env->make('frontend.partials.left', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 				<?php echo $__env->yieldContent('content'); ?>
 				<?php echo $__env->make('frontend.partials.right', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+				
 			</div>
 		</div>
 	</section>

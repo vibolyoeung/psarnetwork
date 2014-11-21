@@ -37,14 +37,14 @@
 						<img src="{{Config::get('app.url')}}/frontend/images/home/product1.jpg" alt="" />
 						<h2>$56</h2>
 						<p>Easy Polo Black Edition</p>
-						<a href="#" class="btn btn-default add-to-cart"><i
+						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 							class="fa fa-shopping-cart"></i>View Details</a>
 					</div>
 					<div class="product-overlay">
 						<div class="overlay-content">
 							<h2>$56</h2>
 							<p>Easy Polo Black Edition</p>
-							<a href="#" class="btn btn-default add-to-cart"><i
+							<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 								class="fa fa-shopping-cart"></i>View Details</a>
 						</div>
 					</div>
@@ -59,14 +59,14 @@
 						<img src="{{Config::get('app.url')}}/frontend/images/home/product2.jpg" alt="" />
 						<h2>$56</h2>
 						<p>Easy Polo Black Edition</p>
-						<a href="#" class="btn btn-default add-to-cart"><i
+						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 							class="fa fa-shopping-cart"></i>View Details</a>
 					</div>
 					<div class="product-overlay">
 						<div class="overlay-content">
 							<h2>$56</h2>
 							<p>Easy Polo Black Edition</p>
-							<a href="#" class="btn btn-default add-to-cart"><i
+							<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 								class="fa fa-shopping-cart"></i>View Details</a>
 						</div>
 					</div>
@@ -81,14 +81,14 @@
 						<img src="{{Config::get('app.url')}}/frontend/images/home/product3.jpg" alt="" />
 						<h2>$56</h2>
 						<p>Easy Polo Black Edition</p>
-						<a href="#" class="btn btn-default add-to-cart"><i
+						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 							class="fa fa-shopping-cart"></i>View Details</a>
 					</div>
 					<div class="product-overlay">
 						<div class="overlay-content">
 							<h2>$56</h2>
 							<p>Easy Polo Black Edition</p>
-							<a href="#" class="btn btn-default add-to-cart"><i
+							<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 								class="fa fa-shopping-cart"></i>View Details</a>
 						</div>
 					</div>
@@ -103,14 +103,14 @@
 						<img src="{{Config::get('app.url')}}/frontend/images/home/product4.jpg" alt="" />
 						<h2>$56</h2>
 						<p>Easy Polo Black Edition</p>
-						<a href="#" class="btn btn-default add-to-cart"><i
+						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 							class="fa fa-shopping-cart"></i>View Details</a>
 					</div>
 					<div class="product-overlay">
 						<div class="overlay-content">
 							<h2>$56</h2>
 							<p>Easy Polo Black Edition</p>
-							<a href="#" class="btn btn-default add-to-cart"><i
+							<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 								class="fa fa-shopping-cart"></i>View Details</a>
 						</div>
 					</div>
@@ -125,14 +125,14 @@
 						<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
 						<h2>$56</h2>
 						<p>Easy Polo Black Edition</p>
-						<a href="#" class="btn btn-default add-to-cart"><i
+						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 							class="fa fa-shopping-cart"></i>View Details</a>
 					</div>
 					<div class="product-overlay">
 						<div class="overlay-content">
 							<h2>$56</h2>
 							<p>Easy Polo Black Edition</p>
-							<a href="#" class="btn btn-default add-to-cart"><i
+							<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 								class="fa fa-shopping-cart"></i>View Details</a>
 						</div>
 					</div>
@@ -147,14 +147,14 @@
 						<img src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" alt="" />
 						<h2>$56</h2>
 						<p>Easy Polo Black Edition</p>
-						<a href="#" class="btn btn-default add-to-cart"><i
+						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 							class="fa fa-shopping-cart"></i>View Details</a>
 					</div>
 					<div class="product-overlay">
 						<div class="overlay-content">
 							<h2>$56</h2>
 							<p>Easy Polo Black Edition</p>
-							<a href="#" class="btn btn-default add-to-cart"><i
+							<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 								class="fa fa-shopping-cart"></i>View Details</a>
 						</div>
 					</div>
@@ -169,14 +169,14 @@
 						<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
 						<h2>$56</h2>
 						<p>Easy Polo Black Edition</p>
-						<a href="#" class="btn btn-default add-to-cart"><i
+						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 							class="fa fa-shopping-cart"></i>View Details</a>
 					</div>
 					<div class="product-overlay">
 						<div class="overlay-content">
 							<h2>$56</h2>
 							<p>Easy Polo Black Edition</p>
-							<a href="#" class="btn btn-default add-to-cart"><i
+							<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 								class="fa fa-shopping-cart"></i>View Details</a>
 						</div>
 					</div>
@@ -191,14 +191,14 @@
 						<img src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" alt="" />
 						<h2>$56</h2>
 						<p>Easy Polo Black Edition</p>
-						<a href="#" class="btn btn-default add-to-cart"><i
+						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 							class="fa fa-shopping-cart"></i>View Details</a>
 					</div>
 					<div class="product-overlay">
 						<div class="overlay-content">
 							<h2>$56</h2>
 							<p>Easy Polo Black Edition</p>
-							<a href="#" class="btn btn-default add-to-cart"><i
+							<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 								class="fa fa-shopping-cart"></i>View Details</a>
 						</div>
 					</div>
@@ -233,14 +233,14 @@
 								<img src="{{Config::get('app.url')}}/frontend/images/home/product1.jpg" alt="" />
 								<h2>$56</h2>
 								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart"><i
+								<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 									class="fa fa-shopping-cart"></i>View Details</a>
 							</div>
 							<div class="product-overlay">
 								<div class="overlay-content">
 									<h2>$56</h2>
 									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i
+									<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 										class="fa fa-shopping-cart"></i>View Details</a>
 								</div>
 							</div>
@@ -255,14 +255,14 @@
 								<img src="{{Config::get('app.url')}}/frontend/images/home/product1.jpg" alt="" />
 								<h2>$56</h2>
 								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart"><i
+								<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 									class="fa fa-shopping-cart"></i>View Details</a>
 							</div>
 							<div class="product-overlay">
 								<div class="overlay-content">
 									<h2>$56</h2>
 									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i
+									<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 										class="fa fa-shopping-cart"></i>View Details</a>
 								</div>
 							</div>
@@ -278,14 +278,14 @@
 								<img src="{{Config::get('app.url')}}/frontend/images/home/product1.jpg" alt="" />
 								<h2>$56</h2>
 								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart"><i
+								<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 									class="fa fa-shopping-cart"></i>View Details</a>
 							</div>
 							<div class="product-overlay">
 								<div class="overlay-content">
 									<h2>$56</h2>
 									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i
+									<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 										class="fa fa-shopping-cart"></i>View Details</a>
 								</div>
 							</div>
@@ -300,14 +300,14 @@
 								<img src="{{Config::get('app.url')}}/frontend/images/home/product1.jpg" alt="" />
 								<h2>$56</h2>
 								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart"><i
+								<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 									class="fa fa-shopping-cart"></i>View Details</a>
 							</div>
 							<div class="product-overlay">
 								<div class="overlay-content">
 									<h2>$56</h2>
 									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i
+									<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 										class="fa fa-shopping-cart"></i>View Details</a>
 								</div>
 							</div>
@@ -322,14 +322,14 @@
 								<img src="{{Config::get('app.url')}}/frontend/images/home/product1.jpg" alt="" />
 								<h2>$56</h2>
 								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart"><i
+								<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 									class="fa fa-shopping-cart"></i>View Details</a>
 							</div>
 							<div class="product-overlay">
 								<div class="overlay-content">
 									<h2>$56</h2>
 									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i
+									<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 										class="fa fa-shopping-cart"></i>View Details</a>
 								</div>
 							</div>
@@ -344,14 +344,14 @@
 								<img src="{{Config::get('app.url')}}/frontend/images/home/product1.jpg" alt="" />
 								<h2>$56</h2>
 								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart"><i
+								<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 									class="fa fa-shopping-cart"></i>View Details</a>
 							</div>
 							<div class="product-overlay">
 								<div class="overlay-content">
 									<h2>$56</h2>
 									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i
+									<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 										class="fa fa-shopping-cart"></i>View Details</a>
 								</div>
 							</div>
@@ -366,14 +366,14 @@
 								<img src="{{Config::get('app.url')}}/frontend/images/home/product1.jpg" alt="" />
 								<h2>$56</h2>
 								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart"><i
+								<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 									class="fa fa-shopping-cart"></i>View Details</a>
 							</div>
 							<div class="product-overlay">
 								<div class="overlay-content">
 									<h2>$56</h2>
 									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i
+									<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 										class="fa fa-shopping-cart"></i>View Details</a>
 								</div>
 							</div>
@@ -387,14 +387,14 @@
 								<img src="{{Config::get('app.url')}}/frontend/images/home/product1.jpg" alt="" />
 								<h2>$56</h2>
 								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart"><i
+								<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 									class="fa fa-shopping-cart"></i>View Details</a>
 							</div>
 							<div class="product-overlay">
 								<div class="overlay-content">
 									<h2>$56</h2>
 									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i
+									<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 										class="fa fa-shopping-cart"></i>View Details</a>
 								</div>
 							</div>
@@ -431,14 +431,14 @@
 									<img src="{{Config::get('app.url')}}/frontend/images/home/recommend1.jpg" alt="" />
 									<h2>$56</h2>
 									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i
+									<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 										class="fa fa-shopping-cart"></i>Add to cart</a>
 								</div>
 								<div class="product-overlay">
 									<div class="overlay-content">
 										<h2>$56</h2>
 										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 											class="fa fa-shopping-cart"></i>View Details</a>
 									</div>
 								</div>
@@ -452,14 +452,14 @@
 									<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
 									<h2>$56</h2>
 									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i
+									<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 										class="fa fa-shopping-cart"></i>Add to cart</a>
 								</div>
 								<div class="product-overlay">
 									<div class="overlay-content">
 										<h2>$56</h2>
 										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 											class="fa fa-shopping-cart"></i>View Details</a>
 									</div>
 								</div>
@@ -473,14 +473,14 @@
 									<img src="{{Config::get('app.url')}}/frontend/images/home/recommend3.jpg" alt="" />
 									<h2>$56</h2>
 									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i
+									<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 										class="fa fa-shopping-cart"></i>Add to cart</a>
 								</div>
 								<div class="product-overlay">
 									<div class="overlay-content">
 										<h2>$56</h2>
 										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 											class="fa fa-shopping-cart"></i>View Details</a>
 									</div>
 								</div>
@@ -494,14 +494,14 @@
 									<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
 									<h2>$56</h2>
 									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i
+									<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 										class="fa fa-shopping-cart"></i>Add to cart</a>
 								</div>
 								<div class="product-overlay">
 									<div class="overlay-content">
 										<h2>$56</h2>
 										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 											class="fa fa-shopping-cart"></i>View Details</a>
 									</div>
 								</div>
@@ -515,14 +515,14 @@
 									<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
 									<h2>$56</h2>
 									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i
+									<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 										class="fa fa-shopping-cart"></i>Add to cart</a>
 								</div>
 								<div class="product-overlay">
 									<div class="overlay-content">
 										<h2>$56</h2>
 										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 											class="fa fa-shopping-cart"></i>View Details</a>
 									</div>
 								</div>
@@ -536,14 +536,14 @@
 									<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
 									<h2>$56</h2>
 									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i
+									<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 										class="fa fa-shopping-cart"></i>Add to cart</a>
 								</div>
 								<div class="product-overlay">
 									<div class="overlay-content">
 										<h2>$56</h2>
 										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 											class="fa fa-shopping-cart"></i>View Details</a>
 									</div>
 								</div>
@@ -559,14 +559,14 @@
 									<img src="{{Config::get('app.url')}}/frontend/images/home/recommend1.jpg" alt="" />
 									<h2>$56</h2>
 									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i
+									<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 										class="fa fa-shopping-cart"></i>Add to cart</a>
 								</div>
 								<div class="product-overlay">
 									<div class="overlay-content">
 										<h2>$56</h2>
 										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 											class="fa fa-shopping-cart"></i>View Details</a>
 									</div>
 								</div>
@@ -580,14 +580,14 @@
 									<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
 									<h2>$56</h2>
 									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i
+									<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 										class="fa fa-shopping-cart"></i>Add to cart</a>
 								</div>
 								<div class="product-overlay">
 									<div class="overlay-content">
 										<h2>$56</h2>
 										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 											class="fa fa-shopping-cart"></i>View Details</a>
 									</div>
 								</div>
@@ -601,14 +601,14 @@
 									<img src="{{Config::get('app.url')}}/frontend/images/home/recommend3.jpg" alt="" />
 									<h2>$56</h2>
 									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i
+									<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 										class="fa fa-shopping-cart"></i>Add to cart</a>
 								</div>
 								<div class="product-overlay">
 									<div class="overlay-content">
 										<h2>$56</h2>
 										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 											class="fa fa-shopping-cart"></i>View Details</a>
 									</div>
 								</div>
@@ -622,14 +622,14 @@
 									<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
 									<h2>$56</h2>
 									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i
+									<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 										class="fa fa-shopping-cart"></i>Add to cart</a>
 								</div>
 								<div class="product-overlay">
 									<div class="overlay-content">
 										<h2>$56</h2>
 										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 											class="fa fa-shopping-cart"></i>View Details</a>
 									</div>
 								</div>
@@ -643,14 +643,14 @@
 									<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
 									<h2>$56</h2>
 									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i
+									<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 										class="fa fa-shopping-cart"></i>Add to cart</a>
 								</div>
 								<div class="product-overlay">
 									<div class="overlay-content">
 										<h2>$56</h2>
 										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 											class="fa fa-shopping-cart"></i>View Details</a>
 									</div>
 								</div>
@@ -663,14 +663,14 @@
 									<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
 									<h2>$56</h2>
 									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i
+									<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 										class="fa fa-shopping-cart"></i>Add to cart</a>
 								</div>
 								<div class="product-overlay">
 									<div class="overlay-content">
 										<h2>$56</h2>
 										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
 											class="fa fa-shopping-cart"></i>View Details</a>
 									</div>
 								</div>

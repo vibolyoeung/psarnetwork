@@ -1,8 +1,6 @@
 <div class="col-sm-2">
 	<div class="left-sidebar">
-		<label class="btn-default get col-sm-12">
-			Buyer Request
-		</label>
+		<label class="btn-default get col-sm-12">Buyer Request</label>
 		<div class="panel-group category-products" id="accordian">
 			<!--category-products-->
 			<div class="panel panel-default">

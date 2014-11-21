@@ -26,6 +26,8 @@
 			</div>
 		</div>
 </footer><!--/Footer-->
+		 <?php echo HTML::script('frontend/js/jquery.js'); ?>
+
 		 <?php echo HTML::script('frontend/js/bootstrap.min.js'); ?>
 
 		 <?php echo HTML::script('frontend/js/jquery.scrollUp.min.js'); ?>

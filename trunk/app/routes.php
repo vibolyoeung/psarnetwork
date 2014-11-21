@@ -92,3 +92,6 @@ Route::any('/pro/{product_name}/{pro_id}', 'FeDetailController@index');
 /*for member page*/
 Route::any('/{lang}/member/login', 'FeMemberController@index');
 Route::any('/member/login', 'FeMemberController@index');
+/*regirst page*/
+Route::any('/{lang}/member/register', 'FeMemberController@register');
+Route::any('/member/register', 'FeMemberController@register');
