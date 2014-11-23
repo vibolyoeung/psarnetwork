@@ -988,6 +988,10 @@ strong.number-display {
     overflow: overlay;
 }
 
+/****************************
+********* SIDEBAR ***********
+*****************************/
+.left-sidebar.sticky, .right-sidebar.sticky{position:fixed;top:55px;}
 .left-sidebar h2,.brands_products h2 {
     color: #428bca;
     font-family: 'Roboto', sans-serif;
