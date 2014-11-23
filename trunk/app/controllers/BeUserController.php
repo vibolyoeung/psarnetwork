@@ -5,7 +5,7 @@ class BeUserController extends BaseController {
  	protected  $user;
 
 	public function __construct() {
-		$this->user = new User();
+		$this->user = new User();c 
 	}
 
 	/**
