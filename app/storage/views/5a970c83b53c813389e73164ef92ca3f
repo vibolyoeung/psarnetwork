@@ -20,6 +20,8 @@
 
 		<?php echo HTML::style('frontend/css/responsive.css'); ?>
 
+                <?php echo HTML::script('frontend/js/jquery.js'); ?>
+
 		<!--[if lt IE 9]>
 			<?php echo HTML::script('frontend/js/html5shiv.js'); ?>
 
@@ -43,7 +45,7 @@
 				<div class="col-sm-3">
 					<div class="contactinfo">
 						<ul class="nav nav-pills">
-							<li><a href="www.psarkhmer.com" taget="_blank">www.psarkhmer.com</a></li>
+							<li><a href="<?php echo Config::get('app.url'); ?>" taget="_blank">www.psarkhmer.com</a></li>
 						</ul>
 					</div>
 				</div>
@@ -55,18 +57,18 @@
 							<li><a href="#"><i class="fa">User Agreement</i></a></li>
 							<li><a href="#"><i class="fa">Policy</i></a></li>
 							<li><a href="#"><i class="fa">Usage</i></a></li>
-							<li><a href="#"><i class="fa">Sign in /</i></a></li>
-							<li><a href="#"><i class="fa">Free Register</i></a></li>
+							<li><a href="<?php echo Config::get('app.url'); ?>/member/login"><i class="fa">Sign in /</i></a></li>
+							<li><a href="<?php echo Config::get('app.url'); ?>/member/register"><i class="fa">Free Register</i></a></li>
 						</ul>
-						<div class="social-icons language-bar">
-							<strong class="current-language" id="show">Language&nbsp;<img
-								src="<?php echo Config::get('app.url'); ?>/frontend/images/en.png" alt="" title="" /></strong> <strong
-								class="current-language" id="hide">Language&nbsp;<img
-								src="<?php echo Config::get('app.url'); ?>/frontend/images/en.png" alt="" title="" /></strong>
-							<ul>
-								<li><a href="#">Englsih <img src="<?php echo Config::get('app.url'); ?>/frontend/images/en.png" alt="" title="" /></a></li>
-								<li><a href="#">Chinese <img src="<?php echo Config::get('app.url'); ?>/frontend/images/cn.png" alt="" title="" /></a></li>
-							</ul>
+						<div class="language-bar">
+							<a href="#" >
+								<img src="<?php echo Config::get('app.url'); ?>/frontend/images/en.png" alt="" title="" />
+								English
+							</a>
+							<a href="#">
+								<img src="<?php echo Config::get('app.url'); ?>/frontend/images/cn.png" alt="" title="" />
+								Chinese
+							</a>	
 						</div>
 					</div>
 				</div>

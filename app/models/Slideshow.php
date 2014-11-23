@@ -26,6 +26,22 @@ class Slideshow extends Eloquent{
 		}
 		return  $response;
 	}
+	
+	public function getSlideshowFe(){
+		$response = new stdClass();
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.SLIDESHOW').' AS s')
+			->select('s.id','s.title','s.image','s.status','s.created_date','s.expire_date','sp.name','sp.email','sp.phone','sp.address')
+			->leftJoin(Config::get('constants.TABLE_NAME.ADVERTISER_PROFILE').' AS sp','s.advertiser_id','=','sp.id')
+			->orderBy('s.id','desc');
+			$response->data = $result;
+			$response->result = 1;
+		}catch (\Exception $e){
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+		return  $response;
+	}
 
 	/**
 	 *
@@ -166,7 +182,27 @@ class Slideshow extends Eloquent{
 		return $response;
 	}
 
-
+	/**
+	 *
+	 * getSlideshowToFrontEnd: this function using for listing slideshows
+	 * @param limit: the limitation of a mount of slideshow to display
+	 * @return array object
+	 * @access public
+	 * @throws Exception
+	 */
+	public function getSlideshowToFrontEnd($limit){
+		$response = new stdClass();
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.SLIDESHOW'))->select('*')->where('status','=', 1)->take($limit)->get();
+			$response->result = $result;
+			
+		}catch (\Exception $e){
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+	
+		return $response;
+	}
 
 
 }

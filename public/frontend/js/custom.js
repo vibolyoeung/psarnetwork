@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	jQuery('.item:first-child').addClass(' active');
+	jQuery('.bullet:first-child').addClass('active');
 	customClass.switchLanguageBar();
 });
 //CustomClass use for switch language bar
