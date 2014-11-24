@@ -31,6 +31,10 @@ Route::group(array('before' => 'auth'), function() {
 	Route::any('/admin/profile', 'BeUserController@updateProfileUser');
 	Route::any('/admin/change-password','BeUserController@changePasswordUser');
 
+	Route::get('/admin/user-group','BeUserGroupController@listUserGroup');
+	Route::any('/admin/user-group-add','BeUserGroupController@addUserGroup');
+	Route::any('/admin/user-group-edit/{id}','BeUserGroupController@editUserGroup');
+
 	Route::any('/admin/pages','BePageController@listPage');
 	Route::any('/admin/create-page','BePageController@createPage');
 	Route::get('/admin/edit-page/{id}','BePageController@editPage');
@@ -66,10 +70,6 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('/admin/delete-market/{id}','BeMarketController@deleteMarket');
 	Route::get('/admin/list-district/{id}','BeMarketController@listingDistricts');
 
-	Route::get('/admin/market/store/{store_name}/{id}','BeStoreController@listStore');
-	Route::any('/admin/market/store/create/{store_name}/{id}','BeStoreController@createStore');
-	Route::any('/admin/market/store/edit/{stor_id}/{store_name}/{id}','BeStoreController@editStore');
-	Route::get('/admin/market/store/delete/{stor_id}/{store_name}/{id}','BeStoreController@deleteStore');
 });
 
 //=============Routes for front end page==============
