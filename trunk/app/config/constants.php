@@ -18,6 +18,7 @@ return array(
 	'MARKET_RESIZE_WIDTH'=>100,
 	'STORE_RESIZE_WIDTH'=>100,
 	'STORE_RESIZE_HEGHT'=>100,
+	'USER_GROUP_PAGINATION'=>10,
 	'TABLE_NAME'=>array(
 
 						'ACCOUNT_TYPE'=>'account_type',
@@ -45,5 +46,6 @@ return array(
 						'TEMPLATE'=>'template',
 						'USER'=>'user',
 						'USER_TYPE'=>'user_type',
+						'PERMISSION'=>'permission'
 					)
 );
