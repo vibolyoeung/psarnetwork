@@ -153,7 +153,7 @@ class Market extends Eloquent{
 			if(!empty($file)){
 				$fileName = DB::table(Config::get('constants.TABLE_NAME.MARKET'))->select('image') ->where('id','=',$id)->first();
 				if(!empty($fileName->image)){
-					echo $destinationPath = base_path() . '/public/upload/market/';
+					$destinationPath = base_path() . '/public/upload/market/';
 					$destinationPathThumb = base_path() . '/public/upload/market/thumb/';
 					File::delete($destinationPath . $fileName->image);
 					File::delete($destinationPathThumb . $fileName->image);

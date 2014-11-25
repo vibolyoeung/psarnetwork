@@ -12,7 +12,7 @@ User Group
 	<div class="col-md-12 col-sm-12 col-sx-12">
 		<div class="panel panel-default">
 			<div class="panel-heading clearfix"><a
-				href="{{URL::to('admin/create')}}"> <i
+				href="{{URL::to('admin/user-group-add')}}"> <i
 				class="icon-plus btn btn-xs btn-info rounded-buttons">&nbsp;Add</i> </a>
 			<h3 class="panel-title">User Group</h3>
 			</div>
@@ -42,7 +42,7 @@ User Group
 				<a title="Edit" href="{{URL::to('admin/user-group-edit')}}/{{$groupUser->id}}">
 					<i class="icon-edit primary"></i>
 				</a>
-				<a title="Delete" href="{{URL::to('admin/delete')}}/{{$groupUser->id}}"
+				<a title="Delete" href="{{URL::to('admin/user-group-delete')}}/{{$groupUser->id}}"
 				onclick="return confirm('Are you sure you want to delete this item?');">
 				<i class='icon-trash danger'></i>
 				</a>

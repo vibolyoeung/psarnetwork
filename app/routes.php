@@ -34,6 +34,8 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('/admin/user-group','BeUserGroupController@listUserGroup');
 	Route::any('/admin/user-group-add','BeUserGroupController@addUserGroup');
 	Route::any('/admin/user-group-edit/{id}','BeUserGroupController@editUserGroup');
+	Route::post('/admin/user-group-edit','BeUserGroupController@editUserGroup');
+	Route::get('/admin/user-group-delete/{id}','BeUserGroupController@deleteUserGroup');
 
 	Route::any('/admin/pages','BePageController@listPage');
 	Route::any('/admin/create-page','BePageController@createPage');
