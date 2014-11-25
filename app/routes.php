@@ -37,6 +37,8 @@ Route::group(array('before' => 'auth'), function() {
 	Route::post('/admin/user-group-edit','BeUserGroupController@editUserGroup');
 	Route::get('/admin/user-group-delete/{id}','BeUserGroupController@deleteUserGroup');
 
+	Route::get('/admin/deny-permisson-page','BeDenyPermissionPageController@denyPermissionPage');
+
 	Route::any('/admin/pages','BePageController@listPage');
 	Route::any('/admin/create-page','BePageController@createPage');
 	Route::get('/admin/edit-page/{id}','BePageController@editPage');
