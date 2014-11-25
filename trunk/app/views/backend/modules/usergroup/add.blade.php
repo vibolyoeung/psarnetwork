@@ -16,7 +16,8 @@
 				<div class="panel-body">{{Form::open(array('url'=>'admin/user-group-add'))}}
 					<div class="form-group"><label>User Group Name <span class="class-required">*</span></label>
 					{{ Form::text('group_name',null, array('class' =>
-					'form-control','placeholder'=>'Enter User Group Name'))}} <span class="class-error"></span>
+					'form-control','placeholder'=>'Enter User Group Name'))}}
+					<span class="class-error">{{$errors->first('group_name')}}</span>
 					</div>
 
 				<div class="col-sm-12">
