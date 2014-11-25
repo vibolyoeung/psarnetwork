@@ -14,7 +14,7 @@
 			<ul class="dropdown-menu">
 				<li><a href="{{URL::to('admin/users')}}">System User</a></li>
 				<li><a href="#">Client User</a></li>
-				<li><a href="#">User Role</a></li>
+				<li><a href="{{URL::to('admin/user-group')}}">User Role</a></li>
 				<li><a href="#">Client User Type</a></li>
 			</ul>
 		</li>
