@@ -1936,7 +1936,7 @@ strong.number-display {
     font-weight: bold;
 }
 .register-form .checkbox{margin-bottom:40px}
-.register-form .checkbox input[type=checkbox]{width:25px;height:25px}
+.register-form .checkbox input[type=radio]{width:25px;height:25px}
 .register-form .checkbox .des{clear:both;margin-left:-20px}
 .register-form label {font-size:140%;width:100%}
 
@@ -1948,7 +1948,7 @@ strong.number-display {
 .register-form .conent{padding:15px}
 .register-form h2{margin-bottom:5px}
 .register-form h3{text-align:center;padding:5px 0 0 0;margin-top:5px}
-.register-form form button,.register-form form button {
+.choosenuser {
     background: #428bca;
     border: medium none;
     border-radius: 0;

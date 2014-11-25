@@ -19,3 +19,10 @@ var customClass = {
 		});
 	}
 };
+
+function user_register(cos,vals){
+   if($(cos).is(':checked')) {
+       $("#chooseuser").removeAttr('disabled');
+       $("#chooseuser").attr('href', vals);
+   }
+}

@@ -1,6 +1,6 @@
 @extends('frontend.nosidebar') 
 @section('title') 
-Register Page
+Register for Enterprise Seller Page
 @endsection
 @section('breadcrumb')
 <ol class="breadcrumb">
