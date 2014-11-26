@@ -24,7 +24,15 @@
 						data-original-title="">x</button>
 					<p>{{Session::get('ERROR_MESSAGE')}}</p>
 				</div>
-				@endif <br />
+				@endif
+				@if(Session::has('ERROR_MODIFY_MESSAGE'))
+				<div class="alert alert-block alert-danger fade in">
+				<button data-dismiss="alert" class="close" type="button"
+					data-original-title="">x</button>
+				<p>{{Session::get('ERROR_MODIFY_MESSAGE')}}</p>
+				</div>
+				@endif
+				 <br />
 				<div class="table-responsive">
 					<table class="table table-bordered no-margin">
 						<thead>
