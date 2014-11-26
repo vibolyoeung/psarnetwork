@@ -82,7 +82,10 @@ h1,h2,h3,h4,h5,h6 {
 .navbar-toggle {
     background-color: #000;
 }
-
+.carousel-inner .item .col-sm-6 img
+{
+	max-height: 200px;	
+}
 a#scrollUp {
     bottom: 0px;
     right: 10px;
@@ -875,7 +878,7 @@ ul.sub-menu {
 }
 
 .item {
-    padding-left: 100px;
+    padding-left: 0px;
 }
 
 .pricing {
@@ -2922,4 +2925,8 @@ strong {
         width:100%;
         max-width: 2000px;
     }
+    .item {
+	    padding-left: 0px;
+	    min-height: 200px;
+	}
 }
