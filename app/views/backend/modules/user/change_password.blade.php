@@ -35,6 +35,13 @@
                 <p>{{Session::get('ERROR_MESSAGE')}}</p>
               </div>
               @endif
+              @if(Session::has('ERROR_MODIFY_MESSAGE'))
+				<div class="alert alert-block alert-danger fade in">
+				<button data-dismiss="alert" class="close" type="button"
+					data-original-title="">x</button>
+				<p>{{Session::get('ERROR_MODIFY_MESSAGE')}}</p>
+				</div>
+				@endif
              {{Form::open(array('url'=>'admin/change-password'))}}
              	<div class="form-group">
                   <label>Old Password</label>

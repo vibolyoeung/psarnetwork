@@ -2,10 +2,11 @@
 
 class BeUserController extends BaseController {
 
- 	protected  $user;
-
+	protected  $user;
+	protected  $modUserGroup;
 	public function __construct() {
 		$this->user = new User();
+		$this->modUserGroup = new UserGroup();
 	}
 
 	/**
@@ -13,6 +14,9 @@ class BeUserController extends BaseController {
 	 * @return users object
 	 */
 	public function listUser(){
+		if(!$this->modUserGroup->isAccessPermission('admin/users')){
+			return Redirect::to('admin/deny-permisson-page');
+		}
 		$users = $this->user->where('id','!=',Session::get('SESSION_USER_ID'))->orderBy('id','DESC')->paginate(Config::get('constants.BACKEND_PAGINATION_USER'));
 		return View::make('backend.modules.user.list')->with('users',$users);
 	}
@@ -22,7 +26,14 @@ class BeUserController extends BaseController {
 	 * @return true
 	 */
 	public function createUser(){
+		if(!$this->modUserGroup->isAccessPermission('admin/create')){
+			return Redirect::to('admin/deny-permisson-page');
+		}
 		if(Input::has('btnSubmit')){
+			if(!$this->modUserGroup->isModifyPermission('admin/create')){
+					return Redirect::to('admin/users')
+					->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+			}
 			$rules = array(
 				'email' => 'required|email|unique:user',
 				'password' => 'required|min:8',
@@ -50,7 +61,14 @@ class BeUserController extends BaseController {
 	 * @param $id: this id of user
 	 */
 	public function editUser($id=null){
+		if(!$this->modUserGroup->isAccessPermission('admin/edit')){
+			return Redirect::to('admin/deny-permisson-page');
+		}
 		if(Input::has('btnSubmit')){
+			if(!$this->modUserGroup->isModifyPermission('admin/edit')){
+					return Redirect::to('admin/users')
+					->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+			}
 			$id = Input::get('id');
 			$data = $this->prepareDataBind('edit');
 			$this->user->where('id','=',$id)->update($data);
@@ -69,6 +87,10 @@ class BeUserController extends BaseController {
 	 * @param id: id of user
 	 */
 	public function deleteUser($id=null){
+		if(!$this->modUserGroup->isModifyPermission('admin/delete')){
+				return Redirect::to('admin/users')
+				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+		}
 		$id = (integer)$id;
 		$this->user->where('id','=',$id)->where('id','!=',Session::get('SESSION_USER_ID'))->delete();
 		return Redirect::to('admin/users')->with('SECCESS_MESSAGE','User has been deleted successfully');
@@ -80,6 +102,10 @@ class BeUserController extends BaseController {
 	 * @param  status: the status of user
 	 */
 	public function changeStatusUser($status = null,$id = null){
+		if(!$this->modUserGroup->isModifyPermission('admin/status')){
+				return Redirect::to('admin/users')
+				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+		}
 		if($status == 1){
 			$status = 0;
 		}else{
@@ -95,7 +121,14 @@ class BeUserController extends BaseController {
 	 * @return true
 	 */
 	public function updateProfileUser(){
+		if(!$this->modUserGroup->isAccessPermission('admin/profile')){
+			return Redirect::to('admin/deny-permisson-page');
+		}
 		if(Input::has('btnSubmit')){
+			if(!$this->modUserGroup->isModifyPermission('admin/profile')){
+					return Redirect::to('admin/profile')
+					->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+			}
 			$this->user->where('id','=',Session::get('SESSION_USER_ID'))->update(array('name'=>trim(Input::get('name'))));
 			return Redirect::to('admin/profile')->with('SECCESS_MESSAGE','Profile has been changed successfully');
 		}else{
@@ -109,7 +142,14 @@ class BeUserController extends BaseController {
 	 * @return true
 	 */
 	public function changePasswordUser(){
+		if(!$this->modUserGroup->isAccessPermission('admin/change-password')){
+			return Redirect::to('admin/deny-permisson-page');
+		}
 		if(Input::has('btnSubmit')){
+			if(!$this->modUserGroup->isModifyPermission('admin/change-password')){
+					return Redirect::to('admin/change-password')
+					->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+			}
 			$rules = array(
 				'old_password' => 'required',
 				'password' => 'required|min:8',
