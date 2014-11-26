@@ -9,13 +9,23 @@ class BeUserGroupController extends BaseController {
 	}
 
 	public function listUserGroup(){
+		if(!$this->modUserGroup->isAccessPermission('admin/user-group')){
+			return Redirect::to('admin/deny-permisson-page');
+		}
 		$userGroup = $this->modUserGroup->getUserGroup();
 		return View::make('backend.modules.usergroup.list')
 		->with('userGroup', $userGroup->data);
 	}
 
 	public function addUserGroup(){
+		if(!$this->modUserGroup->isAccessPermission('admin/user-group-add')){
+			return Redirect::to('admin/deny-permisson-page');
+		}
 		if(Input::has('btnSubmit')){
+			if(!$this->modUserGroup->isModifyPermission('admin/user-group-add')){
+				return Redirect::to('admin/user-group')
+				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+			}
 			$rules = array('group_name'=>'required');
 			$validator = Validator::make(Input::all(), $rules);
 			if ($validator->passes()) {
@@ -36,7 +46,14 @@ class BeUserGroupController extends BaseController {
 	}
 
 	public function editUserGroup($id = null){
+		if(!$this->modUserGroup->isAccessPermission('admin/user-group-edit')){
+			return Redirect::to('admin/deny-permisson-page');
+		}
 		if(Input::has('btnSubmit')){
+			if(!$this->modUserGroup->isModifyPermission('admin/user-group-edit')){
+				return Redirect::to('admin/user-group')
+				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+			}
 			$hid = Input::get('hid');
 			$group_name = Input::get('group_name');
 			$permission = Input::get('permission');
@@ -45,7 +62,8 @@ class BeUserGroupController extends BaseController {
 					'permission'=>serialize($permission)
 				);
 			$this->modUserGroup->editPermissionToUserGroup($data, $hid);
-			return Redirect::to('admin/user-group')->with('SECCESS_MESSAGE','User Group has been updated');
+			return Redirect::to('admin/user-group')
+			->with('SECCESS_MESSAGE','User Group has been updated');
 		}
 		$getUserPermissionById = $this->modUserGroup->getUserPermissionById($id);
 		$getUserPermission = $this->modUserGroup->getUserPermission();
@@ -55,8 +73,13 @@ class BeUserGroupController extends BaseController {
 	}
 
 	public function deleteUserGroup($id = null){
+		if(!$this->modUserGroup->isModifyPermission('admin/user-group-delete')){
+				return Redirect::to('admin/user-group')
+				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+			}
 		$this->modUserGroup->deleteUserGroup($id);
-		return Redirect::to('admin/user-group')->with('SECCESS_MESSAGE','User Group has been deleted');
+		return Redirect::to('admin/user-group')
+		->with('SECCESS_MESSAGE','User Group has been deleted');
 	}
 
 }

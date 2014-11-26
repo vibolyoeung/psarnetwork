@@ -120,4 +120,48 @@ class UserGroup extends Eloquent{
 		}
 		return $response;
 	}
+
+	/**
+	 *
+	 * isAccessPermission: this function using for giving access permission
+	 * @return boolean
+	 * @param $permissionName
+	 * @access public
+	 */
+	public function isAccessPermission($permissionName){
+		$result = DB::table(Config::get('constants.TABLE_NAME.USER_TYPE'))
+			->select('*')
+			->where('id','=',Session::get('SESSION_USER_ROLE'))
+			->where('id','!=',4)
+			->first();
+			$arrayAccessPermissionUnserialize = unserialize($result->permission);
+		if(in_array($permissionName, $arrayAccessPermissionUnserialize['access'])){
+			$returnAccessPermission = true;
+		}else{
+			$returnAccessPermission = false;
+		}
+		return $returnAccessPermission;
+	}
+
+	/**
+	 *
+	 * isModifyPermission: this function using for giving modify permission
+	 * @return boolean
+	 * @param $permissionName
+	 * @access public
+	 */
+	public function isModifyPermission($permissionName){
+		$result = DB::table(Config::get('constants.TABLE_NAME.USER_TYPE'))
+			->select('*')
+			->where('id','=',Session::get('SESSION_USER_ROLE'))
+			->where('id','!=',4)
+			->first();
+			$arrayModifyPermissionUnserialize = unserialize($result->permission);
+		if(in_array($permissionName, $arrayModifyPermissionUnserialize['modify'])){
+			$returnModifyPermission = true;
+		}else{
+			$returnModifyPermission = false;
+		}
+		return $returnModifyPermission;
+	}
 }
