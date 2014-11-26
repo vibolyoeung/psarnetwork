@@ -58,9 +58,9 @@
 
 								</a></td>
 								<td align="center"><a title="Edit"
-									href="{{URL::to('admin/edit_advertisement')}}/{{$advertisement->id}}"><i
+									href="{{URL::to('admin/edit-advertisement')}}/{{$advertisement->id}}"><i
 										class="icon-edit primary"></i></a> <a title="Delete"
-									href="{{URL::to('admin/delete_advertisement')}}/{{$advertisement->id}}"
+									href="{{URL::to('admin/delete-advertisement')}}/{{$advertisement->id}}"
 									onclick="return confirm('Are you sure you want to delete this item?');"><i
 										class='icon-trash danger'></i></a></td>
 							</tr>

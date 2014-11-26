@@ -72,6 +72,36 @@ class Advertisement extends Eloquent {
 
 		return $response;
 	}
+
+	/**
+	 *
+	 * saveEditAdvertisement: this function using for editing an existing advertisement
+	 * @param id: the id of advertisement
+	 * @param param: listing or operation
+	 * @param data: the pareparation data befor inserting
+	 * @return true: if the an existing Advertisement has been edited successfully
+	 * @access public
+	 * @throws Exception
+	 */
+	public function saveEditAdvertisement($id, $data = array(), $param = null){
+		$response = new stdClass();
+		try {
+			if($param == 'operation'){
+				$result = DB::table(Config::get('constants.TABLE_NAME.ADVERTISEMENT'))->where('id','=',$id)->update($data);
+				$response->result = 1;
+			} else {
+				$listing = DB::table(Config::get('constants.TABLE_NAME.ADVERTISEMENT'))->where('id','=', $id)->first();
+				$response->data = $listing;
+				$response->result = 1;
+			}
+		} catch (\Exception $e){
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+
+		return $response;
+	}
+
 	public function findPostionByPageAdsId($id) {
 		$response = new stdClass ();
 

@@ -75,20 +75,39 @@ class BeAdvertisementController extends BaseController {
 		$id = ( integer ) $id;
 		if (Input::has ( 'btnSubmit' )) {
 			$rules = array (
-					'title' => 'required'
+					'file' => 'required|mimes:jpeg,png,bmp,gif|image',
+					'title' => 'required',
+					'url' => 'required|url',
+					'startDate' => 'required',
+					'expirationDate' => 'required'
 			);
 			$validator = Validator::make ( Input::all (), $rules );
-			if ($validator->passes ()) {
-				$id = Input::get ( 'id' );
-				$data = $this->prepareDataBind ( 'edit' );
-				$this->m_page->where ( 'id', '=', $id )->update ( $data );
-				return Redirect::to ( 'admin/pages' )->with ( 'SECCESS_MESSAGE', 'Page has been updated successfully' );
-			} else {
-				return Redirect::to ( 'admin/edit_page' )->withInput ()->withErrors ( $validator );
+			if ($validator->passes()) {
+				if(Input::hasfile('file')){
+					$destinationPath = base_path() . '/public/upload/advertisement/';
+					self::generateFolderUpload($destinationPath);
+					$destinationPathThumb = $destinationPath.'thumb/';
+					$file = Input::file('file');
+					$fileName = $file->getClientOriginalName();
+					$fileName = self::generateFileName($destinationPath,$fileName);
+					$data = self::prepareDataBind('edit', $fileName);
+					$this->advertisement->saveEditAdvertisement($id,$data, $param ='operation');
+					$file->move($destinationPath, $fileName);
+					Image::make($destinationPath . $fileName)
+						->resize(Config::get('constants.ADVERTISEMENT_RESIZE_WIDTH'), Config::get('constants.ADVERTISEMENT_RESIZE_HEGHT'))
+						->save($destinationPathThumb . $fileName);
+				} else {
+					$data = self::prepareDataBind('edit');
+					$this->advertisement->saveEditAdvertisement($id,$data, $param ='operation');
+				}
+				return Redirect::to('admin/advertisements')->with('SECCESS_MESSAGE','Advertisement has been updated successfully');
+			}else {
+				return Redirect::to('admin/edit-advertisement/'.$id)->withInput()->withErrors($validator);
 			}
 		}
-		$pages = $this->m_page->where ( 'id', '=', $id )->first ();
-		return View::make ( 'backend.modules.page.edit' )->with ( 'pages', $pages );
+		$result = $this->advertisement->saveEditAdvertisement($id);
+		$advPages = $this->advertisement->findAllAdvertisePages ();
+		return View::make ('backend.modules.advertisement.edit')->with ('advertisement', $result->data)->with('advPages', $advPages->data);
 	}
 
 	/**

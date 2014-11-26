@@ -1,6 +1,5 @@
 $(document).ready(function() {
 	$( '.datepicker' ).datepicker({ dateFormat: 'dd/mm/yy' });
-	
 	$('#ads-page').change(function() {
 		var id = $(this).val();
 		if (0 == id) {
