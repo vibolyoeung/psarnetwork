@@ -3,9 +3,10 @@
 class BeCategoryController extends BaseController {
 
 	protected $mod_category;
-
+	protected $modUserGroup;
 	public function __construct() {
 		$this->mod_category = new MCategory();
+		$this->modUserGroup = new UserGroup();
 	}
 
 	/**
@@ -15,6 +16,9 @@ class BeCategoryController extends BaseController {
 	 * @access public
 	 */
 	public function listCategory(){
+		if(!$this->modUserGroup->isAccessPermission('admin/categories')){
+			return Redirect::to('admin/deny-permisson-page');
+		}
 		$categoryList = $this->mod_category->fetchCategoryTreeList();
 		return View::make('backend.modules.category.list')->with('categoryList',$categoryList);
 	}
@@ -26,8 +30,14 @@ class BeCategoryController extends BaseController {
 	 * @access public
 	 */
 	public function createCategory(){
+		if(!$this->modUserGroup->isAccessPermission('create-category')){
+			return Redirect::to('admin/deny-permisson-page');
+		}
 		if(Input::has('btnSubmit')){
-
+			if(!$this->modUserGroup->isModifyPermission('create-category')){
+				return Redirect::to('admin/categories')
+				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+			}
 			$rules = array(
 					'name_en' => 'required|unique:m_category',
 					'name_zh'=>'required|unique:m_category'
@@ -55,7 +65,14 @@ class BeCategoryController extends BaseController {
 	 * @access public
 	 */
 	public function editCategory($id = null){
+		if(!$this->modUserGroup->isAccessPermission('admin/edit-category')){
+			return Redirect::to('admin/deny-permisson-page');
+		}
 		if(Input::has('btnSubmit')){
+			if(!$this->modUserGroup->isModifyPermission('admin/edit-category')){
+				return Redirect::to('admin/categories')
+				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+			}
 			$id = Input::get('id');
 			$rules = array(
 					'name_en' => 'required',
@@ -88,6 +105,10 @@ class BeCategoryController extends BaseController {
 	 * @access public
 	 */
 	public function deleteCategory($id = null){
+		if(!$this->modUserGroup->isModifyPermission('admin/delete-category')){
+				return Redirect::to('admin/categories')
+				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+			}
 		$id = (integer) $id;
 		$this->mod_category->deleteCategory($id);
 		return Redirect::to('admin/categories')->with('SECCESS_MESSAGE','Category has been deleted');
@@ -102,6 +123,10 @@ class BeCategoryController extends BaseController {
 	 * @access public
 	 */
 	public function isPublicCategory($id=null, $status=null){
+		if(!$this->modUserGroup->isModifyPermission('admin/status-category')){
+				return Redirect::to('admin/categories')
+				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+		}
 		$id = (integer) $id;
 		$status = (integer) $status;
 		$this->mod_category->isStatusPublic($id, $status);
