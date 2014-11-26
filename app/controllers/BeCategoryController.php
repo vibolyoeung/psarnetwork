@@ -30,11 +30,11 @@ class BeCategoryController extends BaseController {
 	 * @access public
 	 */
 	public function createCategory(){
-		if(!$this->modUserGroup->isAccessPermission('create-category')){
+		if(!$this->modUserGroup->isAccessPermission('admin/create-category')){
 			return Redirect::to('admin/deny-permisson-page');
 		}
 		if(Input::has('btnSubmit')){
-			if(!$this->modUserGroup->isModifyPermission('create-category')){
+			if(!$this->modUserGroup->isModifyPermission('admin/create-category')){
 				return Redirect::to('admin/categories')
 				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
 			}
