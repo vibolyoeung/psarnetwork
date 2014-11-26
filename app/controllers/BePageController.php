@@ -3,9 +3,9 @@
 class BePageController extends BaseController {
 
 	public $m_page;
-
+	protected $modUserGroup;
 	function __construct(){
-
+		$this->modUserGroup = new UserGroup();
 		$this->m_page = new MPage();
 	}
 
@@ -14,6 +14,9 @@ class BePageController extends BaseController {
 	 * @return page object
 	 */
 	public function listPage(){
+		if(!$this->modUserGroup->isAccessPermission('admin/pages')){
+			return Redirect::to('admin/deny-permisson-page');
+		}
 		$page = $this->m_page->orderBy('id','DESC')->paginate(Config::get('constants.BACKEND_PAGINATION_PAGE'));
 		return View::make('backend.modules.page.list')->with('pages',$page);
 	}
@@ -24,7 +27,14 @@ class BePageController extends BaseController {
 	 * @access public
 	 */
 	public function createPage(){
+		if(!$this->modUserGroup->isAccessPermission('admin/create-page')){
+			return Redirect::to('admin/deny-permisson-page');
+		}
 		if(Input::has('btnSubmit')){
+			if(!$this->modUserGroup->isModifyPermission('admin/create-page')){
+				return Redirect::to('admin/pages')
+				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+			}
 			$rules = array(
 					'title_en' => 'required|unique:m_page',
 					'title_zh'=>'required|unique:m_page'
@@ -49,8 +59,15 @@ class BePageController extends BaseController {
 	 * @access public
 	 */
 	public function editPage($id=null){
+		if(!$this->modUserGroup->isAccessPermission('admin/edit-page')){
+			return Redirect::to('admin/deny-permisson-page');
+		}
 		$id = (integer)$id;
 		if(Input::has('btnSubmit')){
+			if(!$this->modUserGroup->isModifyPermission('admin/edit-page')){
+				return Redirect::to('admin/pages')
+				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+			}
 			$rules = array(
 					'title_en' => 'required',
 					'title_zh'=>'required'
@@ -77,6 +94,10 @@ class BePageController extends BaseController {
 	 * @access public
 	 */
 	public function deletePage($id = null){
+		if(!$this->modUserGroup->isModifyPermission('admin/delete-page')){
+				return Redirect::to('admin/pages')
+				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+		}
 		$id = (integer) $id;
 		$this->m_page->where('id','=',$id)->delete();
 		return Redirect::to('admin/pages')->with('SECCESS_MESSAGE','Page has been deleted successfully');
@@ -91,6 +112,10 @@ class BePageController extends BaseController {
 	 * @access public
 	 */
 	public function isEnablePage($status=null,$id=null){
+		if(!$this->modUserGroup->isModifyPermission('admin/status-page')){
+				return Redirect::to('admin/pages')
+				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+		}
 		$id = (integer) $id;
 		$status = (integer) $status;
 		$status = (1==$status) ? 0 : 1;
