@@ -3,9 +3,9 @@
 class BeSlideshowController extends BaseController {
 
 	private  $mod_slideshow;
-
+	protected  $modUserGroup;
 	public function __construct(){
-
+		$this->modUserGroup = new UserGroup();
 		$this->mod_slideshow = new Slideshow();
 	}
 
@@ -17,6 +17,9 @@ class BeSlideshowController extends BaseController {
 	 */
 	public function listSlideshow()
 	{
+		if(!$this->modUserGroup->isAccessPermission('admin/slideshows')){
+			return Redirect::to('admin/deny-permisson-page');
+		}
 		$result = $this->mod_slideshow->listingSlideshow();
 		return View::make('backend.modules.slideshow.list')->with('slideshows',$result);
 	}
@@ -28,7 +31,14 @@ class BeSlideshowController extends BaseController {
 	 * @access public
 	 */
 	public function createSlideshow(){
+		if(!$this->modUserGroup->isAccessPermission('admin/create-slideshow')){
+			return Redirect::to('admin/deny-permisson-page');
+		}
 		if(Input::has('btnSubmit')){
+			if(!$this->modUserGroup->isModifyPermission('admin/create-slideshow')){
+				return Redirect::to('admin/slideshows')
+				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+			}
 			$rules = array(
 						'file' => 'required|mimes:jpeg,png,bmp,gif|image',
 						'title'=>'required',
@@ -68,8 +78,15 @@ class BeSlideshowController extends BaseController {
 	 * @access public
 	 */
 	public function editSlideshow($id = null){
+		if(!$this->modUserGroup->isAccessPermission('admin/edit-slideshow')){
+			return Redirect::to('admin/deny-permisson-page');
+		}
 		$id = (integer) $id;
 		if(Input::has('btnSubmit')){
+			if(!$this->modUserGroup->isModifyPermission('admin/edit-slideshow')){
+				return Redirect::to('admin/slideshows')
+				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+			}
 			$id = Input::get('hid');
 			$rules = array(
 						'title'=>'required',
@@ -116,6 +133,10 @@ class BeSlideshowController extends BaseController {
 	 *
 	 */
 	public function deleteSlideshow($id=null){
+		if(!$this->modUserGroup->isModifyPermission('admin/delete-slideshow')){
+				return Redirect::to('admin/slideshows')
+				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+			}
 		$id = (integer)$id;
 		$result = $this->mod_slideshow->deleteSlideshow($id);
 		if(1 == $result->result){
@@ -134,6 +155,10 @@ class BeSlideshowController extends BaseController {
 	 * @access public
 	 */
 	public function isPublicSlideshow($id = null, $status = null){
+		if(!$this->modUserGroup->isModifyPermission('admin/status-slideshow')){
+				return Redirect::to('admin/slideshows')
+				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+			}
 		$id = (integer) $id;
 		$status = (integer) $status;
 		$result = $this->mod_slideshow->isPublicSlideshow($id, $status);
