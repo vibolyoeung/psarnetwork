@@ -16,13 +16,22 @@ User Group
 				class="icon-plus btn btn-xs btn-info rounded-buttons">&nbsp;Add</i> </a>
 			<h3 class="panel-title">User Group</h3>
 			</div>
-			<div class="panel-body">@if(Session::has('SECCESS_MESSAGE'))
+			<div class="panel-body">
+			@if(Session::has('SECCESS_MESSAGE'))
 			<div class="alert alert-block alert-success fade in">
 			<button data-dismiss="alert" class="close" type="button"
 				data-original-title="">x</button>
 			<p>{{Session::get('SECCESS_MESSAGE')}}</p>
 			</div>
-			@endif <br />
+			@endif
+			@if(Session::has('ERROR_MODIFY_MESSAGE'))
+			<div class="alert alert-block alert-danger fade in">
+			<button data-dismiss="alert" class="close" type="button"
+				data-original-title="">x</button>
+			<p>{{Session::get('ERROR_MODIFY_MESSAGE')}}</p>
+			</div>
+			@endif
+			<br />
 		<div class="table-responsive">
 		<table class="table table-bordered no-margin">
 			<thead>
