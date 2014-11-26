@@ -7,7 +7,7 @@ class FePageController extends BaseController {
 	}
 	public function index()
 	{
-		$listSlideshows = self::getSlideshowToHomePage(10);
+		$listSlideshows = self::getSlideshowToHomePage(5);
 		return View::make('frontend.partials.home')->with('slideshows', $listSlideshows->result);
 	}
 	

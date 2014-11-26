@@ -190,12 +190,33 @@ class Slideshow extends Eloquent{
 	 * @access public
 	 * @throws Exception
 	 */
+// 	public function getSlideshowToFrontEnd($limit){
+// 		$response = new stdClass();
+// 		try {
+// 			$result = DB::table(Config::get('constants.TABLE_NAME.SLIDESHOW'))->select('*')->where('status','=', 1)->take($limit)->get();
+// 			$response->result = $result;
+			
+// 		}catch (\Exception $e){
+// 			$response->result = 0;
+// 			$response->errorMsg = $e->getMessage();
+// 		}
+	
+// 		return $response;
+// 	}
+
 	public function getSlideshowToFrontEnd($limit){
 		$response = new stdClass();
 		try {
-			$result = DB::table(Config::get('constants.TABLE_NAME.SLIDESHOW'))->select('*')->where('status','=', 1)->take($limit)->get();
+			$result = DB::table(Config::get('constants.TABLE_NAME.SLIDESHOW').' AS s')
+			->select(
+					's.id','s.title AS sli_title','s.image AS sli_image',
+					's.status AS sli_statu','s.created_date AS sli_created_date','s.short_desc AS sli_desc',
+					's.product_id AS pro_id','s.expire_date AS sli_expire_date','s.link_url',
+					'p.title AS pro_title','p.image AS pro_image','p.status AS pro_status',
+					'p.created_date AS pro_created_date','p.expire_date AS pro_expire_date')
+			->leftJoin(Config::get('constants.TABLE_NAME.PRODUCT').' AS p','p.id','=','s.product_id')
+			->where('s.status','=', 1)->take($limit)->get();
 			$response->result = $result;
-			
 		}catch (\Exception $e){
 			$response->result = 0;
 			$response->errorMsg = $e->getMessage();
@@ -203,6 +224,4 @@ class Slideshow extends Eloquent{
 	
 		return $response;
 	}
-
-
 }
