@@ -72,8 +72,9 @@ class BeAdvertisementController extends BaseController {
 	 * @access public
 	 */
 	public function editAvertisement($id = null) {
-		$id = ( integer ) $id;
-		if (Input::has ( 'btnSubmit' )) {
+		$id = (integer) $id;
+		if (Input::has ('btnSubmit')) {
+			$id = Input::get('hid');
 			$rules = array (
 					'file' => 'required|mimes:jpeg,png,bmp,gif|image',
 					'title' => 'required',

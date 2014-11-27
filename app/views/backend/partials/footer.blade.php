@@ -3,6 +3,7 @@
     {{HTML::script('backend/js/bootstrap.min.js')}}
 
     {{HTML::script('backend/js/jquery-ui.js')}}
+    {{HTML::script('backend/js/custom.js')}}
 
   </body>
 </html>

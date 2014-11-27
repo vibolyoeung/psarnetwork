@@ -1,5 +1,11 @@
 $(document).ready(function() {
-	$( '.datepicker' ).datepicker({ dateFormat: 'dd/mm/yy' });
+	$('.datepicker' ).datepicker({ dateFormat: 'dd/mm/yy' });
+	
+	$advPageId = $('#ads-page').val();
+	if($advPageId > 0) {
+		$('#ads-position').parent().show();
+		listAllPositions($advPageId);
+	}
 	$('#ads-page').change(function() {
 		var id = $(this).val();
 		if (0 == id) {

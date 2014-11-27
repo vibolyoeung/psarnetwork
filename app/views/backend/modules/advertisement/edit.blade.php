@@ -14,7 +14,7 @@
 				<h3 class="panel-title">Edit Advertisement</h3>
 			</div>
 			<div class="panel-body">
-				{{Form::open(array('url'=>'admin/create-advertisement','enctype'=>'multipart/form-data','file'=>
+				{{Form::open(array('url'=>'admin/edit-advertisement','enctype'=>'multipart/form-data','file'=>
 				true, 'class'=> 'form-vertical'))}}
 				<div class="form-group col-md-6 col-sm-12 col-xs-6">
 					<label>Title<span class="class-required">*</span></label>
@@ -61,7 +61,7 @@
 				<div class="form-group col-md-3 col-sm-3 col-xs-3"
 					style="display: none">
 					<label>Position</label> {{ Form::select('advertisementPosition',
-					array(), null , array('class' => 'form-control', 'id' =>
+					array(), $advertisement->adv_position_id , array('class' => 'form-control', 'id' =>
 					'ads-position'))}}
 				</div>
 				<div class="form-group col-md-12 col-sm-12 col-xs-12">
@@ -74,6 +74,7 @@
 					array('class' => 'form-control'))}}
 				</div>
 				<div class="form-group col-md-12 col-sm-12 col-xs-12">
+					{{Form::hidden('hid',$advertisement->id)}}
 					{{Form::submit('Create', array('class' => 'btn
 					btn-success','name'=>'btnSubmit'))}} {{Form::close()}}</div>
 			</div>
