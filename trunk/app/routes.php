@@ -74,6 +74,11 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('/admin/delete-market/{id}','BeMarketController@deleteMarket');
 	Route::get('/admin/list-district/{id}','BeMarketController@listingDistricts');
 
+	Route::get('/admin/setting-list','BeSettingController@settingAction');
+	Route::any('/admin/setting-add-permission-name','BeSettingController@addPermissionAction');
+	Route::get('/admin/setting-delete-permission-name/{id}','BeSettingController@deletePermissionAction');
+
+
 });
 
 //=============Routes for front end page==============
