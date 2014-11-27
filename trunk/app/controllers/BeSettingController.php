@@ -29,7 +29,8 @@ class BeSettingController extends BaseController {
 			$rules = array('permission_name' => 'required|unique:permission');
 			$validator = Validator::make(Input::all(), $rules);
 			if ($validator->passes()) {
-				$this->modSetting->addSavePermissionName(array('permission_name'=>Input::get('permission_name')));
+				$data = array('permission_name'=>trim(Input::get('permission_name')));
+				$this->modSetting->addSavePermissionName($data);
 				return Redirect::to('admin/setting-add-permission-name')
 				->with('SECCESS_MESSAGE','Category has been created');
 			}else{
@@ -51,6 +52,26 @@ class BeSettingController extends BaseController {
 		$this->modSetting->deletePermissionName($id);
 		return Redirect::to('admin/setting-add-permission-name')
 		->with('SECCESS_MESSAGE','Item has been deleted!');
+	}
+
+	public function addSettingSlideShow(){
+		if(!$this->modUserGroup->isAccessPermission('admin/setting-add-slideshow')){
+			return Redirect::to('admin/deny-permisson-page');
+		}
+		if(Input::has('btnSubmit')){
+			if(!$this->modUserGroup->isModifyPermission('admin/setting-add-slideshow')){
+				return Redirect::to('admin/setting-add-slideshow')
+				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+			}
+
+			$data = array('setting_value'=>Input::get('setting_slideshow'));
+			$this->modSetting->addSettingNumberSlideshow($data);
+			return Redirect::to('admin/setting-add-slideshow')
+			->with('SECCESS_MESSAGE','Slideshow setting has been updated!');
+		}
+		$slideshowSetting = $this->modSetting->getSlideshowSetting();
+		return View::make('backend.modules.setting.add_setting_slideshow')
+		->with('slideshowSetting', $slideshowSetting->data);
 	}
 
 }

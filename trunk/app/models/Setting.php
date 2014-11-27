@@ -23,6 +23,13 @@ class Setting extends Eloquent{
 		return  $response;
 	}
 
+	/**
+	 *
+	 * deletePermissionName: delete a permission method name
+	 * @param $id
+	 * @access public
+	 * @throws Exception: can not list slideshow
+	 */
 	public function deletePermissionName($id){
 		$response = new stdClass();
 		try {
@@ -34,10 +41,62 @@ class Setting extends Eloquent{
 		}
 		return $response;
 	}
+
+	/**
+	 *
+	 * addSavePermissionName: adding a permission method name
+	 * @param $data
+	 * @access public
+	 * @throws Exception: can not list slideshow
+	 */
 	public function addSavePermissionName($data){
 		$response = new stdClass();
 		try {
 			$result = DB::table(Config::get('constants.TABLE_NAME.PERMISSION'))->insertGetId($data);
+			$response->result = $result;
+		}catch (\Eexception $e){
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+			$response->result = 0;
+		}
+
+		return $response;
+	}
+
+	/**
+	 *
+	 * getSlideshowSetting: listing slideshow setting
+	 * @access public
+	 * @throws Exception: can not list slideshow
+	 */
+	public function getSlideshowSetting(){
+		$response = new stdClass();
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.SETTING'))
+			->select('*')
+			->where('setting_type','=','setting_display_number_slideshow')
+			->first();
+			$response->data = $result;
+			$response->result = 1;
+		}catch (\Exception $e){
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+		return  $response;
+	}
+
+	/**
+	 *
+	 * addSettingNumberSlideshow: modify setting slideshow
+	 * @param $data
+	 * @access public
+	 * @throws Exception: can not list slideshow
+	 */
+	public function addSettingNumberSlideshow($data){
+		$response = new stdClass();
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.SETTING'))
+			->where('setting_type','=','setting_display_number_slideshow')
+			->update($data);
 			$response->result = $result;
 		}catch (\Eexception $e){
 			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
