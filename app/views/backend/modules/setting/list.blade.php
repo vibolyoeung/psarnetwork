@@ -18,7 +18,7 @@
 								<a href="{{URL::to('admin/setting-add-permission-name')}}">Add Permission Actions</a>
 							</th>
 							<th width="300">
-								<i class="icon-plus btn btn-xs btn-info"></i> <a href="">Add Setting Slideshow</a>
+								<i class="icon-plus btn btn-xs btn-info"></i> <a href="{{URL::to('admin/setting-add-slideshow')}}">Add Setting Slideshow</a>
 							</th>
 							<th width="300">
 								<i class="icon-plus btn btn-xs btn-info"></i> <a href="">Add Others</a>
