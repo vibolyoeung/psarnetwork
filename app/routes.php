@@ -37,6 +37,10 @@ Route::group(array('before' => 'auth'), function() {
 	Route::post('/admin/user-group-edit','BeUserGroupController@editUserGroup');
 	Route::get('/admin/user-group-delete/{id}','BeUserGroupController@deleteUserGroup');
 
+	Route::get('/admin/client-user-type','BeClientUserTypeController@listClientUserType');
+	Route::get('/admin/client-user-type-edit/{id}','BeClientUserTypeController@editClientUserType');
+	Route::post('/admin/client-user-type-edit','BeClientUserTypeController@editClientUserType');
+
 	Route::get('/admin/deny-permisson-page','BeDenyPermissionPageController@denyPermissionPage');
 
 	Route::any('/admin/pages','BePageController@listPage');
