@@ -1,4 +1,3 @@
-use Symfony\Component\Translation\Tests\String;
 <section id="slider">
 	<!--slider-->
 	<div class="row">
