@@ -190,19 +190,6 @@ class Slideshow extends Eloquent{
 	 * @access public
 	 * @throws Exception
 	 */
-// 	public function getSlideshowToFrontEnd($limit){
-// 		$response = new stdClass();
-// 		try {
-// 			$result = DB::table(Config::get('constants.TABLE_NAME.SLIDESHOW'))->select('*')->where('status','=', 1)->take($limit)->get();
-// 			$response->result = $result;
-			
-// 		}catch (\Exception $e){
-// 			$response->result = 0;
-// 			$response->errorMsg = $e->getMessage();
-// 		}
-	
-// 		return $response;
-// 	}
 
 	public function getSlideshowToFrontEnd($limit){
 		$response = new stdClass();
@@ -215,7 +202,8 @@ class Slideshow extends Eloquent{
 					'p.title AS pro_title','p.image AS pro_image','p.status AS pro_status',
 					'p.created_date AS pro_created_date','p.expire_date AS pro_expire_date')
 			->leftJoin(Config::get('constants.TABLE_NAME.PRODUCT').' AS p','p.id','=','s.product_id')
-			->where('s.status','=', 1)->take($limit)->get();
+			->where('s.status','=', 1)
+			->where('p.status','=',1)->take($limit)->get();
 			$response->result = $result;
 		}catch (\Exception $e){
 			$response->result = 0;
@@ -224,4 +212,43 @@ class Slideshow extends Eloquent{
 	
 		return $response;
 	}
+	
+	/**
+	 * 
+	 * getMainCategories : is a function for getting Main categories to display front page
+	 * 
+	 * 
+	 */
+	
+	public function getMainCategories(){
+		$response = new stdClass();
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
+			->select('*')
+			->where('status','=', 1)
+			->where('parent_id','=','')->get();
+			$response->result = $result;
+		}catch (\Exception $e){
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+		
+		return $response;
+	}
+	
+	public function getSubCategories(){
+		$response = new stdClass();
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
+			->select('*')
+			->where('status','=', 1)
+			->where('parent_id','=','')->get();
+			$response->result = $result;
+		}catch (\Exception $e){
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+		return $response;
+	}
+	
 }
