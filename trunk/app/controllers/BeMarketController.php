@@ -3,9 +3,11 @@
 class BeMarketController extends BaseController {
 
 	protected $mod_market;
+	protected $modUserGroup;
 
 	public  function __construct(){
 		$this->mod_market = new Market();
+		$this->modUserGroup = new UserGroup();
 	}
 
 	/**
@@ -16,6 +18,9 @@ class BeMarketController extends BaseController {
 	 */
 	public function listMarket()
 	{
+		if(!$this->modUserGroup->isAccessPermission('admin/markets')){
+			return Redirect::to('admin/deny-permisson-page');
+		}
 		$result = $this->mod_market->listingMarkets();
 		return View::make('backend.modules.market.list')->with('markets', $result->data);
 	}
@@ -28,7 +33,14 @@ class BeMarketController extends BaseController {
 	 */
 	public function createMarket()
 	{
+		if(!$this->modUserGroup->isAccessPermission('admin/create-market')){
+			return Redirect::to('admin/deny-permisson-page');
+		}
 		if(Input::has('btnSubmit')){
+			if(!$this->modUserGroup->isModifyPermission('admin/create-market')){
+				return Redirect::to('admin/markets')
+				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+			}
 			$rules = array(
 						'file' => 'required|mimes:jpeg,png,bmp,gif|image',
 						'title_en'=>'required',
@@ -77,7 +89,15 @@ class BeMarketController extends BaseController {
 	 */
 	public function editMarket($id = null)
 	{
+		if(!$this->modUserGroup->isAccessPermission('admin/edit-market')){
+			return Redirect::to('admin/deny-permisson-page');
+		}
+
 		if(Input::has('btnSubmit')){
+			if(!$this->modUserGroup->isModifyPermission('admin/edit-market')){
+				return Redirect::to('admin/markets')
+				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+			}
 			$id = Input::get('hid');
 			$rules = array(
 						'title_en'=>'required',
@@ -115,7 +135,6 @@ class BeMarketController extends BaseController {
 							return Redirect::to('admin/edit-market/'.$id)->withInput()->withErrors($validator);
 						}
 		}
-
 		$id = (integer) $id;
 		$marketType = $this->mod_market->listingMarketsType();
 		$provinces = $this->mod_market->listingProvinces();
@@ -136,6 +155,10 @@ class BeMarketController extends BaseController {
 	 *
 	 */
 	public function deleteMarket($id=null){
+		if(!$this->modUserGroup->isModifyPermission('admin/delete-market')){
+				return Redirect::to('admin/markets')
+				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
+		}
 		$id = (integer)$id;
 		$result = $this->mod_market->deleteMarket($id);
 		if(1 == $result->result){
@@ -147,7 +170,6 @@ class BeMarketController extends BaseController {
 
 	public function listingDistricts($id = null){
 		$id = (integer) $id;
-
 		$districts = $this->mod_market->listingDistricts($id);
 		var_dump($districts);
 	}
