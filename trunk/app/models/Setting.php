@@ -83,6 +83,29 @@ class Setting extends Eloquent{
 		}
 		return  $response;
 	}
+	
+	
+	/**
+	 * 
+	 * 
+	 */
+	
+	public function getSlidshowNumber(){
+		$response = new stdClass();
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.SETTING'))
+			->select('setting_value')
+			->where('setting_type','=','setting_display_number_slideshow')
+			->first();
+			$response->data = $result;
+			$response->result = 1;
+		}catch (\Exception $e){
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+		return  $response;
+	}
+	
 
 	/**
 	 *
