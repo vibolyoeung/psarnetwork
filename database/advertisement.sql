@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 23, 2014 at 03:47 PM
+-- Generation Time: Dec 01, 2014 at 04:08 PM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -35,13 +35,20 @@ CREATE TABLE IF NOT EXISTS `advertisement` (
   `image` varchar(200) DEFAULT NULL,
   `link_url` varchar(200) DEFAULT NULL,
   `started_date` varchar(100) DEFAULT NULL,
-  `expire_date` varchar(100) DEFAULT NULL,
+  `end_date` varchar(100) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
-  `advertiser_id` int(11) NOT NULL,
+  `adv_position_id` int(11) NOT NULL,
   `adv_page_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `advertisement`
+--
+
+INSERT INTO `advertisement` (`id`, `title`, `description`, `image`, `link_url`, `started_date`, `end_date`, `user_id`, `status`, `adv_position_id`, `adv_page_id`) VALUES
+(4, 'Web Developer with more than 2 years experiences', 'Hello world', '1417449562.jpg', 'https://www.google.com.kh', '23/12/2014', '23/12/2014', 2, 1, 6, 2);
 
 -- --------------------------------------------------------
 
@@ -136,6 +143,7 @@ INSERT INTO `adv_page_position_mm` (`id`, `adv_page_id`, `adv_position_id`) VALU
 CREATE TABLE IF NOT EXISTS `adv_position` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) DEFAULT NULL,
+  `adv_page_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
@@ -143,19 +151,19 @@ CREATE TABLE IF NOT EXISTS `adv_position` (
 -- Dumping data for table `adv_position`
 --
 
-INSERT INTO `adv_position` (`id`, `name`) VALUES
-(1, 'Slide Show'),
-(2, 'Top'),
-(3, 'Buttom'),
-(4, 'V-Left-Meduim'),
-(5, 'V-Right-Meduim'),
-(6, 'V-Left-Samll'),
-(7, 'V-Right-Samll'),
-(8, 'H-Midlle-top-Large'),
-(9, 'H-Middle-centre-Large'),
-(10, 'H-Middle-Buttom-Large'),
-(11, 'Market-Slide-Show'),
-(12, 'H-Top-Meduim');
+INSERT INTO `adv_position` (`id`, `name`, `adv_page_id`) VALUES
+(1, 'Slide Show', NULL),
+(2, 'Top', NULL),
+(3, 'Buttom', NULL),
+(4, 'V-Left-Meduim', NULL),
+(5, 'V-Right-Meduim', NULL),
+(6, 'V-Left-Samll', NULL),
+(7, 'V-Right-Samll', NULL),
+(8, 'H-Midlle-top-Large', NULL),
+(9, 'H-Middle-centre-Large', NULL),
+(10, 'H-Middle-Buttom-Large', NULL),
+(11, 'Market-Slide-Show', NULL),
+(12, 'H-Top-Meduim', NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

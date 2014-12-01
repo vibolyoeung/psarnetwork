@@ -48,7 +48,7 @@ class BeAdvertisementController extends BaseController {
 				$this->advertisement->saveAddAdvertisement ( $data );
 				$file->move ( $destinationPath, $fileName );
 				Image::make ( $destinationPath . $fileName )->resize ( Config::get ( 'constants.ADVERTISEMENT_RESIZE_WIDTH' ), Config::get ( 'constants.ADVERTISEMENT_RESIZE_HEGHT' ) )->save ( $destinationPathThumb . $fileName );
-				return Redirect::to ( 'admin/advertisements' )->with ( 'SECCESS_MESSAGE', 'Advertisement has been added successfully' );
+				return Redirect::to ( 'admin/advertisements' )->with ( 'SUCCESS_MESSAGE', 'Advertisement has been added successfully' );
 			} else {
 				return Redirect::to ( 'admin/create-advertisement' )->withInput ()->withErrors ( $validator );
 			}
@@ -76,7 +76,7 @@ class BeAdvertisementController extends BaseController {
 		if (Input::has ('btnSubmit')) {
 			$id = Input::get('hid');
 			$rules = array (
-					'file' => 'required|mimes:jpeg,png,bmp,gif|image',
+					'file' => 'mimes:jpeg,png,bmp,gif|image',
 					'title' => 'required',
 					'url' => 'required|url',
 					'startDate' => 'required',
@@ -85,6 +85,11 @@ class BeAdvertisementController extends BaseController {
 			$validator = Validator::make ( Input::all (), $rules );
 			if ($validator->passes()) {
 				if(Input::hasfile('file')){
+
+					// for remove file
+					$oldFileObject = $this->advertisement->findAdvertisementImageById($id);
+					$this->removeFile($oldFileObject->image);
+
 					$destinationPath = base_path() . '/public/upload/advertisement/';
 					self::generateFolderUpload($destinationPath);
 					$destinationPathThumb = $destinationPath.'thumb/';
@@ -101,8 +106,8 @@ class BeAdvertisementController extends BaseController {
 					$data = self::prepareDataBind('edit');
 					$this->advertisement->saveEditAdvertisement($id,$data, $param ='operation');
 				}
-				return Redirect::to('admin/advertisements')->with('SECCESS_MESSAGE','Advertisement has been updated successfully');
-			}else {
+				return Redirect::to('admin/advertisements')->with('SUCCESS_MESSAGE','Advertisement has been updated successfully');
+			} else {
 				return Redirect::to('admin/edit-advertisement/'.$id)->withInput()->withErrors($validator);
 			}
 		}
@@ -112,19 +117,20 @@ class BeAdvertisementController extends BaseController {
 	}
 
 	/**
-	 *
-	 *
-	 * deletePage: this function using for deleting an existing page
-	 *
-	 * @param
-	 *        	id: the id of page
-	 * @return true: if an existing page has been deleted successfully
+	 * deleteAdvertisement: this function using for deleting an existing advertisment
+	 * @return true: if the advertisment has been deleted
+	 * @param id: the id of advertisment
 	 * @access public
+	 *
 	 */
-	public function deleteAdvertisement($id = null) {
-		$id = ( integer ) $id;
-		$this->advertisement->where ( 'id', '=', $id )->delete ();
-		return Redirect::to ( 'admin/advertisements' )->with ( 'SECCESS_MESSAGE', 'Advertisement has been deleted successfully' );
+	public function deleteAdvertisement($id=null){
+		$id = (integer)$id;
+		$result = $this->advertisement->deleteAdvertisement($id);
+		if(1 == $result->result){
+			return Redirect::to('admin/advertisements')->with('SUCCESS_MESSAGE','Advertisement has been deleted successfully');
+		}else {
+			return Redirect::to('admin/advertisements')->with('ERROR_MESSAGE',$result->errorMsg);
+		}
 	}
 
 	/**
@@ -140,13 +146,15 @@ class BeAdvertisementController extends BaseController {
 	 * @access public
 	 */
 	public function isEnableAdvertisement($status = null, $id = null) {
-		$id = ( integer ) $id;
-		$status = ( integer ) $status;
-		$status = (1 == $status) ? 0 : 1;
-		$this->advertisement->where ( 'id', '=', $id )->update ( array (
-				'status' => $status
-		) );
-		return Redirect::to ( 'admin/pages' )->with ( 'SECCESS_MESSAGE', 'Status has been changed successfully' );
+
+		$id = (integer) $id;
+		$status = (integer) $status;
+		$result = $this->advertisement->isPublicAdvertisement($id, $status);
+		if(1 == $result->result){
+			return Redirect::to('admin/advertisements')->with('SUCCESS_MESSAGE','Advertisement has been changed status successfully');
+		}else {
+			return Redirect::to('admin/advertisements')->with('ERROR_MESSAGE',$result->errorMsg);
+		}
 	}
 
 	/**
@@ -164,7 +172,7 @@ class BeAdvertisementController extends BaseController {
 				'title'           => trim ( Input::get ( 'title' ) ),
 				'link_url'        => trim ( Input::get ( 'url' ) ),
 				'started_date'    => trim ( Input::get ( 'startDate' ) ),
-				'expire_date'     => trim ( Input::get ( 'expirationDate' ) ),
+				'end_date'     => trim ( Input::get ( 'expirationDate' ) ),
 				'description'     => trim ( Input::get ( 'description' ) ),
 				'adv_page_id'     => Input::get('advertisementPage'),
 				'adv_position_id' => Input::get('advertisementPosition'),
@@ -219,5 +227,14 @@ class BeAdvertisementController extends BaseController {
 		}
 
 		return $fileName;
+	}
+
+	public function removeFile($fileName) {
+		if(!empty($fileName)){
+			$destinationPath = base_path() . '/public/upload/advertisement/';
+			$destinationPathThumb = base_path() . '/public/upload/advertisement/thumb/';
+			File::delete($destinationPath . $fileName);
+			File::delete($destinationPathThumb . $fileName);
+		}
 	}
 }

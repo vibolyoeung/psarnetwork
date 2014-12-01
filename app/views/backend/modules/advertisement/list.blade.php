@@ -10,7 +10,7 @@
 	<div class="col-md-12 col-sm-12 col-sx-12">
 		<div class="panel panel-default">
 			<div class="panel-heading clearfix">
-				<a href="{{URL::to('admin/create_advertisement')}}"> <i
+				<a href="{{URL::to('admin/create-advertisement')}}"> <i
 					class="icon-plus btn btn-xs btn-info rounded-buttons">&nbsp;Add</i>
 				</a>
 				<h3 class="panel-title">Advertisement</h3>
@@ -20,7 +20,7 @@
 				<div class="alert alert-block alert-success fade in">
 					<button data-dismiss="alert" class="close" type="button"
 						data-original-title="">x</button>
-					<p>{{Session::get('SECCESS_MESSAGE')}}</p>
+					<p>{{Session::get('SUCCESS_MESSAGE')}}</p>
 				</div>
 				@endif <br />
 				<div class="table-responsive">
@@ -43,7 +43,6 @@
                   		@foreach($advertisements->data as $advertisement)
                   			<tr>
 								<td>{{$i}}</td>
-								<td>{{$advertisement->image}}</td>
 								<td width="9%">{{HTML::image("upload/advertisement/thumb/".$advertisement->image,
 								$advertisement->title,array())}}</td>
 								<td>{{$advertisement->title}}</td>
@@ -52,7 +51,7 @@
 								<td>{{$advertisement->pageName}}</td>
 								<td>{{$advertisement->positionName}}</td>
 								<td align="center"><a
-									href='{{URL::to("admin/status_advertisement")}}/{{$advertisement->status}}/{{$advertisement->id}}'>
+									href='{{URL::to("admin/status-advertisement")}}/{{$advertisement->status}}/{{$advertisement->id}}'>
 										@if($advertisement->status == 1) <span class="icon-ok success"></span>
 										@else <span class="icon-remove danger"></span> @endif
 

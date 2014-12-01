@@ -1,4 +1,4 @@
-@extends('backend/layout') @section('title') Create @endsection
+@extends('backend/layout') @section('title') Update @endsection
 @section('breadcrumb')
 <ul class="breadcrumb">
 	<li><a href="{{URL::to('admin/dashboard')}}">Dashboard</a></li>
@@ -39,7 +39,7 @@
 
 				<div class="form-group date col-md-6 col-sm-12 col-xs-6">
 					<label>Expiration Date<span class="class-required">*</span></label>
-					{{ Form::text('expirationDate',$advertisement->expire_date, array('class' => 'form-control
+					{{ Form::text('expirationDate',$advertisement->end_date, array('class' => 'form-control
 					datepicker','placeholder'=>'dd/mm/yyyy'))}} <span
 						class="class-error">{{$errors->first('expirationDate')}}</span>
 				</div>
