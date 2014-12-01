@@ -204,5 +204,21 @@ class MCategory extends Eloquent{
 
 		return $response;
 	}
+	
+	
+
+	public function getSubCategories($parent){
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
+			->select('id','name_en','name_zh','status','parent_id')
+			->where('parent_id','=',$parent)
+			->where('status','=',1)
+			->orderBy('id','asc')
+			->get();
+		}catch (\Exception $e){
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+		}
+		return $result;
+	}
 
 }

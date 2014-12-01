@@ -6,7 +6,7 @@
 				<ol class="carousel-indicators">
 				<?php $i=0;?>
 				@foreach($slideshows as $slideshow)
-				<?php 
+				<?php
 					if($slideshow->pro_id == ''){
 						$expire_date = $slideshow->sli_expire_date;
 						$expire_date =str_replace('/', '-', $expire_date);
@@ -26,9 +26,8 @@
 				@endforeach
 				</ol>
 				<div class="carousel-inner">
-				
 				@foreach($slideshows as $slideshow)
-					<?php 
+					<?php
 						if($slideshow->pro_id == ''){
 							$exp_date = $slideshow->sli_expire_date;
 							$exp_date =str_replace('/', '-', $exp_date);
@@ -46,7 +45,7 @@
 						else{	
 							$exp_date = $slideshow->pro_expire_date;
 							$exp_date =str_replace('/', '-', $exp_date);
-							if(strtotime(date("Y-m-d")) <= strtotime($exp_date)){ ?>
+							if(strtotime(date("d-m-Y")) <= strtotime($exp_date)){ ?>
 							<div class="item">
 								<div class="col-sm-6">
 									<h5>

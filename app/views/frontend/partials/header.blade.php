@@ -6,12 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        {{HTML::style('frontend/css/bootstrap.min.css')}}
         {{HTML::style('frontend/css/font-awesome.min.css')}}
         {{HTML::style('frontend/css/prettyPhoto.css')}}
         {{HTML::style('frontend/css/price-range.css')}}
         {{HTML::style('frontend/css/animate.css')}}
         {{HTML::style('frontend/css/main.css')}}
+        {{HTML::style('frontend/css/bootstrap.min.css')}}
         {{HTML::style('frontend/css/responsive.css')}}
         {{HTML::script('frontend/js/jquery.js')}}
         <!--[if lt IE 9]>

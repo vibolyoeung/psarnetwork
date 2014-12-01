@@ -1481,7 +1481,7 @@ strong.number-display {
 
 .nav-tabs>li.active>a,.nav-tabs>li.active>a:hover,.nav-tabs>li.active>a:focus
 {
-    background-color: #f5f5f5;
+    background-color:none;
     color: #696763;
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
@@ -1491,10 +1491,10 @@ strong.number-display {
     border-image: none;
     border-style: solid;
     border-width: 0px;
-    color: #555;
+    color:saddlebrown;
     cursor: default;
 }
-
+.category-tab>.mainmenu .nav-tabs>li.active>a{background:none !important;border:none !important;color:#696763 !important;}
 .nav-tabs {
     border-bottom: none;
 }

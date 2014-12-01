@@ -2,13 +2,18 @@
 
 class FePageController extends BaseController {
 	private $mod_slideshow;
+	private $mod_setting;
+	
 	function __construct(){
 		$this->mod_slideshow = new Slideshow();
+		$this->mod_setting = new Setting();
 	}
 	public function index()
 	{
-		$listSlideshows = self::getSlideshowToHomePage(5);
+		$limit = $this->mod_setting->getSlidshowNumber();
+		$listSlideshows = self::getSlideshowToHomePage($limit->data->setting_value);
 		$listCategories = self::getCategoriesHomePage();
+		//var_dump($listSubCategories);die;
 		return View::make('frontend.partials.home')
 						->with('slideshows', $listSlideshows->result)
 						->with('maincategories', $listCategories->result);
@@ -23,5 +28,4 @@ class FePageController extends BaseController {
 		$Category = $this->mod_slideshow->getMainCategories();
 		return $Category;
 	}
-
 }
