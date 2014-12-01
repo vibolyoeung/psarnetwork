@@ -68,7 +68,7 @@
 				</div>
 
 				<div class="form-group col-md-12 col-sm-12 col-xs-12">
-					<label>Publish</label> {{ Form::checkbox('status',null,
+					<label>Publish</label> {{ Form::checkbox('status',1 ,
 					array('class' => 'form-control'))}}
 				</div>
 				<div class="form-group col-md-12 col-sm-12 col-xs-12">

@@ -17,9 +17,9 @@ class Advertisement extends Eloquent {
 		$advPostion = Config::get ('constants.TABLE_NAME.ADV_POSITION');
 		try {
 			$result = DB::table($adv .' AS adv')
-			->select('adv.id', 'adv.title', 'adv.description', 'adv.link_url', 'adv.started_date', 'adv.expire_date', 'adv.image', 'adv.status', 'advp.name AS pageName', 'ps.name AS positionName')
-			->join($advPage .' AS advp', 'adv.adv_page_id','=', 'advp.id')
-			->join($advPostion . ' AS ps', 'adv.adv_position_id', '=', 'ps.id')
+			->select('adv.id', 'adv.title', 'adv.description', 'adv.link_url', 'adv.started_date', 'adv.end_date', 'adv.image', 'adv.status', 'advp.name AS pageName', 'ps.name AS positionName')
+			->leftJoin($advPage .' AS advp', 'adv.adv_page_id','=', 'advp.id')
+			->leftJoin($advPostion . ' AS ps', 'adv.adv_position_id', '=', 'ps.id')
 			->orderBy('adv.id','desc')
 			->paginate(Config::get('constants.BACKEND_PAGINATION_AVERTISEMENT'));
 			$response->data = $result;
@@ -121,5 +121,65 @@ class Advertisement extends Eloquent {
 			$response->errorMsg = $e->getMessage ();
 		}
 		return $response;
+	}
+
+	/**
+	 *
+	 * isPublicAdvertisement: this function using for enable and disable advertisement
+	 * @param id: the id of slideshow
+	 * @param status: the status of slideshow
+	 * @return 1|0 if the Slideshow has been chnaged status
+	 * @access public
+	 * @throws Exception
+	 */
+	public function isPublicAdvertisement($id, $status){
+		$response = new stdClass();
+		try {
+			$status = ($status == 1) ? 0 : 1;
+			$result = DB::table(Config::get('constants.TABLE_NAME.ADVERTISEMENT'))->where('id','=', $id)->update(array('status'=>$status));
+			$response->result = $result;
+			if(0 == $result){
+				$response->errorMsg = 'Can not chnage status of avertisement';
+			}
+		}catch (\Exception $e){
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+
+		return $response;
+	}
+
+	/**
+	 *
+	 * deleteSlideshow: this function using for deleting an existing slideshow
+	 * @param id: the id of slideshow
+	 * @return true: if an existing slideshow has been deleted
+	 * @access public
+	 * @throws Exception
+	 */
+	public function deleteAdvertisement($id){
+		$response = new stdClass();
+		try {
+			$fileName = DB::table(Config::get('constants.TABLE_NAME.ADVERTISEMENT'))->select('image') ->where('id','=',$id)->first();
+			if(!empty($fileName->image)){
+				$destinationPath = base_path() . '/public/upload/advertisement/';
+				$destinationPathThumb = base_path() . '/public/upload/advertisement/thumb/';
+				File::delete($destinationPath . $fileName->image);
+				File::delete($destinationPathThumb . $fileName->image);
+			}
+			$result = DB::table(Config::get('constants.TABLE_NAME.ADVERTISEMENT'))->where('id','=',$id)->delete();
+			$response->result =$result;
+			if(0==$result){
+				$response->errorMsg = 'Can not delete advertisement';
+			}
+		}catch (\Exception $e){
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+		return $response;
+	}
+
+	public function findAdvertisementImageById($id) {
+		return DB::table(Config::get('constants.TABLE_NAME.ADVERTISEMENT'))->select('image') ->where('id','=',$id)->first();
 	}
 }

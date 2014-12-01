@@ -61,7 +61,8 @@ Route::group(array('before' => 'auth'), function() {
 	Route::any('/admin/create-advertisement','BeAdvertisementController@createAdvertisement');
 	Route::any('/admin/list-ads-positions/{id}','BeAdvertisementController@listAdvertisemntPositions');
 	Route::get('/admin/edit-advertisement/{id}','BeAdvertisementController@editAvertisement');
-	Route::post('/admin/delete-advertisement','BeAdvertisementController@deleteAdvertisement');
+	Route::post('/admin/edit-advertisement','BeAdvertisementController@editAvertisement');
+	Route::get('/admin/delete-advertisement/{id}','BeAdvertisementController@deleteAdvertisement');
 	Route::get('/admin/status-advertisement/{id}/{status}','BeAdvertisementController@isEnableAdvertisement');
 
 	Route::get('/admin/categories','BeCategoryController@listCategory');
