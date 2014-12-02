@@ -10,6 +10,14 @@
     </ul>
 @endsection
 @section('content')
+	{{HTML::style('ce_editor/jquery.cleditor.css')}}
+	{{HTML::script('ce_editor/jquery.js')}}
+	{{HTML::script('ce_editor/jquery.cleditor.js')}}
+	<script type="text/javascript">
+	$(document).ready(function () {
+		$(".ce_editor").cleditor();
+	});
+	</script>
 <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="panel panel-default">
@@ -33,11 +41,11 @@
 
                 <div class="form-group">
                   <label>Short Description En</label>
-                 {{ Form::textarea('desc_en',null, array('class' => 'form-control','placeholder'=>'Enter description'))}}
+                 {{ Form::textarea('desc_en',null, array('class' => 'form-control ce_editor','placeholder'=>'Enter description'))}}
                 </div>
                  <div class="form-group">
                   <label>Short Description Zh</label>
-                 {{ Form::textarea('desc_zh',null, array('class' => 'form-control','placeholder'=>'Enter description'))}}
+                 {{ Form::textarea('desc_zh',null, array('class' => 'form-control ce_editor','placeholder'=>'Enter description'))}}
                 </div>
                 {{Form::submit('Create', array('class' => 'btn btn-success','name'=>'btnSubmit'))}}
               {{Form::close()}}
