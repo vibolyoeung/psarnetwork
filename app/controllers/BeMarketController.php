@@ -72,11 +72,9 @@ class BeMarketController extends BaseController {
 		}
 		$marketType = $this->mod_market->listingMarketsType();
 		$provinces = $this->mod_market->listingProvinces();
-		$districts = $this->mod_market->listingDistricts();
 
 		return View::make('backend.modules.market.add')
 		->with('provinces', $provinces->data)
-		->with('districts', $districts->data)
 		->with('marketTypes', $marketType->data);
 	}
 
@@ -138,11 +136,9 @@ class BeMarketController extends BaseController {
 		$id = (integer) $id;
 		$marketType = $this->mod_market->listingMarketsType();
 		$provinces = $this->mod_market->listingProvinces();
-		$districts = $this->mod_market->listingDistricts();
 		$mk = $this->mod_market->listingEditData($id);
 		return View::make('backend.modules.market.edit')
 		->with('provinces', $provinces->data)
-		->with('districts', $districts->data)
 		->with('mk', $mk->data)
 		->with('marketTypes', $marketType->data);
 	}
@@ -171,7 +167,7 @@ class BeMarketController extends BaseController {
 	public function listingDistricts($id = null){
 		$id = (integer) $id;
 		$districts = $this->mod_market->listingDistricts($id);
-		var_dump($districts);
+		return $districts->data;
 	}
 
 	/**
