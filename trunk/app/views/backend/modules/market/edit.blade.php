@@ -13,7 +13,6 @@
 	{{HTML::style('ce_editor/jquery.cleditor.css')}}
 	{{HTML::script('ce_editor/jquery.js')}}
 	{{HTML::script('ce_editor/jquery.cleditor.js')}}
-	{{HTML::script('ce_editor/jquery.cleditor.min.js')}}
 	<script type="text/javascript">
 	$(document).ready(function () {
 		$(".ce_editor").cleditor();
