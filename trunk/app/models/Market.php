@@ -76,17 +76,38 @@ class Market extends Eloquent{
 	 * @return array: the object provinces
 	 * @access public
 	 */
-	public function listingDistricts(){
+	public function listingDistricts($id){
+		$response = new stdClass();
+		$arr = array();
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.DISTRICT'))
+			->select('id','dis_name')
+			->where('province_id','=', $id)
+			->get();
+			foreach ($result as $districts) {
+				$arr[$districts->id] = $districts->dis_name;
+			}
+			$response->data = $arr;
+		}catch (\Exception $e){
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+		}
+		return $response;
+	}
+
+	/**
+	 *
+	 * listingAllDistricts: this function using for listing all districts
+	 * @return array: the object provinces
+	 * @access public
+	 */
+	public static function listingAllDistricts(){
 		$response = new stdClass();
 		$arr = array();
 		try {
 			$result = DB::table(Config::get('constants.TABLE_NAME.DISTRICT'))
 			->select('id','dis_name')
 			->get();
-			foreach ($result as $districts) {
-				$arr[$districts->id] = $districts->dis_name;
-			}
-			$response->data = $arr;
+			$response->data = $result;
 		}catch (\Exception $e){
 			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
 		}

@@ -10,6 +10,15 @@
 	</ul>
 @endsection
 @section('content')
+	{{HTML::style('ce_editor/jquery.cleditor.css')}}
+	{{HTML::script('ce_editor/jquery.js')}}
+	{{HTML::script('ce_editor/jquery.cleditor.js')}}
+	{{HTML::script('ce_editor/jquery.cleditor.min.js')}}
+	<script type="text/javascript">
+	$(document).ready(function () {
+		$(".ce_editor").cleditor();
+	});
+	</script>
 	<div class="row">
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<div class="panel panel-default">
@@ -39,18 +48,18 @@
 
 					<div class="form-group col-md-6 col-sm-6 col-xs-6">
 						<label>Districts <span class="class-required">*</span></label>
-						{{ Form::select('district_id',$districts, null , array('class' => 'form-control', 'id' => 'district_option'))}}
+						<select class="form-control" name="district_id" id="district_option"></select>
 						<span class="class-error">{{$errors->first('district_id')}}</span>
 					</div>
 
 					<div class="form-group col-md-6 col-sm-6 col-xs-6">
 						<label>Description En</label>
-						{{ Form::textarea('desc_en',null, array('class' => 'form-control'))}}
+						{{ Form::textarea('desc_en',null, array('class' => 'form-control ce_editor'))}}
 					</div>
 
 					<div class="form-group col-md-6 col-sm-6 col-xs-6">
 						<label>Description Zh</label>
-						{{ Form::textarea('desc_zh',null, array('class' => 'form-control'))}}
+						{{ Form::textarea('desc_zh',null, array('class' => 'form-control ce_editor'))}}
 					</div>
 
 					<div class="form-group col-xs-12">
@@ -68,7 +77,7 @@
 					<div class="form-group col-md-6 col-sm-12 col-xs-6">
 						<label>Market Type<span class="class-required">*</span></label>
 						{{ Form::select('market_type',$marketTypes, null , array('class' => 'form-control', 'id' => 'district_option'))}}
-						<span class="class-error">{{$errors->first('amount_stair')}}</span>
+						<span class="class-error">{{$errors->first('market_type')}}</span>
 					</div>
 
 					<div class="form-group col-md-12">
