@@ -38,7 +38,9 @@ ul li {
     font-weight: lighter !important;
     text-shadow: 0px 0px #428bca !important;
 }
-
+.container>.navbar-collapse {
+	max-height: 640px;
+}
 strong.current-language {
     padding: 5px;
     color: #ffffff;
@@ -1494,11 +1496,15 @@ strong.number-display {
     color:saddlebrown;
     cursor: default;
 }
-.category-tab>.mainmenu .nav-tabs>li.active>a{background:none !important;border:none !important;color:#696763 !important;}
+.category-tab>.mainmenu .nav-tabs>li.active>a{background:none !important;border:none !important;color:saddlebrown !important;}
 .nav-tabs {
     border-bottom: none;
 }
-
+.nav{
+	backgrond:#ccc;
+}
+.tab-content .navbar{min-height: 30px;}
+.tab-content .navbar-nav>li>a{padding-top:9px;padding-bottom:8px;}
 .pagination  li  a,.pagination  li  span {
     background-color: #f0f0e9;
     border: 0;
