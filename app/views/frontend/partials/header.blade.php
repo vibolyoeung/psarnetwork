@@ -10,9 +10,9 @@
         {{HTML::style('frontend/css/prettyPhoto.css')}}
         {{HTML::style('frontend/css/price-range.css')}}
         {{HTML::style('frontend/css/animate.css')}}
-        {{HTML::style('frontend/css/main.css')}}
         {{HTML::style('frontend/css/bootstrap.min.css')}}
         {{HTML::style('frontend/css/responsive.css')}}
+        {{HTML::style('frontend/css/main.css')}}
         {{HTML::script('frontend/js/jquery.js')}}
         <!--[if lt IE 9]>
                 {{HTML::script('frontend/js/html5shiv.js')}}
@@ -29,64 +29,63 @@
     <body>
         <!-- Fixed navbar -->
         <div class="navbar navbar-default navbar-fixed-top menu-fixed" style="display: none">
-            <div class="container">
-                <div class="navbar-header">
+           <div class="container">
+                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span> 
                         <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand logo-fixed" href="{{Config::get('app.url')}}"><img src="{{Config::get('app.url')}}/frontend/images/home/logo.png" alt="" /></a>
-                </div>
+                     </button>
+                     <a class="navbar-brand logo-fixed" href="{{Config::get('app.url')}}"><img src="{{Config::get('app.url')}}/frontend/images/home/logo.png" alt="" /></a> 
+                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
+                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Category <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
+                         <li class="dropdown">
+                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Category <b class="caret"></b></a>
+                             <ul class="dropdown-menu">
                                 <li><a href="#tshirt" data-toggle="tab">Phone</a></li>
-                                <li><a href="#blazers" data-toggle="tab">Tablet</a></li>
-                                <li><a href="#blazers" data-toggle="tab">Laptop</a></li>
-                                <li><a href="#blazers" data-toggle="tab">Moto</a></li>
-                                <li><a href="#blazers" data-toggle="tab">Car</a></li>
-                                <li><a href="#blazers" data-toggle="tab">House</a></li>
-                                <li><a href="#blazers" data-toggle="tab">Land</a></li>
-                                <li><a href="#blazers" data-toggle="tab">Instrument</a></li>
+                                 <li><a href="#blazers" data-toggle="tab">Tablet</a></li>
+                                 <li><a href="#blazers" data-toggle="tab">Laptop</a></li>
+                                 <li><a href="#blazers" data-toggle="tab">Moto</a></li>
+                                 <li><a href="#blazers" data-toggle="tab">Car</a></li>
+                                 <li><a href="#blazers" data-toggle="tab">House</a></li>
+                                 <li><a href="#blazers" data-toggle="tab">Land</a></li>
+                                 <li><a href="#blazers" data-toggle="tab">Instrument</a></li>
                                 <li><a href="#blazers" data-toggle="tab">Clothes</a></li>
-                                <li><a href="#blazers" data-toggle="tab">Jewellery</a></li>
-                                <li><a href="#blazers" data-toggle="tab">Cosmetic Wakeup</a></li>
-                                <li><a href="#blazers" data-toggle="tab">Food</a></li>
+                                 <li><a href="#blazers" data-toggle="tab">Jewellery</a></li>
+                                 <li><a href="#blazers" data-toggle="tab">Cosmetic Wakeup</a></li>
+                                 <li><a href="#blazers" data-toggle="tab">Food</a></li>
                                 <li><a href="#blazers" data-toggle="tab">Furniture</a></li>
-                                <li><a href="#blazers" data-toggle="tab">Entertainment</a></li>
-                                <li><a href="#blazers" data-toggle="tab">Fussiness Service</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><i class="fa">Contact us</i></a></li>
+                                 <li><a href="#blazers" data-toggle="tab">Entertainment</a></li>
+                                 <li><a href="#blazers" data-toggle="tab">Fussiness Service</a></li>
+                             </ul>
+                         </li>
+                     </ul>
+                     <ul class="nav navbar-nav navbar-right"> 
+                         <li><a href="#"><i class="fa">Contact us</i></a></li>
                         <li><a href="#"><i class="fa">About us</i></a></li>
                         <li><a href="#"><i class="fa">User Agreement</i></a></li>
-                        <li><a href="#"><i class="fa">Policy</i></a></li>
-                        <li><a href="#"><i class="fa">Usage</i></a></li>
+                         <li><a href="#"><i class="fa">Policy</i></a></li>
+                         <li><a href="#"><i class="fa">Usage</i></a></li>
                         <li><a href="{{Config::get('app.url')}}/member/login"><i class="fa">Sign in /</i></a></li>
-                        <li><a href="{{Config::get('app.url')}}/member/register"><i class="fa">Free Register</i></a></li>
-                        <li class="search">
+                         <li><a href="{{Config::get('app.url')}}/member/register"><i class="fa">Free Register</i></a></li>
+                         <li class="search">
                             <!-- search form -->
-                            <form method="get" action="#" class="input-group pull-right">
-                                <input type="text" class="form-control" name="k" id="k" value="" placeholder="Search">
-                                <span class="input-group-btn">
+                             <form method="get" action="#" class="input-group pull-right">
+                                 <input type="text" class="form-control" name="k" id="k" value="" placeholder="Search">
+                                 <span class="input-group-btn">
                                     <button class="btn btn-primary notransition" style="margin-top: 8px;"><i class="fa fa-search"></i></button>
-                                </span>
-                            </form>
-                            <!-- /search form -->
-                        </li>
-                    </ul>
-                </div><!--/.nav-collapse -->
-            </div>
-        </div>
+                                 </span>
+                             </form>
+                         <!-- /search form -->
+                         </li> 
+                     </ul>
+                </div><!--/.nav-collapse-->
+			</div>
+		</div>
 
-
-        <header id="header"><!--=====Start Header]==============-->
+		<header id="header"><!--=====Start Header]==============-->
             <div class="header_top">
                 <!--header_top-->
                 <div class="container">
