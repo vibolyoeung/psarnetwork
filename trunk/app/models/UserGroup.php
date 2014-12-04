@@ -134,7 +134,7 @@ class UserGroup extends Eloquent{
 			->where('id','=',Session::get('SESSION_USER_ROLE'))
 			->where('id','!=',4)
 			->first();
-			$arrayAccessPermissionUnserialize = unserialize($result->permission);
+			$arrayAccessPermissionUnserialize = unserialize(stripslashes($result->permission));
 		if(in_array($permissionName, isset($arrayAccessPermissionUnserialize['access'])? $arrayAccessPermissionUnserialize['access'] : array())){
 			$returnAccessPermission = true;
 		}else{
@@ -156,7 +156,7 @@ class UserGroup extends Eloquent{
 			->where('id','=',Session::get('SESSION_USER_ROLE'))
 			->where('id','!=',4)
 			->first();
-			$arrayModifyPermissionUnserialize = unserialize($result->permission);
+			$arrayModifyPermissionUnserialize = unserialize(unserialize($result->permission));
 		if(in_array($permissionName, isset($arrayModifyPermissionUnserialize['modify'])? $arrayModifyPermissionUnserialize['modify'] : array())){
 			$returnModifyPermission = true;
 		}else{
