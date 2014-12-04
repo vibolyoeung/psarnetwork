@@ -4,7 +4,8 @@
 		<div class="col-sm-12">
 			<div id="slider-carousel" class="carousel slide" data-ride="carousel">
 				<ol class="carousel-indicators">
-				<?php $i=0;?>
+				<?php $i=0;
+				?>
 				@foreach($slideshows as $slideshow)
 				<?php
 					if($slideshow->pro_id == ''){
@@ -20,9 +21,8 @@
 						 	echo '<li data-target="#slider-carousel" data-slide-to="'.$i.'" class="bullet"></li>';
 						}
 					}		
+					$i++;
 				?>
-						
-						<?php $i++;?>
 				@endforeach
 				</ol>
 				<div class="carousel-inner">
@@ -67,12 +67,13 @@
 				</div>
 				<a href="#slider-carousel" class="left control-carousel hidden-xs"
 					data-slide="prev"> <i class="fa fa-angle-left"></i>
-				</a> <a href="#slider-carousel"
-					class="right control-carousel hidden-xs" data-slide="next"> <i
+				</a> 
+				<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next"> <i
 					class="fa fa-angle-right"></i>
 				</a>
 			</div>
 		</div>
 	</div>
 </section>
+<div class="clear"></div>
 <!--/slider-->
