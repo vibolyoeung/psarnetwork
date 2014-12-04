@@ -1,25 +1,32 @@
-/*
-Navicat MySQL Data Transfer
+-- phpMyAdmin SQL Dump
+-- version 4.0.4
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Dec 04, 2014 at 04:36 PM
+-- Server version: 5.6.12-log
+-- PHP Version: 5.4.12
 
-Source Server         : Localhost
-Source Server Version : 50612
-Source Host           : localhost:3306
-Source Database       : psarnetwork_db
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
-Target Server Type    : MYSQL
-Target Server Version : 50612
-File Encoding         : 65001
 
-Date: 2014-11-26 15:56:47
-*/
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
-SET FOREIGN_KEY_CHECKS=0;
+--
+-- Database: `psarnetwork_db`
+--
 
--- ----------------------------
--- Table structure for `slideshow`
--- ----------------------------
-DROP TABLE IF EXISTS `slideshow`;
-CREATE TABLE `slideshow` (
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `slideshow`
+--
+
+CREATE TABLE IF NOT EXISTS `slideshow` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) DEFAULT NULL,
   `image` varchar(200) DEFAULT NULL,
@@ -32,10 +39,16 @@ CREATE TABLE `slideshow` (
   `created_date` varchar(100) DEFAULT NULL,
   `expire_date` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
--- ----------------------------
--- Records of slideshow
--- ----------------------------
-INSERT INTO `slideshow` VALUES ('6', 'title-updated', '1413631121.jpg', 'title-updated', 'title-updated', 'http://psarnetwork.local/admin/create_slideshow-title-updated', '1', '1', '3', '17/11/2014', '14/11/2014');
-INSERT INTO `slideshow` VALUES ('7', 'New Care Arrival', '1415712839.png', 'This is the best time for me This is the best time for me This is the best time for me This is the best time for me This is the best time for me', 'This is the best time for me This is the best time for me This is the best time for me This is the best time for me This is the best time for me', 'http://psarnetwork.local/admin/create_slideshow-updated', '1', null, null, '06/11/2014', '26/11/2014');
+--
+-- Dumping data for table `slideshow`
+--
+
+INSERT INTO `slideshow` (`id`, `title`, `image`, `short_desc`, `description`, `link_url`, `status`, `product_id`, `advertiser_id`, `created_date`, `expire_date`) VALUES
+(6, 'title-updated', '1417708699.jpg', 'title-updated', 'title-updated', 'http://psarnetwork.local/admin/create_slideshow-title-updated', 1, NULL, 3, '01/12/2014', '31/12/2014'),
+(7, 'New Care Arrival', '1417708677.jpg', 'This is the best time for me This is the best time for me This is the best time for me This is the best time for me This is the best time for me', 'This is the best time for me This is the best time for me This is the best time for me This is the best time for me This is the best time for me', 'http://psarnetwork.local/admin/create_slideshow-updated', 1, NULL, NULL, '01/12/2012', '31/12/2014');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
