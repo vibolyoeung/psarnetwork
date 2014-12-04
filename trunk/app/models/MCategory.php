@@ -175,7 +175,6 @@ class MCategory extends Eloquent{
 		}
 	}
 
-
 	/**
 	 *
 	 * isStatusPublic: this function uisng for enable or disable status
@@ -232,7 +231,7 @@ class MCategory extends Eloquent{
 			if(count($results)>0){
 				echo '<ul class="dropdown-menu">';
 				foreach ($results as $dropdownlist){
-					echo '<li class="menu-item dropdown dropdown-submenu"><a  data-toggle="dropdown" class="dropdown-toggle" href="#">'.$dropdownlist->{'name_'.Session::get('lang')}.'</a>';
+					echo '<li class="menu-item dropdown dropdown-submenu"><a href="product/'.$dropdownlist->id.'">'.$dropdownlist->{'name_'.Session::get('lang')}.'</a>';
 					$this->getSubCategoriesDropdown($dropdownlist->id);
 				}
 				echo '</li></ul>';
