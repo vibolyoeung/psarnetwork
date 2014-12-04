@@ -231,25 +231,11 @@ class MCategory extends Eloquent{
  			->get();
 			if(count($results)>0){
 				echo '<ul class="dropdown-menu">';
-					echo '<li><a>HP</a></li>';
-					echo '<li><a>Dell</a></li>';
-					echo '<li><a>Asus</a></li>';
-					echo '<li><a>Accer</a></li>';
-					echo '<li class="dropdown-submenu"><a href="" data-toggle="dropdown" class="dropdown-toggle">Mac</a>';
-						echo '<ul class="dropdown-menu">';
-						echo '<li><a>HP</a></li>';
-						echo '<li><a>Dell</a></li>';
-						echo '<li><a>Asus</a></li>';
-						echo '<li><a>Accer</a></li>';
-						echo '<li><a>Mac</a></li>';
-						echo '</ul>';
-					echo '</li>';
-				echo '</ul>';
-// 				foreach ($results as $dropdownlist){
-// 					echo '<li><a href="#">'.$dropdownlist->name_{Session::get('lang')}.'</a>';
-// 					$this->getSubCategoriesDropdown($dropdownlist->id);
-// 				}
-// 				echo '</li></ul>';
+				foreach ($results as $dropdownlist){
+					echo '<li class="menu-item dropdown dropdown-submenu"><a  data-toggle="dropdown" class="dropdown-toggle" href="#">'.$dropdownlist->{'name_'.Session::get('lang')}.'</a>';
+					$this->getSubCategoriesDropdown($dropdownlist->id);
+				}
+				echo '</li></ul>';
 			}
 		}catch (\Exception $e){
 			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
