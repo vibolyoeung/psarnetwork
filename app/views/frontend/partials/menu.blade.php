@@ -66,46 +66,11 @@
 											$sub = $subcategoriesobj->getSubCategories($subcategorylist->id);
 											if(count($sub) > 0){
 												foreach ($sub as $row) {
-													echo '<li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href='.URL::to('product/'.$row->id).'">'.$row->{'name_'.Session::get('lang')}.'</a>';
+													echo '<li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href='.URL::to('product/'.$row->id).'>'.$row->{'name_'.Session::get('lang')}.'</a>';
 													$subcategoriesobj->getSubCategoriesDropdown($row->id);
 												}
 											}
 										?>
-						<div class="dropdown">
-<!-- 				            <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#" href="/page.html"> -->
-<!-- 				                Dropdown <span class="caret"></span> -->
-<!-- 				            </a> -->
-				    		<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-				              <li><a href="#">Some action</a></li>
-				              <li><a href="#">Some other action</a></li>
-				              <li class="divider"></li>
-				              <li class="dropdown-submenu">
-				                <a tabindex="-1" href="#">Hover me for more options</a>
-				                <ul class="dropdown-menu">
-				                  <li><a tabindex="-1" href="#">Second level</a></li>
-				                  <li class="dropdown-submenu">
-				                    <a href="#">Even More..</a>
-				                    <ul class="dropdown-menu">
-				                        <li><a href="#">3rd level</a></li>
-				                    	<li><a href="#">3rd level</a></li>
-				                    </ul>
-				                  </li>
-				                  <li><a href="#">Second level</a></li>
-				                  <li><a href="#">Second level</a></li>
-				                </ul>
-				              </li>
-				            </ul>
-				        </div>
-<!-- 													<li class="dropdown"> -->
-<!-- 								                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Messages <b class="caret"></b></a> -->
-<!-- 								                        <ul class="dropdown-menu"> -->
-<!-- 								                            <li><a href="#">Inbox</a></li> -->
-<!-- 								                            <li><a href="#">Drafts</a></li> -->
-<!-- 								                            <li><a href="#">Sent Items</a></li> -->
-<!-- 								                            <li class="divider"></li> -->
-<!-- 								                            <li><a href="#">Trash</a></li> -->
-<!-- 								                        </ul> -->
-<!-- 								                    </li> -->
 								</ul>
 							</div><!-- /.navbar-collapse-->
 						</div>
