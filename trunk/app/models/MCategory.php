@@ -204,8 +204,14 @@ class MCategory extends Eloquent{
 		return $response;
 	}
 	
+	/**
+	 * 
+	 * getsubCategories: this function is used for get sub categories to front page
+	 * @param integer $parent: parent id of the category
+	 * @return true: if the sub categories is selected
+	 * @access public
+	 */
 	
-
 	public function getSubCategories($parent){
 		try {
 			$result = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
@@ -241,42 +247,15 @@ class MCategory extends Eloquent{
 		}
 		return $results;
 	}
-	/**
-	 *
-	 * getSlideshowToFrontEnd: this function using for listing slideshows
-	 * @param limit: the limitation of a mount of slideshow to display
-	 * @return array object
-	 * @access public
-	 * @throws Exception
-	 */
 	
-	public function getSlideshowToFrontEnd($limit){
-		$response = new stdClass();
-		try {
-			$result = DB::table(Config::get('constants.TABLE_NAME.SLIDESHOW').' AS s')
-			->select(
-					's.id','s.title AS sli_title','s.image AS sli_image',
-					's.status AS sli_status','s.created_date AS sli_created_date','s.short_desc AS sli_desc',
-					's.product_id AS pro_id','s.expire_date AS sli_expire_date','s.link_url',
-					'p.title AS pro_title','p.image AS pro_image','p.status AS pro_status',
-					'p.created_date AS pro_created_date','p.expire_date AS pro_expire_date')
-					->leftJoin(Config::get('constants.TABLE_NAME.PRODUCT').' AS p','p.id','=','s.product_id')
-					->where('s.status','=', 1)
-					->take($limit)->get();
-			$response->result = $result;
-		}catch (\Exception $e){
-			$response->result = 0;
-			$response->errorMsg = $e->getMessage();
-		}
-	
-		return $response;
-	}
 	/**
 	 *
 	 * getMainCategories : is a function for getting Main categories to display front page
-	 *
-	 *
-	 */
+	 * @param 
+	 * @return true : if it main categories is selected sucessfully
+	 * @access public
+	 * @author kimhim
+	 */ 
 	
 	public function getMainCategories(){
 		$response = new stdClass();

@@ -2,10 +2,12 @@
 
 class FePageController extends BaseController {
 	private $mod_slideshow;
+	private $mod_category;
 	private $mod_setting;
 	
 	function __construct(){
-		$this->mod_slideshow = new MCategory();
+		$this->mod_slideshow = new Slideshow();
+		$this->mod_category = new MCategory();
 		$this->mod_setting = new Setting();
 	}
 	public function index()
@@ -24,7 +26,7 @@ class FePageController extends BaseController {
 	}
 	
 	public function getCategoriesHomePage(){
-		$Category = $this->mod_slideshow->getMainCategories();
+		$Category = $this->mod_category->getMainCategories();
 		return $Category;
 	}
 }
