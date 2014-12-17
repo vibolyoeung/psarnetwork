@@ -26,10 +26,16 @@ class BeSettingController extends BaseController {
 				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
 			}
 
-			$rules = array('permission_name' => 'required|unique:permission');
+			$rules = array(
+						'permission_name' => 'required|unique:permission',
+						'permission_name_title'=>'required'
+					);
 			$validator = Validator::make(Input::all(), $rules);
 			if ($validator->passes()) {
-				$data = array('permission_name'=>trim(Input::get('permission_name')));
+				$data = array(
+							'permission_name'=>trim(Input::get('permission_name')),
+							'permission_name_alias'=>trim(Input::get('permission_name_title'))
+						);
 				$this->modSetting->addSavePermissionName($data);
 				return Redirect::to('admin/setting-add-permission-name')
 				->with('SECCESS_MESSAGE','Category has been created');

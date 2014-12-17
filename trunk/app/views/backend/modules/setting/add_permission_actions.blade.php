@@ -19,6 +19,10 @@
 							{{ Form::text('permission_name',null, array('class' =>'form-control','placeholder'=>'Enter Permission Action Name'))}}
 							<span class="class-error">{{$errors->first('permission_name')}}</span>
 							</th>
+							<th>
+							{{ Form::text('permission_name_title',null, array('class' =>'form-control','placeholder'=>'Enter Permission Name'))}}
+							<span class="class-error">{{$errors->first('permission_name')}}</span>
+							</th>
 							<th width="300">
 								{{Form::submit('Create', array('class' =>'btn btn-success','name'=>'btnSubmit'))}}
 							</th>
@@ -54,11 +58,13 @@
 				@endif
 					<table class="table table-bordered no-margin">
 						<tr>
+							<th>Permission Name</th>
 							<th>Permission Method Name</th>
 							<th>Action</th>
 						</tr>
 						@foreach($listPermissionMethodName as $lmn)
 						<tr>
+							<td width="30%">{{$lmn->permission_name_alias}}</td>
 							<td>{{$lmn->permission_name}}</td>
 							<td><a title="Delete"
 				href="{{URL::to('admin/setting-delete-permission-name')}}/{{$lmn->id}}"
