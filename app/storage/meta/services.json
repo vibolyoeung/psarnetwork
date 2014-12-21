@@ -78,6 +78,7 @@
         "html": "Illuminate\\Html\\HtmlServiceProvider",
         "form": "Illuminate\\Html\\HtmlServiceProvider",
         "log": "Illuminate\\Log\\LogServiceProvider",
+        "Psr\\Log\\LoggerInterface": "Illuminate\\Log\\LogServiceProvider",
         "mailer": "Illuminate\\Mail\\MailServiceProvider",
         "swift.mailer": "Illuminate\\Mail\\MailServiceProvider",
         "swift.transport": "Illuminate\\Mail\\MailServiceProvider",
