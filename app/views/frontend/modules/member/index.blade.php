@@ -1,5 +1,5 @@
-@extends('frontend.nosidebar') 
-@section('title') 
+@extends('frontend.nosidebar')
+@section('title')
 Member login
 @endsection
 @section('breadcrumb')
@@ -32,7 +32,7 @@ Member login
                 <input type="text" placeholder="Your: Email / Acount name / phone number">
                 <input type="password" placeholder="Password">
                 <span>
-                    <input type="checkbox" class="checkbox" name="rememberme" id="rememberme"> 
+                    <input type="checkbox" class="checkbox" name="rememberme" id="rememberme">
                     <label for="rememberme">Remember Your Password?</label>
                 </span><br/>
                 <a href="#">Forget Password</a><br/>
