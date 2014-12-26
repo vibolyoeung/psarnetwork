@@ -2,6 +2,4 @@
 
 class BeReportManagementController extends BaseController {
 
-
-
 }

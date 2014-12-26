@@ -8,4 +8,128 @@
 .control-image{
 	width:100%;
 }
+.well > .col-md-1,.well > .col-md-2{
+	margin:10px 5px;
+	border-radius:10px;
+	cursor:pointer;
+	text-align:center;
+	min-height:86px;
+}
+a > .caption > h4,a{
+	color:rgb(61, 149, 203);
+}
+.well > .col-md-1:hover{
+	box-shadow:2px 1px 3px blue;	
+}
+.new-register-mg,.current-information{
+	border-radius:8px;
+	border:0px solid #ddd;
+}
+.new-register-mg{
+	width: 59%;
+}
+/*this is style for top message*/
+.dropdown-menu{
+	z-index:99999;
+}
+.top-message{
+	float:right;
+	width:35%;
+	padding-right:20px;
+	border:0px solid #ddd;
+}
+.class-account,.class-message,.class-alert{
+	padding:5px 15px;
+	cursor:pointer;
+}
+.class-alert{
+	float:right;
+}
+.class-account > ul {
+	list-style-type:none;
+}
+.class-message{
+	float:left;
+}
+.class-account{
+	float:right;	
+}
 
+.mg-number{
+	padding:5px 8px;
+	border:1px solid #ddd;
+	border-radius:45%;
+	color:red;
+}
+.class-account{
+	float:right;
+}
+.alert-list{
+	position:absolute;
+	z-index:99999;
+}
+.message-list,.alert-list{
+	display:none;
+	position:absolute;
+	z-index:99999;
+	padding:0;
+	list-style-type:none;
+	background-color:#529dc9;
+}
+.message-list li a,.alert-list li a{
+	color:#fff;
+}
+.message-list li,.alert-list li{
+	width:100%;
+	padding:5px 15px;
+	border-bottom:1px solid #ddd;
+}
+/*End top message*/
+.current-information{
+	width:39%;
+	float:right;
+}
+.current-info-container,.mg-container{
+	width:100%;
+	border-radius:10px;
+	padding:8px;
+	border:1px solid #edf5fa;
+}
+.well-radius{
+	border-radius:8px;
+}
+
+.color-h4{
+	color:rgb(61, 149, 203);
+}
+.custom-border{
+	border:1px solid #6C9359;
+	padding:6px;
+	border-radius:10px;
+}
+.class-red{
+	color:red;
+}
+.filter-col{
+	padding-left:10px;
+	padding-right:10px;
+}
+ul > li{
+	list-style-type:none;
+	cursor:pointer;
+}
+#business_page_register,#personal_page_register,#product_ads,#banners_ads,#point_to{
+	display:none;
+}
+.title-border tr:first-child{
+	cursor:pointer;
+}
+.title-border tr:first-child,.table-container tr:first-child{
+	font-weight: bold;
+	background-color:rgb(232,232,232); 
+	border:1px solid #dddddd;
+	color:rgb(61, 149, 203);
+}
+.table-container tr:first-child{
+	font-weight: bold;
+}

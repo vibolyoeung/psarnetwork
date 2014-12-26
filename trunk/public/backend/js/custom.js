@@ -20,6 +20,10 @@ $(document).ready(function() {
 		var id = $(this).val();
 		listAllDistrictsByProvinceId(id);
 	});
+	
+	messageDropdown();
+	alertDropdown();
+	dashboardCollapse();
 });
 
 /**
@@ -61,3 +65,47 @@ function listAllDistrictsByProvinceId(id) {
 		},
 	});
 }
+
+function messageDropdown(){
+	$('.class-message').click(function(){
+		$('.message-list').slideToggle();
+	});
+}
+function alertDropdown(){
+	$('.class-alert').click(function(){
+		$('.alert-list').slideToggle();
+	});
+}
+function dashboardCollapse(){
+	$('#new_product_post_title').click(function(){
+		$('#new_product_post').slideToggle();
+		$('#business_page_register,#personal_page_register,#point_to,#banners_ads,#product_ads').slideUp();
+	});
+	$('#business_page_register_title').click(function(){
+		$('#business_page_register').slideToggle();
+		$('#new_product_post,#personal_page_register,#new_product_post,#point_to,#banners_ads').slideUp();
+	});
+	$('#personal_page_register_title').click(function(){
+		$('#personal_page_register').slideToggle();
+		$('#new_product_post,#business_page_register,#product_ads,#point_to,#banners_ads').slideUp();
+	});
+	
+	$('#product_ads_title').click(function(){
+		$('#product_ads').slideToggle();
+		$('#business_page_register,#personal_page_register,#new_product_post,#point_to,#banners_ads').slideUp();
+	});
+	$('#banners_ads_title').click(function(){
+		$('#banners_ads').slideToggle();
+		$('#new_product_post,#personal_page_register,#product_ads,#new_product_post,#point_to').slideUp();
+	});
+	$('#point_to_title').click(function(){
+		$('#point_to').slideToggle();
+		$('#new_product_post,#personal_page_register,#product_ads,#new_product_post,#banners_ads').slideUp();
+	});
+	
+}
+
+
+
+
+

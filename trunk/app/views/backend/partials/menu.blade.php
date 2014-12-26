@@ -10,6 +10,12 @@
 <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
 	<ul class="nav navbar-nav">
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
+			data-toggle="dropdown">General Setting <b class="caret"></b></a>
+			<ul class="dropdown-menu">
+			<li><a href="{{URL::to('admin/pages')}}">Page</a></li>
+			<li><a href="{{URL::to('admin/setting-list')}}">Setting</a></li>
+		</ul>
+		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown">User Management<b class="caret"></b></a>
 			<ul class="dropdown-menu">
 				<li><a href="{{URL::to('admin/users')}}">System User</a></li>
@@ -26,15 +32,10 @@
 				<li><a href="{{URL::to('admin/categories')}}">Category</a></li>
 			</ul>
 		</li>
-		<li class="dropdown"><a href="#" class="dropdown-toggle"
-			data-toggle="dropdown">System Management <b class="caret"></b></a>
-			<ul class="dropdown-menu">
-			<li><a href="{{URL::to('admin/pages')}}">Page</a></li>
-			<li><a href="{{URL::to('admin/setting-list')}}">Setting</a></li>
-		</ul>
+
 		</li>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
-			data-toggle="dropdown">Media Management <b class="caret"></b></a>
+			data-toggle="dropdown">Business Management <b class="caret"></b></a>
 			<ul class="dropdown-menu">
 				<li><a href="{{URL::to('admin/slideshows')}}">Slideshow</a></li>
 				<li><a href="{{URL::to('admin/advertisements')}}">Advertisement</a></li>
@@ -65,18 +66,5 @@
 			</ul>
 		</li>
 	</ul>
+<!-- Mini navigation start -->
 
-	<!-- Mini navigation start -->
-	<ul class="nav navbar-nav navbar-right hidden-sm hidden-xs">
-		<li class="dropdown"><a href="#" class="dropdown-toggle"
-			data-toggle="dropdown"><i class="icon-user"></i>
-				@if(Session::has('SESSION_LOGIN_NAME'))
-				{{Session::get('SESSION_LOGIN_NAME')}} @endif <b class="caret"></b></a>
-			<ul class="dropdown-menu">
-				<li><a href="{{URL::to('admin/profile')}}">My Profile</a></li>
-				<li><a href="{{URL::to('admin/change-password')}}">Change Password</a></li>
-				<li class="divider"></li>
-				<li><a href="{{URL::to('admin/logout')}}">Logout</a></li>
-			</ul>
-		</li>
-	</ul>
