@@ -30,7 +30,7 @@
 					{{ Form::password('password_confirm',array('class' =>
 					'form-control','placeholder'=>'Enter Repassword'))}} <span
 						class="class-error">{{$errors->first('password_confirm')}}</span></div>
-					<div class="form-group"><label>User Type <span class="class-required">*</span></label>
+					<div class="form-group"><label>User Group <span class="class-required">*</span></label>
 					{{Form::select('role',$userType,'key', array('class' =>
 					'form-control','id'=>'user_type'));}} <span class="class-error">{{$errors->first('role')}}</span>
 					</div>
