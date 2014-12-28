@@ -22,7 +22,7 @@
 					{{Form::text('email',$users->email, array('class' =>'form-control','placeholder'=>'Enter Email'))}}
 					{{$errors->first('email')}}
 				</div>
-				<div class="form-group"><label>User Role</label>
+				<div class="form-group"><label>User Group</label>
 					{{Form::select('role',$userType,$users->user_type, array('class' =>'form-control'));}} {{$errors->first('role')}}
 				</div>
 					{{Form::hidden('id',$users->id)}} {{Form::submit('Update', array('class'=> 'btn btn-success','name'=>'btnSubmit'))}} {{Form::close()}}
