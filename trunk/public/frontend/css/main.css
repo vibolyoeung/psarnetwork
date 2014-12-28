@@ -275,7 +275,7 @@ a#scrollUp i {
 	/****************************
 	********* SIDEBAR ***********
 	*****************************/
-	.left-sidebar.sticky, .right-sidebar.sticky{position:fixed;top:55px;}
+	.left-sidebar.sticky, .right-sidebar.sticky{position:fixeds;top:55px;}
 	.left-sidebar h2,.brands_products h2 {
 	    color: #428bca;
 	    font-family: 'Roboto', sans-serif;
@@ -299,6 +299,14 @@ a#scrollUp i {
 	    z-index: -2;
 	}
 }
+
+@media (min-width: 768px)
+	.modal > .modal-dialog {
+		width: 900px;
+		margin: 30px auto;
+	}
+}
+
 @media (max-width: 990px) {
     .menu-fixed li.search {
         margin:0;
@@ -529,16 +537,10 @@ a#scrollUp i {
     font-weight: 300;
     height: 35px;
     outline: medium none;
-    padding-left: 10px;
-    min-width: 250px;
+    min-width: 200px;
     background-repeat: no-repeat;
     background-position: 350px;
 }
-
-.search-box {
-    width: 85%;
-}
-
 .mainmenu ul li a {
     font-size: 14px;
 }
@@ -550,6 +552,10 @@ a#scrollUp i {
     position: absolute;
     margin: auto;
     left: 26%;
+}
+input.search-box{
+	border:1px solid #ddd;
+	border-radius:4px;
 }
 /*  Dropdown menu*/
 .navbar-header 
@@ -1509,18 +1515,6 @@ strong.number-display {
 }
 .tab-content .navbar{min-height: 30px;}
 .tab-content .navbar-nav>li>a{padding-top:9px;padding-bottom:8px;}
-.pagination  li  a,.pagination  li  span {
-    background-color: #f0f0e9;
-    border: 0;
-    float: left;
-    line-height: 1.42857;
-    margin-left: -1px;
-    padding: 6px 12px;
-    position: relative;
-    text-decoration: none;
-    margin-right: 5px;
-    color: #000;
-}
 
 .pagination  li  a:hover {
     background: #FE980F;
@@ -2503,24 +2497,6 @@ strong.number-display {
     margin-bottom: 45px;
     margin-top: 45px
 }
-
-.pagination-area 
-.pagination li a {
-    background: #F0F0E9;
-    border: 0 none;
-    border-radius: 0;
-    color: #696763;
-    margin-right: 5px;
-    padding: 4px 12px;
-}
-
-.pagination-area 
-.pagination li a:hover,.pagination-area 
-.pagination li .active {
-    background: #FE980F;
-    color: #fff
-}
-
 /*************************
 *******Blog Single CSS******
 **************************/
@@ -2926,7 +2902,7 @@ strong.number-display {
     height: 20px;
 }
 .carousel-inner{
-	max-height: 200px;
+	max-height: 250px;
 	padding:0;
 }
 #slider .row{
