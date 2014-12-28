@@ -20,6 +20,10 @@ return array(
 	'STORE_RESIZE_WIDTH'=>100,
 	'STORE_RESIZE_HEGHT'=>100,
 	'USER_GROUP_PAGINATION'=>10,
+	'HOMESHOP'=>'Homeshop',
+	'PRIVATE_COMPANY'=>'Private company',
+	'TRADITIONAL_MARKET'=>'Traditional Market',
+	'SUPERMARKET'=>'Supermarket',
 	'TABLE_NAME'=>array(
 
 						'ACCOUNT_TYPE'=>'account_type',

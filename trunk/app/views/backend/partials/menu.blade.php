@@ -39,7 +39,7 @@
 			<ul class="dropdown-menu">
 				<li><a href="{{URL::to('admin/slideshows')}}">Slideshow</a></li>
 				<li><a href="{{URL::to('admin/advertisements')}}">Advertisement</a></li>
-				<li><a href="{{URL::to('admin/markets')}}">Super Market</a></li>
+				<li><a href="{{URL::to('admin/markets')}}">Supermarket</a></li>
 			</ul>
 		</li>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
