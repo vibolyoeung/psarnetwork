@@ -68,15 +68,15 @@
 					</div>
 
 					<div class="form-group col-md-6 col-sm-12 col-xs-6">
-						<label>Amount of Stair<span class="class-required">*</span></label>
-						{{Form::text('amount_stair',null, array('class' => 'form-control','placeholder'=>'Enter Amount of stair'))}}
-						<span class="class-error">{{$errors->first('amount_stair')}}</span>
+						<label>Business-Market-Type<span class="class-required">*</span></label>
+						{{ Form::select('market_type',$marketTypes, null , array('class' => 'form-control', 'id' => 'district_option'))}}
+						<span class="class-error">{{$errors->first('market_type')}}</span>
 					</div>
 
 					<div class="form-group col-md-6 col-sm-12 col-xs-6">
-						<label>Market Type<span class="class-required">*</span></label>
-						{{ Form::select('market_type',$marketTypes, null , array('class' => 'form-control', 'id' => 'district_option'))}}
-						<span class="class-error">{{$errors->first('market_type')}}</span>
+						<label>Amount of Stair<span class="class-required">*</span></label>
+						{{Form::text('amount_stair',null, array('class' => 'form-control','placeholder'=>'Enter Amount of stair'))}}
+						<span class="class-error">{{$errors->first('amount_stair')}}</span>
 					</div>
 
 					<div class="form-group col-md-12">

@@ -39,7 +39,7 @@
 			<th>Market Title En</th>
 			<th>Market Title Zh</th>
 			<th>Amount Of Stair</th>
-			<th>Market Type</th>
+			<th>Business-Market-Type</th>
 			<th class="class-center">Action</th>
 		</tr>
 	</thead>
@@ -53,20 +53,20 @@
 			<td>{{$mk->title_en}}</td>
 			<td>{{$mk->title_zh}}</td>
 			<td width="10%">{{$mk->amount_stair}}</td>
-			<td width="10%">
+			<td width="11%">
 				<?php
 					switch ($mk->market_type) {
 						case 2:
-							echo 'Homeshop';
+							echo Config::get('constants.HOMESHOP');
 						break;
 						case 3:
-							echo 'Private company';
+							echo Config::get('constants.PRIVATE_COMPANY');
 						break;
 						case 4:
-							echo 'Traditional Market';
+							echo Config::get('constants.TRADITIONAL_MARKET');
 						break;
 						case 5:
-							echo 'Supermarket';
+							echo Config::get('constants.SUPERMARKET');
 						break;
 					}
 				?>
