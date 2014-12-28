@@ -28,7 +28,7 @@
               href="{{Config::get('app.url')}}/frontend/images/ico/apple-touch-icon-72-precomposed.png">
     </head>
     <body>
-        <!-- Fixed navbar -->
+        <!-- Fixed navbar  navbar-fixed-top menu-fixed-->
         <div class="navbar navbar-default navbar-fixed-top menu-fixed" style="display: none">
            <div class="container">
                  <div class="navbar-header">
