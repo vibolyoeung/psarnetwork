@@ -13,7 +13,7 @@ Register for Enterprise Seller Page
 @endsection
 @section('content')
 <div class="memberlogin">
-    <div class="col-sm-8">
+    <div class="col-sm-3">
         <div class="advertise">
             <div class="col-sm-12">
                 <img src="{{Config::get('app.url')}}/upload/banner/banner728.png" alt="" style="width:100%" />
@@ -25,7 +25,7 @@ Register for Enterprise Seller Page
         </div>
         <div class="clear"></div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-9">
         <div class="register-form"><!--login form-->
             <h2>Register Form</h2>
             <div class="conent">
