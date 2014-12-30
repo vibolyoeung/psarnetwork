@@ -2,14 +2,21 @@
 
 class FeMemberController extends BaseController {
 
-    private $mod_slideshow;
     private $mod_category;
     private $mod_setting;
-    
-    function __construct(){
-    	$this->mod_slideshow = new Slideshow();
+
+    function __construct() {
+        $this->mod_slideshow = new Slideshow();
     	$this->mod_category = new MCategory();
     	$this->mod_setting = new Setting();
+    }
+
+    public function index() {
+
+        $listCategories = self::getCategoriesHomePage();
+        return View::make('frontend.modules.member.index')
+                        ->with('slideshows', $listSlideshows->result)
+                        ->with('maincategories', $listCategories->result);
     }
     public function index()
     {
@@ -40,6 +47,11 @@ class FeMemberController extends BaseController {
     public function getCategoriesHomePage(){
     	$Category = $this->mod_category->getMainCategories();
     	return $Category;
+    }
+
+    public function getCategoriesHomePage() {
+        $Category = $this->mod_category->getMainCategories();
+        return $Category;
     }
 
 }
