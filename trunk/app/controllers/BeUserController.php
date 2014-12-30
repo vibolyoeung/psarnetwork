@@ -17,8 +17,55 @@ class BeUserController extends BaseController {
 		if(!$this->modUserGroup->isAccessPermission('admin/users')){
 			return Redirect::to('admin/deny-permisson-page');
 		}
-		$users = $this->user->where('id','!=',Session::get('SESSION_USER_ID'))->orderBy('id','DESC')->paginate(Config::get('constants.BACKEND_PAGINATION_USER'));
-		return View::make('backend.modules.user.list')->with('users',$users);
+		$arrUserGroup = array(''=>'Please User Group');
+		$status = array(''=>'Please Status',0=>'Disable', 1=>'Enable');
+		$userGroup = $this->modUserGroup->getUserGroup();
+		foreach ($userGroup->data as $user_group){
+			$arrUserGroup[$user_group->id] = $user_group->name;
+		}
+		$users = $this->user->where('id','!=',Session::get('SESSION_USER_ID'))
+				->orderBy('id','DESC')
+				->paginate(Config::get('constants.BACKEND_PAGINATION_USER'));
+		return View::make('backend.modules.user.list')
+				->with('users', $users)
+				->with('status', $status)
+				->with('arrUserGroup', $arrUserGroup);
+	}
+
+	/**
+	 * filterUsers: listing all users by filter
+	 * @return users object
+	 */
+	public function filterUsers(){
+		$filterName = Input::get('filter_name');
+		$filterEmail = Input::get('filter_email');
+		$filterRole = Input::get('filter_role');
+		$filterStatus = Input::get('filter_status');
+		$arrUserGroup = array(''=>'Please User Group');
+		$userGroup = $this->modUserGroup->getUserGroup();
+		foreach ($userGroup->data as $user_group){
+			$arrUserGroup[$user_group->id] = $user_group->name;
+		}
+		$query = DB::table(Config::get('constants.TABLE_NAME.USER'));
+		if(!empty($filterName)){
+			$query->where('name', 'LIKE', '%'. $filterName .'%');
+		}
+		if(!empty($filterEmail)){
+			$query->where('email', 'LIKE', '%'. $filterEmail .'%');
+		}
+		if(!empty($filterRole)){
+			$query->where('user_type','=', $filterRole);
+		}
+		if(!empty($filterStatus)){
+			$query->where('status','=', $filterStatus);
+		}
+		$query->where('id','!=',Session::get('SESSION_USER_ID'));
+		$query->where('user_type','!=',Config::get('constants.CLIENT_USER'));
+		$query->orderBy('id','DESC');
+		$users = $query->get();
+		return View::make('backend.modules.user.filter_user')
+				->with('users', $users)
+				->with('arrUserGroup', $arrUserGroup);
 	}
 
 	/**
@@ -183,9 +230,11 @@ class BeUserController extends BaseController {
 	 */
 	public function prepareDataBind($param){
 		$data = array(
-					'email'=>trim(Input::get('email')),
-					'name'=>trim(Input::get('name')),
-					'user_type'=>Input::get('role')
+				'email'=>trim(Input::get('email')),
+				'name'=>trim(Input::get('name')),
+				'user_type'=>Input::get('role'),
+				'telephone'=>Input::get('telephone'),
+				'address'=>Input::get('address'),
 				);
 		if($param == 'add'){
 				$password = trim(Input::get('password'));

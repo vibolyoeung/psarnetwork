@@ -36,23 +36,27 @@
 					<th>#</th>
 					<th>Name</th>
 					<th>Email</th>
-					<th>Role</th>
+					<th>User Group</th>
 					<th class="class-center">Status</th>
 					<th class="class-center">Action</th>
-		</tr>
-	</thead>
-	<tbody>
-	<?php $i=1;?>
+				</tr>
+				<tr>
+					<td></td>
+					<td>{{Form::text('filter_name',null,array('class' =>'form-control','id'=>'filter_name'))}}</td>
+					<td>{{Form::text('filter_email',null,array('class' =>'form-control','id'=>'filter_email'))}}</td>
+					<td>{{Form::select('filter_role',$arrUserGroup,'key', array('class' =>'form-control','id'=>'filter_role'))}}</td>
+					<td>{{Form::select('filter_status',$status,'key', array('class' =>'form-control','id'=>'filter_status'))}}</td>
+					<td align="center">{{Form::submit('Filter', array('class' => 'btn btn-success','name'=>'btnFilter','id'=>'btn_filter_user'))}}</td>
+				</tr>
+			</thead>
+	<tbody id="result_filter_user">
+		<?php $i=1;?>
 		@foreach($users as $user)
 		<tr>
 			<td>{{$i}}</td>
 			<td>{{$user->name}}</td>
 			<td>{{$user->email}}</td>
-			<td>@if($user->user_type ==
-			Config::get('constants.SUPER_ADMINISTRATOR')) Observer
-			@elseif($user->user_type == Config::get('constants.ADMINISTRATOR'))
-			Supervisor @elseif($user->user_type ==
-			Config::get('constants.ADMIN')) Watcher @endif</td>
+			<td>{{$arrUserGroup[$user->user_type]}}</td>
 			<td align="center"><a
 				href='{{URL::to("admin/status")}}/{{$user->status}}/{{$user->id}}'>
 			@if($user->status == 1) <span class="icon-ok success"></span> @else <span
@@ -73,4 +77,5 @@
 </div>
 		</div>
 		</div>
+	{{HTML::script('backend/js/filter.js')}}
  @endsection

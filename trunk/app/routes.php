@@ -30,6 +30,7 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('/admin/status/{status}/{id}', 'BeUserController@changeStatusUser');
 	Route::any('/admin/profile', 'BeUserController@updateProfileUser');
 	Route::any('/admin/change-password','BeUserController@changePasswordUser');
+	Route::any('/admin/users/filter-user','BeUserController@filterUsers');
 
 	Route::get('/admin/user-group','BeUserGroupController@listUserGroup');
 	Route::any('/admin/user-group-add','BeUserGroupController@addUserGroup');

@@ -164,4 +164,21 @@ class UserGroup extends Eloquent{
 		}
 		return $returnModifyPermission;
 	}
+
+	/**
+	 *
+	 * findUserGroupById: this function using for finding user group by id
+	 * @return array obj
+	 * @param $group_id
+	 * @access public
+	 */
+	public function findUserGroupById($group_id){
+		$result = DB::table(Config::get('constants.TABLE_NAME.USER_TYPE'))
+			->select('*')
+			->where('id','=',$group_id)
+			->where('id','!=',4)
+			->orderBy('id','desc')
+			->first();
+		return $result;
+	}
 }
