@@ -1,6 +1,6 @@
-@extends('frontend.nosidebar')
-@section('title')
-Member login
+@extends('frontend.nosidebar') 
+@section('title') 
+Register for Free Seller/Buyer Page
 @endsection
 @section('breadcrumb')
 <ol class="breadcrumb">
@@ -26,21 +26,30 @@ Member login
         <div class="clear"></div>
     </div>
     <div class="col-sm-4">
-        <div class="login-form"><!--login form-->
-            <h2>Login to your account</h2>
-            <form action="#">
-                <input type="text" placeholder="Your: Email / Acount name / phone number">
-                <input type="password" placeholder="Password">
-                <span>
-                    <input type="checkbox" class="checkbox" name="rememberme" id="rememberme">
-                    <label for="rememberme">Remember Your Password?</label>
-                </span><br/>
-                <a href="#">Forget Password</a><br/>
-                Dont  have an account?  <a href="{{Config::get('app.url')}}/member/register">Register Free</a>
-                <button type="submit" class="btn btn-default">Login</button>
-            </form>
+        <div class="register-form"><!--login form-->
+            <h2>Register Form</h2>
+            <div class="conent">
+                <h3>Choose One Of  Your User Type </h3>
+                <form action="{{Config::get('app.url')}}">
+                    <div class="checkbox">
+                        <label>
+                            <input type="radio" value="FS" onclick="user_register(this,'{{Config::get('app.url')}}/member/register/free')" name="usertype"> Free Seller/Buyer
+                        </label>
+                        <div class="clear"></div>
+                        <div class="des">How to register as Free  Seller /  Buyer ?</div>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="radio" value="ES" onclick="user_register(this,'{{Config::get('app.url')}}/member/register/enterprise/agree')" name="usertype"> Enterprise Seller
+                        </label>
+                        <div class="clear"></div>
+                        <div class="des">How to register as Enterprise Seller ?</div>
+                    </div>
+                    <a disabled="disabled" id="chooseuser" class="btn btn-default pull-right choosenuser" href="#">Start</a>
+                </form>
+                <div class="clear"></div>
+            </div>
         </div><!--/login form-->
     </div>
-    <div class="clear"></div>
 </div>
 @endsection

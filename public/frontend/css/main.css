@@ -1945,7 +1945,7 @@ strong.number-display {
 .register-form .checkbox{margin-bottom:40px}
 .register-form .checkbox input[type=radio]{width:25px;height:25px}
 .register-form .checkbox .des{clear:both;margin-left:-20px}
-.register-form label {font-size:140%;width:100%}
+.register-form label.big {font-size:140%;}
 
 
 /*************************
