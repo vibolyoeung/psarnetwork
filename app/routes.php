@@ -80,6 +80,7 @@ Route::group(array('before' => 'auth'), function() {
 	Route::post('/admin/edit-market','BeMarketController@editMarket');
 	Route::get('/admin/delete-market/{id}','BeMarketController@deleteMarket');
 	Route::get('/admin/list-district/{id}','BeMarketController@listingDistricts');
+	Route::get('/admin/filter-market','BeMarketController@filterMarket');
 
 	Route::get('/admin/setting-list','BeSettingController@settingAction');
 	Route::any('/admin/setting-add-permission-name','BeSettingController@addPermissionAction');

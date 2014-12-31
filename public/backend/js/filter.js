@@ -1,6 +1,7 @@
 $(document).ready(function filterLoad(){
 	filterUsers();
 	filterCategories();
+	filterMarketType();
 });
 
 function filterUsers(){
@@ -40,6 +41,28 @@ function filterCategories(){
 				},
 			success: function(html) {
 				$('#result_filter_category').html(html);
+			}
+		});
+	});
+}
+
+function filterMarketType(){
+	$('#btn_filter_market').click(function filterUser(){
+		var filter_name_en = $('#filter_name_en').val();
+		var filter_name_zh = $('#filter_name_zh').val();
+		var filter_stair = $('#filter_stair').val();
+		var filter_market_type  = $('#filter_market_type').val();
+		var url = '/admin/filter-market';
+		$.ajax({
+			url: baseUrl() + url,
+			data: {
+				filter_name_en:filter_name_en,
+				filter_name_zh:filter_name_zh,
+				filter_stair:filter_stair,
+				filter_market_type:filter_market_type
+				},
+			success: function(html) {
+				$('#result_filter_market').html(html);
 			}
 		});
 	});

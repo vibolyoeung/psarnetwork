@@ -9,13 +9,29 @@ class Market extends Eloquent{
 	 * @access public
 	 */
 	public function listingMarkets(){
+		$filterNameEn = Input::get('filter_name_en');
+		$filterNameZh = Input::get('filter_name_zh');
+		$filterStair = Input::get('filter_stair');
+		$filterMarketType = Input::get('filter_market_type');
 		$response = new stdClass();
 		$arr = array();
 		try {
-			$result = DB::table(Config::get('constants.TABLE_NAME.MARKET'))
-			->select('*')
-			->orderBy('id','desc')
-			->paginate(Config::get('constants.BACKEND_PAGINATION_MARKET'));
+			$query = DB::table(Config::get('constants.TABLE_NAME.MARKET'));
+			$query->select('*');
+			if(!empty($filterNameEn)){
+				$query->where('title_en','LIKE','%'.trim($filterNameEn).'%');
+			}
+			if(!empty($filterNameZh)){
+				$query->where('title_zh','LIKE','%'.trim($filterNameZh).'%');
+			}
+			if(!empty($filterStair)){
+				$query->where('amount_stair','=', $filterStair);
+			}
+			if(!empty($filterMarketType)){
+				$query->where('market_type','=', $filterMarketType);
+			}
+			$query->orderBy('id','desc');
+			$result = $query->paginate(Config::get('constants.BACKEND_PAGINATION_MARKET'));
 
 			$response->data = $result;
 		}catch (\Exception $e){
@@ -122,7 +138,7 @@ class Market extends Eloquent{
 	 */
 	public function listingMarketsType(){
 		$response = new stdClass();
-		$arr = array();
+		$arr = array(''=>'Market Type');
 		try {
 			$result = DB::table(Config::get('constants.TABLE_NAME.CLIENT_TYPE'))
 			->select('id','name','account_type_id')

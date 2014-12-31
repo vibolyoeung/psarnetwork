@@ -6,8 +6,8 @@
 	</ul>
 @endsection
 @section('content')
+{{HTML::script('backend/js/filter.js')}}
 <div class="row">
-
 <div class="col-md-12 col-sm-12 col-sx-12">
 <div class="panel panel-default">
 <div class="panel-heading clearfix"><a
@@ -42,8 +42,17 @@
 			<th>Business-Market-Type</th>
 			<th class="class-center">Action</th>
 		</tr>
+		<tr>
+			<th></th>
+			<th></th>
+			<th>{{Form::text('filter_name_en',null,array('class' =>'form-control','id'=>'filter_name_en'))}}</th>
+			<th>{{Form::text('filter_name_zh',null,array('class' =>'form-control','id'=>'filter_name_zh'))}}</th>
+			<th>{{Form::text('filter_stair',null,array('class' =>'form-control','id'=>'filter_stair'))}}</th>
+			<th>{{Form::select('filter_market_type',$marketType,'key', array('class' =>'form-control','id'=>'filter_market_type'))}}</th>
+			<th class="class-center">{{Form::submit('Filter', array('class' => 'btn btn-success','name'=>'btnFilter','id'=>'btn_filter_market'))}}</th>
+		</tr>
 	</thead>
-	<tbody>
+	<tbody id="result_filter_market">
 	<?php $i = 1;?>
 		@foreach($markets as $mk)
 		<tr>
@@ -54,22 +63,7 @@
 			<td>{{$mk->title_zh}}</td>
 			<td width="10%">{{$mk->amount_stair}}</td>
 			<td width="11%">
-				<?php
-					switch ($mk->market_type) {
-						case 2:
-							echo Config::get('constants.HOMESHOP');
-						break;
-						case 3:
-							echo Config::get('constants.PRIVATE_COMPANY');
-						break;
-						case 4:
-							echo Config::get('constants.TRADITIONAL_MARKET');
-						break;
-						case 5:
-							echo Config::get('constants.SUPERMARKET');
-						break;
-					}
-				?>
+				{{$marketType[$mk->market_type]}}
 			</td>
 			<td align="center"><a title="Edit"
 				href="{{URL::to('admin/edit-market')}}/{{$mk->id}}"> <i
