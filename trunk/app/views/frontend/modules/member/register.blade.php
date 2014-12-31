@@ -32,15 +32,15 @@ Register Page
                 <h3>Choose One Of  Your User Type </h3>
                 <form action="{{Config::get('app.url')}}">
                     <div class="checkbox">
-                        <label>
-                            <input type="radio" value="FS" onclick="user_register(this,'{{Config::get('app.url')}}/member/register/free?step=1')" name="usertype"> Free Seller/Buyer
+                        <label class="big">
+                            <input type="radio" value="FS" onclick="user_register(this,'{{Config::get('app.url')}}/member/register/free/agree')" name="usertype"> Free Seller/Buyer
                         </label>
                         <div class="clear"></div>
                         <div class="des">How to register as Free  Seller /  Buyer ?</div>
                     </div>
                     <div class="checkbox">
-                        <label>
-                            <input type="radio" value="ES" onclick="user_register(this,'{{Config::get('app.url')}}/member/register/enterprise?step=1')" name="usertype"> Enterprise Seller
+                        <label class="big">
+                            <input type="radio" value="ES" onclick="user_register(this,'{{Config::get('app.url')}}/member/register/enterprise/agree')" name="usertype"> Enterprise Seller
                         </label>
                         <div class="clear"></div>
                         <div class="des">How to register as Enterprise Seller ?</div>

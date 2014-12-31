@@ -110,6 +110,5 @@ Route::any('/member/login', 'FeMemberController@index');
 /*regirst page*/
 Route::any('/{lang}/member/register', 'FeMemberController@register');
 Route::any('/member/register', 'FeMemberController@register');
-Route::any('/{lang}/member/register/{usertype}', 'FeMemberController@register');
-Route::any('/member/register/{usertype}', 'FeMemberController@register');
-Route::any('/{lang}/member/register/{usertype}', 'FeMemberController@register');
+Route::any('/{lang}/member/register/{usertype}/{step}', 'FeMemberController@register');
+Route::any('/member/register/{usertype}/{step}', 'FeMemberController@register');

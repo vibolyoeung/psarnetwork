@@ -38,7 +38,7 @@
 							<ul class="nav nav-tabs navbar-nav collapse navbar-collapse">
 								<li><a href="{{Config::get('app.url')}}">Home</a></li>
 								@foreach($maincategories as $categorylist)
-								<li><a href="#{{$categorylist->id}}" data-toggle="tab"><?php echo $categorylist->{'name_'.Session::get('lang')};?></a></li>
+								<li><a href="#{{$categorylist->id}}" data-toggle="tab"><?php //echo $categorylist->{'name_'.Session::get('lang')};?></a></li>
 								@endforeach
 							</ul>
 						</div>
@@ -66,7 +66,7 @@
 											$sub = $subcategoriesobj->getSubCategories($subcategorylist->id);
 											if(count($sub) > 0){
 												foreach ($sub as $row) {
-													echo '<li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href='.URL::to('product/'.$row->id).'>'.$row->{'name_'.Session::get('lang')}.'</a>';
+													echo '<li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href='.URL::to('product/'.$row->id).'>'.$row->{'name_en'}.'</a>';
 													$subcategoriesobj->getSubCategoriesDropdown($row->id);
 												}
 											}

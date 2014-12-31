@@ -15,28 +15,32 @@ class FeMemberController extends BaseController {
 
     public function index()
     {
-         $limit = $this->mod_setting->getSlidshowNumber();
-    	$listSlideshows = self::getSlideshowToHomePage($limit->data->setting_value);
     	$listCategories = self::getCategoriesHomePage();
     	return View::make('frontend.modules.member.index')
-    	->with('slideshows', $listSlideshows->result)
     	->with('maincategories', $listCategories->result);	
     }
-    public function register($usertype = '') {
+    public function register($usertype = '',$step='') {
          $limit = $this->mod_setting->getSlidshowNumber();
-    	$listSlideshows = self::getSlideshowToHomePage($limit->data->setting_value);
     	$listCategories = self::getCategoriesHomePage();
-    	return View::make('frontend.modules.member.index')
-    	->with('slideshows', $listSlideshows->result)
-    	->with('maincategories', $listCategories->result);
+
         if (!empty($usertype)) {
-            if ($usertype == 'enterprise') {
-                return View::make('frontend.modules.member.enterprise');
-            } else {
-                return View::make('frontend.modules.member.freesell');
-            }
+//            switch($step){
+//                case 'agree':
+//                $paramate = $usertype.'-'.$agree
+//               break;
+//            }
+             return View::make('frontend.modules.member.'.$usertype.'-'.$step)
+    	       ->with('maincategories', $listCategories->result);   
+//            if ($usertype == 'enterprise') {
+//                return View::make('frontend.modules.member.enterprise')
+//    	       ->with('maincategories', $listCategories->result);
+//            } else {
+//                return View::make('frontend.modules.member.freesell')
+//	           ->with('maincategories', $listCategories->result);
+//            }
         } else {
-            return View::make('frontend.modules.member.register');
+            return View::make('frontend.modules.member.register')
+    	       ->with('maincategories', $listCategories->result);
         }
     }
     
