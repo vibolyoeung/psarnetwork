@@ -1,5 +1,5 @@
-<div class="logo">
-	<a href="{{URL::to('admin/dashboard')}}">Home<sup><i class="icon-cloud"></i></sup></a>
+<div class="logo" style="padding:29px 20px;">
+	<a href="{{URL::to('admin/dashboard')}}">{{HTML::image('backend/images/icons/home.png','Home')}}</a>
 </div>
 
 <!-- Icon nav start -->
