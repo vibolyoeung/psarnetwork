@@ -21,8 +21,25 @@ class BeMarketController extends BaseController {
 		if(!$this->modUserGroup->isAccessPermission('admin/markets')){
 			return Redirect::to('admin/deny-permisson-page');
 		}
+		$marketType = $this->mod_market->listingMarketsType();
 		$result = $this->mod_market->listingMarkets();
-		return View::make('backend.modules.market.list')->with('markets', $result->data);
+		return View::make('backend.modules.market.list')
+		->with('markets', $result->data)
+		->with('marketType', $marketType->data);
+	}
+
+	/**
+	 *
+	 * filterMarket: this function using for filter all markets
+	 * @return array
+	 * @access public
+	 */
+	public function filterMarket(){
+		$marketType = $this->mod_market->listingMarketsType();
+		$result = $this->mod_market->listingMarkets();
+		return View::make('backend.modules.market.filter_market')
+		->with('markets', $result->data)
+		->with('marketType', $marketType->data);
 	}
 
 	/**
