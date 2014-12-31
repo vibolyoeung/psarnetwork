@@ -45,10 +45,10 @@
 				</div>
 			</a>
 		</div>
-		<div class="col-md-1 thumbnail">
+		<div class="col-md-1 thumbnail" style="border:none;">
 			<a href="#">
-				<div class="caption">
-					<h4>Category</h4>
+				<div>
+						{{HTML::image('backend/images/icons/category.png','category')}}
 				</div>
 			</a>
 		</div>

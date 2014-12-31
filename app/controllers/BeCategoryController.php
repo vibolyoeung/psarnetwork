@@ -19,8 +19,23 @@ class BeCategoryController extends BaseController {
 		if(!$this->modUserGroup->isAccessPermission('admin/categories')){
 			return Redirect::to('admin/deny-permisson-page');
 		}
+		$status = array(''=>'Select Category Status',0=>'Disable', 1=>'Enable');
 		$categoryList = $this->mod_category->fetchCategoryTreeList();
-		return View::make('backend.modules.category.list')->with('categoryList',$categoryList);
+		return View::make('backend.modules.category.list')
+		->with('categoryList',$categoryList)
+		->with('status', $status);
+	}
+
+	/**
+	 *
+	 * filterCategory: this function using for filter sub category
+	 * @return array category tree list
+	 * @access public
+	 */
+	public function filterCategory(){
+		$categoryList = $this->mod_category->fetchCategoryTreeList();
+		return View::make('backend.modules.category.filter_category')
+		->with('categoryList',$categoryList);
 	}
 
 	/**

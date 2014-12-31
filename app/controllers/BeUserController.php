@@ -17,8 +17,8 @@ class BeUserController extends BaseController {
 		if(!$this->modUserGroup->isAccessPermission('admin/users')){
 			return Redirect::to('admin/deny-permisson-page');
 		}
-		$arrUserGroup = array(''=>'Please User Group');
-		$status = array(''=>'Please Status',0=>'Disable', 1=>'Enable');
+		$arrUserGroup = array(''=>'Please Select User Group');
+		$status = array(''=>'Please Select Status',0=>'Disable', 1=>'Enable');
 		$userGroup = $this->modUserGroup->getUserGroup();
 		foreach ($userGroup->data as $user_group){
 			$arrUserGroup[$user_group->id] = $user_group->name;
@@ -41,7 +41,7 @@ class BeUserController extends BaseController {
 		$filterEmail = Input::get('filter_email');
 		$filterRole = Input::get('filter_role');
 		$filterStatus = Input::get('filter_status');
-		$arrUserGroup = array(''=>'Please User Group');
+		$arrUserGroup = array();
 		$userGroup = $this->modUserGroup->getUserGroup();
 		foreach ($userGroup->data as $user_group){
 			$arrUserGroup[$user_group->id] = $user_group->name;
