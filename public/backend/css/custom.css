@@ -19,7 +19,12 @@ a > .caption > h4,a{
 	color:rgb(61, 149, 203);
 }
 .well > .col-md-1:hover{
-	/*box-shadow:2px 1px 3px blue;*/	
+	box-shadow:2px 1px 3px blue;
+}
+.caption > strong{
+	font-size:9px;
+	font-weight:bold;
+	color:rgb(61, 149, 203); 	
 }
 .new-register-mg,.current-information{
 	border-radius:8px;
@@ -132,4 +137,12 @@ ul > li{
 }
 .table-container tr:first-child{
 	font-weight: bold;
+}
+.count-num{
+	position:absolute;
+	top:1px;
+	left:1px;
+}
+.panel-position{
+	position:relative;
 }

@@ -10,73 +10,100 @@
 @section('content')
 <div class="col-md-12">
 	<div class="row well well-radius">
-		<div class="col-md-1 thumbnail pull-rigt">
+		<div class="col-md-1 thumbnail">
 			<a href="#">
 				<div class="caption">
-					<h4 >Setting Front End</h4>
+					{{HTML::image('backend/images/icons/setting-front.png','category')}}
+					<strong>Front-End Setting</strong>
 				</div>
 			</a>
 		</div>
 		<div class="col-md-1 thumbnail">
-			<a href="#">
+			<a href="{{URL::to('admin/setting-list')}}">
 				<div class="caption">
-					<h4>Setting Back End</h4>
+					{{HTML::image('backend/images/icons/setting-back.png','category')}}
+					<strong>Back-End Setting</strong>
 				</div>
 			</a>
 		</div>
-		<div class="col-md-1 thumbnail">
-			<a href="#">
+		<div class="col-md-1 thumbnail panel-position">
+			<a href="{{URL::to('admin/users')}}">
 				<div class="caption">
-					<h4>System User</h4>
+					{{HTML::image('backend/images/icons/system-user.png','System User')}}
+					<strong>System User</strong>
+					<span class="mg-number count-num">5</span>
 				</div>
 			</a>
 		</div>
-		<div class="col-md-1 thumbnail">
+		<div class="col-md-1 thumbnail panel-position">
 			<a href="#">
 				<div class="caption">
-					<h4>Client User</h4>
+					{{HTML::image('backend/images/icons/client-user.png','Client User')}}
+					<strong>Client User</strong>
+					<span class="mg-number count-num">5</span>
 				</div>
 			</a>
 		</div>
-		<div class="col-md-1 thumbnail">
-			<a href="#">
+		<div class="col-md-1 thumbnail panel-position">
+			<a href="{{URL::to('admin/user-group')}}">
 				<div class="caption">
-					<h4>User <br/>Role</h4>
+					{{HTML::image('backend/images/icons/user-group.png','User Group')}}
+					<strong>User Group</strong>
+					<span class="mg-number count-num">5</span>
 				</div>
 			</a>
 		</div>
-		<div class="col-md-1 thumbnail" style="border:none;">
-			<a href="#">
-				<div>
-						{{HTML::image('backend/images/icons/category.png','category')}}
+		<div class="col-md-1 thumbnail panel-position">
+			<a href="{{URL::to('admin/categories')}}">
+				<div class="caption">
+						{{HTML::image('backend/images/icons/category.png','Category')}}
+						<strong>Category</strong>
+						<span class="mg-number count-num">5</span>
 				</div>
 			</a>
 		</div>
-		<div class="col-md-2 thumbnail">
+		<div class="col-md-1 thumbnail panel-position">
 			<a href="#">
 				<div class="caption">
-					<h4>Advertisment</h4>
+						{{HTML::image('backend/images/icons/product.png','Category')}}
+						<strong>Product</strong>
+						<span class="mg-number count-num">5</span>
 				</div>
 			</a>
 		</div>
-		<div class="col-md-1 thumbnail">
+		<div class="col-md-1 thumbnail panel-position">
 			<a href="#">
 				<div class="caption">
-					<h4>Bussiness Page</h4>
+					{{HTML::image('backend/images/icons/advertisment.png','Advertisement')}}
+					<strong>Advertisment</strong>
+					<span class="mg-number count-num">5</span>
 				</div>
 			</a>
 		</div>
-		<div class="col-md-1 thumbnail">
+		<div class="col-md-1 thumbnail panel-position">
 			<a href="#">
 				<div class="caption">
-					<h4>Personal Page</h4>
+					{{HTML::image('backend/images/icons/business-page.jpg','Business Page')}}
+					<strong>Bussiness Page</strong>
+					<span class="mg-number count-num">5</span>
 				</div>
 			</a>
 		</div>
-		<div class="col-md-1 thumbnail">
+		<div class="col-md-1 thumbnail panel-position">
 			<a href="#">
 				<div class="caption">
-					<h4>Report</h4>
+					{{HTML::image('backend/images/icons/personal-page.png','Personal Page')}}
+					<strong>Personal Page</strong>
+					<span class="mg-number count-num">5</span>
+				</div>
+			</a>
+		</div>
+		<div class="col-md-1 thumbnail panel-position">
+			<a href="#">
+				<div class="caption">
+					{{HTML::image('backend/images/icons/report.png','Report')}}
+					<strong>Report</strong>
+					<span class="mg-number count-num">5</span>
 				</div>
 			</a>
 		</div>
