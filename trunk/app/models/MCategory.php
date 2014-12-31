@@ -13,15 +13,26 @@ class MCategory extends Eloquent{
 	 */
 	function fetchCategoryTreeList($parent = 0, $treeArray = '',$level=0) {
 		try {
-
+			$filterNameEn = Input::get('filter_name_en');
+			$filterNameZh = Input::get('filter_name_zh');
+			$filterStatus = Input::get('filter_status');
 		if(!is_array($treeArray)){
 				$treeArray = array();
 			}
-			$result = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
-					->select('id','name_en','name_zh','status','parent_id')
-					->where('parent_id','=',$parent)
-					->orderBy('id','asc')
-					->get();
+			$query = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'));
+			$query->select('id','name_en','name_zh','status','parent_id');
+			if(!empty($filterNameEn)){
+				$query->where('name_en','LIKE', '%'. $filterNameEn.'%');
+			}
+			if(!empty($filterNameZh)){
+				$query->where('name_zh','LIKE', '%'. $filterNameZh.'%');
+			}
+			if(!empty($filterStatus)){
+				$query->where('status','=', $filterStatus);
+			}
+			$query->where('parent_id','=',$parent);
+			$query->orderBy('id','asc');
+			$result = $query->get();
 			if(count($result) > 0){
 
 				foreach ($result as $row) {
@@ -203,15 +214,15 @@ class MCategory extends Eloquent{
 
 		return $response;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * getsubCategories: this function is used for get sub categories to front page
 	 * @param integer $parent: parent id of the category
 	 * @return true: if the sub categories is selected
 	 * @access public
 	 */
-	
+
 	public function getSubCategories($parent){
 		try {
 			$result = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
@@ -225,7 +236,7 @@ class MCategory extends Eloquent{
 		}
 		return $result;
 	}
-	
+
 	public function getSubCategoriesDropdown($parent){
 		try {
 			$results = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
@@ -247,16 +258,16 @@ class MCategory extends Eloquent{
 		}
 		return $results;
 	}
-	
+
 	/**
 	 *
 	 * getMainCategories : is a function for getting Main categories to display front page
-	 * @param 
+	 * @param
 	 * @return true : if it main categories is selected sucessfully
 	 * @access public
 	 * @author kimhim
-	 */ 
-	
+	 */
+
 	public function getMainCategories(){
 		$response = new stdClass();
 		try {
@@ -269,7 +280,7 @@ class MCategory extends Eloquent{
 			$response->result = 0;
 			$response->errorMsg = $e->getMessage();
 		}
-	
+
 		return $response;
 	}
 }

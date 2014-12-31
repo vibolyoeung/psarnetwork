@@ -72,6 +72,7 @@ Route::group(array('before' => 'auth'), function() {
 	Route::post('/admin/edit-category','BeCategoryController@editCategory');
 	Route::get('/admin/delete-category/{id}','BeCategoryController@deleteCategory');
 	Route::get('/admin/status-category/{id}/{status}','BeCategoryController@isPublicCategory');
+	Route::get('/admin/filter_category','BeCategoryController@filterCategory');
 
 	Route::get('/admin/markets','BeMarketController@listMarket');
 	Route::any('/admin/create-market','BeMarketController@createMarket');

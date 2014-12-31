@@ -6,6 +6,7 @@
 	</ul>
 @endsection
 @section('content')
+	{{HTML::script('backend/js/filter.js')}}
 	<div class="row">
 		<div class="col-md-12 col-sm-12 col-sx-12">
 			<div class="panel panel-default">
@@ -39,9 +40,18 @@
 									<th class="class-center">Status</th>
 									<th class="class-center">Action</th>
 								</tr>
+								<tr>
+									<th></th>
+									<th>{{Form::text('filter_name_en',null,array('class' =>'form-control','id'=>'filter_name_en'))}}</th>
+									<th>{{Form::text('filter_name_zh',null,array('class' =>'form-control','id'=>'filter_name_zh'))}}</th>
+									<th>{{Form::select('filter_status',$status,'key', array('class' =>'form-control','id'=>'filter_status'))}}</th>
+									<th class="class-center">{{Form::submit('Filter', array('class' => 'btn btn-success','name'=>'btnFilter','id'=>'btn_filter_category'))}}</th>
+								</tr>
 							</thead>
-							<tbody>
-								@foreach($categoryList as $row) {{$row}} @endforeach
+							<tbody id="result_filter_category">
+								@foreach($categoryList as $row)
+									{{$row}}
+								@endforeach
 							</tbody>
 						</table>
 					</div>

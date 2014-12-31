@@ -19,7 +19,7 @@ a > .caption > h4,a{
 	color:rgb(61, 149, 203);
 }
 .well > .col-md-1:hover{
-	box-shadow:2px 1px 3px blue;	
+	/*box-shadow:2px 1px 3px blue;*/	
 }
 .new-register-mg,.current-information{
 	border-radius:8px;
