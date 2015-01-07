@@ -26,7 +26,6 @@ class BeLoginController extends BaseController {
 		if(Input::has('btnLogin')){
 			$input = Input::all();
 			$email = trim($input['email']);
-			$rememberMe = Input::get('remember_me');
 			$password = trim($input['password']);
 				$rules = array(
 					'email' => 'required|email',
@@ -35,19 +34,27 @@ class BeLoginController extends BaseController {
 			$validator = Validator::make(Input::all(), $rules);
 			if ($validator->passes()) {
 				$user = array('email' => $email, 'password' => $password,'status'=>1);
-				 if (Auth::attempt($user, true)) {
-				 	if(4 != Auth::user()->user_type){
-				 	Session::put('SESSION_USER_ID', Auth::user()->id);
+				if (Auth::attempt($user)) {
+					if(4 != Auth::user()->user_type){
+					Session::put('SESSION_USER_ID', Auth::user()->id);
 					Session::put('SESSION_USER_EMAIL', Auth::user()->email);
 					Session::put('SESSION_USER_ROLE',Auth::user()->user_type);
 					Session::put('SESSION_LOGIN_NAME',Auth::user()->name);
+					if (Input::has('remember_me')) {
+						setcookie('remember_username', Auth::user()->email, null);
+						setcookie('remember_password', $password, null);
+					} elseif (!Input::has('remember_me')) {
+						$past = time() - 100;
+						setcookie('remember_username', 'gone', $past);
+						setcookie('remember_password', 'gone', $past);
+					}
 					return Redirect::to('admin/dashboard');
-				 	}else{
-				 		return Redirect::to('admin')->with('invalid','User name and Password are not matched!');
-				 	}
-				 }else {
-				 	return Redirect::to('admin')->with('invalid','User name and Password are not matched!');
-				 }
+					}else{
+						return Redirect::to('admin')->with('invalid','User name and Password are not matched!');
+					}
+				}else {
+					return Redirect::to('admin')->with('invalid','User name and Password are not matched!');
+				}
 
 			}else{
 				return Redirect::to('admin')->withInput()->withErrors($validator);
@@ -61,7 +68,7 @@ class BeLoginController extends BaseController {
 	 */
 	public function doLogout(){
 		Auth::logout();
-		return Redirect::to('login');
+		return Redirect::to('admin');
 	}
 
 	/**

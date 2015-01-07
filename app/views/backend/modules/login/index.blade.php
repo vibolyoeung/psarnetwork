@@ -46,25 +46,25 @@
 				@if (Session::has('invalid'))
 					<div class="alert alert-danger">{{Session::get('invalid')}}</div>
 				@endif
-					{{ Form::open(array('url' => 'admin/login','class'=>'form'))}}
+			<form action="{{URL::to('admin/login')}}" method="post" class='form'>
 				<div class="form-group">
-					{{Form::text('email',null, array('class' =>'form-control','placeholder'=>'Email'))}}
+					<input type="text" name="email" value="<?php echo @$_COOKIE['remember_username']; ?>" class="form-control" placeholder="Email"/>
 					<span class="class-error">{{$errors->first('email')}}</span>
 				</div>
 				<div class="form-group">
-					{{Form::password('password', array('placeholder'=> 'Password','class'=>'form-control'))}}
+					<input type="password" name="password" value="<?php echo @$_COOKIE['remember_password']; ?>" class="form-control" placeholder="Password"/>
 					<span class="class-error">{{$errors->first('password')}}</span>
 				</div>
 				<div class="form-group">
-					{{Form::submit('Login',array('name'=>'btnLogin','class' => 'btn btn-success btn-block'))}}
+					<input type="submit" name="btnLogin" value="Login" class="btn btn-success btn-block" />
 				</div>
 				<div class="form-group">
-					{{Form::checkbox('remember_me',null)}} Remembered me
+					<input name="remember_me" type="checkbox" <?php echo isset($_COOKIE['remember_username'])?"checked":"";?> /> Remembered me
 				</div>
 				<div class="form-group">
 					<a href="{{URL::to('admin/send-forget-password')}}" class="btn btn-default">Forgot Password?</a>
 				</div>
-			{{Form::close()}}
+			</form>
 		</div>
 	</div>
 	</body>
