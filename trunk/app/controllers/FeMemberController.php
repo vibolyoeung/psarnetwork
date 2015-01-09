@@ -44,6 +44,16 @@ class FeMemberController extends BaseController {
         }
     }
     
+    public function addmenuajax (){
+        $this->layout = null;
+        $Category = Input::get('Category');
+        $SubCategory = Input::get('SubCategory');
+        $MainMenu = Input::get('MainMenu');
+        if(!empty($MainMenu)|| !empty($SubCategory)||!empty($Category)) {
+            echo json_encode(array('MainMenu' => $Category, 'Category'=>$Category, 'SubCategory'=>$SubCategory));
+        }
+    }
+    
     public function getSlideshowToHomePage($limit){
     	$slideshow = $this->mod_slideshow->getSlideshowToFrontEnd($limit);
     	return $slideshow;
