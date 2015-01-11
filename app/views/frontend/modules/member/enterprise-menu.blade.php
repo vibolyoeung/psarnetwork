@@ -146,12 +146,36 @@
                                                 <div style="border-top: 1px solid #ccc; clear: both; display:block;margin-top:15px"></div>
 												<!-- create menu -->
                                                 <form action="{{Config::get('app.url')}}" id="PersonalForm">
-													<div class="col-sm-6" style="border-right: 1px solid #ccc;">
+													<div class="col-sm-6 hidden-sm" style="border-right: 1px solid #ccc;">
 														<div class="pro-detail">
-															<h3>
-																Your Site page Preview
-															</h3>
-															<div class="col-sm-12" style="border: 1px solid #ccc;display:block">xxxxxxxxxxx</div>
+															<div class="col-sm-12" id="sitePreview">
+                                                                <div class="row" style="margin: 0;">
+                                                                    <div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0;display:block">
+                                                                        <h3>Your Site page Preview</h3>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row" style="margin: 10px 0 0 0;">
+                                                                    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin:0">
+                                                                        <div id="navbar" class="navbar-collapse collapse">
+                                                                          <ul class="nav navbar-nav" id="menu_results" style="margin:0">
+                                                                            <li class="active"><a href="javascript:;">Home</a></li>
+                                                                          </ul>
+                                                                        </div><!--/.nav-collapse -->
+                                                                    </nav>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-3">
+                                                                        <div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0;">Left</div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0">Content</div>
+                                                                    </div>
+                                                                    <div class="col-sm-3">
+                                                                        <div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0;">Right</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- end site preview -->
 														</div>
 													</div>
 													<!--end product describe-->
@@ -235,14 +259,55 @@ $(document).ready(function(){
                 var MainMenu = msg.MainMenu;
                 var Category = msg.Category;
                 var SubCategory = msg.SubCategory;
-                var content = '<div class="row input_fields_wrap"><div class="col-md-12"><button type="button" class="btn btn-danger remove_field" id="removeCat" onclick="removes();"><i class="glyphicon glyphicon-trash"></i></button>'+
-                                                            '<div class="form-group">'+
-                                                            	'<input type="text" value="'+Category+'" class="form-control" id="Category" readonly=""/>'+
-                                                              '</div>'+
-                                                              '<div class="form-group">'+
-                                                                '<input type="text" value="'+SubCategory+'" class="form-control" id="SubCategory" name="SubCategory" readonly=""/>'+
-                                                              '</div></div></div>';
-                $("#result").append(content);
+                var duplicate = [];
+				$('#CategoryAjaxAdd'+Category).each(function () {
+					if ($('#CategoryAjaxAdd'+Category).val() == Category) {
+						duplicate.push(Category);
+					}
+				});
+                var SubDuplicate = [];
+				$('#sub_'+Category+SubCategory).each(function () {
+					if ($('#sub_'+Category+SubCategory).val() == SubCategory) {
+						SubDuplicate.push(Category+SubCategory);
+					}
+				});
+                
+                
+                if (!duplicate[0]) {
+                    var cate = '<div><div class="row input_fields_wrap subCatAjax"><div class="col-md-12"><button type="button" class="btn btn-danger removeMainCat  pull-right" dataid="'+Category+'"><i class="glyphicon glyphicon-remove"></i></button>'+
+                                                                '<div id="id_'+Category+'" name="Category">'+
+                                                                '<input  style="max-width:80%;margin-right:5px" type="text" value="'+Category+'" class="form-control id_'+Category+'" id="CategoryAjaxAdd'+Category+'" readonly=""/>'+
+                                                                '</div>'+
+                                                              '</div></div>';
+                    var sub_cate = '<div class="row input_fields_wrap subCatAjax"><div class="col-md-12"><button type="button" class="btn btn-danger remove_field  pull-right" id="removeCat" dataid="'+Category+SubCategory+'" onclick="removes();"><i class="glyphicon glyphicon-trash"></i></button>'+
+                                                                '<div id="id_'+Category+'" name="Category">'+
+                                                                '<input style="max-width:100px;margin-right:5px" type="text" value="'+SubCategory+'" class="form-control  pull-right" id="sub_'+Category+SubCategory+'" readonly=""/>'+
+                                                                '</div>'+
+                                                              '</div></div><div id="sub_result'+Category+'"></div></div>';                                          
+                    $("#result").append(cate+sub_cate); 
+                    /*preview site menu*/
+                    var addToMenu = '<li class="dropdown" id="m_r'+Category+'">'+
+                    '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">'+Category+' <span class="caret"></span></a>'+
+                    '<ul class="dropdown-menu" role="menu" id="menuAddsub'+Category+'">'+
+                    '<li id="ms_r'+Category+SubCategory+'"><a href="javascript:;">'+SubCategory+'</a></li>'+
+                    '</ul>'+
+                    '</li>';
+                    $('#menu_results').append(addToMenu);
+                } else{
+                    if (!SubDuplicate[0]) {
+                        var content = '<div class="row input_fields_wrap subCatAjax"><div class="col-md-12"><button type="button" class="btn btn-danger remove_field  pull-right" id="removeCat" dataid="'+Category+SubCategory+'" onclick="removes();"><i class="glyphicon glyphicon-trash"></i></button>'+
+                                                                '<div id="id_'+Category+'" name="Category">'+
+                                                                '<input style="max-width:100px;margin-right:5px" type="text" value="'+SubCategory+'" class="form-control  pull-right" id="sub_'+Category+SubCategory+'" readonly=""/>'+
+                                                                '</div>'+
+                                                              '</div></div>';
+                    $('#sub_result'+Category).append(content); 
+                    var addToMenus = '<li id="ms_r'+Category+SubCategory+'"><a href="javascript:;">'+SubCategory+'</a></li>';
+                    $('#menuAddsub'+Category).append(addToMenus);
+                    } else {
+                        alert('This sub is arealy added!');
+                    }
+                }
+                
             },
             error:function(){
                 alert("failure");
@@ -253,9 +318,19 @@ $(document).ready(function(){
 
 
 });
-
+// dataid="'+Category+SubCategory+'"
 $(document).on('click','.remove_field',function() {
  	$(this).parent('div').parent('div').remove();
+    var remove_mSId = $(this).attr('dataid');
+    $('#ms_r'+remove_mSId).remove();
+});
+$(document).on('click','.removeMainCat',function() {
+    if (confirm("Do you want to delete all in this category!") == true) {
+        var removeId = $(this).attr('dataid');
+        $('#m_r'+removeId).remove();
+     	$(this).parent('div').parent('div').parent('div').remove();
+    }
+
 });
 </script>
 <div class="clear">
