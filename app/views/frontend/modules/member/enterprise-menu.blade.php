@@ -58,124 +58,268 @@
 						Contact !
 					</span>
 				</div>
-				
-					<div class="category-tab shop-details-tab" style="margin: 0;">
-						<!--category-tab-->
-						<div class="col-sm-12">
-							<ul class="nav nav-tabs">
-								<li>
-									<a>Persional Info</a>
-								</li>
-								<li class="active">
-									<a href="javascript:;">Menu</a>
-								</li>
-								<li>
-									<a href="javascript:;">Content Page</a>
-								</li>
-								<li>
-									<a href="javascript:;">Your Page info</a>
-								</li>
-								<li>
-									<a href="javascript:;">Add Connector</a>
-								</li>
-								<li>
-									<a href="javascript:;">Finish</a>
-								</li>
-							</ul>
-						</div>
-						<div class="tab-content">
-							<div class="tab-pane fade active in" id="personal">
-								<div class="col-sm-12">
-									<div class="row">
-										<div role="tabpanel">
-											<!-- Nav tabs -->
-											<ul class="nav nav-tabs subtab" role="tablist">
-												<li role="presentation" class="active">
-													<a href="#MainMenu" aria-controls="MainMenu" role="tab" data-toggle="tab">Main  Menu</a>
-												</li>
-												<li role="presentation">
-													<a href="#DefualtMenu" aria-controls="DefualtMenu" role="tab" data-toggle="tab">Defualt  Menu</a>
-												</li>
-											</ul>
-											<!-- Tab panes -->
-											<div class="tab-content">
-												<div role="tabpanel" class="tab-pane fade active in" id="MainMenu">
-													<!--product describe-->
-                                                    <form action="{{Config::get('app.url')}}" id="StartCatAdd" class="form-horizontal">
-                                                    <div class="form-inline cmenuf">
-													<div class="form-group">
-														<label for="Main-Menu" class="col-sm-6 control-label">
-															Main Menu
-														</label>
-														<div class="col-sm-6">
-															<select class="form-control Main-Menu" name="MainMenu" id="Main-Menu">
-                                                              <option value="">Main Menu</option>
-                                                              <option value="Electric">Electric</option>
-                                                            </select>
+				<div class="category-tab shop-details-tab" style="margin: 0;">
+					<!--category-tab-->
+					<div class="col-sm-12">
+						<ul class="nav nav-tabs">
+							<li>
+								<a>Persional Info</a>
+							</li>
+							<li class="active">
+								<a href="javascript:;">Menu</a>
+							</li>
+							<li>
+								<a href="javascript:;">Content Page</a>
+							</li>
+							<li>
+								<a href="javascript:;">Your Page info</a>
+							</li>
+							<li>
+								<a href="javascript:;">Add Connector</a>
+							</li>
+							<li>
+								<a href="javascript:;">Finish</a>
+							</li>
+						</ul>
+					</div>
+					<div class="tab-content">
+						<div class="tab-pane fade active in" id="personal">
+							<div class="col-sm-12">
+								<div class="row">
+									<div role="tabpanel">
+										<!-- Nav tabs -->
+										<ul class="nav nav-tabs subtab" role="tablist">
+											<li role="presentation" class="active">
+												<a href="#MainMenu" aria-controls="MainMenu" role="tab" data-toggle="tab">Main  Menu</a>
+											</li>
+											<li role="presentation">
+												<a href="#DefualtMenu" aria-controls="DefualtMenu" role="tab" data-toggle="tab">Defualt  Menu</a>
+											</li>
+										</ul>
+										<!-- Tab panes -->
+										<div class="tab-content">
+											<div role="tabpanel" class="tab-pane fade active in" id="MainMenu">
+												<!--product describe-->
+												<form action="{{Config::get('app.url')}}" id="StartCatAdd" class="form-horizontal">
+													<div class="form-inline cmenuf">
+														<div class="form-group">
+															<label for="Main-Menu" class="col-sm-6 control-label">
+																Main Menu
+															</label>
+															<div class="col-sm-6">
+																<select class="form-control Main-Menu" name="MainMenu" id="Main-Menu">
+																	<option value="">
+																		Main Menu
+																	</option>
+																	<option value="Electric">
+																		Electric
+																	</option>
+																</select>
+															</div>
 														</div>
-													</div>
-                                                    <div class="form-group">
-														<label for="Category" class="col-sm-6 control-label">
-															Category
-														</label>
-														<div class="col-sm-6">
-															<select class="form-control" id="Category" name="Category">
-                                                              <option value="">Category</option>
-                                                              <option value="Phone">Phone</option>
-                                                              <option value="Tablet">Tablet</option>
-                                                            </select>
+														<div class="form-group">
+															<label for="Category" class="col-sm-6 control-label">
+																Category
+															</label>
+															<div class="col-sm-6">
+																<select class="form-control" id="Category" name="Category">
+																	<option value="">
+																		Category
+																	</option>
+																	<option value="Phone">
+																		Phone
+																	</option>
+																	<option value="Tablet">
+																		Tablet
+																	</option>
+																</select>
+															</div>
 														</div>
-													</div>
-                                                    <div class="form-group">
-														<label for="SubCategory" class="col-sm-6 control-label">
-															Sub Category
-														</label>
-														<div class="col-sm-6">
-															<select class="form-control" id="SubCategory" name="SubCategory">
-                                                              <option value="">Sub Category</option>
-                                                              <option value="Samsung">Samsung</option>
-                                                              <option value="Iphone">Iphone</option>
-                                                            </select>
+														<div class="form-group">
+															<label for="SubCategory" class="col-sm-6 control-label">
+																Sub Category
+															</label>
+															<div class="col-sm-6">
+																<select class="form-control" id="SubCategory" name="SubCategory">
+																	<option value="">
+																		Sub Category
+																	</option>
+																	<option value="Samsung">
+																		Samsung
+																	</option>
+																	<option value="Iphone">
+																		Iphone
+																	</option>
+																</select>
+															</div>
 														</div>
+														<button id="submitcat" type="buttom" class="btn btn-default" style="margin-left: 30px;" onclick="StartAddCat();this.form.submit();">
+															Add
+														</button>
 													</div>
-													<button id="submitcat" type="buttom" class="btn btn-default" style="margin-left: 30px;" onclick="StartAddCat();this.form.submit();">
-														Add
-													</button>
+												</form>
+												<div style="border-top: 1px solid #ccc; clear: both; display:block;margin-top:15px">
 												</div>
-                                                </form>
-                                                <div style="border-top: 1px solid #ccc; clear: both; display:block;margin-top:15px"></div>
 												<!-- create menu -->
-                                                <form action="{{Config::get('app.url')}}" id="PersonalForm">
 													<div class="col-sm-6 hidden-sm" style="border-right: 1px solid #ccc;">
 														<div class="pro-detail">
 															<div class="col-sm-12" id="sitePreview">
-                                                                <div class="row" style="margin: 0;">
-                                                                    <div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0;display:block">
-                                                                        <h3>Your Site page Preview</h3>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row" style="margin: 10px 0 0 0;">
-                                                                    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin:0">
-                                                                        <div id="navbar" class="navbar-collapse collapse">
-                                                                          <ul class="nav navbar-nav" id="menu_results" style="margin:0">
-                                                                            <li class="active"><a href="javascript:;">Home</a></li>
-                                                                          </ul>
-                                                                        </div><!--/.nav-collapse -->
-                                                                    </nav>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-sm-3">
-                                                                        <div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0;">Left</div>
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0">Content</div>
-                                                                    </div>
-                                                                    <div class="col-sm-3">
-                                                                        <div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0;">Right</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- end site preview -->
+																<div class="row" style="margin: 0;">
+																	<div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0;display:block">
+																		<h3>
+																			Your Site page Preview
+																		</h3>
+																	</div>
+																</div>
+																<div class="row" style="margin: 10px 0 0 0;">
+																	<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin:0">
+																		<div id="navbar" class="navbar-collapse collapse">
+																			<ul class="nav navbar-nav" id="menu_results" style="margin:0">
+																				<li class="active">
+																					<a href="javascript:;">Home</a>
+																				</li>
+																			</ul>
+																		</div>
+																		<!--/.nav-collapse -->
+																	</nav>
+																</div>
+																<div class="row">
+																	<div class="col-sm-3">
+																		<div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0;">
+																			Left
+																		</div>
+																	</div>
+																	<div class="col-sm-6">
+																		<div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0">
+																			Content
+																		</div>
+																	</div>
+																	<div class="col-sm-3">
+																		<div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0;">
+																			Right
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!-- end site preview -->
+														</div>
+													</div>
+													<!--end product describe-->
+													<div class="col-sm-6">
+														<div class="pro-detail form-inline">
+															<h3>
+																Your Default menu  you have chosen
+															</h3>
+															<div id="result">
+															</div>
+														</div>
+													</div>
+											</div>
+                                            <!-- end MainMenu Tab -->
+                                            
+                                            
+											<div role="tabpanel" class="tab-pane" id="DefualtMenu">
+												<!--product describe-->
+												<div class="form-horizontal">
+													<div class="form-inline cmenuf">
+														<div class="form-group">
+															<label for="Main-Menu" class="col-sm-6 control-label">
+																Position
+															</label>
+															<div class="col-sm-6">
+																<select class="form-control Main-Menu" name="DMainMenu" id="DMain-Menu">
+																	<option value="">
+																		Position
+																	</option>
+																	<option value="onMain">
+																		Stay on Main bar
+																	</option>
+                                                                    <option value="onMain">
+																		Stay on Sub bar
+																	</option>
+																</select>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="DCategory" class="col-sm-6 control-label">
+																Category
+															</label>
+															<div class="col-sm-6">
+																<select class="form-control" id="DCategory" name="DCategory">
+																	<option value="">
+																		Category
+																	</option>
+																	<option value="Announcement">
+																		Announcement
+																	</option>
+																	<option value="Aboutus">
+																		About us
+																	</option>
+                                                                    <option value="Contactus">
+																		Contact us
+																	</option>
+                                                                    <option value="HotPromotion">
+																		Hot Promotion
+																	</option>
+                                                                    <option value="NewArrival">
+																		New Arrival
+																	</option>
+                                                                    <option value="Second Hand">
+																		Second Hand
+																	</option>
+																</select>
+															</div>
+														</div>
+														<button id="Dsubmitcat" type="buttom" class="btn btn-default" style="margin-left: 30px;" onclick="DStartAddCat();this.form.submit();">
+															Add
+														</button>
+													</div>
+												</div>
+												<div style="border-top: 1px solid #ccc; clear: both; display:block;margin-top:15px">
+												</div>
+												<!-- create menu -->
+												<form action="{{Config::get('app.url')}}" id="PersonalForm">
+													<div class="col-sm-6 hidden-sm" style="border-right: 1px solid #ccc;">
+														<div class="pro-detail">
+															<div class="col-sm-12" id="sitePreview">
+																<div class="row" style="margin: 0;">
+																	<div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0;display:block">
+																		<h3>
+																			Your Site page Preview
+																		</h3>
+																	</div>
+																</div>
+																<div class="row" style="margin: 10px 0 0 0;">
+																	<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin:0">
+																		<div id="navbar" class="navbar-collapse collapse">
+																			<ul class="nav navbar-nav" id="Dmenu_results" style="margin:0">
+																				<li class="active">
+																					<a href="javascript:;">Home</a>
+																				</li>
+																			</ul>
+																		</div>
+																		<!--/.nav-collapse -->
+																	</nav>
+																</div>
+																<div class="row">
+																	<div class="col-sm-3">
+																		<div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0;">
+																			Left
+																		</div>
+																	</div>
+																	<div class="col-sm-6">
+																		<div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0">
+																			Content
+																		</div>
+																	</div>
+																	<div class="col-sm-3">
+																		<div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0;">
+																			Right
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!-- end site preview -->
 														</div>
 													</div>
 													<!--end product describe-->
@@ -184,28 +328,27 @@
 															<h3>
 																Your menu category you have chosen
 															</h3>
-															<div id="result"></div>
+															<div class="form-inline"><div id="Dresult"></div>
+															</div>
 														</div>
 													</div>
-												</div>
-												<div role="tabpanel" class="tab-pane" id="DefualtMenu">
-													222222222222222
-												</div>
 											</div>
+											<!-- end Defualt Page -->
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<!--end product detail-->
-					<div class="clear">
-					</div>
-					<button id="summit" type="submit" class="btn btn-default pull-right choosenuser">
-						Next
-					</button>
-					<a id="chooseuser" class="btn btn-warning pull-right choosenuser" href="#">Back</a>
-					<a id="chooseuser" class="btn btn-danger pull-right choosenuser" href="#">Cancel</a>
+				</div>
+				<!--end product detail-->
+				<div class="clear">
+				</div>
+				<button id="summit" type="submit" class="btn btn-default pull-right choosenuser">
+					Next
+				</button>
+				<a id="chooseuser" class="btn btn-warning pull-right choosenuser" href="#">Back</a>
+				<a id="chooseuser" class="btn btn-danger pull-right choosenuser" href="#">Cancel</a>
 				</form>
 				<div class="clear">
 				</div>
@@ -215,7 +358,8 @@
 	</div>
 </div>
 {{HTML::script('frontend/js/jquery.validate.js')}}
-<script type='text/javascript'>	
+<script type='text/javascript'>
+		
 $(document).ready(function(){
     $('#agreement').click(function () {
         if($(this).is(":checked")) {
@@ -274,7 +418,7 @@ $(document).ready(function(){
                 
                 
                 if (!duplicate[0]) {
-                    var cate = '<div><div class="row input_fields_wrap subCatAjax"><div class="col-md-12"><button type="button" class="btn btn-danger removeMainCat  pull-right" dataid="'+Category+'"><i class="glyphicon glyphicon-remove"></i></button>'+
+                    var cate = '<div><div class="input_fields_wrap subCatAjax"><div class="col-md-12"><button type="button" class="btn btn-danger removeMainCat  pull-right" dataid="'+Category+'"><i class="glyphicon glyphicon-remove"></i></button>'+
                                                                 '<div id="id_'+Category+'" name="Category">'+
                                                                 '<input  style="max-width:80%;margin-right:5px" type="text" value="'+Category+'" class="form-control id_'+Category+'" id="CategoryAjaxAdd'+Category+'" readonly=""/>'+
                                                                 '</div>'+
@@ -316,6 +460,38 @@ $(document).ready(function(){
         });
     });
 
+    /*Default Menu*/
+    $('#Dsubmitcat').click(function () {
+        var mposition = $('#DMain-Menu').val();
+        var mDCategory = $('#DCategory').val();
+        var Dduplicate = [];
+		$('#DCategoryAjaxAdd'+mposition).each(function () {
+			if ($('#DCategoryAjaxAdd'+mposition).val() == mposition) {
+				Dduplicate.push(mposition);
+			}
+		});
+         var DSubDuplicate = [];
+		$('#Dsub_'+mposition+mDCategory).each(function () {
+			if ($('#Dsub_'+mposition+mDCategory).val() == mDCategory) {
+				DSubDuplicate.push(mposition+mDCategory);
+			}
+		});        
+        if(mDCategory && mposition) {
+            if(!DSubDuplicate[0]) {
+                var Mpost = '<div class="row input_fields_wrap subCatAjax" style="margin-bottom:5px">'+
+                                                                '<div id="Did_'+mposition+'" name="DCategory" class="form-group" style="margin-right:5px">'+
+                                                                '<input type="text" value="'+mposition+'" class="form-control id_'+mposition+'" id="DCategoryAjaxAdd'+mposition+'" readonly=""/>'+
+                                                                '</div>'+
+                                                                '<div id="Did_'+mposition+'" name="DCategory" class="form-group" style="margin-right:5px">'+
+                                                                '<input type="text" value="'+mDCategory+'" class="form-control" id="Dsub_'+mposition+mDCategory+'" readonly=""/>'+
+                                                                '</div><button type="button" class="btn btn-danger DremoveMainCat" dataid="'+mposition+'"><i class="glyphicon glyphicon-remove"></i></button>'+
+                                                              '</div>';                                         
+                    $("#Dresult").append(Mpost); 
+            } else {
+                alert('is alread added!');
+            }
+        }
+    });
 
 });
 // dataid="'+Category+SubCategory+'"
@@ -328,6 +504,14 @@ $(document).on('click','.removeMainCat',function() {
     if (confirm("Do you want to delete all in this category!") == true) {
         var removeId = $(this).attr('dataid');
         $('#m_r'+removeId).remove();
+     	$(this).parent('div').parent('div').parent('div').remove();
+    }
+
+});
+$(document).on('click','.DremoveMainCat',function() {
+    if (confirm("Do you want to delete all in this category!") == true) {
+        var removeId = $(this).attr('dataid');
+        $('#Dm_r'+removeId).remove();
      	$(this).parent('div').parent('div').parent('div').remove();
     }
 
