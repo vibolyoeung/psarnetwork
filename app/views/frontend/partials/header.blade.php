@@ -109,18 +109,57 @@
                                     <li><a href="{{Config::get('app.url')}}/member/login"><i class="fa">Sign in /</i></a></li>
                                     <li><a href="{{Config::get('app.url')}}/member/register"><i class="fa">Free Register</i></a></li>
                                 </ul>
-                                <div class="language-bar">
-                                    <a href="#" >
-                                        <img src="{{Config::get('app.url')}}/frontend/images/en.png" alt="" title="" />
-                                        English
-                                    </a>
-                                    <a href="#">
-                                        <img src="{{Config::get('app.url')}}/frontend/images/cn.png" alt="" title="" />
-                                        Chinese
-                                    </a>	
-                                </div>
+<!--                                 <div class="language-bar"> -->
+<!--                                     <a href="{{Config::get('app.url')}}en" > -->
+<!--                                         <img src="{{Config::get('app.url')}}/frontend/images/en.png" alt="" title="" /> -->
+<!--                                         English -->
+<!--                                     </a> -->
+<!--                                     <a href="{{Config::get('app.url')}}zh"> -->
+<!--                                         <img src="{{Config::get('app.url')}}/frontend/images/cn.png" alt="" title="" /> -->
+<!--                                         Chinese -->
+<!--                                     </a>	 -->
+<!--                                 </div> -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div><!-- ============End header top here============== -->
+            <div class="container-fluid top-menu">
+            	<div class="col-lg-5 top_promotion">
+					<ul class="col-lg-12 promotion_top_menu pull-left">
+						<li><a href="#"><img src="{{Config::get('app.url')}}frontend/images/classifieds_logo.png" /><a></li>
+		                <li><a href="#">Hot Promotion</a></li>
+		                <li><a href="#">New Arrival</a></li>
+		                <li><a href="#">Second Hand</a></li>
+		                <li><a href="#">Buy</a></li>
+		                <li><a href="#">Sell</a></li>
+		                <li><a href="#">Monthly Pay</a></li>
+				    </ul>
+				</div>
+				<div class="col-lg-5 navbar navbar-default topmenu-container" role="navigation">
+				    <div class="container-fluid">
+				        <div class="navbar-header">
+				            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				                <span class="sr-only">Toggle navigation</span>
+				                <span class="icon-bar"></span>
+				                <span class="icon-bar"></span>
+				                <span class="icon-bar"></span>
+				            </button>
+				        </div>
+				        <div class="collapse navbar-collapse promotion-list">
+				            <ul class="nav navbar-nav">
+								<li><a href="#">All</a></li>
+								<li><a href="#">Super Market</a></li>
+								<li><a href="#">Traditional Market</a></li>
+								<li><a href="#">Private Company</a></li>
+								<li><a href="#">Home Shop</a></li>
+								<li><a href="#">Individual</a></li>
+				            </ul>
+				        </div><!--/.nav-collapse -->
+				    </div>
+				</div>&nbsp;
+				<div class="col-lg-2 top-mg">
+	            	<a href="" class="btn btn-default"><span style="color:red;">10</span> Top Posts</a>
+	            	<a href="" class="btn btn-default"><span style="color:red;">5</span> Notifications</a>
+	            </div>
+			</div>
