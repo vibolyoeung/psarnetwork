@@ -1,16 +1,8 @@
 <!--=============Menu==========-->
 	<div class="header-bottom">
-		<div class="container">
+		<div class="container" style="padding:0;">
 			<div class="row visible-lg">
-				<div class="col-sm-5">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target=".navbar-collapse">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-					</div>
+				<div>
 					<div class="mainmenu pull-left menu-left">
 						<ul class="nav navbar-nav collapse navbar-collapse">
 							<li><a href="index.html" class="active">Hot Promotion</a></li>
@@ -22,7 +14,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="col-sm-7">
+				<div class="col-sm-12">
 					<img class="imgmenu"
 						src="{{Config::get('app.url')}}/frontend/images/home/right-menu.png" />
 					<div class="navbar-header">
@@ -49,7 +41,7 @@
 				@foreach ($maincategories as $subcategorylist)
 					<nav class="navbar navbar-default tab-pane fade in submenu-bar" role="navigation" id="{{$subcategorylist->id}}">
 				        <!-- Brand and toggle get grouped for better mobile display -->
-				        <div class="container">
+				        <div class="container" style="padding:0;">
 				            <div class="navbar-header">
 				                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-{{$subcategorylist->id}}">
 				                    <span class="sr-only">Toggle navigation</span>

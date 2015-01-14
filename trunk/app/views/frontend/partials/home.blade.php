@@ -30,7 +30,242 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-2">
+		<div class="col-lg-12">
+			<div class="col-sm-3">
+				<div class="product-image-wrapper">
+					<div class="single-products">
+						<div class="productinfo text-center">
+							<a href="#" data-toggle="modal" data-target="#myModal">
+								<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+							</a>
+							<h2>$56</h2>
+							<p>Easy Polo Black Edition</p>
+							<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+						</div>
+						<a href="#" data-toggle="modal" data-target="#myModal">
+							<div class="product-overlay">
+								<div class="overlay-content">
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="#" data-toggle="modal" data-target="#myModal">
+											View Details</a>
+										</a>
+								</div>
+							</div>
+						</a>
+						<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="product-image-wrapper">
+					<div class="single-products">
+						<div class="productinfo text-center">
+							<a href="#" data-toggle="modal" data-target="#myModal">
+								<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+							</a>
+							<h2>$56</h2>
+							<p>Easy Polo Black Edition</p>
+							<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+						</div>
+						<a href="#" data-toggle="modal" data-target="#myModal">
+							<div class="product-overlay">
+								<div class="overlay-content">
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="#" data-toggle="modal" data-target="#myModal">
+											View Details</a>
+										</a>
+								</div>
+							</div>
+						</a>
+						<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="product-image-wrapper">
+					<div class="single-products">
+						<div class="productinfo text-center">
+							<a href="#" data-toggle="modal" data-target="#myModal">
+								<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+							</a>
+							<h2>$56</h2>
+							<p>Easy Polo Black Edition</p>
+							<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+						</div>
+						<a href="#" data-toggle="modal" data-target="#myModal">
+							<div class="product-overlay">
+								<div class="overlay-content">
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="#" data-toggle="modal" data-target="#myModal">
+											View Details</a>
+										</a>
+								</div>
+							</div>
+						</a>
+						<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="product-image-wrapper">
+					<div class="single-products">
+						<div class="productinfo text-center">
+							<a href="#" data-toggle="modal" data-target="#myModal">
+								<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+							</a>
+							<h2>$56</h2>
+							<p>Easy Polo Black Edition</p>
+							<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+						</div>
+						<a href="#" data-toggle="modal" data-target="#myModal">
+							<div class="product-overlay">
+								<div class="overlay-content">
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="#" data-toggle="modal" data-target="#myModal">
+											View Details</a>
+										</a>
+								</div>
+							</div>
+						</a>
+						<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="product-image-wrapper">
+					<div class="single-products">
+						<div class="productinfo text-center">
+							<a href="#" data-toggle="modal" data-target="#myModal">
+								<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+							</a>
+							<h2>$56</h2>
+							<p>Easy Polo Black Edition</p>
+							<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+						</div>
+						<a href="#" data-toggle="modal" data-target="#myModal">
+							<div class="product-overlay">
+								<div class="overlay-content">
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="#" data-toggle="modal" data-target="#myModal">
+											View Details</a>
+										</a>
+								</div>
+							</div>
+						</a>
+						<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="product-image-wrapper">
+					<div class="single-products">
+						<div class="productinfo text-center">
+							<a href="#" data-toggle="modal" data-target="#myModal">
+								<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+							</a>
+							<h2>$56</h2>
+							<p>Easy Polo Black Edition</p>
+							<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+						</div>
+						<a href="#" data-toggle="modal" data-target="#myModal">
+							<div class="product-overlay">
+								<div class="overlay-content">
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="#" data-toggle="modal" data-target="#myModal">
+											View Details</a>
+										</a>
+								</div>
+							</div>
+						</a>
+						<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="product-image-wrapper">
+					<div class="single-products">
+						<div class="productinfo text-center">
+							<a href="#" data-toggle="modal" data-target="#myModal">
+								<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+							</a>
+							<h2>$56</h2>
+							<p>Easy Polo Black Edition</p>
+							<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+						</div>
+						<a href="#" data-toggle="modal" data-target="#myModal">
+							<div class="product-overlay">
+								<div class="overlay-content">
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="#" data-toggle="modal" data-target="#myModal">
+											View Details</a>
+										</a>
+								</div>
+							</div>
+						</a>
+						<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="product-image-wrapper">
+					<div class="single-products">
+						<div class="productinfo text-center">
+							<a href="#" data-toggle="modal" data-target="#myModal">
+								<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+							</a>
+							<h2>$56</h2>
+							<p>Easy Polo Black Edition</p>
+							<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+						</div>
+						<a href="#" data-toggle="modal" data-target="#myModal">
+							<div class="product-overlay">
+								<div class="overlay-content">
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="#" data-toggle="modal" data-target="#myModal">
+											View Details</a>
+										</a>
+								</div>
+							</div>
+						</a>
+						<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="product-image-wrapper">
+					<div class="single-products">
+						<div class="productinfo text-center">
+							<a href="#" data-toggle="modal" data-target="#myModal">
+								<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+							</a>
+							<h2>$56</h2>
+							<p>Easy Polo Black Edition</p>
+							<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+						</div>
+						<a href="#" data-toggle="modal" data-target="#myModal">
+							<div class="product-overlay">
+								<div class="overlay-content">
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="#" data-toggle="modal" data-target="#myModal">
+											View Details</a>
+										</a>
+								</div>
+							</div>
+						</a>
+						<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+					</div>
+				</div>
+			</div>
+		<div class="col-sm-3">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -39,17 +274,16 @@
 						</a>
 						<h2>$56</h2>
 						<p>Easy Polo Black Edition</p>
-						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-							class="fa fa-shopping-cart"></i>View Details</a>
+						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 					</div>
 					<a href="#" data-toggle="modal" data-target="#myModal">
 						<div class="product-overlay">
 							<div class="overlay-content">
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-									<i class="fa fa-shopping-cart"></i>View Details</a>
-								</a>
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" data-toggle="modal" data-target="#myModal">
+										View Details</a>
+									</a>
 							</div>
 						</div>
 					</a>
@@ -57,7 +291,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-2">
+		<div class="col-sm-3">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -66,17 +300,16 @@
 						</a>
 						<h2>$56</h2>
 						<p>Easy Polo Black Edition</p>
-						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-							class="fa fa-shopping-cart"></i>View Details</a>
+						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 					</div>
 					<a href="#" data-toggle="modal" data-target="#myModal">
 						<div class="product-overlay">
 							<div class="overlay-content">
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-									<i class="fa fa-shopping-cart"></i>View Details</a>
-								</a>
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" data-toggle="modal" data-target="#myModal">
+										View Details</a>
+									</a>
 							</div>
 						</div>
 					</a>
@@ -84,7 +317,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-2">
+		<div class="col-sm-3">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -93,17 +326,16 @@
 						</a>
 						<h2>$56</h2>
 						<p>Easy Polo Black Edition</p>
-						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-							class="fa fa-shopping-cart"></i>View Details</a>
+						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 					</div>
 					<a href="#" data-toggle="modal" data-target="#myModal">
 						<div class="product-overlay">
 							<div class="overlay-content">
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-									<i class="fa fa-shopping-cart"></i>View Details</a>
-								</a>
+									<h2>$56</h2>
+									<p>Easy Polo Black Edition</p>
+									<a href="#" data-toggle="modal" data-target="#myModal">
+										View Details</a>
+									</a>
 							</div>
 						</div>
 					</a>
@@ -111,281 +343,34 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-2">
-			<div class="product-image-wrapper">
-				<div class="single-products">
-					<div class="productinfo text-center">
-						<a href="#" data-toggle="modal" data-target="#myModal">
-							<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
-						</a>
-						<h2>$56</h2>
-						<p>Easy Polo Black Edition</p>
-						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-							class="fa fa-shopping-cart"></i>View Details</a>
-					</div>
-					<a href="#" data-toggle="modal" data-target="#myModal">
-						<div class="product-overlay">
-							<div class="overlay-content">
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-									<i class="fa fa-shopping-cart"></i>View Details</a>
-								</a>
-							</div>
-						</div>
-					</a>
-					<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
-				</div>
-			</div>
+	</div>
+	<!-- Paginatioin -->
+	<div class="col-ms-10">
+		<div class="pull-right">
+			<nav>
+			  <ul class="pagination">
+			    <li>
+			      <a href="#" aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+			    <li><a href="#">1</a></li>
+			    <li><a href="#">2</a></li>
+			    <li><a href="#">3</a></li>
+			    <li><a href="#">4</a></li>
+			    <li><a href="#">5</a></li>
+			    <li>
+			      <a href="#" aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			      </a>
+			    </li>
+			  </ul>
+			</nav>
 		</div>
-		<div class="col-sm-2">
-			<div class="product-image-wrapper">
-				<div class="single-products">
-					<div class="productinfo text-center">
-						<a href="#" data-toggle="modal" data-target="#myModal">
-							<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
-						</a>
-						<h2>$56</h2>
-						<p>Easy Polo Black Edition</p>
-						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-							class="fa fa-shopping-cart"></i>View Details</a>
-					</div>
-					<a href="#" data-toggle="modal" data-target="#myModal">
-						<div class="product-overlay">
-							<div class="overlay-content">
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-									<i class="fa fa-shopping-cart"></i>View Details</a>
-								</a>
-							</div>
-						</div>
-					</a>
-					<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
-				</div>
-			</div>
-		</div>
-		<div class="col-sm-2">
-			<div class="product-image-wrapper">
-				<div class="single-products">
-					<div class="productinfo text-center">
-						<a href="#" data-toggle="modal" data-target="#myModal">
-							<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
-						</a>
-						<h2>$56</h2>
-						<p>Easy Polo Black Edition</p>
-						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-							class="fa fa-shopping-cart"></i>View Details</a>
-					</div>
-					<a href="#" data-toggle="modal" data-target="#myModal">
-						<div class="product-overlay">
-							<div class="overlay-content">
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-									<i class="fa fa-shopping-cart"></i>View Details</a>
-								</a>
-							</div>
-						</div>
-					</a>
-					<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
-				</div>
-			</div>
-		</div>
-		<div class="col-sm-2">
-			<div class="product-image-wrapper">
-				<div class="single-products">
-					<div class="productinfo text-center">
-						<a href="#" data-toggle="modal" data-target="#myModal">
-							<img src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" alt="" />
-						</a>
-						<h2>$56</h2>
-						<p>Easy Polo Black Edition</p>
-						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-							class="fa fa-shopping-cart"></i>View Details</a>
-					</div>
-					<a href="#" data-toggle="modal" data-target="#myModal">
-						<div class="product-overlay">
-							<div class="overlay-content">
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-									<i class="fa fa-shopping-cart"></i>View Details</a>
-								</a>
-							</div>
-						</div>
-					</a>
-					<img src="{{Config::get('app.url')}}/frontend/images/home/new.png" class="new" alt="" />
-				</div>
-			</div>
-		</div>
-		<div class="col-sm-2">
-			<div class="product-image-wrapper">
-				<div class="single-products">
-					<div class="productinfo text-center">
-						<a href="#" data-toggle="modal" data-target="#myModal">
-							<img src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" alt="" />
-						</a>
-						<h2>$56</h2>
-						<p>Easy Polo Black Edition</p>
-						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-							class="fa fa-shopping-cart"></i>View Details</a>
-					</div>
-					<a href="#" data-toggle="modal" data-target="#myModal">
-						<div class="product-overlay">
-							<div class="overlay-content">
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-									<i class="fa fa-shopping-cart"></i>View Details</a>
-								</a>
-							</div>
-						</div>
-					</a>
-					<img src="{{Config::get('app.url')}}/frontend/images/home/new.png" class="new" alt="" />
-				</div>
-			</div>
-		</div>
-		
-		<div class="col-sm-2">
-			<div class="product-image-wrapper">
-				<div class="single-products">
-					<div class="productinfo text-center">
-						<a href="#" data-toggle="modal" data-target="#myModal">
-							<img src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" alt="" />
-						</a>
-						<h2>$56</h2>
-						<p>Easy Polo Black Edition</p>
-						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-							class="fa fa-shopping-cart"></i>View Details</a>
-					</div>
-					<a href="#" data-toggle="modal" data-target="#myModal">
-						<div class="product-overlay">
-							<div class="overlay-content">
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-									<i class="fa fa-shopping-cart"></i>View Details</a>
-								</a>
-							</div>
-						</div>
-					</a>
-					<img src="{{Config::get('app.url')}}/frontend/images/home/new.png" class="new" alt="" />
-				</div>
-			</div>
-		</div>
-		
-		<div class="col-sm-2">
-			<div class="product-image-wrapper">
-				<div class="single-products">
-					<div class="productinfo text-center">
-						<a href="#" data-toggle="modal" data-target="#myModal">
-							<img src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" alt="" />
-						</a>
-						<h2>$56</h2>
-						<p>Easy Polo Black Edition</p>
-						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-							class="fa fa-shopping-cart"></i>View Details</a>
-					</div>
-					<a href="#" data-toggle="modal" data-target="#myModal">
-						<div class="product-overlay">
-							<div class="overlay-content">
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-									<i class="fa fa-shopping-cart"></i>View Details</a>
-								</a>
-							</div>
-						</div>
-					</a>
-					<img src="{{Config::get('app.url')}}/frontend/images/home/new.png" class="new" alt="" />
-				</div>
-			</div>
-		</div>
-		
-		<div class="col-sm-2">
-			<div class="product-image-wrapper">
-				<div class="single-products">
-					<div class="productinfo text-center">
-						<a href="#" data-toggle="modal" data-target="#myModal">
-							<img src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" alt="" />
-						</a>
-						<h2>$56</h2>
-						<p>Easy Polo Black Edition</p>
-						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-							class="fa fa-shopping-cart"></i>View Details</a>
-					</div>
-					<a href="#" data-toggle="modal" data-target="#myModal">
-						<div class="product-overlay">
-							<div class="overlay-content">
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-									<i class="fa fa-shopping-cart"></i>View Details</a>
-								</a>
-							</div>
-						</div>
-					</a>
-					<img src="{{Config::get('app.url')}}/frontend/images/home/new.png" class="new" alt="" />
-				</div>
-			</div>
-		</div>
-		
-		<div class="col-sm-2">
-			<div class="product-image-wrapper">
-				<div class="single-products">
-					<div class="productinfo text-center">
-						<a href="#" data-toggle="modal" data-target="#myModal">
-							<img src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" alt="" />
-						</a>
-						<h2>$56</h2>
-						<p>Easy Polo Black Edition</p>
-						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-							class="fa fa-shopping-cart"></i>View Details</a>
-					</div>
-					<a href="#" data-toggle="modal" data-target="#myModal">
-						<div class="product-overlay">
-							<div class="overlay-content">
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-									<i class="fa fa-shopping-cart"></i>View Details</a>
-								</a>
-							</div>
-						</div>
-					</a>
-					<img src="{{Config::get('app.url')}}/frontend/images/home/new.png" class="new" alt="" />
-				</div>
-			</div>
-		</div>
-		
+	</div>
+		<!--  -->
 	</div>
 	<!--features_items-->
-	<!-- Paginatioin -->
-	<div class="col-ms-12">
-			<div class="col-ms-4">
-				<nav>
-				  <ul class="pagination">
-				    <li>
-				      <a href="#" aria-label="Previous">
-				        <span aria-hidden="true">&laquo;</span>
-				      </a>
-				    </li>
-				    <li><a href="#">1</a></li>
-				    <li><a href="#">2</a></li>
-				    <li><a href="#">3</a></li>
-				    <li><a href="#">4</a></li>
-				    <li><a href="#">5</a></li>
-				    <li>
-				      <a href="#" aria-label="Next">
-				        <span aria-hidden="true">&raquo;</span>
-				      </a>
-				    </li>
-				  </ul>
-				</nav>
-			</div>
-	</div>
-	<!--  -->
 	<div class="category-tab feature-ad">
 		<!--category-tab-->
 		<div class="col-sm-12">
@@ -401,8 +386,8 @@
 			</ul>
 		</div>
 		<div class="tab-content">
-			<div class="tab-pane fade active in" id="tshirt">
-				<div class="col-sm-2">
+			<div class="tab-pane fade active in">
+				<div class="col-sm-3">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -431,7 +416,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-2">
+				<div class="col-sm-3">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -460,7 +445,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-2">
+				<div class="col-sm-3">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -489,7 +474,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-2">
+				<div class="col-sm-3">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -518,7 +503,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-2">
+				<div class="col-sm-3">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -547,7 +532,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-2">
+				<div class="col-sm-3">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -577,7 +562,7 @@
 					</div>
 				</div>
 				
-				<div class="col-sm-2">
+				<div class="col-sm-3">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -606,7 +591,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-2">
+				<div class="col-sm-3">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -635,7 +620,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-2">
+				<div class="col-sm-3">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -664,7 +649,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-2">
+				<div class="col-sm-3">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -693,7 +678,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-2">
+				<div class="col-sm-3">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -722,7 +707,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-2">
+				<div class="col-sm-3">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -753,10 +738,8 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<!--/category-tab-->	
-	<!-- Paginatioin -->
-	<div class="col-ms-12">
+		<!-- Paginatioin -->
+		<div class="col-ms-12 pagination-row">
 			<div class="col-ms-4">
 				<nav>
 				  <ul class="pagination">
@@ -778,8 +761,10 @@
 				  </ul>
 				</nav>
 			</div>
+		</div>
+		<!--  -->
 	</div>
-	<!--  -->
+	<!--/category-tab-->
 	
 	<div class="category-tab feature-ad">
 		<!--recommended_items-->
