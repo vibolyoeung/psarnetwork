@@ -182,6 +182,13 @@
 																		</div>
 																		<!--/.nav-collapse -->
 																	</nav>
+                                                                    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin:0;z-index:1">
+																		<div id="navbar" class="navbar-collapse collapse">
+																			<ul class="nav navbar-nav navbar-nav-a" id="Dmenu_results_a" style="margin:0;background:#eee">
+																			</ul>
+																		</div>
+																		<!--/.nav-collapse -->
+																	</nav>
 																</div>
 																<div class="row">
 																	<div class="col-sm-3">
@@ -231,10 +238,10 @@
 																	<option value="">
 																		Position
 																	</option>
-																	<option value="onMain">
+																	<option value="MainBar">
 																		Stay on Main bar
 																	</option>
-                                                                    <option value="onMain">
+                                                                    <option value="SubBar">
 																		Stay on Sub bar
 																	</option>
 																</select>
@@ -296,6 +303,13 @@
 																				<li class="active">
 																					<a href="javascript:;">Home</a>
 																				</li>
+																			</ul>
+																		</div>
+																		<!--/.nav-collapse -->
+																	</nav>
+                                                                    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin:0;z-index:1">
+																		<div id="navbar" class="navbar-collapse collapse">
+																			<ul class="nav navbar-nav navbar-nav-a" id="Dmenu_results_a" style="margin:0;background:#eee">
 																			</ul>
 																		</div>
 																		<!--/.nav-collapse -->
@@ -437,6 +451,7 @@ $(document).ready(function(){
                     '</ul>'+
                     '</li>';
                     $('#menu_results').append(addToMenu);
+                    $('#Dmenu_results').append(addToMenu);
                 } else{
                     if (!SubDuplicate[0]) {
                         var content = '<div class="row input_fields_wrap subCatAjax"><div class="col-md-12"><button type="button" class="btn btn-danger remove_field  pull-right" id="removeCat" dataid="'+Category+SubCategory+'" onclick="removes();"><i class="glyphicon glyphicon-trash"></i></button>'+
@@ -444,9 +459,11 @@ $(document).ready(function(){
                                                                 '<input style="max-width:100px;margin-right:5px" type="text" value="'+SubCategory+'" class="form-control  pull-right" id="sub_'+Category+SubCategory+'" readonly=""/>'+
                                                                 '</div>'+
                                                               '</div></div>';
-                    $('#sub_result'+Category).append(content); 
+                    $('#sub_result'+Category).append(content);
+                    $('#Dmenu_results #sub_result'+Category).append(content); 
                     var addToMenus = '<li id="ms_r'+Category+SubCategory+'"><a href="javascript:;">'+SubCategory+'</a></li>';
                     $('#menuAddsub'+Category).append(addToMenus);
+                    $('#Dmenu_results #menuAddsub'+Category).append(addToMenus);
                     } else {
                         alert('This sub is arealy added!');
                     }
@@ -484,9 +501,20 @@ $(document).ready(function(){
                                                                 '</div>'+
                                                                 '<div id="Did_'+mposition+'" name="DCategory" class="form-group" style="margin-right:5px">'+
                                                                 '<input type="text" value="'+mDCategory+'" class="form-control" id="Dsub_'+mposition+mDCategory+'" readonly=""/>'+
-                                                                '</div><button type="button" class="btn btn-danger DremoveMainCat" dataid="'+mposition+'"><i class="glyphicon glyphicon-remove"></i></button>'+
+                                                                '</div><button type="button" class="btn btn-danger DremoveMainCat" dataid="'+mposition+mDCategory+'"><i class="glyphicon glyphicon-remove"></i></button>'+
                                                               '</div>';                                         
                     $("#Dresult").append(Mpost); 
+                    //$("#Dmenu_results").append(Mpost);
+                    var DaddToMenus = '<li id="msrM'+mposition+mDCategory+'"><a href="javascript:;">'+mDCategory+'</a></li>';
+                    if(mposition =='MainBar') {
+                        $('#menu_results').append(DaddToMenus);
+                        $('#DefualtMenu #Dmenu_results').append(DaddToMenus);
+                    } else if (mposition =='SubBar') {
+                        $("#Dmenu_results_a").append(DaddToMenus);
+                        $('#DefualtMenu #Dmenu_results_a').append(DaddToMenus);
+                    }
+                    
+                    
             } else {
                 alert('is alread added!');
             }
@@ -499,22 +527,24 @@ $(document).on('click','.remove_field',function() {
  	$(this).parent('div').parent('div').remove();
     var remove_mSId = $(this).attr('dataid');
     $('#ms_r'+remove_mSId).remove();
+    $('#DefualtMenu #ms_r'+remove_mSId).remove();
 });
 $(document).on('click','.removeMainCat',function() {
     if (confirm("Do you want to delete all in this category!") == true) {
         var removeId = $(this).attr('dataid');
         $('#m_r'+removeId).remove();
+        $('#DefualtMenu #m_r'+removeId).remove();
      	$(this).parent('div').parent('div').parent('div').remove();
     }
 
 });
 $(document).on('click','.DremoveMainCat',function() {
-    if (confirm("Do you want to delete all in this category!") == true) {
         var removeId = $(this).attr('dataid');
         $('#Dm_r'+removeId).remove();
-     	$(this).parent('div').parent('div').parent('div').remove();
-    }
-
+        $('#DefualtMenu #Dm_r'+removeId).remove();
+        $('#MainMenu #msrM'+removeId).remove();
+        $('#DefualtMenu #msrM'+removeId).remove();
+     	$(this).parent('div').remove();
 });
 </script>
 <div class="clear">
