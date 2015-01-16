@@ -1,31 +1,24 @@
 	@include('frontend.partials.header')
 	<div class="header-middle"><!--header-middle-->
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-2">
-						<div class="logo pull-left">
-							<a href="{{Config::get('app.url')}}"><img src="{{Config::get('app.url')}}/frontend/images/home/logo.png" alt="" /></a>
-						</div>
-					</div>
-					<div class="col-sm-5">
-						<div class="shop-menu pull-left">
-							<ul class="nav navbar-nav">
-								<li><a href="#"><li class="fa"><a href="#">
-									<div class="search_box pull-right">
-										<form class="navbar-form navbar-left" role="search">
-										    <div class="form-group">
-										        <input type="text" class="form-control" placeholder="Search">
-										    </div>
-										    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-										</form>
-									</div>
-								</li></a></li>
-							</ul>
-						</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="search_box">
+						<form class="navbar-form" role="search">
+						    <div class="form-group col-sm-12">
+						    	<div class="col-lg-12">
+						    		<button type="submit" class="btn btn-success pull-right">
+						    			<span class="glyphicon glyphicon-search"></span>
+						    		</button>
+						    		<input type="text" class="col-lg-11 pull-left search-box" placeholder="Search">
+						    	</div>
+						    </div>
+						</form>
 					</div>
 				</div>
 			</div>
-		</div><!--/header-middle-->
+		</div>
+	</div><!--/header-middle-->
 	@include('frontend.partials.menu')
 	<section>
 		<div class="container">
