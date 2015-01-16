@@ -64,7 +64,7 @@
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
 								<li class="active">
-									<a href="#personal" data-toggle="tab">Persional Info</a>
+									<a href="javascript:;">Persional Info</a>
 								</li>
 								<li>
 									<a href="javascript:;">Menu</a>
