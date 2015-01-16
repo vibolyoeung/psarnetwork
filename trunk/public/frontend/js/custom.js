@@ -10,4 +10,29 @@ function user_register(cos,vals){
        $("#chooseuser").attr('href', vals);
    }
 }
+function dynamicModal(id){
+    $('#dynamicModal').modal('show');
+    if(id=='loading') {
+       $('#ModalLoading').show(); 
+    } else {
+       $('#ModalLoading').hide();  
+    }
+    
+   	if(is_modal_opened==1) {
+		modalClose();
+	}
 
+    modal_id = id;
+	is_modal_opened = 1;
+	if($('div#'+id).size()==1) {
+		$('div#overrideContent').append($('div#'+id));
+	}
+    $('div#'+id).show();
+}
+function modalClose() {
+    
+    $("#dynamicModal").modal('hide');
+   	$('div#'+modal_id).hide();
+   	modal_id = '';
+	is_modal_opened = 0;
+}
