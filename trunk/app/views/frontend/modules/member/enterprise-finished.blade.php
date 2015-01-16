@@ -75,10 +75,10 @@
 								<li>
 									<a href="javascript:;">Your Page info</a>
 								</li>
-								<li class="active">
+								<li>
 									<a href="javascript:;">Add Connector</a>
 								</li>
-								<li>
+								<li class="active">
 									<a href="javascript:;">Finish</a>
 								</li>
 							</ul>
