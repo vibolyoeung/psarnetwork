@@ -3080,3 +3080,24 @@ box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 #result .row {margin-bottom: 10px;}
 #result .row .form-group,#result .row .btn {margin-right: 5px;}
 #result .subCatAjax {border-bottom:1px solid #eee;padding-bottom:10px}
+fieldset {
+    border: 1px solid #ccc;
+    padding: 10px 10px 0 10px;
+    margin-right: 10px;
+}
+
+fieldset legend {
+    width: inherit;
+    padding: 0 10px 0 10px;
+    margin-bottom:0;
+    border:none;
+}
+/*costomLayout*/
+#costomLayout {}
+#costomLayout .ui-sortable {padding:5px;}
+#costomLayout .ui-sortable li{margin:5px 0;padding:5px 5px 5px 15px;background: #bbb url(https://www.blogger.com/img/widgets/draggable.png) no-repeat 4px 50%;cursor: move;z-index: 1;position: relative;}
+#costomLayout .widget-wrap1{background: #bbb url(https://www.blogger.com/img/widgets/draggable.png) no-repeat 4px 50%;cursor: move;}
+#costomLayout .widget-wrap3 {margin-left: 12px;background: #fff;}
+#costomLayout .editVB {position: absolute; right: 10px; top:6px;z-index: 9999;width:60px;text-align: right;}
+#connectorF {border: 1px solid #ccc;padding:10px;margin-right: 10px;margin-bottom: 10px;}
+#connectorF .img-thumbnail {width:60px;height:60px;float:left;margin-right:10px}
