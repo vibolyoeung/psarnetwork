@@ -1,80 +1,89 @@
 <!--=============Menu==========-->
 	<div class="header-bottom">
-		<div class="container" style="padding:0;">
-			<div class="row visible-lg">
-				<div>
-					<div class="mainmenu pull-left menu-left">
-						<ul class="nav navbar-nav collapse navbar-collapse">
-							<li><a href="index.html" class="active">Hot Promotion</a></li>
-							<li><a href="404.html">News Arrival</a></li>
-							<li><a href="contact-us.html">Secondhand&nbsp;&nbsp;&nbsp;/</a></li>
-							<li><a href="contact-us.html">Buy</a></li>
-							<li><a href="contact-us.html">Sell</a></li>
-							<li><a href="contact-us.html">Monthly Pay</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-12">
-					<img class="imgmenu"
-						src="{{Config::get('app.url')}}/frontend/images/home/right-menu.png" />
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target=".navbar-collapse">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-					</div>
-					<div class="category-tab">
-						<div class="mainmenu">
-							<ul class="nav nav-tabs navbar-nav collapse navbar-collapse">
-								<li><a href="{{Config::get('app.url')}}">Home</a></li>
-								@foreach($maincategories as $categorylist)
-								<li><a href="#{{$categorylist->id}}" data-toggle="tab"><?php //echo $categorylist->{'name_'.Session::get('lang')};?></a></li>
-								@endforeach
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="tab-content">
-				@foreach ($maincategories as $subcategorylist)
-					<nav class="navbar navbar-default tab-pane fade in submenu-bar" role="navigation" id="{{$subcategorylist->id}}">
-				        <!-- Brand and toggle get grouped for better mobile display -->
-				        <div class="container" style="padding:0;">
-				            <div class="navbar-header">
-				                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-{{$subcategorylist->id}}">
-				                    <span class="sr-only">Toggle navigation</span>
-				                    <span class="icon-bar"></span>
-				                    <span class="icon-bar"></span>
-				                    <span class="icon-bar"></span>
-				                </button>
-				            </div>
-				            <!-- Collect the nav links, forms, and other content for toggling -->
-				            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-{{$subcategorylist->id}}">
-				                <ul class="nav navbar-nav">
-					                    <?php
-											$subcategoriesobj = new MCategory();
-											$sub = $subcategoriesobj->getSubCategories($subcategorylist->id);
-											if(count($sub) > 0){
-												foreach ($sub as $row) {
-													echo '<li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href='.URL::to('product/'.$row->id).'>'.$row->{'name_en'}.'</a>';
-													$subcategoriesobj->getSubCategoriesDropdown($row->id);
-												}
-											}
-										?>
-								</ul>
-							</div><!-- /.navbar-collapse-->
-						</div>
-					</nav>
-				@endforeach 
-			</div>
-			<div class="row">
-				<!-- ========Start Breadcrumb here============ -->
-				<session id="breadcrumb"> <!--@yield('breadcrumb')--> </session>
-				<!-- ========End Breadcrumb here============ -->
-			</div>
-		</div>
+		<nav class="navbar navbar-default" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#dropdown-thumbnail-preview">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="dropdown-thumbnail-preview">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown thumb-dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Snippets <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li role="presentation" class="dropdown-header">Simple thumbnail</li>
+            <li>
+                <a href="#">
+                    Preview carousel indicators                                
+                    <div class="thumbnail">
+                        <img class="img-responsive" src="http://krowdly.co/snippets/thumbnails/1.jpg">
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Simple subscribe form                                
+                    <div class="thumbnail">
+                        <img class="img-responsive" src="http://krowdly.co/snippets/thumbnails/2.jpg">
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Flat user profile                             
+                    <div class="thumbnail">
+                        <img class="img-responsive" src="http://krowdly.co/snippets/thumbnails/3.jpg">
+                    </div>
+                </a>
+            </li>
+            <li class="divider"></li>
+            <li role="presentation" class="dropdown-header">Thumbnail with caption</li>
+            <li>
+                <a href="#">
+                    Discount labels                                
+                    <div class="thumbnail">
+                        <img class="img-responsive" src="http://krowdly.co/snippets/thumbnails/4.jpg">
+                        <div class="caption">
+                            <p>You can add any text for describe thumbnail here.</p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 	</div>
 </header>
 	<!--==============Closing header=========-->
