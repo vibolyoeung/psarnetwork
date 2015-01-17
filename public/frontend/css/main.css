@@ -10,11 +10,11 @@ url(http://fonts.googleapis.com/css?family=Open+Sans:400,800,300,600,700);
 @import url(http://fonts.googleapis.com/css?family=Abel);
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family:'Arial';
     position: relative;
     font-weight: 400px;
     height: 100%;
-    font-size:14px;
+    font-size:12px;
 }
 
 ul li {
@@ -988,12 +988,7 @@ ul.sub-menu {
     display: inline-block;
     padding: 10px;
 }
-
-strong.number-display {
-    color: red;
-}
-
-.item button:hover {
+.item button:hover{
     background: #428bca;
 }
 
@@ -1097,7 +1092,7 @@ h2.title:before {
 .category-products .panel-default .panel-heading .panel-title a {
     color: #696763;
     font-family: 'Roboto', sans-serif;
-    font-size: 12px;
+    font-size: 10px;
     text-decoration: none;
 }
 
@@ -1368,13 +1363,8 @@ h2.title {
 .category-tab {
     overflow: hidden;
 }
-
-strong.number-display {
-    color: red;
-}
-
 .category-tab ul {
-    background: #f5f5f5;
+    background-color:#428bca;
     list-style: none outside none;
     margin: 0 0 10px;
     padding: 0;
@@ -1382,10 +1372,7 @@ strong.number-display {
 }
 
 .features_items>.lastest-post ul li a,.col-sm-8 .feature-ad ul li a {
-    color: #696763;
-    text-shadow: 0px 0px #696763;
-    text-transform: none;
-    font-weight: lighter;
+    color:#fff;
 }
 
 .category-tab ul li a {
@@ -2927,14 +2914,13 @@ strong.number-display {
 #slider-carousel .right{
 	right:3%;
 }
-strong {
-    font-weight: lighter;
-    color: #428bca;
-}
 
 @media screen and (max-width: 1400px){
 	#header .container-fluid > .top_promotion{
 		display:none !important;
+	}
+	.top-mg{
+		display:none;
 	}
 }
 .alert strong {
@@ -2980,7 +2966,7 @@ color: inherit;
 }
 .promotion_top_menu li a{
 	color:#428bca;
-	font-size:12px;
+	font-size:10px;
 }
 .top-menu{
 	background-color:#f5f5f5;
@@ -2989,7 +2975,7 @@ color: inherit;
 	padding:10px 5px;
 }
 .promotion_top_menu{
-	margin-top:10px;
+	margin-top:0;
 }
 .pagination>li>a, .pagination>li>span{
 	padding:3px 10px;
@@ -3010,11 +2996,10 @@ color: inherit;
 	display: inline;
 	padding:0px 8px;
 }
-.navbar-default .navbar-nav>li>a{
+ .promotion-list > .top_menu_list>li>a{
 	font-size:12px;
 	color:#ffffff;
 	padding:5px;
-	font-weight: bold;
 }
 .promotion-list li{
 	padding:0 8px;
@@ -3079,7 +3064,23 @@ box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 #PersonalForm #result{max-height:300px;overflow-y:auto;overflow-x:hidden}
 #result .row {margin-bottom: 10px;}
 #result .row .form-group,#result .row .btn {margin-right: 5px;}
+
 #result .subCatAjax {border-bottom:1px solid #eee;padding-bottom:10px}
+.thumb-dropdown .dropdown-menu > li {
+    position: relative;
+}
+.thumb-dropdown .dropdown-menu > li > a .thumbnail {
+    position: absolute; 
+    left: 100%;
+    top: -10px;
+    display: none;    
+    width: 350px;
+    height: auto;
+    margin-left: 5px;
+}
+.thumb-dropdown .dropdown-menu > li > a:hover .thumbnail  {
+    display: block;    
+}
 fieldset {
     border: 1px solid #ccc;
     padding: 10px 10px 0 10px;
@@ -3100,4 +3101,4 @@ fieldset legend {
 #costomLayout .widget-wrap3 {margin-left: 12px;background: #fff;}
 #costomLayout .editVB {position: absolute; right: 10px; top:6px;z-index: 9999;width:60px;text-align: right;}
 #connectorF {border: 1px solid #ccc;padding:10px;margin-right: 10px;margin-bottom: 10px;}
-#connectorF .img-thumbnail {width:60px;height:60px;float:left;margin-right:10px}
+#connectorF .img-thumbnail {width:60px;height:60px;float:left;margin-right:10px}>>>>>>> .r152

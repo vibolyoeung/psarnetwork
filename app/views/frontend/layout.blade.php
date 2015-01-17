@@ -3,6 +3,9 @@
 	<div class="header-middle"><!--header-middle-->
 		<div class="container">
 			<div class="row">
+				<div class="col-lg-2">
+					<a href="#"><img src="{{Config::get('app.url')}}frontend/images/classifieds_logo.png" width="200"/><a>
+				</div>
 				<div class="col-sm-6">
 					<div class="search_box">
 						<form class="navbar-form" role="search">
@@ -11,7 +14,7 @@
 						    		<button type="submit" class="btn btn-success pull-right">
 						    			<span class="glyphicon glyphicon-search"></span>
 						    		</button>
-						    		<input type="text" class="col-lg-11 pull-left search-box" placeholder="Search">
+						    		<input type="text" class="form-group col-lg-11 pull-left search-box" placeholder="Search">
 						    	</div>
 						    </div>
 						</form>
