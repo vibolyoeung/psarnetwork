@@ -3,15 +3,15 @@ $(document).ready(function() {
 	
 	$advPageId = $('#ads-page').val();
 	if($advPageId > 0) {
-		$('#ads-position').parent().show();
+		$('#ads-position').show();
 		listAllPositions($advPageId);
 	}
 	$('#ads-page').change(function() {
 		var id = $(this).val();
 		if (0 == id) {
-			$('#ads-position').parent().hide();
+			$('#ads-position').hide();
 		} else {
-			$('#ads-position').parent().show();
+			$('#ads-position').show();
 			listAllPositions(id);
 		}
 	});
@@ -19,6 +19,26 @@ $(document).ready(function() {
 	$('#provinces').change(function(){
 		var id = $(this).val();
 		listAllDistrictsByProvinceId(id);
+	});
+	
+	$('input:radio[name="membership"]').change(function(){
+		if ($(this).is(':checked') && $(this).val() == '1') {
+			$('#search_by_name').show();
+		} else {
+			$('#search_by_name').hide();
+		}
+	});
+	
+	$('#search_by_name').blur(function getUserName() {
+		var username = $(this).val();
+		$.ajax({
+			url: '/admin/list-user/',
+			data: {name: username},
+			type: "POST",
+			success: function(data) {
+				console.log(data);
+			},
+		});
 	});
 	
 	messageDropdown();

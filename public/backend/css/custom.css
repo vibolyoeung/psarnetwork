@@ -138,6 +138,17 @@ ul > li{
 .table-container tr:first-child{
 	font-weight: bold;
 }
+
+.position,
+.search-by-name {
+	min-width: 50px;
+	min-height: 35px;
+}
+
+#ads-position,
+#search_by_name {
+	display: none;
+}
 .count-num{
 	position:absolute;
 	top:1px;

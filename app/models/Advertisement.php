@@ -59,12 +59,45 @@ class Advertisement extends Eloquent {
 		try {
 			$result = DB::table ( Config::get ( 'constants.TABLE_NAME.ADV_PAGE' ) )->get ();
 			$advPageArr = array ();
-			$advPageArr [0] = 'Choose Advertisement Page';
+			$advPageArr [0] = 'Advertise On Page';
 			foreach ( $result as $advPage ) {
 				$advPageArr [$advPage->id] = $advPage->name;
 			}
 			$response->data = $advPageArr;
 			$response->result = 1;
+		} catch ( \Exception $e ) {
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage ();
+		}
+
+		return $response;
+	}
+
+	public function findLicense() {
+		$response = new stdClass ();
+		try {
+			$result = DB::table ( Config::get ( 'constants.TABLE_NAME.LICENSE' ) )->get ();
+			$licenseType = array ();
+			$licenseType [0] = 'License Type';
+			foreach ( $result as $license ) {
+				$licenseType [$license->id] = $license->name_en ;
+			}
+			$response->data = $licenseType;
+			$response->result = 1;
+		} catch ( \Exception $e ) {
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage ();
+		}
+
+		return $response;
+
+	}
+
+	public function findUserByName($name) {
+		$response = new stdClass ();
+		try {
+			$result = DB::table ( Config::get ( 'constants.TABLE_NAME.USER' ) )->get ()->where('name', $name);
+			$response->data = $result;
 		} catch ( \Exception $e ) {
 			$response->result = 0;
 			$response->errorMsg = $e->getMessage ();
@@ -110,7 +143,7 @@ class Advertisement extends Eloquent {
 		try {
 			$result = DB::table ( $advPostion . ' AS p' )->join ( $advPagePostion . ' AS pp', 'p.id', '=', 'pp.adv_position_id' )->where ( 'pp.adv_page_id', '=', $id )->select ( 'p.id', 'p.name' )->get ();
 			$advPositionArr = array ();
-			$advPositionArr [0] = 'Please choose position';
+			$advPositionArr [0] = 'On Page Position';
 			foreach ( $result as $position ) {
 				$advPositionArr [$position->id] = $position->name;
 			}
