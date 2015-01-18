@@ -31,6 +31,7 @@ return array(
 			'ADV_POSITION'=>'adv_position',
 			'ADV_PAGE_POSITION_MM'=>'adv_page_position_mm',
 			'ADVERTISEMENT'=>'advertisement',
+			'LICENSE'=>'license',
 			'ADVERTISER_PROFILE'=>'advertiser_profile',
 			'CLIENT_TYPE'=>'client_type',
 			'DISTRICT'=>'district',

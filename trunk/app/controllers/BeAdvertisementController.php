@@ -54,11 +54,23 @@ class BeAdvertisementController extends BaseController {
 			}
 		}
 		$advPages = $this->advertisement->findAllAdvertisePages ();
-		return View::make ( 'backend.modules.advertisement.add' )->with ( 'advPage', $advPages->data );
+		$licenses = $this->advertisement->findLicense();
+		return View::make ( 'backend.modules.advertisement.add' )->with ( 'advPage', $advPages->data )->with('licenses', $licenses->data);
 	}
+
 	function listAdvertisemntPositions($id = null) {
 		$adsPostions = $this->advertisement->findPostionByPageAdsId ( $id );
 		return $adsPostions->data;
+	}
+
+	public function listLicense() {
+		$licenses = $this->advertisement->findLicense();
+		return $licenses->data;
+	}
+
+	public function listUserInfo() {
+		$user = $this->advertisement->findUserByName(Input::get('name'));
+		return $user->data;
 	}
 
 	/**
