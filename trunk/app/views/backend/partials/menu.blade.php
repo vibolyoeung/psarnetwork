@@ -12,9 +12,10 @@
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown">General Setting <b class="caret"></b></a>
 			<ul class="dropdown-menu">
-			<li><a href="{{URL::to('admin/pages')}}">Page</a></li>
 			<li><a href="{{URL::to('admin/setting-list')}}">Front-end Setting</a></li>
+			<li><a href="{{URL::to('admin/pages')}}">Page Management</a></li>
 			<li><a href="{{URL::to('admin/setting-list')}}">Back-end Setting</a></li>
+			<li><a href="{{URL::to('admin/markets')}}">Business Style</a></li>
 		</ul>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown">User Management<b class="caret"></b></a>
@@ -23,6 +24,7 @@
 				<li><a href="#">Client User</a></li>
 				<li><a href="{{URL::to('admin/user-group')}}">User Group</a></li>
 				<li><a href="{{URL::to('admin/client-user-type')}}">Client User Type</a></li>
+				<li><a href="#"> User Role Play</a></li>
 			</ul>
 		</li>
 
@@ -38,8 +40,10 @@
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown">Business Management <b class="caret"></b></a>
 			<ul class="dropdown-menu">
-				<li><a href="{{URL::to('admin/advertisements')}}">Advertisement</a></li>
-				<li><a href="{{URL::to('admin/markets')}}">Supermarket</a></li>
+				<li><a href="#">Product Advertisement</a></li>
+				<li><a href="#">Banner Advertisement</a></li>
+				<li><a href="#">Enterprise Page</a></li>
+				<li><a href="#">Free Page</a></li>
 			</ul>
 		</li>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
