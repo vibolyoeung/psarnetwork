@@ -35,15 +35,15 @@
 							<thead>
 								<tr>
 									<th>#</th>
-									<th>Title En</th>
-									<th>Title Zh</th>
+									<th>Title {{HTML::image("backend/images/lang-icons/en.png",'EN',array())}}</th>
+									<th>Title {{HTML::image("backend/images/lang-icons/km.png",'KM',array())}}</th>
 									<th class="class-center">Status</th>
 									<th class="class-center">Action</th>
 								</tr>
 								<tr>
 									<th></th>
 									<th>{{Form::text('filter_name_en',null,array('class' =>'form-control','id'=>'filter_name_en'))}}</th>
-									<th>{{Form::text('filter_name_zh',null,array('class' =>'form-control','id'=>'filter_name_zh'))}}</th>
+									<th>{{Form::text('filter_name_km',null,array('class' =>'form-control','id'=>'filter_name_km'))}}</th>
 									<th>{{Form::select('filter_status',$status,'key', array('class' =>'form-control','id'=>'filter_status'))}}</th>
 									<th class="class-center">{{Form::submit('Filter', array('class' => 'btn btn-success','name'=>'btnFilter','id'=>'btn_filter_category'))}}</th>
 								</tr>

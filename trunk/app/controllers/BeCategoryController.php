@@ -55,7 +55,7 @@ class BeCategoryController extends BaseController {
 			}
 			$rules = array(
 					'name_en' => 'required|unique:m_category',
-					'name_zh'=>'required|unique:m_category'
+					'name_km'=>'required|unique:m_category'
 					);
 
 					$validator = Validator::make(Input::all(), $rules);
@@ -91,7 +91,7 @@ class BeCategoryController extends BaseController {
 			$id = Input::get('id');
 			$rules = array(
 					'name_en' => 'required',
-					'name_zh'=>'required'
+					'name_km'=>'required'
 					);
 
 					$validator = Validator::make(Input::all(), $rules);
@@ -159,7 +159,7 @@ class BeCategoryController extends BaseController {
 
 		$data = array(
 				'name_en'=>trim(Input::get('name_en')),
-				'name_zh'=>trim(Input::get('name_zh')),
+				'name_km'=>trim(Input::get('name_km')),
 				'parent_id'=>trim(Input::get('parent_id'))
 		);
 		return $data;

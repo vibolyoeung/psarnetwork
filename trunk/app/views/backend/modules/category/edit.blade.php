@@ -15,15 +15,23 @@
 				</div>
 				<div class="panel-body">
 					{{Form::open(array('url'=>'admin/edit-category'))}}
-					<div class="form-group"><label>Title En<span class="class-required">*</span></label>
+					<div class="form-group">
+						<label>
+						Title <span class="class-required">*</span>
+						{{HTML::image("backend/images/lang-icons/en.png",'EN',array())}}
+						</label>
 						{{ Form::text('name_en',$categoryById->name_en, array('class' =>
 						'form-control','placeholder'=>'Enter Title'))}} <span
 							class="class-error">{{$errors->first('name_en')}}</span>
 					</div>
-					<div class="form-group"><label>Title Zh<span class="class-required">*</span></label>
-						{{ Form::text('name_zh',$categoryById->name_zh, array('class' =>
+					<div class="form-group">
+						<label>
+							Title<span class="class-required">*</span>
+							{{HTML::image("backend/images/lang-icons/km.png",'KM',array())}}
+						</label>
+						{{ Form::text('name_km',$categoryById->name_km, array('class' =>
 						'form-control','placeholder'=>'Enter Title'))}} <span
-							class="class-error">{{$errors->first('name_zh')}}</span>
+							class="class-error">{{$errors->first('name_km')}}</span>
 					</div>
 					<div class="form-group"><label>Parent<span class="class-required">*</span></label>
 						<select name="parent_id" class="form-control">

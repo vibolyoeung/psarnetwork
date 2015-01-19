@@ -15,15 +15,21 @@
 				</div>
 				<div class="panel-body">
 					{{Form::open(array('url'=>'admin/create-category'))}}
-					<div class="form-group"><label>Title En<span class="class-required">*</span></label>
+					<div class="form-group">
+						<label>Title<span class="class-required">*</span>
+						{{HTML::image("backend/images/lang-icons/en.png",'EN',array())}}
+					</label>
 						{{ Form::text('name_en',null, array('class' =>
 						'form-control','placeholder'=>'Enter Title'))}} <span
 							class="class-error">{{$errors->first('name_en')}}</span>
 					</div>
-					<div class="form-group"><label>Title Zh<span class="class-required">*</span></label>
-						{{ Form::text('name_zh',null, array('class' =>
+					<div class="form-group">
+						<label>Title<span class="class-required">*</span>
+						{{HTML::image("backend/images/lang-icons/km.png",'KM',array())}}
+					</label>
+						{{ Form::text('name_km',null, array('class' =>
 						'form-control','placeholder'=>'Enter Title'))}} <span
-							class="class-error">{{$errors->first('name_zh')}}</span>
+							class="class-error">{{$errors->first('name_km')}}</span>
 					</div>
 					<div class="form-group"><label>Parent<span class="class-required">*</span></label>
 						<select name="parent_id" class="form-control">
