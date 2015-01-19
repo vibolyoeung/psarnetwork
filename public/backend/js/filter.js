@@ -29,14 +29,14 @@ function filterUsers(){
 function filterCategories(){
 	$('#btn_filter_category').click(function filterUser(){
 		var filter_name_en = $('#filter_name_en').val();
-		var filter_name_zh = $('#filter_name_zh').val();
+		var filter_name_km = $('#filter_name_km').val();
 		var filter_status  = $('#filter_status').val();
 		var url = '/admin/filter_category';
 		$.ajax({
 			url: baseUrl() + url,
 			data: {
 				filter_name_en:filter_name_en,
-				filter_name_zh:filter_name_zh,
+				filter_name_km:filter_name_km,
 				filter_status:filter_status
 				},
 			success: function(html) {

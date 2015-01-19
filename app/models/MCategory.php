@@ -14,18 +14,18 @@ class MCategory extends Eloquent{
 	function fetchCategoryTreeList($parent = 0, $treeArray = '',$level=0) {
 		try {
 			$filterNameEn = Input::get('filter_name_en');
-			$filterNameZh = Input::get('filter_name_zh');
+			$filterNameKm = Input::get('filter_name_km');
 			$filterStatus = Input::get('filter_status');
 		if(!is_array($treeArray)){
 				$treeArray = array();
 			}
 			$query = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'));
-			$query->select('id','name_en','name_zh','status','parent_id');
+			$query->select('id','name_en','name_km','status','parent_id');
 			if(!empty($filterNameEn)){
 				$query->where('name_en','LIKE', '%'. $filterNameEn.'%');
 			}
-			if(!empty($filterNameZh)){
-				$query->where('name_zh','LIKE', '%'. $filterNameZh.'%');
+			if(!empty($filterNameKm)){
+				$query->where('name_km','LIKE', '%'. $filterNameKm.'%');
 			}
 			if(!empty($filterStatus)){
 				$query->where('status','=', $filterStatus);
@@ -40,7 +40,7 @@ class MCategory extends Eloquent{
 					$treeArray[] = '<tr>';
 						$treeArray[] = '<td>' . $row->id . '</td>';
 						$treeArray[] = '<td>' . str_repeat ( '&#8212;&nbsp;', $level ) . $row->name_en . "</td>";
-						$treeArray[] = '<td>' . str_repeat ( '&#8212;&nbsp;', $level ) . $row->name_zh . "</td>";
+						$treeArray[] = '<td>' . str_repeat ( '&#8212;&nbsp;', $level ) . $row->name_km . "</td>";
 						$treeArray[] = '<td align="center">' . str_repeat ( '&#8212;&nbsp;', $level ) ."<a href='".URL::to('admin/status-category/'.$row->id.'/'.$row->status)."' class='".$statusImage."'></a></td>";
 						$treeArray[] = '<td align="center"><a href="'.URL::to('admin/edit-category/'.$row->id).'"><i class="icon-edit primary"></i></a> <a href="'.URL::to('admin/delete-category/'.$row->id).'" ><i class="icon-trash danger"></a></i></td>';
 					$treeArray[] = '</tr>';
@@ -68,7 +68,7 @@ class MCategory extends Eloquent{
 				$treeArray = array();
 			}
 			$result = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
-					->select('id','name_en','name_zh','status','parent_id')
+					->select('id','name_en','name_km','status','parent_id')
 					->where('parent_id','=',$parent)
 					->orderBy('id','asc')
 					->get();
@@ -95,7 +95,7 @@ class MCategory extends Eloquent{
 		$response = new stdClass();
 		try {
 			$result = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
-					->select('id','name_en','name_zh','status','parent_id')
+					->select('id','name_en','name_km','status','parent_id')
 					->where('id','=',$id)
 					->orderBy('id','asc')
 					->first();
@@ -226,7 +226,7 @@ class MCategory extends Eloquent{
 	public function getSubCategories($parent){
 		try {
 			$result = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
-			->select('id','name_en','name_zh','status','parent_id')
+			->select('id','name_en','name_km','status','parent_id')
 			->where('parent_id','=',$parent)
 			->where('status','=',1)
 			->orderBy('id','asc')
@@ -240,7 +240,7 @@ class MCategory extends Eloquent{
 	public function getSubCategoriesDropdown($parent){
 		try {
 			$results = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
-			->select('id','name_en','name_zh','status','parent_id')
+			->select('id','name_en','name_km','status','parent_id')
 			->where('parent_id','=',$parent)
 			->where('status','=',1)
 			->orderBy('id','asc')
