@@ -17,8 +17,11 @@ class BePageController extends BaseController {
 		if(!$this->modUserGroup->isAccessPermission('admin/pages')){
 			return Redirect::to('admin/deny-permisson-page');
 		}
-		$page = $this->m_page->orderBy('id','DESC')->paginate(Config::get('constants.BACKEND_PAGINATION_PAGE'));
-		return View::make('backend.modules.page.list')->with('pages',$page);
+		$page = $this->m_page
+				->orderBy('id','DESC')
+				->paginate(Config::get('constants.BACKEND_PAGINATION_PAGE'));
+		return View::make('backend.modules.page.list')
+				->with('pages',$page);
 	}
 
 	/**
@@ -37,15 +40,18 @@ class BePageController extends BaseController {
 			}
 			$rules = array(
 					'title_en' => 'required|unique:m_page',
-					'title_zh'=>'required|unique:m_page'
+					'title_km'=>'required|unique:m_page'
 			);
 			$validator = Validator::make(Input::all(), $rules);
 			if ($validator->passes()) {
 				$data = $this->prepareDataBind('add');
 				$this->m_page->insert($data);
-				return Redirect::to('admin/pages')->with('SECCESS_MESSAGE','Page has been created successfully');
+				return Redirect::to('admin/pages')
+				->with('SECCESS_MESSAGE','Page has been created successfully');
 			}else {
-				return Redirect::to('admin/create-page')->withInput()->withErrors($validator);
+				return Redirect::to('admin/create-page')
+				->withInput()
+				->withErrors($validator);
 			}
 		}
 		return View::make('backend.modules.page.add');
@@ -70,16 +76,19 @@ class BePageController extends BaseController {
 			}
 			$rules = array(
 					'title_en' => 'required',
-					'title_zh'=>'required'
+					'title_km'=>'required'
 			);
 			$validator = Validator::make(Input::all(), $rules);
 			$id = Input::get('id');
 			if ($validator->passes()) {
 				$data = $this->prepareDataBind('edit');
 				$this->m_page->where('id','=',$id)->update($data);
-				return Redirect::to('admin/pages')->with('SECCESS_MESSAGE','Page has been updated successfully');
+				return Redirect::to('admin/pages')
+				->with('SECCESS_MESSAGE','Page has been updated successfully');
 			}else {
-				return Redirect::to('admin/edit-page/'.$id)->withInput()->withErrors($validator);
+				return Redirect::to('admin/edit-page/'.$id)
+				->withInput()
+				->withErrors($validator);
 			}
 		}
 		$pages = $this->m_page->where('id','=',$id)->first();
@@ -100,7 +109,8 @@ class BePageController extends BaseController {
 		}
 		$id = (integer) $id;
 		$this->m_page->where('id','=',$id)->delete();
-		return Redirect::to('admin/pages')->with('SECCESS_MESSAGE','Page has been deleted successfully');
+		return Redirect::to('admin/pages')
+		->with('SECCESS_MESSAGE','Page has been deleted successfully');
 	}
 
 	/**
@@ -120,7 +130,8 @@ class BePageController extends BaseController {
 		$status = (integer) $status;
 		$status = (1==$status) ? 0 : 1;
 		$this->m_page->where('id','=',$id)->update(array('status'=>$status));
-		return Redirect::to('admin/pages')->with('SECCESS_MESSAGE','Status has been changed successfully');
+		return Redirect::to('admin/pages')
+		->with('SECCESS_MESSAGE','Status has been changed successfully');
 	}
 
 	/**
@@ -133,9 +144,9 @@ class BePageController extends BaseController {
 	private function prepareDataBind($param){
 		$data = array(
 			'title_en'=>Input::get('title_en'),
-			'title_zh'=>Input::get('title_zh'),
+			'title_km'=>Input::get('title_km'),
 			'short_desc_en' => Input::get('desc_en'),
-			'short_desc_zh' => Input::get('desc_zh')
+			'short_desc_km' => Input::get('desc_km')
 		);
 		if($param == 'add'){
 			$data['create_at'] = date('Y-m-d');

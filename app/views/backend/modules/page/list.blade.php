@@ -41,8 +41,8 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Page Title En</th>
-                      <th>Page Title Zh</th>
+                      <th>Page Title {{HTML::image("backend/images/lang-icons/en.png",'EN',array())}}</th>
+                      <th>Page Title {{HTML::image("backend/images/lang-icons/km.png",'KM',array())}}</th>
                       <th>Created Date</th>
                       <th>Modified Date</th>
                       <th class="class-center">Status</th>
@@ -55,11 +55,12 @@
                   			<tr>
                   				<td>{{$i}}</td>
                   				<td>{{$page->title_en}}</td>
-                  				<td>{{$page->title_zh}}</td>
+                  				<td>{{$page->title_km}}</td>
                   				<td>{{$page->create_at}}</td>
                   				<td>{{$page->update_at}}</td>
                   				<td align="center">
-                  					<a href='{{URL::to("admin/status-page")}}/{{$page->status}}/{{$page->id}}'>
+                  					<a
+                  						href='{{URL::to("admin/status-page")}}/{{$page->status}}/{{$page->id}}'>
                   						@if($page->status == 1)
                   							<span class="icon-ok success"></span>
                   						@else
@@ -69,8 +70,17 @@
                   					</a>
                   				</td>
                   				<td align="center">
-	                  				<a title="Edit" href="{{URL::to('admin/edit-page')}}/{{$page->id}}" ><i class="icon-edit primary"></i></a>
-	                  				<a title="Delete" href="{{URL::to('admin/delete-page')}}/{{$page->id}}" onclick="return confirm('Are you sure you want to delete this item?');"><i class='icon-trash danger'></i></a>
+	                  				<a
+	                  					title="Edit"
+	                  					href="{{URL::to('admin/edit-page')}}/{{$page->id}}" >
+	                  					<i class="icon-edit primary"></i>
+	                  				</a>
+	                  				<a
+	                  					title="Delete"
+	                  					href="{{URL::to('admin/delete-page')}}/{{$page->id}}"
+	                  					onclick="return confirm('Are you sure you want to delete this item?');">
+	                  					<i class='icon-trash danger'></i>
+	                  				</a>
 	                  			</td>
                   			</tr>
                   			<?php $i++;?>
