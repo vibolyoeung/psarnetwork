@@ -11,10 +11,25 @@
 					@if(Session::has('SESSION_LOGIN_NAME'))
 					{{Session::get('SESSION_LOGIN_NAME')}} @endif <b class="caret"></b></a>
 				<ul class="dropdown-menu">
-					<li><a href="{{URL::to('admin/profile')}}">My Profile</a></li>
-					<li><a href="{{URL::to('admin/change-password')}}">Change Password</a></li>
+					<li>
+						<a
+							href="{{URL::to('admin/profile')}}">
+							My Profile
+						</a>
+					</li>
+					<li>
+						<a
+							href="{{URL::to('admin/change-password')}}">
+							Change Password
+						</a>
+					</li>
 					<li class="divider"></li>
-					<li><a href="{{URL::to('admin/logout')}}">Logout</a></li>
+					<li>
+						<a
+							href="{{URL::to('admin/logout')}}">
+							Logout
+						</a>
+					</li>
 				</ul>
 			</li>
 		</ul>
