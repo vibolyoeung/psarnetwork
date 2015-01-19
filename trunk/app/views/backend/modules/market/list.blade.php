@@ -36,8 +36,8 @@
 		<tr>
 			<th>#</th>
 			<th>Images</th>
-			<th>Market Title En</th>
-			<th>Market Title Zh</th>
+			<th>Market Title {{HTML::image("backend/images/lang-icons/en.png",'EN',array())}}</th>
+			<th>Market Title {{HTML::image("backend/images/lang-icons/km.png",'KM',array())}}</th>
 			<th>Amount Of Stair</th>
 			<th>Business-Market-Type</th>
 			<th class="class-center">Action</th>
@@ -46,7 +46,7 @@
 			<th></th>
 			<th></th>
 			<th>{{Form::text('filter_name_en',null,array('class' =>'form-control','id'=>'filter_name_en'))}}</th>
-			<th>{{Form::text('filter_name_zh',null,array('class' =>'form-control','id'=>'filter_name_zh'))}}</th>
+			<th>{{Form::text('filter_name_km',null,array('class' =>'form-control','id'=>'filter_name_km'))}}</th>
 			<th>{{Form::text('filter_stair',null,array('class' =>'form-control','id'=>'filter_stair'))}}</th>
 			<th>{{Form::select('filter_market_type',$marketType,'key', array('class' =>'form-control','id'=>'filter_market_type'))}}</th>
 			<th class="class-center">{{Form::submit('Filter', array('class' => 'btn btn-success','name'=>'btnFilter','id'=>'btn_filter_market'))}}</th>
@@ -60,7 +60,7 @@
 			<td width="9%">{{HTML::image("upload/market/thumb/".$mk->image,
 			$mk->title_en,array())}}</td>
 			<td>{{$mk->title_en}}</td>
-			<td>{{$mk->title_zh}}</td>
+			<td>{{$mk->title_km}}</td>
 			<td width="10%">{{$mk->amount_stair}}</td>
 			<td width="11%">
 				{{$marketType[$mk->market_type]}}

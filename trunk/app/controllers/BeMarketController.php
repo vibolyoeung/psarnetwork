@@ -61,7 +61,7 @@ class BeMarketController extends BaseController {
 			$rules = array(
 						'file' => 'required|mimes:jpeg,png,bmp,gif|image',
 						'title_en'=>'required',
-						'title_zh'=>'required',
+						'title_km'=>'required',
 						'province_id'=>'required',
 						'district_id'=>'required',
 						'amount_stair'=>'required',
@@ -116,7 +116,7 @@ class BeMarketController extends BaseController {
 			$id = Input::get('hid');
 			$rules = array(
 						'title_en'=>'required',
-						'title_zh'=>'required',
+						'title_km'=>'required',
 						'province_id'=>'required',
 						'district_id'=>'required',
 						'amount_stair'=>'required',
@@ -198,9 +198,9 @@ class BeMarketController extends BaseController {
 
 		$data = array(
 				'title_en'=>trim(Input::get('title_en')),
-				'title_zh'=>trim(Input::get('title_zh')),
+				'title_km'=>trim(Input::get('title_km')),
 				'desc_en'=>trim(Input::get('desc_en')),
-				'desc_zh'=>trim(Input::get('desc_zh')),
+				'desc_km'=>trim(Input::get('desc_km')),
 				'province_id'=>trim(Input::get('province_id')),
 				'district_id'=>trim(Input::get('district_id')),
 				'amount_stair'=>trim(Input::get('amount_stair')),

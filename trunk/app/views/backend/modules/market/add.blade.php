@@ -28,15 +28,21 @@
 				<div class="panel-body">
 					{{Form::open(array('url'=>'admin/create-market','enctype'=>'multipart/form-data','file' => true))}}
 					<div class="form-group col-md-6 col-sm-12 col-xs-6">
-						<label>Title En<span class="class-required">*</span></label>
-						{{Form::text('title_en',null, array('class' => 'form-control','placeholder'=>'Enter Title En'))}}
+						<label>
+						Title<span class="class-required">*</span>
+						{{HTML::image("backend/images/lang-icons/en.png",'EN',array())}}
+						</label>
+						{{Form::text('title_en',null, array('class' => 'form-control','placeholder'=>'Enter Title EN'))}}
 						<span class="class-error">{{$errors->first('title_en')}}</span>
 					</div>
 
 					<div class="form-group col-md-6 col-sm-12 col-xs-6">
-						<label>Title Zh<span class="class-required">*</span></label>
-						{{Form::text('title_zh',null, array('class' => 'form-control','placeholder'=>'Enter Title Zh'))}}
-						<span class="class-error">{{$errors->first('title_zh')}}</span>
+						<label>
+						Title<span class="class-required">*</span>
+						{{HTML::image("backend/images/lang-icons/km.png",'KM',array())}}
+						</label>
+						{{Form::text('title_km',null, array('class' => 'form-control','placeholder'=>'Enter Title KM'))}}
+						<span class="class-error">{{$errors->first('title_km')}}</span>
 					</div>
 
 					<div class="form-group col-md-6 col-sm-6 col-xs-6">
@@ -52,13 +58,13 @@
 					</div>
 
 					<div class="form-group col-md-6 col-sm-6 col-xs-6">
-						<label>Description En</label>
+						<label>Description {{HTML::image("backend/images/lang-icons/en.png",'EN',array())}}</label>
 						{{ Form::textarea('desc_en',null, array('class' => 'form-control ce_editor'))}}
 					</div>
 
 					<div class="form-group col-md-6 col-sm-6 col-xs-6">
-						<label>Description Zh</label>
-						{{ Form::textarea('desc_zh',null, array('class' => 'form-control ce_editor'))}}
+						<label>Description {{HTML::image("backend/images/lang-icons/km.png",'KM',array())}}</label>
+						{{ Form::textarea('desc_km',null, array('class' => 'form-control ce_editor'))}}
 					</div>
 
 					<div class="form-group col-xs-12">

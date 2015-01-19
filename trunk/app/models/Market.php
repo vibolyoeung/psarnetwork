@@ -10,7 +10,7 @@ class Market extends Eloquent{
 	 */
 	public function listingMarkets(){
 		$filterNameEn = Input::get('filter_name_en');
-		$filterNameZh = Input::get('filter_name_zh');
+		$filterNameKm = Input::get('filter_name_km');
 		$filterStair = Input::get('filter_stair');
 		$filterMarketType = Input::get('filter_market_type');
 		$response = new stdClass();
@@ -21,8 +21,8 @@ class Market extends Eloquent{
 			if(!empty($filterNameEn)){
 				$query->where('title_en','LIKE','%'.trim($filterNameEn).'%');
 			}
-			if(!empty($filterNameZh)){
-				$query->where('title_zh','LIKE','%'.trim($filterNameZh).'%');
+			if(!empty($filterNameKm)){
+				$query->where('title_km','LIKE','%'.trim($filterNameKm).'%');
 			}
 			if(!empty($filterStair)){
 				$query->where('amount_stair','=', $filterStair);
