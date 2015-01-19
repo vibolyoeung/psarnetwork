@@ -49,7 +49,7 @@ function filterCategories(){
 function filterMarketType(){
 	$('#btn_filter_market').click(function filterUser(){
 		var filter_name_en = $('#filter_name_en').val();
-		var filter_name_zh = $('#filter_name_zh').val();
+		var filter_name_km = $('#filter_name_km').val();
 		var filter_stair = $('#filter_stair').val();
 		var filter_market_type  = $('#filter_market_type').val();
 		var url = '/admin/filter-market';
@@ -57,7 +57,7 @@ function filterMarketType(){
 			url: baseUrl() + url,
 			data: {
 				filter_name_en:filter_name_en,
-				filter_name_zh:filter_name_zh,
+				filter_name_km:filter_name_km,
 				filter_stair:filter_stair,
 				filter_market_type:filter_market_type
 				},

@@ -5,7 +5,7 @@
 		<td width="9%">{{HTML::image("upload/market/thumb/".$mk->image,
 		$mk->title_en,array())}}</td>
 		<td>{{$mk->title_en}}</td>
-		<td>{{$mk->title_zh}}</td>
+		<td>{{$mk->title_km}}</td>
 		<td width="10%">{{$mk->amount_stair}}</td>
 		<td width="11%">
 			{{$marketType[$mk->market_type]}}
