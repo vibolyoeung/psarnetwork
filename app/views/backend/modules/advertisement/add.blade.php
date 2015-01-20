@@ -13,6 +13,14 @@
 				<i class="icon-calendar"></i>
 				<h3 class="panel-title">Client Information</h3>
 			</div>
+			<script>
+			$(function() {
+				var availableTags = ["{{$clients}}"];
+				$( "#search_by_name" ).autocomplete({
+					source: availableTags
+				});
+			});
+			</script>
 			<div class="panel-body">
 				{{Form::open(array('url'=>'admin/create-advertisement','enctype'=>'multipart/form-data','file' => true))}}
 					<div class="form-group col-md-6 col-sm-12 col-xs-6">
