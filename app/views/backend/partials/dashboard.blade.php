@@ -11,17 +11,17 @@
 <div class="col-md-12">
 	<div class="row well well-radius">
 		<div class="col-md-1 thumbnail">
-			<a href="#">
+			<a href="{{URL::to('admin/front-end-setting')}}">
 				<div class="caption">
-					{{HTML::image('backend/images/icons/setting-front.png','category')}}
+					{{HTML::image('backend/images/icons/setting-front.png','Front End Setting')}}
 					<strong>Front-End Setting</strong>
 				</div>
 			</a>
 		</div>
 		<div class="col-md-1 thumbnail">
-			<a href="{{URL::to('admin/setting-list')}}">
+			<a href="{{URL::to('admin/back-end-setting')}}">
 				<div class="caption">
-					{{HTML::image('backend/images/icons/setting-back.png','category')}}
+					{{HTML::image('backend/images/icons/setting-back.png','Back End Setting')}}
 					<strong>Back-End Setting</strong>
 				</div>
 			</a>
