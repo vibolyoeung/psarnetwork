@@ -83,10 +83,11 @@ Route::group(array('before' => 'auth'), function() {
 	Route::get('/admin/list-district/{id}','BeMarketController@listingDistricts');
 	Route::get('/admin/filter-market','BeMarketController@filterMarket');
 
-	Route::get('/admin/setting-list','BeSettingController@settingAction');
+	Route::get('/admin/back-end-setting','BeSettingController@backEndSettingAction');
 	Route::any('/admin/setting-add-permission-name','BeSettingController@addPermissionAction');
 	Route::get('/admin/setting-delete-permission-name/{id}','BeSettingController@deletePermissionAction');
 	Route::any('/admin/setting-add-slideshow','BeSettingController@addSettingSlideShow');
+	Route::get('/admin/front-end-setting','BeSettingController@frontEndSettingAction');
 
 });
 

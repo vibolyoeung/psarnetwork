@@ -9,11 +9,15 @@ class BeSettingController extends BaseController {
 		$this->modSetting = new Setting();
 	}
 
-	public function settingAction(){
-		if(!$this->modUserGroup->isAccessPermission('admin/setting-list')){
+	public function backEndSettingAction(){
+		if(!$this->modUserGroup->isAccessPermission('admin/back-end-setting')){
 			return Redirect::to('admin/deny-permisson-page');
 		}
-		return View::make('backend.modules.setting.list');
+		return View::make('backend.modules.setting.back_end_setting');
+	}
+
+	public function frontEndSettingAction(){
+		return View::make('backend.modules.setting.front_end_setting');
 	}
 
 	public function addPermissionAction(){
