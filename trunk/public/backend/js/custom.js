@@ -44,6 +44,8 @@ $(document).ready(function() {
 	messageDropdown();
 	alertDropdown();
 	dashboardCollapse();
+	AccessPermissionSelectAll();
+	ModifyPermissionSelectAll();
 });
 
 /**
@@ -125,6 +127,24 @@ function dashboardCollapse(){
 	
 }
 
+function AccessPermissionSelectAll() {
+	$('#accessselectall').click(function(){
+		$(".permission_access").prop("checked", true);
+	});
+	$('#accessdeselectall').click(function(){
+		$(".permission_access").prop("checked", false);
+	});
+	
+}
+
+function ModifyPermissionSelectAll() {
+	$('#modifyselectall').click(function(){
+		$(".modify_access").prop("checked", true);
+	});
+	$('#modifydeselectall').click(function(){
+		$(".modify_access").prop("checked", false);
+	});
+}
 
 
 

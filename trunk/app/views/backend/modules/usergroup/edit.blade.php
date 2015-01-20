@@ -24,16 +24,20 @@
 					?>
 				<div class="col-sm-12">
 					<label>Access Permission</label>
+					<label>
+						<button type='button' id='accessselectall'>Select All</button>
+						<button type='button' id='accessdeselectall'>De-Select All</button>
+					</label>
 					<div class="well well-sm" style="height: 150px; overflow: auto;">
 						@foreach($permissions as $permission)
 						<div class="checkbox">
 							<label>
 							@if(in_array($permission->permission_name,!empty($unserialUserPermission['access'])? $unserialUserPermission['access'] : array()))
-							<input checked type="checkbox" name="permission[access][]" value="{{$permission->permission_name}}">
-								{{$permission->permission_name}}
+							<input class="permission_access" checked type="checkbox" name="permission[access][]" value="{{$permission->permission_name}}">
+								{{$permission->permission_name_alias}}
 							@else
-							<input type="checkbox" name="permission[access][]" value="{{$permission->permission_name}}">
-								{{$permission->permission_name}}
+							<input type="checkbox" class="permission_access" name="permission[access][]" value="{{$permission->permission_name}}">
+								{{$permission->permission_name_alias}}
 							@endif
 							</label>
 						</div>
@@ -43,16 +47,20 @@
 
 				<div class="col-sm-12">
 					<label>Modify Permission</label>
+					<label>
+						<button type='button' id='modifyselectall'>Select All</button>
+						<button type='button' id='modifydeselectall'>De-Select All</button>
+					</label>
 					<div class="well well-sm" style="height: 150px; overflow: auto;">
 						@foreach($permissions as $permission)
 						<div class="checkbox">
 							<label>
 							@if(in_array($permission->permission_name,!empty($unserialUserPermission['access'])? $unserialUserPermission['modify'] : array()))
-							<input checked type="checkbox" name="permission[modify][]" value="{{$permission->permission_name}}">
-								{{$permission->permission_name}}
+							<input class="modify_access"  checked type="checkbox" name="permission[modify][]" value="{{$permission->permission_name}}">
+								{{$permission->permission_name_alias}}
 							@else
-							<input type="checkbox" name="permission[modify][]" value="{{$permission->permission_name}}">
-								{{$permission->permission_name}}
+							<input class="modify_access"  type="checkbox" name="permission[modify][]" value="{{$permission->permission_name}}">
+								{{$permission->permission_name_alias}}
 							@endif
 							</label>
 						</div>
