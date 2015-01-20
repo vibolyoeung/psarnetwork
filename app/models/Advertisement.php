@@ -1,6 +1,7 @@
 <?php
 class Advertisement extends Eloquent {
 	public $timestamps = false;
+	const CLIENT = 4;
 
 	/**
 	 *
@@ -96,7 +97,20 @@ class Advertisement extends Eloquent {
 	public function findUserByName($name) {
 		$response = new stdClass ();
 		try {
-			$result = DB::table ( Config::get ( 'constants.TABLE_NAME.USER' ) )->get ()->where('name', $name);
+			$result = DB::table ( Config::get ( 'constants.TABLE_NAME.USER' ) )->where('name', $name)->get ();
+			$response->data = $result;
+		} catch ( \Exception $e ) {
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage ();
+		}
+
+		return $response;
+	}
+
+	public function findClients() {
+		$response = new stdClass ();
+		try {
+			$result = DB::table ( Config::get ('constants.TABLE_NAME.USER'))->where('user_type', self::CLIENT)->get ();
 			$response->data = $result;
 		} catch ( \Exception $e ) {
 			$response->result = 0;
