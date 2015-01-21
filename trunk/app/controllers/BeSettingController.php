@@ -84,4 +84,97 @@ class BeSettingController extends BaseController {
 		->with('slideshowSetting', $slideshowSetting->data);
 	}
 
+	public function listLocation() {
+		$provinces = $this->modSetting->listProvinces();
+		return View::make('backend.modules.setting.location.list_location')
+		->with('provinces', $provinces);
+	}
+
+	public function listDistrict($province_id){
+		$districts = $this->modSetting->listDistricts($province_id);
+		$provinceByName = $this->modSetting->findProvinceById($province_id);
+		return View::make('backend.modules.setting.location.list_district')
+		->with('districts', $districts)
+		->with('provinceByName',$provinceByName)
+		->with('province_id', $province_id);
+	}
+
+	public function addProvince(){
+
+		if(Input::has('btnSubmit')){
+			$rules = array('province_name' => 'required');
+			$validator = Validator::make(Input::all(), $rules);
+			if ($validator->passes()) {
+				$data = array(
+					'province_name'=>trim(Input::get('province_name'))
+				);
+				DB::table(Config::get('constants.TABLE_NAME.PROVINCE'))
+				->insertGetId($data);
+				return Redirect::to('admin/location-setting');
+			} else {
+				return Redirect::to('admin/province/add')
+				->withInput()
+				->withErrors($validator);
+			}
+		}
+		return View::make('backend.modules.setting.location.add_location');
+	}
+
+	public function editProvince($province_id) {
+		if(Input::has('btnSubmit')){
+			$data = array(
+					'province_name'=>trim(Input::get('province_name'))
+				);
+			DB::table(Config::get('constants.TABLE_NAME.PROVINCE'))
+				->where('province_id', $province_id)
+				->update($data);
+			return Redirect::to('admin/location-setting');
+		}
+		$province = DB::table(Config::get('constants.TABLE_NAME.PROVINCE'))
+		->where('province_id', $province_id)
+		->first();
+		return View::make('backend.modules.setting.location.edit_location')
+		->with('province', $province);
+	}
+
+	public function addDistrict($province_id) {
+		if(Input::has('btnSubmit')){
+			$rules = array('dis_name' => 'required');
+			$validator = Validator::make(Input::all(), $rules);
+			if ($validator->passes()) {
+				$data = array(
+					'dis_name'=>trim(Input::get('dis_name')),
+					'province_id' => $province_id
+				);
+				DB::table(Config::get('constants.TABLE_NAME.DISTRICT'))
+				->insertGetId($data);
+				return Redirect::to('admin/district-setting/'.$province_id)
+				->with('province_id', $province_id);
+			} else {
+				return Redirect::to('admin/district/add/'.$province_id)
+				->with('province_id', $province_id)
+				->withInput()
+				->withErrors($validator);
+			}
+		}
+		return View::make('backend.modules.setting.location.add_district')
+		->with('province_id', $province_id);
+	}
+
+	public function editDistrict($district_id, $province_id) {
+		if(Input::has('btnSubmit')){
+			$data = array(
+					'dis_name'=>trim(Input::get('dis_name'))
+				);
+			DB::table(Config::get('constants.TABLE_NAME.DISTRICT'))
+				->where('id', $district_id)
+				->update($data);
+			return Redirect::to('admin/district-setting/'.$province_id);
+		}
+		$district = DB::table(Config::get('constants.TABLE_NAME.DISTRICT'))
+		->where('id', $district_id)
+		->first();
+		return View::make('backend.modules.setting.location.edit_district')
+		->with('district', $district);
+	}
 }

@@ -83,13 +83,13 @@ class Setting extends Eloquent{
 		}
 		return  $response;
 	}
-	
-	
+
+
 	/**
-	 * 
-	 * 
+	 *
+	 *
 	 */
-	
+
 	public function getSlidshowNumber(){
 		$response = new stdClass();
 		try {
@@ -105,7 +105,7 @@ class Setting extends Eloquent{
 		}
 		return  $response;
 	}
-	
+
 
 	/**
 	 *
@@ -127,5 +127,30 @@ class Setting extends Eloquent{
 		}
 
 		return $response;
+	}
+
+	public function listProvinces(){
+		$result = DB::table(Config::get('constants.TABLE_NAME.PROVINCE'))
+			->select('*')
+			->orderBy('province_id','desc')
+			->get();
+		return $result;
+	}
+
+	public function listDistricts($province_id){
+		$result = DB::table(Config::get('constants.TABLE_NAME.DISTRICT'))
+			->select('*')
+			->where('province_id','=',$province_id)
+			->orderBy('id','desc')
+			->get();
+		return $result;
+	}
+	public function findProvinceById($province_id){
+		$result = DB::table(Config::get('constants.TABLE_NAME.PROVINCE'))
+			->select('*')
+			->where('province_id','=',$province_id)
+			->orderBy('province_id','desc')
+			->first();
+		return $result;
 	}
 }
