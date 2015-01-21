@@ -157,3 +157,7 @@ ul > li{
 .panel-position{
 	position:relative;
 }
+
+.ui-autocomplete.ui-widget-content {
+	background: #edf5fa;
+}
