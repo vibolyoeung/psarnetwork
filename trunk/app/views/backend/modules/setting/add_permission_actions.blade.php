@@ -2,7 +2,7 @@
 @section('breadcrumb')
 	<ul class="breadcrumb">
 		<li><a href="{{URL::to('admin/dashboard')}}">Dashboard</a></li>
-		<li><a href="{{URL::to('admin/setting-list')}}">Setting</a></li>
+		<li><a href="{{URL::to('admin/back-end-setting')}}">Back End Setting</a></li>
 		<li>Add Permission Name</li>
 	</ul>
 @endsection
