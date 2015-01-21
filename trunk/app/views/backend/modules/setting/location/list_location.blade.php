@@ -25,9 +25,10 @@
 							<th>View District</th>
 							<th>Action</th>
 						</tr>
+						<?php $i=1;?>
 						<?php foreach ($provinces as $province):?>
 						<tr>
-							<td>{{$province->province_id}}</td>
+							<td>{{$i}}</td>
 							<td>{{$province->province_name}}</td>
 							<td>
 								<a href="{{URL::to('admin/district-setting')}}/{{$province->province_id}}">View Districts</a>
@@ -38,6 +39,7 @@
 								</a>
 							</td>
 						</tr>
+						<?php $i++;?>
 						<?php endforeach;?>
 					</table>
 				</div>
