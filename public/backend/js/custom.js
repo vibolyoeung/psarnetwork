@@ -21,24 +21,27 @@ $(document).ready(function() {
 		listAllDistrictsByProvinceId(id);
 	});
 	
-	$('input:radio[name="membership"]').change(function(){
+	// show search by name is checked
+	if($('input:radio[name="membership"]:checked').val() == '1') {
+		$('#search_by_name').show();
+	}
+	
+	$('input:radio[name="membership"]').on('change', function(){
 		if ($(this).is(':checked') && $(this).val() == '1') {
 			$('#search_by_name').show();
+			var username = $('#search_by_name').val();
+			if (username) {
+				getClientByName(username);
+			}
 		} else {
 			$('#search_by_name').hide();
+			clearUserInfo();
 		}
 	});
 	
-	$('#search_by_name').blur(function getUserName() {
+	$('#search_by_name').on('blur', function getUserName() {
 		var username = $(this).val();
-		$.ajax({
-			url: '/admin/list-user/',
-			data: {name: username},
-			type: "POST",
-			success: function(data) {
-				console.log(data);
-			},
-		});
+		getClientByName(username);
 	});
 	
 	messageDropdown();
@@ -47,6 +50,31 @@ $(document).ready(function() {
 	AccessPermissionSelectAll();
 	ModifyPermissionSelectAll();
 });
+
+function getClientByName(username) {
+	$.ajax({
+		url: '/admin/list-user/',
+		data: {name: username},
+		type: "GET",
+		success: function(data) {
+			if (typeof data[0] === "undefined") {
+				clearUserInfo();
+			} else {
+				$('#username').val(data[0].name);
+				$('#email').val(data[0].email);
+				$('#address').val(data[0].address);
+				$('#phone_number').val(data[0].telephone);
+			}
+		},
+	});
+}
+
+function clearUserInfo() {
+	$('#username').val('');
+	$('#email').val('');
+	$('#address').val('');
+	$('#phone_number').val('');
+}
 
 /**
  * isClientUser: this function using for showing user type
