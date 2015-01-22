@@ -40,11 +40,11 @@
 						<tr>
 							<th width="300">
 								<i class="icon-plus btn btn-xs btn-info"></i>
-								<a href="#">Product Condition</a>
+								<a href="{{URL::to('admin/product-condition')}}">Product Condition</a>
 							</th>
 							<th width="300">
 								<i class="icon-plus btn btn-xs btn-info"></i>
-								<a href="#">Product Transfer Type</a>
+								<a href="{{URL::to('admin/product-transfer-type')}}">Product Transfer Type</a>
 							</th>
 							<th width="300">
 								<i class="icon-plus btn btn-xs btn-info"></i> <a href="#">Business Page Condition</a>
