@@ -42,7 +42,7 @@ return array(
 			'MARKET'=>'market',
 			'PRODUCT'=>'product',
 			'PRODUCT_IN_STORE'=>'product_in_store',
-			'PRODUCT_SERVICE_TYPE'=>'product_service_type',
+			'PRODUCT_CONDITION'=>'product_condiction',
 			'PROVINCE'=>'province',
 			'S_CATEGORY'=>'s_category',
 			'S_PAGE'=>'s_page',
@@ -52,6 +52,7 @@ return array(
 			'TEMPLATE'=>'template',
 			'USER'=>'user',
 			'USER_TYPE'=>'user_type',
-			'PERMISSION'=>'permission'
+			'PERMISSION'=>'permission',
+			'PRODUCT_TRANSFER_TYPE'=>'product_transfer_type'
 		)
 );
