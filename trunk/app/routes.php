@@ -94,6 +94,10 @@ Route::group(array('before' => 'auth'), function() {
 	Route::any('/admin/province/edit/{province_id}','BeSettingController@editProvince');
 	Route::any('/admin/district/edit/{district_id}/{province_id}','BeSettingController@editDistrict');
 	Route::any('/admin/district/add/{province_id}','BeSettingController@addDistrict');
+	Route::any('/admin/product-condition','BeSettingController@loadProductConditionList');
+	Route::any('/admin/product-condition/edit/{id}','BeSettingController@loadProductConditionEdit');
+	Route::any('/admin/product-transfer-type/','BeSettingController@loadProductTransferType');
+	Route::any('/admin/product-transfer-type/edit/{id}','BeSettingController@loadProductTransferTypeEdit');
 });
 
 //=============Routes for front end page==============

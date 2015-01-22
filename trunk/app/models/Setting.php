@@ -145,11 +145,37 @@ class Setting extends Eloquent{
 			->get();
 		return $result;
 	}
+
 	public function findProvinceById($province_id){
 		$result = DB::table(Config::get('constants.TABLE_NAME.PROVINCE'))
 			->select('*')
 			->where('province_id','=',$province_id)
 			->orderBy('province_id','desc')
+			->first();
+		return $result;
+	}
+
+	public function findProductConditions() {
+		$result = DB::table(Config::get('constants.TABLE_NAME.PRODUCT_CONDITION'))
+			->select('*')
+			->get();
+		return $result;
+	}
+	public function findProductConditionById() {
+		$result = DB::table(Config::get('constants.TABLE_NAME.PRODUCT_CONDITION'))
+			->select('*')
+			->first();
+		return $result;
+	}
+	public function findProductTransferTypes() {
+		$result = DB::table(Config::get('constants.TABLE_NAME.PRODUCT_TRANSFER_TYPE'))
+			->select('*')
+			->get();
+		return $result;
+	}
+	public function findProductTransferTypeById() {
+		$result = DB::table(Config::get('constants.TABLE_NAME.PRODUCT_TRANSFER_TYPE'))
+			->select('*')
 			->first();
 		return $result;
 	}

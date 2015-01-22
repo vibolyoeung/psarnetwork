@@ -177,4 +177,46 @@ class BeSettingController extends BaseController {
 		return View::make('backend.modules.setting.location.edit_district')
 		->with('district', $district);
 	}
+
+	public function loadProductConditionList() {
+		$productCondition = $this->modSetting->findProductConditions();
+		return View::make('backend.modules.setting.productcondition.list_product_condition')
+		->with('product_condition', $productCondition);
+	}
+
+	public function loadProductConditionEdit($id=null) {
+		if(Input::has('btnSubmit')){
+			$data = array(
+					'name'=>trim(Input::get('product_condition'))
+				);
+			DB::table(Config::get('constants.TABLE_NAME.PRODUCT_CONDITION'))
+				->where('id', $id)
+				->update($data);
+			return Redirect::to('admin/product-condition');
+		}
+		$productConditionById = $this->modSetting->findProductConditionById();
+		return View::make('backend.modules.setting.productcondition.edit_product_condition')
+		->with('productConditionById', $productConditionById);
+	}
+
+	public function loadProductTransferType() {
+		$productTransferType = $this->modSetting->findProductTransferTypes();
+		return View::make('backend.modules.setting.producttransfertype.list_product_transfer_type')
+		->with('productTransferType', $productTransferType);
+	}
+
+	public function loadProductTransferTypeEdit($id = null) {
+		if(Input::has('btnSubmit')){
+			$data = array(
+					'name'=>trim(Input::get('product_transfer_type'))
+				);
+			DB::table(Config::get('constants.TABLE_NAME.PRODUCT_TRANSFER_TYPE'))
+				->where('ptt_id', $id)
+				->update($data);
+			return Redirect::to('admin/product-transfer-type');
+		}
+		$productTransferTypeById = $this->modSetting->findProductTransferTypeById();
+		return View::make('backend.modules.setting.producttransfertype.edit_product_transfer_type')
+		->with('productTransferTypeById', $productTransferTypeById);
+	}
 }
