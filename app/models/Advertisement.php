@@ -55,6 +55,51 @@ class Advertisement extends Eloquent {
 
 		return $response;
 	}
+
+	public function findAllAdvertiseCategoryPages() {
+		$response = new stdClass ();
+		try {
+			$result = DB::table ( Config::get ( 'constants.TABLE_NAME.ADV_CAT_PAGE' ) )->get ();
+			$advPageArr = array ();
+			$advPageArr [0] = 'Category Page';
+			foreach ( $result as $advPage ) {
+				$advPageArr [$advPage->id] = $advPage->name;
+			}
+			$response->data = $advPageArr;
+			$response->result = 1;
+		} catch ( \Exception $e ) {
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage ();
+		}
+
+		return $response;
+	}
+
+	public function findAdvPageByCatPagePositionId($id) {
+		$response = new stdClass ();
+
+		$advPage = Config::get ( 'constants.TABLE_NAME.ADV_PAGE' );
+		$advCatPagePostion = Config::get ( 'constants.TABLE_NAME.ADV_CAT_PAGE_POSITION_MM' );
+		try {
+			$result = DB::table ( $advCatPagePostion . ' AS ac' )
+						->join ( $advPage . ' AS p', 'p.id', '=', 'ac.adv_page_id' )
+						->where ( 'ac.cat_adv_position_id', '=', $id )
+						->select ( 'p.id', 'p.name' )
+						->get ();
+			$advPageArr = array ();
+			$advPageArr [0] = 'On Page';
+			foreach ( $result as $advPage ) {
+				$advPageArr [$advPage->id] = $advPage->name;
+			}
+			$response->data = $advPageArr;
+			$response->result = 1;
+		} catch ( \Exception $e ) {
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage ();
+		}
+		return $response;
+	}
+
 	public function findAllAdvertisePages() {
 		$response = new stdClass ();
 		try {
