@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	$('.datepicker' ).datepicker({ dateFormat: 'dd/mm/yy' });
 	
+	// call list position
 	$advPageId = $('#ads-page').val();
 	if($advPageId > 0) {
 		$('#ads-position').show();
@@ -13,6 +14,22 @@ $(document).ready(function() {
 		} else {
 			$('#ads-position').show();
 			listAllPositions(id);
+		}
+	});
+	
+	// call list advertisemnt pages
+	$advCatPageId = $('#ads-cat-page').val();
+	if($advCatPageId > 0) {
+		$('#ads-page').show();
+		listAdvPage($advCatPageId);
+	}
+	$('#ads-cat-page').change(function() {
+		var id = $(this).val();
+		if (0 == id) {
+			$('#ads-page').hide();
+		} else {
+			$('#ads-page').show();
+			listAdvPage(id);
 		}
 	});
 	
@@ -102,6 +119,20 @@ function listAllPositions(id) {
 		},
 	});
 }
+
+function listAdvPage(id) {
+	$.ajax({
+		url: '/admin/list-ads-pages/' + id,
+		success: function(data) {
+			var option = '';
+			$.each(data, function(id, name) {
+				option += '<option value="' + id + '">' + name + '</option>';
+			});
+			$('#ads-page').html(option);
+		},
+	});
+}
+
 
 function listAllDistrictsByProvinceId(id) {
 	$.ajax({

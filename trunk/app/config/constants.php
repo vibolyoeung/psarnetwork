@@ -28,6 +28,8 @@ return array(
 	'TABLE_NAME'=>array(
 			'ACCOUNT_TYPE'=>'account_type',
 			'ADV_PAGE'=>'adv_page',
+			'ADV_CAT_PAGE'=>'category_adv_position',
+			'ADV_CAT_PAGE_POSITION_MM'=>'cat_page_position_mm',
 			'ADV_POSITION'=>'adv_position',
 			'ADV_PAGE_POSITION_MM'=>'adv_page_position_mm',
 			'ADVERTISEMENT'=>'advertisement',

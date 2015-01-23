@@ -53,19 +53,19 @@ class BeAdvertisementController extends BaseController {
 				return Redirect::to ( 'admin/create-advertisement' )->withInput ()->withErrors ( $validator );
 			}
 		}
+
+		$advCatPages = $this->advertisement->findAllAdvertiseCategoryPages();
 		$advPages = $this->advertisement->findAllAdvertisePages ();
 		$licenses = $this->advertisement->findLicense();
 
 		$clients = $this->extractClients();
 
 		return View::make ( 'backend.modules.advertisement.add' )
-			->with (
-				'advPage', $advPages->data
-				)
-			->with(
-				'licenses', $licenses->data
-				)
+			->with ('advPage', $advPages->data)
+			->with('licenses', $licenses->data)
+			->with('advCatPages', $advCatPages->data)
 			->with('clients', $clients);
+
 	}
 
 	protected function extractClients() {
@@ -82,6 +82,11 @@ class BeAdvertisementController extends BaseController {
 	function listAdvertisemntPositions($id = null) {
 		$adsPostions = $this->advertisement->findPostionByPageAdsId ( $id );
 		return $adsPostions->data;
+	}
+
+	function listAdvertisemntPage($id = null) {
+		$advPages = $this->advertisement->findAdvPageByCatPagePositionId ( $id );
+		return $advPages->data;
 	}
 
 	public function listLicense() {
