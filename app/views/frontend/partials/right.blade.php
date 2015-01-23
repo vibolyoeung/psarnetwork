@@ -1,5 +1,5 @@
 <!-- ========Right side========= -->
-<div class="col-sm-1">
+<div class="col-sm-1" style="padding:0;">
 		<img src="{{Config::get('app.url')}}/frontend/images/v9betleft.gif" />
 		<img src="{{Config::get('app.url')}}/frontend/images/v9betleft.gif" />
 		<img src="{{Config::get('app.url')}}/frontend/images/v9betleft.gif" />

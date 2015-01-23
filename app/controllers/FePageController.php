@@ -17,7 +17,8 @@ class FePageController extends BaseController {
 		$listCategories = self::getCategoriesHomePage();
 		return View::make('frontend.partials.home')
 						->with('slideshows', $listSlideshows->result)
-						->with('maincategories', $listCategories->result);
+						->with('maincategories', $listCategories->result)
+						->with('Provinces', $this->mod_setting->listProvinces());
 	}
 	
 	public function getSlideshowToHomePage($limit){

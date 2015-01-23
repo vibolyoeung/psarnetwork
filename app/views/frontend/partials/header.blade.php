@@ -125,8 +125,11 @@
                 </div>
             </div><!-- ============End header top here============== -->
             <div class="container-fluid top-menu">
-            	<div class="col-lg-4 top_promotion">
-					<ul class="promotion_top_menu pull-left">
+            	<div class="col-lg-5 top_promotion">
+            		<div class="col-lg-2">
+						<a href="#"><img src="{{Config::get('app.url')}}frontend/images/classifieds_logo.png" width="200"/><a>
+					</div>
+					<ul class="promotion_top_menu pull-right">
 						<li><a href="#">Hot Promotion</a></li>
 		                <li><a href="#">New Arrival</a></li>
 		                <li><a href="#">Second Hand</a></li>
@@ -136,10 +139,10 @@
 				    </ul>
 				</div>
 				<div class="col-lg-2 top-mg pull-right" >
-					<a href="" class="btn btn-default"><span style="color:red;">10</span> Top Posts</a>
-	            	<a href="" class="btn btn-default"><span style="color:red;">5</span> Notifications</a>
+					<a href="" class="btn btn-default top-post"><span style="color:red;">10</span> Top Posts</a>
+	            	<a href="" class="btn btn-default new-notification"><span style="color:red;">5</span> Notifications</a>
 	            </div>
-				<div class="col-lg-6 navbar navbar-default topmenu-container" role="navigation">
+				<div class="col-lg-5 navbar navbar-default topmenu-container" role="navigation">
 				    <div class="navbar-header">
 				            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 				                <span class="sr-only">Toggle navigation</span>
