@@ -54,7 +54,9 @@ strong.current-language {
     background: transparent;
     color: saddlebrown;
 }
-
+.nav-tabs>li{
+	padding:15px 8px;
+}
 .nav-tabs>li>a:focus {
     background: transparent;
 }
@@ -91,10 +93,13 @@ a#scrollUp {
     bottom: 0px;
     right: 10px;
     padding: 5px 10px;
-    background: #428bca;
+    background: #285EA0;
     color: #FFF;
     -webkit-animation: bounce 2s ease infinite;
     animation: bounce 2s ease infinite;
+}
+.new-notification,.top-post{
+	border:1px solid #E46C0A;
 }
 
 a#scrollUp i {
@@ -105,7 +110,7 @@ a#scrollUp i {
 *******Header CSS******
 **************************/
 .header_top {
-    background: none repeat scroll 0 0 #428bca;
+    background: none repeat scroll 0 0 #285EA0;
     position: relative;
     line-height: 20px;
 }
@@ -269,6 +274,10 @@ a#scrollUp i {
 }
 .menu-fixed li.search.open:before {
     content: "\f00d";
+}
+.search-form {
+	overflow: hidden;
+	margin: 0;
 }
 @media (min-width: 990px){
 	/****************************
@@ -475,7 +484,7 @@ a#scrollUp i {
     font-size: 12px
 }
 
-.header-bottom .category-tab ul {
+.header-bottom .category-tab > div.title-bar > ul {
     margin: 0;
     background: #428bca;
     border-top:1px solid #ffffff;
@@ -559,7 +568,7 @@ a#scrollUp i {
     left: 26%;
 }
 input.search-box{
-	border:1px solid #ddd;
+	border:1px solid #F79646;
 	border-radius:4px;
 }
 /*  Dropdown menu*/
@@ -1015,14 +1024,6 @@ ul.sub-menu {
 .right {
     right: 0;
 }
-
-.img-responsive {
-    max-height: 190px;
-    width: 100%;
-    height: 100%;
-}
-
-
 .pricing {
     max-height: 90px;
 }
@@ -1047,7 +1048,7 @@ ul.sub-menu {
 .nav>li>a {
     position: relative;
     display: block;
-    padding: 10px 5px;
+    padding:5px;
 }
 
 .left-sidebar h2:before {
@@ -1084,7 +1085,6 @@ h2.title:before {
 
 .category-products .panel-default .panel-heading {
     background-color: #FFFFFF;
-    border: 0 none;
     color: #FFFFFF;
     padding: 5px 10px;
 }
@@ -1363,26 +1363,21 @@ h2.title {
 .category-tab {
     overflow: hidden;
 }
-.category-tab ul {
-    background-color:#428bca;
+.category-tab ul.nav{
+    border-bottom:2px solid #E46C0A;
     list-style: none outside none;
     margin: 0 0 10px;
     padding: 0;
     width: 100%;
 }
-
-.features_items>.lastest-post ul li a,.col-sm-8 .feature-ad ul li a {
-    color:#fff;
-}
-
-.category-tab ul li a {
+.category-tab > ul  > li{
     border: 0 none;
     border-radius: 0;
-    color: #ffffff;
     display: block;
-    font-weight: bold;
     font-family: 'Roboto', sans-serif;
-    text-transform: uppercase;
+}
+.number-display{
+	color:red;
 }
 
 /*.category-tab ul  li  a:hover{24
@@ -1402,6 +1397,10 @@ h2.title {
   margin-right:0;
   margin-left:0;
 }*/
+.lastest-post > ul > li{
+	padding:5px;
+	color:#696763;
+}
 .nav-tabs  li  a {
     border: 1px solid rgba(0, 0, 0, 0);
     border-radius: 4px 4px 0 0;
@@ -1423,7 +1422,7 @@ h2.title {
 }
 
 .recommended-item-control i {
-    background: none repeat scroll 0 0 #428bca;
+    background: none repeat scroll 0 0 #285EA0;
     color: #FFFFFF;
     font-size: 20px;
     padding: 4px 10px;
@@ -1461,36 +1460,6 @@ h2.title {
     width: 100%;
 }
 
-.pagination {
-    display: inline-block;
-    margin-bottom: 25px;
-    margin-top: 0;
-    padding-left: 15px;
-}
-
-.pagination  li:first-child  a,.pagination  li:first-child  span {
-	border-bottom-left-radius: 8px;
-	border-top-left-radius: 8px;
-	margin-left: 0;
-}
-.pagination{
-	padding:0;
-	margin:0;
-}
-.pagination  li:last-child  a,.pagination  li:last-child  span {
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
-}
-
-.pagination  .active  a,.pagination  .active  span,.pagination  .active  a:hover,.pagination  .active  span:hover,.pagination  .active  a:focus,.pagination  .active  span:focus
-{
-    /*background-color: #428bca;*/
-    border-color: #428bca;
-    /*color: #FFFFFF;*/
-    cursor: default;
-    z-index: 2;
-}
-
 .nav-tabs>li.active>a,.nav-tabs>li.active>a:hover,.nav-tabs>li.active>a:focus
 {
     background-color:none;
@@ -1516,11 +1485,19 @@ h2.title {
 .tab-content .navbar{min-height:0}
 .tab-content .navbar-nav>li>a{padding-top:9px;padding-bottom:8px;}
 
-.pagination  li  a:hover {
-    background: #FE980F;
-    color: #fff;
+.popular-links{
+	background-color:#285EA0;
+	color:#ffffff;
 }
-
+.popular-links > .panel-heading:hover{
+	text-decoration:underline;
+	background-color:#ddd;
+}
+.popular-links > .panel-heading{
+	border:1px solid #ddd;
+	border-radius:0;
+	margin:5px 0;
+}
 /*************************
 *******Product Details CSS******
 **************************/
@@ -2493,10 +2470,6 @@ h2.title {
     margin-top: 17px;
 }
 
-.pagination-area {
-    margin-bottom: 45px;
-    margin-top: 45px
-}
 /*************************
 *******Blog Single CSS******
 **************************/
@@ -2758,9 +2731,11 @@ h2.title {
     background: transparent;
     border: 1px solid #F7F7F0
 }
-
+.commnets{
+	margin-bottom: 30px;
+}
 .btn.btn-primary {
-    background: #FE980F;
+    background:#E46C0A;
     border: 0 none;
     border-radius: 0;
     margin-top: 16px;
@@ -2977,24 +2952,13 @@ color: inherit;
 .promotion_top_menu{
 	margin-top:0;
 }
-.pagination>li>a, .pagination>li>span{
-	padding:3px 10px;
-	border-radius:8px;
-}
-.pagination-row{
-	position: absolute;
-	bottom: 0;
-}
+
 .product-image-wrapper{
 	margin-bottom: 10px;
 }
-.pagination>li:first-child>a, .pagination>li:first-child>span,.pagination li:last-child a, .pagination li:last-child span{
-	border-bottom-right-radius:8px;
-	border-top-right-radius:8px;
-}
 .promotion_top_menu > li{
 	display: inline;
-	padding:0px 8px;
+	padding:0px 4px;
 }
  .promotion-list > .top_menu_list>li>a{
 	font-size:12px;
@@ -3002,14 +2966,14 @@ color: inherit;
 	padding:5px;
 }
 .promotion-list li{
-	padding:0 8px;
+	padding:0 7px;
 }
 .top-mg > a{
 	font-size:10px;
 }
 
 .topmenu-container{
-	background-color:#428bca;
+	background-color:#285EA0;
 }
 .promotion_top_menu{padding-top:4px;}
 
@@ -3101,4 +3065,8 @@ fieldset legend {
 #costomLayout .widget-wrap3 {margin-left: 12px;background: #fff;}
 #costomLayout .editVB {position: absolute; right: 10px; top:6px;z-index: 9999;width:60px;text-align: right;}
 #connectorF {border: 1px solid #ccc;padding:10px;margin-right: 10px;margin-bottom: 10px;}
-#connectorF .img-thumbnail {width:60px;height:60px;float:left;margin-right:10px}>>>>>>> .r152
+#connectorF .img-thumbnail {width:60px;height:60px;float:left;margin-right:10px}
+
+.product-list > .product-inner{
+	border:0px solid #F7F7F5;
+}

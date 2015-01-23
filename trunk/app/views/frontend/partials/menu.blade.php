@@ -1,6 +1,6 @@
 <!--=============Menu==========-->
-	<div class="header-bottom">
-		<nav class="navbar navbar-default" role="navigation">
+<div class="header-bottom" >
+<nav class="navbar navbar-default" role="navigation" style="border:1px solid #F79646;padding:0;">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -10,12 +10,28 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="dropdown-thumbnail-preview">
-      <ul class="nav navbar-nav">
+    	<ul class="nav navbar-nav">
+    		<li><a href="#">Home</a></li>
+    		@foreach ($maincategories as $subcategorylist)
+	    	<?php
+				$subcategoriesobj = new MCategory();
+				//var_dump($subcategoriesobj);
+				$sub = $subcategoriesobj->getSubCategories($subcategorylist->id);
+				if(count($sub) > 0){
+					foreach ($sub as $row) {
+						echo '<li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href='.URL::to('product/'.$row->id).'>'.$row->{'name_en'}.'</a>';
+						$subcategoriesobj->getSubCategoriesDropdown($row->id);
+					}
+				}
+			?>
+			@endforeach 
+		</ul>
+		
+      <!--<ul class="nav navbar-nav">
         <li class="active"><a href="#">Link</a></li>
         <li><a href="#">Link</a></li>
         <li class="dropdown thumb-dropdown">
@@ -62,12 +78,6 @@
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">Link</a></li>
         <li class="dropdown">
@@ -80,7 +90,7 @@
             <li><a href="#">Separated link</a></li>
           </ul>
         </li>
-      </ul>
+      </ul>-->
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
