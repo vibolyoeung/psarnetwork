@@ -20,8 +20,8 @@
 
 		<div class="form-group col-md-6 col-sm-12 col-xs-6">
 			{{Form::text('title_zh',null, array('class' =>
-			'form-control','placeholder'=>'Chiness Title*'))}}
-			<span class="class-error">{{$errors->first('title_zh')}}</span>
+			'form-control','placeholder'=>'Khmer Title*'))}}
+			<span class="class-error">{{$errors->first('title_km')}}</span>
 		</div>
 
 		<div class="form-group col-md-6 col-sm-12 col-xs-6">
@@ -34,12 +34,17 @@
 			'form-control','placeholder'=>'Apearance'))}}
 		</div>
 
-		<div class="form-group col-md-6 col-sm-12 col-xs-6">
-			{{ Form::select('advertisementPage',$advPage, null , array('class' =>
+		<div class="form-group col-md-4 col-sm-12 col-xs-4">
+			{{ Form::select('pageType',$advCatPages, null , array('class' =>
+			'form-control', 'id' => 'ads-cat-page'))}}
+		</div>
+
+		<div class="form-group col-md-4 col-sm-12 col-xs-4 ads-page">
+			{{ Form::select('advertisementPage',array(), null , array('class' =>
 			'form-control', 'id' => 'ads-page'))}}
 		</div>
 
-		<div class="form-group col-md-6 col-sm-12 col-xs-6 position">
+		<div class="form-group col-md-4 col-sm-12 col-xs-4 position">
 			{{ Form::select('advertisementPosition',
 			array(), null , array('class' => 'form-control', 'id' =>
 			'ads-position'))}}
@@ -78,7 +83,12 @@
 		</div>
 
 		<div class="form-group col-md-12 col-sm-12 col-xs-12">
-			<label>Description</label> {{ Form::textarea('description',null,
+			<label>Description Khmer</label> {{ Form::textarea('description_km',null,
+			array('class' => 'form-control'))}}
+		</div>
+
+		<div class="form-group col-md-12 col-sm-12 col-xs-12">
+			<label>Description English</label> {{ Form::textarea('description_en',null,
 			array('class' => 'form-control'))}}
 		</div>
 
