@@ -44,13 +44,11 @@
 		</ul>
 	</div>
 	<div class="class-alert">
-		<label>Alert</label>
-		<span class="mg-number">1</span>
-		<b class="caret"></b>
-		<ul class="alert-list">
-			<li><a href="#">Alert One</a></li>
-			<li><a href="#">Alert Two</a></li>
-		</ul>
+		<label>
+			<a target="_blank" class="view-site" href="{{URL::to('/')}}">
+				View Site
+			</a>
+		</label>
 	</div>
 </div>
 <!-- Icon nav end -->
