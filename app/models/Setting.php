@@ -161,9 +161,10 @@ class Setting extends Eloquent{
 			->get();
 		return $result;
 	}
-	public function findProductConditionById() {
+	public function findProductConditionById($id) {
 		$result = DB::table(Config::get('constants.TABLE_NAME.PRODUCT_CONDITION'))
 			->select('*')
+			->where('id', $id)
 			->first();
 		return $result;
 	}
@@ -173,9 +174,10 @@ class Setting extends Eloquent{
 			->get();
 		return $result;
 	}
-	public function findProductTransferTypeById() {
+	public function findProductTransferTypeById($id) {
 		$result = DB::table(Config::get('constants.TABLE_NAME.PRODUCT_TRANSFER_TYPE'))
 			->select('*')
+			->where('ptt_id', $id)
 			->first();
 		return $result;
 	}

@@ -194,7 +194,7 @@ class BeSettingController extends BaseController {
 				->update($data);
 			return Redirect::to('admin/product-condition');
 		}
-		$productConditionById = $this->modSetting->findProductConditionById();
+		$productConditionById = $this->modSetting->findProductConditionById($id);
 		return View::make('backend.modules.setting.productcondition.edit_product_condition')
 		->with('productConditionById', $productConditionById);
 	}
@@ -215,7 +215,7 @@ class BeSettingController extends BaseController {
 				->update($data);
 			return Redirect::to('admin/product-transfer-type');
 		}
-		$productTransferTypeById = $this->modSetting->findProductTransferTypeById();
+		$productTransferTypeById = $this->modSetting->findProductTransferTypeById($id);
 		return View::make('backend.modules.setting.producttransfertype.edit_product_transfer_type')
 		->with('productTransferTypeById', $productTransferTypeById);
 	}
