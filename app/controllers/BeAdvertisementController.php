@@ -57,6 +57,7 @@ class BeAdvertisementController extends BaseController {
 		$advCatPages = $this->advertisement->findAllAdvertiseCategoryPages();
 		$advPages = $this->advertisement->findAllAdvertisePages ();
 		$licenses = $this->advertisement->findLicense();
+		$paymentMethod = $this->advertisement->findPaymentMethod();
 
 		$clients = $this->extractClients();
 
@@ -64,6 +65,7 @@ class BeAdvertisementController extends BaseController {
 			->with ('advPage', $advPages->data)
 			->with('licenses', $licenses->data)
 			->with('advCatPages', $advCatPages->data)
+			->with('paymentMethods', $paymentMethod->data)
 			->with('clients', $clients);
 
 	}
@@ -207,14 +209,19 @@ class BeAdvertisementController extends BaseController {
 	 */
 	private static function prepareDataBind($param, $fileName = null) {
 		$data = array (
-				'title'           => trim ( Input::get ( 'title' ) ),
-				'link_url'        => trim ( Input::get ( 'url' ) ),
-				'started_date'    => trim ( Input::get ( 'startDate' ) ),
-				'end_date'     => trim ( Input::get ( 'expirationDate' ) ),
-				'description'     => trim ( Input::get ( 'description' ) ),
+				'title_en'        => trim ( Input::get ('title_en')),
+				'title_km'        => trim ( Input::get ('title_km')),
+				'link_url'        => trim ( Input::get ('url' )),
+				'started_date'    => trim ( Input::get ('startDate')),
+				'end_date'        => trim ( Input::get ('expirationDate')),
+				'description_en'  => trim ( Input::get ('description_en')),
+				'description_km'  => trim ( Input::get ('description_km')),
+				'user_id'         => Input::get('user_id'),
 				'adv_page_id'     => Input::get('advertisementPage'),
 				'adv_position_id' => Input::get('advertisementPosition'),
 				'status'          => Input::get('status'),
+				'payment_method'  => Input::get('paymentMethods'),
+				'payment_method'  => Input::get('paymentMethods'),
 		);
 
 		if ($param == 'add') {
