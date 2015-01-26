@@ -1,7 +1,5 @@
 <div class="panel panel-default">
 	<div class="panel-body">
-		{{Form::open(array('url'=>'admin/create-advertisement','enctype'=>'multipart/form-data','file'=>
-		true, 'class'=> 'form-vertical'))}}
 		<div class="form-group col-md-6 col-sm-12 col-xs-6">
 			{{Form::radio('advertiseType', '1', true)}} <label for="advertiseType">Advertise</label>
 			{{Form::radio('advertiseType', '2', false)}} <label for="advertiseType">Banner</label>
@@ -29,9 +27,14 @@
 			'form-control','placeholder'=>'size'))}}
 		</div>
 
-		<div class="form-group col-md-6 col-sm-12 col-xs-6">
-			{{Form::text('apearance',null, array('class' =>
-			'form-control','placeholder'=>'Apearance'))}}
+		<div class="form-group col-md-3 col-sm-12 col-xs-3">
+			{{ Form::select('apearance',['Vertical', 'Horizontal'],null , array('class' =>
+			'form-control', 'id' => 'apearance'))}}
+		</div>
+
+		<div class="form-group col-md-3 col-sm-12 col-xs-3">
+			{{ Form::select('paymentMethods',$paymentMethods, null , array('class' =>
+			'form-control'))}}
 		</div>
 
 		<div class="form-group col-md-4 col-sm-12 col-xs-4">

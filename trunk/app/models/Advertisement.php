@@ -139,6 +139,25 @@ class Advertisement extends Eloquent {
 
 	}
 
+		public function findPaymentMethod() {
+		$response = new stdClass ();
+		try {
+			$result = DB::table (Config::get ('constants.TABLE_NAME.PAYMENT_METHOD'))->get ();
+			$paymentMethod = array ();
+			foreach ( $result as $payment ) {
+				$paymentMethod[$payment->id] = $payment->name;
+			}
+			$response->data = $paymentMethod;
+			$response->result = 1;
+		} catch ( \Exception $e ) {
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage ();
+		}
+
+		return $response;
+
+	}
+
 	public function findUserByName($name) {
 		$response = new stdClass ();
 		try {

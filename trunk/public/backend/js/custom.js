@@ -17,7 +17,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	// call list advertisemnt pages
+	// call list advertisement pages
 	$advCatPageId = $('#ads-cat-page').val();
 	if($advCatPageId > 0) {
 		$('#ads-page').show();
@@ -27,6 +27,7 @@ $(document).ready(function() {
 		var id = $(this).val();
 		if (0 == id) {
 			$('#ads-page').hide();
+			$('#ads-position').hide();
 		} else {
 			$('#ads-page').show();
 			listAdvPage(id);
@@ -81,6 +82,7 @@ function getClientByName(username) {
 				$('#email').val(data[0].email);
 				$('#address').val(data[0].address);
 				$('#phone_number').val(data[0].telephone);
+				$('#user_id').val(data[0].id);
 			}
 		},
 	});
@@ -91,6 +93,7 @@ function clearUserInfo() {
 	$('#email').val('');
 	$('#address').val('');
 	$('#phone_number').val('');
+	$('#user_id').val('');
 }
 
 /**
