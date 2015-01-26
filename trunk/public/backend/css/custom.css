@@ -131,7 +131,7 @@ ul > li{
 }
 .title-border tr:first-child,.table-container tr:first-child{
 	font-weight: bold;
-	background-color:rgb(232,232,232); 
+	background-color:rgb(249, 250, 210); 
 	border:1px solid #dddddd;
 	color:rgb(61, 149, 203);
 }
