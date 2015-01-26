@@ -22,7 +22,7 @@
 								<a href="{{URL::to('admin/location-setting')}}">Location</a>
 							</th>
 							<th width="300">
-								<i class="icon-plus btn btn-xs btn-info"></i> <a href="{{URL::to('admin/markets')}}">Business Market</a>
+								<i class="icon-plus btn btn-xs btn-info"></i> <a href="{{URL::to('admin/markets')}}">Business Site Location</a>
 							</th>
 						</tr>
 					</table>
