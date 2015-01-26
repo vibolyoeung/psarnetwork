@@ -28,6 +28,7 @@
 						{{Form::radio('membership', '1', false)}} <label for="membership">Member</label>
 					</div>
 
+					{{ Form::hidden('user_id', '', array('id' => 'user_id')) }}
 					<div class="form-group col-md-6 col-sm-12 col-xs-6 search-by-name">
 						{{Form::text('search_username',null, array('class' =>
 						'form-control','placeholder'=>'Search by Name', 'id' => 'search_by_name'))}}
@@ -52,8 +53,6 @@
 						{{Form::text('phone',null, array('class' =>
 						'form-control','placeholder'=>'Phone Number', 'id' => 'phone_number'))}}
 					</div>
-
-				{{Form::close()}}
 			</div>
 		</div>
 	</div>

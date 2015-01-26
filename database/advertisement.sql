@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 26, 2015 at 07:24 PM
+-- Generation Time: Jan 26, 2015 at 10:28 PM
 -- Server version: 5.5.40-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.5
 
@@ -56,17 +56,20 @@ CREATE TABLE IF NOT EXISTS `advertisement` (
   `started_date` varchar(100) DEFAULT NULL,
   `end_date` varchar(100) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
+  `size` int(11) NOT NULL,
   `status` int(11) DEFAULT NULL,
   `adv_position_id` int(11) NOT NULL,
-  `adv_page_id` int(11) DEFAULT NULL
+  `adv_page_id` int(11) DEFAULT NULL,
+  `license_id` int(11) NOT NULL,
+  `payment_method` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `advertisement`
 --
 
-INSERT INTO `advertisement` (`id`, `title_en`, `title_km`, `description_en`, `description_km`, `image`, `link_url`, `started_date`, `end_date`, `user_id`, `status`, `adv_position_id`, `adv_page_id`) VALUES
-(4, 'Web Developer with more than 2 years experiences', '', 'Hello world', '', '1417449562.jpg', 'https://www.google.com.kh', '23/12/2014', '23/12/2014', 2, 1, 0, 2);
+INSERT INTO `advertisement` (`id`, `title_en`, `title_km`, `description_en`, `description_km`, `image`, `link_url`, `started_date`, `end_date`, `user_id`, `size`, `status`, `adv_position_id`, `adv_page_id`, `license_id`, `payment_method`) VALUES
+(4, 'Web Developer with more than 2 years experiences', '', 'Hello world', '', '1417449562.jpg', 'https://www.google.com.kh', '23/12/2014', '23/12/2014', 2, 0, 1, 0, 2, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -633,6 +636,26 @@ INSERT INTO `m_page` (`id`, `sys_user_id`, `title_en`, `title_zh`, `short_desc_e
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `payment_method`
+--
+
+CREATE TABLE IF NOT EXISTS `payment_method` (
+  `id` int(11) NOT NULL,
+  `name` varchar(250) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `payment_method`
+--
+
+INSERT INTO `payment_method` (`id`, `name`) VALUES
+(1, 'Yearly'),
+(2, 'Montly'),
+(3, 'Contract');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `permission`
 --
 
@@ -1070,6 +1093,12 @@ ALTER TABLE `m_page`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `payment_method`
+--
+ALTER TABLE `payment_method`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `permission`
 --
 ALTER TABLE `permission`
@@ -1231,6 +1260,11 @@ ALTER TABLE `m_category`
 --
 ALTER TABLE `m_page`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT for table `payment_method`
+--
+ALTER TABLE `payment_method`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `permission`
 --
