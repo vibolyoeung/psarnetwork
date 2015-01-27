@@ -38,7 +38,7 @@
 					<div class="single-products">
 						<div class="productinfo text-center">
 							<a href="#" data-toggle="modal" data-target="#myModal">
-								<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+								<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 							</a>
 							<h2>$56</h2>
 							<p>Easy Polo Black Edition</p>
@@ -64,7 +64,7 @@
 					<div class="single-products">
 						<div class="productinfo text-center">
 							<a href="#" data-toggle="modal" data-target="#myModal">
-								<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+								<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 							</a>
 							<h2>$56</h2>
 							<p>Easy Polo Black Edition</p>
@@ -90,7 +90,7 @@
 					<div class="single-products">
 						<div class="productinfo text-center">
 							<a href="#" data-toggle="modal" data-target="#myModal">
-								<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+								<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 							</a>
 							<h2>$56</h2>
 							<p>Easy Polo Black Edition</p>
@@ -116,7 +116,7 @@
 					<div class="single-products">
 						<div class="productinfo text-center">
 							<a href="#" data-toggle="modal" data-target="#myModal">
-								<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+								<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 							</a>
 							<h2>$56</h2>
 							<p>Easy Polo Black Edition</p>
@@ -142,7 +142,7 @@
 					<div class="single-products">
 						<div class="productinfo text-center">
 							<a href="#" data-toggle="modal" data-target="#myModal">
-								<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+								<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 							</a>
 							<h2>$56</h2>
 							<p>Easy Polo Black Edition</p>
@@ -168,7 +168,7 @@
 					<div class="single-products">
 						<div class="productinfo text-center">
 							<a href="#" data-toggle="modal" data-target="#myModal">
-								<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+								<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 							</a>
 							<h2>$56</h2>
 							<p>Easy Polo Black Edition</p>
@@ -194,7 +194,7 @@
 					<div class="single-products">
 						<div class="productinfo text-center">
 							<a href="#" data-toggle="modal" data-target="#myModal">
-								<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+								<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 							</a>
 							<h2>$56</h2>
 							<p>Easy Polo Black Edition</p>
@@ -220,7 +220,7 @@
 					<div class="single-products">
 						<div class="productinfo text-center">
 							<a href="#" data-toggle="modal" data-target="#myModal">
-								<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+								<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 							</a>
 							<h2>$56</h2>
 							<p>Easy Polo Black Edition</p>
@@ -246,7 +246,7 @@
 					<div class="single-products">
 						<div class="productinfo text-center">
 							<a href="#" data-toggle="modal" data-target="#myModal">
-								<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+								<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 							</a>
 							<h2>$56</h2>
 							<p>Easy Polo Black Edition</p>
@@ -272,7 +272,7 @@
 					<div class="single-products">
 						<div class="productinfo text-center">
 							<a href="#" data-toggle="modal" data-target="#myModal">
-								<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+								<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 							</a>
 							<h2>$56</h2>
 							<p>Easy Polo Black Edition</p>
@@ -298,7 +298,7 @@
 					<div class="single-products">
 						<div class="productinfo text-center">
 							<a href="#" data-toggle="modal" data-target="#myModal">
-								<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+								<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 							</a>
 							<h2>$56</h2>
 							<p>Easy Polo Black Edition</p>
@@ -324,7 +324,7 @@
 					<div class="single-products">
 						<div class="productinfo text-center">
 							<a href="#" data-toggle="modal" data-target="#myModal">
-								<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+								<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 							</a>
 							<h2>$56</h2>
 							<p>Easy Polo Black Edition</p>
@@ -347,29 +347,6 @@
 			</div>
 		</div>
 		<div class="col-lg-12">
-			<!-- Paginatioin -->
-			<div class="col-lg-12">
-				<nav class="pull-right">
-				  <ul class="pagination pagination-sm">
-				    <li>
-				      <a href="#" aria-label="Previous">
-				        <span aria-hidden="true">&laquo;</span>
-				      </a>
-				    </li>
-				    <li><a href="#">1</a></li>
-				    <li><a href="#">2</a></li>
-				    <li><a href="#">3</a></li>
-				    <li><a href="#">4</a></li>
-				    <li><a href="#">5</a></li>
-				    <li>
-				      <a href="#" aria-label="Next">
-				        <span aria-hidden="true">&raquo;</span>
-				      </a>
-				    </li>
-				  </ul>
-				</nav>
-			</div>
-			<!--  -->
 			<div class="col-lg-12" style="border:1px solid #ddd;">
 				<center>
 					<h3>Advertisment Banner Here</h3>
@@ -393,13 +370,63 @@
 			</ul>
 		</div>
 		<div class="col-lg-12">
-			<div class="col-lg-1 pull-right" style="border: 1px solid #ddd;padding:0;">
-				<img src="{{Config::get('app.url')}}/frontend/images/kiss-mag.gif" class="img-responsive" alt="" title=""/>
+			<div class="col-lg-2 pull-right" style="border: 1px solid #ddd;padding:0;">
+				<div class="col-sm-12">
+					<div class="product-image-wrapper">
+						<div class="single-products">
+							<div class="productinfo text-center">
+								<a href="#" data-toggle="modal" data-target="#myModal">
+									<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+								</a>
+								<h2>$56</h2>
+								<p>Easy Polo Black Edition</p>
+								<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+							</div>
+							<a href="#" data-toggle="modal" data-target="#myModal">
+								<div class="product-overlay">
+									<div class="overlay-content">
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" data-toggle="modal" data-target="#myModal">
+												View Details
+											</a>
+									</div>
+								</div>
+							</a>
+							<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="col-lg-1 putll-left" style="border: 1px solid #ddd;padding:0;">
-				<img src="{{Config::get('app.url')}}/frontend/images/kiss-mag.gif" class="img-responsive" alt="" title=""/>
+			<div class="col-lg-2 putll-left" style="border: 1px solid #ddd;padding:0;">
+				<div class="col-sm-12">
+					<div class="product-image-wrapper">
+						<div class="single-products">
+							<div class="productinfo text-center">
+								<a href="#" data-toggle="modal" data-target="#myModal">
+									<img src="{{Config::get('app.url')}}/frontend/images/home/product5.jpg" alt="" />
+								</a>
+								<h2>$56</h2>
+								<p>Easy Polo Black Edition</p>
+								<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+							</div>
+							<a href="#" data-toggle="modal" data-target="#myModal">
+								<div class="product-overlay">
+									<div class="overlay-content">
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" data-toggle="modal" data-target="#myModal">
+												View Details
+											</a>
+									</div>
+								</div>
+							</a>
+							<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="col-sm-10">
+			<div class="col-sm-8">
 				<div class="col-lg-6">
 					<div class="media commnets">
 						<a href="#" class="pull-left col-lg-6">
@@ -549,31 +576,8 @@
 							</div>
 						</div>
 					</div>
-				</div>			
-				<div class="cleear"></div>
-				<div class="col-ms-12">
-					<nav class="pull-right">
-					  <ul class="pagination pagination-sm" style="margin:0;">
-					    <li>
-					      <a href="#" aria-label="Previous">
-					        <span aria-hidden="true">&laquo;</span>
-					      </a>
-					    </li>
-					    <li><a href="#">1</a></li>
-					    <li><a href="#">2</a></li>
-					    <li><a href="#">3</a></li>
-					    <li><a href="#">4</a></li>
-					    <li><a href="#">5</a></li>
-					    <li>
-					      <a href="#" aria-label="Next">
-					        <span aria-hidden="true">&raquo;</span>
-					      </a>
-					    </li>
-					  </ul>
-					</nav>
 				</div>
 			</div>
-			<div class="clear"></div>
 			<div class="col-lg-12" style="border:1px solid #ddd;">
 				<center>
 					<h3>Advertisment Banner Here</h3>
@@ -620,22 +624,21 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{Config::get('app.url')}}/frontend/images/home/recommend1.jpg" alt="" />
+											<a href="#" data-toggle="modal" data-target="#myModal">
+												<img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg" alt="" />
+											</a>
 											<h2>$56</h2>
 											<p>Easy Polo Black Edition</p>
-											<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-												<i class="fa fa-shopping-cart"></i>
-													More Details
-											</a>
+											<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 										</div>
 										<a href="#" data-toggle="modal" data-target="#myModal">
 											<div class="product-overlay">
 												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-														<i class="fa fa-shopping-cart"></i>View Details
-													</a>
+														<h2>$56</h2>
+														<p>Easy Polo Black Edition</p>
+														<a href="#" data-toggle="modal" data-target="#myModal">
+															View Details
+														</a>
 												</div>
 											</div>
 										</a>
@@ -647,22 +650,21 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
+											<a href="#" data-toggle="modal" data-target="#myModal">
+												<img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg" alt="" />
+											</a>
 											<h2>$56</h2>
 											<p>Easy Polo Black Edition</p>
-											<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-												<i class="fa fa-shopping-cart"></i>
-													More Details
-											</a>
+											<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 										</div>
 										<a href="#" data-toggle="modal" data-target="#myModal">
 											<div class="product-overlay">
 												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-														<i class="fa fa-shopping-cart"></i>View Details
-													</a>
+														<h2>$56</h2>
+														<p>Easy Polo Black Edition</p>
+														<a href="#" data-toggle="modal" data-target="#myModal">
+															View Details
+														</a>
 												</div>
 											</div>
 										</a>
@@ -674,22 +676,21 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{Config::get('app.url')}}/frontend/images/home/recommend3.jpg" alt="" />
+											<a href="#" data-toggle="modal" data-target="#myModal">
+												<img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg" alt="" />
+											</a>
 											<h2>$56</h2>
 											<p>Easy Polo Black Edition</p>
-											<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-												<i class="fa fa-shopping-cart"></i>
-													More Details
-											</a>
+											<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 										</div>
 										<a href="#" data-toggle="modal" data-target="#myModal">
 											<div class="product-overlay">
 												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-														<i class="fa fa-shopping-cart"></i>View Details
-													</a>
+														<h2>$56</h2>
+														<p>Easy Polo Black Edition</p>
+														<a href="#" data-toggle="modal" data-target="#myModal">
+															View Details
+														</a>
 												</div>
 											</div>
 										</a>
@@ -701,22 +702,21 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
+											<a href="#" data-toggle="modal" data-target="#myModal">
+												<img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg" alt="" />
+											</a>
 											<h2>$56</h2>
 											<p>Easy Polo Black Edition</p>
-											<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-												<i class="fa fa-shopping-cart"></i>
-													More Details
-											</a>
+											<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 										</div>
 										<a href="#" data-toggle="modal" data-target="#myModal">
 											<div class="product-overlay">
 												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-														<i class="fa fa-shopping-cart"></i>View Details
-													</a>
+														<h2>$56</h2>
+														<p>Easy Polo Black Edition</p>
+														<a href="#" data-toggle="modal" data-target="#myModal">
+															View Details
+														</a>
 												</div>
 											</div>
 										</a>
@@ -730,22 +730,21 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{Config::get('app.url')}}/frontend/images/home/recommend1.jpg" alt="" />
+											<a href="#" data-toggle="modal" data-target="#myModal">
+												<img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg" alt="" />
+											</a>
 											<h2>$56</h2>
 											<p>Easy Polo Black Edition</p>
-											<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-												<i class="fa fa-shopping-cart"></i>
-													More Details
-											</a>
+											<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 										</div>
 										<a href="#" data-toggle="modal" data-target="#myModal">
 											<div class="product-overlay">
 												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-														<i class="fa fa-shopping-cart"></i>View Details
-													</a>
+														<h2>$56</h2>
+														<p>Easy Polo Black Edition</p>
+														<a href="#" data-toggle="modal" data-target="#myModal">
+															View Details
+														</a>
 												</div>
 											</div>
 										</a>
@@ -757,22 +756,21 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
+											<a href="#" data-toggle="modal" data-target="#myModal">
+												<img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg" alt="" />
+											</a>
 											<h2>$56</h2>
 											<p>Easy Polo Black Edition</p>
-											<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-												<i class="fa fa-shopping-cart"></i>
-													More Details
-											</a>
+											<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 										</div>
 										<a href="#" data-toggle="modal" data-target="#myModal">
 											<div class="product-overlay">
 												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-														<i class="fa fa-shopping-cart"></i>View Details
-													</a>
+														<h2>$56</h2>
+														<p>Easy Polo Black Edition</p>
+														<a href="#" data-toggle="modal" data-target="#myModal">
+															View Details
+														</a>
 												</div>
 											</div>
 										</a>
@@ -784,22 +782,21 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{Config::get('app.url')}}/frontend/images/home/recommend3.jpg" alt="" />
+											<a href="#" data-toggle="modal" data-target="#myModal">
+												<img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg" alt="" />
+											</a>
 											<h2>$56</h2>
 											<p>Easy Polo Black Edition</p>
-											<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-												<i class="fa fa-shopping-cart"></i>
-													More Details
-											</a>
+											<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 										</div>
 										<a href="#" data-toggle="modal" data-target="#myModal">
 											<div class="product-overlay">
 												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-														<i class="fa fa-shopping-cart"></i>View Details
-													</a>
+														<h2>$56</h2>
+														<p>Easy Polo Black Edition</p>
+														<a href="#" data-toggle="modal" data-target="#myModal">
+															View Details
+														</a>
 												</div>
 											</div>
 										</a>
@@ -811,22 +808,21 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
+											<a href="#" data-toggle="modal" data-target="#myModal">
+												<img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg" alt="" />
+											</a>
 											<h2>$56</h2>
 											<p>Easy Polo Black Edition</p>
-											<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-												<i class="fa fa-shopping-cart"></i>
-													More Details
-											</a>
+											<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 										</div>
 										<a href="#" data-toggle="modal" data-target="#myModal">
 											<div class="product-overlay">
 												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-														<i class="fa fa-shopping-cart"></i>View Details
-													</a>
+														<h2>$56</h2>
+														<p>Easy Polo Black Edition</p>
+														<a href="#" data-toggle="modal" data-target="#myModal">
+															View Details
+														</a>
 												</div>
 											</div>
 										</a>
@@ -835,7 +831,6 @@
 								</div>
 							</div>
 						</div>
-						
 					</div>
 					<a class="left recommended-item-control"
 						href="#recommended-item-carousel" data-slide="prev"> <i
@@ -870,26 +865,25 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{Config::get('app.url')}}/frontend/images/home/recommend1.jpg" alt="" />
+											<a href="#" data-toggle="modal" data-target="#myModal">
+												<img src="{{Config::get('app.url')}}/frontend/images/home/Iphone6.jpg" alt="" />
+											</a>
 											<h2>$56</h2>
 											<p>Easy Polo Black Edition</p>
-											<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-												<i class="fa fa-shopping-cart"></i>
-													More Details
-											</a>
+											<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 										</div>
 										<a href="#" data-toggle="modal" data-target="#myModal">
 											<div class="product-overlay">
 												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-														<i class="fa fa-shopping-cart"></i>View Details
-													</a>
+														<h2>$56</h2>
+														<p>Easy Polo Black Edition</p>
+														<a href="#" data-toggle="modal" data-target="#myModal">
+															View Details
+														</a>
 												</div>
 											</div>
 										</a>
-										<img src="{{Config::get('app.url')}}/frontend/images/home/new.png" class="new" alt="" />
+										<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
 									</div>
 								</div>
 							</div>
@@ -897,26 +891,25 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
+											<a href="#" data-toggle="modal" data-target="#myModal">
+												<img src="{{Config::get('app.url')}}/frontend/images/home/Iphone6.jpg" alt="" />
+											</a>
 											<h2>$56</h2>
 											<p>Easy Polo Black Edition</p>
-											<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-												<i class="fa fa-shopping-cart"></i>
-													More Details
-											</a>
+											<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 										</div>
 										<a href="#" data-toggle="modal" data-target="#myModal">
 											<div class="product-overlay">
 												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-														<i class="fa fa-shopping-cart"></i>View Details
-													</a>
+														<h2>$56</h2>
+														<p>Easy Polo Black Edition</p>
+														<a href="#" data-toggle="modal" data-target="#myModal">
+															View Details
+														</a>
 												</div>
 											</div>
 										</a>
-										<img src="{{Config::get('app.url')}}/frontend/images/home/new.png" class="new" alt="" />
+										<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
 									</div>
 								</div>
 							</div>
@@ -924,26 +917,25 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{Config::get('app.url')}}/frontend/images/home/recommend3.jpg" alt="" />
+											<a href="#" data-toggle="modal" data-target="#myModal">
+												<img src="{{Config::get('app.url')}}/frontend/images/home/Iphone6.jpg" alt="" />
+											</a>
 											<h2>$56</h2>
 											<p>Easy Polo Black Edition</p>
-											<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-												<i class="fa fa-shopping-cart"></i>
-													More Details
-											</a>
+											<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 										</div>
 										<a href="#" data-toggle="modal" data-target="#myModal">
 											<div class="product-overlay">
 												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-														<i class="fa fa-shopping-cart"></i>View Details
-													</a>
+														<h2>$56</h2>
+														<p>Easy Polo Black Edition</p>
+														<a href="#" data-toggle="modal" data-target="#myModal">
+															View Details
+														</a>
 												</div>
 											</div>
 										</a>
-										<img src="{{Config::get('app.url')}}/frontend/images/home/new.png" class="new" alt="" />
+										<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
 									</div>
 								</div>
 							</div>
@@ -951,26 +943,25 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
+											<a href="#" data-toggle="modal" data-target="#myModal">
+												<img src="{{Config::get('app.url')}}/frontend/images/home/Iphone6.jpg" alt="" />
+											</a>
 											<h2>$56</h2>
 											<p>Easy Polo Black Edition</p>
-											<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-												<i class="fa fa-shopping-cart"></i>
-													More Details
-											</a>
+											<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 										</div>
 										<a href="#" data-toggle="modal" data-target="#myModal">
 											<div class="product-overlay">
 												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-														<i class="fa fa-shopping-cart"></i>View Details
-													</a>
+														<h2>$56</h2>
+														<p>Easy Polo Black Edition</p>
+														<a href="#" data-toggle="modal" data-target="#myModal">
+															View Details
+														</a>
 												</div>
 											</div>
 										</a>
-										<img src="{{Config::get('app.url')}}/frontend/images/home/new.png" class="new" alt="" />
+										<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
 									</div>
 								</div>
 							</div>
@@ -980,26 +971,25 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{Config::get('app.url')}}/frontend/images/home/recommend1.jpg" alt="" />
+											<a href="#" data-toggle="modal" data-target="#myModal">
+												<img src="{{Config::get('app.url')}}/frontend/images/home/Iphone6.jpg" alt="" />
+											</a>
 											<h2>$56</h2>
 											<p>Easy Polo Black Edition</p>
-											<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-												<i class="fa fa-shopping-cart"></i>
-													More Details
-											</a>
+											<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 										</div>
 										<a href="#" data-toggle="modal" data-target="#myModal">
 											<div class="product-overlay">
 												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-														<i class="fa fa-shopping-cart"></i>View Details
-													</a>
+														<h2>$56</h2>
+														<p>Easy Polo Black Edition</p>
+														<a href="#" data-toggle="modal" data-target="#myModal">
+															View Details
+														</a>
 												</div>
 											</div>
 										</a>
-										<img src="{{Config::get('app.url')}}/frontend/images/home/new.png" class="new" alt="" />
+										<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
 									</div>
 								</div>
 							</div>
@@ -1007,26 +997,25 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
+											<a href="#" data-toggle="modal" data-target="#myModal">
+												<img src="{{Config::get('app.url')}}/frontend/images/home/Iphone6.jpg" alt="" />
+											</a>
 											<h2>$56</h2>
 											<p>Easy Polo Black Edition</p>
-											<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-												<i class="fa fa-shopping-cart"></i>
-													More Details
-											</a>
+											<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 										</div>
 										<a href="#" data-toggle="modal" data-target="#myModal">
 											<div class="product-overlay">
 												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-														<i class="fa fa-shopping-cart"></i>View Details
-													</a>
+														<h2>$56</h2>
+														<p>Easy Polo Black Edition</p>
+														<a href="#" data-toggle="modal" data-target="#myModal">
+															View Details
+														</a>
 												</div>
 											</div>
 										</a>
-										<img src="{{Config::get('app.url')}}/frontend/images/home/new.png" class="new" alt="" />
+										<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
 									</div>
 								</div>
 							</div>
@@ -1034,26 +1023,25 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{Config::get('app.url')}}/frontend/images/home/recommend3.jpg" alt="" />
+											<a href="#" data-toggle="modal" data-target="#myModal">
+												<img src="{{Config::get('app.url')}}/frontend/images/home/Iphone6.jpg" alt="" />
+											</a>
 											<h2>$56</h2>
 											<p>Easy Polo Black Edition</p>
-											<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-												<i class="fa fa-shopping-cart"></i>
-													More Details
-											</a>
+											<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 										</div>
 										<a href="#" data-toggle="modal" data-target="#myModal">
 											<div class="product-overlay">
 												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-														<i class="fa fa-shopping-cart"></i>View Details
-													</a>
+														<h2>$56</h2>
+														<p>Easy Polo Black Edition</p>
+														<a href="#" data-toggle="modal" data-target="#myModal">
+															View Details
+														</a>
 												</div>
 											</div>
 										</a>
-										<img src="{{Config::get('app.url')}}/frontend/images/home/new.png" class="new" alt="" />
+										<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
 									</div>
 								</div>
 							</div>
@@ -1061,26 +1049,25 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
+											<a href="#" data-toggle="modal" data-target="#myModal">
+												<img src="{{Config::get('app.url')}}/frontend/images/home/Iphone6.jpg" alt="" />
+											</a>
 											<h2>$56</h2>
 											<p>Easy Polo Black Edition</p>
-											<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-												<i class="fa fa-shopping-cart"></i>
-													More Details
-											</a>
+											<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 										</div>
 										<a href="#" data-toggle="modal" data-target="#myModal">
 											<div class="product-overlay">
 												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-														<i class="fa fa-shopping-cart"></i>View Details
-													</a>
+														<h2>$56</h2>
+														<p>Easy Polo Black Edition</p>
+														<a href="#" data-toggle="modal" data-target="#myModal">
+															View Details
+														</a>
 												</div>
 											</div>
 										</a>
-										<img src="{{Config::get('app.url')}}/frontend/images/home/new.png" class="new" alt="" />
+										<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
 									</div>
 								</div>
 							</div>
@@ -1118,22 +1105,21 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend1.jpg" alt="" />
+												<a href="#" data-toggle="modal" data-target="#myModal">
+													<img src="{{Config::get('app.url')}}/frontend/images/home/iphone6plus.jpg" alt="" />
+												</a>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
-												<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-													<i class="fa fa-shopping-cart"></i>
-														More Details
-												</a>
+												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 											</div>
 											<a href="#" data-toggle="modal" data-target="#myModal">
 												<div class="product-overlay">
 													<div class="overlay-content">
-														<h2>$56</h2>
-														<p>Easy Polo Black Edition</p>
-														<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-															<i class="fa fa-shopping-cart"></i>View Details
-														</a>
+															<h2>$56</h2>
+															<p>Easy Polo Black Edition</p>
+															<a href="#" data-toggle="modal" data-target="#myModal">
+																View Details
+															</a>
 													</div>
 												</div>
 											</a>
@@ -1145,22 +1131,21 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
+												<a href="#" data-toggle="modal" data-target="#myModal">
+													<img src="{{Config::get('app.url')}}/frontend/images/home/iphone6plus.jpg" alt="" />
+												</a>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
-												<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-													<i class="fa fa-shopping-cart"></i>
-														More Details
-												</a>
+												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 											</div>
 											<a href="#" data-toggle="modal" data-target="#myModal">
 												<div class="product-overlay">
 													<div class="overlay-content">
-														<h2>$56</h2>
-														<p>Easy Polo Black Edition</p>
-														<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-															<i class="fa fa-shopping-cart"></i>View Details
-														</a>
+															<h2>$56</h2>
+															<p>Easy Polo Black Edition</p>
+															<a href="#" data-toggle="modal" data-target="#myModal">
+																View Details
+															</a>
 													</div>
 												</div>
 											</a>
@@ -1172,22 +1157,21 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend3.jpg" alt="" />
+												<a href="#" data-toggle="modal" data-target="#myModal">
+													<img src="{{Config::get('app.url')}}/frontend/images/home/iphone6plus.jpg" alt="" />
+												</a>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
-												<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-													<i class="fa fa-shopping-cart"></i>
-														More Details
-												</a>
+												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 											</div>
 											<a href="#" data-toggle="modal" data-target="#myModal">
 												<div class="product-overlay">
 													<div class="overlay-content">
-														<h2>$56</h2>
-														<p>Easy Polo Black Edition</p>
-														<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-															<i class="fa fa-shopping-cart"></i>View Details
-														</a>
+															<h2>$56</h2>
+															<p>Easy Polo Black Edition</p>
+															<a href="#" data-toggle="modal" data-target="#myModal">
+																View Details
+															</a>
 													</div>
 												</div>
 											</a>
@@ -1199,51 +1183,49 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
+												<a href="#" data-toggle="modal" data-target="#myModal">
+													<img src="{{Config::get('app.url')}}/frontend/images/home/iphone6plus.jpg" alt="" />
+												</a>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
-												<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-													<i class="fa fa-shopping-cart"></i>
-														More Details
-												</a>
+												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 											</div>
 											<a href="#" data-toggle="modal" data-target="#myModal">
 												<div class="product-overlay">
 													<div class="overlay-content">
-														<h2>$56</h2>
-														<p>Easy Polo Black Edition</p>
-														<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-															<i class="fa fa-shopping-cart"></i>View Details
-														</a>
+															<h2>$56</h2>
+															<p>Easy Polo Black Edition</p>
+															<a href="#" data-toggle="modal" data-target="#myModal">
+																View Details
+															</a>
 													</div>
 												</div>
 											</a>
 											<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
 										</div>
 									</div>
-								</div>s
+								</div>
 							</div>
 							<div class="item">
 								<div class="col-sm-3">
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend1.jpg" alt="" />
+												<a href="#" data-toggle="modal" data-target="#myModal">
+													<img src="{{Config::get('app.url')}}/frontend/images/home/iphone6plus.jpg" alt="" />
+												</a>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
-												<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-													<i class="fa fa-shopping-cart"></i>
-														More Details
-												</a>
+												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 											</div>
 											<a href="#" data-toggle="modal" data-target="#myModal">
 												<div class="product-overlay">
 													<div class="overlay-content">
-														<h2>$56</h2>
-														<p>Easy Polo Black Edition</p>
-														<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-															<i class="fa fa-shopping-cart"></i>View Details
-														</a>
+															<h2>$56</h2>
+															<p>Easy Polo Black Edition</p>
+															<a href="#" data-toggle="modal" data-target="#myModal">
+																View Details
+															</a>
 													</div>
 												</div>
 											</a>
@@ -1255,22 +1237,21 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
+												<a href="#" data-toggle="modal" data-target="#myModal">
+													<img src="{{Config::get('app.url')}}/frontend/images/home/iphone6plus.jpg" alt="" />
+												</a>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
-												<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-													<i class="fa fa-shopping-cart"></i>
-														More Details
-												</a>
+												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 											</div>
 											<a href="#" data-toggle="modal" data-target="#myModal">
 												<div class="product-overlay">
 													<div class="overlay-content">
-														<h2>$56</h2>
-														<p>Easy Polo Black Edition</p>
-														<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-															<i class="fa fa-shopping-cart"></i>View Details
-														</a>
+															<h2>$56</h2>
+															<p>Easy Polo Black Edition</p>
+															<a href="#" data-toggle="modal" data-target="#myModal">
+																View Details
+															</a>
 													</div>
 												</div>
 											</a>
@@ -1282,22 +1263,21 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend3.jpg" alt="" />
+												<a href="#" data-toggle="modal" data-target="#myModal">
+													<img src="{{Config::get('app.url')}}/frontend/images/home/iphone6plus.jpg" alt="" />
+												</a>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
-												<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-													<i class="fa fa-shopping-cart"></i>
-														More Details
-												</a>
+												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 											</div>
 											<a href="#" data-toggle="modal" data-target="#myModal">
 												<div class="product-overlay">
 													<div class="overlay-content">
-														<h2>$56</h2>
-														<p>Easy Polo Black Edition</p>
-														<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-															<i class="fa fa-shopping-cart"></i>View Details
-														</a>
+															<h2>$56</h2>
+															<p>Easy Polo Black Edition</p>
+															<a href="#" data-toggle="modal" data-target="#myModal">
+																View Details
+															</a>
 													</div>
 												</div>
 											</a>
@@ -1309,22 +1289,21 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
+												<a href="#" data-toggle="modal" data-target="#myModal">
+													<img src="{{Config::get('app.url')}}/frontend/images/home/iphone6plus.jpg" alt="" />
+												</a>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
-												<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-													<i class="fa fa-shopping-cart"></i>
-														More Details
-												</a>
+												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 											</div>
 											<a href="#" data-toggle="modal" data-target="#myModal">
 												<div class="product-overlay">
 													<div class="overlay-content">
-														<h2>$56</h2>
-														<p>Easy Polo Black Edition</p>
-														<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-															<i class="fa fa-shopping-cart"></i>View Details
-														</a>
+															<h2>$56</h2>
+															<p>Easy Polo Black Edition</p>
+															<a href="#" data-toggle="modal" data-target="#myModal">
+																View Details
+															</a>
 													</div>
 												</div>
 											</a>
@@ -1368,22 +1347,21 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend1.jpg" alt="" />
+												<a href="#" data-toggle="modal" data-target="#myModal">
+													<img src="{{Config::get('app.url')}}/frontend/images/home/car.jpg" alt="" />
+												</a>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
-												<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-													<i class="fa fa-shopping-cart"></i>
-														More Details
-												</a>
+												<a href="">View Details</a>
 											</div>
 											<a href="#" data-toggle="modal" data-target="#myModal">
 												<div class="product-overlay">
 													<div class="overlay-content">
-														<h2>$56</h2>
-														<p>Easy Polo Black Edition</p>
-														<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-															<i class="fa fa-shopping-cart"></i>View Details
-														</a>
+															<h2>$56</h2>
+															<p>Easy Polo Black Edition</p>
+															<a href="#" data-toggle="modal" data-target="#myModal">
+																View Details
+															</a>
 													</div>
 												</div>
 											</a>
@@ -1395,22 +1373,21 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
+												<a href="#" data-toggle="modal" data-target="#myModal">
+													<img src="{{Config::get('app.url')}}/frontend/images/home/car.jpg" alt="" />
+												</a>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
-												<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-													<i class="fa fa-shopping-cart"></i>
-														More Details
-												</a>
+												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 											</div>
 											<a href="#" data-toggle="modal" data-target="#myModal">
 												<div class="product-overlay">
 													<div class="overlay-content">
-														<h2>$56</h2>
-														<p>Easy Polo Black Edition</p>
-														<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-															<i class="fa fa-shopping-cart"></i>View Details
-														</a>
+															<h2>$56</h2>
+															<p>Easy Polo Black Edition</p>
+															<a href="#" data-toggle="modal" data-target="#myModal">
+																View Details
+															</a>
 													</div>
 												</div>
 											</a>
@@ -1422,22 +1399,21 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend3.jpg" alt="" />
+												<a href="#" data-toggle="modal" data-target="#myModal">
+													<img src="{{Config::get('app.url')}}/frontend/images/home/car.jpg" alt="" />
+												</a>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
-												<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-													<i class="fa fa-shopping-cart"></i>
-														More Details
-												</a>
+												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 											</div>
 											<a href="#" data-toggle="modal" data-target="#myModal">
 												<div class="product-overlay">
 													<div class="overlay-content">
-														<h2>$56</h2>
-														<p>Easy Polo Black Edition</p>
-														<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-															<i class="fa fa-shopping-cart"></i>View Details
-														</a>
+															<h2>$56</h2>
+															<p>Easy Polo Black Edition</p>
+															<a href="#" data-toggle="modal" data-target="#myModal">
+																View Details
+															</a>
 													</div>
 												</div>
 											</a>
@@ -1449,22 +1425,21 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
+												<a href="#" data-toggle="modal" data-target="#myModal">
+													<img src="{{Config::get('app.url')}}/frontend/images/home/car.jpg" alt="" />
+												</a>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
-												<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-													<i class="fa fa-shopping-cart"></i>
-														More Details
-												</a>
+												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 											</div>
 											<a href="#" data-toggle="modal" data-target="#myModal">
 												<div class="product-overlay">
 													<div class="overlay-content">
-														<h2>$56</h2>
-														<p>Easy Polo Black Edition</p>
-														<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-															<i class="fa fa-shopping-cart"></i>View Details
-														</a>
+															<h2>$56</h2>
+															<p>Easy Polo Black Edition</p>
+															<a href="#" data-toggle="modal" data-target="#myModal">
+																View Details
+															</a>
 													</div>
 												</div>
 											</a>
@@ -1478,22 +1453,21 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend1.jpg" alt="" />
+												<a href="#" data-toggle="modal" data-target="#myModal">
+													<img src="{{Config::get('app.url')}}/frontend/images/home/car.jpg" alt="" />
+												</a>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
-												<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-													<i class="fa fa-shopping-cart"></i>
-														More Details
-												</a>
+												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 											</div>
 											<a href="#" data-toggle="modal" data-target="#myModal">
 												<div class="product-overlay">
 													<div class="overlay-content">
-														<h2>$56</h2>
-														<p>Easy Polo Black Edition</p>
-														<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-															<i class="fa fa-shopping-cart"></i>View Details
-														</a>
+															<h2>$56</h2>
+															<p>Easy Polo Black Edition</p>
+															<a href="#" data-toggle="modal" data-target="#myModal">
+																View Details
+															</a>
 													</div>
 												</div>
 											</a>
@@ -1505,22 +1479,21 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
+												<a href="#" data-toggle="modal" data-target="#myModal">
+													<img src="{{Config::get('app.url')}}/frontend/images/home/car.jpg" alt="" />
+												</a>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
-												<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-													<i class="fa fa-shopping-cart"></i>
-														More Details
-												</a>
+												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 											</div>
 											<a href="#" data-toggle="modal" data-target="#myModal">
 												<div class="product-overlay">
 													<div class="overlay-content">
-														<h2>$56</h2>
-														<p>Easy Polo Black Edition</p>
-														<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-															<i class="fa fa-shopping-cart"></i>View Details
-														</a>
+															<h2>$56</h2>
+															<p>Easy Polo Black Edition</p>
+															<a href="#" data-toggle="modal" data-target="#myModal">
+																View Details
+															</a>
 													</div>
 												</div>
 											</a>
@@ -1532,22 +1505,21 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend3.jpg" alt="" />
+												<a href="#" data-toggle="modal" data-target="#myModal">
+													<img src="{{Config::get('app.url')}}/frontend/images/home/car.jpg" alt="" />
+												</a>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
-												<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-													<i class="fa fa-shopping-cart"></i>
-														More Details
-												</a>
+												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 											</div>
 											<a href="#" data-toggle="modal" data-target="#myModal">
 												<div class="product-overlay">
 													<div class="overlay-content">
-														<h2>$56</h2>
-														<p>Easy Polo Black Edition</p>
-														<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-															<i class="fa fa-shopping-cart"></i>View Details
-														</a>
+															<h2>$56</h2>
+															<p>Easy Polo Black Edition</p>
+															<a href="#" data-toggle="modal" data-target="#myModal">
+																View Details
+															</a>
 													</div>
 												</div>
 											</a>
@@ -1559,22 +1531,21 @@
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
+												<a href="#" data-toggle="modal" data-target="#myModal">
+													<img src="{{Config::get('app.url')}}/frontend/images/home/car.jpg" alt="" />
+												</a>
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
-												<a href="" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-													<i class="fa fa-shopping-cart"></i>
-														More Details
-												</a>
+												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 											</div>
 											<a href="#" data-toggle="modal" data-target="#myModal">
 												<div class="product-overlay">
 													<div class="overlay-content">
-														<h2>$56</h2>
-														<p>Easy Polo Black Edition</p>
-														<a href="#" class="btn btn-default add-to-cart" data-toggle="modal" data-target="#myModal">
-															<i class="fa fa-shopping-cart"></i>View Details
-														</a>
+															<h2>$56</h2>
+															<p>Easy Polo Black Edition</p>
+															<a href="#" data-toggle="modal" data-target="#myModal">
+																View Details
+															</a>
 													</div>
 												</div>
 											</a>
@@ -1583,7 +1554,6 @@
 									</div>
 								</div>
 							</div>
-							
 						</div>
 						<a class="left recommended-item-control"
 							href="#monthly-pay-item-carousel" data-slide="prev"> <i

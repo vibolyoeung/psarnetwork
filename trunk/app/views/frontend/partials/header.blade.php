@@ -138,9 +138,29 @@
 		                <li><a href="#">Monthly Pay</a></li>
 				    </ul>
 				</div>
-				<div class="col-lg-2 top-mg pull-right" >
-					<a href="" class="btn btn-default top-post"><span style="color:red;">10</span> Top Posts</a>
-	            	<a href="" class="btn btn-default new-notification"><span style="color:red;">5</span> Notifications</a>
+				<div class="col-lg-2 top-mg pull-right" style="padding:0;">
+					<div class="btn-group col-lg-6 pull-right">
+						  <button type="button" style="font-size: 10px;" class="btn btn-default dropdown-toggle top-post" data-toggle="dropdown" aria-expanded="false">
+						    <span style="color:red;">10</span>&nbsp;&nbsp;Notificatioin <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu" role="menu">
+						    <li><a href="#">Action</a></li>
+						    <li><a href="#">Another action</a></li>
+						    <li><a href="#">Something else here</a></li>
+						    <li><a href="#">Separated link</a></li>
+						  </ul>
+					</div>
+					<div class="btn-group col-lg-6">
+						  <button style="font-size: 10px;" type="button" class="btn btn-default dropdown-toggle top-post" data-toggle="dropdown" aria-expanded="false">
+						    <span style="color:red;">10</span>&nbsp;&nbsp;Type <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu" role="menu">
+						    <li><a href="#">Action</a></li>
+						    <li><a href="#">Another action</a></li>
+						    <li><a href="#">Something else here</a></li>
+						    <li><a href="#">Separated link</a></li>
+						  </ul>
+					</div>
 	            </div>
 				<div class="col-lg-5 navbar navbar-default topmenu-container" role="navigation">
 				    <div class="navbar-header">
