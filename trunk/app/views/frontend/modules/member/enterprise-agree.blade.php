@@ -110,6 +110,12 @@
 							<div style="clear: both;">
 							</div>
 						</div>
+                        <div class="checkbox">
+							<label>
+								<input type="checkbox" name="btnagree" id="btnagree" value="1"/>
+								 I agree to the term and condiction of Khmer Abba shoping
+							</label>
+						</div>
 						<button type="submit" id="summit" class="btn btn-primary pull-right">
 							Start
 						</button>
