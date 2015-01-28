@@ -65,7 +65,7 @@
 				</h3>
 			</div>
 			<div class="panel-body">
-				<form action="{{Config::get('app.url')}}" id="registerForm">
+				<form action="{{Config::get('app.url')}}/member/register/enterprise/agree" id="registerForm">
 					<div class="well well-sm">
 						<div class="form-group">
 							<label class="radio-inline">
