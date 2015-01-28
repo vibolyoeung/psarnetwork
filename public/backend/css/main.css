@@ -1820,6 +1820,4 @@ ul.roman-list {
     transform: scale(1);
     opacity: 1; }
 
-@media (max-width: 768px) {
-  .gallery .visual {
-    margin-bottom: 10px; } }
+@media (max-width: 768px) {.gallery .visual {margin-bottom: 10px; } }
