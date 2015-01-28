@@ -11,91 +11,127 @@
 	</li>
 </ol>
 @endsection @section('frontend.partials.left') @endsection @section('content')
-<div class="memberlogin">
-	<div class="col-sm-3">
-		<div class="advertise">
-			<div class="col-sm-12">
-				<img src="{{Config::get('app.url')}}/upload/banner/banner728.png" alt="" style="width:100%" />
-			</div>
-			<div class="clear">
-			</div>
-		</div>
-		<div class="constug">
-			<center>
-				<img src="{{Config::get('app.url')}}/frontend/images/member/strug.png" style="width: 100%"/>
-			</center>
-		</div>
-		<div class="clear">
-		</div>
-	</div>
-	<div class="col-sm-9">
-		<div class="register-form">
-			<!--login form-->
-			<h2>
-				Your are registering
-				<span style="color:orange">
-					As Seller
-				</span>
-			</h2>
-			<div class="conent">
-				<form action="{{Config::get('app.url')}}" id="AgreeForm">
-					<div class="form-group">
-						<label for="inputType" style="display: block;">
-							Choose Your Seller Type
-						</label>
-						<select id="inputType" style="max-width:300px">
-							<option>
-								Super market
-							</option>
-							<option>
-								2
-							</option>
-							<option>
-								3
-							</option>
-							<option>
-								4
-							</option>
-							<option>
-								5
-							</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<p>
-							Enterprise Seller (
-							<span style="color: red;">
-								3 months free only
-							</span>
-							)
-						</p>
-					</div>
-					<div class="checkbox">
-						<label>
-							<input name="agreement" type="checkbox" id="agreement" required />
-							Do you agree with this agreement
-						</label>
-					</div>
-                    <button id="summit" type="submit" class="btn btn-default pull-right choosenuser" disabled="disabled">Next</button>
-                    <a id="chooseuser" class="btn btn-warning pull-right choosenuser" href="#">Back</a>
-                    <a id="chooseuser" class="btn btn-danger pull-right choosenuser" href="#">Cancel</a>
-				</form>
-				<div class="clear">
+<div class="register">
+	<div class="agree">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="panel panel-primary registerform">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						Comfirm Agreement
+					</h3>
+				</div>
+				<div class="panel-body">
+					<form action="{{Config::get('app.url')}}" id="registerForm">
+						<div class="well well-sm">
+							<div class="a-body">
+								Now , You are registered as
+								<span>
+									Interprise Account type
+								</span>
+								. You are Offered
+								<span>
+									30 days
+								</span>
+								for a trial period with Khmer Abba shoping . After a Trial Peroid Offering ,Your account will be disabled temporarily .
+								<br/>
+								So you may contact to Khmer Abba shoping in order continue your
+								<span>
+									Interprise Page Offering
+								</span>
+								by
+								<span>
+									charging 20$/month
+								</span>
+								through number
+								<span>
+									010393938 / 0975555515
+								</span>
+								or By Clicking
+								<span>
+									Confirm Upgrading Accountype
+								</span>
+								then Khmer Abba shoping will contact to you directly.
+								<button type="button" id="under-summit" class="btn btn-primary pull-right">
+									understand
+								</button>
+								<button type="button" id="not-under-summit" class="btn btn-primary pull-right" style="margin-right: 10px;">
+									Not understand
+								</button>
+							</div>
+							<div style="clear: both;">
+							</div>
+						</div>
+						<!-- end well -->
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="skipdetail" id="skipDetail" value="1"/>
+								Skip it . You can do next time after completing your register .
+							</label>
+						</div>
+						<div class="well well-sm" id="bodyDetail">
+							<div class="form-horizontal">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label for="PageTitle" class="col-sm-4 control-label">
+											Page Title
+										</label>
+										<div class="col-sm-8">
+											<input type="text" name="PageTitle" class="form-control" id="PageTitle" placeholder="Page Title" aria-describedby="PageTitleStatus" required />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="BusinessSite" class="col-sm-4 control-label">
+											Logo
+										</label>
+										<div class="col-sm-8">
+											<input type="file" id="exampleInputFile"/>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-6">
+                                    <div class="form-group">
+										<label for="PageTitle" class="col-sm-4 control-label">
+											Page Address
+										</label>
+										<div class="col-sm-8">
+											<input type="text" name="PageTitle" class="form-control" id="PageTitle" placeholder="www.khmerabba.com/dara shop" aria-describedby="PageTitleStatus" required />
+										</div>
+									</div>
+                                    <div class="form-group">
+										<label for="PageTitle" class="col-sm-4 control-label">
+											Banner-Header
+										</label>
+										<div class="col-sm-8">
+											<input type="text" name="PageTitle" class="form-control" id="PageTitle" placeholder="Banner-Header" aria-describedby="PageTitleStatus" required />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div style="clear: both;">
+							</div>
+						</div>
+						<button type="submit" id="summit" class="btn btn-primary pull-right">
+							Start
+						</button>
+					</form>
 				</div>
 			</div>
+			<!--/login form-->
 		</div>
-		<!--/login form-->
 	</div>
 </div>
 {{HTML::script('frontend/js/jquery.validate.js')}}
 <script type='text/javascript'>
 	
+	
+	
+	
 $(document).ready(function(){
-    $('#agreement').click(function () {
+    $('#skipDetail').click(function () {
         if($(this).is(":checked")) {
-            $("#summit").removeAttr("disabled");
+            $("#bodyDetail").slideUp();
         } else {
-            $("#summit").attr('disabled',true);
+            $("#bodyDetail").slideDown();
         }
     });    
     $("#AgreeForm").validate({
@@ -113,6 +149,9 @@ $(document).ready(function(){
     //$("#AgreeForm").validate();
 
 });
+
+
+
 
 </script>
 @endsection

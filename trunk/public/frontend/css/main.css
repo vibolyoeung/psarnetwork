@@ -3072,8 +3072,13 @@ fieldset legend {
 .home .rigister .r-user-type .r-menu-thumb{width:40px}
 .home .rigister .r-user-type span{font-size: 120%;font-weight: bold;}
 .home .rigister .r-user-type .r-body{padding:10px}
+.register .agree span{color:#FF7301}
+.register .agree .a-body{font-size: 120%;}
+.register .agree .panel-body {background-color: #eee;}
+.register .agree .panel-primary.registerform .well {border-color: #aaa;}
 .form-control-feedback{display:none}
 .has-feedback label~.form-control-feedback{display: block;top: 23px;}
+
 /*costomLayout*/
 #costomLayout {}
 #costomLayout .ui-sortable {padding:5px;}
