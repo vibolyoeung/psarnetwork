@@ -126,3 +126,7 @@ Route::any('/member/register', 'FeMemberController@register');
 Route::any('/{lang}/member/register/{usertype}/{step}', 'FeMemberController@register');
 Route::any('/member/register/{usertype}/{step}', 'FeMemberController@register');
 Route::any('/member/addmenuajax', 'FeMemberController@addmenuajax');
+
+/*for free page*/
+Route::any('/{lang}/free/page/{name}', 'FeFreePageController@freePage');
+Route::any('/free/page/{name}', 'FeFreePageController@freePage');
