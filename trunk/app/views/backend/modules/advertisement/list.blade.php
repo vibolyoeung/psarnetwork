@@ -10,8 +10,8 @@
 	<div class="col-md-12 col-sm-12 col-sx-12">
 		<div class="panel panel-default">
 			<div class="panel-heading clearfix">
-				<a href="{{URL::to('admin/create-advertisement')}}"> <i
-					class="icon-plus btn btn-xs btn-info rounded-buttons">&nbsp;Add</i>
+				<a href="{{URL::to('admin/create-advertisement')}}">
+					<i class="icon-plus btn btn-xs btn-info rounded-buttons">&nbsp;Add</i>
 				</a>
 				<h3 class="panel-title">Advertisement</h3>
 			</div>
@@ -29,8 +29,10 @@
 							<tr>
 								<th>#</th>
 								<th>Image</th>
-								<th>Title</th>
-								<th>Description</th>
+								<th>English Title</th>
+								<th>Khmer Title</th>
+								<th>English Description</th>
+								<th>Khmer Description</th>
 								<th>Link url</th>
 								<th>Page</th>
 								<th>Position</th>
@@ -44,9 +46,11 @@
                   			<tr>
 								<td>{{$i}}</td>
 								<td width="9%">{{HTML::image("upload/advertisement/thumb/".$advertisement->image,
-								$advertisement->title,array())}}</td>
-								<td>{{$advertisement->title}}</td>
-								<td>{{$advertisement->description}}</td>
+								$advertisement->title_en,array())}}</td>
+								<td>{{$advertisement->title_en}}</td>
+								<td>{{$advertisement->title_km}}</td>
+								<td>{{$advertisement->description_en}}</td>
+								<td>{{$advertisement->description_km}}</td>
 								<td>{{$advertisement->link_url}}</td>
 								<td>{{$advertisement->pageName}}</td>
 								<td>{{$advertisement->positionName}}</td>
