@@ -17,7 +17,7 @@
 		</div>
 
 		<div class="form-group col-md-6 col-sm-12 col-xs-6">
-			{{Form::text('title_zh',null, array('class' =>
+			{{Form::text('title_km',null, array('class' =>
 			'form-control','placeholder'=>'Khmer Title*'))}}
 			<span class="class-error">{{$errors->first('title_km')}}</span>
 		</div>

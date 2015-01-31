@@ -30,13 +30,15 @@ class BeAdvertisementController extends BaseController {
 		if (Input::has ( 'btnSubmit' )) {
 			$rules = array (
 					'file' => 'required|mimes:jpeg,png,bmp,gif|image',
-					'title' => 'required',
+					'title_en' => 'required',
+					'title_km' => 'required',
 					'url' => 'required|url',
 					'startDate' => 'required',
 					'expirationDate' => 'required'
 			);
 
 			$validator = Validator::make ( Input::all (), $rules );
+			var_dump($validator->passes());
 			if ($validator->passes ()) {
 				$destinationPath = base_path () . '/public/upload/advertisement/';
 				self::generateFolderUpload ( $destinationPath );
@@ -117,7 +119,8 @@ class BeAdvertisementController extends BaseController {
 			$id = Input::get('hid');
 			$rules = array (
 					'file' => 'mimes:jpeg,png,bmp,gif|image',
-					'title' => 'required',
+					'title_en' => 'required',
+					'title_km' => 'required',
 					'url' => 'required|url',
 					'startDate' => 'required',
 					'expirationDate' => 'required'
@@ -217,20 +220,23 @@ class BeAdvertisementController extends BaseController {
 				'description_en'  => trim ( Input::get ('description_en')),
 				'description_km'  => trim ( Input::get ('description_km')),
 				'user_id'         => Input::get('user_id'),
+				'adv_cat_page_id' => Input::get('pageType'),
 				'adv_page_id'     => Input::get('advertisementPage'),
 				'adv_position_id' => Input::get('advertisementPosition'),
 				'status'          => Input::get('status'),
+				'apearance'       => Input::get('apearance'),
 				'payment_method'  => Input::get('paymentMethods'),
-				'payment_method'  => Input::get('paymentMethods'),
+				'license_id'      => Input::get('license'),
+				'user_id'         => Input::get('user_id'),
+				'size'            => Input::get('size'),
+
 		);
 
 		if ($param == 'add') {
 			$data ['image'] = $fileName;
-			$data ['user_id'] = Session::get ( 'SESSION_USER_ID' );
 		} elseif ('edit') {
 			if (! empty ( $fileName )) {
 				$data ['image'] = $fileName;
-				$data ['user_id'] = Session::get ( 'SESSION_USER_ID' );
 			}
 		}
 
