@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 26, 2015 at 10:28 PM
+-- Generation Time: Feb 04, 2015 at 10:05 PM
 -- Server version: 5.5.40-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.5
 
@@ -57,8 +57,11 @@ CREATE TABLE IF NOT EXISTS `advertisement` (
   `end_date` varchar(100) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `size` int(11) NOT NULL,
+  `type` int(11) NOT NULL,
   `status` int(11) DEFAULT NULL,
+  `apearance` int(11) NOT NULL,
   `adv_position_id` int(11) NOT NULL,
+  `adv_cat_page_id` int(11) NOT NULL,
   `adv_page_id` int(11) DEFAULT NULL,
   `license_id` int(11) NOT NULL,
   `payment_method` int(11) NOT NULL
@@ -68,8 +71,10 @@ CREATE TABLE IF NOT EXISTS `advertisement` (
 -- Dumping data for table `advertisement`
 --
 
-INSERT INTO `advertisement` (`id`, `title_en`, `title_km`, `description_en`, `description_km`, `image`, `link_url`, `started_date`, `end_date`, `user_id`, `size`, `status`, `adv_position_id`, `adv_page_id`, `license_id`, `payment_method`) VALUES
-(4, 'Web Developer with more than 2 years experiences', '', 'Hello world', '', '1417449562.jpg', 'https://www.google.com.kh', '23/12/2014', '23/12/2014', 2, 0, 1, 0, 2, 0, 0);
+INSERT INTO `advertisement` (`id`, `title_en`, `title_km`, `description_en`, `description_km`, `image`, `link_url`, `started_date`, `end_date`, `user_id`, `size`, `type`, `status`, `apearance`, `adv_position_id`, `adv_cat_page_id`, `adv_page_id`, `license_id`, `payment_method`) VALUES
+(2, 'Advertisement title', 'ចំណងជើង2ផ្សព្វ​ផ្សាយ', 'English title', 'ការពីពរណា', '1422546836.jpg', 'https://www.google.com.kh', '29/01/2015', '23/01/2015', 6, 0, 0, 1, 0, 5, 2, 3, 4, 1),
+(3, 'Advertisement title', 'វិបុល', 'vibol love you', 'វិបុល​ស្រលាញ់​អ្នក', '1422719470.jpg', 'https://www.google.com.kh', '31/01/2015', '30/01/2015', 6, 200, 0, 1, 1, 2, 2, 1, 2, 2),
+(4, 'Molestias', 'ជាភាសាខ្មែរ', 'Hic aliquam voluptatem in rem optio, id, temporibus officiis et tempore, aliquip.', 'ជាភាសារខ្មែរ', '1423060901.jpg', 'https://www.google.com.kh', '11-Oct-1972', '06-Sep-1998', 0, 23, 2, 1, 0, 10, 1, 2, 1, 1);
 
 -- --------------------------------------------------------
 
