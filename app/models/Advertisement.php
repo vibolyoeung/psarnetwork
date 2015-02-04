@@ -214,10 +214,14 @@ class Advertisement extends Eloquent {
 		$response = new stdClass();
 		try {
 			if($param == 'operation'){
-				$result = DB::table(Config::get('constants.TABLE_NAME.ADVERTISEMENT'))->where('id','=',$id)->update($data);
+				$result = DB::table(Config::get('constants.TABLE_NAME.ADVERTISEMENT'))
+					->where('id','=',$id)
+					->update($data);
 				$response->result = 1;
 			} else {
-				$listing = DB::table(Config::get('constants.TABLE_NAME.ADVERTISEMENT'))->where('id','=', $id)->first();
+				$listing = DB::table(Config::get('constants.TABLE_NAME.ADVERTISEMENT'))
+				->where('id','=', $id)
+				->first();
 				$response->data = $listing;
 				$response->result = 1;
 			}

@@ -1,22 +1,6 @@
 $(document).ready(function() {
 	$('.datepicker' ).datepicker({ dateFormat: 'dd/mm/yy' });
 	
-	// call list position
-	$advPageId = $('#ads-page').val();
-	if($advPageId > 0) {
-		$('#ads-position').show();
-		listAllPositions($advPageId);
-	}
-	$('#ads-page').change(function() {
-		var id = $(this).val();
-		if (0 == id) {
-			$('#ads-position').hide();
-		} else {
-			$('#ads-position').show();
-			listAllPositions(id);
-		}
-	});
-	
 	// call list advertisement pages
 	$advCatPageId = $('#ads-cat-page').val();
 	if($advCatPageId > 0) {
@@ -31,6 +15,26 @@ $(document).ready(function() {
 		} else {
 			$('#ads-page').show();
 			listAdvPage(id);
+		}
+	});
+	
+	// call list position
+	$advPageId = $('#ads-page').val();
+	if(!$advPageId) {
+		$advPageId = $('#adv-hid').val();
+	}
+	console.log($advPageId);
+	if($advPageId > 0) {
+		$('#ads-position').show();
+		listAllPositions($advPageId);
+	}
+	$('#ads-page').change(function() {
+		var id = $(this).val();
+		if (0 == id) {
+			$('#ads-position').hide();
+		} else {
+			$('#ads-position').show();
+			listAllPositions(id);
 		}
 	});
 	
@@ -115,8 +119,13 @@ function listAllPositions(id) {
 		url: '/admin/list-ads-positions/' + id,
 		success: function(data) {
 			var option = '';
-			$.each(data, function(id, name) {
-				option += '<option value="' + id + '">' + name + '</option>';
+			$.each(data, function(ps_id, name) {
+				var selected = '';
+				var oldId = $('#pos-hid').val();
+				if(oldId == ps_id) {
+					selected = 'selected = selected';
+				}
+				option += '<option ' + selected + ' value="' + ps_id + '">' + name + '</option>';
 			});
 			$('#ads-position').html(option);
 		},
@@ -128,8 +137,13 @@ function listAdvPage(id) {
 		url: '/admin/list-ads-pages/' + id,
 		success: function(data) {
 			var option = '';
-			$.each(data, function(id, name) {
-				option += '<option value="' + id + '">' + name + '</option>';
+			var oldId = $('#adv-hid').val();
+			$.each(data, function(cate_adv_id, name) {
+				var selected = '';
+				if(oldId == cate_adv_id) {
+					selected = 'selected = selected';
+				}
+				option += '<option ' + selected + ' value="' + cate_adv_id + '">' + name + '</option>';
 			});
 			$('#ads-page').html(option);
 		},

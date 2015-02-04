@@ -38,7 +38,6 @@ class BeAdvertisementController extends BaseController {
 			);
 
 			$validator = Validator::make ( Input::all (), $rules );
-			var_dump($validator->passes());
 			if ($validator->passes ()) {
 				$destinationPath = base_path () . '/public/upload/advertisement/';
 				self::generateFolderUpload ( $destinationPath );
@@ -127,7 +126,7 @@ class BeAdvertisementController extends BaseController {
 			);
 			$validator = Validator::make ( Input::all (), $rules );
 			if ($validator->passes()) {
-				if(Input::hasfile('file')){
+				if(Input::hasFile('file')){
 
 					// for remove file
 					$oldFileObject = $this->advertisement->findAdvertisementImageById($id);
@@ -155,8 +154,21 @@ class BeAdvertisementController extends BaseController {
 			}
 		}
 		$result = $this->advertisement->saveEditAdvertisement($id);
+
+		$advCatPages = $this->advertisement->findAllAdvertiseCategoryPages();
 		$advPages = $this->advertisement->findAllAdvertisePages ();
-		return View::make ('backend.modules.advertisement.edit')->with ('advertisement', $result->data)->with('advPages', $advPages->data);
+		$licenses = $this->advertisement->findLicense();
+		$paymentMethod = $this->advertisement->findPaymentMethod();
+
+		$clients = $this->extractClients();
+
+		return View::make ('backend.modules.advertisement.edit')
+			->with ('advertisement', $result->data)
+			->with ('advPage', $advPages->data)
+			->with('licenses', $licenses->data)
+			->with('advCatPages', $advCatPages->data)
+			->with('paymentMethods', $paymentMethod->data)
+			->with('clients', $clients);
 	}
 
 	/**
@@ -229,6 +241,7 @@ class BeAdvertisementController extends BaseController {
 				'license_id'      => Input::get('license'),
 				'user_id'         => Input::get('user_id'),
 				'size'            => Input::get('size'),
+				'type'            => Input::get('advertiseType'),
 
 		);
 
