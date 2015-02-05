@@ -3,9 +3,12 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 class BeAdvertisementController extends BaseController {
+	const USER_TYPE = 4;
 	public $advertisement;
+	private static $user;
 	function __construct() {
 		$this->advertisement = new Advertisement ();
+		BeAdvertisementController::$user = new User();
 	}
 
 	/**
@@ -28,15 +31,7 @@ class BeAdvertisementController extends BaseController {
 	 */
 	public function createAdvertisement() {
 		if (Input::has ( 'btnSubmit' )) {
-			$rules = array (
-					'file' => 'required|mimes:jpeg,png,bmp,gif|image',
-					'title_en' => 'required',
-					'title_km' => 'required',
-					'url' => 'required|url',
-					'startDate' => 'required',
-					'expirationDate' => 'required'
-			);
-
+			$rules = $this->rules();
 			$validator = Validator::make ( Input::all (), $rules );
 			if ($validator->passes ()) {
 				$destinationPath = base_path () . '/public/upload/advertisement/';
@@ -116,14 +111,7 @@ class BeAdvertisementController extends BaseController {
 		$id = (integer) $id;
 		if (Input::has ('btnSubmit')) {
 			$id = Input::get('hid');
-			$rules = array (
-					'file' => 'mimes:jpeg,png,bmp,gif|image',
-					'title_en' => 'required',
-					'title_km' => 'required',
-					'url' => 'required|url',
-					'startDate' => 'required',
-					'expirationDate' => 'required'
-			);
+			$rules = $this->rules();
 			$validator = Validator::make ( Input::all (), $rules );
 			if ($validator->passes()) {
 				if(Input::hasFile('file')){
@@ -212,6 +200,33 @@ class BeAdvertisementController extends BaseController {
 		}
 	}
 
+	private static function saveUser() {
+		$data = array();
+		$data['name'] = trim ( Input::get ('username'));
+		$data['email'] = trim ( Input::get ('email'));
+		$data['telephone'] = trim ( Input::get ('phone'));
+		$data['address'] = trim ( Input::get ('address'));
+		$data['user_type'] = self::USER_TYPE;
+		$data['address'] = trim ( Input::get ('address'));
+		$userResult = BeAdvertisementController::$user->addUser($data);
+		return $userResult->userId;
+	}
+
+	protected function rules() {
+		return array (
+				'username' => 'required',
+				'address' => 'required',
+				'email' => 'required',
+				'phone' => 'required',
+				'file' => 'mimes:jpeg,png,bmp,gif|image',
+				'title_en' => 'required',
+				'title_km' => 'required',
+				'url' => 'required|url',
+				'startDate' => 'required',
+				'expirationDate' => 'required'
+			);
+	}
+
 	/**
 	 *
 	 *
@@ -239,11 +254,17 @@ class BeAdvertisementController extends BaseController {
 				'apearance'       => Input::get('apearance'),
 				'payment_method'  => Input::get('paymentMethods'),
 				'license_id'      => Input::get('license'),
-				'user_id'         => Input::get('user_id'),
 				'size'            => Input::get('size'),
 				'type'            => Input::get('advertiseType'),
 
 		);
+
+		// Check whether it memebership or none
+		if(Input::get('membership') == 1) {
+			$data['user_id'] = Input::get('user_id');
+		} else {
+			$data['user_id'] = BeAdvertisementController::saveUser();
+		}
 
 		if ($param == 'add') {
 			$data ['image'] = $fileName;

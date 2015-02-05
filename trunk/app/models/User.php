@@ -49,4 +49,18 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return 'remember_token';
 	}
 
+	public function addUser($data = array()) {
+		$response = new stdClass ();
+
+		try {
+			$response->userId = DB::table ( Config::get ( 'constants.TABLE_NAME.USER' ) )->insertGetId ( $data );
+			$response->result = 1;
+		} catch ( \Exception $e ) {
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage ();
+		}
+
+		return $response;
+	}
+
 }
