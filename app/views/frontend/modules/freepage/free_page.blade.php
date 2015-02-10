@@ -1,1 +1,1 @@
-{{trans('freepage.page')}}
+{{$name}}
