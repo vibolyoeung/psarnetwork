@@ -62,5 +62,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 		return $response;
 	}
+	public function getDistrict($id) {
+		$response = new stdClass ();
 
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.DISTRICT'))
+					->where('province_id','=',$id)
+					->orderBy('id','asc')
+					->get();
+            $response->data = $result;
+		} catch ( \Exception $e ) {
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage ();
+		}
+
+		return $response;
+	}
 }

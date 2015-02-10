@@ -4,11 +4,16 @@ class FeMemberController extends BaseController {
 
     private $mod_category;
     private $mod_setting;
+    protected $mod_market;
+    protected  $user;
+    const CURRENT_DATE = 'Y-m-d';
 
     function __construct() {
         $this->mod_slideshow = new Slideshow();
     	$this->mod_category = new MCategory();
     	$this->mod_setting = new Setting();
+        $this->mod_market = new Market();
+        $this->user = new User();
        
     }
 
@@ -17,31 +22,71 @@ class FeMemberController extends BaseController {
     {
     	$listCategories = self::getCategoriesHomePage();
     	return View::make('frontend.modules.member.index')
-    	->with('maincategories', $listCategories->result);	
+    	   ->with('maincategories', $listCategories->result);     
     }
+    
+ 	public function createUser(){
+		if(Input::has('btnSubmit')){
+			$rules = array(
+				'email' => 'required|email|unique:user',
+				'password' => 'required|min:8',
+				'password_confirm'=>'required|same:password',
+			);
+			$validator = Validator::make(Input::all(), $rules);
+			if ($validator->passes()) {
+                $data = array(
+    				'email'=>trim(Input::get('email')),
+    				'name'=>trim(Input::get('name')),
+    				'telephone'=>Input::get('telephone'),
+    				'address'=>Input::get('address'),
+                    'user_type'=>Config::get('constants.CLIENT_USER'),
+                    'client_type'=>Input::get('client_type'),
+                    'account_type'=>Input::get('accounttype'),
+                    'password'=>md5(sha1(Input::get('password'))),
+                    'create_at'=>date(self::CURRENT_DATE)
+				);
+				$this->user->insert($data);
+				return Redirect::to('member/register')->with('SECCESS_MESSAGE','A user has been added successfully');
+			}else{
+				return Redirect::to('member/register')->withInput()->withErrors($validator);
+			}
+		}
+	}
+       
     public function register($usertype = '',$step='') {
-         $limit = $this->mod_setting->getSlidshowNumber();
+        $limit = $this->mod_setting->getSlidshowNumber();
     	$listCategories = self::getCategoriesHomePage();
-
-        if (!empty($usertype)) {
-//            switch($step){
-//                case 'agree':
-//                $paramate = $usertype.'-'.$agree
-//               break;
-//            }
-             return View::make('frontend.modules.member.'.$usertype.'-'.$step)
-    	       ->with('maincategories', $listCategories->result);   
-//            if ($usertype == 'enterprise') {
-//                return View::make('frontend.modules.member.enterprise')
-//    	       ->with('maincategories', $listCategories->result);
-//            } else {
-//                return View::make('frontend.modules.member.freesell')
-//	           ->with('maincategories', $listCategories->result);
-//            }
-        } else {
-            return View::make('frontend.modules.member.register')
-    	       ->with('maincategories', $listCategories->result);
-        }
+        $this->createUser();
+        $result = $this->mod_market->listingMarkets();	
+        $marketType = $this->mod_market->dataListingMarketsType();
+        $provinces = $this->mod_setting->listProvinces();
+        return View::make('frontend.modules.member.register')
+    	       ->with('maincategories', $listCategories->result)
+               ->with('marketType', $marketType->data)
+               ->with('provinces', $provinces)
+               ->with('markets', $result->data);
+//        if (!empty($usertype)) {
+////            switch($step){
+////                case 'agree':
+////                $paramate = $usertype.'-'.$agree
+////               break;
+////            }
+//             return View::make('frontend.modules.member.'.$usertype.'-'.$step)
+//    	       ->with('maincategories', $listCategories->result);   
+////            if ($usertype == 'enterprise') {
+////                return View::make('frontend.modules.member.enterprise')
+////    	       ->with('maincategories', $listCategories->result);
+////            } else {
+////                return View::make('frontend.modules.member.freesell')
+////	           ->with('maincategories', $listCategories->result);
+////            }
+//        } else {
+//            return View::make('frontend.modules.member.register')
+//    	       ->with('maincategories', $listCategories->result)
+//               ->with('marketType', $marketType->data)
+//               ->with('provinces', $provinces)
+//               ->with('markets', $result->data);
+//        }
     }
     
     public function addmenuajax (){
@@ -63,6 +108,17 @@ class FeMemberController extends BaseController {
     	$Category = $this->mod_category->getMainCategories();
     	return $Category;
     }
-
-
+    public function getDistric(){
+        $this->layout = null;
+    	$pro_id = Input::get('pro_id');
+        $disct_val = '';
+        if(!empty($pro_id)) {
+            $disctrict = $this->user->getDistrict($pro_id);
+            foreach($disctrict->data as $disct) {
+                $disct_val .='<option value="'.$disct->id.'" data-gps="'.$disct->dis_lat_long.'">'.$disct->dis_name.'</option>';
+            }
+            echo $disct_val;
+        }
+        die;
+    }
 }

@@ -6,7 +6,8 @@ class FeFreePageController extends BaseController {
 	}
 
 	public function freePage($name) {
-		return View::make('frontend.modules.freepage.free_page');
+		return View::make('frontend.modules.freepage.free_page')
+            ->with('name', $name);
 	}
 
 }
