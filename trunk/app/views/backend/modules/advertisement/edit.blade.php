@@ -19,6 +19,11 @@
 				$( "#search_by_name" ).autocomplete({
 					source: availableTags
 				});
+
+				var availableAdminUsers = ["{{$adminUsers}}"];
+				$( "#incharger" ).autocomplete({
+					source: availableAdminUsers
+				});
 			});
 			</script>
 			<div class="panel-body">

@@ -56,12 +56,14 @@ class BeAdvertisementController extends BaseController {
 		$paymentMethod = $this->advertisement->findPaymentMethod();
 
 		$clients = $this->extractClients();
+		$adminUsers = $this->extractAdminUsers();
 
 		return View::make ( 'backend.modules.advertisement.add' )
 			->with ('advPage', $advPages->data)
 			->with('licenses', $licenses->data)
 			->with('advCatPages', $advCatPages->data)
 			->with('paymentMethods', $paymentMethod->data)
+			->with('adminUsers', $adminUsers)
 			->with('clients', $clients);
 
 	}
@@ -74,6 +76,17 @@ class BeAdvertisementController extends BaseController {
 		}
 
 		return implode('", "', $clientsName);
+
+	}
+
+	protected function extractAdminUsers() {
+		$adminUsers = $this->advertisement->findAdminUsers();
+		$adminName = array();
+		foreach($adminUsers->data as $adminUser) {
+			$adminName[] = $adminUser->name;
+		}
+
+		return implode('", "', $adminName);
 
 	}
 
@@ -94,6 +107,11 @@ class BeAdvertisementController extends BaseController {
 
 	public function listUserInfo() {
 		$user = $this->advertisement->findUserByName(Input::get('name'));
+		return $user->data;
+	}
+
+	public function listUserAdminInfo() {
+		$user = $this->advertisement->findAdminUsersByName(Input::get('name'));
 		return $user->data;
 	}
 
@@ -149,6 +167,7 @@ class BeAdvertisementController extends BaseController {
 		$paymentMethod = $this->advertisement->findPaymentMethod();
 
 		$clients = $this->extractClients();
+		$adminUsers = $this->extractAdminUsers();
 
 		return View::make ('backend.modules.advertisement.edit')
 			->with ('advertisement', $result->data)
@@ -156,6 +175,7 @@ class BeAdvertisementController extends BaseController {
 			->with('licenses', $licenses->data)
 			->with('advCatPages', $advCatPages->data)
 			->with('paymentMethods', $paymentMethod->data)
+			->with('adminUsers', $adminUsers)
 			->with('clients', $clients);
 	}
 
@@ -247,6 +267,7 @@ class BeAdvertisementController extends BaseController {
 				'description_en'  => trim ( Input::get ('description_en')),
 				'description_km'  => trim ( Input::get ('description_km')),
 				'user_id'         => Input::get('user_id'),
+				'incharger'       => Input::get('incharger_id'),
 				'adv_cat_page_id' => Input::get('pageType'),
 				'adv_page_id'     => Input::get('advertisementPage'),
 				'adv_position_id' => Input::get('advertisementPosition'),

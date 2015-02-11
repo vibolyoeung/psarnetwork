@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 04, 2015 at 10:05 PM
+-- Generation Time: Feb 11, 2015 at 11:24 PM
 -- Server version: 5.5.40-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.5
 
@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS `advertisement` (
   `started_date` varchar(100) DEFAULT NULL,
   `end_date` varchar(100) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
+  `incharger` int(11) NOT NULL,
   `size` int(11) NOT NULL,
   `type` int(11) NOT NULL,
   `status` int(11) DEFAULT NULL,
@@ -65,16 +66,20 @@ CREATE TABLE IF NOT EXISTS `advertisement` (
   `adv_page_id` int(11) DEFAULT NULL,
   `license_id` int(11) NOT NULL,
   `payment_method` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `advertisement`
 --
 
-INSERT INTO `advertisement` (`id`, `title_en`, `title_km`, `description_en`, `description_km`, `image`, `link_url`, `started_date`, `end_date`, `user_id`, `size`, `type`, `status`, `apearance`, `adv_position_id`, `adv_cat_page_id`, `adv_page_id`, `license_id`, `payment_method`) VALUES
-(2, 'Advertisement title', 'ចំណងជើង2ផ្សព្វ​ផ្សាយ', 'English title', 'ការពីពរណា', '1422546836.jpg', 'https://www.google.com.kh', '29/01/2015', '23/01/2015', 6, 0, 0, 1, 0, 5, 2, 3, 4, 1),
-(3, 'Advertisement title', 'វិបុល', 'vibol love you', 'វិបុល​ស្រលាញ់​អ្នក', '1422719470.jpg', 'https://www.google.com.kh', '31/01/2015', '30/01/2015', 6, 200, 0, 1, 1, 2, 2, 1, 2, 2),
-(4, 'Molestias', 'ជាភាសាខ្មែរ', 'Hic aliquam voluptatem in rem optio, id, temporibus officiis et tempore, aliquip.', 'ជាភាសារខ្មែរ', '1423060901.jpg', 'https://www.google.com.kh', '11-Oct-1972', '06-Sep-1998', 0, 23, 2, 1, 0, 10, 1, 2, 1, 1);
+INSERT INTO `advertisement` (`id`, `title_en`, `title_km`, `description_en`, `description_km`, `image`, `link_url`, `started_date`, `end_date`, `user_id`, `incharger`, `size`, `type`, `status`, `apearance`, `adv_position_id`, `adv_cat_page_id`, `adv_page_id`, `license_id`, `payment_method`) VALUES
+(2, 'Advertisement title', 'ចំណងជើង2ផ្សព្វ​ផ្សាយ', 'English title', 'ការពីពរណា', '1422546836.jpg', 'https://www.google.com.kh', '29/01/2015', '23/01/2015', 6, 0, 0, 0, 1, 0, 5, 2, 3, 4, 1),
+(3, 'Advertisement title', 'វិបុល', 'vibol love you', 'វិបុល​ស្រលាញ់​អ្នក', '1422719470.jpg', 'https://www.google.com.kh', '31/01/2015', '30/01/2015', 6, 0, 200, 0, 1, 1, 2, 2, 1, 2, 2),
+(4, 'Molestias', 'ជាភាសាខ្មែរ', 'Hic aliquam voluptatem in rem optio, id, temporibus officiis et tempore, aliquip.', 'ជាភាសារខ្មែរ', '1423060901.jpg', 'https://www.google.com.kh', '11-Oct-1972', '06-Sep-1998', 0, 0, 23, 2, 1, 0, 10, 1, 2, 1, 1),
+(5, 'Occaecat neque veritatis dolor praesentium fugiat nulla ut distinctio Anim', 'ភាសារខ្មែរ', 'Eius voluptatem. Eveniet, magni explicabo. Nesciunt, culpa, cupidatat voluptatem veniam, animi, in dolorem quibusdam esse, minima amet, pariatur. Dolorum.', 'Dicta quidem sapiente hic et velit, similique ut magni aspernatur doloribus doloremque.', '1423148012.jpg', 'https://www.facebook.com/video.php?v=801912709855737&set=vb.199289656784715&type=2&theater', '14-Jun-1992', '27-May-2000', 7, 0, 23, 1, 1, 1, 3, 1, 3, 3, 3),
+(6, 'Sunt distinctio', 'Eos et est consectetur sed quis atque et', 'Necessitatibus temporibus ullam tempora perspiciatis, quia impedit, ratione velit ducimus, excepturi.', 'Soluta quam voluptas nihil dolor hic aut blanditiis quas ut magnam in non ipsam ipsa, in ullamco aperiam atque.', '1423148259.png', 'https://www.google.com.kh', '06-Oct-1972', '25-Apr-1994', 9, 0, 0, 1, 1, 1, 5, 1, 5, 3, 3),
+(7, 'Placeat nostrud omnis ullamco sint natus tempore praesentium nobis voluptate aut quisquam et voluptas ut sint', 'Illo atque dolor quis sint exercitation culpa qui illo', 'Nesciunt, voluptatem excepturi error tenetur elit, in in non voluptatibus dolorum officiis totam nostrud aspernatur.', 'Reprehenderit ullam non animi, veniam, dolorem esse magni omnis vitae id, totam aut assumenda nemo perspiciatis, dolor ex laboris.', '1423668591.png', 'https://www.facebook.com/video.php?v=801912709855737&set=vb.199289656784715&type=2&theater', '16-Jul-2011', '27-Apr-2000', 10, 0, 0, 1, 1, 1, 8, 2, 4, 2, 2),
+(8, 'Deleniti ducimus sit corrupti lorem quisquam sapiente sapiente tempora exercitation vel neque', 'Distinctio Ducimus non placeat in sit quis odit id aut reprehenderit quos voluptatem Molestiae', 'Qui quisquam eum proident, ipsam nisi aut et dolore porro qui porro iure quasi do suscipit.', 'Ea error nihil do sed aut libero omnis est est deserunt.', '1423668811.PNG', 'https://www.facebook.com/video.php?v=801912709855737&set=vb.199289656784715&type=2&theater', '19-May-2003', '07-Jun-1987', 11, 3, 32, 1, NULL, 0, 3, 1, 3, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -961,7 +966,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `client_type` int(11) DEFAULT NULL,
   `telephone` varchar(50) DEFAULT NULL,
   `address` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user`
@@ -972,7 +977,12 @@ INSERT INTO `user` (`id`, `name`, `email`, `password`, `password_temp`, `status`
 (3, 'HOM Kimhim', 'kimhim.hom-updated@gmail.com', '$2y$10$RY3WZxvzq9K4X/4ZGdQP.uj.usxhCXU2vmhYcC6SXuX/irnlmiJum', NULL, 1, NULL, '2014-11-26', '', 1, NULL, NULL, '077377067', 'Preyveng'),
 (4, 'somoeun', 'soungsomoeun@gmail.com', '$2y$10$tEdDxdASF9CB/1YCy.Ov6uq9rbCJRey/e5sbbzxOqhdQUMV5ynRGe', NULL, 1, '2014-12-04', NULL, 'LunFK8BV4cKI5F8ogAi5oaNteGU2e332rOvA7WFgTBVpZi72K70GNtnuStIM', 4, NULL, NULL, '0949353', 'Kandal'),
 (5, 'vanny', 'vanny@gmail.com', '$2y$10$o6R5JnD0IBSuI/6w5AP5FuuoWXSZhH26TpZotsjt/PTAn6r72y3Ii', NULL, 1, '2014-12-28', NULL, '6J61o6Ao4dbftobegHCQ1usg9KHIoWlKQzBqnU57kKwP5E4fOlkfe97ZtZUA', 4, NULL, NULL, '0886464', 'Takeo'),
-(6, 'dara', 'dara@gmail.com', '$2y$10$o6R5JnD0IBSuI/6w5AP5FuuoWXSZhH26TpZotsjt/PTAn6r72y3Ii', NULL, 1, '2014-12-28', NULL, '6J61o6Ao4dbftobegHCQ1usg9KHIoWlKQzBqnU57kKwP5E4fOlkfe97ZtZUA', 4, NULL, NULL, '065', 'Takeo');
+(6, 'dara', 'dara@gmail.com', '$2y$10$o6R5JnD0IBSuI/6w5AP5FuuoWXSZhH26TpZotsjt/PTAn6r72y3Ii', NULL, 1, '2014-12-28', NULL, '6J61o6Ao4dbftobegHCQ1usg9KHIoWlKQzBqnU57kKwP5E4fOlkfe97ZtZUA', 4, NULL, NULL, '065', 'Takeo'),
+(7, 'Hell', 'hell@gmail.com', NULL, NULL, 0, NULL, NULL, NULL, 4, NULL, NULL, '092423424', 'Svay Rieng'),
+(8, 'ka', 'ka@gmail.com', NULL, NULL, 0, NULL, NULL, NULL, 4, NULL, NULL, '4939494', 'tako'),
+(9, 'yan', 'yan@gmail.com', NULL, NULL, 0, NULL, NULL, NULL, 4, NULL, NULL, '4993449203', 'pp'),
+(10, 'wutazahe', 'sabaqef@gmail.com', NULL, NULL, 0, NULL, NULL, NULL, 4, NULL, NULL, '+652-91-8857554', 'Dolor aspernatur est fugiat reprehenderit dolore a'),
+(11, 'ryleku', 'nekygorah@hotmail.com', NULL, NULL, 0, NULL, NULL, NULL, 4, NULL, NULL, '+425-45-1698272', 'Id architecto sapiente repudiandae ut eiusmod nost');
 
 -- --------------------------------------------------------
 
@@ -1194,7 +1204,7 @@ ALTER TABLE `account_type`
 -- AUTO_INCREMENT for table `advertisement`
 --
 ALTER TABLE `advertisement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `advertiser_profile`
 --
@@ -1319,7 +1329,7 @@ ALTER TABLE `template`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `user_type`
 --

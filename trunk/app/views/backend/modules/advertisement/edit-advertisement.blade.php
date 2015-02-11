@@ -7,8 +7,9 @@
 
 		<div class="form-group col-md-6 col-sm-12 col-xs-6">
 			{{Form::text('seller_name',null, array('class' =>
-			'form-control','placeholder'=>'Incharge By seller:'))}}
+			'form-control', 'id' => 'incharger','placeholder'=>'Incharge By seller:'))}}
 		</div>
+		{{ Form::hidden('incharger_id', $advertisement->incharger, array('id' => 'hid_incharger')) }}
 
 		<div class="form-group col-md-6 col-sm-12 col-xs-6">
 			{{Form::text('title_en',$advertisement->title_en, array('class' =>

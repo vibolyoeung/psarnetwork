@@ -19,6 +19,11 @@
 				$( "#search_by_name" ).autocomplete({
 					source: availableTags
 				});
+
+				var availableAdminUsers = ["{{$adminUsers}}"];
+				$( "#incharger" ).autocomplete({
+					source: availableAdminUsers
+				});
 			});
 			</script>
 			<div class="panel-body">
@@ -37,21 +42,25 @@
 					<div class="form-group col-md-6 col-sm-12 col-xs-6">
 						{{Form::text('username',null, array('class' =>
 						'form-control','placeholder'=>'Name', 'id' => 'username'))}}
+						<span class="class-error">{{$errors->first('username')}}</span>
 					</div>
 
 					<div class="form-group col-md-6 col-sm-12 col-xs-6">
 						{{Form::text('address',null, array('class' =>
 						'form-control','placeholder'=>'Address', 'id' => 'address'))}}
+						<span class="class-error">{{$errors->first('address')}}</span>
 					</div>
 
 					<div class="form-group col-md-6 col-sm-12 col-xs-6">
 						{{Form::text('email',null, array('class' =>
 						'form-control','placeholder'=>'Email', 'id' => 'email'))}}
+						<span class="class-error">{{$errors->first('email')}}</span>
 					</div>
 
 					<div class="form-group col-md-6 col-sm-12 col-xs-6">
 						{{Form::text('phone',null, array('class' =>
 						'form-control','placeholder'=>'Phone Number', 'id' => 'phone_number'))}}
+						<span class="class-error">{{$errors->first('phone')}}</span>
 					</div>
 			</div>
 		</div>
