@@ -176,7 +176,22 @@ class Advertisement extends Eloquent {
 		try {
 			$result = DB::table ( Config::get ( 'constants.TABLE_NAME.USER' ) )
 			->where('name', $name)
-			->where('user_type', self::CLIENT)
+			->where('user_type','!=', self::CLIENT)
+			->get ();
+			$response->data = $result;
+		} catch ( \Exception $e ) {
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage ();
+		}
+
+		return $response;
+	}
+
+	public function findAdminUsers() {
+		$response = new stdClass ();
+		try {
+			$result = DB::table ( Config::get ( 'constants.TABLE_NAME.USER' ) )
+			->where('user_type','!=', self::CLIENT)
 			->get ();
 			$response->data = $result;
 		} catch ( \Exception $e ) {
@@ -191,6 +206,22 @@ class Advertisement extends Eloquent {
 		$response = new stdClass ();
 		try {
 			$result = DB::table ( Config::get ('constants.TABLE_NAME.USER'))->where('user_type', self::CLIENT)->get ();
+			$response->data = $result;
+		} catch ( \Exception $e ) {
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage ();
+		}
+
+		return $response;
+	}
+
+	public function findAdminUsersByName($name) {
+		$response = new stdClass ();
+		try {
+			$result = DB::table ( Config::get ('constants.TABLE_NAME.USER'))
+				->where('name', $name)
+				->where('user_type','!=', self::CLIENT)
+				->get ();
 			$response->data = $result;
 		} catch ( \Exception $e ) {
 			$response->result = 0;

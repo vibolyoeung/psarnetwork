@@ -66,6 +66,11 @@ $(document).ready(function() {
 		getClientByName(username);
 	});
 	
+	$('#incharger').on('blur', function getUserName() {
+		var username = $(this).val();
+		getAdminUserByName(username);
+	});
+	
 	messageDropdown();
 	alertDropdown();
 	dashboardCollapse();
@@ -87,6 +92,21 @@ function getClientByName(username) {
 				$('#address').val(data[0].address);
 				$('#phone_number').val(data[0].telephone);
 				$('#user_id').val(data[0].id);
+			}
+		},
+	});
+}
+
+function getAdminUserByName(username) {
+	$.ajax({
+		url: '/admin/list-user-admin/',
+		data: {name: username},
+		type: "GET",
+		success: function(data) {
+			if (typeof data[0] === "undefined") {
+				$('#hid_incharger').val('');
+			} else {
+				$('#hid_incharger').val(data[0].id);
 			}
 		},
 	});
