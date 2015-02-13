@@ -60,10 +60,12 @@ class FeMemberController extends BaseController {
         $result = $this->mod_market->listingMarkets();	
         $marketType = $this->mod_market->dataListingMarketsType();
         $provinces = $this->mod_setting->listProvinces();
+        $accountRole = $this->user->accountRole();
         return View::make('frontend.modules.member.register')
     	       ->with('maincategories', $listCategories->result)
                ->with('marketType', $marketType->data)
                ->with('provinces', $provinces)
+               ->with('accountRole', $accountRole->data)
                ->with('markets', $result->data);
 //        if (!empty($usertype)) {
 ////            switch($step){
@@ -120,5 +122,14 @@ class FeMemberController extends BaseController {
             echo $disct_val;
         }
         die;
+    }
+    public function getClientType($id){
+        $this->layout = null;
+            $Client_val = '';
+            $getClientType = $this->user->getClientType($id);
+            foreach($getClientType->data as $ClientType) {
+                $Client_val .='<option value="'.$ClientType->id.'">'.$ClientType->name.'</option>';
+            }
+        echo $Client_val;
     }
 }

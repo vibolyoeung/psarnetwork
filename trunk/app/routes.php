@@ -129,6 +129,7 @@ Route::any('/{lang}/member/register/{usertype}/{step}', 'FeMemberController@regi
 Route::any('/member/register/{usertype}/{step}', 'FeMemberController@register');
 Route::any('/member/addmenuajax', 'FeMemberController@addmenuajax');
 Route::any('/member/getdistrict', 'FeMemberController@getDistric');
+Route::any('/member/getclienttype/{id}', 'FeMemberController@getClientType');
 Route::any('/{lang}/category', 'FePageController@getProductbyCategory');
 
 /*for free page*/
