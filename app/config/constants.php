@@ -56,6 +56,7 @@ return array(
 			'USER'=>'user',
 			'USER_TYPE'=>'user_type',
 			'PERMISSION'=>'permission',
-			'PRODUCT_TRANSFER_TYPE'=>'product_transfer_type'
+			'PRODUCT_TRANSFER_TYPE'=>'product_transfer_type',
+            'ACCOUNT_ROLE'=>'account_role',
 		)
 );

@@ -108,23 +108,37 @@
 										{{trans('register.Who_Are_You')}}
 									</label>
 									<div class="col-sm-8">
-										<select class="form-control" name="client_type">
+										<select class="form-control" name="accountRole">
 											<option value="">
 												{{trans('register.Manufaturure_label')}}
 											</option>
 											<?php $i=1;?>
-												@foreach($marketType as $mk_t)
-												<option value="{{$mk_t->id}}">
-													{{$mk_t->name}}
+												@foreach($accountRole as $Rol)
+												<option value="{{$Rol->rol_id}}">
+													{{$Rol->rol_name}}
 												</option>
 												<?php $i++;?>
 													@endforeach
 										</select>
 									</div>
 								</div>
+                                <div class="form-group">
+									<label for="WhoAreYou" class="col-sm-4 control-label">
+										{{trans('register.Your_Business_Site')}}
+									</label>
+									<div class="col-sm-8">
+										<select class="form-control" name="client_type" id="clientType">
+										</select>
+                                        <div 
+                                        id="loadingClientType" 
+                                        style="display: none;background:#fff;width:100%;text-align:center;padding:2px;border:1px solid #eee;">
+                                        <img style="width: 30px;" src="{{Config::get('app.url')}}frontend/images/upload_progress.gif"/>
+                                        </div>
+									</div>
+								</div>
 								<div class="form-group">
 									<label for="BusinessSite" class="col-sm-4 control-label">
-										{{trans('register.Your_Business_Site')}}
+										{{trans('register.Market_Type')}}
 									</label>
 									<div class="col-sm-8">
 										<select class="form-control">
@@ -290,7 +304,38 @@ $(document).ready(function(){
             $("#summit").attr('disabled',true);
         }
     });
-    
+    $('#freeAccount').click(function () {
+        if($(this).is(":checked")) {
+            //alert($(this).val());
+            getAccountType($(this).val());
+        } else {
+            //$("#summit").attr('disabled',true);
+        }
+    });
+    $('#interpriseAccount').click(function () {
+        if($(this).is(":checked")) {
+            //alert($(this).val());
+            getAccountType($(this).val());
+        } else {
+            //$("#summit").attr('disabled',true);
+        }
+    });   
+    function getAccountType(id){
+        $('#clientType').hide();
+        $('#loadingClientType').show();
+        $.ajax
+        ({
+            type: "POST",
+            url: "{{Config::get('app.url')}}member/getclienttype/" + id,
+            cache: false,
+            success: function(html)
+            {
+                var selects = '<option value="">{{trans('register.Manufaturure_select')}}</option>';
+                $("#clientType").html(selects + html).show();
+                $('#loadingClientType').hide();
+            }
+        });
+    }
     $("#Location").change(function()
         {
             var id = $(this).val();
@@ -309,9 +354,8 @@ $(document).ready(function(){
                     {
                         console.log(html);
                         var selects = '<option value="">{{trans('register.Input_Select_Disctrict')}}</option>';
-                        $("#District").html(selects);
-                        $("#District").append(html);
-                        $("#District").removeAttr("disabled");
+                        //$("#District").html(selects);
+                        $("#District").html(selects + html).removeAttr("disabled");
                         $('#loading').hide();
                         $('#District').show();
                         $('#mapWrapper').show();

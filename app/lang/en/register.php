@@ -18,6 +18,7 @@ return array(
     'Interprise_Account' => 'Interprise Account',
     'Who_Are_You' => 'Who Are You',
     'Manufaturure_label' => 'Manufaturure',
+    'Manufaturure_select' => 'select one...',
     'Your_Business_Site' => 'Your Business Site',
     'Market_Type' => 'Market Type',
     'Input_Your_Name_Label' => 'Your Name',

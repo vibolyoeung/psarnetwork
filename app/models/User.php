@@ -78,4 +78,35 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 		return $response;
 	}
+	public function getClientType($id) {
+		$response = new stdClass ();
+
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.CLIENT_TYPE'))
+                ->where('account_type_id','=',$id)
+                ->orderBy('name','asc')
+                ->get();
+            $response->data = $result;
+		} catch ( \Exception $e ) {
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage ();
+		}
+
+		return $response;
+	}    
+	public function accountRole() {
+		$response = new stdClass ();
+
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.ACCOUNT_ROLE'))
+					->orderBy('rol_name','asc')
+					->get();
+            $response->data = $result;
+		} catch ( \Exception $e ) {
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage ();
+		}
+
+		return $response;
+	}
 }
