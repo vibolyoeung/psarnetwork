@@ -2,6 +2,25 @@ $(document).ready(function(){
 	jQuery('.item:first-child').addClass(' active');
 	jQuery('.bullet:first-child').addClass('active');
 	jQuery('.tab-content .submenu-bar:first-child').addClass(' active');
+	jQuery('#myCarousel').carousel({
+          interval: 5000
+	  });
+	
+	jQuery('#carousel-text').html($('#slide-content-0').html());
+	
+	  //Handles the carousel thumbnails
+	jQuery('[id^=carousel-selector-]').click( function(){
+	      var id = this.id.substr(this.id.lastIndexOf("-") + 1);
+	      var id = parseInt(id);
+	      jQuery('#myCarousel').carousel(id);
+	  });
+	
+	
+	  // When the carousel slides, auto update the text
+	jQuery('#myCarousel').on('slid.bs.carousel', function (e) {
+	           var id = $('.item.active').data('slide-number');
+	          $('#carousel-text').html($('#slide-content-'+id).html());
+	  });
 });
 
 function user_register(cos,vals){

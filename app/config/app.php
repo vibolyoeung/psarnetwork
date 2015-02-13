@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost/psarnetwork/public',
+	'url' => 'http://psarnetwork.local/',
 
 	/*
 	|--------------------------------------------------------------------------

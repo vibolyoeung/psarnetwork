@@ -129,6 +129,7 @@ Route::any('/{lang}/member/register/{usertype}/{step}', 'FeMemberController@regi
 Route::any('/member/register/{usertype}/{step}', 'FeMemberController@register');
 Route::any('/member/addmenuajax', 'FeMemberController@addmenuajax');
 Route::any('/member/getdistrict', 'FeMemberController@getDistric');
+Route::any('/{lang}/category', 'FePageController@getProductbyCategory');
 
 /*for free page*/
 Route::any('/{name}/page', 'FeFreePageController@freePage')->where('name', '[A-Za-z0-9]+');

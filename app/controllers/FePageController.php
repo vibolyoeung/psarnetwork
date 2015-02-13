@@ -30,4 +30,8 @@ class FePageController extends BaseController {
 		$Category = $this->mod_category->getMainCategories();
 		return $Category;
 	}
+	
+	public function getProductbyCategory(){
+		return View::make('frontend.modules.detail.index');
+	}
 }

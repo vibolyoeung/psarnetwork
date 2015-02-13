@@ -3,7 +3,7 @@
 	<div class="header-middle"><!--header-middle-->
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-7" style="border:2px solid #F79646;padding:0;margin:0;">
+				<div class="col-lg-7" style="border:2px solid #f0ad4e;padding:0;margin:0;">
 					<div class="col-lg-8 pull-right" style="padding:0;margin:0;">
 						<div class="col-lg-2 pull-right" style="padding:0;margin:0;">
 							<button type="submit" class="btn btn-warning pull-right col-lg-12" style="border-radius:0;">
