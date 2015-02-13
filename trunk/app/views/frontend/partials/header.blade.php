@@ -139,7 +139,7 @@
 				    </ul>
 				</div>
 				<div class="col-lg-2 top-mg pull-right" style="padding:0;">
-					<div class="btn-group col-lg-6 pull-right">
+					<div class="btn-group col-lg-6">
 						  <button type="button" style="font-size: 10px;" class="btn btn-default dropdown-toggle top-post" data-toggle="dropdown" aria-expanded="false">
 						    <span style="color:red;">10</span>&nbsp;&nbsp;Notificatioin <span class="caret"></span>
 						  </button>
@@ -173,7 +173,7 @@
 				        </div>
 				        <div class="collapse navbar-collapse promotion-list">
 				            <ul class="nav navbar-nav top_menu_list">
-								<li><a href="#">All</a></li>
+								<li class="active"><a href="#">All</a></li>
 								<li><a href="#">Super Market</a></li>
 								<li><a href="#">Traditional Market</a></li>
 								<li><a href="#">Private Company</a></li>

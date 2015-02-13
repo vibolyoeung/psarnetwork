@@ -604,18 +604,16 @@
 			</div>
 			
 			<div class="col-lg-10">
-				<div class="col-lg-12">
-					<ul class="nav nav-tabs">
-						<li><strong>Hot PromotionProducts</strong>  &nbsp;&nbsp;&nbsp; &frasl;</li>
-						<li>Products : <span class="number-display">25</span></li>
-						<li>Stores :<span class="number-display">25</span></li>
-						<li>Market :<span class="number-display">25</span></li>
-						<li>Companies :<span class="number-display">25</span></li>
-						<li>Home Shop :<span class="number-display">25</span></li>
-						<li>Individual : <span class="number-display">25</span></li>
+				<ul class="nav nav-tabs">
+					<li><strong>Hot PromotionProducts</strong>  &nbsp;&nbsp;&nbsp; &frasl;</li>
+					<li>Products : <span class="number-display">25</span></li>
+					<li>Stores :<span class="number-display">25</span></li>
+					<li>Market :<span class="number-display">25</span></li>
+					<li>Companies :<span class="number-display">25</span></li>
+					<li>Home Shop :<span class="number-display">25</span></li>
+					<li>Individual : <span class="number-display">25</span></li>
 					<li>View :<span class="number-display">25</span></li>
-					</ul>
-				</div>
+				</ul>
 				<div id="recommended-item-carousel" class="carousel slide"
 					data-ride="carousel">
 					<div class="carousel-inner">
@@ -845,18 +843,16 @@
 				
 				<div class="category-tab feature-ad lastest-post">
 				<!--recommended_items-->
-				<div class="col-lg-12">
-					<ul class="nav nav-tabs">
-						<li><strong>New Arrival Products</strong>  &nbsp;&nbsp;&nbsp; &frasl;</li>
-						<li>Products : <span class="number-display">25</span></li>
-						<li>Stores :<span class="number-display">25</span></li>
-						<li>Market :<span class="number-display">25</span></li>
-						<li>Companies :<span class="number-display">25</span></li>
-						<li>Home Shop :<span class="number-display">25</span></li>
-						<li>Individual : <span class="number-display">25</span></li>
-						<li>View :<span class="number-display">25</span></li>
-					</ul>
-				</div>
+				<ul class="nav nav-tabs">
+					<li><strong>New Arrival Products</strong>  &nbsp;&nbsp;&nbsp; &frasl;</li>
+					<li>Products : <span class="number-display">25</span></li>
+					<li>Stores :<span class="number-display">25</span></li>
+					<li>Market :<span class="number-display">25</span></li>
+					<li>Companies :<span class="number-display">25</span></li>
+					<li>Home Shop :<span class="number-display">25</span></li>
+					<li>Individual : <span class="number-display">25</span></li>
+					<li>View :<span class="number-display">25</span></li>
+				</ul>
 				<div id="hotpromotion-item-carousel" class="carousel slide"
 					data-ride="carousel">
 					<div class="carousel-inner">
@@ -1327,18 +1323,16 @@
 				
 				<div class="category-tab feature-ad lastest-post">
 					<!--recommended_items-->
-					<div class="col-lg-12">
-						<ul class="nav nav-tabs">
-							<li><strong>Second Hand Products</strong>  &nbsp;&nbsp;&nbsp; &frasl;</li>
-							<li>Products : <span class="number-display">25</span></li>
-							<li>Stores :<span class="number-display">25</span></li>
-							<li>Market :<span class="number-display">25</span></li>
-							<li>Companies :<span class="number-display">25</span></li>
-							<li>Home Shop :<span class="number-display">25</span></li>
-							<li>Individual : <span class="number-display">25</span></li>
-							<li>View :<span class="number-display">25</span></li>
-						</ul>
-					</div>
+					<ul class="nav nav-tabs">
+						<li><strong>Second Hand Products</strong>  &nbsp;&nbsp;&nbsp; &frasl;</li>
+						<li>Products : <span class="number-display">25</span></li>
+						<li>Stores :<span class="number-display">25</span></li>
+						<li>Market :<span class="number-display">25</span></li>
+						<li>Companies :<span class="number-display">25</span></li>
+						<li>Home Shop :<span class="number-display">25</span></li>
+						<li>Individual : <span class="number-display">25</span></li>
+						<li>View :<span class="number-display">25</span></li>
+					</ul>
 					<div id="monthly-pay-item-carousel" class="carousel slide"
 						data-ride="carousel">
 						<div class="carousel-inner">
@@ -1577,216 +1571,86 @@
 	        <h4 class="modal-title" id="myModalLabel">Product details title</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<div class="row">
-	      		<div class="col-sm-8">
-					<div class="product-image-wrapper">
-						<div class="single-products">
-							<div class="productinfo text-center">
-								<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="col-md-12 productinfo text-center">
-						<center>
-							<h3>Advertisment Banner Here</h3>
-							<p>(It can be automatically upside down add)</p>
-						</center>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-8">
-					<div class="category-tab feature-ad">
-			        <div id="product-detail-carousel" class="carousel slide"
-						data-ride="carousel">
-						<div class="carousel-inner">
-							<div class="item active">
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend1.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-													class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-											<div class="product-overlay">
-												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-														class="fa fa-shopping-cart"></i>View Details</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-													class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-											<div class="product-overlay">
-												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-														class="fa fa-shopping-cart"></i>View Details</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend3.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-													class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-											<div class="product-overlay">
-												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-														class="fa fa-shopping-cart"></i>View Details</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend3.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-													class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-											<div class="product-overlay">
-												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-														class="fa fa-shopping-cart"></i>View Details</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend1.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-													class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-											<div class="product-overlay">
-												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-														class="fa fa-shopping-cart"></i>View Details</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-													class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-											<div class="product-overlay">
-												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-														class="fa fa-shopping-cart"></i>View Details</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend3.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-													class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-											<div class="product-overlay">
-												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-														class="fa fa-shopping-cart"></i>View Details</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="{{Config::get('app.url')}}/frontend/images/home/recommend2.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-													class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-											<div class="product-overlay">
-												<div class="overlay-content">
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="{{Config::get('app.url')}}/pro/simple-product-name/123" class="btn btn-default add-to-cart"><i
-														class="fa fa-shopping-cart"></i>View Details</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							
-						</div>
-						<a class="left recommended-item-control"
-							href="#product-detail-carousel" data-slide="prev"> <i
-							class="fa fa-angle-left"></i>
-						</a> <a class="right recommended-item-control"
-							href="#product-detail-carousel" data-slide="next"> <i
-							class="fa fa-angle-right"></i>
-						</a>
-					</div>
-				 </div>
-				</div>
-				<br />
+	      		<div class="container">
+			        <div id="main_area">
+			                <!-- Slider -->
+			                <div class="row">
+			                    <div class="col-xs-12" id="slider">
+			                        <!-- Top part of the slider -->
+			                        <div class="row">
+			                            <div class="col-sm-8" id="carousel-bounding-box">
+			                                <div class="carousel slide" id="myCarousel">
+			                                    <!-- Carousel items -->
+			                                    <div class="carousel-inner">
+			                                        <div class="active item" data-slide-number="0">
+			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
+			
+			                                        <div class="item" data-slide-number="1">
+			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
+			
+			                                        <div class="item" data-slide-number="2">
+			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
+			
+			                                        <div class="item" data-slide-number="3">
+			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
+			
+			                                        <div class="item" data-slide-number="4">
+			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
+			
+			                                        <div class="item" data-slide-number="5">
+			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
+			                                    </div><!-- Carousel nav -->
+			                                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+			                                        <span class="glyphicon glyphicon-chevron-left"></span>                                       
+			                                    </a>
+			                                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+			                                        <span class="glyphicon glyphicon-chevron-right"></span>                                       
+			                                    </a>                                
+			                                    </div>
+			                            </div>
+			                            <div class="col-sm-4" id="carousel-text"></div>
+			                            <div id="slide-content" style="display: none;">
+			                                <div id="slide-content-0">
+			                                    <h2>Slider One</h2>
+			                                    <p>Lorem Ipsum Dolor</p>
+			                                    <p class="sub-text">October 24 2014 - <a href="#">Read more</a></p>
+			                                </div>
+			                            </div>
+			                        </div>
+			                    </div>
+			                </div><!--/Slider-->
+			
+			                <div class="row hidden-xs" id="slider-thumbs">
+			                	<div class="col-lg-8">
+			                		<!-- Bottom switcher of slider -->
+			                        <ul class="hide-bullets">
+			                            <li class="col-sm-2">
+			                                <a class="thumbnail" id="carousel-selector-0"><img src="http://placehold.it/170x100&text=one"></a>
+			                            </li>
+			
+			                            <li class="col-sm-2">
+			                                <a class="thumbnail" id="carousel-selector-1"><img src="http://placehold.it/170x100&text=two"></a>
+			                            </li>
+			
+			                            <li class="col-sm-2">
+			                                <a class="thumbnail" id="carousel-selector-2"><img src="http://placehold.it/170x100&text=three"></a>
+			                            </li>
+			
+			                            <li class="col-sm-2">
+			                                <a class="thumbnail" id="carousel-selector-3"><img src="http://placehold.it/170x100&text=four"></a>
+			                            </li>
+			
+			                            <li class="col-sm-2">
+			                                <a class="thumbnail" id="carousel-selector-4"><img src="http://placehold.it/170x100&text=five"></a>
+			                            </li>
+			
+			                            <li class="col-sm-2">
+			                                <a class="thumbnail" id="carousel-selector-5"><img src="http://placehold.it/170x100&text=six"></a>
+			                            </li>
+			                        </ul> 
+			                	</div>                
+			                </div>
+			        </div>
 			</div>
 	      </div>
 	      <div class="modal-footer">
@@ -1798,3 +1662,11 @@
 	</div>
 </div>
 @endsection
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
