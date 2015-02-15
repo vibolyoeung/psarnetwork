@@ -21,7 +21,7 @@
             <a class="btn btn-default no-border" href="#" role="button"><img src="{{Config::get('app.url')}}/frontend/images/icons/icon-connect.png" alt="" style="width: 40px;" class="r-menu-thumb" /> Seller connect with  buyer</a>
             <a class="btn btn-default no-border" href="#" role="button"><img src="{{Config::get('app.url')}}/frontend/images/icons/icon-cart1.png" alt="" style="width: 40px;" class="r-menu-thumb" /> Checking & Compare Products</a>
         </div>
- 
+
 
 		<div class="constug">
 			<center>
@@ -61,34 +61,65 @@
 		<div class="panel panel-primary LoginForm">
 			<div class="panel-heading">
 				<h3 class="panel-title">
-					User Login
+					{{trans('login.User_Login')}}
 				</h3>
 			</div>
 			<div class="panel-body">
-				<form action="{{Config::get('app.url')}}" id="LoginForm">
+				@if(Session::has('INVALID_LOGIN'))
+					<div class="alert alert-block alert-danger fade in">
+						<button
+							data-dismiss="alert"
+							class="close"
+							type="button"
+							data-original-title=""
+						>x</button>
+						<p>{{Session::get('INVALID_LOGIN')}}</p>
+					</div>
+				@endif
+				<form action="{{URL::to('/member/login')}}" method="post" id="LoginForm">
 					<div class="well well-sm">
 						<div class="form-horizontal">
 							<div class="form-group">
 								<label for="WhoAreYou" class="col-sm-4 control-label">
-									Login by name / email / phone number
+									{{trans('login.Login_By_Name_Email_Phone')}}
 								</label>
 								<div class="col-sm-8">
-									<input type="text" name="username" class="form-control" id="eMail" placeholder="by name / email / phone number" aria-describedby="eMailStatus" required />
+									<input
+										type="text"
+										name="loginName"
+										class="form-control"
+										id="eMail"
+										placeholder="{{trans('login.by_name_email_phone_number')}}"
+										aria-describedby="eMailStatus"
+										required
+									/>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="BusinessSite" class="col-sm-4 control-label">
-									Password
+									{{trans('login.Password')}}
 								</label>
 								<div class="col-sm-8">
-									<input type="password" name="Password" class="form-control" id="Password" placeholder="Your Password" aria-describedby="PasswordStatus" required />
+									<input
+										type="password"
+										name="password"
+										class="form-control"
+										id="Password"
+										placeholder="{{trans('login.Your_Password')}}"
+										aria-describedby="PasswordStatus"
+										required
+									/>
 								</div>
 							</div>
 						</div>
 					</div>
-					<button type="submit" id="summit" class="btn btn-primary pull-right">
-						Login
-					</button>
+					<input
+						type="submit"
+						id="summit"
+						class="btn btn-primary pull-right",
+						value="{{trans('login.Login')}}",
+						name="BtnLogin"
+					/>
 				</form>
 			</div>
 		</div>
@@ -98,8 +129,8 @@
 </div>
 {{HTML::script('frontend/js/jquery.validate.js')}}
 <script type='text/javascript'>
-	
-	
+
+
 $(document).ready(function(){
     $('#agreement').click(function () {
         if($(this).is(":checked")) {
@@ -107,7 +138,7 @@ $(document).ready(function(){
         } else {
             $("#summit").attr('disabled',true);
         }
-    });    
+    });
     $("#registerForm").validate({
           rules: {
               YourName:"required",
