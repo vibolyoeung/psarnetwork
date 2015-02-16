@@ -1,8 +1,8 @@
 <div class="panel panel-default">
 	<div class="panel-body">
 		<div class="form-group col-md-6 col-sm-12 col-xs-6">
-			{{Form::radio('advertiseType', '1', true)}} <label for="advertiseType">Advertise</label>
-			{{Form::radio('advertiseType', '2', false)}} <label for="advertiseType">Banner</label>
+			{{Form::radio('advertiseType', '1', true)}} <label for="advertiseType">Banner</label>
+			{{Form::radio('advertiseType', '2', false)}} <label for="advertiseType">Product</label>
 		</div>
 
 		<div class="form-group col-md-6 col-sm-12 col-xs-6">
@@ -38,17 +38,12 @@
 			'form-control'))}}
 		</div>
 
-		<div class="form-group col-md-4 col-sm-12 col-xs-4">
-			{{ Form::select('pageType',$advCatPages, null , array('class' =>
-			'form-control', 'id' => 'ads-cat-page'))}}
-		</div>
-
-		<div class="form-group col-md-4 col-sm-12 col-xs-4 ads-page">
+		<div class="form-group col-md-6 col-sm-12 col-xs-6 ads-page">
 			{{ Form::select('advertisementPage',array(), null , array('class' =>
 			'form-control', 'id' => 'ads-page'))}}
 		</div>
 
-		<div class="form-group col-md-4 col-sm-12 col-xs-4 position">
+		<div class="form-group col-md-6 col-sm-12 col-xs-6 position">
 			{{ Form::select('advertisementPosition',
 			array(), null , array('class' => 'form-control', 'id' =>
 			'ads-position'))}}

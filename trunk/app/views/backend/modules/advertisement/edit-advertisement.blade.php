@@ -38,19 +38,14 @@
 			'form-control'))}}
 		</div>
 
-		<div class="form-group col-md-4 col-sm-12 col-xs-4">
-			{{ Form::select('pageType',$advCatPages, $advertisement->adv_cat_page_id , array('class' =>
-			'form-control', 'id' => 'ads-cat-page'))}}
-		</div>
-
 		{{Form::hidden('adv-hid', $advertisement->adv_page_id, array('id'=> 'adv-hid'))}}
-		<div class="form-group col-md-4 col-sm-12 col-xs-4 ads-page">
+		<div class="form-group col-md-6 col-sm-12 col-xs-6 ads-page">
 			{{ Form::select('advertisementPage',array(), $advertisement->adv_page_id , array('class' =>
 			'form-control', 'id' => 'ads-page'))}}
 		</div>
 
 		{{Form::hidden('adv-hid', $advertisement->adv_position_id, array('id'=> 'pos-hid'))}}
-		<div class="form-group col-md-4 col-sm-12 col-xs-4 position">
+		<div class="form-group col-md-6 col-sm-12 col-xs-6 position">
 			{{ Form::select('advertisementPosition',
 			array(), $advertisement->adv_position_id , array('class' => 'form-control', 'id' =>
 			'ads-position'))}}

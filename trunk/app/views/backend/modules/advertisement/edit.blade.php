@@ -29,33 +29,33 @@
 			<div class="panel-body">
 				{{Form::open(array('url'=>'admin/edit-advertisement','enctype'=>'multipart/form-data','file' => true))}}
 					<div class="form-group col-md-6 col-sm-12 col-xs-6">
-						{{Form::radio('membership', '0', true)}} <label for="membership">None Member</label>
-						{{Form::radio('membership', '1', false)}} <label for="membership">Member</label>
+						{{Form::radio('membership', '0', false)}} <label for="membership">None Member</label>
+						{{Form::radio('membership', '1', true)}} <label for="membership">Member</label>
 					</div>
 
 					{{ Form::hidden('user_id', '', array('id' => 'user_id')) }}
 					<div class="form-group col-md-6 col-sm-12 col-xs-6 search-by-name">
-						{{Form::text('search_username',null, array('class' =>
+						{{Form::text('search_username',$advertisement->name, array('class' =>
 						'form-control','placeholder'=>'Search by Name', 'id' => 'search_by_name'))}}
 					</div>
 
 					<div class="form-group col-md-6 col-sm-12 col-xs-6">
-						{{Form::text('username',null, array('class' =>
+						{{Form::text('username',$advertisement->name, array('class' =>
 						'form-control','placeholder'=>'Name', 'id' => 'username'))}}
 					</div>
 
 					<div class="form-group col-md-6 col-sm-12 col-xs-6">
-						{{Form::text('address',null, array('class' =>
+						{{Form::text('address',$advertisement->address, array('class' =>
 						'form-control','placeholder'=>'Address', 'id' => 'address'))}}
 					</div>
 
 					<div class="form-group col-md-6 col-sm-12 col-xs-6">
-						{{Form::text('email',null, array('class' =>
+						{{Form::text('email',$advertisement->email, array('class' =>
 						'form-control','placeholder'=>'Email', 'id' => 'email'))}}
 					</div>
 
 					<div class="form-group col-md-6 col-sm-12 col-xs-6">
-						{{Form::text('phone',null, array('class' =>
+						{{Form::text('phone',$advertisement->telephone, array('class' =>
 						'form-control','placeholder'=>'Phone Number', 'id' => 'phone_number'))}}
 					</div>
 			</div>

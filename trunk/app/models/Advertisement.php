@@ -176,7 +176,7 @@ class Advertisement extends Eloquent {
 		try {
 			$result = DB::table ( Config::get ( 'constants.TABLE_NAME.USER' ) )
 			->where('name', $name)
-			->where('user_type','!=', self::CLIENT)
+			->where('user_type', self::CLIENT)
 			->get ();
 			$response->data = $result;
 		} catch ( \Exception $e ) {
@@ -250,8 +250,11 @@ class Advertisement extends Eloquent {
 					->update($data);
 				$response->result = 1;
 			} else {
-				$listing = DB::table(Config::get('constants.TABLE_NAME.ADVERTISEMENT'))
-				->where('id','=', $id)
+				$adv = Config::get('constants.TABLE_NAME.ADVERTISEMENT');
+				$user = Config::get('constants.TABLE_NAME.USER');
+				$listing = DB::table($adv . ' AS a')
+				->join($user . ' AS u', 'a.user_id', '=', 'u.id')
+				->where('a.id','=', $id)
 				->first();
 				$response->data = $listing;
 				$response->result = 1;
