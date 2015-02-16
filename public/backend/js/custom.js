@@ -2,13 +2,13 @@ $(document).ready(function() {
 	$('.datepicker' ).datepicker({ dateFormat: 'dd/mm/yy' });
 	
 	// call list advertisement pages
-	$advCatPageId = $('#ads-cat-page').val();
-	if($advCatPageId > 0) {
+	$advType = $('[name="advertiseType"]').prop("checked", true).val()
+	if($advType > 0) {
 		$('#ads-page').show();
-		listAdvPage($advCatPageId);
+		listAdvPage($advType);
 	}
-	$('#ads-cat-page').change(function() {
-		var id = $(this).val();
+	$('[name="advertiseType"]').click(function() {
+		var id = $(this).prop("checked", true).val();
 		if (0 == id) {
 			$('#ads-page').hide();
 			$('#ads-position').hide();
@@ -23,7 +23,6 @@ $(document).ready(function() {
 	if(!$advPageId) {
 		$advPageId = $('#adv-hid').val();
 	}
-	console.log($advPageId);
 	if($advPageId > 0) {
 		$('#ads-position').show();
 		listAllPositions($advPageId);

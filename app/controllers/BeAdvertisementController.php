@@ -50,7 +50,6 @@ class BeAdvertisementController extends BaseController {
 			}
 		}
 
-		$advCatPages = $this->advertisement->findAllAdvertiseCategoryPages();
 		$advPages = $this->advertisement->findAllAdvertisePages ();
 		$licenses = $this->advertisement->findLicense();
 		$paymentMethod = $this->advertisement->findPaymentMethod();
@@ -61,7 +60,6 @@ class BeAdvertisementController extends BaseController {
 		return View::make ( 'backend.modules.advertisement.add' )
 			->with ('advPage', $advPages->data)
 			->with('licenses', $licenses->data)
-			->with('advCatPages', $advCatPages->data)
 			->with('paymentMethods', $paymentMethod->data)
 			->with('adminUsers', $adminUsers)
 			->with('clients', $clients);
@@ -160,8 +158,6 @@ class BeAdvertisementController extends BaseController {
 			}
 		}
 		$result = $this->advertisement->saveEditAdvertisement($id);
-
-		$advCatPages = $this->advertisement->findAllAdvertiseCategoryPages();
 		$advPages = $this->advertisement->findAllAdvertisePages ();
 		$licenses = $this->advertisement->findLicense();
 		$paymentMethod = $this->advertisement->findPaymentMethod();
@@ -173,7 +169,6 @@ class BeAdvertisementController extends BaseController {
 			->with ('advertisement', $result->data)
 			->with ('advPage', $advPages->data)
 			->with('licenses', $licenses->data)
-			->with('advCatPages', $advCatPages->data)
 			->with('paymentMethods', $paymentMethod->data)
 			->with('adminUsers', $adminUsers)
 			->with('clients', $clients);
