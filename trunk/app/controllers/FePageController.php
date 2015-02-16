@@ -32,6 +32,7 @@ class FePageController extends BaseController {
 	}
 	
 	public function getProductbyCategory(){
-		return View::make('frontend.modules.detail.index');
+		return View::make('frontend.modules.detail.index')
+				->with('Provinces', $this->mod_setting->listProvinces());
 	}
 }
