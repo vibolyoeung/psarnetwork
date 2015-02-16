@@ -72,7 +72,7 @@
 			</a>
 		</div>
 		<div class="col-md-1 thumbnail panel-position">
-			<a href="#">
+			<a href="{{URL::to('admin/advertisements')}}">
 				<div class="caption">
 					{{HTML::image('backend/images/icons/advertisment.png','Advertisement')}}
 					<strong>Advertisment</strong>

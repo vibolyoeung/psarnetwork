@@ -69,14 +69,10 @@
 		<div id="content">
 			<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
 				<li class="active"><a href="#advertisement" data-toggle="tab">Advertisement Information</a></li>
-				<li><a href="#product" data-toggle="tab">Product-Ads</a></li>
 			</ul>
 			<div id="my-tab-content" class="tab-content">
 				<div class="tab-pane active" id="advertisement">
 					@include('backend.modules.advertisement.edit-advertisement')
-				</div>
-				<div class="tab-pane" id="product">
-					@include('backend.modules.advertisement.edit-product')
 				</div>
 			</div>
 		</div>
