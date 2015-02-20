@@ -142,7 +142,8 @@ class Market extends Eloquent{
 		try {
 			$result = DB::table(Config::get('constants.TABLE_NAME.CLIENT_TYPE'))
 			->select('id','name','account_type_id')
-			->where('account_type_id','!=',1)
+			->where('id','!=', 1)
+			->where('id','!=', 2)
 			->get();
 			foreach ($result as $marketType) {
 				$arr[$marketType->id] = $marketType->name;
