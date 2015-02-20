@@ -34,14 +34,20 @@ class FeMemberController extends BaseController {
 			);
 			$validator = Validator::make(Input::all(), $rules);
 			if ($validator->passes()) {
+			 $addressArr = array(
+                'province'=>Input::get('province'),
+                'disctict'=>Input::get('district'),
+                'g_latitude_longitude'=>Input::get('gLatitudeLongitude'),
+             );
                 $data = array(
     				'email'=>trim(Input::get('email')),
     				'name'=>trim(Input::get('name')),
     				'telephone'=>Input::get('telephone'),
-    				'address'=>Input::get('address'),
+    				'address'=>json_encode($addressArr),
                     'user_type'=>Config::get('constants.CLIENT_USER'),
                     'client_type'=>Input::get('client_type'),
                     'account_type'=>Input::get('accounttype'),
+                    'account_role'=>Input::get('accountRole'),
                     'password'=>md5(sha1(Input::get('password'))),
                     'create_at'=>date(self::CURRENT_DATE)
 				);
@@ -61,11 +67,13 @@ class FeMemberController extends BaseController {
         $marketType = $this->mod_market->dataListingMarketsType();
         $provinces = $this->mod_setting->listProvinces();
         $accountRole = $this->user->accountRole();
+        $clientType = $this->user->getClientType();
         return View::make('frontend.modules.member.register')
     	       ->with('maincategories', $listCategories->result)
                ->with('marketType', $marketType->data)
                ->with('provinces', $provinces)
                ->with('accountRole', $accountRole->data)
+               ->with('clientType', $clientType->data)
                ->with('markets', $result->data);
 //        if (!empty($usertype)) {
 ////            switch($step){
