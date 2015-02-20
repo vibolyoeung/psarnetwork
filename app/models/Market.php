@@ -76,6 +76,7 @@ class Market extends Eloquent{
 			$result = DB::table(Config::get('constants.TABLE_NAME.PROVINCE'))
 			->select('province_id','province_name')
 			->get();
+			$arr[''] = 'Select Province';
 			foreach ($result as $provinces) {
 				$arr[$provinces->province_id] = $provinces->province_name;
 			}
