@@ -2577,8 +2577,8 @@ h2.title {
 }
 
 .blog-socials {
-    margin-bottom: -9px;
-    margin-top: 14px;
+    float:right;
+    font-size:12px;
 }
 
 .blog-socials ul {
@@ -2619,7 +2619,6 @@ h2.title {
     color: #FFFFFF;
     float: left;
     font-size: 10px;
-    padding: 1px 7px;
     text-transform: uppercase;
 }
 
@@ -3116,4 +3115,8 @@ margin-top:20px;
 }
 .carousel-control.right,.carousel-control.left{
 	background-image:none;
+}
+.nav-tabs li span{
+	cursor: pointer;
+	color:#285EA0;
 }

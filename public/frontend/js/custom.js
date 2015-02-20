@@ -14,13 +14,42 @@ $(document).ready(function(){
 	      var id = parseInt(id);
 	      jQuery('#myCarousel').carousel(id);
 	  });
+
 	
 	
-	  // When the carousel slides, auto update the text
+	// When the carousel slides, auto update the text
 	jQuery('#myCarousel').on('slid.bs.carousel', function (e) {
 	           var id = $('.item.active').data('slide-number');
 	          $('#carousel-text').html($('#slide-content-'+id).html());
-	  });
+	 });
+	//For switching list view
+	jQuery(".product_list_container").addClass(" col-lg-4")
+	jQuery(".product_image").addClass("col-lg-6");
+	
+	
+	jQuery("#grid_view").click(function(){
+		jQuery(this).css("color","red");
+		jQuery("#list_view,#social_view").css("color","black");
+		jQuery(".product_list_container").addClass(" col-lg-4");
+		jQuery(".product_image").removeClass().addClass("pull-left product_image col-lg-6");
+	});
+	
+	
+	
+	jQuery("#list_view").click(function(){
+		jQuery(this).css("color","red");
+		jQuery("#grid_view,#social_view").css("color","black");
+		jQuery(".product_list_container").removeClass().addClass("product_list_container col-lg-12");
+		jQuery(".product_image").removeClass().addClass("pull-left product_image col-lg-2");
+	});
+	
+	jQuery("#social_view").click(function(){
+		jQuery(this).css("color","red");
+		jQuery("#list_view,#grid_view").css("color","black");
+		jQuery(".product_list_container").removeClass().addClass("product_list_container col-lg-6");
+		jQuery(".product_image").removeClass().addClass("pull-left product_image col-lg-6");
+	});
+	
 });
 
 function user_register(cos,vals){
