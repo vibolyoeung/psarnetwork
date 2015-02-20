@@ -210,6 +210,7 @@ class BeMarketController extends BaseController {
 		if($param == 'add'){
 			$data['image'] = $fileName;
 			$data['created_date']=date('Y-m-d');
+			$data['address'] = Input::get('MappingAddressHere');
 		}elseif ('edit'){
 			$data['modify_date']=date('Y-m-d');
 			if(!empty($fileName)){
