@@ -11,9 +11,11 @@
 	</li>
 </ol>
 @endsection @section('frontend.partials.left') @endsection @section('content')
+{{HTML::script("frontend/js/postscribe-master/postscribe.js")}}
+{{HTML::script("frontend/js/postscribe-master/htmlParser/htmlParser.js")}}
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 {{HTML::script('frontend/js/map.js')}}
-<div class="home">
+<div class="home" id="loadmaps">
 	<div class="rigister">
 		<div class="col-sm-8">
 			<div class="r-menu">
@@ -128,16 +130,21 @@
 									</label>
 									<div class="col-sm-8">
 										<select class="form-control" name="client_type" id="clientType">
+                                            <option value="">
+												{{trans('register.Manufaturure_select')}}
+											</option>
+                                            <?php $i=1;?>
+												@foreach($clientType as $cType)
+												<option value="{{$cType->id}}">
+													{{$cType->name}}
+												</option>
+												<?php $i++;?>
+													@endforeach
 										</select>
-                                        <div 
-                                        id="loadingClientType" 
-                                        style="display: none;background:#fff;width:100%;text-align:center;padding:2px;border:1px solid #eee;">
-                                        <img style="width: 30px;" src="{{Config::get('app.url')}}frontend/images/upload_progress.gif"/>
-                                        </div>
 									</div>
 								</div>
-								<div class="form-group">
-									<label for="BusinessSite" class="col-sm-4 control-label">
+								<div class="form-group" id="marketType">
+									<label for="Market_Type" class="col-sm-4 control-label">
 										{{trans('register.Market_Type')}}
 									</label>
 									<div class="col-sm-8">
@@ -219,11 +226,11 @@
 								(error)
 							</span>
 						</div>
-						<div class="form-group">
+						<div class="form-group ghide" style="display: none;">
 							<label for="Location">
 								{{trans('register.Input_Location')}}
 							</label>
-							<select class="form-control" id="Location" name="address" required>
+							<select class="form-control" id="Location" name="province" required>
 								<option value="">
 									{{trans('register.Input_Select_Location')}}
 								</option>
@@ -241,11 +248,11 @@
 								(error)
 							</span>
 						</div>
-                        <div class="form-group">
+                        <div class="form-group ghide" style="display: none;">
 							<label for="Location">
 								{{trans('register.Input_Disctrict')}}
 							</label>
-							<select class="form-control" id="District" name="address" disabled required>
+							<select class="form-control" id="District" name="district" disabled required>
 								<option value="">
 									{{trans('register.Input_Select_Disctrict')}}
 								</option>
@@ -257,19 +264,19 @@
 							</span>
                             <div id="loading" style="display: none;"><img style="width: 40px;" src="{{Config::get('app.url')}}frontend/images/upload_progress.gif"/></div>
 						</div>
-						<div class="form-group">
+						<div class="form-group ghide" style="display: none;">
 							<label for="MappingAddressHere">
 								{{trans('register.Mapping_Address_Here')}}
 							</label>
-							<input type="text" name="MappingAddressHere" class="form-control" id="latbox" placeholder="{{trans('register.Mapping_Address_Here_Placeholder')}}" aria-describedby="MappingAddressHereStatus" required />
+							<input type="text" name="gLatitudeLongitude" class="form-control" id="latbox" placeholder="{{trans('register.Mapping_Address_Here_Placeholder')}}" aria-describedby="MappingAddressHereStatus" required />
 							<span data="MappingAddressHere" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">
 							</span>
 							<span id="MappingAddressHereStatus" class="sr-only">
 								(error)
 							</span>
 						</div>
-                        <div id="mapWrapper">
-                            <div id="gmap" style="width: 100%; height: 375px"></div>
+                        <div id="mapWrapper" style="">
+                            
                         </div>
 						<div class="form-group">
 							<label for="TypeText">
@@ -307,7 +314,7 @@ $(document).ready(function(){
     $('#freeAccount').click(function () {
         if($(this).is(":checked")) {
             //alert($(this).val());
-            getAccountType($(this).val());
+            //getAccountType($(this).val());
         } else {
             //$("#summit").attr('disabled',true);
         }
@@ -315,7 +322,7 @@ $(document).ready(function(){
     $('#interpriseAccount').click(function () {
         if($(this).is(":checked")) {
             //alert($(this).val());
-            getAccountType($(this).val());
+            //getAccountType($(this).val());
         } else {
             //$("#summit").attr('disabled',true);
         }
@@ -336,6 +343,27 @@ $(document).ready(function(){
             }
         });
     }
+    
+    $("#clientType").change(function()
+        {
+            var id = $(this).val();
+            var cName = $('option:selected', this).text();
+            if(id == {{Config::get('constants.CLIENT_TYPE_ID.INDIVIDUAL')}} || id == {{Config::get('constants.CLIENT_TYPE_ID.HOMESHOP')}}) {
+                $('#marketType').hide();
+                $('.ghide').show();
+                //$('#Location').hide();
+                loadMap();
+            } else {
+                $('#marketType').show();
+                $('#mapWrapper').html('');
+                $('.ghide').hide();
+            }
+            //var dataString = 'pro_id=' + id;
+            //var gid = $('option:selected', this).attr('data-lat');
+            //$('#loading').show();
+            //$('#District').hide();
+    });
+        
     $("#Location").change(function()
         {
             var id = $(this).val();
@@ -433,7 +461,13 @@ $(document).ready(function(){
         $(element.form).find("span[data=" + element.id + "]").removeClass('glyphicon-remove').addClass('glyphicon-ok');
       }
     });
-});
 
+});
+function loadMap() {
+    $(function () {
+        postscribe('#mapWrapper','<div id="gmap" style="width: 100%; height: 375px"><\/div>');
+        xz();
+    });
+}
 </script>
 @endsection

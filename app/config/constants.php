@@ -25,6 +25,10 @@ return array(
 	'TRADITIONAL_MARKET'=>'Traditional Market',
 	'SUPERMARKET'=>'Supermarket',
 	'CLIENT_USER'=>4,
+    'CLIENT_TYPE_ID'=>array(
+        'INDIVIDUAL'=>1,
+        'HOMESHOP'=>2
+    ),
 	'TABLE_NAME'=>array(
 			'ACCOUNT_TYPE'=>'account_type',
 			'ADV_PAGE'=>'adv_page',
