@@ -39,7 +39,7 @@
 	</head>
 	<body>
 	<div id="login-container">
-		<div id="logo"><sup><i class="icon-cloud"></i></sup></div>
+		<div id="logo"></div>
 			<div id="login">
 				<h3><span>Administrator</span></h3>
 				<h5>Please sign in to get access.</h5>
@@ -56,7 +56,7 @@
 					<span class="class-error">{{$errors->first('password')}}</span>
 				</div>
 				<div class="form-group">
-					<input type="submit" name="btnLogin" value="Login" class="btn btn-success btn-block" />
+					<input type="submit" name="btnLogin" value="Login" class="btn btn-primary btn-block" />
 				</div>
 				<div class="form-group">
 					<input name="remember_me" type="checkbox" <?php echo isset($_COOKIE['remember_username'])?"checked":"";?> /> Remembered me
