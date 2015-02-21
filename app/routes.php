@@ -12,7 +12,7 @@
 */
 
 Route::get('/admin', 'BeLoginController@showLogin');
-Route::get('/login', 'BeLoginController@showLogin');
+Route::get('/admin/login', 'BeLoginController@showLogin');
 Route::post('/admin/login', 'BeLoginController@doLogin');
 Route::get('/admin/send-forget-password', 'BeLoginController@sendResetPassword');
 Route::post('/admin/send-forget-password', 'BeLoginController@sendResetPassword');
