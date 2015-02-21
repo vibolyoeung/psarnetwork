@@ -3120,3 +3120,13 @@ margin-top:20px;
 	cursor: pointer;
 	color:#285EA0;
 }
+
+.col-centered{
+	float:none;
+	margin:0 auto;
+}
+.social_desc,.media-body{
+	overflow:hidden;
+	clear:both;
+	float:none;
+}

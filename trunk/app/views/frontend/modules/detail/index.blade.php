@@ -28,11 +28,12 @@ Categories
 			</div>
 		</div>
 		<div class="col-lg-12">
-				<div class="col-lg-12 product_list_container">
+				<div class="product_list_container">
 					<div class="media commnets">
 						<a href="#" class="pull-left product_image">
 							<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
 						</a>
+						
 						<div class="media-body">
 							<h4 class="media-heading">Annie Davis</h4>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
