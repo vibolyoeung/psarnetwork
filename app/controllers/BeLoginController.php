@@ -68,7 +68,7 @@ class BeLoginController extends BaseController {
 	 */
 	public function doLogout(){
 		Auth::logout();
-		return Redirect::to('admin');
+		return Redirect::to('admin/login');
 	}
 
 	/**
