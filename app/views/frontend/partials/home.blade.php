@@ -1663,7 +1663,7 @@
 </div>
 @endsection
 @section('client_location')
-	@include('frontend.partials.client_location')
+	<?php //include('frontend.partials.client_location');?>
 @endsection
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
