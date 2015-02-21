@@ -33,14 +33,15 @@ class FeMemberController extends BaseController {
 			$result = $this->mod_member->memberLogin($loginName, $password);
 			if(!empty($result)){
 				Session::put('currentUserId', $result->id);
-				Session::put('currentUserName', $result->username);
+				Session::put('currentUserName', $result->name);
 				Session::put('currentUserEmail', $result->email);
 				Session::put('currentUserPhone', $result->telephone);
 				Session::put('currentUserType', $result->user_type);
 				return Redirect::to('@TODO: login success redirectly');
 			} else {
 				return Redirect::to('member/login')
-					->with('INVALID_LOGIN', 'Username and Password is invalid!');
+					->with('INVALID_LOGIN', 'Username and Password is invalid!')
+					->withInput();
 			}
     	}
     	$listCategories = self::getCategoriesHomePage();
