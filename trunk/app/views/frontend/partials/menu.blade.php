@@ -1,5 +1,6 @@
 <!--=============Menu==========-->
 <div class="header-bottom" >
+<h2>End Test Menu</h2>
 	<nav class="navbar navbar-default" role="navigation">
 	  <div class="container-fluid" style="padding:0;">
 	    <!-- Brand and toggle get grouped for better mobile display -->
@@ -21,12 +22,19 @@
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Snippets <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
 	            <li>
-	                <a href="#">
-	                    Preview carousel indicators                                
-	                    <div class="thumbnail">
-	                       <strong>Cars</strong>
-	                    </div>
-	                </a>
+	                  <a href="#">
+		                   Menu
+		                    <div class="thumbnail">
+		                       <ul>
+		                       		<li>
+		                       			<b>Electorynic</b>
+		                       			<li>Computers</li>
+		                       			<li>Computers</li>
+		                       			<li>Computers</li>
+		                       		</li>
+		                       </ul>
+		                    </div>
+	                    </a>
 	            </li>
 	            <li>
 	                <a href="#">
