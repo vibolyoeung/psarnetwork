@@ -37,7 +37,7 @@ class FeMemberController extends BaseController {
 				Session::put('currentUserEmail', $result->email);
 				Session::put('currentUserPhone', $result->telephone);
 				Session::put('currentUserType', $result->user_type);
-				return Redirect::to('@TODO: login success redirectly');
+				return Redirect::to('page/test_store');
 			} else {
 				return Redirect::to('member/login')
 					->with('INVALID_LOGIN', 'Username and Password is invalid!')
