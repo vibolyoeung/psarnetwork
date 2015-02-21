@@ -139,7 +139,7 @@ class Advertisement extends Eloquent {
 			$licenseType = array ();
 			$licenseType [0] = 'License Type';
 			foreach ( $result as $license ) {
-				$licenseType [$license->id] = $license->name_en ;
+				$licenseType[$license->id] = $license->name_en ;
 			}
 			$response->data = $licenseType;
 			$response->result = 1;
@@ -152,7 +152,27 @@ class Advertisement extends Eloquent {
 
 	}
 
-		public function findPaymentMethod() {
+	public function findCategory() {
+		$response = new stdClass ();
+		try {
+			$result = DB::table ( Config::get ( 'constants.TABLE_NAME.M_CATEGORY' ) )->get ();
+			$categories = array ();
+			$categories [0] = 'Choose Category';
+			foreach ( $result as $category ) {
+				$categories[$category->id] = $category->name_en ;
+			}
+			$response->data = $categories;
+			$response->result = 1;
+		} catch ( \Exception $e ) {
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage ();
+		}
+
+		return $response;
+
+	}
+
+	public function findPaymentMethod() {
 		$response = new stdClass ();
 		try {
 			$result = DB::table (Config::get ('constants.TABLE_NAME.PAYMENT_METHOD'))->get ();
@@ -246,14 +266,15 @@ class Advertisement extends Eloquent {
 		try {
 			if($param == 'operation'){
 				$result = DB::table(Config::get('constants.TABLE_NAME.ADVERTISEMENT'))
-					->where('id','=',$id)
+					->where('id','=', $id)
 					->update($data);
 				$response->result = 1;
 			} else {
 				$adv = Config::get('constants.TABLE_NAME.ADVERTISEMENT');
 				$user = Config::get('constants.TABLE_NAME.USER');
 				$listing = DB::table($adv . ' AS a')
-				->join($user . ' AS u', 'a.user_id', '=', 'u.id')
+				->select('*', 'a.id AS advId')
+				->leftJoin($user . ' AS u', 'a.user_id', '=', 'u.id')
 				->where('a.id','=', $id)
 				->first();
 				$response->data = $listing;
@@ -263,7 +284,6 @@ class Advertisement extends Eloquent {
 			$response->result = 0;
 			$response->errorMsg = $e->getMessage();
 		}
-
 		return $response;
 	}
 
