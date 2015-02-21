@@ -53,6 +53,7 @@ class BeAdvertisementController extends BaseController {
 		$advPages = $this->advertisement->findAllAdvertisePages ();
 		$licenses = $this->advertisement->findLicense();
 		$paymentMethod = $this->advertisement->findPaymentMethod();
+		$categories = $this->advertisement->findCategory();
 
 		$clients = $this->extractClients();
 		$adminUsers = $this->extractAdminUsers();
@@ -61,6 +62,7 @@ class BeAdvertisementController extends BaseController {
 			->with ('advPage', $advPages->data)
 			->with('licenses', $licenses->data)
 			->with('paymentMethods', $paymentMethod->data)
+			->with('categories', $categories->data)
 			->with('adminUsers', $adminUsers)
 			->with('clients', $clients);
 
@@ -113,6 +115,11 @@ class BeAdvertisementController extends BaseController {
 		return $user->data;
 	}
 
+	public function listCategory() {
+		$categories = $this->advertisement->findCategory();
+		return $categories->data;
+	}
+
 	/**
 	 *
 	 *
@@ -161,6 +168,7 @@ class BeAdvertisementController extends BaseController {
 		$advPages = $this->advertisement->findAllAdvertisePages ();
 		$licenses = $this->advertisement->findLicense();
 		$paymentMethod = $this->advertisement->findPaymentMethod();
+		$categories = $this->advertisement->findCategory();
 
 		$clients = $this->extractClients();
 		$adminUsers = $this->extractAdminUsers();
@@ -170,6 +178,7 @@ class BeAdvertisementController extends BaseController {
 			->with ('advPage', $advPages->data)
 			->with('licenses', $licenses->data)
 			->with('paymentMethods', $paymentMethod->data)
+			->with('categories', $categories->data)
 			->with('adminUsers', $adminUsers)
 			->with('clients', $clients);
 	}
@@ -263,6 +272,7 @@ class BeAdvertisementController extends BaseController {
 				'description_km'  => trim ( Input::get ('description_km')),
 				'user_id'         => Input::get('user_id'),
 				'incharger'       => Input::get('incharger_id'),
+				'pro_cat_id'      => Input::get('proCategory'),
 				'adv_cat_page_id' => Input::get('advertiseType'),
 				'adv_page_id'     => Input::get('advertisementPage'),
 				'adv_position_id' => Input::get('advertisementPosition'),

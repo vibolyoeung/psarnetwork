@@ -1,15 +1,20 @@
 <div class="panel panel-default">
 	<div class="panel-body">
 		<div class="form-group col-md-6 col-sm-12 col-xs-6">
-			{{Form::radio('advertiseType', '1', true)}} <label for="advertiseType">Advertise</label>
-			{{Form::radio('advertiseType', '2', false)}} <label for="advertiseType">Banner</label>
+			{{Form::radio('advertiseType', '1', false)}} <label for="advertiseType">Advertise</label>
+			{{Form::radio('advertiseType', '2', true)}} <label for="advertiseType">Product</label>
 		</div>
 
-		<div class="form-group col-md-6 col-sm-12 col-xs-6">
+		<div class="form-group col-md-3 col-sm-12 col-xs-3">
 			{{Form::text('seller_name',null, array('class' =>
 			'form-control', 'id' => 'incharger','placeholder'=>'Incharge By seller:'))}}
 		</div>
 		{{ Form::hidden('incharger_id', $advertisement->incharger, array('id' => 'hid_incharger')) }}
+
+		<div class="form-group col-md-3 col-sm-12 col-xs-3 product-category">
+			 {{Form::select('proCategory',$categories, $advertisement->pro_cat_id , array('class' =>
+			'form-control', 'id' => 'proCategory'))}}
+		</div>
 
 		<div class="form-group col-md-6 col-sm-12 col-xs-6">
 			{{Form::text('title_en',$advertisement->title_en, array('class' =>
@@ -94,7 +99,7 @@
 		</div>
 
 		<div class="form-group col-md-12 col-sm-12 col-xs-12">
-			{{Form::hidden('hid',$advertisement->id)}}
+			{{Form::hidden('hid',$advertisement->advId)}}
 			{{Form::submit('Create', array('class' => 'btn
 			btn-success','name'=>'btnSubmit'))}} {{Form::close()}}
 		</div>

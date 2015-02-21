@@ -2,20 +2,15 @@ $(document).ready(function() {
 	$('.datepicker' ).datepicker({ dateFormat: 'dd/mm/yy' });
 	
 	// call list advertisement pages
-	$advType = $('[name="advertiseType"]').prop("checked", true).val()
-	if($advType > 0) {
-		$('#ads-page').show();
-		listAdvPage($advType);
-	}
+	var advType = $('[name="advertiseType"]').prop("checked", true).val();
+	listAdvPage(advType);
+	hideAndShowCategory(advType);
+	
+	$('#proCategory').hide();
 	$('[name="advertiseType"]').click(function() {
 		var id = $(this).prop("checked", true).val();
-		if (0 == id) {
-			$('#ads-page').hide();
-			$('#ads-position').hide();
-		} else {
-			$('#ads-page').show();
-			listAdvPage(id);
-		}
+		listAdvPage(id);
+		hideAndShowCategory(id);
 	});
 	
 	// call list position
@@ -76,6 +71,14 @@ $(document).ready(function() {
 	AccessPermissionSelectAll();
 	ModifyPermissionSelectAll();
 });
+
+function hideAndShowCategory(id) {
+	if (1 == id) {
+		$('#proCategory').hide();
+	} else {
+		$('#proCategory').show();
+	}
+}
 
 function getClientByName(username) {
 	$.ajax({
