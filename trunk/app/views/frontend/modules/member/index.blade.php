@@ -76,6 +76,17 @@
 						<p>{{Session::get('INVALID_LOGIN')}}</p>
 					</div>
 				@endif
+				@if(Session::has('SECCESS_MESSAGE_REGISTER'))
+					<div class="alert alert-block alert-success fade in">
+						<button
+							data-dismiss="alert"
+							class="close"
+							type="button"
+							data-original-title=""
+						>x</button>
+						<p>{{Session::get('SECCESS_MESSAGE_REGISTER')}}</p>
+					</div>
+				@endif
 				<form action="{{URL::to('/member/login')}}" method="post" id="LoginForm">
 					<div class="well well-sm">
 						<div class="form-horizontal">

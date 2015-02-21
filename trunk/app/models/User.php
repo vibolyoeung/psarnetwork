@@ -108,7 +108,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		}
 
 		return $response;
-	}      
+	}
 	public function accountRole() {
 		$response = new stdClass ();
 
