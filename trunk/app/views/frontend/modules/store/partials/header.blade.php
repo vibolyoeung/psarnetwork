@@ -133,4 +133,5 @@
 				
 				<div class="col-lg-8">
 				    <h1>Khmer Phone And Computer  Store</h1>
+                    </div>
 			</div>
