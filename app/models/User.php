@@ -92,7 +92,23 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		}
 
 		return $response;
-	}    
+	}
+	public function getMarketType($id) {
+		$response = new stdClass ();
+
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.MARKET'))
+                ->where('market_type','=',$id)
+                ->orderBy('title_en','asc')
+                ->get();
+            $response->data = $result;
+		} catch ( \Exception $e ) {
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage ();
+		}
+
+		return $response;
+	}      
 	public function accountRole() {
 		$response = new stdClass ();
 

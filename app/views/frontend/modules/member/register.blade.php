@@ -148,7 +148,7 @@
 										{{trans('register.Market_Type')}}
 									</label>
 									<div class="col-sm-8">
-										<select class="form-control">
+										<select class="form-control" name="marketType" id="marketTypes">
 											<option value="">
 												{{trans('register.Market_Type')}}
 											</option>
@@ -160,6 +160,11 @@
 												<?php $i++;?>
 													@endforeach
 										</select>
+                                        <div 
+                                        id="loadingmarketType" 
+                                        style="display: none;background:#fff;width:100%;text-align:center;padding:2px;border:1px solid #eee;">
+                                        <img style="width: 30px;" src="{{Config::get('app.url')}}frontend/images/upload_progress.gif"/>
+                                        </div>
 									</div>
 								</div>
 							</div>
@@ -357,6 +362,26 @@ $(document).ready(function(){
                 $('#marketType').show();
                 $('#mapWrapper').html('');
                 $('.ghide').hide();
+                if(id) {
+                   if(id != {{Config::get('constants.CLIENT_TYPE_ID.INDIVIDUAL')}} || id != {{Config::get('constants.CLIENT_TYPE_ID.HOMESHOP')}}) {
+                        $('#loadingmarketType').show();
+                        $('#marketTypes').hide();
+                        $.ajax
+                        ({
+                            type: "get",
+                            url: "{{Config::get('app.url')}}member/getmarkettype/"+id,
+                            cache: false,
+                            success: function(html)
+                            {
+                                console.log(html);
+                                var selects = '<option value="">{{trans('register.Market_Type')}}</option>';
+                                $("#marketTypes").html(selects + html).removeAttr("disabled");
+                                $('#loadingmarketType').hide();
+                                $('#marketTypes').show();
+                            }
+                        });
+                   } 
+                }
             }
             //var dataString = 'pro_id=' + id;
             //var gid = $('option:selected', this).attr('data-lat');
