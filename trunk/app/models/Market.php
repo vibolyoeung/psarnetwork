@@ -139,7 +139,7 @@ class Market extends Eloquent{
 	 */
 	public function listingMarketsType(){
 		$response = new stdClass();
-		$arr = array(''=>'Market Type');
+		$arr = array();
 		try {
 			$result = DB::table(Config::get('constants.TABLE_NAME.CLIENT_TYPE'))
 			->select('id','name','account_type_id')
