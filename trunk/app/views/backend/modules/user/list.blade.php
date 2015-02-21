@@ -1,4 +1,3 @@
-use Boris\Config;
 @extends('backend/layout') @section('title') Users @endsection
 @section('breadcrumb')
 	<ul class="breadcrumb">
@@ -58,7 +57,7 @@ use Boris\Config;
 			<td>{{$user->name}}</td>
 			<td>{{$user->email}}</td>
 			<td>
-				<?php 
+				<?php
 					$userGroup = DB::table(Config::get('constants.TABLE_NAME.USER_TYPE'))
 					->where('id','=',$user->user_type)
 					->first();
