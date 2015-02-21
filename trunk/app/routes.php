@@ -131,6 +131,6 @@ Route::any('/member/addmenuajax', 'FeMemberController@addmenuajax');
 Route::any('/member/getdistrict', 'FeMemberController@getDistric');
 Route::any('/{lang}/categories', 'FePageController@getProductbyCategory');
 Route::any('/categories', 'FePageController@getProductbyCategory');
-Route::any('/member/getclienttype/{id}', 'FeMemberController@getClientType');
+Route::any('/member/getmarkettype/{id}', 'FeMemberController@getMarketType');
 /*for free page*/
 Route::any('/{name}/page', 'FeFreePageController@freePage')->where('name', '[A-Za-z0-9]+');

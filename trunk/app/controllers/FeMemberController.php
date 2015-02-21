@@ -5,6 +5,7 @@ class FeMemberController extends BaseController {
     private $mod_category;
     private $mod_setting;
     protected $mod_market;
+    protected $mod_store;
     protected  $user;
     const CURRENT_DATE = 'Y-m-d';
 
@@ -13,6 +14,7 @@ class FeMemberController extends BaseController {
     	$this->mod_category = new MCategory();
     	$this->mod_setting = new Setting();
         $this->mod_market = new Market();
+        $this->mod_store = new Store();
         $this->user = new User();
        
     }
@@ -34,16 +36,16 @@ class FeMemberController extends BaseController {
 			);
 			$validator = Validator::make(Input::all(), $rules);
 			if ($validator->passes()) {
-			 $addressArr = array(
-                'province'=>Input::get('province'),
-                'disctict'=>Input::get('district'),
-                'g_latitude_longitude'=>Input::get('gLatitudeLongitude'),
-             );
+    			 $addressArr = array(
+                    'province'=>Input::get('province'),
+                    'disctict'=>Input::get('district'),
+                    'g_latitude_longitude'=>Input::get('gLatitudeLongitude'),
+                 );
                 $data = array(
     				'email'=>trim(Input::get('email')),
     				'name'=>trim(Input::get('name')),
     				'telephone'=>Input::get('telephone'),
-    				'address'=>json_encode($addressArr),
+    				'address'=>json_encode(@$addressArr),
                     'user_type'=>Config::get('constants.CLIENT_USER'),
                     'client_type'=>Input::get('client_type'),
                     'account_type'=>Input::get('accounttype'),
@@ -51,7 +53,15 @@ class FeMemberController extends BaseController {
                     'password'=>md5(sha1(Input::get('password'))),
                     'create_at'=>date(self::CURRENT_DATE)
 				);
-				$this->user->insert($data);
+				$uid = $this->user->insertGetId($data);
+                
+                /*add data for store*/
+                $storeData = array(
+    				'user_id'=>$uid,
+    				'sup_id'=>trim(Input::get('marketType')),
+				);
+                $uid = $this->mod_store->insertGetId($storeData);
+                /*end add data for store*/
 				return Redirect::to('member/register')->with('SECCESS_MESSAGE','A user has been added successfully');
 			}else{
 				return Redirect::to('member/register')->withInput()->withErrors($validator);
@@ -133,11 +143,20 @@ class FeMemberController extends BaseController {
     }
     public function getClientType($id){
         $this->layout = null;
-            $Client_val = '';
-            $getClientType = $this->user->getClientType($id);
-            foreach($getClientType->data as $ClientType) {
-                $Client_val .='<option value="'.$ClientType->id.'">'.$ClientType->name.'</option>';
-            }
+        $Client_val = '';
+        $getClientType = $this->user->getClientType($id);
+        foreach($getClientType->data as $ClientType) {
+            $Client_val .='<option value="'.$ClientType->id.'">'.$ClientType->name.'</option>';
+        }
         echo $Client_val;
     }
+     public function getMarketType($id){
+        $this->layout = null;
+        $Market_val = '';
+        $getMarketType = $this->user->getMarketType($id);
+        foreach($getMarketType->data as $marketType) {
+            $Market_val .='<option value="'.$marketType->id.'">'.$marketType->title_en.'</option>';
+        }
+        echo $Market_val;
+    }   
 }
