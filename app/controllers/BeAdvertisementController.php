@@ -263,7 +263,7 @@ class BeAdvertisementController extends BaseController {
 				'description_km'  => trim ( Input::get ('description_km')),
 				'user_id'         => Input::get('user_id'),
 				'incharger'       => Input::get('incharger_id'),
-				'adv_cat_page_id' => Input::get('pageType'),
+				'adv_cat_page_id' => Input::get('advertiseType'),
 				'adv_page_id'     => Input::get('advertisementPage'),
 				'adv_position_id' => Input::get('advertisementPosition'),
 				'status'          => Input::get('status'),
