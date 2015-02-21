@@ -1,3 +1,4 @@
+use Boris\Config;
 @extends('backend/layout') @section('title') Users @endsection
 @section('breadcrumb')
 	<ul class="breadcrumb">
@@ -56,7 +57,16 @@
 			<td>{{$i}}</td>
 			<td>{{$user->name}}</td>
 			<td>{{$user->email}}</td>
-			<td>{{$arrUserGroup[$user->user_type]}}</td>
+			<td>
+				<?php 
+					$userGroup = DB::table(Config::get('constants.TABLE_NAME.USER_TYPE'))
+					->where('id','=',$user->user_type)
+					->first();
+					if(!empty($userGroup)){
+						echo $userGroup->name;
+					}
+				?>
+			</td>
 			<td align="center"><a
 				href='{{URL::to("admin/status")}}/{{$user->status}}/{{$user->id}}'>
 			@if($user->status == 1) <span class="icon-ok success"></span> @else <span

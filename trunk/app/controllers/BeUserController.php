@@ -23,9 +23,11 @@ class BeUserController extends BaseController {
 		foreach ($userGroup->data as $user_group){
 			$arrUserGroup[$user_group->id] = $user_group->name;
 		}
+		
 		$users = $this->user->where('id','!=',Session::get('SESSION_USER_ID'))
 				->orderBy('id','DESC')
 				->paginate(Config::get('constants.BACKEND_PAGINATION_USER'));
+		
 		return View::make('backend.modules.user.list')
 				->with('users', $users)
 				->with('status', $status)
