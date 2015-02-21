@@ -33,12 +33,13 @@ CREATE TABLE `market` (
   `image` varchar(100) DEFAULT NULL,
   `amount_stair` varchar(100) DEFAULT NULL,
   `market_type` int(11) NOT NULL,
+  `address` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 /*Data for the table `market` */
 
-insert  into `market`(`id`,`title_en`,`title_km`,`created_date`,`modify_date`,`desc_en`,`desc_km`,`province_id`,`district_id`,`image`,`amount_stair`,`market_type`) values (8,'esss-update','ss-update','2014-11-11','2014-12-02','sfds','sss',1,172,'1415719636.jpg','10',2),(9,'Sovana','At The Old','2014-12-04',NULL,'this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me ','',2,125,'1417698209.png','4',5),(10,'IT companyddddddddd','That isស្វែង','2014-12-04','2015-01-19','This is phom Pehn City company This is phom Pehn City company This is phom Pehn City company This is phom Pehn City company This is phom Pehn City company t isស្វែង','This is phom Pehn City company This is phom Pehn City company This is phom Pehn City company This is phom Pehn City company This is phom Pehn City company t isស្វែងt isស្វែង',6,146,'1417698382.png','2',3),(11,'dzfdf-updated','kfsdf-updated','2015-01-19','2015-01-19','sdf-updated','ssdfd-updated',2,126,'1421684060.jpg','2',2);
+insert  into `market`(`id`,`title_en`,`title_km`,`created_date`,`modify_date`,`desc_en`,`desc_km`,`province_id`,`district_id`,`image`,`amount_stair`,`market_type`,`address`) values (12,'Sovana','សុវានណា','2015-02-20',NULL,'dfssdfsf','fddsf',2,127,'1424447936.PNG','4',3,'11.619955,105.875244');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
