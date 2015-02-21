@@ -43,7 +43,7 @@ Route::filter('auth', function()
 {
 	if (Auth::guest())
 	{
-		return Redirect::route('login')
+		return Redirect::to('admin/login')
 		->with('flash_error', 'You must be logged in to view this page!');
 	}
 });
