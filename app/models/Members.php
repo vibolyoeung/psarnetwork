@@ -4,6 +4,14 @@ class Members extends Eloquent{
 
 	const STATUS = 1;
 
+	/**
+	 * Login for member operaiton
+	 *
+	 * @method memberLogin
+	 * @param string $loginName
+	 * @param string $password
+	 * @return object User
+	 */
 	public function memberLogin($loginName, $password){
 		$query = DB::table(Config::get('constants.TABLE_NAME.USER'));
 		switch ($loginName){
@@ -14,10 +22,10 @@ class Members extends Eloquent{
 				$query->where('telephone','=', $loginName);
 				break;
 			default:
-				$query->where('username','=', $loginName);
+				$query->where('name','=', $loginName);
 				break;
 		}
-		$query->where('password', '=', sha1(md5($password)));
+		$query->where('password', '=', md5(sha1($password)));
 		$query->where('user_type', '=', Config::get('constants.CLIENT_USER'));
 		$query->where('status', '=', self::STATUS);
 		$result = $query->first();

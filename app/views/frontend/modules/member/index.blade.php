@@ -95,15 +95,18 @@
 									{{trans('login.Login_By_Name_Email_Phone')}}
 								</label>
 								<div class="col-sm-8">
-									<input
-										type="text"
-										name="loginName"
-										class="form-control"
-										id="eMail"
-										placeholder="{{trans('login.by_name_email_phone_number')}}"
-										aria-describedby="eMailStatus"
-										required
-									/>
+									{{
+										Form::input(
+											'text',
+											 'loginName',
+											 null,
+											 [
+											 	'class' => 'form-control',
+											 	'placeholder'=>trans('login.by_name_email_phone_number'),
+											 	'required'=>'required'
+											 ]
+										)
+									}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -111,15 +114,16 @@
 									{{trans('login.Password')}}
 								</label>
 								<div class="col-sm-8">
-									<input
-										type="password"
-										name="password"
-										class="form-control"
-										id="Password"
-										placeholder="{{trans('login.Your_Password')}}"
-										aria-describedby="PasswordStatus"
-										required
-									/>
+									{{
+										Form::password(
+											 'password',
+											 [
+											 	'class' => 'form-control',
+											 	'placeholder'=>trans('login.Your_Password'),
+											 	'required'=>'required'
+											 ]
+										)
+									}}
 								</div>
 							</div>
 						</div>
