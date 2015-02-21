@@ -147,8 +147,7 @@ ul > li{
 }
 
 #ads-position,
-#search_by_name,
-#ads-page {
+#search_by_name {
 	display: none;
 }
 .count-num{

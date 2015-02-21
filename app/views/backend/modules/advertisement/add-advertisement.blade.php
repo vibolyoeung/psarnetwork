@@ -5,11 +5,16 @@
 			{{Form::radio('advertiseType', '2', false)}} <label for="advertiseType">Product</label>
 		</div>
 
-		<div class="form-group col-md-6 col-sm-12 col-xs-6">
+		<div class="form-group col-md-3 col-sm-12 col-xs-3">
 			{{Form::text('seller_name',null, array('class' =>
 			'form-control', 'id' => 'incharger','placeholder'=>'Incharge By seller:'))}}
 		</div>
 		{{ Form::hidden('incharger_id', '', array('id' => 'hid_incharger')) }}
+
+		<div class="form-group col-md-3 col-sm-12 col-xs-3 product-category">
+			 {{Form::select('proCategory',$categories, null , array('class' =>
+			'form-control', 'id' => 'proCategory'))}}
+		</div>
 
 		<div class="form-group col-md-6 col-sm-12 col-xs-6">
 			{{Form::text('title_en',null, array('class' =>

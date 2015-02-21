@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 16, 2015 at 10:27 PM
+-- Generation Time: Feb 21, 2015 at 10:35 PM
 -- Server version: 5.5.40-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.5
 
@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS `advertisement` (
   `end_date` varchar(100) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `incharger` int(11) NOT NULL,
+  `pro_cat_id` int(11) DEFAULT '0',
   `size` int(11) NOT NULL,
   `type` int(11) NOT NULL,
   `status` int(11) DEFAULT NULL,
@@ -47,20 +48,15 @@ CREATE TABLE IF NOT EXISTS `advertisement` (
   `adv_page_id` int(11) DEFAULT NULL,
   `license_id` int(11) NOT NULL,
   `payment_method` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `advertisement`
 --
 
-INSERT INTO `advertisement` (`id`, `title_en`, `title_km`, `description_en`, `description_km`, `image`, `link_url`, `started_date`, `end_date`, `user_id`, `incharger`, `size`, `type`, `status`, `apearance`, `adv_position_id`, `adv_cat_page_id`, `adv_page_id`, `license_id`, `payment_method`) VALUES
-(2, 'Advertisement title', 'ចំណងជើង2ផ្សព្វ​ផ្សាយ', 'English title', 'ការពីពរណា', '1422546836.jpg', 'https://www.google.com.kh', '29/01/2015', '23/01/2015', 6, 0, 0, 0, 1, 0, 5, 2, 3, 4, 1),
-(3, 'Advertisement title', 'វិបុល', 'vibol love you', 'វិបុល​ស្រលាញ់​អ្នក', '1422719470.jpg', 'https://www.google.com.kh', '31/01/2015', '30/01/2015', 6, 0, 200, 0, 1, 1, 2, 2, 1, 2, 2),
-(4, 'Molestias', 'ជាភាសាខ្មែរ', 'Hic aliquam voluptatem in rem optio, id, temporibus officiis et tempore, aliquip.', 'ជាភាសារខ្មែរ', '1423060901.jpg', 'https://www.google.com.kh', '11-Oct-1972', '06-Sep-1998', 0, 0, 23, 2, 1, 0, 10, 1, 2, 1, 1),
-(5, 'Occaecat neque veritatis dolor praesentium fugiat nulla ut distinctio Anim', 'ភាសារខ្មែរ', 'Eius voluptatem. Eveniet, magni explicabo. Nesciunt, culpa, cupidatat voluptatem veniam, animi, in dolorem quibusdam esse, minima amet, pariatur. Dolorum.', 'Dicta quidem sapiente hic et velit, similique ut magni aspernatur doloribus doloremque.', '1423148012.jpg', 'https://www.facebook.com/video.php?v=801912709855737&set=vb.199289656784715&type=2&theater', '14-Jun-1992', '27-May-2000', 7, 0, 23, 1, 1, 1, 3, 1, 3, 3, 3),
-(6, 'Sunt distinctio', 'Eos et est consectetur sed quis atque et', 'Necessitatibus temporibus ullam tempora perspiciatis, quia impedit, ratione velit ducimus, excepturi.', 'Soluta quam voluptas nihil dolor hic aut blanditiis quas ut magnam in non ipsam ipsa, in ullamco aperiam atque.', '1423148259.png', 'https://www.google.com.kh', '06-Oct-1972', '25-Apr-1994', 9, 0, 0, 1, 1, 1, 5, 1, 5, 3, 3),
-(7, 'Placeat nostrud omnis ullamco sint natus tempore praesentium nobis voluptate aut quisquam et voluptas ut sint', 'Illo atque dolor quis sint exercitation culpa qui illo', 'Nesciunt, voluptatem excepturi error tenetur elit, in in non voluptatibus dolorum officiis totam nostrud aspernatur.', 'Reprehenderit ullam non animi, veniam, dolorem esse magni omnis vitae id, totam aut assumenda nemo perspiciatis, dolor ex laboris.', '1423668591.png', 'https://www.facebook.com/video.php?v=801912709855737&set=vb.199289656784715&type=2&theater', '16-Jul-2011', '27-Apr-2000', 10, 0, 0, 1, 1, 1, 8, 2, 4, 2, 2),
-(8, 'Deleniti ducimus sit corrupti lorem quisquam sapiente sapiente tempora exercitation vel neque', 'Distinctio Ducimus non placeat in sit quis odit id aut reprehenderit quos voluptatem Molestiae', 'Qui quisquam eum proident, ipsam nisi aut et dolore porro qui porro iure quasi do suscipit.', 'Ea error nihil do sed aut libero omnis est est deserunt.', '1423668811.PNG', 'https://www.facebook.com/video.php?v=801912709855737&set=vb.199289656784715&type=2&theater', '19-May-2003', '07-Jun-1987', 11, 3, 32, 1, NULL, 0, 3, 1, 3, 2, 2);
+INSERT INTO `advertisement` (`id`, `title_en`, `title_km`, `description_en`, `description_km`, `image`, `link_url`, `started_date`, `end_date`, `user_id`, `incharger`, `pro_cat_id`, `size`, `type`, `status`, `apearance`, `adv_position_id`, `adv_cat_page_id`, `adv_page_id`, `license_id`, `payment_method`) VALUES
+(2, 'Advertisement title eeee', 'ចំណងជើង2ផ្សព្វ​ផ្សាយ', 'English title', 'ការពីពរណា', '1422546836.jpg', 'https://www.google.com.kh', '29/01/2015', '23/01/2015', 0, 2, 14, 0, 2, 1, 0, 5, 2, 5, 4, 1),
+(3, 'title aaa', 'Omnis consectetur ut cupidatat eu Nam vel', 'Atque laborum aut voluptas et amet, excepteur mollitia consequuntur eos vel qui rerum ipsum quo necessitatibus qui esse.', 'Sed et harum consectetur, in excepteur et quod eligendi sit, sit sit ab aut voluptas quod natus aliquip.', '1424532737.jpg', 'https://www.google.com.kh', '14-Jun-2001', '12-Apr-1971', 0, 2, 15, 30, 2, 1, 1, 3, 2, 3, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -357,7 +353,7 @@ ALTER TABLE `payment_method`
 -- AUTO_INCREMENT for table `advertisement`
 --
 ALTER TABLE `advertisement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `advertiser_profile`
 --
