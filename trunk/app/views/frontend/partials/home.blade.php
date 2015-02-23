@@ -1562,6 +1562,8 @@
 			</div>
 		</div>
 	</div>
+	
+	
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
@@ -1663,7 +1665,9 @@
 </div>
 @endsection
 @section('client_location')
-	<?php //include('frontend.partials.client_location');?>
+	<?php 
+		include('frontend.partials.client_location');
+	?>
 @endsection
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
