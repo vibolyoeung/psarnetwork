@@ -1,6 +1,6 @@
-@extends('frontend.layout') 
-@section('title') 
-	Home 
+@extends('frontend.layout')
+@section('title')
+	Home
 @endsection
 @section('breadcrumb')
 	<ol class="breadcrumb">
@@ -46,7 +46,7 @@
 						</div>
 						<a href="#" data-toggle="modal" data-target="#myModal">
 							<div class="product-overlay">
-								<div class="overlay-content"> 
+								<div class="overlay-content">
 										<h2>$56</h2>
 										<p>Easy Polo Black Edition</p>
 										<a href="#" data-toggle="modal" data-target="#myModal">
@@ -436,7 +436,7 @@
 							<h4 class="media-heading">Annie Davis</h4>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 							<div class="blog-socials">
-								
+
 								<a href="" class="btn btn-primary">$ 20.00</a>
 							</div>
 						</div>
@@ -451,7 +451,7 @@
 							<h4 class="media-heading">Annie Davis</h4>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 							<div class="blog-socials">
-								
+
 								<a href="" class="btn btn-primary">$20.00</a>
 							</div>
 						</div>
@@ -466,7 +466,7 @@
 							<h4 class="media-heading">Annie Davis</h4>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 							<div class="blog-socials">
-								
+
 								<a href="" class="btn btn-primary">$30.00</a>
 							</div>
 						</div>
@@ -481,7 +481,7 @@
 							<h4 class="media-heading">Annie Davis</h4>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 							<div class="blog-socials">
-								
+
 								<a href="" class="btn btn-primary">$20.00</a>
 							</div>
 						</div>
@@ -496,7 +496,7 @@
 							<h4 class="media-heading">Annie Davis</h4>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 							<div class="blog-socials">
-								
+
 								<a href="" class="btn btn-primary">$ 20.00</a>
 							</div>
 						</div>
@@ -511,7 +511,7 @@
 							<h4 class="media-heading">Annie Davis</h4>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 							<div class="blog-socials">
-								
+
 								<a href="" class="btn btn-primary">$20.00</a>
 							</div>
 						</div>
@@ -526,7 +526,7 @@
 							<h4 class="media-heading">Annie Davis</h4>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 							<div class="blog-socials">
-								
+
 								<a href="" class="btn btn-primary">$30.00</a>
 							</div>
 						</div>
@@ -541,7 +541,7 @@
 							<h4 class="media-heading">Annie Davis</h4>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 							<div class="blog-socials">
-								
+
 								<a href="" class="btn btn-primary">$20.00</a>
 							</div>
 						</div>
@@ -556,7 +556,7 @@
 							<h4 class="media-heading">Annie Davis</h4>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 							<div class="blog-socials">
-								
+
 								<a href="" class="btn btn-primary">$30.00</a>
 							</div>
 						</div>
@@ -571,7 +571,7 @@
 							<h4 class="media-heading">Annie Davis</h4>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 							<div class="blog-socials">
-								
+
 								<a href="" class="btn btn-primary">$20.00</a>
 							</div>
 						</div>
@@ -596,13 +596,13 @@
 					<img src="{{Config::get('app.url')}}/frontend/images/kiss-mag.gif" class="img-responsive" alt="" title=""/>
 				</a>
 			</div>
-			
+
 			<div class="col-lg-1 pull-left" style="border: 0px solid #ddd;padding:0;">
 				<a href="#">
 					<img src="{{Config::get('app.url')}}/frontend/images/kiss-mag.gif" class="img-responsive" alt="" title=""/>
 				</a>
 			</div>
-			
+
 			<div class="col-lg-10">
 				<ul class="nav nav-tabs">
 					<li><strong>Hot PromotionProducts</strong>  &nbsp;&nbsp;&nbsp; &frasl;</li>
@@ -838,9 +838,9 @@
 						class="fa fa-angle-right"></i>
 					</a>
 				</div>
-				
+
 				<br />
-				
+
 				<div class="category-tab feature-ad lastest-post">
 				<!--recommended_items-->
 				<ul class="nav nav-tabs">
@@ -1068,7 +1068,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 					</div>
 					<a class="left recommended-item-control"
 						href="#hotpromotion-item-carousel" data-slide="prev"> <i
@@ -1308,7 +1308,7 @@
 									</div>
 								</div>
 							</div>
-							
+
 						</div>
 						<a class="left recommended-item-control"
 							href="#second-hand-item-carousel" data-slide="prev"> <i
@@ -1320,7 +1320,7 @@
 					</div>
 				</div>
 				<br />
-				
+
 				<div class="category-tab feature-ad lastest-post">
 					<!--recommended_items-->
 					<ul class="nav nav-tabs">
@@ -1558,12 +1558,12 @@
 						</a>
 					</div>
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
-	
-	
+
+
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
@@ -1586,28 +1586,28 @@
 			                                    <div class="carousel-inner">
 			                                        <div class="active item" data-slide-number="0">
 			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
-			
+
 			                                        <div class="item" data-slide-number="1">
 			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
-			
+
 			                                        <div class="item" data-slide-number="2">
 			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
-			
+
 			                                        <div class="item" data-slide-number="3">
 			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
-			
+
 			                                        <div class="item" data-slide-number="4">
 			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
-			
+
 			                                        <div class="item" data-slide-number="5">
 			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
 			                                    </div><!-- Carousel nav -->
 			                                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-			                                        <span class="glyphicon glyphicon-chevron-left"></span>                                       
+			                                        <span class="glyphicon glyphicon-chevron-left"></span>
 			                                    </a>
 			                                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-			                                        <span class="glyphicon glyphicon-chevron-right"></span>                                       
-			                                    </a>                                
+			                                        <span class="glyphicon glyphicon-chevron-right"></span>
+			                                    </a>
 			                                    </div>
 			                            </div>
 			                            <div class="col-sm-4" id="carousel-text"></div>
@@ -1621,7 +1621,7 @@
 			                        </div>
 			                    </div>
 			                </div><!--/Slider-->
-			
+
 			                <div class="row hidden-xs" id="slider-thumbs">
 			                	<div class="col-lg-8">
 			                		<!-- Bottom switcher of slider -->
@@ -1629,28 +1629,28 @@
 			                            <li class="col-sm-2">
 			                                <a class="thumbnail" id="carousel-selector-0"><img src="http://placehold.it/170x100&text=one"></a>
 			                            </li>
-			
+
 			                            <li class="col-sm-2">
 			                                <a class="thumbnail" id="carousel-selector-1"><img src="http://placehold.it/170x100&text=two"></a>
 			                            </li>
-			
+
 			                            <li class="col-sm-2">
 			                                <a class="thumbnail" id="carousel-selector-2"><img src="http://placehold.it/170x100&text=three"></a>
 			                            </li>
-			
+
 			                            <li class="col-sm-2">
 			                                <a class="thumbnail" id="carousel-selector-3"><img src="http://placehold.it/170x100&text=four"></a>
 			                            </li>
-			
+
 			                            <li class="col-sm-2">
 			                                <a class="thumbnail" id="carousel-selector-4"><img src="http://placehold.it/170x100&text=five"></a>
 			                            </li>
-			
+
 			                            <li class="col-sm-2">
 			                                <a class="thumbnail" id="carousel-selector-5"><img src="http://placehold.it/170x100&text=six"></a>
 			                            </li>
-			                        </ul> 
-			                	</div>                
+			                        </ul>
+			                	</div>
 			                </div>
 			        </div>
 			</div>
@@ -1665,9 +1665,7 @@
 </div>
 @endsection
 @section('client_location')
-	<?php 
-		include('frontend.partials.client_location');
-	?>
+		@include('frontend.partials.client_location')
 @endsection
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
