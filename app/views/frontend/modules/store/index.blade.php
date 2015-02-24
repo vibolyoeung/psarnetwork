@@ -1,6 +1,6 @@
-@extends('frontend.modules.store.layout.layout') 
-@section('title') 
-	Home 
+@extends('frontend.modules.store.layout.layout')
+@section('title')
+	Home
 @endsection
 @section('breadcrumb')
 	<ol class="breadcrumb">
@@ -43,7 +43,7 @@
 						</div>
 						<a href="#" data-toggle="modal" data-target="#myModal">
 							<div class="product-overlay">
-								<div class="overlay-content"> 
+								<div class="overlay-content">
 										<h2>$56</h2>
 										<p>Easy Polo Black Edition</p>
 										<a href="#" data-toggle="modal" data-target="#myModal">
@@ -394,28 +394,28 @@
 			                                    <div class="carousel-inner">
 			                                        <div class="active item" data-slide-number="0">
 			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
-			
+
 			                                        <div class="item" data-slide-number="1">
 			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
-			
+
 			                                        <div class="item" data-slide-number="2">
 			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
-			
+
 			                                        <div class="item" data-slide-number="3">
 			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
-			
+
 			                                        <div class="item" data-slide-number="4">
 			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
-			
+
 			                                        <div class="item" data-slide-number="5">
 			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
 			                                    </div><!-- Carousel nav -->
 			                                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-			                                        <span class="glyphicon glyphicon-chevron-left"></span>                                       
+			                                        <span class="glyphicon glyphicon-chevron-left"></span>
 			                                    </a>
 			                                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-			                                        <span class="glyphicon glyphicon-chevron-right"></span>                                       
-			                                    </a>                                
+			                                        <span class="glyphicon glyphicon-chevron-right"></span>
+			                                    </a>
 			                                    </div>
 			                            </div>
 			                            <div class="col-sm-4" id="carousel-text"></div>
@@ -429,7 +429,7 @@
 			                        </div>
 			                    </div>
 			                </div><!--/Slider-->
-			
+
 			                <div class="row hidden-xs" id="slider-thumbs">
 			                	<div class="col-lg-8">
 			                		<!-- Bottom switcher of slider -->
@@ -437,43 +437,42 @@
 			                            <li class="col-sm-2">
 			                                <a class="thumbnail" id="carousel-selector-0"><img src="http://placehold.it/170x100&text=one"></a>
 			                            </li>
-			
+
 			                            <li class="col-sm-2">
 			                                <a class="thumbnail" id="carousel-selector-1"><img src="http://placehold.it/170x100&text=two"></a>
 			                            </li>
-			
+
 			                            <li class="col-sm-2">
 			                                <a class="thumbnail" id="carousel-selector-2"><img src="http://placehold.it/170x100&text=three"></a>
 			                            </li>
-			
+
 			                            <li class="col-sm-2">
 			                                <a class="thumbnail" id="carousel-selector-3"><img src="http://placehold.it/170x100&text=four"></a>
 			                            </li>
-			
+
 			                            <li class="col-sm-2">
 			                                <a class="thumbnail" id="carousel-selector-4"><img src="http://placehold.it/170x100&text=five"></a>
 			                            </li>
-			
+
 			                            <li class="col-sm-2">
 			                                <a class="thumbnail" id="carousel-selector-5"><img src="http://placehold.it/170x100&text=six"></a>
 			                            </li>
-			                        </ul> 
-			                	</div>                
+			                        </ul>
+			                	</div>
 			                </div>
 			        </div>
 			</div>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			<!--<button type="button" class="btn btn-primary">Save changes</button> -->
 	      </div>
 	    </div>
 	  </div>
 	</div>
 </div>
 @endsection
-@section('client_location')
-	<?php //include('frontend.partials.client_location');?>
+@section('left')
+	@include('frontend.modules.store.partials.slidebar.left_product_link')
+@endsection
+@section('right')
+	@include('frontend.modules.store.partials.slidebar.visitor_counter')
 @endsection
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
