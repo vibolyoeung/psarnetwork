@@ -11,7 +11,6 @@
 |
 */
 
-Route::get('/admin', 'BeLoginController@showLogin');
 Route::get('/admin/login', 'BeLoginController@showLogin');
 Route::post('/admin/login', 'BeLoginController@doLogin');
 Route::get('/admin/send-forget-password', 'BeLoginController@sendResetPassword');
@@ -133,5 +132,5 @@ Route::any('/member/getdistrict', 'FeMemberController@getDistric');
 Route::any('/{lang}/categories', 'FePageController@getProductbyCategory');
 Route::any('/categories', 'FePageController@getProductbyCategory');
 Route::any('/member/getmarkettype/{id}', 'FeMemberController@getMarketType');
-/*for free page*/
-Route::any('/{name}/page', 'FeFreePageController@freePage')->where('name', '[A-Za-z0-9]+');
+/*for product*/
+Route::any('/products/list', 'FeProductController@listAllProducts');

@@ -3,12 +3,18 @@
 	<section>
 		<div class="container">
 			<div class="row">
-				@include('frontend.modules.store.partials.left')
+				<div class="col-lg-1" style="padding:0;">
+					<div class="left-sidebar">
+						@yield('left')
+					</div>
+				</div>
 				@yield('content')
-				@include('frontend.modules.store.partials.right')
+				<div class="col-lg-1"  style="padding:0;">
+					<div class="left-sidebar">
+						@yield('right')
+					</div>
+				</div>
 			</div>
-			<div class="client_location">
-				@yield('client_location')
-			</div>
+		</div>
 	</section>
 	@include('frontend.modules.store.partials.footer');
