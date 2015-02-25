@@ -367,4 +367,33 @@ class Advertisement extends Eloquent {
 	public function findAdvertisementImageById($id) {
 		return DB::table(Config::get('constants.TABLE_NAME.ADVERTISEMENT'))->select('image') ->where('id','=',$id)->first();
 	}
+
+	// View front part
+
+	/*
+	 * Get advertisement for home page
+	 *
+	 * @param integer $type
+	 * @param integer $postion
+	 * @param integer $limit
+	 *
+	 * @return stdClass
+	 */
+	public function getAdvertisementHomePage($type, $position, $limit) {
+		$response = new stdClass();
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.ADVERTISEMENT').' AS adv')
+			->where('status', 1)
+			->where('adv_page_id', $type)
+			->where('adv_position_id', $position)
+			->orderBy('adv.id','desc')
+			->take('limit', $limit)->get();
+			$response->result = $result;
+		} catch (\Exception $e) {
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+
+		return $response;
+	}
 }
