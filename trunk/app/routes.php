@@ -126,6 +126,8 @@ Route::any('/member/login', 'FeMemberController@index');
 Route::any('/{lang}/member/register', 'FeMemberController@register');
 Route::any('/member/register', 'FeMemberController@register');
 Route::any('/{lang}/member/register/{usertype}/{step}', 'FeMemberController@register');
+Route::any('/{lang}/member/agreement/{usertype}', 'FeMemberController@agreement');
+Route::any('/member/agreement/{usertype}', 'FeMemberController@agreement');
 Route::any('/member/register/{usertype}/{step}', 'FeMemberController@register');
 Route::any('/member/addmenuajax', 'FeMemberController@addmenuajax');
 Route::any('/member/getdistrict', 'FeMemberController@getDistric');

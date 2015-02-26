@@ -25,6 +25,7 @@ return array(
     'Input_Your_Name_Placeholder' => 'Your Name',
     'Input_Email' => 'Email',
     'Input_Email_Placeholder' => 'Your email',
+    'Input_Email_Error' => 'The email has already been taken.',
     'Input_Password' => 'Password',
     'Input_Password_Placeholder' => 'Your Password',
     'Input_Comfirm_Password' => 'Comfirm Password',

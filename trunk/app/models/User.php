@@ -124,4 +124,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 		return $response;
 	}
+	public function checkEmail($email) {
+		$response = new stdClass ();
+
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.USER'))
+					->where('email','=',$email)
+					->get();
+            $response->data = $result;
+		} catch ( \Exception $e ) {
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage ();
+		}
+
+		return $response;
+	}    
 }
