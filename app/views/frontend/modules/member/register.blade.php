@@ -186,21 +186,21 @@
 								{{trans('register.Input_Email')}}
 							</label>
 							<input type="email" name="email" class="form-control" id="eMail" placeholder="{{trans('register.Input_Email_Placeholder')}}" aria-describedby="eMailStatus" required />
-							<span class="class-error">
-								{{$errors->first('email')}}
-							</span>
 							<span data="eMail" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">
 							</span>
 							<span id="eMailStatus" class="sr-only">
 								(error)
 							</span>
+                            <?php if($errors->first('email')):?>
+                                <label class="error">{{trans('register.Input_Email_Error')}}</label>
+                            <?php endif;?>
 						</div>
 						<div class="form-group">
 							<label for="Password">
 								{{trans('register.Input_Password')}}
 							</label>
 							<input type="password" name="password" class="form-control" id="Password" placeholder="{{trans('register.Input_Password_Placeholder')}}" aria-describedby="PasswordStatus" required />
-							<span class="class-error">
+							<span class="error">
 								{{$errors->first('password')}}
 							</span>
 							<span data="Password" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">
@@ -225,7 +225,10 @@
 								{{trans('register.Input_Phone_Number')}}
 							</label>
 							<input type="text" name="telephone" class="form-control" id="PhoneNumber" placeholder="{{trans('register.Input_Phone_Number_Placeholder')}}" aria-describedby="PhoneNumberStatus" required />
-							<span data="PhoneNumber" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">
+							<span class="error">
+								{{$errors->first('telephone')}}
+							</span>
+                            <span data="PhoneNumber" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">
 							</span>
 							<span id="PhoneNumberStatus" class="sr-only">
 								(error)
@@ -247,6 +250,9 @@
 									<?php $i++;?>
 										@endforeach
 							</select>
+                            <span class="error">
+								{{$errors->first('province')}}
+							</span>
 							<span data="Location" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="right: 15px;">
 							</span>
 							<span id="LocationStatus" class="sr-only">
@@ -262,6 +268,9 @@
 									{{trans('register.Input_Select_Disctrict')}}
 								</option>
 							</select>
+                            <span class="error">
+								{{$errors->first('district')}}
+							</span>
 							<span data="Location" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="right: 15px;">
 							</span>
 							<span id="LocationStatus" class="sr-only">
@@ -274,7 +283,7 @@
 								{{trans('register.Mapping_Address_Here')}}
 							</label>
 							<input type="text" name="gLatitudeLongitude" class="form-control" id="latbox" placeholder="{{trans('register.Mapping_Address_Here_Placeholder')}}" aria-describedby="MappingAddressHereStatus" required />
-							<span data="MappingAddressHere" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">
+                            <span data="MappingAddressHere" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">
 							</span>
 							<span id="MappingAddressHereStatus" class="sr-only">
 								(error)
