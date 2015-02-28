@@ -347,11 +347,21 @@
 			</div>
 		</div>
 		<div class="col-lg-12">
-			<div class="col-lg-12" style="border:1px solid #ddd;">
-				<center>
-					<h3>Advertisment Banner Here</h3>
-					<p>(It can be automatically upside down add)</p>
-				</center>
+			<div class="col-lg-12 center-advertise">
+				@foreach($advHorizontalLargeCenters as $adv)
+				<?php
+					$exp_date = $adv->end_date;
+					$exp_date =str_replace('/', '-', $exp_date);
+					if(strtotime(date("d-m-Y")) <= strtotime($exp_date)){ ?>
+						<a href="{{$adv->link_url}}" >
+							<img
+								src="{{Config::get('app.url')}}/upload/advertisement/{{$adv->image;}}"
+								class="img-responsive"
+								alt=""
+							/>
+						</a>
+				<?php } ?>
+				@endforeach
 			</div>
 		</div>
 	</div>
@@ -578,11 +588,21 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-12" style="border:1px solid #ddd;">
-				<center>
-					<h3>Advertisment Banner Here</h3>
-					<p>(It can be automatically upside down add)</p>
-				</center>
+			<div class="col-lg-12 center-advertise">
+				@foreach($advHorizontalLargeCenters as $adv)
+				<?php
+					$exp_date = $adv->end_date;
+					$exp_date =str_replace('/', '-', $exp_date);
+					if(strtotime(date("d-m-Y")) <= strtotime($exp_date)){ ?>
+						<a href="{{$adv->link_url}}" >
+							<img
+								src="{{Config::get('app.url')}}/upload/advertisement/{{$adv->image;}}"
+								class="img-responsive"
+								alt=""
+							/>
+						</a>
+				<?php } ?>
+				@endforeach
 			</div>
 		</div>
 	</div>
@@ -592,15 +612,37 @@
 	<!--recommended_items-->
 		<div class="col-lg-12">
 			<div class="col-lg-1 pull-right" style="border: 0px solid #ddd;padding:0;">
-				<a href="#">
-					<img src="{{Config::get('app.url')}}/frontend/images/kiss-mag.gif" class="img-responsive" alt="" title=""/>
-				</a>
+				@foreach($advVerticalRightSmalls as $adv)
+				<?php
+					$exp_date = $adv->end_date;
+					$exp_date =str_replace('/', '-', $exp_date);
+					if(strtotime(date("d-m-Y")) <= strtotime($exp_date)){ ?>
+						<a href="{{$adv->link_url}}" >
+							<img
+								src="{{Config::get('app.url')}}/upload/advertisement/{{$adv->image;}}"
+								class="img-responsive"
+								alt=""
+							/>
+						</a>
+				<?php } ?>
+				@endforeach
 			</div>
 
 			<div class="col-lg-1 pull-left" style="border: 0px solid #ddd;padding:0;">
-				<a href="#">
-					<img src="{{Config::get('app.url')}}/frontend/images/kiss-mag.gif" class="img-responsive" alt="" title=""/>
-				</a>
+				@foreach($advVerticalLeftSmalls as $adv)
+				<?php
+					$exp_date = $adv->end_date;
+					$exp_date =str_replace('/', '-', $exp_date);
+					if(strtotime(date("d-m-Y")) <= strtotime($exp_date)){ ?>
+						<a href="{{$adv->link_url}}" >
+							<img
+								src="{{Config::get('app.url')}}/upload/advertisement/{{$adv->image;}}"
+								class="img-responsive"
+								alt=""
+							/>
+						</a>
+				<?php } ?>
+				@endforeach
 			</div>
 
 			<div class="col-lg-10">
