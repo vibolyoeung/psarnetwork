@@ -3129,3 +3129,9 @@ margin-top:20px;
 .thumb-dropdown .dropdown-menu > li > a:hover .thumbnail  {
     display: block;    
 }
+
+.center-advertise {
+	padding-left: 0;
+	padding-right: 0;
+	border:1px solid #ddd;
+}

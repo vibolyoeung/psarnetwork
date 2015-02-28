@@ -1,9 +1,19 @@
 <!-- ========Right side========= -->
 <div class="col-sm-1" style="padding:0;">
-		<img src="{{Config::get('app.url')}}/frontend/images/v9betleft.gif" />
-		<img src="{{Config::get('app.url')}}/frontend/images/v9betleft.gif" />
-		<img src="{{Config::get('app.url')}}/frontend/images/v9betleft.gif" />
-		<img src="{{Config::get('app.url')}}/frontend/images/v9betleft.gif" />
+		@foreach($advVerticalRightMiduims as $adv)
+		<?php
+			$exp_date = $adv->end_date;
+			$exp_date =str_replace('/', '-', $exp_date);
+			if(strtotime(date("d-m-Y")) <= strtotime($exp_date)){ ?>
+				<a href="{{$adv->link_url}}" >
+					<img
+						src="{{Config::get('app.url')}}/upload/advertisement/{{$adv->image;}}"
+						class="img-responsive"
+						alt=""
+					/>
+				</a>
+		<?php } ?>
+		@endforeach
 <!-- 	<div class="right-sidebar"> -->
 <!-- 		<label class="btn-default get col-sm-12">Notification New Post(10)</label> -->
 <!-- 		<div class="panel-group category-products" id="accordian"> -->
