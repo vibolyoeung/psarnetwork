@@ -1,4 +1,13 @@
 $(document).ready(function(){
+	//Add curent menu 
+	jQuery(".navbar-nav li:first-child").addClass("active"); 
+	$(".navbar-nav > li").click(function(){
+		$(".navbar-nav >li.active").removeClass('active');
+		$(this).addClass('active');
+	});
+    
+	
+	
 	jQuery('.item:first-child').addClass(' active');
 	jQuery('.bullet:first-child').addClass('active');
 	jQuery('.tab-content .submenu-bar:first-child').addClass(' active');
@@ -51,6 +60,8 @@ $(document).ready(function(){
 		jQuery(".media-body").removeClass().addClass("social_desc col-lg-12");
 		jQuery(".media-heading").css("margin-top","20");
 	});
+	
+	
 	
 });
 
