@@ -229,7 +229,7 @@ class MCategory extends Eloquent{
 			->select('id','name_en','name_km','status','parent_id')
 			->where('parent_id','=',$parent)
 			->where('status','=',1)
-			->orderBy('id','asc')
+			->orderBy('name_en','asc')
 			->get();
 		}catch (\Exception $e){
 			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
@@ -243,15 +243,19 @@ class MCategory extends Eloquent{
 			->select('id','name_en','name_km','status','parent_id')
 			->where('parent_id','=',$parent)
 			->where('status','=',1)
-			->orderBy('id','asc')
+			->orderBy('name_en','asc')
  			->get();
 			if(count($results)>0){
-				echo '<ul class="dropdown-menu">';
 				foreach ($results as $dropdownlist){
-					echo '<li class="menu-item dropdown dropdown-submenu"><a href="product/'.$dropdownlist->id.'">'.$dropdownlist->{'name_'.Session::get('lang')}.'</a>';
-					$this->getSubCategoriesDropdown($dropdownlist->id);
+					echo '<ul style="float:left;" class="item_menu">';
+						echo '<li>';
+							echo '<b>';
+								echo $dropdownlist->{'name_'.Session::get('lang')};
+							echo '</b>';
+						echo '</li>';
+						$this->getLastFinalCategories($dropdownlist->id);
+					echo '</ul>';
 				}
-				echo '</li></ul>';
 			}
 		}catch (\Exception $e){
 			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
@@ -259,6 +263,30 @@ class MCategory extends Eloquent{
 		return $results;
 	}
 
+	public function getLastFinalCategories($id=null){
+		try {
+			$results = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
+			->select('id','name_en','name_km','status','parent_id')
+			->where('parent_id','=',$id)
+			->where('status','=',1)
+			->orderBy('id','asc')
+ 			->get();
+			if(count($results)>0){
+					foreach ($results as $dropdownlist){
+						echo '<li>&nbsp;&nbsp;&nbsp;';
+							//echo '<a href="#" >';
+								echo $dropdownlist->{'name_'.Session::get('lang')};
+							//echo '</a>';
+						echo '</li>';
+					}
+			}
+		}catch (\Exception $e){
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+		}
+		return $results;
+	}
+	
+	
 	/**
 	 *
 	 * getMainCategories : is a function for getting Main categories to display front page
@@ -274,7 +302,7 @@ class MCategory extends Eloquent{
 			$result = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
 			->select('*')
 			->where('status','=', 1)
-			->where('parent_id','=','')->get();
+			->where('parent_id','=','0')->get();
 			$response->result = $result;
 		}catch (\Exception $e){
 			$response->result = 0;
