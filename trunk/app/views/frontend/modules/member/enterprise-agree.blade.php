@@ -17,46 +17,40 @@
 			<div class="panel panel-primary registerform">
 				<div class="panel-heading">
 					<h3 class="panel-title">
-						Comfirm Agreement
+						{{trans('register.agree_Title')}}
 					</h3>
 				</div>
 				<div class="panel-body">
-					<form action="{{Config::get('app.url')}}" id="registerForm">
+					<form action="{{URL::to('member/agreement')}}/{{Request::segment(3)}}" id="registerForm" method="post" enctype="multipart/form-data">
 						<div class="well well-sm">
 							<div class="a-body">
-								Now , You are registered as
+								{{trans('register.agree_body_free_1')}}
 								<span>
-									Interprise Account type
+									{{trans('register.agree_body_free_2')}}
 								</span>
-								. You are Offered
-								<span>
-									30 days
-								</span>
-								for a trial period with Khmer Abba shoping . After a Trial Peroid Offering ,Your account will be disabled temporarily .
+								{{trans('register.agree_body_free_3')}}
 								<br/>
-								So you may contact to Khmer Abba shoping in order continue your
+								{{trans('register.agree_body_free_6')}}
 								<span>
-									Interprise Page Offering
+									{{trans('register.agree_body_free_7')}}
 								</span>
-								by
+								{{trans('register.agree_body_free_8')}}
 								<span>
-									charging 20$/month
+									{{trans('register.agree_body_free_9')}}
 								</span>
-								through number
+								{{trans('register.agree_body_free_10')}}
 								<span>
-									010393938 / 0975555515
+									{{trans('register.agree_body_free_11')}}
 								</span>
-								or By Clicking
+								{{trans('register.agree_body_free_12')}}
 								<span>
-									Confirm Upgrading Accountype
+									{{trans('register.agree_body_free_13')}}
 								</span>
-								then Khmer Abba shoping will contact to you directly.
+								{{trans('register.agree_body_free_14')}}
 								<button type="button" id="under-summit" class="btn btn-primary pull-right">
-									understand
+									{{trans('register.agree_understand')}}
 								</button>
-								<button type="button" id="not-under-summit" class="btn btn-primary pull-right" style="margin-right: 10px;">
-									Not understand
-								</button>
+                                <a  id="not-under-summit" class="btn btn-primary pull-right" style="margin-right: 10px;" href="{{Config::get('app.url')}}" role="button">{{trans('register.agree_not_understand')}}</a>
 							</div>
 							<div style="clear: both;">
 							</div>
@@ -65,7 +59,7 @@
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="skipdetail" id="skipDetail" value="1"/>
-								Skip it . You can do next time after completing your register .
+								{{trans('register.agree_skip')}}
 							</label>
 						</div>
 						<div class="well well-sm" id="bodyDetail">
@@ -73,36 +67,39 @@
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label for="PageTitle" class="col-sm-4 control-label">
-											Page Title
+											{{trans('register.agree_head_title')}}
 										</label>
 										<div class="col-sm-8">
-											<input type="text" name="PageTitle" class="form-control" id="PageTitle" placeholder="Page Title" aria-describedby="PageTitleStatus" required />
+											<input type="text" name="titleen" class="form-control" id="PageTitle" placeholder="{{trans('register.agree_head_title')}}" aria-describedby="PageTitleStatus" required />
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="BusinessSite" class="col-sm-4 control-label">
-											Logo
+											{{trans('register.agree_head_Logo')}}
 										</label>
 										<div class="col-sm-8">
-											<input type="file" id="exampleInputFile"/>
+											<input type="file" id="exampleInputFile" name="file"/>
 										</div>
 									</div>
 								</div>
 								<div class="col-sm-6">
                                     <div class="form-group">
 										<label for="PageTitle" class="col-sm-4 control-label">
-											Page Address
+											{{trans('register.agree_head_url')}}
 										</label>
 										<div class="col-sm-8">
-											<input type="text" name="PageTitle" class="form-control" id="PageTitle" placeholder="www.khmerabba.com/dara shop" aria-describedby="PageTitleStatus" required />
+											<input type="text" name="sto_url" class="form-control" id="PageTitle" placeholder="{{trans('register.agree_head_url_placeholder')}}" aria-describedby="PageTitleStatus" required />
+                                            <?php if($errors->first('sto_url')):?>
+                                                <label class="error"><?php echo $errors->first('sto_url');?></label>
+                                            <?php endif;?>
 										</div>
 									</div>
                                     <div class="form-group">
 										<label for="PageTitle" class="col-sm-4 control-label">
-											Banner-Header
+											{{trans('register.agree_head_banner')}}
 										</label>
 										<div class="col-sm-8">
-											<input type="text" name="PageTitle" class="form-control" id="PageTitle" placeholder="Banner-Header" aria-describedby="PageTitleStatus" required />
+											<input type="text" name="PageBanner" class="form-control" id="PageTitle" placeholder="{{trans('register.agree_head_banner')}}" aria-describedby="PageTitleStatus" required />
 										</div>
 									</div>
 								</div>
@@ -113,12 +110,12 @@
                         <div class="checkbox">
 							<label>
 								<input type="checkbox" name="btnagree" id="btnagree" value="1"/>
-								 I agree to the term and condiction of Khmer Abba shoping
+								 {{trans('register.agree_acept')}}
 							</label>
 						</div>
-						<button type="submit" id="summit" class="btn btn-primary pull-right">
-							Start
-						</button>
+                        <input type="hidden" name="uid" value="{{Input::get('uid')}}"/>
+                        <input type="hidden" name="sid" value="{{Input::get('sid')}}"/>
+                        <input type="submit" id="summit" class="btn btn-primary pull-right" name="btnSubmit" value="{{trans('register.agree_btn_submit')}}"/>
 					</form>
 				</div>
 			</div>

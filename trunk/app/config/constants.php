@@ -29,6 +29,12 @@ return array(
         'INDIVIDUAL'=>1,
         'HOMESHOP'=>2
     ),
+    'DIR_IMAGE' =>array(
+        'ALLOW_FILE'=>'mimes:jpeg,png,bmp,gif|image',
+        'THUMB_WIDTH'=>100,
+        'THUMB_HEIGTH'=>100,
+        'DIR_STORE'=>'/public/upload/store/',
+    ),
 	'TABLE_NAME'=>array(
 			'ACCOUNT_TYPE'=>'account_type',
 			'ADV_PAGE'=>'adv_page',
