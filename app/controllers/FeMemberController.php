@@ -83,18 +83,22 @@ class FeMemberController extends BaseController
             'sup_id' => trim(Input::get('marketType')),
             );
 
-        $uid = $this->mod_store->insertGetId($storeData);
+        $sid = $this->mod_store->insertGetId($storeData);
         $accounttype = Input::get('accounttype');
-        if ($accounttype == '1') {
-            Mail::send(array('member.mails.index', 'text.view'), array('firstname' => Input::get('name')),
-                function ($message)
-            {
-                $message->to(Input::get('email'), Input::get('name'))->
-                    subject('Welcome to the Laravel 4 Auth App!'); }
+        //        if ($accounttype == '1') {
+        //            Mail::send(array('member.mails.index', 'text.view'), array('firstname' => Input::get('name')),
+        //                function ($message)
+        //            {
+        //                $message->to(Input::get('email'), Input::get('name'))->
+        //                    subject('Welcome to the Laravel 4 Auth App!'); }
+        //            );
+        //        } elseif ($accounttype == 2) {
+        //
+        //        }
+        return $data = array(
+            'user_id' => $uid,
+            'store_id' => $sid,
             );
-        } elseif ($accounttype == 2) {
-
-        }
     }
 
     /**
@@ -116,10 +120,11 @@ class FeMemberController extends BaseController
 
             if ($validator->passes()) {
                 $checkEmail = $this->user->checkEmail(trim(Input::get('email')));
-                $this->createUser();
+                $data_user = $this->createUser();
                 $accounttype = Input::get('accounttype');
                 $messageRegister = 'Registration operation had been successful, please Login!';
-                return Redirect::to('/member/agreement/'.$accounttype)->with('SECCESS_MESSAGE_REGISTER', $messageRegister);
+                return Redirect::to('/member/agreement/' . $accounttype . '?uid=' . $data_user['user_id'] .
+                    '&sid=' . $data_user['store_id'])->with('SECCESS_MESSAGE_REGISTER', $messageRegister);
             } else {
                 return Redirect::to('member/register')->withInput()->withErrors($validator);
             }
@@ -141,16 +146,62 @@ class FeMemberController extends BaseController
             with('markets', $result->data);
     }
 
-    public function agreement($usertype){
-        if(!empty($usertype)) {
-            if($usertype == 1) {
+    public function agreement($usertype)
+    {
+        if (Input::has('btnSubmit')) {
+            if (!Input::has('skipDetail')) {
+                if (Input::has('btnSubmit')) {
+                    $rules = array('sto_url' => 'required|unique:store');
+                    if(Input::hasfile('file')){
+						//$rules['file'] = Config::get ( 'constants.DIR_IMAGE.ALLOW_FILE' );
+						$rules['file'] = 'mimes:jpeg,png,bmp,gif|image';
+					}
+                    $validator = Validator::make(Input::all(), $rules);
+                    if ($validator->passes()) {
+                        $fileName = '';
+                        if(Input::hasfile('file')){
+                            /*upload image*/
+                            $destinationPath = base_path () . Config::get ( 'constants.DIR_IMAGE.DIR_STORE' );
+            				self::generateFolderUpload ( $destinationPath );
+            				$destinationPathThumb = $destinationPath . 'thumb/';
+            				$file = Input::file ( 'file' );
+            				$fileName = $file->getClientOriginalName ();
+            				$fileName = self::generateFileName ( $destinationPath, $fileName );
+            				$file->move ( $destinationPath, $fileName );
+            				Image::make ( $destinationPath . $fileName )
+                                ->resize ( Config::get ( 'constants.DIR_IMAGE.THUMB_WIDTH' ), Config::get ( 'constants.DIR_IMAGE.THUMB_HEIGTH' ) )
+                                ->save ( $destinationPathThumb . $fileName );
+                            /*end upload image*/
+                        }
+                        $whereData = array(
+                            'user_id' => (int)Input::get('uid'),
+                            'id' => (int)Input::get('sid'),
+                            );
+                        $storeData = array(
+                            'title_en' => trim(Input::get('titleen')),
+                            'sto_url' => trim(Input::get('sto_url')),
+                            'sto_banner' => trim(Input::get('PageBanner')),
+                            'image' => trim($fileName),
+                            );
+                        $sid = $this->mod_store->where($whereData)->update($storeData);
+                        $messageRegister = 'Registration operation had been successful, please check your email to confirm!';
+                        return Redirect::to('/member/login/')->with('SECCESS_MESSAGE_REGISTER', $messageRegister);
+                    } else {
+                        return Redirect::to('/member/agreement/' . $usertype . '?uid=' . Input::get('uid') .
+                    '&sid=' . Input::get('sid'))->withErrors($validator);
+                    }
+                }
+            }
+            die;
+        } elseif (!empty($usertype)) {
+            if ($usertype == 1) {
                 return View::make('frontend.modules.member.free-agree');
-            } elseif($usertype == 2) {
+            } elseif ($usertype == 2) {
                 return View::make('frontend.modules.member.enterprise-agree');
             }
         } else {
             return View::make('frontend.modules.member.login');
-        }  
+        }
     }
     /**
      * Adding menu by ajax
@@ -257,4 +308,41 @@ class FeMemberController extends BaseController
         }
         echo $Market_val;
     }
+    
+	/**
+	 * Generation fileName when uploading file
+	 * @return filename by generation
+	 * @access public
+	 * @method generateFileName
+	 * @throws Exception
+	 */
+	public static function generateFileName($pathName, $fileName = null) {
+
+		$temp = explode(".", $fileName);
+		$fileName = end($temp);
+		$fileName = time(). '.' . $fileName;
+		if (file_exists($pathName . $fileName)) {
+			return generateFileName($pathName);
+		}
+
+		return $fileName;
+	}
+    
+	/**
+	 * Generation folder when uploading file doesnot exist
+	 *
+	 * @return boolean
+	 * @access private
+	 * @method generateFolderUpload
+	 * @throws ErrorException
+	 */
+	private static function generateFolderUpload($destinationPath) {
+		$destinationPathThumb = $destinationPath . '/thumb/';
+		if (! file_exists ( $destinationPath )) {
+			mkdir ( $destinationPath, 0777, true );
+			if (! file_exists ( $destinationPathThumb )) {
+				mkdir ( $destinationPathThumb, 0777, true );
+			}
+		}
+	}        
 }
