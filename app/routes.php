@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/admin/login', 'BeLoginController@showLogin');
+Route::get('/admin', 'BeLoginController@showLogin');
 Route::post('/admin/login', 'BeLoginController@doLogin');
 Route::get('/admin/send-forget-password', 'BeLoginController@sendResetPassword');
 Route::post('/admin/send-forget-password', 'BeLoginController@sendResetPassword');
@@ -131,8 +131,8 @@ Route::any('/member/agreement/{usertype}', 'FeMemberController@agreement');
 Route::any('/member/register/{usertype}/{step}', 'FeMemberController@register');
 Route::any('/member/addmenuajax', 'FeMemberController@addmenuajax');
 Route::any('/member/getdistrict', 'FeMemberController@getDistric');
-Route::any('/{lang}/categories', 'FePageController@getProductbyCategory');
-Route::any('/categories', 'FePageController@getProductbyCategory');
+Route::any('/{lang}/productbycategories/{id}', 'FePageController@getProductbyCategory');
+Route::any('/productbycategories/{id}', 'FePageController@getProductbyCategory');
 Route::any('/member/getmarkettype/{id}', 'FeMemberController@getMarketType');
 /*for product*/
 Route::any('/products/list', 'FeProductController@listAllProducts');
