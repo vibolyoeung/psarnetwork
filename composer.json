@@ -5,8 +5,10 @@
 	"license": "MIT",
 	"type": "project",
 	"require": {
-		"laravel/framework": "4.2.*"
+		"laravel/framework": "4.2.*",
+		"mews/captcha": "dev-master"
 	},
+	"minimum-stability": "dev",
 	 "require-dev":
 	{
 		"intervention/image" : "dev-master"
@@ -37,5 +39,5 @@
 	},
 	"config": {
 		"preferred-install": "dist"
-	},
+	}
 }

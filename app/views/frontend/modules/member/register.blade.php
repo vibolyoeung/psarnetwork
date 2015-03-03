@@ -92,7 +92,8 @@
 					</h3>
 				</div>
 				<div class="panel-body">
-					<form action="{{URL::to('member/register')}}" id="registerForm" method="post">
+                {{Form::open(array(URL::to('member/register'),'id'=>'registerForm'))}}
+                <form action="{{URL::to('member/register')}}" id="registerForm" method=""
 						<div class="well well-sm">
 							<div class="form-group">
 								<label class="radio-inline">
@@ -298,16 +299,16 @@
 							</label>
 							<div class="form-inline">
 								<div class="form-group">
-									<img id="captcha" src="{{Config::get('app.url')}}/securimage/securimage_show.php" alt="CAPTCHA Image" />
-									<a href="#" onclick="document.getElementById('captcha').src = '{{Config::get('app.url')}}/securimage/securimage_show.php?' + Math.random(); return false"> <i style="font-size: 20px;" class="glyphicon glyphicon-refresh"></i></a>
+                                {{HTML::image(Captcha::img(), 'Captcha image') }}
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" name="captcha_code" size="10" maxlength="6" required/>
+                                    {{Form::text('captcha',null, array('class'=>'form-control', 'size'=>'10', 'maxlength'=>'6','required'=>'required'))}}
+                                    {{$errors->first('captcha')}}
 								</div>
 							</div>
 						</div>
 						<input type="submit" id="summit" class="btn btn-primary pull-right" name="btnSubmit" value="{{trans('register.Input_Start')}}"/>
-					</form>
+					{{Form::close()}}
 				</div>
 			</div>
 			<!--/login form-->

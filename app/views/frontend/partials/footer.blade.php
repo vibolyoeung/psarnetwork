@@ -29,7 +29,6 @@
 		 {{HTML::script('frontend/js/bootstrap.min.js')}}
 		 {{HTML::script('frontend/js/jquery.scrollUp.min.js')}}
 		 {{HTML::script('frontend/js/price-range.js')}}
-		 {{HTML::script('frontend/js/prettyPhoto.js')}}
 		 {{HTML::script('frontend/js/main.js')}}
 		 {{HTML::script('frontend/js/custom.js')}}
 		<link rel="apple-touch-icon-precomposed"

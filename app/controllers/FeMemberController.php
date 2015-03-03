@@ -115,6 +115,7 @@ class FeMemberController extends BaseController
                 'email' => 'required|email|unique:user',
                 'password' => 'required|min:8',
                 'password_confirm' => 'required|same:password',
+                'captcha' => array('required', 'captcha')
                 );
             $validator = Validator::make(Input::all(), $rules);
 
@@ -141,6 +142,36 @@ class FeMemberController extends BaseController
         $clientType = $this->user->getClientType();
 
         return View::make('frontend.modules.member.register')->with('maincategories', $listCategories->
+            result)->with('marketType', $marketType->data)->with('provinces', $provinces)->
+            with('accountRole', $accountRole->data)->with('clientType', $clientType->data)->
+            with('markets', $result->data);
+    }
+    
+    public function test(){
+                $limit = $this->mod_setting->getSlidshowNumber();
+        $listCategories = self::getCategoriesHomePage();
+        $limit = $this->mod_setting->getSlidshowNumber();
+        $listCategories = self::getCategoriesHomePage();
+        $result = $this->mod_market->listingMarkets();
+        $marketType = $this->mod_market->dataListingMarketsType();
+        $provinces = $this->mod_setting->listProvinces();
+        $accountRole = $this->user->accountRole();
+        $clientType = $this->user->getClientType();
+         if (Request::getMethod() == 'POST')
+        {
+            $rules =  array('captcha' => array('required', 'captcha'));
+            $validator = Validator::make(Input::all(), $rules);
+            if ($validator->passes())
+            {
+               echo '<p style="color: #00ff30;">Matched :)</p>';
+            }
+            else
+            {
+                return Redirect::to('/doeun/k')->withErrors($validator);
+                
+            }
+        }
+                return View::make('frontend.modules.member.k')->with('maincategories', $listCategories->
             result)->with('marketType', $marketType->data)->with('provinces', $provinces)->
             with('accountRole', $accountRole->data)->with('clientType', $clientType->data)->
             with('markets', $result->data);
