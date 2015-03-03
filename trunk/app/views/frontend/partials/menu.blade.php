@@ -31,11 +31,11 @@
 					if(count($sub) > 0){
 						echo '<ul class="dropdown-menu" role="menu">';
 							foreach ($sub as $row){
-									echo '<li><a href='.URL::to('product/'.$row->id).'>'.$row->{'name_en'}.' <span class="caret"></span>';
+									echo '<li><a href='.URL::to('product/'.$row->id).'>'.$row->{'name_en'}.' <span class="caret"></span></a>';
 										echo '<div class="thumbnail">';
 											$subcategoriesobj->getSubCategoriesDropdown($row->id);
 										echo '</div>';
-									echo '</a></li>';
+									echo '</li>';
 							}
 						echo '</ul>';
 					}

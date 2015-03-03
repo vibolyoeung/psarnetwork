@@ -423,8 +423,8 @@ a#scrollUp i {
     box-shadow: none;
 }
 
-.dropdown-menu  li  a:hover,.dropdown-menu  li  a:focus {
-    background-color: #428bca;
+.dropdown-menu > li > a:hover,.dropdown-menu > li > a:focus {
+    background-color: #f0ad4e;
     color: #FFFFFF;
     font-family: 'Roboto', sans-serif;
     text-decoration: none;
@@ -934,6 +934,7 @@ ul.sub-menu {
 
 .carousel-indicators li.active {
     background: #428bca;
+    color:#B4B1AB;
 }
 
 .item {
@@ -1384,24 +1385,6 @@ h2.title {
 .number-display{
 	color:red;
 }
-
-/*.category-tab ul  li  a:hover{24
-        background:#FE980F;
-        color:#fff;
-}*/
-
-/*.nav-tabs  li.active  a, .nav-tabs  li.active  a:hover, .nav-tabs  li.active  a:focus {
-  -moz-border-bottom-colors: none;
-  -moz-border-left-colors: none;
-  -moz-border-right-colors: none;
-  -moz-border-top-colors: none;
-  background-color: #428bca;
-  border:0px;
-  color: #FFFFFF;
-  cursor: default;
-  margin-right:0;
-  margin-left:0;
-}*/
 .lastest-post > ul > li{
 	padding:5px;
 	color:#696763;
@@ -2934,9 +2917,9 @@ color: inherit;
 .dropdown-submenu:hover>.dropdown-menu {
     display: block;
 }
-.dropdown-menu li:hover, .dropdown-menu li a:hover{
-	background:#e7e7e7;
-	color:#333;
+.dropdown-menu > li:hover{
+	background:#f0ad4e;
+	color:#ffffff;
 }
 .dropdown-menu li{
 	padding:3px 1px 3px 1px;
@@ -3118,38 +3101,43 @@ margin-top:20px;
 	clear:both;
 	float:none;
 }
-.thumb-dropdown .dropdown-menu > li {
+.thumb-dropdown .dropdown-menu > li{
     position: relative;
 }
-.thumb-dropdown .dropdown-menu > li > a .thumbnail {
+.thumb-dropdown .dropdown-menu > li .thumbnail{
     position: absolute; 
     left: 100%;
     top: 0px;
     display: none;    
+    overflow:hidden;
     min-width: 520px;
-    width:520px;
+    width:750px;
     height: auto;
-    padding:5px;
+    padding:1px 5px 5px 5px;
     margin-left: 0px;
 }
-.thumb-dropdown .dropdown-menu > li > a:hover .thumbnail{
+.thumb-dropdown .dropdown-menu > li:hover .thumbnail{
     display: block; 
 }
-.thumb-dropdown .dropdown-menu > li > a:hover .thumbnail ul{
+.thumb-dropdown .dropdown-menu > li:hover .thumbnail ul{
 	min-height: 110px;
 	max-height:110px;
 	min-width:220px;
 	padding:5px 10px 5px 0;
 	border-bottom: 1px solid #f0ad4e;
+	background-color:transparent;
 	overflow:hidden;
 	margin:10px;
 }
 
-.thumb-dropdown .dropdown-menu > li > a:hover .thumbnail ul li b{
+.thumb-dropdown .dropdown-menu > li:hover .thumbnail ul li b{
 	color:#f0ad4e;
 }
 .thumb-dropdown .dropdown-menu > li > a:hover .thumbnail ul li{
 	padding:3px 5px 3px 5px;
+}
+.thumb-dropdown .dropdown-menu > li > .thumbnail > ul > li > a:hover{
+	color:#f0ad4e;
 }
 .center-advertise {
 	padding-left: 0;
@@ -3157,7 +3145,7 @@ margin-top:20px;
 	border:1px solid #ddd;
 }
 
-.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover{
+.dropdown-menu>.active>a{
 	color:#555;
 }
 .dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover{
