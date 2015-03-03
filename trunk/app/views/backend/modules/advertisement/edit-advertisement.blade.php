@@ -1,8 +1,15 @@
 <div class="panel panel-default">
 	<div class="panel-body">
 		<div class="form-group col-md-6 col-sm-12 col-xs-6">
-			{{Form::radio('advertiseType', '1', false)}} <label for="advertiseType">Advertise</label>
-			{{Form::radio('advertiseType', '2', true)}} <label for="advertiseType">Product</label>
+			{{
+				Form::select(
+					'advertiseType',
+					['1' => 'Banner',
+					'2' => 'Product'],
+					$advertisement->adv_cat_page_id,
+					array('class' =>'form-control', 'id' => 'apearance')
+				)
+			}}
 		</div>
 
 		<div class="form-group col-md-3 col-sm-12 col-xs-3">
