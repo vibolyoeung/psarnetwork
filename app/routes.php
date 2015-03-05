@@ -125,11 +125,12 @@ Route::any('/member/login', 'FeMemberController@index');
 /*regirst page*/
 Route::any('/{lang}/member/register', 'FeMemberController@register');
 Route::any('/member/register', 'FeMemberController@register');
-Route::any('/{lang}/member/register/{usertype}/{step}', 'FeMemberController@register');
+Route::any('/{lang}/member/userinfo/{usertype}/{step}', 'FeMemberController@userinfo');
+Route::any('/member/userinfo/{usertype}/{step}', 'FeMemberController@userinfo');
 Route::any('/{lang}/member/agreement/{usertype}', 'FeMemberController@agreement');
 Route::any('/member/agreement/{usertype}', 'FeMemberController@agreement');
-Route::any('/member/register/{usertype}/{step}', 'FeMemberController@register');
 Route::any('/member/addmenuajax', 'FeMemberController@addmenuajax');
+Route::any('/member/getsubmenu', 'FeMemberController@getsubmenu');
 Route::any('/member/getdistrict', 'FeMemberController@getDistric');
 Route::any('/{lang}/productbycategories/{id}', 'FePageController@getProductbyCategory');
 Route::any('/productbycategories/{id}', 'FePageController@getProductbyCategory');
