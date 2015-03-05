@@ -136,6 +136,7 @@ Route::any('/productbycategories/{id}', 'FePageController@getProductbyCategory')
 Route::any('/member/getmarkettype/{id}', 'FeMemberController@getMarketType');
 /*for product*/
 Route::any('/products/list', 'FeProductController@listAllProducts');
+Route::any('/products/create', 'FeProductController@addProduct');
 
  // [your site path]/app/routes.php
 

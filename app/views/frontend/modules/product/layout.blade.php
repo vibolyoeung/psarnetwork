@@ -17,4 +17,4 @@
 		</div>
 	</div>
 </section>
-@include('frontend.modules.store.partials.footer');
+@yield('footer')
