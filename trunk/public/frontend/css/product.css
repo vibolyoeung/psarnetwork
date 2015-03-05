@@ -2,3 +2,17 @@
 .text-color-white {
 	color:#FFF !important;
 }
+.product-list > thead > tr > th {
+	background-color:#F4E5D0;
+}
+
+.browse-picture {
+	color: #31AD46;
+	font-size: 25px;
+	cursor:pointer;
+}
+.browse-picture-menus {
+	color: rgb(200, 44, 44);
+	font-size: 25px;
+	cursor:pointer;
+}

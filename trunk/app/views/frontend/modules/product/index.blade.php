@@ -29,16 +29,8 @@
 		</div>
 	</div>
 	<div class="col-sm-12">
-		<table class="table table-bordered">
+		<table class="table table-bordered product-list">
 			<thead>
-				<tr>
-					<th>
-						<input class="form-control" type="text" placeholder="Sort Display">
-					</th>
-					<th colspan="4">
-						<input class="form-control" type="text" placeholder="Search By">
-					</th>
-				</tr>
 				<tr>
 					<th>Picture</th>
 					<th>Title</th>
@@ -81,4 +73,7 @@
 		</table>
 	</div>
 </div>
+@endsection
+@section('footer')
+	@include('frontend.modules.store.partials.footer');
 @endsection
