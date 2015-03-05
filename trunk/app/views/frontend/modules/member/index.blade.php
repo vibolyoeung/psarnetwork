@@ -95,6 +95,9 @@
 									{{trans('login.Login_By_Name_Email_Phone')}}
 								</label>
 								<div class="col-sm-8">
+                                    <?php if(!empty($_GET['register'])):?>
+                                    <input name="page" value="register" type="hidden" />
+                                    <?php endif;?>
 									{{
 										Form::input(
 											'text',

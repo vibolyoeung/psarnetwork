@@ -85,7 +85,7 @@
 					<div class="tab-content">
 						<div class="tab-pane fade active in" id="personal">
 							<div class="col-sm-12">
-								<div class="row">
+								<div class="row" style="margin: 0;">
 									<div role="tabpanel">
 										<!-- Nav tabs -->
 										<ul class="nav nav-tabs subtab" role="tablist">
@@ -98,31 +98,34 @@
 										</ul>
 										<!-- Tab panes -->
 										<div class="tab-content">
-											<div role="tabpanel" class="tab-pane fade active in" id="MainMenu">
+											<div role="tabpanel" class="tab-pane fade active in" id="MainMenu"  style="padding:0 10px 0 10px">
 												<!--product describe-->
 												<form action="{{Config::get('app.url')}}" id="StartCatAdd" class="form-horizontal">
-													<div class="form-inline cmenuf">
-														<div class="form-group">
-															<label for="Main-Menu" class="col-sm-6 control-label">
-																Main Menu
-															</label>
-															<div class="col-sm-6">
+													<div class="user-menu">
+														<div class="col-sm-3">
+															<div class="form-group">
+																<label for="Main-Menu">
+																	Main Menu
+																</label>
 																<select class="form-control Main-Menu" name="MainMenu" id="Main-Menu">
 																	<option value="">
-																		Main Menu
+																		Select one
 																	</option>
-																	<option value="Electric">
-																		Electric
-																	</option>
+																	<?php $subcategoriesobj=new MCategory(); $sub=$subcategoriesobj->
+																		getSubCategories(0); if(count($sub) > 0){ foreach ($sub as $row){ echo '
+																		<option value="'.$row->id.'">
+																			'.$row->{'name_en'}.'
+																		</option>
+																		'; } } ?>
 																</select>
 															</div>
 														</div>
-														<div class="form-group">
-															<label for="Category" class="col-sm-6 control-label">
-																Category
-															</label>
-															<div class="col-sm-6">
-																<select class="form-control" id="Category" name="Category">
+														<div class="col-sm-3">
+															<div class="form-group">
+																<label for="Category">
+																	Category
+																</label>
+																<select class="form-control" id="Category" name="Category" disabled>
 																	<option value="">
 																		Category
 																	</option>
@@ -135,25 +138,43 @@
 																</select>
 															</div>
 														</div>
-														<div class="form-group">
-															<label for="SubCategory" class="col-sm-6 control-label">
-																Sub Category
-															</label>
-															<div class="col-sm-6">
-																<select class="form-control" id="SubCategory" name="SubCategory">
-																	<option value="">
-																		Sub Category
-																	</option>
-																	<option value="Samsung">
-																		Samsung
-																	</option>
-																	<option value="Iphone">
-																		Iphone
-																	</option>
-																</select>
-															</div>
+                                                        <div class="col-sm-3">
+    														<div class="form-group">
+    															<label for="SubCategory">
+    																Sub Category
+    															</label>
+    																<select class="form-control" id="SubCategory" name="SubCategory" disabled>
+    																	<option value="">
+    																		Sub Category
+    																	</option>
+    																	<option value="Samsung">
+    																		Samsung
+    																	</option>
+    																	<option value="Iphone">
+    																		Iphone
+    																	</option>
+    																</select>
+    														</div>
 														</div>
-														<button id="submitcat" type="buttom" class="btn btn-default" style="margin-left: 30px;" onclick="StartAddCat();this.form.submit();">
+                                                        <div class="col-sm-3">
+    														<div class="form-group">
+    															<label for="SSubCategory">
+    																Sub Category
+    															</label>
+    																<select class="form-control" id="SSubCategory" name="SSubCategory" disabled>
+    																	<option value="">
+    																		Sub Category
+    																	</option>
+    																	<option value="Samsung">
+    																		Samsung
+    																	</option>
+    																	<option value="Iphone">
+    																		Iphone
+    																	</option>
+    																</select>
+    														</div>
+														</div>
+														<button id="submitcat" type="button" class="btn btn-default" style="margin-left: 30px;">
 															Add
 														</button>
 													</div>
@@ -161,70 +182,72 @@
 												<div style="border-top: 1px solid #ccc; clear: both; display:block;margin-top:15px">
 												</div>
 												<!-- create menu -->
-													<div class="col-sm-6 hidden-sm" style="border-right: 1px solid #ccc;">
-														<div class="pro-detail">
-															<div class="col-sm-12" id="sitePreview">
-																<div class="row" style="margin: 0;">
-																	<div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0;display:block">
-																		<h3>
-																			Your Site page Preview
-																		</h3>
+												<div class="col-sm-6 hidden-sm" style="border-right: 1px solid #ccc;">
+													<div class="pro-detail">
+														<div class="col-sm-12" id="sitePreview">
+															<div class="row" style="margin: 0;">
+																<div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0;display:block">
+																	<h3>
+																		Your Site page Preview
+																	</h3>
+																</div>
+															</div>
+															<div class="row" style="margin: 10px 0 0 0;">
+																<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin:0">
+																	<div id="navbar" class="navbar-collapse collapse">
+																		<ul class="nav navbar-nav" id="menu_results" style="margin:0">
+																			<li class="active">
+																				<a href="javascript:;">Home</a>
+																			</li>
+																		</ul>
+																	</div>
+																	<!--/.nav-collapse -->
+																</nav>
+																<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin:0;z-index:1">
+																	<div id="navbar" class="navbar-collapse collapse">
+																		<ul class="nav navbar-nav navbar-nav-a" id="Dmenu_results_a" style="margin:0;background:#eee">
+																		</ul>
+																	</div>
+																	<!--/.nav-collapse -->
+																</nav>
+															</div>
+															<div class="row">
+																<div class="col-sm-3">
+																	<div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0;">
+																		Left
 																	</div>
 																</div>
-																<div class="row" style="margin: 10px 0 0 0;">
-																	<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin:0">
-																		<div id="navbar" class="navbar-collapse collapse">
-																			<ul class="nav navbar-nav" id="menu_results" style="margin:0">
-																				<li class="active">
-																					<a href="javascript:;">Home</a>
-																				</li>
-																			</ul>
-																		</div>
-																		<!--/.nav-collapse -->
-																	</nav>
-                                                                    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin:0;z-index:1">
-																		<div id="navbar" class="navbar-collapse collapse">
-																			<ul class="nav navbar-nav navbar-nav-a" id="Dmenu_results_a" style="margin:0;background:#eee">
-																			</ul>
-																		</div>
-																		<!--/.nav-collapse -->
-																	</nav>
+																<div class="col-sm-6">
+																	<div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0">
+																		Content
+																	</div>
 																</div>
-																<div class="row">
-																	<div class="col-sm-3">
-																		<div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0;">
-																			Left
-																		</div>
-																	</div>
-																	<div class="col-sm-6">
-																		<div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0">
-																			Content
-																		</div>
-																	</div>
-																	<div class="col-sm-3">
-																		<div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0;">
-																			Right
-																		</div>
+																<div class="col-sm-3">
+																	<div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0;">
+																		Right
 																	</div>
 																</div>
 															</div>
-															<!-- end site preview -->
+														</div>
+														<!-- end site preview -->
+													</div>
+												</div>
+												<!--end product describe-->
+												<div class="col-sm-6">
+													<div class="pro-detail form-inline">
+														<h3>
+															Your Default menu you have chosen
+														</h3>
+														<textarea id="nestable3-output">
+														</textarea>
+														<div class="dd" id="nestable3">
+															<ol id="result" class="dd-list">
+															</ol>
 														</div>
 													</div>
-													<!--end product describe-->
-													<div class="col-sm-6">
-														<div class="pro-detail form-inline">
-															<h3>
-																Your Default menu  you have chosen
-															</h3>
-															<div id="result">
-															</div>
-														</div>
-													</div>
+												</div>
 											</div>
-                                            <!-- end MainMenu Tab -->
-                                            
-                                            
+											<!-- end MainMenu Tab -->
 											<div role="tabpanel" class="tab-pane" id="DefualtMenu">
 												<!--product describe-->
 												<div class="form-horizontal">
@@ -241,7 +264,7 @@
 																	<option value="MainBar">
 																		Stay on Main bar
 																	</option>
-                                                                    <option value="SubBar">
+																	<option value="SubBar">
 																		Stay on Sub bar
 																	</option>
 																</select>
@@ -262,16 +285,16 @@
 																	<option value="Aboutus">
 																		About us
 																	</option>
-                                                                    <option value="Contactus">
+																	<option value="Contactus">
 																		Contact us
 																	</option>
-                                                                    <option value="HotPromotion">
+																	<option value="HotPromotion">
 																		Hot Promotion
 																	</option>
-                                                                    <option value="NewArrival">
+																	<option value="NewArrival">
 																		New Arrival
 																	</option>
-                                                                    <option value="Second Hand">
+																	<option value="Second Hand">
 																		Second Hand
 																	</option>
 																</select>
@@ -307,7 +330,7 @@
 																		</div>
 																		<!--/.nav-collapse -->
 																	</nav>
-                                                                    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin:0;z-index:1">
+																	<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin:0;z-index:1">
 																		<div id="navbar" class="navbar-collapse collapse">
 																			<ul class="nav navbar-nav navbar-nav-a" id="Dmenu_results_a" style="margin:0;background:#eee">
 																			</ul>
@@ -342,7 +365,9 @@
 															<h3>
 																Your menu category you have chosen
 															</h3>
-															<div class="form-inline"><div id="Dresult"></div>
+															<div class="form-inline">
+																<div id="Dresult">
+																</div>
 															</div>
 														</div>
 													</div>
@@ -371,17 +396,83 @@
 		<!--/login form-->
 	</div>
 </div>
-{{HTML::script('frontend/js/jquery.validate.js')}}
+{{HTML::script('frontend/js/jquery.validate.js')}} {{HTML::script('frontend/js/Nestable-master/jquery.nestable.js')}} {{HTML::style('frontend/css/nestble.css')}}
 <script type='text/javascript'>
+	
 		
 $(document).ready(function(){
-    $('#agreement').click(function () {
-        if($(this).is(":checked")) {
-            $("#summit").removeAttr("disabled");
+    /**/
+    var updateOutput = function(e)
+    {
+        var list   = e.length ? e : $(e.target),
+            output = list.data('output');
+        if (window.JSON) {
+            output.val(window.JSON.stringify(list.nestable('serialize')));//, null, 2));
         } else {
-            $("#summit").attr('disabled',true);
+            output.val('JSON browser support required for this demo.');
         }
-    });    
+    };
+    $('#nestable3').nestable({
+        group: 1
+    })
+    .on('change', updateOutput);
+
+    // output initial serialised data
+    updateOutput($('#nestable3').data('output', $('#nestable3-output')));
+    
+        
+    $('#Main-Menu').change(function () {
+        $("#Category").html('<option value="">Select one</option>').attr("disabled","selected");
+        $("#SubCategory").html('<option value="">Select one</option>').attr("disabled","selected");
+        var selected = $("#Main-Menu option:selected").val();
+        if(selected) {
+            /* Send the get using post and put the results in a div */
+        $.ajax({
+            url: "{{Config::get('app.url')}}/member/getsubmenu?id="+selected,
+            type: "get",
+            success: function(datas){
+                $("#Category").html(datas).removeAttr("disabled","disabled");
+            }
+            });
+        } else {
+            alert('please select one');
+        }
+    });
+    $('#Category').change(function () {
+        var selectedG = $("#Category option:selected").val();
+        if(selectedG) {
+            $("#SubCategory").html('<option value="">Select one</option>').attr("disabled","selected");
+        /* Send the data using get and put the results in a div */
+        $.ajax({
+            url: "{{Config::get('app.url')}}/member/getsubmenu?id="+selectedG,
+            type: "get",
+            success: function(datas){
+                $("#SubCategory").html(datas).removeAttr("disabled","disabled");
+            }
+            });
+        } else {
+            alert('please select one');
+        }
+    });
+    $('#SubCategory').change(function () {
+        var selectedG = $("#SubCategory option:selected").val();
+        if(selectedG) {
+            $("#SSubCategory").html('<option value="">Select one</option>').attr("disabled","selected");
+        /* Send the data using get and put the results in a div */
+        $.ajax({
+            url: "{{Config::get('app.url')}}/member/getsubmenu?id="+selectedG,
+            type: "get",
+            success: function(datas){
+                $("#SSubCategory").html(datas).removeAttr("disabled","disabled");
+            }
+            });
+        } else {
+            alert('please select one');
+        }
+    });
+
+    
+     
     $("#PersonalForm").validate({
           rules: {
       FullName: {
@@ -394,88 +485,90 @@ $(document).ready(function(){
       }
   }
     });
+ 
+ $('#submitcat').click(function () {
+    //var selectedG = $("#Category option:selected").val();
+    var mainMenu = $('#Main-Menu option:selected').val();
+    var mainCategory = $('#Category option:selected').val();
+    var mainCategoryText = $('#Category option:selected').text();
+    var mainSubCategory = $('#SubCategory option:selected').val();
+    var mainSubCategoryText = $('#SubCategory option:selected').text();
     
-    $("#StartCatAdd").submit(function(event) {
-
-        /* Stop form from submitting normally */
-        event.preventDefault();
+    var mainSubSubCategory = $('#SSubCategory option:selected').val();
+    var mainSubSubCategoryText = $('#SSubCategory option:selected').text();
     
-        /* Clear result div*/
-        //$("#result").html('');
+    /*check duplicatae Category data*/
+    var Dduplicate = [];
+	$('#result .dd-item').each(function () {
+		if ($(this).attr('data-id') == mainCategory) {
+		  Dduplicate.push(mainCategory);
+		}
+	});
+    /*end check duplicatae Category data*/
     
-        /* Get some values from elements on the page: */
-        var values = $(this).serialize();
-    
-        /* Send the data using post and put the results in a div */
-        $.ajax({
-            url: "{{Config::get('app.url')}}/member/addmenuajax",
-            type: "post",
-            data: values,
-            success: function(datas){
-                //alert("success");
-                var msg = $.parseJSON(datas);
-                var MainMenu = msg.MainMenu;
-                var Category = msg.Category;
-                var SubCategory = msg.SubCategory;
-                var duplicate = [];
-				$('#CategoryAjaxAdd'+Category).each(function () {
-					if ($('#CategoryAjaxAdd'+Category).val() == Category) {
-						duplicate.push(Category);
-					}
-				});
-                var SubDuplicate = [];
-				$('#sub_'+Category+SubCategory).each(function () {
-					if ($('#sub_'+Category+SubCategory).val() == SubCategory) {
-						SubDuplicate.push(Category+SubCategory);
-					}
-				});
-                
-                
-                if (!duplicate[0]) {
-                    var cate = '<div><div class="input_fields_wrap subCatAjax"><div class="col-md-12"><button type="button" class="btn btn-danger removeMainCat  pull-right" dataid="'+Category+'"><i class="glyphicon glyphicon-remove"></i></button>'+
-                                                                '<div id="id_'+Category+'" name="Category">'+
-                                                                '<input  style="max-width:80%;margin-right:5px" type="text" value="'+Category+'" class="form-control id_'+Category+'" id="CategoryAjaxAdd'+Category+'" readonly=""/>'+
-                                                                '</div>'+
-                                                              '</div></div>';
-                    var sub_cate = '<div class="row input_fields_wrap subCatAjax"><div class="col-md-12"><button type="button" class="btn btn-danger remove_field  pull-right" id="removeCat" dataid="'+Category+SubCategory+'" onclick="removes();"><i class="glyphicon glyphicon-trash"></i></button>'+
-                                                                '<div id="id_'+Category+'" name="Category">'+
-                                                                '<input style="max-width:100px;margin-right:5px" type="text" value="'+SubCategory+'" class="form-control  pull-right" id="sub_'+Category+SubCategory+'" readonly=""/>'+
-                                                                '</div>'+
-                                                              '</div></div><div id="sub_result'+Category+'"></div></div>';                                          
-                    $("#result").append(cate+sub_cate); 
-                    /*preview site menu*/
-                    var addToMenu = '<li class="dropdown" id="m_r'+Category+'">'+
-                    '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">'+Category+' <span class="caret"></span></a>'+
-                    '<ul class="dropdown-menu" role="menu" id="menuAddsub'+Category+'">'+
-                    '<li id="ms_r'+Category+SubCategory+'"><a href="javascript:;">'+SubCategory+'</a></li>'+
-                    '</ul>'+
-                    '</li>';
-                    $('#menu_results').append(addToMenu);
-                    $('#Dmenu_results').append(addToMenu);
-                } else{
-                    if (!SubDuplicate[0]) {
-                        var content = '<div class="row input_fields_wrap subCatAjax"><div class="col-md-12"><button type="button" class="btn btn-danger remove_field  pull-right" id="removeCat" dataid="'+Category+SubCategory+'" onclick="removes();"><i class="glyphicon glyphicon-trash"></i></button>'+
-                                                                '<div id="id_'+Category+'" name="Category">'+
-                                                                '<input style="max-width:100px;margin-right:5px" type="text" value="'+SubCategory+'" class="form-control  pull-right" id="sub_'+Category+SubCategory+'" readonly=""/>'+
-                                                                '</div>'+
-                                                              '</div></div>';
-                    $('#sub_result'+Category).append(content);
-                    $('#Dmenu_results #sub_result'+Category).append(content); 
-                    var addToMenus = '<li id="ms_r'+Category+SubCategory+'"><a href="javascript:;">'+SubCategory+'</a></li>';
-                    $('#menuAddsub'+Category).append(addToMenus);
-                    $('#Dmenu_results #menuAddsub'+Category).append(addToMenus);
-                    } else {
-                        alert('This sub is arealy added!');
-                    }
-                }
-                
-            },
-            error:function(){
-                alert("failure");
-                $("#result").html('There is error while submit');
+     /*check duplicatae SubCategory data*/
+    var Sduplicate = [];
+	$('#result li.dd-item ol.dd-list .dd-item').each(function () {
+		if ($(this).attr('data-id') == mainSubCategory) {
+		  Sduplicate.push(mainSubCategory);
+		}
+	});
+    /*end check duplicatae SubCategory data*/
+ 
+      /*check duplicatae Sub SubCategory data*/
+    var Subduplicate = [];
+	$('#result li.dd-item ol.dd-list .dd-item').each(function () {
+		if ($(this).attr('data-id') == mainSubCategory) {
+		  Subduplicate.push(mainSubCategory);
+		}
+	});
+    /*end check duplicatae sub SubCategory data*/      
+    if(mainMenu && mainCategory) {
+        if(mainCategory && !mainSubCategory) {
+            var MlistMenu = '<li class="dd-item dd3-item" data-id="'+mainCategory+'" id="item-'+mainCategory+'">'+
+                '<div class="dd-handle dd3-handle">Drag</div>'+
+                '<div class="dd3-content item-'+mainCategory+'">'+mainCategoryText+'</div>'+
+                '</li>';
+           if (!Dduplicate[0]) {
+                $('#result').append(MlistMenu);  
+           }
+        } else if (mainCategory && mainSubCategory){
+            
+            var FistList = '<li class="dd-item dd3-item" data-id="'+mainCategory+'" id="item-'+mainCategory+'">'+
+                '<div class="dd-handle dd3-handle">Drag</div><div class="dd3-content item-'+mainCategory+'">'+mainCategoryText+'</div>'+
+                '<ol class="dd-list">'+
+                    '<li class="dd-item dd3-item" data-id="'+mainSubCategory+'">'+
+                        '<div class="dd-handle dd3-handle">Drag</div><div class="dd3-content item-'+mainSubCategory+'">'+mainSubCategoryText+'</div>'+
+                    '</li>'+
+                '</ol>';
+            var listMenu = '<li class="dd-item dd3-item" data-id="'+mainSubCategory+'" id="item-'+mainSubCategory+'">'+
+                '<div class="dd-handle dd3-handle">Drag</div>'+
+                '<div class="dd3-content">'+mainSubCategoryText+'</div>'+
+                '</li>';
+            var addChild = '<ol class="dd-list">'+
+                    '<li class="dd-item dd3-item" data-id="'+mainSubCategory+'" id="item-'+mainSubCategory+'">'+
+                        '<div class="dd-handle dd3-handle">Drag</div><div class="dd3-content item-'+mainSubCategory+'">'+mainSubCategoryText+'</div>'+
+                    '</li>'+
+                '</ol>';
+        }
+        if (!Dduplicate[0]) {
+            $('#result').append(FistList);
+        } else if (Dduplicate[0] && !Sduplicate[0]) {
+            var countListExist = $('#result #item-' + Dduplicate[0] + ' .dd-item').length;
+            if(countListExist>0) {
+                $('#result #item-' + Dduplicate[0] + ' .dd-list').append(listMenu);
+            } else {
+                $(addChild).insertAfter('#result #item-' + Dduplicate[0] + ' .item-' + Dduplicate[0]);
             }
-        });
-    });
+        } else {
+            if (!Sduplicate[0]) {
+                $('#result .dd-item ol.dd-list').append(listMenu);
+            }
+        }
+        updateOutput($('#nestable3').data('output', $('#nestable3-output')));
+    }
+ });   
+
 
     /*Default Menu*/
     $('#Dsubmitcat').click(function () {
@@ -546,6 +639,7 @@ $(document).on('click','.DremoveMainCat',function() {
         $('#DefualtMenu #msrM'+removeId).remove();
      	$(this).parent('div').remove();
 });
+
 </script>
 <div class="clear">
 </div>

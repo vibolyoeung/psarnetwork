@@ -1824,7 +1824,7 @@ h2.title {
     font-weight: 300;
     margin-bottom: 30px;
 }
-
+.user-menu .form-group{margin:0 -10px 0 -10px}
 .login-form form input,.signup-form form input {
     background: #F0F0E9;
     border: medium none;

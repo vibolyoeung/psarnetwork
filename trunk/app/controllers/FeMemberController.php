@@ -38,7 +38,12 @@ class FeMemberController extends BaseController
                 Session::put('currentUserEmail', $result->email);
                 Session::put('currentUserPhone', $result->telephone);
                 Session::put('currentUserType', $result->user_type);
-                return Redirect::to('page/' . strtolower($result->name));
+                if (Input::has('page') && Input::has('page')=='register') {
+                    return Redirect::to('member/userinfo/' . $result->account_type .'/menu');
+                } else {
+                    //return Redirect::to('page/' . strtolower($result->name));
+                    return Redirect::to('/');
+                }
             } else {
                 return Redirect::to('member/login')->with('INVALID_LOGIN',
                     'Username and Password is invalid!')->withInput();
@@ -234,6 +239,27 @@ class FeMemberController extends BaseController
             return View::make('frontend.modules.member.login');
         }
     }
+
+    /**
+     * Adding user information by step
+     *
+     * @method userinfo
+     * @return void
+     */    
+    public function userinfo($usertype = '',$step='') {
+        //$sub = $subcategoriesobj->getSubCategories(0);
+        $limit = $this->mod_setting->getSlidshowNumber();
+    	$listCategories = self::getCategoriesHomePage();
+
+        if (!empty($usertype) && $usertype ==2) {
+             return View::make('frontend.modules.member.enterprise-'.$step)
+    	       ->with('maincategories', $listCategories->result);
+        } else {
+            return View::make('frontend.modules.member.free-'.$step)
+    	       ->with('maincategories', $listCategories->result);
+        }
+    }    
+    
     /**
      * Adding menu by ajax
      *
@@ -255,6 +281,31 @@ class FeMemberController extends BaseController
         }
     }
 
+    /**
+     * get sub menu by ajax
+     *
+     * @method getsubmenu
+     * @return void
+     */
+    public function getsubmenu()
+    {
+        $this->layout = null;
+        $MainMenu = Input::get('id');
+        $subMmenu = '';
+        $subMmenu .='<option value="">Select one</option>';
+        if (!empty($MainMenu)) {
+            $Category = $this->mod_category->getSubCategories($MainMenu);
+            $i=0;
+            if($Category) {
+                foreach($Category as $subMenus) {
+                    $i++;
+                    $subMmenu .='<option value="'.$subMenus->id.'">'.$subMenus->name_en.'</option>';
+                }
+            } 
+        }
+        echo $subMmenu;
+        die;
+    }
     /**
      * List all slideshows
      *
