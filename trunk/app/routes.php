@@ -136,8 +136,13 @@ Route::any('/{lang}/productbycategories/{id}', 'FePageController@getProductbyCat
 Route::any('/productbycategories/{id}', 'FePageController@getProductbyCategory');
 Route::any('/member/getmarkettype/{id}', 'FeMemberController@getMarketType');
 /*for product*/
-Route::any('/products/list', 'FeProductController@listAllProducts');
-Route::any('/products/create', 'FeProductController@addProduct');
+Route::group(array('prefix' => 'products'), function()
+{
+	Route::any('/list', 'FeProductController@listAllProducts');
+	Route::any('/{lang}/list', 'FeProductController@listAllProducts');
+	Route::any('/create', 'FeProductController@addProduct');
+	Route::any('/{lang}/create', 'FeProductController@addProduct');
+});
 
  // [your site path]/app/routes.php
 

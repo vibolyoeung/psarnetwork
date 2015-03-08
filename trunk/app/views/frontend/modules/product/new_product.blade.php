@@ -17,7 +17,9 @@
 					<div class="col-md-6">
 						<div class="well">
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Category</label>
+								<label class="col-sm-2 control-label">
+									{{trans('product.category')}}
+								</label>
 								<div class="col-sm-10">
 									<select class="form-control">
 										<option>Select</option>
@@ -26,7 +28,7 @@
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">
-									Product Title
+									{{trans('product.product_title')}}
 								</label>
 								<div class="col-sm-10">
 									{{Form::text('productTitle',null, array('class'=>'form-control'))}}
@@ -34,7 +36,7 @@
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">
-									Transfer as
+									{{trans('product.transfer_as')}}
 								</label>
 								<div class="col-sm-10">
 									<select class="form-control">
@@ -44,7 +46,7 @@
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">
-									Condiction
+									{{trans('product.condition')}}
 								</label>
 								<div class="col-sm-10">
 									<select class="form-control">
@@ -54,7 +56,7 @@
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">
-									Product Status
+									{{trans('product.status')}}
 								</label>
 								<div class="col-sm-10">
 									<select class="form-control">
@@ -64,7 +66,7 @@
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">
-									Price
+									{{trans('product.price')}}
 								</label>
 								<div class="col-sm-10">
 									{{Form::text('productPrice', null, array('class'=>'form-control'))}}
@@ -72,7 +74,7 @@
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">
-									Price
+									{{trans('product.description')}}
 								</label>
 								<div class="col-sm-10">
 									{{Form::textarea('desc', null, array('class'=>'form-control'))}}
@@ -80,7 +82,7 @@
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">
-									Public
+									{{trans('product.publish')}}
 								</label>
 								<div class="col-sm-10">
 									<select name="isPublic" class="form-control">
@@ -92,18 +94,47 @@
 					</div>
 					<div class="col-md-6">
 						<div class="well">
-							<div id="more_browse_field">
-								<div class="form-group">
-									<label class="col-sm-2 control-label">
-										<i
-											onClick="Product.add_more_fields()"
-											class="glyphicon glyphicon-plus browse-picture"></i>
-									</label>
-									<div class="col-sm-10">
-										<input type="file" name="picture[]" class="form-control" />
-									</div>
-								</div>
+							<div class="row" id="upload-preview">
+							<div class="form-group">
+								<label>
+									{{trans('product.upload_file')}}
+								</label>
 							</div>
+							<div class="form-group">
+
+								<div id="filediv">
+									<input class="form-control" name="file[]" type="file" id="file"/>
+								</div>
+								<br/>
+								<input type="button" id="add_more" class="btn btn-primary" value="{{trans('product.add_more_files')}}"/>
+							</div>
+							<div class="form-group">
+								<label>
+									{{trans('product.upload_quotation')}}
+								</label>
+								<input type="file" name="quotation" class="form-control"/>
+							</div>
+							<hr />
+							<div class="form-group">
+								<label>{{trans('product.contact_name')}}</label>
+								<input type="text" name="contactName" class="form-control" />
+							</div>
+							<div class="form-group">
+								<label>{{trans('product.email')}}</label>
+								<input type="text" name="contactEmail" class="form-control" />
+							</div>
+							<div class="form-group">
+								<label>{{trans('product.hp')}}</label>
+								<input type="text" name="contactHP" class="form-control" />
+							</div>
+							<div class="form-group">
+								<label>{{trans('product.location')}}</label>
+								<input type="text" name="contactLocation" class="form-control" />
+							</div>
+							<div class="form-group">
+								<input type="submit" name="btnSubmitAds" class="btn btn-primary"  value="{{trans('product.save_product_ads')}}"/>
+							</div>
+							<!-- App::make('FeProductController')->someAction(['parameter' => $value])-->
 						</div>
 					</div>
 				</div>
