@@ -29,7 +29,7 @@
 								  </ul>
 								</div>
 							</div>
-							
+
 							<div class="col-lg-6" style="margin:0;padding:0;">
 								<div class="btn-group col-lg-12 " style="margin:0;padding:0;">
 									  <button type="button" class="col-lg-12 btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="border-radius:0;border:none;border-right:1px solid #ddd;">
@@ -53,7 +53,7 @@
 			</div>
 		</div>
 	</div><!--/header-middle-->
-	@include('frontend.partials.menu')
+	{{ App::make('FePageController')->mainCategory() }}
 	<section>
 		<div class="container">
 			<div class="row">

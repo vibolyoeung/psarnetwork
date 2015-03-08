@@ -26,7 +26,6 @@ class FePageController extends BaseController {
 	{
 		$limit = $this->mod_setting->getSlidshowNumber();
 		$listSlideshows = self::getSlideShowHomePage($limit->data->setting_value);
-		$listCategories = self::getCategoriesHomePage();
 		$advHorizontalTopLarge = $this->mod_advertisment
 			->getAdvertisementHomePage(
 				self::HOMEPAGE,
@@ -71,7 +70,6 @@ class FePageController extends BaseController {
 
 		return View::make('frontend.partials.home')
 						->with('slideshows', $listSlideshows->result)
-						->with('maincategories', $listCategories->result)
 						->with('advHorizontalTopLarges', $advHorizontalTopLarge->result)
 						->with('advVerticalRightMiduims', $advVerticalRightMiduim->result)
 						->with('advVerticalRightSmalls', $advVerticalRightSmall->result)
@@ -79,6 +77,12 @@ class FePageController extends BaseController {
 						->with('advVerticalLeftMiduims', $advVerticalLeftMiduim->result)
 						->with('advHorizontalLargeCenters', $advHorizontalLargeCenter->result)
 						->with('Provinces', $this->mod_setting->listProvinces());
+	}
+
+	public function mainCategory(){
+		$listCategories = self::getCategoriesHomePage();
+		return View::make('frontend.partials.menu')
+			->with('maincategories', $listCategories->result);
 	}
 
 	public function getSlideShowHomePage($limit){
@@ -99,35 +103,35 @@ class FePageController extends BaseController {
 				self::H_MIDDLE_TOP_LARGE,
 				1
 		);
-		
+
 		$advVerticalRightMiduim = $this->mod_advertisment
 		->getAdvertisementHomePage(
 				self::HOMEPAGE,
 				self::V_RIGHT_MIDIUM,
 				3
 		);
-		
+
 		$advVerticalRightSmall = $this->mod_advertisment
 		->getAdvertisementHomePage(
 				self::HOMEPAGE,
 				self::V_RIGHT_SMALL,
 				3
 		);
-		
+
 		$advVerticalLeftSmall = $this->mod_advertisment
 		->getAdvertisementHomePage(
 				self::HOMEPAGE,
 				self::V_LEFT_SMALL,
 				3
 		);
-		
+
 		$advVerticalLeftMiduim = $this->mod_advertisment
 		->getAdvertisementHomePage(
 				self::HOMEPAGE,
 				self::V_LEFT_MIDUIM,
 				3
 		);
-		
+
 		$advHorizontalLargeCenter = $this->mod_advertisment
 		->getAdvertisementHomePage(
 				self::HOMEPAGE,
