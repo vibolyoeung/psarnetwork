@@ -39,7 +39,7 @@
 			data-toggle="dropdown">Business Management <b class="caret"></b></a>
 			<ul class="dropdown-menu">
 				<li><a href="#">Product Advertisement</a></li>
-				<li><a href="#">Banner Advertisement</a></li>
+				<li><a href="{{URL::to('admin/advertisements')}}">Banner Advertisement</a></li>
 				<li><a href="#">Enterprise Page</a></li>
 				<li><a href="#">Free Page</a></li>
 			</ul>
