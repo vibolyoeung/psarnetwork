@@ -17,5 +17,6 @@ return array(
 	'email' => 'Email',
 	'hp' => 'HP',
 	'location' => 'Location',
-	'save_product_ads' => 'Save Product Ads'
+	'save_product_ads' => 'Save Product Ads',
+	'point_to_view' => 'Point to View'
 );

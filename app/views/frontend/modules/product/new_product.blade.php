@@ -11,7 +11,7 @@
 	@endsection
 @section('content')
 	<div class="container">
-		{{Form::open(array('class'=>'form-horizontal'))}}
+		{{Form::open(array('url'=>'products/create','enctype'=>'multipart/form-data','file' => true, 'class'=>'form-horizontal'))}}
 			<div class="row">
 				<div class="col-md-12 ">
 					<div class="col-md-6">
@@ -39,9 +39,7 @@
 									{{trans('product.transfer_as')}}
 								</label>
 								<div class="col-sm-10">
-									<select class="form-control">
-										<option>Select</option>
-									</select>
+									{{ Form::select('proTransferType',$proTransferType, null, array('class' => 'form-control'))}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -49,9 +47,7 @@
 									{{trans('product.condition')}}
 								</label>
 								<div class="col-sm-10">
-									<select class="form-control">
-										<option>Select</option>
-									</select>
+									{{ Form::select('productCondition',$productCondition, null, array('class' => 'form-control'))}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -59,9 +55,7 @@
 									{{trans('product.status')}}
 								</label>
 								<div class="col-sm-10">
-									<select class="form-control">
-										<option>Select</option>
-									</select>
+									{{ Form::select('productCondition',Product::$PRODUCT_STATUS, null, array('class' => 'form-control'))}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -85,9 +79,7 @@
 									{{trans('product.publish')}}
 								</label>
 								<div class="col-sm-10">
-									<select name="isPublic" class="form-control">
-										<option>Select</option>
-									</select>
+									{{ Form::select('productCondition',Product::$PRODUCT_IS_PUBLISH, null, array('class' => 'form-control'))}}
 								</div>
 							</div>
 						</div>
@@ -101,9 +93,8 @@
 								</label>
 							</div>
 							<div class="form-group">
-
 								<div id="filediv">
-									<input class="form-control" name="file[]" type="file" id="file"/>
+									<input class="form-control" name="file[]" type="file" id="file" />
 								</div>
 								<br/>
 								<input type="button" id="add_more" class="btn btn-primary" value="{{trans('product.add_more_files')}}"/>
@@ -112,29 +103,28 @@
 								<label>
 									{{trans('product.upload_quotation')}}
 								</label>
-								<input type="file" name="quotation" class="form-control"/>
+								{{Form::file('quotation', array('class' => 'form-control'))}}
 							</div>
 							<hr />
 							<div class="form-group">
 								<label>{{trans('product.contact_name')}}</label>
-								<input type="text" name="contactName" class="form-control" />
+								{{ Form::text('contactName', null, array('class' => 'form-control'))}}
 							</div>
 							<div class="form-group">
 								<label>{{trans('product.email')}}</label>
-								<input type="text" name="contactEmail" class="form-control" />
+								{{ Form::text('contactEmail', null, array('class' => 'form-control'))}}
 							</div>
 							<div class="form-group">
 								<label>{{trans('product.hp')}}</label>
-								<input type="text" name="contactHP" class="form-control" />
+								{{ Form::text('contactHP', null, array('class' => 'form-control'))}}
 							</div>
 							<div class="form-group">
 								<label>{{trans('product.location')}}</label>
-								<input type="text" name="contactLocation" class="form-control" />
+								{{ Form::text('contactLocation', null, array('class' => 'form-control'))}}
 							</div>
 							<div class="form-group">
-								<input type="submit" name="btnSubmitAds" class="btn btn-primary"  value="{{trans('product.save_product_ads')}}"/>
+								{{ Form::submit(trans('product.save_product_ads'), array('class' => 'btn btn-primary', 'name'=>'btnAddProduct'))}}
 							</div>
-							<!-- App::make('FeProductController')->someAction(['parameter' => $value])-->
 						</div>
 					</div>
 				</div>
