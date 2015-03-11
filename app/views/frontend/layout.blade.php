@@ -4,7 +4,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="col-lg-5" style="border:2px solid #f0ad4e;padding:0;margin:0;">
+					<div class="col-lg-5 search-bar">
 						<div class="col-lg-8 pull-right" style="padding:0;margin:0;">
 							<div class="col-lg-3 pull-right" style="padding:0;margin:0;">
 								<button type="submit" class="btn btn-warning pull-right col-lg-12" style="border-radius:0;">
@@ -46,7 +46,7 @@
 						</div>
 					</div>
 					<!-- ==========top advertise blog -->
-					<div class="col-lg-7" style="padding-right:0;">
+					<div class="col-lg-7 top-advertisement">
 						@foreach($advTops as $adv)
 						<?php
 							$exp_date = $adv->end_date;

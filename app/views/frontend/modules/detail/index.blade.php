@@ -9,6 +9,7 @@ Categories
     <li class="active">Data</li>
 </ol>
 @endsection
+{{ App::make('FePageController')->mainCategory() }}
 @section('content')
 <div class="col-sm-10">
 	<div class="features_items">

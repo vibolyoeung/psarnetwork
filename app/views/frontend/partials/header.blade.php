@@ -69,7 +69,7 @@
             <div class="container-fluid top-menu">
             	<div class="col-lg-5 top_promotion">
             		<div class="col-lg-2">
-						<a href="#"><img src="{{Config::get('app.url')}}frontend/images/classifieds_logo.png" width="200"/><a>
+						<a href="{{Config::get('app.url')}}"><img src="{{Config::get('app.url')}}frontend/images/classifieds_logo.png" width="200"/><a>
 					</div>
 					<ul class="promotion_top_menu pull-right">
 						<li><a href="#">Hot Promotion</a></li>
