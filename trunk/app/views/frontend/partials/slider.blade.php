@@ -17,7 +17,7 @@
 					?>
 					@endforeach
 					</ol>
-					<div class="carousel-inner" style="border: 2px solid #ddd;padding:0;max-height: 200px;">
+					<div class="carousel-inner" style="border: 2px solid #ddd;padding:0;max-height: 230px;">
 					@foreach($slideshows as $slideshow)
 						<?php
 							if($slideshow->type == 1){
@@ -65,7 +65,7 @@
 			</div>
 
 			<!-- -============Advertise top special======== -->
-			<div class="col-lg-4" style="border:2px solid #ddd;padding:5px;max-height: 200px;overflow:hidden;">
+			<div class="col-lg-4 top_special_ads">
 				@foreach($advHorizontalTopLarges as $adv)
 				<?php
 					$exp_date = $adv->end_date;

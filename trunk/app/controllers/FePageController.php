@@ -16,8 +16,10 @@ class FePageController extends BaseController {
 	private $mod_category;
 	private $mod_setting;
 	private $mod_advertisment;
+	
 
 	function __construct(){
+		
 		$this->mod_slideshow = new Slideshow();
 		$this->mod_category = new MCategory();
 		$this->mod_setting = new Setting();
@@ -25,6 +27,7 @@ class FePageController extends BaseController {
 	}
 	public function index()
 	{
+		
 		$limit = $this->mod_setting->getSlidshowNumber();
 		$listSlideshows = self::getSlideShowHomePage($limit->data->setting_value);
 		$advHorizontalTopLarge = $this->mod_advertisment
@@ -106,45 +109,45 @@ class FePageController extends BaseController {
 
 	public function getProductbyCategory(){
 		$listCategories = self::getCategoriesHomePage();
-		$advHorizontalTopLarge = $this->mod_advertisment
-		->getAdvertisementHomePage(
-				self::HOMEPAGE,
-				self::H_MIDDLE_TOP_LARGE,
-				1
-		);
+ 		$advHorizontalTopLarge = $this->mod_advertisment
+ 		->getAdvertisementHomePage(
+ 				self::HOMEPAGE,
+ 				self::H_MIDDLE_TOP_LARGE,
+ 				1
+ 		);
 
-		$advVerticalRightMiduim = $this->mod_advertisment
-		->getAdvertisementHomePage(
-				self::HOMEPAGE,
-				self::V_RIGHT_MIDIUM,
-				3
-		);
+ 		$advVerticalRightMiduim = $this->mod_advertisment
+ 		->getAdvertisementHomePage(
+ 				self::HOMEPAGE,
+ 				self::V_RIGHT_MIDIUM,
+ 				3
+ 		);
 
-		$advVerticalRightSmall = $this->mod_advertisment
-		->getAdvertisementHomePage(
-				self::HOMEPAGE,
-				self::V_RIGHT_SMALL,
-				3
-		);
+ 		$advVerticalRightSmall = $this->mod_advertisment
+ 		->getAdvertisementHomePage(
+ 				self::HOMEPAGE,
+ 				self::V_RIGHT_SMALL,
+ 				3
+ 		);
 
-		$advVerticalLeftSmall = $this->mod_advertisment
-		->getAdvertisementHomePage(
-				self::HOMEPAGE,
-				self::V_LEFT_SMALL,
-				3
-		);
+ 		$advVerticalLeftSmall = $this->mod_advertisment
+ 		->getAdvertisementHomePage(
+ 				self::HOMEPAGE,
+ 				self::V_LEFT_SMALL,
+ 				3
+ 		);
 
-		$advVerticalLeftMiduim = $this->mod_advertisment
-		->getAdvertisementHomePage(
-				self::HOMEPAGE,
-				self::V_LEFT_MIDUIM,
-				3
-		);
+ 		$advVerticalLeftMiduim = $this->mod_advertisment
+ 		->getAdvertisementHomePage(
+ 				self::HOMEPAGE,
+ 				self::V_LEFT_MIDUIM,
+ 				3
+ 		);
 
-		$advHorizontalLargeCenter = $this->mod_advertisment
-		->getAdvertisementHomePage(
-				self::HOMEPAGE,
-				self::H_LARGE_CENTER,
+ 		$advHorizontalLargeCenter = $this->mod_advertisment
+ 		->getAdvertisementHomePage(
+ 				self::HOMEPAGE,
+			self::H_LARGE_CENTER,
 				3
 		);
 		return View::make('frontend.modules.detail.index')

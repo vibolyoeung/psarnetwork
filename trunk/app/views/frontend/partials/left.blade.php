@@ -1,4 +1,4 @@
-<div class="col-lg-1"  style="padding:0;">
+<div class="col-lg-1 left_bar">
 		<div class="left-sidebar">
 			<div class="panel-group category-products" id="accordian">
 				<label class="btn-default get popular-links">

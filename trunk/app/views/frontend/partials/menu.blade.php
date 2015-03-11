@@ -29,11 +29,12 @@
 					$subcategoriesobj = new MCategory();
 					$sub = $subcategoriesobj->getSubCategories($subcategorylist->id);
 					if(count($sub) > 0){
-						echo '<ul class="dropdown-menu" role="menu">';
+						echo '<ul class="dropdown-menu dropdown_main_menu" role="menu">';
 							foreach ($sub as $row){
 									echo '<li><a href='.URL::to('product/'.$row->id).'>'.$row->{'name_en'}.' <span class="caret"></span></a>';
 										echo '<div class="thumbnail">';
-											$subcategoriesobj->getSubCategoriesDropdown($row->id);
+											$subcategoriesobj->getSubCategoriesDropdown($row->id); 
+											echo '<center><a href="" class="more_categories">More Categories...</a></center>';
 										echo '</div>';
 									echo '</li>';
 							}
