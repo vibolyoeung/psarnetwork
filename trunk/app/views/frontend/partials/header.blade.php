@@ -51,16 +51,16 @@
                                     <li><a href="{{Config::get('app.url')}}/member/login"><i class="fa">Sign in /</i></a></li>
                                     <li><a href="{{Config::get('app.url')}}/member/register"><i class="fa">Free Register</i></a></li>
                                 </ul>
-<!--                                 <div class="language-bar"> -->
-<!--                                     <a href="{{Config::get('app.url')}}en" > -->
-<!--                                         <img src="{{Config::get('app.url')}}/frontend/images/en.png" alt="" title="" /> -->
-<!--                                         English -->
-<!--                                     </a> -->
-<!--                                     <a href="{{Config::get('app.url')}}zh"> -->
-<!--                                         <img src="{{Config::get('app.url')}}/frontend/images/cn.png" alt="" title="" /> -->
-<!--                                         Chinese -->
-<!--                                     </a>	 -->
-<!--                                 </div> -->
+                                <div class="language-bar">
+                                    <a href="{{Config::get('app.url')}}en" >
+                                        <img src="{{Config::get('app.url')}}/frontend/images/en.png" alt="" title="" />
+                                        English
+                                    </a>
+                                    <a href="{{Config::get('app.url')}}km">
+                                        <img src="{{Config::get('app.url')}}/frontend/images/km.png" alt="" title="" />
+                                        Khmer
+                                    </a>	
+                                </div>
                             </div>
                         </div>
                     </div>

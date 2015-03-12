@@ -16,14 +16,17 @@
 	    <div class="collapse navbar-collapse" id="dropdown-thumbnail-preview" style="padding:0;border:1px solid #f0ad4e;">
 	      <ul class="nav navbar-nav">
 	      	<li>
-	      		<a href="#">Home</a>
+	      		<a href="{{Config::get('app.url')}}" class="home_icon">
+	      		<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+	      		&nbsp;
+	      		</a>
 	      	</li>
 	      	@foreach ($maincategories as $subcategorylist)
 	      	<li  class="dropdown thumb-dropdown">
 	      		<a 
 	      			data-toggle="dropdown" 
 	      			class="dropdown-toggle" href="#">
-	      			<?php echo $subcategorylist->name_en;?> <span class="caret"></span>
+	      			<?php echo $subcategorylist->{'name_'.Session::get('lang')};?> <span class="caret"></span>
 	      		</a>
 		      	<?php
 					$subcategoriesobj = new MCategory();
@@ -31,7 +34,7 @@
 					if(count($sub) > 0){
 						echo '<ul class="dropdown-menu dropdown_main_menu" role="menu">';
 							foreach ($sub as $row){
-									echo '<li><a href='.URL::to('product/'.$row->id).'>'.$row->{'name_en'}.' <span class="caret"></span></a>';
+									echo '<li><a href='.URL::to('product/'.$row->id).'>'.$row->{'name_'.Session::get('lang')}.' <span class="caret"></span></a>';
 										echo '<div class="thumbnail">';
 											$subcategoriesobj->getSubCategoriesDropdown($row->id); 
 											echo '<center><a href="" class="more_categories">More Categories...</a></center>';
