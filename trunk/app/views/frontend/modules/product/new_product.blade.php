@@ -21,8 +21,12 @@
 									{{trans('product.category')}}
 								</label>
 								<div class="col-sm-10">
-									<select class="form-control">
-										<option>Select</option>
+									<select class="form-control" name="s_category">
+										<?php foreach($categoryTree as $cl) : ?>
+											<option value="{{$cl['id']}}">
+												{{$cl['m_title']}}
+											</option>
+										<?php endforeach;?>
 									</select>
 								</div>
 							</div>
