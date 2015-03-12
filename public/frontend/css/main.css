@@ -1007,7 +1007,7 @@ ul.sub-menu {
 
 .control-carousel {
     position: absolute;
-    top: 30%;
+    top: 40%;
     font-size: 60px;
     color: #428bca;
 }
@@ -3135,7 +3135,7 @@ margin-top:20px;
 	height: 90px;
 	width:950px;
 }
-.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
+.carousel-inner>.item>a>img,.top_special_ads a img{
 	height: 228px;
 }
 .top_special_ads{
@@ -3154,4 +3154,14 @@ a.more_categories{
 .left_bar{
 	padding:0;
 	min-height: 300px;
+}
+a.home_icon{
+	font-size:20px;
+}
+.modal_container{
+  position: relative;
+  padding: 15px;
+  max-height: 650px;
+  overflow: hidden;
+  overflow-y: scroll;
 }

@@ -1843,6 +1843,8 @@
 			</div>
 		</div>
 	</div>
+	
+	
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
@@ -1851,7 +1853,7 @@
 	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 	        <h4 class="modal-title" id="myModalLabel">Product details title</h4>
 	      </div>
-	      <div class="modal-body">
+	      <div class="modal-body modal_container">
 	      		<div class="container">
 			        <div id="main_area">
 			                <!-- Slider -->
@@ -1864,23 +1866,24 @@
 			                                    <!-- Carousel items -->
 			                                    <div class="carousel-inner">
 			                                        <div class="active item" data-slide-number="0">
-			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
-
+			                                        <img src="{{Config::get('app.url')}}/frontend/images/productDetail01.jpg"></div>
+			
 			                                        <div class="item" data-slide-number="1">
-			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
-
+			                                        <img src="{{Config::get('app.url')}}/frontend/images/productDetail02.jpg"></div>
+			
 			                                        <div class="item" data-slide-number="2">
-			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
-
+			                                        <img src="{{Config::get('app.url')}}/frontend/images/productDetail03.jpg"></div>
+			
 			                                        <div class="item" data-slide-number="3">
-			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
-
+			                                        <img src="{{Config::get('app.url')}}/frontend/images/productDetail04.jpg"></div>
+			
 			                                        <div class="item" data-slide-number="4">
-			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
-
+			                                        <img src="{{Config::get('app.url')}}/frontend/images/productDetail05.jpg"></div>
+			
 			                                        <div class="item" data-slide-number="5">
-			                                        <img src="{{Config::get('app.url')}}/frontend/images/home/blackview.jpg"></div>
+			                                        <img src="{{Config::get('app.url')}}/frontend/images/productDetail06.jpg"></div>
 			                                    </div><!-- Carousel nav -->
+			                                    
 			                                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
 			                                        <span class="glyphicon glyphicon-chevron-left"></span>
 			                                    </a>
@@ -1892,9 +1895,8 @@
 			                            <div class="col-sm-4" id="carousel-text"></div>
 			                            <div id="slide-content" style="display: none;">
 			                                <div id="slide-content-0">
-			                                    <h2>Slider One</h2>
-			                                    <p>Lorem Ipsum Dolor</p>
-			                                    <p class="sub-text">October 24 2014 - <a href="#">Read more</a></p>
+			                                    <h2>What is Lorem Ipsum?</h2>
+			                                    <p class="sub-text">October 24 2014</p>
 			                                </div>
 			                            </div>
 			                        </div>
@@ -1932,11 +1934,337 @@
 			                	</div>
 			                </div>
 			        </div>
+			        
+			        <div class="col-lg-12">
+			        <h3>Product Details</h3>
+			        <hr>
+			        	<p>
+			        	Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+			        	</p>
+			        </div>
+			        <!-- ============Relative post=============== -->
+			        <div class="col-lg-12" style="padding:0;">
+			           <div class="category-tab feature-ad lastest-post">
+							<div class="col-lg-12">
+								<h3>Relative Posts</h3>
+							</div>
+						</div>
+						<hr>
+						<div class="col-sm-2">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<a href="#" data-toggle="modal" data-target="#myModal">
+											<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
+										</a>
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+									</div>
+									<a href="#" data-toggle="modal" data-target="#myModal">
+										<div class="product-overlay">
+											<div class="overlay-content">
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" data-toggle="modal" data-target="#myModal">
+														View Details
+													</a>
+											</div>
+										</div>
+									</a>
+									<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<a href="#" data-toggle="modal" data-target="#myModal">
+											<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
+										</a>
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+									</div>
+									<a href="#" data-toggle="modal" data-target="#myModal">
+										<div class="product-overlay">
+											<div class="overlay-content">
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" data-toggle="modal" data-target="#myModal">
+														View Details
+													</a>
+											</div>
+										</div>
+									</a>
+									<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<a href="#" data-toggle="modal" data-target="#myModal">
+											<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
+										</a>
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+									</div>
+									<a href="#" data-toggle="modal" data-target="#myModal">
+										<div class="product-overlay">
+											<div class="overlay-content">
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" data-toggle="modal" data-target="#myModal">
+														View Details
+													</a>
+											</div>
+										</div>
+									</a>
+									<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<a href="#" data-toggle="modal" data-target="#myModal">
+											<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
+										</a>
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+									</div>
+									<a href="#" data-toggle="modal" data-target="#myModal">
+										<div class="product-overlay">
+											<div class="overlay-content">
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" data-toggle="modal" data-target="#myModal">
+														View Details
+													</a>
+											</div>
+										</div>
+									</a>
+									<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<a href="#" data-toggle="modal" data-target="#myModal">
+											<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
+										</a>
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+									</div>
+									<a href="#" data-toggle="modal" data-target="#myModal">
+										<div class="product-overlay">
+											<div class="overlay-content">
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" data-toggle="modal" data-target="#myModal">
+														View Details
+													</a>
+											</div>
+										</div>
+									</a>
+									<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<a href="#" data-toggle="modal" data-target="#myModal">
+											<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
+										</a>
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+									</div>
+									<a href="#" data-toggle="modal" data-target="#myModal">
+										<div class="product-overlay">
+											<div class="overlay-content">
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" data-toggle="modal" data-target="#myModal">
+														View Details
+													</a>
+											</div>
+										</div>
+									</a>
+									<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<a href="#" data-toggle="modal" data-target="#myModal">
+											<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
+										</a>
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+									</div>
+									<a href="#" data-toggle="modal" data-target="#myModal">
+										<div class="product-overlay">
+											<div class="overlay-content">
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" data-toggle="modal" data-target="#myModal">
+														View Details
+													</a>
+											</div>
+										</div>
+									</a>
+									<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<a href="#" data-toggle="modal" data-target="#myModal">
+											<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
+										</a>
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+									</div>
+									<a href="#" data-toggle="modal" data-target="#myModal">
+										<div class="product-overlay">
+											<div class="overlay-content">
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" data-toggle="modal" data-target="#myModal">
+														View Details
+													</a>
+											</div>
+										</div>
+									</a>
+									<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<a href="#" data-toggle="modal" data-target="#myModal">
+											<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
+										</a>
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+									</div>
+									<a href="#" data-toggle="modal" data-target="#myModal">
+										<div class="product-overlay">
+											<div class="overlay-content">
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" data-toggle="modal" data-target="#myModal">
+														View Details
+													</a>
+											</div>
+										</div>
+									</a>
+									<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<a href="#" data-toggle="modal" data-target="#myModal">
+											<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
+										</a>
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+									</div>
+									<a href="#" data-toggle="modal" data-target="#myModal">
+										<div class="product-overlay">
+											<div class="overlay-content">
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" data-toggle="modal" data-target="#myModal">
+														View Details
+													</a>
+											</div>
+										</div>
+									</a>
+									<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<a href="#" data-toggle="modal" data-target="#myModal">
+											<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
+										</a>
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+									</div>
+									<a href="#" data-toggle="modal" data-target="#myModal">
+										<div class="product-overlay">
+											<div class="overlay-content">
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" data-toggle="modal" data-target="#myModal">
+														View Details
+													</a>
+											</div>
+										</div>
+									</a>
+									<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<a href="#" data-toggle="modal" data-target="#myModal">
+											<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
+										</a>
+										<h2>$56</h2>
+										<p>Easy Polo Black Edition</p>
+										<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
+									</div>
+									<a href="#" data-toggle="modal" data-target="#myModal">
+										<div class="product-overlay">
+											<div class="overlay-content">
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" data-toggle="modal" data-target="#myModal">
+														View Details
+													</a>
+											</div>
+										</div>
+									</a>
+									<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			<!--<button type="button" class="btn btn-primary">Save changes</button> -->
 	      </div>
 	    </div>
 	  </div>

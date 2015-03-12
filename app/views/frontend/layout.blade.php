@@ -74,8 +74,9 @@
 				@yield('content')
 				@include('frontend.partials.right')
 			</div>
-			<div class="client_location">
-				@yield('client_location')
-			</div>
+		</div>
+		<div class="container client_location">
+			@yield('client_location')
+		</div>
 	</section>
 	@include('frontend.partials.footer');
