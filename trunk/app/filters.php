@@ -13,9 +13,16 @@
 
 App::before(function($request)
 {
- if (Request::segment(1)) {
- 		Session::put('lang',Request::segment(1));
-        App::setLocale(Session::get('lang'));
+ $locale = array('en', 'km');
+ if (Input::has('lang')) {
+        $lang = Input::get('lang');
+        if(in_array($lang, $locale)) {
+            Session::put('lang',$lang);
+            App::setLocale(Session::get('lang'));
+        } else {
+           Session::put('lang', Config::get('app.locale'));
+        }
+ 		
     } else {
         Session::put('lang', Config::get('app.locale'));
     }

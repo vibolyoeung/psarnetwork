@@ -1,23 +1,22 @@
 <?php
-
-class FeMemberController extends BaseController
-{
+class FeMemberController extends BaseController {
 
     private $mod_category;
     private $mod_setting;
     private $mod_member;
     protected $mod_market;
     protected $mod_store;
+    protected $mod_page;
     protected $user;
     const CURRENT_DATE = 'Y-m-d';
 
-    function __construct()
-    {
+    function __construct() {
         $this->mod_category = new MCategory();
         $this->mod_setting = new Setting();
         $this->mod_member = new Members();
         $this->mod_market = new Market();
         $this->mod_store = new Store();
+        $this->mod_page = new MPage();
         $this->user = new User();
     }
     /**
@@ -26,8 +25,7 @@ class FeMemberController extends BaseController
      * @method index
      * @return void
      */
-    public function index()
-    {
+    public function index() {
         if (Input::has('BtnLogin')) {
             $loginName = Input::get('loginName');
             $password = Input::get('password');
@@ -38,8 +36,8 @@ class FeMemberController extends BaseController
                 Session::put('currentUserEmail', $result->email);
                 Session::put('currentUserPhone', $result->telephone);
                 Session::put('currentUserType', $result->user_type);
-                if (Input::has('page') && Input::has('page')=='register') {
-                    return Redirect::to('member/userinfo/' . $result->account_type .'/menu');
+                if (Input::has('page') && Input::has('page') == 'register') {
+                    return Redirect::to('member/userinfo/' . $result->account_type . '/menu');
                 } else {
                     //return Redirect::to('page/' . strtolower($result->name));
                     return Redirect::to('/');
@@ -60,8 +58,7 @@ class FeMemberController extends BaseController
      * @method createUser
      * @return void
      */
-    public function createUser()
-    {
+    public function createUser() {
         $addressArr = array(
             'province' => Input::get('province'),
             'disctict' => Input::get('district'),
@@ -112,16 +109,14 @@ class FeMemberController extends BaseController
      * @method register
      * @return void
      */
-    public function register($usertype = '', $step = '')
-    {
+    public function register($usertype = '', $step = '') {
         if (Input::has('btnSubmit')) {
 
             $rules = array(
                 'email' => 'required|email|unique:user',
                 'password' => 'required|min:8',
                 'password_confirm' => 'required|same:password',
-                'captcha' => array('required', 'captcha')
-                );
+                'captcha' => array('required', 'captcha'));
             $validator = Validator::make(Input::all(), $rules);
 
             if ($validator->passes()) {
@@ -151,9 +146,9 @@ class FeMemberController extends BaseController
             with('accountRole', $accountRole->data)->with('clientType', $clientType->data)->
             with('markets', $result->data);
     }
-    
-    public function test(){
-                $limit = $this->mod_setting->getSlidshowNumber();
+
+    public function test() {
+        $limit = $this->mod_setting->getSlidshowNumber();
         $listCategories = self::getCategoriesHomePage();
         $limit = $this->mod_setting->getSlidshowNumber();
         $listCategories = self::getCategoriesHomePage();
@@ -162,51 +157,45 @@ class FeMemberController extends BaseController
         $provinces = $this->mod_setting->listProvinces();
         $accountRole = $this->user->accountRole();
         $clientType = $this->user->getClientType();
-         if (Request::getMethod() == 'POST')
-        {
-            $rules =  array('captcha' => array('required', 'captcha'));
+        if (Request::getMethod() == 'POST') {
+            $rules = array('captcha' => array('required', 'captcha'));
             $validator = Validator::make(Input::all(), $rules);
-            if ($validator->passes())
-            {
-               echo '<p style="color: #00ff30;">Matched :)</p>';
-            }
-            else
-            {
+            if ($validator->passes()) {
+                echo '<p style="color: #00ff30;">Matched :)</p>';
+            } else {
                 return Redirect::to('/doeun/k')->withErrors($validator);
-                
+
             }
         }
-                return View::make('frontend.modules.member.k')->with('maincategories', $listCategories->
+        return View::make('frontend.modules.member.k')->with('maincategories', $listCategories->
             result)->with('marketType', $marketType->data)->with('provinces', $provinces)->
             with('accountRole', $accountRole->data)->with('clientType', $clientType->data)->
             with('markets', $result->data);
     }
 
-    public function agreement($usertype)
-    {
+    public function agreement($usertype) {
         if (Input::has('btnSubmit')) {
             if (!Input::has('skipDetail')) {
                 if (Input::has('btnSubmit')) {
                     $rules = array('sto_url' => 'required|unique:store');
-                    if(Input::hasfile('file')){
-						//$rules['file'] = Config::get ( 'constants.DIR_IMAGE.ALLOW_FILE' );
-						$rules['file'] = 'mimes:jpeg,png,bmp,gif|image';
-					}
+                    if (Input::hasfile('file')) {
+                        //$rules['file'] = Config::get ( 'constants.DIR_IMAGE.ALLOW_FILE' );
+                        $rules['file'] = 'mimes:jpeg,png,bmp,gif|image';
+                    }
                     $validator = Validator::make(Input::all(), $rules);
                     if ($validator->passes()) {
                         $fileName = '';
-                        if(Input::hasfile('file')){
+                        if (Input::hasfile('file')) {
                             /*upload image*/
-                            $destinationPath = base_path () . Config::get ( 'constants.DIR_IMAGE.DIR_STORE' );
-            				self::generateFolderUpload ( $destinationPath );
-            				$destinationPathThumb = $destinationPath . 'thumb/';
-            				$file = Input::file ( 'file' );
-            				$fileName = $file->getClientOriginalName ();
-            				$fileName = self::generateFileName ( $destinationPath, $fileName );
-            				$file->move ( $destinationPath, $fileName );
-            				Image::make ( $destinationPath . $fileName )
-                                ->resize ( Config::get ( 'constants.DIR_IMAGE.THUMB_WIDTH' ), Config::get ( 'constants.DIR_IMAGE.THUMB_HEIGTH' ) )
-                                ->save ( $destinationPathThumb . $fileName );
+                            $destinationPath = base_path() . Config::get('constants.DIR_IMAGE.DIR_STORE');
+                            self::generateFolderUpload($destinationPath);
+                            $destinationPathThumb = $destinationPath . 'thumb/';
+                            $file = Input::file('file');
+                            $fileName = $file->getClientOriginalName();
+                            $fileName = self::generateFileName($destinationPath, $fileName);
+                            $file->move($destinationPath, $fileName);
+                            Image::make($destinationPath . $fileName)->resize(Config::get('constants.DIR_IMAGE.THUMB_WIDTH'),
+                                Config::get('constants.DIR_IMAGE.THUMB_HEIGTH'))->save($destinationPathThumb . $fileName);
                             /*end upload image*/
                         }
                         $whereData = array(
@@ -224,7 +213,7 @@ class FeMemberController extends BaseController
                         return Redirect::to('/member/login/')->with('SECCESS_MESSAGE_REGISTER', $messageRegister);
                     } else {
                         return Redirect::to('/member/agreement/' . $usertype . '?uid=' . Input::get('uid') .
-                    '&sid=' . Input::get('sid'))->withErrors($validator);
+                            '&sid=' . Input::get('sid'))->withErrors($validator);
                     }
                 }
             }
@@ -245,29 +234,46 @@ class FeMemberController extends BaseController
      *
      * @method userinfo
      * @return void
-     */    
-    public function userinfo($usertype = '',$step='') {
-        //$sub = $subcategoriesobj->getSubCategories(0);
+     */
+    public function userinfo($usertype = '', $step = '') {
         $limit = $this->mod_setting->getSlidshowNumber();
-    	$listCategories = self::getCategoriesHomePage();
-
-        if (!empty($usertype) && $usertype ==2) {
-             return View::make('frontend.modules.member.enterprise-'.$step)
-    	       ->with('maincategories', $listCategories->result);
-        } else {
-            return View::make('frontend.modules.member.free-'.$step)
-    	       ->with('maincategories', $listCategories->result);
+        $listCategories = self::getCategoriesHomePage();
+        switch ($step){
+            case 'menu':
+                $userCategory = $this->mod_category->menuShowNested($userID =1,$parent = 0);
+                $getMainPage = $this->mod_page->getMainPages();
+                if (Input::has('btnStepNext')) {
+                
+                    $jsonCategory = Input::get('jsonCategory');
+                    $decodeCategory = json_decode($jsonCategory, true, 64);
+                    $readbleArray = $this->mod_category->userCategory($decodeCategory);
+                    
+                    
+                    /*Add or Update category*/
+                    $addOrUpdateCategory = $this->mod_category->addUserCategory($readbleArray);
+                }
+            if (!empty($usertype) && $usertype == 2) {
+                return View::make('frontend.modules.member.enterprise-' . $step)
+                    ->with('maincategories',$listCategories->result)
+                    ->with('userCategory',$userCategory)
+                    ->with('getMainPage',$getMainPage->result);
+            } else {
+                return View::make('frontend.modules.member.free-' . $step)
+                    ->with('maincategories',$listCategories->result)
+                    ->with('userCategory',$userCategory);
+            }    
+            break;
         }
-    }    
-    
+    }
+
+
     /**
      * Adding menu by ajax
      *
      * @method addmenuajax
      * @return void
      */
-    public function addmenuajax()
-    {
+    public function addmenuajax() {
         $this->layout = null;
         $Category = Input::get('Category');
         $SubCategory = Input::get('SubCategory');
@@ -287,23 +293,55 @@ class FeMemberController extends BaseController
      * @method getsubmenu
      * @return void
      */
-    public function getsubmenu()
-    {
+    public function getsubmenu() {
         $this->layout = null;
         $MainMenu = Input::get('id');
+        $getType = Input::get('type');
         $subMmenu = '';
-        $subMmenu .='<option value="">Select one</option>';
-        if (!empty($MainMenu)) {
+        $subMmenu .= '<option value="">Select one</option>';
+        if (!empty($MainMenu) && empty($getType)) {
             $Category = $this->mod_category->getSubCategories($MainMenu);
-            $i=0;
-            if($Category) {
-                foreach($Category as $subMenus) {
+            $i = 0;
+            if ($Category) {
+                foreach ($Category as $subMenus) {
                     $i++;
-                    $subMmenu .='<option value="'.$subMenus->id.'">'.$subMenus->name_en.'</option>';
+                    $subMmenu .= '<option value="' . $subMenus->id . '">' . $subMenus->name_en .
+                        '</option>';
                 }
-            } 
-        }
-        echo $subMmenu;
+            }
+            echo $subMmenu;
+        } else
+            if (!empty($MainMenu) && !empty($getType)) {
+                
+                switch($getType){
+                    case 'name':
+                        $Category = $this->mod_category->getCategoryById($MainMenu);
+                        $subMmenu = array();
+                        if ($Category) {
+                            foreach ($Category as $subMenus) {
+                                $subMmenu[] = $subMenus;
+                            }
+                        }
+                        echo json_encode($subMmenu);
+                    break;
+                    
+                    case 'updateMenu':
+                        $jsonstring = Input::get('jsonstring');
+                        $deleteAll = Input::get('del');
+	
+                    	// Decode it into an array
+                    	$jsonDecoded = json_decode($jsonstring, true, 64);
+                        $readbleArray = $this->mod_category->userCategory($jsonDecoded);
+                        
+                        /*Add or Update category*/
+                        if(!empty($deleteAll)){
+                            $addOrUpdateCategory = $this->mod_category->DelUserCategory($userID = 1);
+                        }
+                        $addOrUpdateCategory = $this->mod_category->addUserCategory($readbleArray);
+                    break;
+                }
+            }
+
         die;
     }
     /**
@@ -313,8 +351,7 @@ class FeMemberController extends BaseController
      * @param int $limit
      * @return array that contains slideshows
      */
-    public function getSlideshowToHomePage($limit)
-    {
+    public function getSlideshowToHomePage($limit) {
         $slideshow = $this->mod_slideshow->getSlideshowToFrontEnd($limit);
         return $slideshow;
     }
@@ -325,8 +362,7 @@ class FeMemberController extends BaseController
      * @method getCategoriesHomePage
      * @return array that contains categories
      */
-    public function getCategoriesHomePage()
-    {
+    public function getCategoriesHomePage() {
         $Category = $this->mod_category->getMainCategories();
         return $Category;
     }
@@ -337,8 +373,7 @@ class FeMemberController extends BaseController
      * @method getDistric
      * @return array that contains districts
      */
-    public function getDistric()
-    {
+    public function getDistric() {
         $this->layout = null;
         $pro_id = Input::get('pro_id');
         $disct_val = '';
@@ -360,8 +395,7 @@ class FeMemberController extends BaseController
      * @param int $id
      * @return array that contains client types
      */
-    public function getClientType($id)
-    {
+    public function getClientType($id) {
         $this->layout = null;
         $Client_val = '';
         $getClientType = $this->user->getClientType($id);
@@ -379,8 +413,7 @@ class FeMemberController extends BaseController
      * @param int $id
      * @return array that contains MarketTypes
      */
-    public function getMarketType($id)
-    {
+    public function getMarketType($id) {
         $this->layout = null;
         $Market_val = '';
         $getMarketType = $this->user->getMarketType($id);
@@ -390,41 +423,41 @@ class FeMemberController extends BaseController
         }
         echo $Market_val;
     }
-    
-	/**
-	 * Generation fileName when uploading file
-	 * @return filename by generation
-	 * @access public
-	 * @method generateFileName
-	 * @throws Exception
-	 */
-	public static function generateFileName($pathName, $fileName = null) {
 
-		$temp = explode(".", $fileName);
-		$fileName = end($temp);
-		$fileName = time(). '.' . $fileName;
-		if (file_exists($pathName . $fileName)) {
-			return generateFileName($pathName);
-		}
+    /**
+     * Generation fileName when uploading file
+     * @return filename by generation
+     * @access public
+     * @method generateFileName
+     * @throws Exception
+     */
+    public static function generateFileName($pathName, $fileName = null) {
 
-		return $fileName;
-	}
-    
-	/**
-	 * Generation folder when uploading file doesnot exist
-	 *
-	 * @return boolean
-	 * @access private
-	 * @method generateFolderUpload
-	 * @throws ErrorException
-	 */
-	private static function generateFolderUpload($destinationPath) {
-		$destinationPathThumb = $destinationPath . '/thumb/';
-		if (! file_exists ( $destinationPath )) {
-			mkdir ( $destinationPath, 0777, true );
-			if (! file_exists ( $destinationPathThumb )) {
-				mkdir ( $destinationPathThumb, 0777, true );
-			}
-		}
-	}        
+        $temp = explode(".", $fileName);
+        $fileName = end($temp);
+        $fileName = time() . '.' . $fileName;
+        if (file_exists($pathName . $fileName)) {
+            return generateFileName($pathName);
+        }
+
+        return $fileName;
+    }
+
+    /**
+     * Generation folder when uploading file doesnot exist
+     *
+     * @return boolean
+     * @access private
+     * @method generateFolderUpload
+     * @throws ErrorException
+     */
+    private static function generateFolderUpload($destinationPath) {
+        $destinationPathThumb = $destinationPath . '/thumb/';
+        if (!file_exists($destinationPath)) {
+            mkdir($destinationPath, 0777, true);
+            if (!file_exists($destinationPathThumb)) {
+                mkdir($destinationPathThumb, 0777, true);
+            }
+        }
+    }
 }

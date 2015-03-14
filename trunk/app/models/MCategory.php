@@ -111,6 +111,30 @@ class MCategory extends Eloquent{
 
 	/**
 	 *
+	 * getCategoryById: the function using for category by id
+	 * @param integer $id: the id of category
+	 * @return array category
+	 * @access public
+	 */
+	public function getUserCategoryById($id,$userID){
+		$response = new stdClass();
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.S_CATEGORY'))
+					->where('m_cat_id','=',$id)
+                    ->where('user_id','=',$userID)
+					->orderBy('id','asc')
+					->first();
+			$response->data = $result;
+			$response->result = 1;
+
+		}catch (\Exception $e){
+			$response->result = 0;
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+		}
+		return $response;
+	}
+	/**
+	 *
 	 * addSaveCategory: this function using for saving new category
 	 * @param array $data: this data holding all data from posting
 	 * @return true if the data has been saved successfully
@@ -312,4 +336,186 @@ class MCategory extends Eloquent{
 
 		return $response;
 	}
+    
+    /**
+     * Getting menu
+     *
+     * @method userCategory
+     * @return array
+     */
+    public function userCategory($jsonArray, $parentID = 0) {
+        if (!empty($jsonArray)) {
+            $return = array();
+            foreach ($jsonArray as $subArray) {
+                $returnSubSubArray = array();
+                if (!empty($subArray['children'])) {
+                    $returnSubSubArray = $this->userCategory($subArray['children'], $subArray['id']);
+                }
+                $return[] = array('id' => $subArray['id'], 'parentID' => $parentID);
+                $return = array_merge($return, $returnSubSubArray);
+            }
+            return $return;
+        }
+    }
+    
+     /**
+     * Add or Update menu
+     *
+     * @method addUserCategory
+     * @return void
+     */
+    public function addUserCategory($jsonArray, $parentID = 0) {
+        if (!empty($jsonArray)) {
+            foreach ($jsonArray as $key => $value) {
+                if (is_array($value)) {
+                    $checkMenu = $this->getCategoryById($value['id']);
+                    
+                    /*check for exist category of user*/
+                    $checkExistMeun = $this->getUserCategoryById($value['id'],$userID=1);
+                    if(empty($checkExistMeun->data)) {
+                        /*add new*/
+                        $data = array(
+                            'order' => $key,
+                            'name_en' => $checkMenu->data->name_en,
+                            'name_km' => $checkMenu->data->name_km,
+                            'm_cat_id' => $value['id'],
+                            'user_id' => 1,
+                            'is_publish' => 1,
+                            'parent_id' => $value['parentID']
+                        );
+                        DB::table(Config::get('constants.TABLE_NAME.S_CATEGORY'))->insertGetId($data);
+                    } else {
+                        /*UPDATE*/
+                        $data = array(
+                            'order' => $key,
+                            'parent_id' => $value['parentID']
+                        );
+                        $whereData = array(
+                            'user_id' => 1,
+                            'id' => $value['id'],
+                        );
+                        DB::table(Config::get('constants.TABLE_NAME.S_CATEGORY'))->where($whereData)->update($data);
+                    }
+                }
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+     /**
+     * Delete all for User category
+     *
+     * @method DelUserCategory
+     * @return void
+     */
+    public function DelUserCategory($userID) {
+        try {
+            if(!empty($userID)) {
+                $data = array(
+                    'user_id' => $userID,
+                );
+                DB::table(Config::get('constants.TABLE_NAME.S_CATEGORY'))->where($data)->delete();
+            }
+            return true;
+        } catch (Exception $e) {
+            return $e;
+        }
+    }
+    
+     /**
+     * Delete all for User category
+     *
+     * @method DelUserCategory
+     * @return void
+     */
+    public function menuShowNested($userID, $parent=0,$level=0) {
+        $response = new stdClass();
+		try {
+            $where = array(
+                'is_publish' => 1,
+                'user_id' => $userID,
+                'parent_id' => $parent
+            );
+			$result = DB::table(Config::get('constants.TABLE_NAME.S_CATEGORY'))
+            ->select('*')
+			->where($where)
+			->get();
+            $userMenus = "";
+			$userMenus .= '<ol id="result" class="dd-list mainsub">';
+            if(!empty($result)) {
+    			foreach($result as $userMenu){
+                    if($level ==0) {
+                        $id = 'item-'.$userMenu->m_cat_id.$userMenu->m_cat_id;
+                    } else {
+                        $id = 'item-'.$userMenu->m_cat_id;
+                    }
+    				$userMenus .= "<li class='dd-item dd3-item' data-id='{$userMenu->m_cat_id}' id='{$id}'>\n";
+                        $userMenus .= "<div class='remove-div'></div>\n";
+    					$userMenus .= "<div class='dd-handle dd3-handle'>Drag</div>\n";
+    					$userMenus .= "<div class='dd3-content item-{$userMenu->m_cat_id}'>{$userMenu->name_en}</div>\n";
+    
+    					// Run this function again (it would stop running when the mysql_num_result is 0
+    					$userMenus .= $this->menuShowNestedList($userID, $userMenu->m_cat_id,$level+1);
+    				$userMenus .= "</li>\n";
+    			} 
+            }
+            
+            $userMenus .= "</ol>\n";
+            return $userMenus;
+		}catch (\Exception $e){
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+        return $response;
+    }
+    
+      /**
+     * Delete all for User category
+     *
+     * @method DelUserCategory
+     * @return void
+     */
+    public function menuShowNestedList($userID, $parent=0,$level=0) {
+        $response = new stdClass();
+		try {
+            $where = array(
+                'is_publish' => 1,
+                'user_id' => $userID,
+                'parent_id' => $parent
+            );
+			$result = DB::table(Config::get('constants.TABLE_NAME.S_CATEGORY'))
+            ->select('*')
+			->where($where)
+			->get();
+            $userMenus = "";
+			$userMenus .= "<ol class='dd-list' id='sub{$level}-{$parent}'>\n";
+            if(!empty($result)) {
+    			foreach($result as $userMenu){
+                    if($level ==0) {
+                        $id = 'item-'.$userMenu->m_cat_id.$userMenu->m_cat_id;
+                    } else {
+                        $id = 'item-'.$userMenu->m_cat_id;
+                    }
+                    $id_level = $level+1;
+    				$userMenus .= "<li class='dd-item dd3-item' data-id='{$userMenu->m_cat_id}' id='{$id}'>\n";
+    					$userMenus .= "<div class='remove-div'></div>\n";
+    					$userMenus .= "<div class='dd-handle dd3-handle'>Drag</div>\n";
+    					$userMenus .= "<div class='dd3-content item-{$userMenu->m_cat_id}'>{$userMenu->name_en}</div>\n";
+    					$userMenus .= "<ol class='dd-list' id='sub{$id_level}-{$userMenu->m_cat_id}'></ol>\n";
+    
+    					// Run this function again (it would stop running when the mysql_num_result is 0
+    					$userMenus .= $this->menuShowNestedList($userID, $userMenu->m_cat_id,$level+1);
+    				$userMenus .= "</li>\n";
+    			} 
+            }
+            $userMenus .= "</ol>\n";
+            return $userMenus;
+		}catch (\Exception $e){
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+        return $response;
+    }           
 }
