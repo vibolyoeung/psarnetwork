@@ -120,21 +120,20 @@ Route::any('/pro/{lang}/{product_name}/{pro_id}', 'FeDetailController@index');
 Route::any('/pro/{product_name}/{pro_id}', 'FeDetailController@index');
 
 /*for member page*/
-Route::any('/{lang}/member/login', 'FeMemberController@index');
-Route::any('/member/login', 'FeMemberController@index');
-/*regirst page*/
-Route::any('/{lang}/member/register', 'FeMemberController@register');
-Route::any('/member/register', 'FeMemberController@register');
-Route::any('/{lang}/member/userinfo/{usertype}/{step}', 'FeMemberController@userinfo');
-Route::any('/member/userinfo/{usertype}/{step}', 'FeMemberController@userinfo');
-Route::any('/{lang}/member/agreement/{usertype}', 'FeMemberController@agreement');
-Route::any('/member/agreement/{usertype}', 'FeMemberController@agreement');
-Route::any('/member/addmenuajax', 'FeMemberController@addmenuajax');
-Route::any('/member/getsubmenu', 'FeMemberController@getsubmenu');
-Route::any('/member/getdistrict', 'FeMemberController@getDistric');
-Route::any('/{lang}/productbycategories/{id}', 'FePageController@getProductbyCategory');
+Route::group(array('prefix' => 'member'), function()
+{
+    Route::any('/login', 'FeMemberController@index');
+    /*regirst page*/
+    Route::any('/register', 'FeMemberController@register');
+    Route::any('/userinfo/{usertype}/{step}', 'FeMemberController@userinfo');
+    Route::any('/agreement/{usertype}', 'FeMemberController@agreement');
+    Route::any('/addmenuajax', 'FeMemberController@addmenuajax');
+    Route::any('/getsubmenu', 'FeMemberController@getsubmenu');
+    Route::any('/getdistrict', 'FeMemberController@getDistric');
+    Route::any('/getmarkettype/{id}', 'FeMemberController@getMarketType'); 
+});
+
 Route::any('/productbycategories/{id}', 'FePageController@getProductbyCategory');
-Route::any('/member/getmarkettype/{id}', 'FeMemberController@getMarketType');
 /*for product*/
 Route::group(array('prefix' => 'products'), function()
 {

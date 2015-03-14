@@ -11,7 +11,11 @@
 	</li>
 </ol>
 @endsection @section('frontend.partials.left') @endsection @section('content')
+<script type='text/javascript'>
+var homePage = "{{Config::get('app.url')}}";
+</script>
 <div class="memberlogin">
+    {{Form::open(array('url'=>'member/userinfo/2/menu','enctype'=>'multipart/form-data','file' => true, 'id'=>'PersonalForm'))}}
 	<div class="col-sm-3">
 		<div class="advertise">
 			<div class="col-sm-12">
@@ -126,15 +130,6 @@
 																	Category
 																</label>
 																<select class="form-control" id="Category" name="Category" disabled>
-																	<option value="">
-																		Category
-																	</option>
-																	<option value="Phone">
-																		Phone
-																	</option>
-																	<option value="Tablet">
-																		Tablet
-																	</option>
 																</select>
 															</div>
 														</div>
@@ -144,15 +139,6 @@
     																Sub Category
     															</label>
     																<select class="form-control" id="SubCategory" name="SubCategory" disabled>
-    																	<option value="">
-    																		Sub Category
-    																	</option>
-    																	<option value="Samsung">
-    																		Samsung
-    																	</option>
-    																	<option value="Iphone">
-    																		Iphone
-    																	</option>
     																</select>
     														</div>
 														</div>
@@ -162,15 +148,6 @@
     																Sub Category
     															</label>
     																<select class="form-control" id="SSubCategory" name="SSubCategory" disabled>
-    																	<option value="">
-    																		Sub Category
-    																	</option>
-    																	<option value="Samsung">
-    																		Samsung
-    																	</option>
-    																	<option value="Iphone">
-    																		Iphone
-    																	</option>
     																</select>
     														</div>
 														</div>
@@ -238,16 +215,17 @@
 														<h3>
 															Your Default menu you have chosen
 														</h3>
-														<textarea id="nestable3-output">
-														</textarea>
+														<textarea id="nestable3-output" name="jsonCategory" style="display: none;"></textarea>
 														<div class="dd" id="nestable3">
-															<ol id="result" class="dd-list">
-															</ol>
+                                                            {{$userCategory}}
 														</div>
 													</div>
 												</div>
 											</div>
 											<!-- end MainMenu Tab -->
+                                            
+                                            
+                                            
 											<div role="tabpanel" class="tab-pane" id="DefualtMenu">
 												<!--product describe-->
 												<div class="form-horizontal">
@@ -277,26 +255,17 @@
 															<div class="col-sm-6">
 																<select class="form-control" id="DCategory" name="DCategory">
 																	<option value="">
-																		Category
+																		Select one
 																	</option>
-																	<option value="Announcement">
-																		Announcement
-																	</option>
-																	<option value="Aboutus">
-																		About us
-																	</option>
-																	<option value="Contactus">
-																		Contact us
-																	</option>
-																	<option value="HotPromotion">
-																		Hot Promotion
-																	</option>
-																	<option value="NewArrival">
-																		New Arrival
-																	</option>
-																	<option value="Second Hand">
-																		Second Hand
-																	</option>
+																	@foreach ($getMainPage as $pages)
+                                                                    <option value="{{$pages->id}}">
+                                                                        <?php 
+                                                                        echo app::getLocale();
+                                                                            //echo $pages->{'title_'.Session::get('lang')};
+                                                                        ?>
+                                                                        
+                                                                    </option>
+                                                                    @endforeach
 																</select>
 															</div>
 														</div>
@@ -308,7 +277,6 @@
 												<div style="border-top: 1px solid #ccc; clear: both; display:block;margin-top:15px">
 												</div>
 												<!-- create menu -->
-												<form action="{{Config::get('app.url')}}" id="PersonalForm">
 													<div class="col-sm-6 hidden-sm" style="border-right: 1px solid #ccc;">
 														<div class="pro-detail">
 															<div class="col-sm-12" id="sitePreview">
@@ -383,12 +351,10 @@
 				<!--end product detail-->
 				<div class="clear">
 				</div>
-				<button id="summit" type="submit" class="btn btn-default pull-right choosenuser">
-					Next
-				</button>
+				<input id="summit" type="submit"  class="btn btn-default pull-right choosenuser" name="btnStepNext" value="Next"/>
 				<a id="chooseuser" class="btn btn-warning pull-right choosenuser" href="#">Back</a>
 				<a id="chooseuser" class="btn btn-danger pull-right choosenuser" href="#">Cancel</a>
-				</form>
+				{{Form::close()}}
 				<div class="clear">
 				</div>
 			</div>
@@ -397,250 +363,8 @@
 	</div>
 </div>
 {{HTML::script('frontend/js/jquery.validate.js')}} {{HTML::script('frontend/js/Nestable-master/jquery.nestable.js')}} {{HTML::style('frontend/css/nestble.css')}}
-<script type='text/javascript'>
-	
-		
-$(document).ready(function(){
-    /**/
-    var updateOutput = function(e)
-    {
-        var list   = e.length ? e : $(e.target),
-            output = list.data('output');
-        if (window.JSON) {
-            output.val(window.JSON.stringify(list.nestable('serialize')));//, null, 2));
-        } else {
-            output.val('JSON browser support required for this demo.');
-        }
-    };
-    $('#nestable3').nestable({
-        group: 1
-    })
-    .on('change', updateOutput);
 
-    // output initial serialised data
-    updateOutput($('#nestable3').data('output', $('#nestable3-output')));
-    
-        
-    $('#Main-Menu').change(function () {
-        $("#Category").html('<option value="">Select one</option>').attr("disabled","selected");
-        $("#SubCategory").html('<option value="">Select one</option>').attr("disabled","selected");
-        var selected = $("#Main-Menu option:selected").val();
-        if(selected) {
-            /* Send the get using post and put the results in a div */
-        $.ajax({
-            url: "{{Config::get('app.url')}}/member/getsubmenu?id="+selected,
-            type: "get",
-            success: function(datas){
-                $("#Category").html(datas).removeAttr("disabled","disabled");
-            }
-            });
-        } else {
-            alert('please select one');
-        }
-    });
-    $('#Category').change(function () {
-        var selectedG = $("#Category option:selected").val();
-        if(selectedG) {
-            $("#SubCategory").html('<option value="">Select one</option>').attr("disabled","selected");
-        /* Send the data using get and put the results in a div */
-        $.ajax({
-            url: "{{Config::get('app.url')}}/member/getsubmenu?id="+selectedG,
-            type: "get",
-            success: function(datas){
-                $("#SubCategory").html(datas).removeAttr("disabled","disabled");
-            }
-            });
-        } else {
-            alert('please select one');
-        }
-    });
-    $('#SubCategory').change(function () {
-        var selectedG = $("#SubCategory option:selected").val();
-        if(selectedG) {
-            $("#SSubCategory").html('<option value="">Select one</option>').attr("disabled","selected");
-        /* Send the data using get and put the results in a div */
-        $.ajax({
-            url: "{{Config::get('app.url')}}/member/getsubmenu?id="+selectedG,
-            type: "get",
-            success: function(datas){
-                $("#SSubCategory").html(datas).removeAttr("disabled","disabled");
-            }
-            });
-        } else {
-            alert('please select one');
-        }
-    });
-
-    
-     
-    $("#PersonalForm").validate({
-          rules: {
-      FullName: {
-         required : true
-      }
-  },
-  messages:{
-      FullName: {
-        required : "This Full Name is required."
-      }
-  }
-    });
- 
- $('#submitcat').click(function () {
-    //var selectedG = $("#Category option:selected").val();
-    var mainMenu = $('#Main-Menu option:selected').val();
-    var mainCategory = $('#Category option:selected').val();
-    var mainCategoryText = $('#Category option:selected').text();
-    var mainSubCategory = $('#SubCategory option:selected').val();
-    var mainSubCategoryText = $('#SubCategory option:selected').text();
-    
-    var mainSubSubCategory = $('#SSubCategory option:selected').val();
-    var mainSubSubCategoryText = $('#SSubCategory option:selected').text();
-    
-    /*check duplicatae Category data*/
-    var Dduplicate = [];
-	$('#result .dd-item').each(function () {
-		if ($(this).attr('data-id') == mainCategory) {
-		  Dduplicate.push(mainCategory);
-		}
-	});
-    /*end check duplicatae Category data*/
-    
-     /*check duplicatae SubCategory data*/
-    var Sduplicate = [];
-	$('#result li.dd-item ol.dd-list .dd-item').each(function () {
-		if ($(this).attr('data-id') == mainSubCategory) {
-		  Sduplicate.push(mainSubCategory);
-		}
-	});
-    /*end check duplicatae SubCategory data*/
- 
-      /*check duplicatae Sub SubCategory data*/
-    var Subduplicate = [];
-	$('#result li.dd-item ol.dd-list .dd-item').each(function () {
-		if ($(this).attr('data-id') == mainSubCategory) {
-		  Subduplicate.push(mainSubCategory);
-		}
-	});
-    /*end check duplicatae sub SubCategory data*/      
-    if(mainMenu && mainCategory) {
-        if(mainCategory && !mainSubCategory) {
-            var MlistMenu = '<li class="dd-item dd3-item" data-id="'+mainCategory+'" id="item-'+mainCategory+'">'+
-                '<div class="dd-handle dd3-handle">Drag</div>'+
-                '<div class="dd3-content item-'+mainCategory+'">'+mainCategoryText+'</div>'+
-                '</li>';
-           if (!Dduplicate[0]) {
-                $('#result').append(MlistMenu);  
-           }
-        } else if (mainCategory && mainSubCategory){
-            
-            var FistList = '<li class="dd-item dd3-item" data-id="'+mainCategory+'" id="item-'+mainCategory+'">'+
-                '<div class="dd-handle dd3-handle">Drag</div><div class="dd3-content item-'+mainCategory+'">'+mainCategoryText+'</div>'+
-                '<ol class="dd-list">'+
-                    '<li class="dd-item dd3-item" data-id="'+mainSubCategory+'">'+
-                        '<div class="dd-handle dd3-handle">Drag</div><div class="dd3-content item-'+mainSubCategory+'">'+mainSubCategoryText+'</div>'+
-                    '</li>'+
-                '</ol>';
-            var listMenu = '<li class="dd-item dd3-item" data-id="'+mainSubCategory+'" id="item-'+mainSubCategory+'">'+
-                '<div class="dd-handle dd3-handle">Drag</div>'+
-                '<div class="dd3-content">'+mainSubCategoryText+'</div>'+
-                '</li>';
-            var addChild = '<ol class="dd-list">'+
-                    '<li class="dd-item dd3-item" data-id="'+mainSubCategory+'" id="item-'+mainSubCategory+'">'+
-                        '<div class="dd-handle dd3-handle">Drag</div><div class="dd3-content item-'+mainSubCategory+'">'+mainSubCategoryText+'</div>'+
-                    '</li>'+
-                '</ol>';
-        }
-        if (!Dduplicate[0]) {
-            $('#result').append(FistList);
-        } else if (Dduplicate[0] && !Sduplicate[0]) {
-            var countListExist = $('#result #item-' + Dduplicate[0] + ' .dd-item').length;
-            if(countListExist>0) {
-                $('#result #item-' + Dduplicate[0] + ' .dd-list').append(listMenu);
-            } else {
-                $(addChild).insertAfter('#result #item-' + Dduplicate[0] + ' .item-' + Dduplicate[0]);
-            }
-        } else {
-            if (!Sduplicate[0]) {
-                $('#result .dd-item ol.dd-list').append(listMenu);
-            }
-        }
-        updateOutput($('#nestable3').data('output', $('#nestable3-output')));
-    }
- });   
-
-
-    /*Default Menu*/
-    $('#Dsubmitcat').click(function () {
-        var mposition = $('#DMain-Menu').val();
-        var mDCategory = $('#DCategory').val();
-        var Dduplicate = [];
-		$('#DCategoryAjaxAdd'+mposition).each(function () {
-			if ($('#DCategoryAjaxAdd'+mposition).val() == mposition) {
-				Dduplicate.push(mposition);
-			}
-		});
-         var DSubDuplicate = [];
-		$('#Dsub_'+mposition+mDCategory).each(function () {
-			if ($('#Dsub_'+mposition+mDCategory).val() == mDCategory) {
-				DSubDuplicate.push(mposition+mDCategory);
-			}
-		});        
-        if(mDCategory && mposition) {
-            if(!DSubDuplicate[0]) {
-                var Mpost = '<div class="row input_fields_wrap subCatAjax" style="margin-bottom:5px">'+
-                                                                '<div id="Did_'+mposition+'" name="DCategory" class="form-group" style="margin-right:5px">'+
-                                                                '<input type="text" value="'+mposition+'" class="form-control id_'+mposition+'" id="DCategoryAjaxAdd'+mposition+'" readonly=""/>'+
-                                                                '</div>'+
-                                                                '<div id="Did_'+mposition+'" name="DCategory" class="form-group" style="margin-right:5px">'+
-                                                                '<input type="text" value="'+mDCategory+'" class="form-control" id="Dsub_'+mposition+mDCategory+'" readonly=""/>'+
-                                                                '</div><button type="button" class="btn btn-danger DremoveMainCat" dataid="'+mposition+mDCategory+'"><i class="glyphicon glyphicon-remove"></i></button>'+
-                                                              '</div>';                                         
-                    $("#Dresult").append(Mpost); 
-                    //$("#Dmenu_results").append(Mpost);
-                    var DaddToMenus = '<li id="msrM'+mposition+mDCategory+'"><a href="javascript:;">'+mDCategory+'</a></li>';
-                    if(mposition =='MainBar') {
-                        $('#menu_results').append(DaddToMenus);
-                        $('#DefualtMenu #Dmenu_results').append(DaddToMenus);
-                    } else if (mposition =='SubBar') {
-                        $("#Dmenu_results_a").append(DaddToMenus);
-                        $('#DefualtMenu #Dmenu_results_a').append(DaddToMenus);
-                    }
-                    
-                    
-            } else {
-                alert('is alread added!');
-            }
-        }
-    });
-
-});
-// dataid="'+Category+SubCategory+'"
-$(document).on('click','.remove_field',function() {
- 	$(this).parent('div').parent('div').remove();
-    var remove_mSId = $(this).attr('dataid');
-    $('#ms_r'+remove_mSId).remove();
-    $('#DefualtMenu #ms_r'+remove_mSId).remove();
-});
-$(document).on('click','.removeMainCat',function() {
-    if (confirm("Do you want to delete all in this category!") == true) {
-        var removeId = $(this).attr('dataid');
-        $('#m_r'+removeId).remove();
-        $('#DefualtMenu #m_r'+removeId).remove();
-     	$(this).parent('div').parent('div').parent('div').remove();
-    }
-
-});
-$(document).on('click','.DremoveMainCat',function() {
-        var removeId = $(this).attr('dataid');
-        $('#Dm_r'+removeId).remove();
-        $('#DefualtMenu #Dm_r'+removeId).remove();
-        $('#MainMenu #msrM'+removeId).remove();
-        $('#DefualtMenu #msrM'+removeId).remove();
-     	$(this).parent('div').remove();
-});
-
-</script>
+{{HTML::script('frontend/js/member/functions.js')}}
 <div class="clear">
 </div>
 @endsection
