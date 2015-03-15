@@ -22,9 +22,11 @@ App::before(function($request)
         } else {
            Session::put('lang', Config::get('app.locale'));
         }
- 		
+
     } else {
-        Session::put('lang', Config::get('app.locale'));
+    	if(!Session::has('lang')){
+    		Session::put('lang', Config::get('app.locale'));
+    	}
     }
 });
 
