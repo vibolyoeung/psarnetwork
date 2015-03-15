@@ -130,7 +130,7 @@ Route::group(array('prefix' => 'member'), function()
     Route::any('/addmenuajax', 'FeMemberController@addmenuajax');
     Route::any('/getsubmenu', 'FeMemberController@getsubmenu');
     Route::any('/getdistrict', 'FeMemberController@getDistric');
-    Route::any('/getmarkettype/{id}', 'FeMemberController@getMarketType'); 
+    Route::any('/getmarkettype/{id}', 'FeMemberController@getMarketType');
 });
 
 Route::any('/productbycategories/{id}', 'FePageController@getProductbyCategory');
@@ -138,9 +138,7 @@ Route::any('/productbycategories/{id}', 'FePageController@getProductbyCategory')
 Route::group(array('prefix' => 'products'), function()
 {
 	Route::any('/list', 'FeProductController@listAllProducts');
-	Route::any('/{lang}/list', 'FeProductController@listAllProducts');
 	Route::any('/create', 'FeProductController@addProduct');
-	Route::any('/{lang}/create', 'FeProductController@addProduct');
 });
 
  // [your site path]/app/routes.php
