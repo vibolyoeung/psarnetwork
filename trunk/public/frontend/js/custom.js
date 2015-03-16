@@ -15,6 +15,15 @@ $(document).ready(function(){
           interval: 5000
 	  });
 	
+	// Set auto slider for banner slideshow
+	jQuery('#slider-carousel.carousel').carousel({
+		interval: 5000
+	});
+	
+	jQuery('.carousel').carousel({
+		interval: false
+	});
+	
 	jQuery('#carousel-text').html($('#slide-content-0').html());
 	
 	  //Handles the carousel thumbnails
