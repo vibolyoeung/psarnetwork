@@ -1,0 +1,8 @@
+composer.phar
+vendor/
+public/upload
+.project
+.buildpath
+.settings
+app/config/database.php
+app/config/app.php
