@@ -311,10 +311,10 @@ a#scrollUp i {
 
 
 
-@media (min-width: 768px)
-	.modal > .modal-dialog {
-		width: 900px;
+@media(min-width: 768px){
+	.modal-dialog{
 		margin: 30px auto;
+		width:100% !important;
 	}
 	.navbar{
 		border-radius:0;
@@ -3054,7 +3054,6 @@ fieldset legend {
 	border:0px solid #F7F7F5;
 }
 .modal-dialog{
-	width:1200px;
 }
 .hide-bullets {
 list-style:none;
@@ -3156,7 +3155,7 @@ a.more_categories{
 	min-height: 300px;
 }
 a.home_icon{
-	font-size:20px;
+	font-size:16px;
 }
 .modal_container{
   position: relative;

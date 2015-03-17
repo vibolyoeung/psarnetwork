@@ -52,11 +52,11 @@
                                     <li><a href="{{Config::get('app.url')}}/member/register"><i class="fa">Free Register</i></a></li>
                                 </ul>
                                 <div class="language-bar">
-                                    <a href="{{Config::get('app.url')}}en" >
+                                    <a href="{{Config::get('app.url')}}?lang=en" >
                                         <img src="{{Config::get('app.url')}}/frontend/images/en.png" alt="" title="" />
                                         English
                                     </a>
-                                    <a href="{{Config::get('app.url')}}km">
+                                    <a href="{{Config::get('app.url')}}?lang=km">
                                         <img src="{{Config::get('app.url')}}/frontend/images/km.png" alt="" title="" />
                                         Khmer
                                     </a>	
@@ -116,7 +116,7 @@
 				        <div class="collapse navbar-collapse promotion-list">
 				            <ul class="nav navbar-nav top_menu_list">
 								<li class="active"><a href="#">All</a></li>
-								<li><a href="#">Super Market</a></li>
+								<li><a href="{{Config::get('app.url')}}supermarket/list">Super Market</a></li>
 								<li><a href="#">Traditional Market</a></li>
 								<li><a href="#">Private Company</a></li>
 								<li><a href="#">Home Shop</a></li>

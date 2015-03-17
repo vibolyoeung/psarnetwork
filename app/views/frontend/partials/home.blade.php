@@ -1846,7 +1846,7 @@
 	
 	
 	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="container modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -1895,7 +1895,7 @@
 			                            <div class="col-sm-4" id="carousel-text"></div>
 			                            <div id="slide-content" style="display: none;">
 			                                <div id="slide-content-0">
-			                                    <h2>What is Lorem Ipsum?</h2>
+			                                    <h2 style="color:#285EA0;">What is Lorem Ipsum?</h2>
 			                                    <p class="sub-text">October 24 2014</p>
 			                                </div>
 			                            </div>
@@ -1936,7 +1936,7 @@
 			        </div>
 			        
 			        <div class="col-lg-12">
-			        <h3>Product Details</h3>
+			        <h3 style="color:#285EA0;">Product Details</h3>
 			        <hr>
 			        	<p>
 			        	Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.

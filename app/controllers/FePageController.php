@@ -1,9 +1,6 @@
 <?php
-
 class FePageController extends BaseController {
-
 	const HOMEPAGE = 1;
-	// Position
 	const HOME_PAGE_TOP = 2;
 	const V_LEFT_MIDUIM = 4;
 	const V_RIGHT_MIDIUM = 5;
@@ -17,17 +14,15 @@ class FePageController extends BaseController {
 	private $mod_setting;
 	private $mod_advertisment;
 	
-
 	function __construct(){
-		
 		$this->mod_slideshow = new Slideshow();
 		$this->mod_category = new MCategory();
 		$this->mod_setting = new Setting();
 		$this->mod_advertisment = new Advertisement();
 	}
+	
 	public function index()
-	{
-		
+	{		
 		$limit = $this->mod_setting->getSlidshowNumber();
 		$listSlideshows = self::getSlideShowHomePage($limit->data->setting_value);
 		$advHorizontalTopLarge = $this->mod_advertisment
@@ -37,13 +32,7 @@ class FePageController extends BaseController {
 				1
 			);
 
-		$advVerticalRightMiduim = $this->mod_advertisment
-			->getAdvertisementHomePage(
-				self::HOMEPAGE,
-				self::V_RIGHT_MIDIUM,
-				3
-			);
-
+		
 		$advVerticalRightSmall = $this->mod_advertisment
 			->getAdvertisementHomePage(
 				self::HOMEPAGE,
@@ -82,7 +71,6 @@ class FePageController extends BaseController {
 		return View::make('frontend.partials.home')
 			->with('slideshows', $listSlideshows->result)
 			->with('advHorizontalTopLarges', $advHorizontalTopLarge->result)
-			->with('advVerticalRightMiduims', $advVerticalRightMiduim->result)
 			->with('advVerticalRightSmalls', $advVerticalRightSmall->result)
 			->with('advVerticalLeftSmalls', $advVerticalLeftSmall->result)
 			->with('advVerticalLeftMiduims', $advVerticalLeftMiduim->result)
@@ -90,6 +78,20 @@ class FePageController extends BaseController {
 			->with('advTops', $advTops->result)
 			->with('Provinces', $this->mod_setting->listProvinces());
 	}
+	
+	public function getRightAds(){
+		$advVerticalRightMiduim = $this->mod_advertisment
+		->getAdvertisementHomePage(
+				self::HOMEPAGE,
+				self::V_RIGHT_MIDIUM,
+				3
+		);
+		return View::make('frontend.partials.right')
+			->with('advVerticalRightMiduims', $advVerticalRightMiduim->result);
+		
+	}
+	
+	
 
 	public function mainCategory(){
 		$listCategories = self::getCategoriesHomePage();
@@ -108,19 +110,11 @@ class FePageController extends BaseController {
 	}
 
 	public function getProductbyCategory(){
-		$listCategories = self::getCategoriesHomePage();
  		$advHorizontalTopLarge = $this->mod_advertisment
  		->getAdvertisementHomePage(
  				self::HOMEPAGE,
  				self::H_MIDDLE_TOP_LARGE,
  				1
- 		);
-
- 		$advVerticalRightMiduim = $this->mod_advertisment
- 		->getAdvertisementHomePage(
- 				self::HOMEPAGE,
- 				self::V_RIGHT_MIDIUM,
- 				3
  		);
 
  		$advVerticalRightSmall = $this->mod_advertisment
@@ -150,15 +144,24 @@ class FePageController extends BaseController {
 			self::H_LARGE_CENTER,
 				3
 		);
+ 		
+ 		$advTops = $this->mod_advertisment
+ 		->getAdvertisementHomePage(
+ 				self::HOMEPAGE,
+ 				self::HOME_PAGE_TOP,
+ 				1
+ 		);
+ 		
+ 		
 		return View::make('frontend.modules.detail.index')
 				->with('Provinces', $this->mod_setting->listProvinces())
-				->with('maincategories', $listCategories->result)
 				->with('advHorizontalTopLarges', $advHorizontalTopLarge->result)
-				->with('advVerticalRightMiduims', $advVerticalRightMiduim->result)
 				->with('advVerticalRightSmalls', $advVerticalRightSmall->result)
 				->with('advVerticalLeftSmalls', $advVerticalLeftSmall->result)
 				->with('advVerticalLeftMiduims', $advVerticalLeftMiduim->result)
 				->with('advHorizontalLargeCenters', $advHorizontalLargeCenter->result)
-				->with('Provinces', $this->mod_setting->listProvinces());
+				->with('advTops', $advTops->result)
+				->with('Provinces', $this->mod_setting->listProvinces()
+			);
 	}
 }

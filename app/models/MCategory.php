@@ -336,7 +336,7 @@ class MCategory extends Eloquent{
 			if(count($results)>0){
 					foreach ($results as $dropdownlist){
 						echo '<li>&nbsp;&nbsp;&nbsp;'; ?>
-						<a href="productbycategories/<?php echo $dropdownlist->id;?>" >
+						<a href="<?php echo URL::to('products/productbycategories') ?>/<?php echo $dropdownlist->id;?>" >
 							<?php echo $dropdownlist->{'name_'.Session::get('lang')};?>
 						</a>
 						<?php 
