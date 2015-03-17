@@ -21,31 +21,35 @@
 	      		&nbsp;
 	      		</a>
 	      	</li>
-	      	@foreach ($maincategories as $subcategorylist)
+	      	<!--
+@foreach ($maincategories as $subcategorylist)
+-->
 	      	<li  class="dropdown thumb-dropdown">
 	      		<a 
 	      			data-toggle="dropdown" 
 	      			class="dropdown-toggle" href="#">
-	      			<?php echo $subcategorylist->{'name_'.Session::get('lang')};?> <span class="caret"></span>
+	      			<?php //echo $subcategorylist->{'name_'.Session::get('lang')};?> <span class="caret"></span>
 	      		</a>
 		      	<?php
-					$subcategoriesobj = new MCategory();
-					$sub = $subcategoriesobj->getSubCategories($subcategorylist->id);
-					if(count($sub) > 0){
-						echo '<ul class="dropdown-menu dropdown_main_menu" role="menu">';
-							foreach ($sub as $row){
-									echo '<li><a href='.URL::to('product/'.$row->id).'>'.$row->{'name_'.Session::get('lang')}.' <span class="caret"></span></a>';
-										echo '<div class="thumbnail">';
-											$subcategoriesobj->getSubCategoriesDropdown($row->id); 
-											echo '<center><a href="" class="more_categories">More Categories...</a></center>';
-										echo '</div>';
-									echo '</li>';
-							}
-						echo '</ul>';
-					}
+					//$subcategoriesobj = new MCategory();
+//					$sub = $subcategoriesobj->getSubCategories($subcategorylist->id);
+//					if(count($sub) > 0){
+//						echo '<ul class="dropdown-menu dropdown_main_menu" role="menu">';
+//							foreach ($sub as $row){
+//									echo '<li><a href='.URL::to('product/'.$row->id).'>'.$row->{'name_'.Session::get('lang')}.' <span class="caret"></span></a>';
+//										echo '<div class="thumbnail">';
+//											$subcategoriesobj->getSubCategoriesDropdown($row->id); 
+//											echo '<center><a href="" class="more_categories">More Categories...</a></center>';
+//										echo '</div>';
+//									echo '</li>';
+//							}
+//						echo '</ul>';
+//					}
 				?>
 			</li>
-			@endforeach 
+			<!--
+@endforeach 
+-->
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->

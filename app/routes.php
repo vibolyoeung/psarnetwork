@@ -128,6 +128,7 @@ Route::group(array('prefix' => 'member'), function()
     Route::any('/userinfo/{usertype}/{step}', 'FeMemberController@userinfo');
     Route::any('/agreement/{usertype}', 'FeMemberController@agreement');
     Route::any('/addmenuajax', 'FeMemberController@addmenuajax');
+    Route::any('/ajaxupload', 'FeMemberController@ajaxupload');
     Route::any('/getsubmenu', 'FeMemberController@getsubmenu');
     Route::any('/getdistrict', 'FeMemberController@getDistric');
     Route::any('/getmarkettype/{id}', 'FeMemberController@getMarketType');

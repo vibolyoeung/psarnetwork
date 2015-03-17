@@ -12,6 +12,7 @@
 </ol>
 @endsection @section('frontend.partials.left') @endsection @section('content')
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"/>
+{{HTML::script('frontend/js/jquery-upload/jquery.form.js')}}
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <div class="memberlogin">
 	<div class="col-sm-3">
@@ -101,15 +102,15 @@
 														</h3>
 													</div>
 												</div>
-												<div class="row" style="margin: 10px 0 0 0;border: 1px solid #ccc;">
+												<div class="row">
 													<div class="col-sm-4">
-														<div>
-															Logo
-														</div>
+														<div id='logo-preview' style="margin: 10px 0 0 0;width: 100px; height: 100px;">
+                                                            <img src="http://placehold.it/100x100&text=Logo" />
+                                                        </div>
 													</div>
 													<div class="col-sm-8">
-														<div>
-															Banner
+														<div id='banner-preview' style="margin: 10px 0 0 0;width: 100%; height: 100px;">
+															<img src="http://placehold.it/500x100&text=Banner here" style="width: 100%;height:100px" />
 														</div>
 													</div>
 												</div>
@@ -161,36 +162,42 @@
 									</div>
 									<!--end product describe-->
 									<div class="col-sm-6">
-										<form>
 											<div class="pro-detail form-inline">
 												<h3>
 													Your Content Page Design
 												</h3>
 												<div class="col-sm-12">
-													<fieldset>
-														<legend>
-															Logo:
-														</legend>
-														<div class="form-group">
-															<input type="file" id="exampleInputFile"/>
-															<p class="help-block">
-																Upload your logo here
-															</p>
-														</div>
-													</fieldset>
+                                                    <form id="imageLogo" method="post" enctype="multipart/form-data" action='{{Config::get('app.url')}}/member/ajaxupload'>
+    													<fieldset>
+    														<legend>
+    															Logo:
+    														</legend>
+    														<div class="form-group">
+                                                                <input type="hidden" value="logoupload" name="page"/>
+    															<input type="file" id="logoFile" name="file"/>
+    															<p class="help-block">
+    																Upload your logo here
+    															</p>
+    														</div>
+    													</fieldset>
+                                                    </form>
 												</div>
 												<div class="col-sm-12">
-													<fieldset>
-														<legend>
-															Header:
-														</legend>
-														<div class="form-group">
-															<input type="file" id="exampleInputFile"/>
-															<p class="help-block">
-																upload you header banner here (600px , 200px)
-															</p>
-														</div>
-													</fieldset>
+                                                    <form id="imageBanner" method="post" enctype="multipart/form-data" action='{{Config::get('app.url')}}/member/ajaxupload'>
+    													<fieldset>
+    														<legend>
+    															Header:
+    														</legend>
+    														<div class="form-group">
+                                                                <input type="hidden" value="bannerupload" name="page"/>
+    															<input type="file" id="bannerFile" name="file"/>
+    															
+    															<p class="help-block">
+    																upload you header banner here (600px , 200px)
+    															</p>
+    														</div>
+    													</fieldset>
+                                                    </form>
 												</div>
 												<div class="col-sm-12">
 													<fieldset>
@@ -209,7 +216,6 @@
 													</fieldset>
 												</div>
 											</div>
-										</form>
 									</div>
 									<!-- end MainMenu Tab -->
 								</div>
@@ -240,6 +246,34 @@
 	
 var is_modal_opened = 0;		
 $(document).ready(function(){
+    
+    /*logo upload*/
+    $('#logoFile').change(function(){
+        $("#logo-preview").html('<img src="{{Config::get('app.url')}}frontend/images/upload_progress.gif" alt="Uploading...."/>');
+    	$("#imageLogo").ajaxForm({
+            success: function(data) {
+                //console.log(data);
+            var obj = JSON.parse(data);
+                if (!obj.error) {
+                    $('#logo-preview').html('<img src="{{Config::get('app.url')}}upload/store/' + obj.image + '" style="height:100px" class="img-thumbnail"/>');
+                }
+            }
+        }).submit();
+   	});
+    
+     /*banner upload*/
+    $('#bannerFile').change(function(){
+        $("#banner-preview").html('<img src="{{Config::get('app.url')}}frontend/images/upload_progress.gif" alt="Uploading...."/>');
+    	$("#imageBanner").ajaxForm({
+            success: function(data) {
+                //console.log(data);
+            var obj = JSON.parse(data);
+                if (!obj.error) {
+                    $('#banner-preview').html('<img src="{{Config::get('app.url')}}upload/store/' + obj.image + '" style="height:100px" class="img-thumbnail"/>');
+                }
+            }
+        }).submit();
+   	});   
     $('#agreement').click(function () {
         if($(this).is(":checked")) {
             $("#summit").removeAttr("disabled");
@@ -269,6 +303,8 @@ $(document).ready(function(){
       revert: "invalid"
     });
     $( "ul, li" ).disableSelection();
+
+    
 });
 function costomizeLayout(){
     dynamicModal('loading');
