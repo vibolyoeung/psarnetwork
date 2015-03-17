@@ -21,7 +21,7 @@
 									{{trans('product.category')}}
 								</label>
 								<div class="col-sm-10">
-									<select class="form-control" name="s_category">
+									<select required="required" class="form-control" name="s_category">
 										<?php foreach($categoryTree as $cl) : ?>
 											<option value="{{$cl['id']}}">
 												{{$cl['m_title']}}
@@ -35,7 +35,7 @@
 									{{trans('product.product_title')}}
 								</label>
 								<div class="col-sm-10">
-									{{Form::text('productTitle',null, array('class'=>'form-control'))}}
+									{{Form::text('productTitle',null, array('required'=> 'required','class'=>'form-control'))}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -43,7 +43,7 @@
 									{{trans('product.transfer_as')}}
 								</label>
 								<div class="col-sm-10">
-									{{ Form::select('proTransferType',$proTransferType, null, array('class' => 'form-control'))}}
+									{{ Form::select('proTransferType',$proTransferType, null, array('required'=> 'required', 'class' => 'form-control'))}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -51,7 +51,7 @@
 									{{trans('product.condition')}}
 								</label>
 								<div class="col-sm-10">
-									{{ Form::select('productCondition',$productCondition, null, array('class' => 'form-control'))}}
+									{{ Form::select('productCondition',$productCondition, null, array('required'=> 'required', 'class' => 'form-control'))}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -59,7 +59,7 @@
 									{{trans('product.status')}}
 								</label>
 								<div class="col-sm-10">
-									{{ Form::select('productCondition',Product::$PRODUCT_STATUS, null, array('class' => 'form-control'))}}
+									{{ Form::select('productCondition',Product::$PRODUCT_STATUS, null, array('required'=> 'required', 'class' => 'form-control'))}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -67,7 +67,7 @@
 									{{trans('product.price')}}
 								</label>
 								<div class="col-sm-10">
-									{{Form::text('productPrice', null, array('class'=>'form-control'))}}
+									{{Form::text('productPrice', null, array('required'=> 'required', 'class'=>'form-control'))}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -75,7 +75,7 @@
 									{{trans('product.description')}}
 								</label>
 								<div class="col-sm-10">
-									{{Form::textarea('desc', null, array('class'=>'form-control'))}}
+									{{Form::textarea('desc', null, array('required'=> 'required', 'class'=>'form-control'))}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -83,7 +83,7 @@
 									{{trans('product.publish')}}
 								</label>
 								<div class="col-sm-10">
-									{{ Form::select('productCondition',Product::$PRODUCT_IS_PUBLISH, null, array('class' => 'form-control'))}}
+									{{ Form::select('productCondition',Product::$PRODUCT_IS_PUBLISH, null, array( 'required'=> 'required', 'class' => 'form-control'))}}
 								</div>
 							</div>
 						</div>
@@ -98,7 +98,7 @@
 							</div>
 							<div class="form-group">
 								<div id="filediv">
-									<input class="form-control" name="file[]" type="file" id="file" />
+									<input required = 'required' class="form-control" name="file[]" type="file" id="file" />
 								</div>
 								<br/>
 								<input type="button" id="add_more" class="btn btn-primary" value="{{trans('product.add_more_files')}}"/>
@@ -112,19 +112,19 @@
 							<hr />
 							<div class="form-group">
 								<label>{{trans('product.contact_name')}}</label>
-								{{ Form::text('contactName', null, array('class' => 'form-control'))}}
+								{{ Form::text('contactName', null, array('required'=> 'required', 'class' => 'form-control'))}}
 							</div>
 							<div class="form-group">
 								<label>{{trans('product.email')}}</label>
-								{{ Form::text('contactEmail', null, array('class' => 'form-control'))}}
+								{{ Form::text('contactEmail', null, array('required'=> 'required', 'class' => 'form-control'))}}
 							</div>
 							<div class="form-group">
 								<label>{{trans('product.hp')}}</label>
-								{{ Form::text('contactHP', null, array('class' => 'form-control'))}}
+								{{ Form::text('contactHP', null, array('required'=> 'required', 'class' => 'form-control'))}}
 							</div>
 							<div class="form-group">
 								<label>{{trans('product.location')}}</label>
-								{{ Form::text('contactLocation', null, array('class' => 'form-control'))}}
+								{{ Form::text('contactLocation', null, array('required'=> 'required', 'class' => 'form-control'))}}
 							</div>
 							<div class="form-group">
 								{{ Form::submit(trans('product.save_product_ads'), array('class' => 'btn btn-primary', 'name'=>'btnAddProduct'))}}

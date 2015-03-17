@@ -26,7 +26,14 @@ class FeProductController extends BaseController {
 	 */
 	public function addProduct() {
 		if(Input::has('btnAddProduct')) {
+			$files = Input::file('file');
+			if (!empty($files)){
+				$newFileNames = $this->doUploadImages($files);
+			}
 
+			return Redirect::to('products/create')
+				->withInput()
+				->withErrors($validator);
 		}
 
 		$listCategories = $this->mod_product->fetchCategoryTree();
@@ -39,23 +46,65 @@ class FeProductController extends BaseController {
 
 	}
 
-/**
+	/**
+	 * upload images operation
+	 *
+	 * @param $files
+	 *@access private
+	 *@return string fileNames
+	 */
+	public function doUploadImages($files){
+		$destinationPath = base_path() . '/public/upload/product/';
+		self::generateFolderUpload($destinationPath);
+		$destinationPathThumb = $destinationPath.'thumb/';
+		foreach ($files as $file) {
+			$fileName = $file->getClientOriginalName();
+			$file->move($destinationPath, $fileName);
+			Image::make($destinationPath . $fileName)
+				->resize(100, 100)
+				->save($destinationPathThumb . $fileName);
+		}
+
+	}
+
+	/**
 	 *
 	 * prepareDataBind: this function using for preparing data before inserting data into database
-	 * @param param: Edit | Add
+	 *
 	 * @access private
 	 * @return array object
 	 */
-	private static function prepareDataBind($param) {
+	private static function prepareDataBindProducts() {
 		$data = array(
-			'title_en'=>trim(Input::get('title_en')),
-			'title_km'=>trim(Input::get('title_km')),
-			'desc_en'=>trim(Input::get('desc_en')),
-			'desc_km'=>trim(Input::get('desc_km')),
-			'province_id'=>trim(Input::get('province_id')),
-			'district_id'=>trim(Input::get('district_id')),
-			'amount_stair'=>trim(Input::get('amount_stair')),
-			'market_type'=>trim(Input::get('market_type'))
+			'title' => trim(Input::get('title_en')),
+			'price' => trim(Input::get('title_km')),
+			'product_service_type_id' => trim(Input::get('desc_en')),
+			'thumbnail' => trim(Input::get('desc_km')),
+			'pictures' => trim(Input::get('province_id')),
+			'created_date' => trim(Input::get('district_id')),
+			'pro_condition_id' => trim(Input::get('amount_stair')),
+			'pro_status' => trim(Input::get('market_type')),
+			'pro_transfer_type_id' => trim(Input::get('market_type')),
+			'is_publish' => trim(Input::get('market_type')),
+			'contact_info' => trim(Input::get('market_type')),
+			'file_quotation' => trim(Input::get('market_type')),
+			'description' => trim(Input::get('market_type'))
+		);
+		return $data;
+	}
+
+	/**
+	 *
+	 * This function is using for preparing data before inserting data into database
+	 *
+	 * @return array object
+	 */
+	private static function prepareDateBindProductInStore() {
+		$data = array(
+			'pro_id' => Input::get(''),
+			'user_id' => Input::get(''),
+			'store_id' => Input::get(''),
+			's_category_id' => Input::get('')
 		);
 		return $data;
 	}
