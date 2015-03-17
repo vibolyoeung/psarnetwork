@@ -134,12 +134,17 @@ Route::group(array('prefix' => 'member'), function()
     Route::any('/getmarkettype/{id}', 'FeMemberController@getMarketType');
 });
 
-Route::any('/productbycategories/{id}', 'FePageController@getProductbyCategory');
 /*for product*/
 Route::group(array('prefix' => 'products'), function()
 {
 	Route::any('/list', 'FeProductController@listAllProducts');
 	Route::any('/create', 'FeProductController@addProduct');
+	Route::any('/productbycategories/{id}', 'FePageController@getProductbyCategory');
+});
+
+/*===========Sumper Maket route==*/
+Route::group(array('prefix'=>'supermarket'),function(){
+	Route::any('/list','FeSuperMarketController@listSuppermarket');
 });
 
  // [your site path]/app/routes.php
