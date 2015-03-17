@@ -238,34 +238,83 @@ class FeMemberController extends BaseController {
     public function userinfo($usertype = '', $step = '') {
         $limit = $this->mod_setting->getSlidshowNumber();
         $listCategories = self::getCategoriesHomePage();
-        switch ($step){
+        $userID = 1;
+        if (!empty($usertype) && $usertype == 2) {
+            $usertypes = 'enterprise';
+        } else {
+            $usertypes = 'free';
+        }
+        switch ($step) {
             case 'menu':
-                $userCategory = $this->mod_category->menuShowNested($userID =1,$parent = 0);
+                $userCategory = $this->mod_category->menuShowNested($userID, $parent = 0);
                 $getMainPage = $this->mod_page->getMainPages();
+                $getUserPages = $this->mod_page->getUserPages($userID);
                 if (Input::has('btnStepNext')) {
-                
-                    $jsonCategory = Input::get('jsonCategory');
-                    $decodeCategory = json_decode($jsonCategory, true, 64);
-                    $readbleArray = $this->mod_category->userCategory($decodeCategory);
-                    
-                    
-                    /*Add or Update category*/
-                    $addOrUpdateCategory = $this->mod_category->addUserCategory($readbleArray);
+
+                    //$jsonCategory = Input::get('jsonCategory');
+//                    $decodeCategory = json_decode($jsonCategory, true, 64);
+//                    $readbleArray = $this->mod_category->userCategory($decodeCategory);
+//
+//                    /*Add or Update category*/
+//                    $addOrUpdateCategory = $this->mod_category->addUserCategory($readbleArray);
+                    $getUserCategory = $this->mod_category->getUserCategory($userID);
+                    if(!empty($getUserPages->result) && !empty($getUserCategory->result)) {
+                        return Redirect::to('/member/userinfo/'.$usertype.'/content');
+                    } else {
+                        $message = 'MESSAGE_NOT_ENOUGH_DATA';
+                        return Redirect::to('/member/userinfo/'.$usertype.'/'.$step)->with('MESSAGE_NOT_ENOUGH_DATA', $message);
+                    }
+                    die;
                 }
-            if (!empty($usertype) && $usertype == 2) {
-                return View::make('frontend.modules.member.enterprise-' . $step)
-                    ->with('maincategories',$listCategories->result)
-                    ->with('userCategory',$userCategory)
-                    ->with('getMainPage',$getMainPage->result);
-            } else {
-                return View::make('frontend.modules.member.free-' . $step)
-                    ->with('maincategories',$listCategories->result)
-                    ->with('userCategory',$userCategory);
-            }    
-            break;
+                return View::make('frontend.modules.member.' . $usertypes . '-' . $step)->with('maincategories',
+                    $listCategories->result)->with('userCategory', $userCategory)->with('getMainPage',
+                    $getMainPage->result)->with('getUserPages', $getUserPages->result);
+                break;
+
+                /* user page content */
+            case 'content':
+                return View::make('frontend.modules.member.' . $usertypes . '-' . $step)->with('maincategories',
+                    $listCategories->result);
+                break;
+
         }
     }
 
+    /**
+     * Adding user information by step
+     *
+     * @method userinfo
+     * @return void
+     */
+    public function content($usertype = '', $step = '') {
+        $limit = $this->mod_setting->getSlidshowNumber();
+        $listCategories = self::getCategoriesHomePage();
+        $userID = 1;
+        switch ($step) {
+            case 'menu':
+                $userCategory = $this->mod_category->menuShowNested($userID, $parent = 0);
+                $getMainPage = $this->mod_page->getMainPages();
+                $getUserPages = $this->mod_page->getUserPages($userID);
+                if (Input::has('btnStepNext')) {
+
+                    $jsonCategory = Input::get('jsonCategory');
+                    $decodeCategory = json_decode($jsonCategory, true, 64);
+                    $readbleArray = $this->mod_category->userCategory($decodeCategory);
+
+                    /*Add or Update category*/
+                    $addOrUpdateCategory = $this->mod_category->addUserCategory($readbleArray,$userID);
+                }
+                if (!empty($usertype) && $usertype == 2) {
+                    return View::make('frontend.modules.member.enterprise-' . $step)->with('maincategories',
+                        $listCategories->result)->with('userCategory', $userCategory)->with('getMainPage',
+                        $getMainPage->result)->with('getUserPages', $getUserPages->result);
+                } else {
+                    return View::make('frontend.modules.member.free-' . $step)->with('maincategories',
+                        $listCategories->result)->with('userCategory', $userCategory);
+                }
+                break;
+        }
+    }
 
     /**
      * Adding menu by ajax
@@ -288,6 +337,65 @@ class FeMemberController extends BaseController {
     }
 
     /**
+     * Upload image by ajax
+     *
+     * @method ajaxupload
+     * @return json
+     */
+    public function ajaxupload() {
+        $this->layout = null;
+        $page = Input::get('page');
+        switch ($page) {
+            case 'logoupload':
+            if (Input::hasfile('file')) {
+                /*upload logo image*/
+                $destinationPath = base_path() . Config::get('constants.DIR_IMAGE.DIR_STORE');
+                self::generateFolderUpload($destinationPath);
+                $destinationPathThumb = $destinationPath . 'thumb/';
+                $file = Input::file('file');
+                $fileName = $file->getClientOriginalName();
+                $fileName = self::generateFileName($destinationPath, $fileName);
+                $file->move($destinationPath, $fileName);
+                Image::make($destinationPath . $fileName)->resize(Config::get('constants.DIR_IMAGE.THUMB_WIDTH'),
+                    Config::get('constants.DIR_IMAGE.THUMB_HEIGTH'))->save($destinationPathThumb . $fileName);
+                /*end upload logo image*/
+                
+                $images = array(
+                    'image' => $fileName
+                );
+            } else {
+                $images = array("error"=>"Sorry, Upload get an error");
+            }
+            echo json_encode($images);
+            break;
+            
+            case 'bannerupload':
+            if (Input::hasfile('file')) {
+                /*upload banner image*/
+                $destinationPath = base_path() . Config::get('constants.DIR_IMAGE.DIR_STORE');
+                self::generateFolderUpload($destinationPath);
+                $destinationPathThumb = $destinationPath . 'thumb/';
+                $file = Input::file('file');
+                $fileName = $file->getClientOriginalName();
+                $fileName = self::generateFileName($destinationPath, $fileName);
+                $file->move($destinationPath, $fileName);
+                Image::make($destinationPath . $fileName)->resize(Config::get('constants.DIR_IMAGE.THUMB_WIDTH'),
+                    Config::get('constants.DIR_IMAGE.THUMB_HEIGTH'))->save($destinationPathThumb . $fileName);
+                /*end upload banner image*/
+                
+                $images = array(
+                    'image' => $fileName
+                );
+            } else {
+                $images = array("error"=>"Sorry, Upload get an error");
+            }
+            echo json_encode($images);
+            break;
+        }
+        die;
+    }
+    
+    /**
      * get sub menu by ajax
      *
      * @method getsubmenu
@@ -295,6 +403,7 @@ class FeMemberController extends BaseController {
      */
     public function getsubmenu() {
         $this->layout = null;
+        $userID = 1;
         $MainMenu = Input::get('id');
         $getType = Input::get('type');
         $subMmenu = '';
@@ -312,8 +421,8 @@ class FeMemberController extends BaseController {
             echo $subMmenu;
         } else
             if (!empty($MainMenu) && !empty($getType)) {
-                
-                switch($getType){
+
+                switch ($getType) {
                     case 'name':
                         $Category = $this->mod_category->getCategoryById($MainMenu);
                         $subMmenu = array();
@@ -323,22 +432,32 @@ class FeMemberController extends BaseController {
                             }
                         }
                         echo json_encode($subMmenu);
-                    break;
-                    
+                        break;
+
                     case 'updateMenu':
                         $jsonstring = Input::get('jsonstring');
                         $deleteAll = Input::get('del');
-	
-                    	// Decode it into an array
-                    	$jsonDecoded = json_decode($jsonstring, true, 64);
+
+                        // Decode it into an array
+                        $jsonDecoded = json_decode($jsonstring, true, 64);
                         $readbleArray = $this->mod_category->userCategory($jsonDecoded);
-                        
+
                         /*Add or Update category*/
-                        if(!empty($deleteAll)){
-                            $addOrUpdateCategory = $this->mod_category->DelUserCategory($userID = 1);
+                        if (!empty($deleteAll)) {
+                            $addOrUpdateCategory = $this->mod_category->DelUserCategory($userID);
                         }
-                        $addOrUpdateCategory = $this->mod_category->addUserCategory($readbleArray);
-                    break;
+                        $addOrUpdateCategory = $this->mod_category->addUserCategory($readbleArray,$userID);
+                        break;
+
+                    case 'addUserPage':
+                        $position = Input::get('pos');
+                        $getMainPage = $this->mod_page->addUserPages($userID, $MainMenu, $position);
+                        echo json_encode($getMainPage->result);
+                        break;
+
+                    case 'removeUserPage':
+                        $getMainPage = $this->mod_page->removeUserPages($userID, $MainMenu);
+                        break;
                 }
             }
 

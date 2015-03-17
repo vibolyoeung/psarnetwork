@@ -81,4 +81,44 @@ You will be benefit with free account by posing free ,  owning page free .If you
     'agree_head_banner' => 'Banner-Header',
     'agree_acept' => 'I agree to the term and condiction of Khmer Abba shoping',
     'agree_btn_submit' => 'Start',
+    
+    /*BUTTON*/
+    'BTN_NEXT' => 'Next',
+    'BTN_BACK' => 'Back',
+    'BTN_CANCEL' => 'Cancel',
+    
+    /*menu page*/
+    'c_Your_are_registering' => 'Your are registering',
+    'c_Your_As_Seller' => 'As Seller',
+    'MESSAGE_NOT_ENOUGH_DATA' => 'Some data are required',
+    'MESSAGE_header' => 'Oh snap! You got an error!',
+    'MESSAGE_b_a' => 'Interprise Seller , Type',
+    'MESSAGE_b_b' => 'Super Market.',
+    'MESSAGE_b_c' => 'This Account will be free only for 3 months for your page site control.',
+    'MESSAGE_b_d' => 'Contact !',
+    
+    'MENU_MENU' => 'Menu',
+    'MENU_Content_Page' => 'Content Page',
+    'MENU_Your_info' => 'Your Page info',
+    'MENU_Add_Connector' => 'Add Connector',
+    'MENU_Finish' => 'Finish',
+    
+    /* tab menu */
+    'TAB_Main_Menu' => 'Main Menu',
+    'TAB_Defualt_Menu' => 'Defualt  Menu',
+    'TAB_Select_one' => 'Select one',
+    'TAB_Category' => 'Category',
+    'TAB_Sub_Category' => 'Sub Category',
+    'TAB_Sub_Sub_Category' => 'Sub Category',
+    'TAB_Add' => 'Add',
+    'TAB_Your_Site_page_Preview' => 'Your Site page Preview',
+    'TAB_Left' => 'Left',
+    'TAB_Content' => 'Content',
+    'TAB_Right' => 'Right',
+    'TAB_Your_Default_menu_you_have_chosen' => 'Your Default menu you have chosen',
+    
+    'TAB_Position' => 'Position',
+    'TAB_Stay_on_Main_bar' => 'Stay on Main bar',
+    'TAB_Stay_on_Sub_bar' => 'Stay on Sub bar',
+    'TAB_Your_menu_category_you_have_chosen' => 'Your menu category you have chosen',
 );

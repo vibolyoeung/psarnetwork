@@ -109,6 +109,44 @@ class MCategory extends Eloquent{
 		return $response;
 	}
 
+
+	/**
+	 *
+	 * getCategoryById: the function using for category by id
+	 * @param integer $id: the id of category
+	 * @return array category
+	 * @access public
+	 */
+	public function getUserCategory($userID,$id=null){
+		$response = new stdClass();
+		try {
+            if(!is_null($id)) {
+                $where = array(
+                    'user_id' => $userID,
+                    'm_cat_id' => $id
+                );
+            } else {
+                $where = array(
+                    'user_id' => $userID
+                );
+            }
+            
+			$result = DB::table(Config::get('constants.TABLE_NAME.S_CATEGORY'))
+					->where($where)
+                    //->where('user_id','=',$userID)
+					->orderBy('id','desc')
+					->first();
+			$response->data = $result;
+			$response->result = 1;
+
+		}catch (\Exception $e){
+			$response->result = 0;
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+		}
+		return $response;
+	}
+    
+    
 	/**
 	 *
 	 * getCategoryById: the function using for category by id
@@ -364,14 +402,14 @@ class MCategory extends Eloquent{
      * @method addUserCategory
      * @return void
      */
-    public function addUserCategory($jsonArray, $parentID = 0) {
+    public function addUserCategory($jsonArray, $parentID = 0,$userID) {
         if (!empty($jsonArray)) {
             foreach ($jsonArray as $key => $value) {
                 if (is_array($value)) {
                     $checkMenu = $this->getCategoryById($value['id']);
                     
                     /*check for exist category of user*/
-                    $checkExistMeun = $this->getUserCategoryById($value['id'],$userID=1);
+                    $checkExistMeun = $this->getUserCategoryById($value['id'],$userID);
                     if(empty($checkExistMeun->data)) {
                         /*add new*/
                         $data = array(

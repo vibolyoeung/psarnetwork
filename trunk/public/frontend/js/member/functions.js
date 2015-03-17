@@ -337,7 +337,7 @@ $(document).ready(function() { /*create menu by get*/
 
 
 	/*Default Menu*/
-	$('#Dsubmitcat').click(function() {
+	$('#addDefaultPage').click(function() {
 		var mposition = $('#DMain-Menu').val();
 		var mDCategory = $('#DCategory').val();
 		var Dduplicate = [];
@@ -354,19 +354,42 @@ $(document).ready(function() { /*create menu by get*/
 		});
 		if (mDCategory && mposition) {
 			if (!DSubDuplicate[0]) {
-				var Mpost = '<div class="row input_fields_wrap subCatAjax" style="margin-bottom:5px">' + '<div id="Did_' + mposition + '" name="DCategory" class="form-group" style="margin-right:5px">' + '<input type="text" value="' + mposition + '" class="form-control id_' + mposition + '" id="DCategoryAjaxAdd' + mposition + '" readonly=""/>' + '</div>' + '<div id="Did_' + mposition + '" name="DCategory" class="form-group" style="margin-right:5px">' + '<input type="text" value="' + mDCategory + '" class="form-control" id="Dsub_' + mposition + mDCategory + '" readonly=""/>' + '</div><button type="button" class="btn btn-danger DremoveMainCat" dataid="' + mposition + mDCategory + '"><i class="glyphicon glyphicon-remove"></i></button>' + '</div>';
-				$("#Dresult").append(Mpost);
-				//$("#Dmenu_results").append(Mpost);
-				var DaddToMenus = '<li id="msrM' + mposition + mDCategory + '"><a href="javascript:;">' + mDCategory + '</a></li>';
-				if (mposition == 'MainBar') {
-					$('#menu_results').append(DaddToMenus);
-					$('#DefualtMenu #Dmenu_results').append(DaddToMenus);
-				} else if (mposition == 'SubBar') {
-					$("#Dmenu_results_a").append(DaddToMenus);
-					$('#DefualtMenu #Dmenu_results_a').append(DaddToMenus);
-				}
+                /*add User page to DB*/
+                $.ajax({
+            		url: homePage + "member/getsubmenu?type=addUserPage&id="+mDCategory+'&pos='+mposition,
+            		type: "get",
+            		dataType: "json",
+            		async: false,
+            		success: function(data) {
+					  for (i = 0; i < data.length; i++) {
+						  console.log(data[i].title);
+                          var Mpost = '<div class="row input_fields_wrap subCatAjax" style="margin-bottom:5px">' + 
+                            '<div id="Did_' + data[i].position + '" name="DCategory" class="form-group" style="margin-right:5px">' + 
+                            '<input type="text" value="' + data[i].position + '" class="form-control id_' + data[i].position + '" id="DCategoryAjaxAdd' + data[i].position + '" readonly=""/>' + 
+                            '</div>' + '<div id="Did_' + data[i].position + '" name="DCategory" class="form-group" style="margin-right:5px">' + 
+                            '<input type="text" value="' + data[i].title + 
+                            '" class="form-control" id="Dsub_' + data[i].m_page_id + '" readonly=""/>' + 
+                            '</div><button type="button" class="btn btn-danger DremoveMainCat" dataid="' + data[i].id + 
+                            '"><i class="glyphicon glyphicon-remove"></i></button>' + 
+                            '</div>';
+            				$("#Dresult").append(Mpost);
+                            
+                            var DaddToMenus = '<li id="msrM' + data[i].id + '"><a href="javascript:;">' + data[i].title + '</a></li>';
+            				if (mposition == '1') {
+            					$('#menu_results').append(DaddToMenus);
+            					$('#DefualtMenu #Dmenu_results').append(DaddToMenus);
+            				} else if (mposition == '2') {
+            					$("#Dmenu_results_a").append(DaddToMenus);
+            					$('#DefualtMenu #Dmenu_results_a').append(DaddToMenus);
+            				}
+					  }
+            		}
+            	});
+                /*add User page to DB*/
+				
 
 
+                
 			} else {
 				alert('is alread added!');
 			}
@@ -409,6 +432,15 @@ $(document).on('click', '.removeMainCat', function() {
 });
 $(document).on('click', '.DremoveMainCat', function() {
 	var removeId = $(this).attr('dataid');
+    /*add User page to DB*/
+                $.ajax({
+            		url: homePage + "member/getsubmenu?type=removeUserPage&id="+removeId,
+            		type: "get",
+            		dataType: "json",
+            		async: false,
+            		success: function(data) {}
+                });
+                
 	$('#Dm_r' + removeId).remove();
 	$('#DefualtMenu #Dm_r' + removeId).remove();
 	$('#MainMenu #msrM' + removeId).remove();
