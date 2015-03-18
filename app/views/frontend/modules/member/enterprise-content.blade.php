@@ -13,9 +13,14 @@
 @endsection @section('frontend.partials.left') @endsection @section('content')
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"/>
 {{HTML::script('frontend/js/jquery-upload/jquery.form.js')}}
-<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-@if($dataStore)
-@foreach ($dataStore as $userStore)
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js">
+</script>
+<script type='text/javascript'>
+		
+var homePage = "{{Config::get('app.url')}}";
+
+</script>
+@if($dataStore) @foreach ($dataStore as $userStore)
 <div class="memberlogin">
 	<div class="col-sm-3">
 		<div class="advertise">
@@ -64,29 +69,6 @@
 					</span>
 				</div>
 				<div class="category-tab shop-details-tab" style="margin: 0;">
-					<!--category-tab-->
-					<div class="col-sm-12">
-						<ul class="nav nav-tabs">
-							<li>
-								<a>Persional Info</a>
-							</li>
-							<li>
-								<a href="javascript:;">Menu</a>
-							</li>
-							<li class="active">
-								<a href="javascript:;">Content Page</a>
-							</li>
-							<li>
-								<a href="javascript:;">Your Page info</a>
-							</li>
-							<li>
-								<a href="javascript:;">Add Connector</a>
-							</li>
-							<li>
-								<a href="javascript:;">Finish</a>
-							</li>
-						</ul>
-					</div>
 					<div class="tab-content">
 						<div class="tab-pane fade active in" id="personal">
 							<div class="col-sm-12">
@@ -107,20 +89,20 @@
 												<div class="row">
 													<div class="col-sm-4">
 														<div id='logo-preview' style="margin: 10px 0 0 0;width: 100px; height: 100px;">
-                                                            @if($userStore->image)
-                                                                <img src="{{Config::get('app.url')}}/upload/store/thumb/{{$userStore->image}}" />
-                                                            @else
-                                                            <img src="http://placehold.it/100x100&text=Logo" />
-                                                            @endif
-                                                        </div>
+															@if($userStore->image)
+															<img src="{{Config::get('app.url')}}/upload/store/thumb/{{$userStore->image}}" />
+															@else
+															<img src="http://placehold.it/100x100&text=Logo" />
+															@endif
+														</div>
 													</div>
 													<div class="col-sm-8">
 														<div id='banner-preview' style="margin: 10px 0 0 0;width: 100%; height: 100px;">
-                                                            @if($userStore->sto_banner)
-                                                                <img src="{{Config::get('app.url')}}/upload/store/thumb/{{$userStore->sto_banner}}" style="width: 100%;height:100px" />
-                                                            @else
-                                                                <img src="http://placehold.it/500x100&text=Banner here" style="width: 100%;height:100px" />
-                                                            @endif
+															@if($userStore->sto_banner)
+															<img src="{{Config::get('app.url')}}/upload/store/thumb/{{$userStore->sto_banner}}" style="width: 100%;height:100px" />
+															@else
+															<img src="http://placehold.it/500x100&text=Banner here" style="width: 100%;height:100px" />
+															@endif
 														</div>
 													</div>
 												</div>
@@ -152,16 +134,16 @@
 													<div class="col-sm-6">
 														<div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0" id="costomLayout">
 															<ul id="sortable">
-                                                                @if($dataPageWidget)
-                                                                    @foreach ($dataPageWidget as $pageWidget)
-                                                                        <li class="ui-state-default" id="{{$pageWidget->id}}">{{($pageWidget->title!='undefined' ? $pageWidget->title : $pageWidget->title_en)}} 
-                                                                            <div class="editVB">
-                                                                                <a href="javascript:;" onclick="enableBox({{$pageWidget->id}});">Edit</a>
-                                                                            </div>
-                                                                        </li>
-                                                                    @endforeach
-                                                                @endif
-                                                            </ul>
+																@if($dataPageWidget) @foreach ($dataPageWidget as $pageWidget)
+																<li class="ui-state-default" id="{{$pageWidget->id}}">
+																	{{($pageWidget->title!='undefined' ? $pageWidget->title : $pageWidget->title_en)}}
+																	<div class="editVB">
+																		<input type="checkbox" class="page-{{$pageWidget->id}}" value="{{$pageWidget->id}}" onclick="enableBox({{$pageWidget->id}});" {{($pageWidget->
+																		status) ? 'checked':''}}/>
+																	</div>
+																</li>
+																@endforeach @endif
+															</ul>
 														</div>
 													</div>
 													<div class="col-sm-3">
@@ -176,60 +158,77 @@
 									</div>
 									<!--end product describe-->
 									<div class="col-sm-6">
-											<div class="pro-detail form-inline">
-												<h3>
-													Your Content Page Design
-												</h3>
-												<div class="col-sm-12">
-                                                    <form id="imageLogo" method="post" enctype="multipart/form-data" action='{{Config::get('app.url')}}/member/ajaxupload'>
-    													<fieldset>
-    														<legend>
-    															Logo:
-    														</legend>
-    														<div class="form-group">
-                                                                <input type="hidden" value="logoupload" name="page"/>
-    															<input type="file" id="logoFile" name="file"/>
-    															<p class="help-block">
-    																Upload your logo here
-    															</p>
-    														</div>
-    													</fieldset>
-                                                    </form>
-												</div>
-												<div class="col-sm-12">
-                                                    <form id="imageBanner" method="post" enctype="multipart/form-data" action='{{Config::get('app.url')}}/member/ajaxupload'>
-    													<fieldset>
-    														<legend>
-    															Header:
-    														</legend>
-    														<div class="form-group">
-                                                                <input type="hidden" value="bannerupload" name="page"/>
-    															<input type="file" id="bannerFile" name="file"/>
-    															
-    															<p class="help-block">
-    																upload you header banner here (600px , 200px)
-    															</p>
-    														</div>
-    													</fieldset>
-                                                    </form>
-												</div>
-												<div class="col-sm-12">
+										<div class="pro-detail">
+											<h3>
+												Your Content Page Design
+											</h3>
+											<div class="col-sm-12">
+												<form id="imageLogo" method="post" enctype="multipart/form-data" action='{{Config::get('app.url ')}}/member/ajaxupload'>
 													<fieldset>
 														<legend>
-															Layout Color:
+															Logo:
 														</legend>
-														<a href="#" onclick="costomizeLayout();">Costumize layout</a>
+														<div class="form-group">
+															<input type="hidden" value="logoupload" name="page"/>
+															<input type="file" id="logoFile" name="file" accept="image/*"/>
+															<p class="help-block">
+																Upload your logo here
+															</p>
+														</div>
 													</fieldset>
-												</div>
-                                                <div class="col-sm-12">
-													<fieldset>
-														<legend>
-															Footer:
-														</legend>
-														<a href="#" onclick="costomizeFooter();">Write your text footer here</a>
-													</fieldset>
-												</div>
+												</form>
 											</div>
+											<div class="col-sm-12">
+												<form id="imageBanner" method="post" enctype="multipart/form-data" action='{{Config::get('app.url ')}}/member/ajaxupload'>
+													<fieldset>
+														<legend>
+															Header:
+														</legend>
+														<div class="form-group">
+															<input type="hidden" value="bannerupload" name="page"/>
+															<input type="file" id="bannerFile" name="file" accept="image/*"/>
+															<p class="help-block">
+																upload you header banner here (600px , 200px)
+															</p>
+														</div>
+													</fieldset>
+												</form>
+											</div>
+											<div class="col-sm-12">
+												<fieldset>
+													<legend>
+														Layout Color:
+													</legend>
+													<!--<a href="#" onclick="costomizeLayout();">Costumize layout</a>-->
+													<div class="radio">
+														<label>
+															<input class="costomizeLayout" type="radio" name="costomizeLayout" id="optionsRadios1" value="main.css" checked />
+															Blue
+														</label>
+													</div>
+													<div class="radio">
+														<label>
+															<input class="costomizeLayout" type="radio" name="costomizeLayout" id="optionsRadios2" value="main-orange.css"/>
+															Orange
+														</label>
+													</div>
+                                                    <div class="radio">
+														<label>
+															<input class="costomizeLayout" type="radio" name="costomizeLayout" id="optionsRadios2" value="main-green.css"/>
+															Green
+														</label>
+													</div>
+												</fieldset>
+											</div>
+											<!--<div class="col-sm-12">
+												<fieldset>
+													<legend>
+														Footer:
+													</legend>
+													<a href="#" onclick="costomizeFooter();">Write your text footer here</a>
+												</fieldset>
+											</div>-->
+										</div>
 									</div>
 									<!-- end MainMenu Tab -->
 								</div>
@@ -243,7 +242,7 @@
 				<button id="summit" type="submit" class="btn btn-default pull-right choosenuser">
 					Next
 				</button>
-                <a id="chooseuser" class="btn btn-warning pull-right choosenuser" href="#">Skip</a>
+				<a id="chooseuser" class="btn btn-warning pull-right choosenuser" href="#">Skip</a>
 				<a id="chooseuser" class="btn btn-warning pull-right choosenuser" href="#">Back</a>
 				<a id="chooseuser" class="btn btn-danger pull-right choosenuser" href="#">Cancel</a>
 				</form>
@@ -254,10 +253,9 @@
 		<!--/login form-->
 	</div>
 </div>
-@endforeach
-@endif
-{{HTML::script('frontend/js/jquery.validate.js')}}
+@endforeach @endif {{HTML::script('frontend/js/jquery.validate.js')}}
 <script type='text/javascript'>
+	
 	
 	
 var is_modal_opened = 0;		
@@ -289,14 +287,34 @@ $(document).ready(function(){
                 }
             }
         }).submit();
-   	});   
+   	});  
+        
     $('#agreement').click(function () {
         if($(this).is(":checked")) {
             $("#summit").removeAttr("disabled");
         } else {
             $("#summit").attr('disabled',true);
         }
-    });    
+    }); 
+    
+    $('.costomizeLayout').click(function () {
+        //alert(1111);
+        if($(this).is(":checked")) {
+            var styles = $(this).val();
+            $.ajax({
+        		url: homePage + "member/getsubmenu?type=userLayout&id="+styles,
+        		type: "get",
+        		dataType: "json",
+        		async: false,
+        		success: function(data) {}
+            });
+            $(".main-stylesheet").attr("href", "{{Config::get('app.url')}}frontend/css/" + styles);
+        } else {
+            //$("#summit").attr('disabled',true);
+        }
+    });
+    
+       
     $("#PersonalForm").validate({
           rules: {
       FullName: {
@@ -315,8 +333,16 @@ $(document).ready(function(){
         update: function (event, ui) {
             var stringDiv = "";
             $( this ).children().each(function(i) {
-                var li = $(this).attr("id");
-                stringDiv += " "+li + '=' + i + '&';
+                var num = i + 1;
+                var id = $(this).attr("id");
+                $.ajax({
+            		url: homePage + "member/getsubmenu?type=userPage&id="+id+"&order="+num,
+            		type: "get",
+            		dataType: "json",
+            		async: false,
+            		success: function(data) {}
+                });
+                //stringDiv += " "+li + '=' + i + '&';
             });
             //console.log(stringDiv);
         }
@@ -336,11 +362,31 @@ function costomizeLayout(){
     
     $('#costomizeLayout').modal('show');
 } 
-function enableBox(){
-    dynamicModal('loading');
-    modalClose();
+function enableBox(id){
+    var checks = $('.page-' + id).is(':checked');
+    if (checks) {
+        $.ajax({
+    		url: homePage + "member/getsubmenu?type=userPageStatus&id="+id+"&st=1",
+    		type: "get",
+    		dataType: "json",
+    		async: false,
+    		success: function(data) {}
+        });
+        //$('.page-' + id).attr('checked','checked');
+    } else {
+        $.ajax({
+    		url: homePage + "member/getsubmenu?type=userPageStatus&id="+id+"&st=0",
+    		type: "get",
+    		dataType: "json",
+    		async: false,
+    		success: function(data) {}
+        });
+        //$('.page-' + id).removeAttr('checked','checked');
+    }
+    //dynamicModal('loading');
+    //modalClose();
     
-    $('#Enablebox').modal('show');
+    //$('#Enablebox').modal('show');
 }
 function costomizeFooter(){
     dynamicModal('loading');
@@ -348,58 +394,83 @@ function costomizeFooter(){
     
     $('#costomizeFooter').modal('show');
 } 
+
 </script>
 <div class="clear">
 </div>
 <!-- Modal costomize Layout -->
 <div class="modal fade" id="costomizeLayout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Costomize Layout</h4>
-      </div>
-      <div class="modal-body">
-        costomizeLayout
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">
+						&times;
+					</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					Costomize Layout
+				</h4>
+			</div>
+			<div class="modal-body">
+				costomizeLayout
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					Close
+				</button>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- Modal Visiter Box -->
 <div class="modal fade" id="Enablebox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Enable your Vistor box</h4>
-      </div>
-      <div class="modal-body">
-        Enable your Vistor box
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">
+						&times;
+					</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					Enable your Vistor box
+				</h4>
+			</div>
+			<div class="modal-body">
+				Enable your Vistor box
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					Close
+				</button>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- Modal Footer -->
 <div class="modal fade" id="costomizeFooter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Costomize Footer</h4>
-      </div>
-      <div class="modal-body">
-        Costomize Footer
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">
+						&times;
+					</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					Costomize Footer
+				</h4>
+			</div>
+			<div class="modal-body">
+				Costomize Footer
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					Close
+				</button>
+			</div>
+		</div>
+	</div>
 </div>
 @endsection

@@ -12,7 +12,7 @@
         {{HTML::style('frontend/css/animate.css')}}
         {{HTML::style('frontend/css/bootstrap.min.css')}}
         {{HTML::style('frontend/css/responsive.css')}}
-        {{HTML::style('frontend/css/main.css')}}
+        {{HTML::style('frontend/css/main.css', array('class' => 'main-stylesheet'))}}
         {{HTML::style('frontend/css/layout.css')}}
         {{HTML::script('frontend/js/jquery.js')}}
         <!--[if lt IE 9]>

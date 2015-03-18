@@ -252,17 +252,18 @@ class FeMemberController extends BaseController {
                 if (Input::has('btnStepNext')) {
 
                     //$jsonCategory = Input::get('jsonCategory');
-//                    $decodeCategory = json_decode($jsonCategory, true, 64);
-//                    $readbleArray = $this->mod_category->userCategory($decodeCategory);
-//
-//                    /*Add or Update category*/
-//                    $addOrUpdateCategory = $this->mod_category->addUserCategory($readbleArray);
+                    //                    $decodeCategory = json_decode($jsonCategory, true, 64);
+                    //                    $readbleArray = $this->mod_category->userCategory($decodeCategory);
+                    //
+                    //                    /*Add or Update category*/
+                    //                    $addOrUpdateCategory = $this->mod_category->addUserCategory($readbleArray);
                     $getUserCategory = $this->mod_category->getUserCategory($userID);
-                    if(!empty($getUserPages->result) && !empty($getUserCategory->result)) {
-                        return Redirect::to('/member/userinfo/'.$usertype.'/content');
+                    if (!empty($getUserPages->result) && !empty($getUserCategory->result)) {
+                        return Redirect::to('/member/userinfo/' . $usertype . '/content');
                     } else {
                         $message = 'MESSAGE_NOT_ENOUGH_DATA';
-                        return Redirect::to('/member/userinfo/'.$usertype.'/'.$step)->with('MESSAGE_NOT_ENOUGH_DATA', $message);
+                        return Redirect::to('/member/userinfo/' . $usertype . '/' . $step)->with('MESSAGE_NOT_ENOUGH_DATA',
+                            $message);
                     }
                     die;
                 }
@@ -277,24 +278,15 @@ class FeMemberController extends BaseController {
                 $whereData = array(
                     'user_id' => $userID,
                     'id' => $storeID,
-                );
-                $dataStore = $this->mod_store->getUserStore(null,$whereData);
-                $getUserPages = DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))
-                                ->select('*')
-                                ->where(array('user_id'=>$userID,'type'=>'widget'))
-                                ->get();
-                if(!empty($getUserPages)) {
-                    $dataPageWidget = $getUserPages;
-                } else {
-                    $dataPageWidget = DB::table(Config::get('constants.TABLE_NAME.M_PAGE').' as t')
-                                ->select('*','t.title_en AS title id')
-                                ->where(array('type'=>'widget'))
-                                ->get();
-                }
-                return View::make('frontend.modules.member.' . $usertypes . '-' . $step)
-                ->with('maincategories',$listCategories->result)
-                ->with('dataStore',$dataStore)
-                ->with('dataPageWidget',$dataPageWidget);
+                    );
+                $dataStore = $this->mod_store->getUserStore(null, $whereData);
+                $getUserPages = DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))->select('*')->
+                    where(array('user_id' => $userID, 'type' => 'widget'))->get();
+                    $dataPageWidget = $this->mod_page->addUserWidgetPages($userID);
+                
+                return View::make('frontend.modules.member.' . $usertypes . '-' . $step)->with('maincategories',
+                    $listCategories->result)->with('dataStore', $dataStore)->with('dataPageWidget',
+                    $dataPageWidget->result);
                 break;
 
         }
@@ -322,7 +314,7 @@ class FeMemberController extends BaseController {
                     $readbleArray = $this->mod_category->userCategory($decodeCategory);
 
                     /*Add or Update category*/
-                    $addOrUpdateCategory = $this->mod_category->addUserCategory($readbleArray,$userID);
+                    $addOrUpdateCategory = $this->mod_category->addUserCategory($readbleArray, $userID);
                 }
                 if (!empty($usertype) && $usertype == 2) {
                     return View::make('frontend.modules.member.enterprise-' . $step)->with('maincategories',
@@ -369,79 +361,77 @@ class FeMemberController extends BaseController {
         $page = Input::get('page');
         switch ($page) {
             case 'logoupload':
-            if (Input::hasfile('file')) {
-                /*upload logo image*/
-                $destinationPath = base_path() . Config::get('constants.DIR_IMAGE.DIR_STORE');
-                $file = Input::file('file');
-                
-                /* clean old image*/
-                $whereData = array(
-                    'user_id' => $userID,
-                    'id' => $storeID,
-                );
-                $checkStoreImage = $this->mod_store->getUserStore(null,$whereData);
-                if(!empty($checkStoreImage)) {
-                    foreach($checkStoreImage as $oldImage) {
-                        $oldName = $destinationPath.'/'.$oldImage->image;
-                        $thumb = $destinationPath.'/thumb/'.$oldImage->image;
-                        if(File::exists($oldName)) {
-                            File::delete($oldName,$thumb);
+                if (Input::hasfile('file')) {
+                    /*upload logo image*/
+                    $destinationPath = base_path() . Config::get('constants.DIR_IMAGE.DIR_STORE');
+                    $file = Input::file('file');
+
+                    /* clean old image*/
+                    $whereData = array(
+                        'user_id' => $userID,
+                        'id' => $storeID,
+                        );
+                    $checkStoreImage = $this->mod_store->getUserStore(null, $whereData);
+                    if (!empty($checkStoreImage)) {
+                        foreach ($checkStoreImage as $oldImage) {
+                            $oldName = $destinationPath . '/' . $oldImage->image;
+                            $thumb = $destinationPath . '/thumb/' . $oldImage->image;
+                            if (File::exists($oldName)) {
+                                File::delete($oldName, $thumb);
+                            }
                         }
                     }
+                    /* add or update new image*/
+                    $images = $this->mod_store->doUpoad($file, $destinationPath, Config::get('constants.DIR_IMAGE.THUMB_WIDTH'),
+                        Config::get('constants.DIR_IMAGE.THUMB_HEIGTH'));
+
+                    /*update to store table DB*/
+                    $storeData = array('image' => $images['image'], );
+                    $this->mod_store->where($whereData)->update($storeData);
+                    /*end update to store table DB*/
+                } else {
+                    $images = array("error" => "Sorry, Upload get an error");
                 }
-                /* add or update new image*/
-                $images = $this->mod_store->doUpoad($file, $destinationPath,Config::get('constants.DIR_IMAGE.THUMB_WIDTH'),Config::get('constants.DIR_IMAGE.THUMB_HEIGTH'));
-                
-                /*update to store table DB*/
-                $storeData = array(
-                    'image' => $images['image'],
-                );
-                $this->mod_store->where($whereData)->update($storeData);
-                /*end update to store table DB*/
-            } else {
-                $images = array("error"=>"Sorry, Upload get an error");
-            }
-            echo json_encode($images);
-            break;
-            
+                echo json_encode($images);
+                break;
+
             case 'bannerupload':
-            if (Input::hasfile('file')) {
-                /*upload banner image*/
-                $destinationPath = base_path() . Config::get('constants.DIR_IMAGE.DIR_STORE');
-                $file = Input::file('file');
-                
-                /* clean old image*/
-                $whereData = array(
-                    'user_id' => $userID,
-                    'id' => $storeID,
-                );
-                $checkStoreImage = $this->mod_store->getUserStore(null,$whereData);
-                if(!empty($checkStoreImage)) {
-                    foreach($checkStoreImage as $oldImage) {
-                        $oldName = $destinationPath.'/'.$oldImage->sto_banner;
-                        $thumb = $destinationPath.'/thumb/'.$oldImage->sto_banner;
-                        if(File::exists($oldName)) {
-                            File::delete($oldName,$thumb);
+                if (Input::hasfile('file')) {
+                    /*upload banner image*/
+                    $destinationPath = base_path() . Config::get('constants.DIR_IMAGE.DIR_STORE');
+                    $file = Input::file('file');
+
+                    /* clean old image*/
+                    $whereData = array(
+                        'user_id' => $userID,
+                        'id' => $storeID,
+                        );
+                    $checkStoreImage = $this->mod_store->getUserStore(null, $whereData);
+                    if (!empty($checkStoreImage)) {
+                        foreach ($checkStoreImage as $oldImage) {
+                            $oldName = $destinationPath . '/' . $oldImage->sto_banner;
+                            $thumb = $destinationPath . '/thumb/' . $oldImage->sto_banner;
+                            if (File::exists($oldName)) {
+                                File::delete($oldName, $thumb);
+                            }
                         }
                     }
+
+                    $images = $this->mod_store->doUpoad($file, $destinationPath, Config::get('constants.DIR_IMAGE.THUMB_WIDTH'),
+                        Config::get('constants.DIR_IMAGE.THUMB_HEIGTH'));
+                    /*update to store table DB*/
+                    $storeData = array('sto_banner' => $images['image'], );
+                    $this->mod_store->where($whereData)->update($storeData);
+                    /*end update to store table DB*/
+                } else {
+                    $images = array("error" => "Sorry, Upload get an error");
                 }
-                
-                $images = $this->mod_store->doUpoad($file, $destinationPath,Config::get('constants.DIR_IMAGE.THUMB_WIDTH'),Config::get('constants.DIR_IMAGE.THUMB_HEIGTH'));
-                /*update to store table DB*/
-                $storeData = array(
-                    'sto_banner' => $images['image'],
-                );
-                $this->mod_store->where($whereData)->update($storeData);
-                /*end update to store table DB*/
-            } else {
-                $images = array("error"=>"Sorry, Upload get an error");
-            }
-            echo json_encode($images);
-            break;
+                echo json_encode($images);
+                break;
         }
         die;
     }
-    
+
     /**
      * get sub menu by ajax
      *
@@ -493,7 +483,7 @@ class FeMemberController extends BaseController {
                         if (!empty($deleteAll)) {
                             $addOrUpdateCategory = $this->mod_category->DelUserCategory($userID);
                         }
-                        $addOrUpdateCategory = $this->mod_category->addUserCategory($readbleArray,$userID);
+                        $addOrUpdateCategory = $this->mod_category->addUserCategory($readbleArray, $userID);
                         break;
 
                     case 'addUserPage':
@@ -505,6 +495,28 @@ class FeMemberController extends BaseController {
                     case 'removeUserPage':
                         $getMainPage = $this->mod_page->removeUserPages($userID, $MainMenu);
                         break;
+
+                    case 'userPage':
+                        $order = Input::get('order');
+                        $getMainPage = $this->mod_page->addUserWidgetPage($userID, $MainMenu, $order);
+                        break;
+                        
+                    case 'userPageStatus':
+                        $status = Input::get('st');
+                        $response = DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))->where(array('id'=>$MainMenu))->update(array('status'=>$status));
+                        break; 
+                        
+                    case 'userLayout':
+                        $getUserStore = $this->mod_store->getUserStore($userID);
+                        if(!empty($getUserStore)) {
+                            $userStoreID = $getUserStore[0]->id;
+                            $where = array('user_id'=>$userID,'id'=>$userStoreID);
+                            $dataSet = array(
+                                'layout' =>$MainMenu
+                            );
+                            $response = DB::table(Config::get('constants.TABLE_NAME.STORE'))->where($where)->update(array('sto_value'=>json_encode($dataSet)));
+                        }
+                        break;       
                 }
             }
 

@@ -3043,8 +3043,8 @@ fieldset legend {
 /*costomLayout*/
 #costomLayout {}
 #costomLayout .ui-sortable {padding:5px;}
-#costomLayout .ui-sortable li{margin:5px 0;padding:5px 5px 5px 15px;background: #bbb url(https://www.blogger.com/img/widgets/draggable.png) no-repeat 4px 50%;cursor: move;z-index: 1;position: relative;}
-#costomLayout .widget-wrap1{background: #bbb url(https://www.blogger.com/img/widgets/draggable.png) no-repeat 4px 50%;cursor: move;}
+#costomLayout .ui-sortable li{margin:5px 0;padding:5px 5px 5px 15px;background: #428BCA url(https://www.blogger.com/img/widgets/draggable.png) no-repeat 4px 50%;cursor: move;z-index: 1;position: relative;color:#fff}
+#costomLayout .widget-wrap1{background: #428BCA url(https://www.blogger.com/img/widgets/draggable.png) no-repeat 4px 50%;cursor: move;}
 #costomLayout .widget-wrap3 {margin-left: 12px;background: #fff;}
 #costomLayout .editVB {position: absolute; right: 10px; top:6px;z-index: 9999;width:60px;text-align: right;}
 #connectorF {border: 1px solid #ccc;padding:10px;margin-right: 10px;margin-bottom: 10px;}
