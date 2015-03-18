@@ -14,6 +14,8 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"/>
 {{HTML::script('frontend/js/jquery-upload/jquery.form.js')}}
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+@if($dataStore)
+@foreach ($dataStore as $userStore)
 <div class="memberlogin">
 	<div class="col-sm-3">
 		<div class="advertise">
@@ -105,12 +107,20 @@
 												<div class="row">
 													<div class="col-sm-4">
 														<div id='logo-preview' style="margin: 10px 0 0 0;width: 100px; height: 100px;">
+                                                            @if($userStore->image)
+                                                                <img src="{{Config::get('app.url')}}/upload/store/thumb/{{$userStore->image}}" />
+                                                            @else
                                                             <img src="http://placehold.it/100x100&text=Logo" />
+                                                            @endif
                                                         </div>
 													</div>
 													<div class="col-sm-8">
 														<div id='banner-preview' style="margin: 10px 0 0 0;width: 100%; height: 100px;">
-															<img src="http://placehold.it/500x100&text=Banner here" style="width: 100%;height:100px" />
+                                                            @if($userStore->sto_banner)
+                                                                <img src="{{Config::get('app.url')}}/upload/store/thumb/{{$userStore->sto_banner}}" style="width: 100%;height:100px" />
+                                                            @else
+                                                                <img src="http://placehold.it/500x100&text=Banner here" style="width: 100%;height:100px" />
+                                                            @endif
 														</div>
 													</div>
 												</div>
@@ -142,11 +152,15 @@
 													<div class="col-sm-6">
 														<div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0" id="costomLayout">
 															<ul id="sortable">
-                                                              <li class="ui-state-default">New Arrival Products <div class="editVB"><a href="javascript:;" onclick="enableBox();">Edit</a></div></li>
-                                                              <li class="ui-state-default">Hot Promotion Products <div class="editVB"><a href="javascript:;" onclick="enableBox();">Edit</a></div></li>
-                                                              <li class="ui-state-default">Secondhand Products <div class="editVB"><a href="javascript:;" onclick="enableBox();">Edit</a></div></li>
-                                                              <li class="ui-state-default">Monthly Pay  Products <div class="editVB"><a href="javascript:;" onclick="enableBox();">Edit</a></div></li>
-                                                              <li class="ui-state-default">Urgent Sale <div class="editVB"><a href="javascript:;" onclick="enableBox();">Edit</a></div></li>
+                                                                @if($dataPageWidget)
+                                                                    @foreach ($dataPageWidget as $pageWidget)
+                                                                        <li class="ui-state-default" id="{{$pageWidget->id}}">{{($pageWidget->title!='undefined' ? $pageWidget->title : $pageWidget->title_en)}} 
+                                                                            <div class="editVB">
+                                                                                <a href="javascript:;" onclick="enableBox({{$pageWidget->id}});">Edit</a>
+                                                                            </div>
+                                                                        </li>
+                                                                    @endforeach
+                                                                @endif
                                                             </ul>
 														</div>
 													</div>
@@ -240,6 +254,8 @@
 		<!--/login form-->
 	</div>
 </div>
+@endforeach
+@endif
 {{HTML::script('frontend/js/jquery.validate.js')}}
 <script type='text/javascript'>
 	
@@ -295,7 +311,15 @@ $(document).ready(function(){
     });
     
     $( "#sortable" ).sortable({
-      revert: true
+        revert: true,
+        update: function (event, ui) {
+            var stringDiv = "";
+            $( this ).children().each(function(i) {
+                var li = $(this).attr("id");
+                stringDiv += " "+li + '=' + i + '&';
+            });
+            //console.log(stringDiv);
+        }
     });
     $( "#draggable" ).draggable({
       connectToSortable: "#sortable",

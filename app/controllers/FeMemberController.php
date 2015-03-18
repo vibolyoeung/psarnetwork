@@ -273,8 +273,28 @@ class FeMemberController extends BaseController {
 
                 /* user page content */
             case 'content':
-                return View::make('frontend.modules.member.' . $usertypes . '-' . $step)->with('maincategories',
-                    $listCategories->result);
+                $storeID = 29;
+                $whereData = array(
+                    'user_id' => $userID,
+                    'id' => $storeID,
+                );
+                $dataStore = $this->mod_store->getUserStore(null,$whereData);
+                $getUserPages = DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))
+                                ->select('*')
+                                ->where(array('user_id'=>$userID,'type'=>'widget'))
+                                ->get();
+                if(!empty($getUserPages)) {
+                    $dataPageWidget = $getUserPages;
+                } else {
+                    $dataPageWidget = DB::table(Config::get('constants.TABLE_NAME.M_PAGE').' as t')
+                                ->select('*','t.title_en AS title id')
+                                ->where(array('type'=>'widget'))
+                                ->get();
+                }
+                return View::make('frontend.modules.member.' . $usertypes . '-' . $step)
+                ->with('maincategories',$listCategories->result)
+                ->with('dataStore',$dataStore)
+                ->with('dataPageWidget',$dataPageWidget);
                 break;
 
         }
@@ -343,6 +363,8 @@ class FeMemberController extends BaseController {
      * @return json
      */
     public function ajaxupload() {
+        $userID = 1;
+        $storeID = 29;
         $this->layout = null;
         $page = Input::get('page');
         switch ($page) {
@@ -350,19 +372,32 @@ class FeMemberController extends BaseController {
             if (Input::hasfile('file')) {
                 /*upload logo image*/
                 $destinationPath = base_path() . Config::get('constants.DIR_IMAGE.DIR_STORE');
-                self::generateFolderUpload($destinationPath);
-                $destinationPathThumb = $destinationPath . 'thumb/';
                 $file = Input::file('file');
-                $fileName = $file->getClientOriginalName();
-                $fileName = self::generateFileName($destinationPath, $fileName);
-                $file->move($destinationPath, $fileName);
-                Image::make($destinationPath . $fileName)->resize(Config::get('constants.DIR_IMAGE.THUMB_WIDTH'),
-                    Config::get('constants.DIR_IMAGE.THUMB_HEIGTH'))->save($destinationPathThumb . $fileName);
-                /*end upload logo image*/
                 
-                $images = array(
-                    'image' => $fileName
+                /* clean old image*/
+                $whereData = array(
+                    'user_id' => $userID,
+                    'id' => $storeID,
                 );
+                $checkStoreImage = $this->mod_store->getUserStore(null,$whereData);
+                if(!empty($checkStoreImage)) {
+                    foreach($checkStoreImage as $oldImage) {
+                        $oldName = $destinationPath.'/'.$oldImage->image;
+                        $thumb = $destinationPath.'/thumb/'.$oldImage->image;
+                        if(File::exists($oldName)) {
+                            File::delete($oldName,$thumb);
+                        }
+                    }
+                }
+                /* add or update new image*/
+                $images = $this->mod_store->doUpoad($file, $destinationPath,Config::get('constants.DIR_IMAGE.THUMB_WIDTH'),Config::get('constants.DIR_IMAGE.THUMB_HEIGTH'));
+                
+                /*update to store table DB*/
+                $storeData = array(
+                    'image' => $images['image'],
+                );
+                $this->mod_store->where($whereData)->update($storeData);
+                /*end update to store table DB*/
             } else {
                 $images = array("error"=>"Sorry, Upload get an error");
             }
@@ -373,19 +408,31 @@ class FeMemberController extends BaseController {
             if (Input::hasfile('file')) {
                 /*upload banner image*/
                 $destinationPath = base_path() . Config::get('constants.DIR_IMAGE.DIR_STORE');
-                self::generateFolderUpload($destinationPath);
-                $destinationPathThumb = $destinationPath . 'thumb/';
                 $file = Input::file('file');
-                $fileName = $file->getClientOriginalName();
-                $fileName = self::generateFileName($destinationPath, $fileName);
-                $file->move($destinationPath, $fileName);
-                Image::make($destinationPath . $fileName)->resize(Config::get('constants.DIR_IMAGE.THUMB_WIDTH'),
-                    Config::get('constants.DIR_IMAGE.THUMB_HEIGTH'))->save($destinationPathThumb . $fileName);
-                /*end upload banner image*/
                 
-                $images = array(
-                    'image' => $fileName
+                /* clean old image*/
+                $whereData = array(
+                    'user_id' => $userID,
+                    'id' => $storeID,
                 );
+                $checkStoreImage = $this->mod_store->getUserStore(null,$whereData);
+                if(!empty($checkStoreImage)) {
+                    foreach($checkStoreImage as $oldImage) {
+                        $oldName = $destinationPath.'/'.$oldImage->sto_banner;
+                        $thumb = $destinationPath.'/thumb/'.$oldImage->sto_banner;
+                        if(File::exists($oldName)) {
+                            File::delete($oldName,$thumb);
+                        }
+                    }
+                }
+                
+                $images = $this->mod_store->doUpoad($file, $destinationPath,Config::get('constants.DIR_IMAGE.THUMB_WIDTH'),Config::get('constants.DIR_IMAGE.THUMB_HEIGTH'));
+                /*update to store table DB*/
+                $storeData = array(
+                    'sto_banner' => $images['image'],
+                );
+                $this->mod_store->where($whereData)->update($storeData);
+                /*end update to store table DB*/
             } else {
                 $images = array("error"=>"Sorry, Upload get an error");
             }
