@@ -31,7 +31,7 @@
 							<a data-toggle="collapse" data-parent="#accordian" href="#">House</a>
 						</h4>
 					</div>
-					<div class="panel-heading">
+			<div class="panel-heading">
 						<h4 class="panel-title">
 							<a data-toggle="collapse" data-parent="#accordian" href="#">Watch</a>
 						</h4>
@@ -44,22 +44,9 @@
 				</div>
 			</div>
 		<!--=========Register seller============ -->
-
 			<div class="panel-group category-products" id="accordian">
-				@foreach($advVerticalLeftMiduims as $adv)
-				<?php
-					$exp_date = $adv->end_date;
-					$exp_date =str_replace('/', '-', $exp_date);
-					if(strtotime(date("d-m-Y")) <= strtotime($exp_date)){ ?>
-						<a href="{{$adv->link_url}}" >
-							<img
-								src="{{Config::get('app.url')}}/upload/advertisement/{{$adv->image;}}"
-								class="img-responsive"
-								alt=""
-							/>
-						</a>
-				<?php } ?>
-				@endforeach
+				<!-- type:homepage, position: left meduim, limit -->
+				{{ App::make('FePageController')->getFeAds(1, 4, 3) }}
 			</div>
 		</div>
 </div>
