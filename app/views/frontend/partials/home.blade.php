@@ -66,7 +66,7 @@
 		</div>
 	</div>
 	@include('frontend.partials.products.popup_details')
-	
+	</div>
 </div>
 @endsection
 @section('client_location')
