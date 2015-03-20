@@ -1,0 +1,40 @@
+	<?php echo $__env->make('frontend.partials.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="logo pull-left">
+							<a href="index.html"><img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/logo.png" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-sm-5">
+						<div class="shop-menu pull-left">
+							<ul class="nav navbar-nav">
+								<li><a href="#"><li class="fa"><a href="#">
+									<div class="search_box pull-right">
+										<form class="navbar-form navbar-left" role="search">
+										    <div class="form-group">
+										        <input type="text" class="form-control" placeholder="Search">
+										    </div>
+										    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+										</form>
+									</div>
+								</li></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+	<?php echo $__env->make('frontend.partials.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<section>
+		<div class="container">
+			<div class="row">
+				<?php echo $__env->make('frontend.partials.left', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+				<?php echo $__env->yieldContent('content'); ?>
+				<?php echo $__env->make('frontend.partials.right', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+				
+			</div>
+		</div>
+	</section>
+	<?php echo $__env->make('frontend.partials.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

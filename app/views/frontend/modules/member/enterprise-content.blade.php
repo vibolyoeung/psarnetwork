@@ -23,18 +23,7 @@ var homePage = "{{Config::get('app.url')}}";
 @if($dataStore) @foreach ($dataStore as $userStore)
 <div class="memberlogin">
 	<div class="col-sm-3">
-		<div class="advertise">
-			<div class="col-sm-12">
-				<img src="{{Config::get('app.url')}}/upload/banner/banner728.png" alt="" style="width:100%" />
-			</div>
-			<div class="clear">
-			</div>
-		</div>
-		<div class="constug">
-			<center>
-				<img src="{{Config::get('app.url')}}/frontend/images/member/strug.png" style="width: 100%"/>
-			</center>
-		</div>
+		@include('frontend.modules.member.sidebar')
 		<div class="clear">
 		</div>
 	</div>

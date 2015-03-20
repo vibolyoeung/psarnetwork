@@ -19,18 +19,7 @@ var homePage = "{{Config::get('app.url')}}";
 <div class="memberlogin">
 	{{Form::open(array('url'=>'member/userinfo/2/menu','enctype'=>'multipart/form-data','file' => true, 'id'=>'PersonalForm'))}}
 	<div class="col-sm-3">
-		<div class="advertise">
-			<div class="col-sm-12">
-				<img src="{{Config::get('app.url')}}/upload/banner/banner728.png" alt="" style="width:100%" />
-			</div>
-			<div class="clear">
-			</div>
-		</div>
-		<div class="constug">
-			<center>
-				<img src="{{Config::get('app.url')}}/frontend/images/member/strug.png" style="width: 100%"/>
-			</center>
-		</div>
+        @include('frontend.modules.member.sidebar')
 		<div class="clear">
 		</div>
 	</div>
@@ -82,28 +71,6 @@ var homePage = "{{Config::get('app.url')}}";
 				</div>
 				<div class="category-tab shop-details-tab" style="margin: 0;">
 					<!--category-tab-->
-					<div class="col-sm-12">
-						<ul class="nav nav-tabs">
-							<li>
-								<a>Persional Info</a>
-							</li>
-							<li class="active">
-								<a href="javascript:;">{{trans('register.MENU_MENU')}}</a>
-							</li>
-							<li>
-								<a href="javascript:;">{{trans('register.MENU_Content_Page')}}</a>
-							</li>
-							<li>
-								<a href="javascript:;">{{trans('register.MENU_Your_info')}}</a>
-							</li>
-							<li>
-								<a href="javascript:;">{{trans('register.MENU_Add_Connector')}}</a>
-							</li>
-							<li>
-								<a href="javascript:;">{{trans('register.MENU_Finish')}}</a>
-							</li>
-						</ul>
-					</div>
 					<div class="tab-content">
 						<div>
 							{{Session::get('INVALID_LOGIN')}}
@@ -127,7 +94,7 @@ var homePage = "{{Config::get('app.url')}}";
 												<!--product describe-->
 												<form action="{{Config::get('app.url')}}" id="StartCatAdd" class="form-horizontal">
 													<div class="user-menu">
-														<div class="col-sm-3">
+														<div class="col-sm-2">
 															<div class="form-group">
 																<label for="Main-Menu">
 																	{{trans('register.TAB_Main_Menu')}}
@@ -172,12 +139,17 @@ var homePage = "{{Config::get('app.url')}}";
 																</select>
 															</div>
 														</div>
-														<button id="submitcat" type="button" class="btn btn-default" style="margin-left: 30px;">
-															{{trans('register.TAB_Add')}}
-														</button>
+                                                        <div class="col-sm-1">
+                                                            <label for="submitcat" style="display: block;">
+																 <span>&nbsp;</span>
+															</label>
+    														<button id="submitcat" type="button" class="btn btn-default" style="">
+    															{{trans('register.TAB_Add')}}
+    														</button>
+                                                        </div>
 													</div>
 												</form>
-												<div style="border-top: 1px solid #ccc; clear: both; display:block;margin-top:15px">
+												<div style="border-bottom: 1px solid #ccc; clear: both; display:block;padding-top:15px">
 												</div>
 												<!-- create menu -->
 												<div class="col-sm-6 hidden-sm" style="border-right: 1px solid #ccc;">

@@ -30,8 +30,6 @@ class FeMemberController extends BaseController {
             $loginName = Input::get('loginName');
             $password = Input::get('password');
             $result = $this->mod_member->memberLogin($loginName, $password);
-            var_dump($result);
-            die;
             if (!empty($result)) {
                 Session::put('currentUserId', $result->id);
                 Session::put('currentUserName', $result->name);
@@ -76,6 +74,7 @@ class FeMemberController extends BaseController {
             'client_type' => Input::get('client_type'),
             'account_type' => Input::get('accounttype'),
             'account_role' => Input::get('accountRole'),
+            'status' => 1,
             'password' => md5(sha1(Input::get('password'))),
             'create_at' => date(self::CURRENT_DATE));
 
@@ -129,7 +128,7 @@ class FeMemberController extends BaseController {
                 return Redirect::to('/member/agreement/' . $accounttype . '?uid=' . $data_user['user_id'] .
                     '&sid=' . $data_user['store_id'])->with('SECCESS_MESSAGE_REGISTER', $messageRegister);
             } else {
-                return Redirect::to('member/register')->withInput()->withErrors($validator);
+                return Redirect::to('/member/register')->withInput()->withErrors($validator);
             }
         }
 
@@ -238,15 +237,9 @@ class FeMemberController extends BaseController {
      * @return void
      */
     public function userinfo($usertype = '', $step = '') {
-        //Session::put('currentUserId'
-//        if(Session::has('currentUserId')) {
-//            
-//        } else {
-//            
-//        }
         $limit = $this->mod_setting->getSlidshowNumber();
         $listCategories = self::getCategoriesHomePage();
-        $userID = 1;
+        $userID = Session::get('currentUserId');
         if (!empty($usertype) && $usertype == 2) {
             $usertypes = 'enterprise';
         } else {
@@ -258,13 +251,6 @@ class FeMemberController extends BaseController {
                 $getMainPage = $this->mod_page->getMainPages();
                 $getUserPages = $this->mod_page->getUserPages($userID);
                 if (Input::has('btnStepNext')) {
-
-                    //$jsonCategory = Input::get('jsonCategory');
-                    //                    $decodeCategory = json_decode($jsonCategory, true, 64);
-                    //                    $readbleArray = $this->mod_category->userCategory($decodeCategory);
-                    //
-                    //                    /*Add or Update category*/
-                    //                    $addOrUpdateCategory = $this->mod_category->addUserCategory($readbleArray);
                     $getUserCategory = $this->mod_category->getUserCategory($userID);
                     if (!empty($getUserPages->result) && !empty($getUserCategory->result)) {
                         return Redirect::to('/member/userinfo/' . $usertype . '/content');
@@ -282,7 +268,12 @@ class FeMemberController extends BaseController {
 
                 /* user page content */
             case 'content':
-                $storeID = 29;
+                $getUserStore = $this->mod_store->getUserStore($userID);
+                if(!empty($getUserStore)) {
+                    $storeID = $getUserStore[0]->id;
+                } else {
+                    $storeID = null;
+                }
                 $whereData = array(
                     'user_id' => $userID,
                     'id' => $storeID,
@@ -291,11 +282,41 @@ class FeMemberController extends BaseController {
                 $getUserPages = DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))->select('*')->
                     where(array('user_id' => $userID, 'type' => 'widget'))->get();
                     $dataPageWidget = $this->mod_page->addUserWidgetPages($userID);
-                
                 return View::make('frontend.modules.member.' . $usertypes . '-' . $step)->with('maincategories',
                     $listCategories->result)->with('dataStore', $dataStore)->with('dataPageWidget',
                     $dataPageWidget->result);
                 break;
+                
+            case 'infomation':
+                $userData = $this->user->getUser($userID);
+                if (Input::has('btnInfo')) {
+                    
+                    $userValueArr = json_decode($userData->result->address,true);
+                    $ValueArr = array('g_latitude_longitude'=>Input::get('gLatitudeLongitude'));
+                    $dataArr = array_merge($userValueArr, $ValueArr);
+                    $data = array(
+                        'email' => trim(Input::get('email')),
+                        'name' => trim(Input::get('name')),
+                        'telephone' => Input::get('telephone'),
+                        'address' => json_encode($dataArr),
+                        'update_at' => date(self::CURRENT_DATE)
+                    );
+                    /*add data for store*/
+                    $whereUser = array(
+                        'id' => $userID
+                    );
+                    $uid = $this->user->updateUser($whereUser, $data);
+                    return Redirect::to('/member/userinfo/' . $usertype . '/infomation');
+                }
+                return View::make('frontend.modules.member.' . $usertypes . '-' . $step)->with('maincategories',
+                    $listCategories->result)
+                    ->with('userData',$userData->result);
+            break;
+            
+            case 'pageinfo':
+                return View::make('frontend.modules.member.' . $usertypes . '-' . $step)->with('maincategories',
+                    $listCategories->result);
+            break;
 
         }
     }
@@ -309,7 +330,7 @@ class FeMemberController extends BaseController {
     public function content($usertype = '', $step = '') {
         $limit = $this->mod_setting->getSlidshowNumber();
         $listCategories = self::getCategoriesHomePage();
-        $userID = 1;
+        $userID = Session::get('currentUserId');
         switch ($step) {
             case 'menu':
                 $userCategory = $this->mod_category->menuShowNested($userID, $parent = 0);
@@ -363,7 +384,7 @@ class FeMemberController extends BaseController {
      * @return json
      */
     public function ajaxupload() {
-        $userID = 1;
+        $userID = Session::get('currentUserId');
         $storeID = 29;
         $this->layout = null;
         $page = Input::get('page');
@@ -448,7 +469,7 @@ class FeMemberController extends BaseController {
      */
     public function getsubmenu() {
         $this->layout = null;
-        $userID = 1;
+        $userID = Session::get('currentUserId');
         $MainMenu = Input::get('id');
         $getType = Input::get('type');
         $subMmenu = '';

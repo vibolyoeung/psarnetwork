@@ -113,6 +113,8 @@ Route::any('/pro/{product_name}/{pro_id}', 'FeDetailController@index');
 /*for member page*/
 Route::any('member/login', 'FeMemberController@index');
 Route::any('member/register','FeMemberController@register'); 
+Route::any('member/getdistrict','FeMemberController@getDistric');
+Route::any('member/getmarkettype/{id}','FeMemberController@getMarketType');
 Route::group(array('before' => 'auth_member'), function () {
     Route::group(array('prefix' => 'member'), function () {
          /*regirst page*/ 
@@ -122,9 +124,7 @@ Route::group(array('before' => 'auth_member'), function () {
             'FeMemberController@agreement'); Route::any('/addmenuajax',
             'FeMemberController@addmenuajax'); Route::any('/ajaxupload',
             'FeMemberController@ajaxupload'); Route::any('/getsubmenu',
-            'FeMemberController@getsubmenu'); Route::any('/getdistrict',
-            'FeMemberController@getDistric'); Route::any('/getmarkettype/{id}',
-            'FeMemberController@getMarketType'); 
+            'FeMemberController@getsubmenu'); 
     }); 
 });
 

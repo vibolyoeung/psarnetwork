@@ -1,0 +1,59 @@
+<?php $__env->startSection('title'); ?>
+    Categories
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('breadcrumb'); ?>
+    <ul class="breadcrumb">
+        <li><a href="<?php echo URL::to('admin/dashboard'); ?>">Dashboard</a></li>
+        <li>Categories</li>
+    </ul>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<div class="row">
+
+        <div class="col-md-12 col-sm-12 col-sx-12">
+          <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+            <a href="<?php echo URL::to('admin/create-category'); ?>">
+              <i class="icon-plus btn btn-xs btn-info rounded-buttons" >&nbsp;Add</i>
+             </a>
+             <h3 class="panel-title">Categories</h3>
+            </div>
+            <div class="panel-body">
+            <?php if(Session::has('SECCESS_MESSAGE')): ?>
+            <div class="alert alert-block alert-success fade in">
+                <button data-dismiss="alert" class="close" type="button" data-original-title="">
+                  x
+                </button>
+                <p><?php echo Session::get('SECCESS_MESSAGE'); ?></p>
+              </div>
+              <?php endif; ?>
+              <br />
+              <div class="table-responsive">
+                <table class="table table-bordered no-margin">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Title En</th>
+                      <th>Title Zh</th>
+                      <th class="class-center">Status</th>
+                      <th class="class-center">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  		<tr>
+                  			<td>dd</td>
+                  			<td>dd</td>
+                  			<td>dd</td>
+                  			<td>dd</td>
+                  			<td>dd</td>
+                  		</tr>
+                  </tbody>
+
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+ <?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend/layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

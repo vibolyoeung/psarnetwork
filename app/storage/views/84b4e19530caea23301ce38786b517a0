@@ -1,0 +1,83 @@
+<?php $__env->startSection('title'); ?>
+	Home
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('breadcrumb'); ?>
+	<ol class="breadcrumb">
+		<li><a href="<?php echo Config::get('app.url'); ?>">Home</a></li>
+		<li><a href="#">Library</a></li>
+		<li class="active">Data</li>
+	</ol>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<div class="col-lg-11">
+	<?php echo $__env->make('frontend.partials.slider', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+</div>
+
+<div class="col-sm-10">
+	<?php echo $__env->make('frontend.partials.products.latest', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<?php echo $__env->make('frontend.partials.products.popular', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	
+	<br />
+	<!--/category-tab-->
+	<div class="category-tab feature-ad lastest-post">
+		<!--recommended_items-->
+		<div class="col-lg-12">
+			<div class="col-lg-1 pull-right" style="border: 0px solid #ddd;padding:0;">
+				<?php foreach($advVerticalRightSmalls as $adv): ?>
+				<?php
+					$exp_date = $adv->end_date;
+					$exp_date =str_replace('/', '-', $exp_date);
+					if(strtotime(date("d-m-Y")) <= strtotime($exp_date)){ ?>
+						<a href="<?php echo $adv->link_url; ?>" >
+							<img
+								src="<?php echo Config::get('app.url'); ?>/upload/advertisement/<?php echo $adv->image;; ?>"
+								class="img-responsive"
+								alt=""
+							/>
+						</a>
+				<?php } ?>
+				<?php endforeach; ?>
+			</div>
+
+			<div class="col-lg-1 pull-left" style="border: 0px solid #ddd;padding:0;">
+				<?php foreach($advVerticalLeftSmalls as $adv): ?>
+				<?php
+					$exp_date = $adv->end_date;
+					$exp_date =str_replace('/', '-', $exp_date);
+					if(strtotime(date("d-m-Y")) <= strtotime($exp_date)){ ?>
+						<a href="<?php echo $adv->link_url; ?>" >
+							<img
+								src="<?php echo Config::get('app.url'); ?>/upload/advertisement/<?php echo $adv->image;; ?>"
+								class="img-responsive"
+								alt=""
+							/>
+						</a>
+				<?php } ?>
+				<?php endforeach; ?>
+			</div>
+			<div class="col-lg-10">
+				<?php echo $__env->make('frontend.partials.products.hot_promotion', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+				<?php echo $__env->make('frontend.partials.products.new_arrival', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+				<?php echo $__env->make('frontend.partials.products.monthly_pay', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+				<?php echo $__env->make('frontend.partials.products.buyer_request', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+				<?php echo $__env->make('frontend.partials.products.second_hand', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+			</div>
+		</div>
+	</div>
+	<?php echo $__env->make('frontend.partials.products.popup_details', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	
+</div>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('client_location'); ?>
+		<?php echo $__env->make('frontend.partials.client_location', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+<?php echo $__env->make('frontend.layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

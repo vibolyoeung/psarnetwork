@@ -402,7 +402,7 @@ class MCategory extends Eloquent{
      * @method addUserCategory
      * @return void
      */
-    public function addUserCategory($jsonArray, $parentID = 0,$userID) {
+    public function addUserCategory($jsonArray,$userID) {
         if (!empty($jsonArray)) {
             foreach ($jsonArray as $key => $value) {
                 if (is_array($value)) {
@@ -417,7 +417,7 @@ class MCategory extends Eloquent{
                             'name_en' => $checkMenu->data->name_en,
                             'name_km' => $checkMenu->data->name_km,
                             'm_cat_id' => $value['id'],
-                            'user_id' => 1,
+                            'user_id' => $userID,
                             'is_publish' => 1,
                             'parent_id' => $value['parentID']
                         );
@@ -429,7 +429,7 @@ class MCategory extends Eloquent{
                             'parent_id' => $value['parentID']
                         );
                         $whereData = array(
-                            'user_id' => 1,
+                            'user_id' => $userID,
                             'id' => $value['id'],
                         );
                         DB::table(Config::get('constants.TABLE_NAME.S_CATEGORY'))->where($whereData)->update($data);

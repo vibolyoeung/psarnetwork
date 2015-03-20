@@ -99,7 +99,7 @@ You will be benefit with free account by posing free ,  owning page free .If you
     
     'MENU_MENU' => 'Menu',
     'MENU_Content_Page' => 'Content Page',
-    'MENU_Your_info' => 'Your Page info',
+    'MENU_Your_info' => 'Persoanl Profile',
     'MENU_Add_Connector' => 'Add Connector',
     'MENU_Finish' => 'Finish',
     

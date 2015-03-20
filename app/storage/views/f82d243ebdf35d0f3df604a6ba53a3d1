@@ -1,0 +1,117 @@
+<?php $__env->startSection('title'); ?>
+	Create
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('breadcrumb'); ?>
+	<ul class="breadcrumb">
+	<li><a href="<?php echo URL::to('admin/dashboard'); ?>">Dashboard</a></li>
+	<li><a href="<?php echo URL::to('admin/slideshows'); ?>">Slideshow</a></li>
+	<li>Create</li>
+	</ul>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<div class="row">
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="panel panel-default">
+			<div class="panel-heading clearfix">
+				<i class="icon-calendar"></i>
+				<h3 class="panel-title">Slideshows</h3>
+			</div>
+			<div class="panel-body">
+				<?php echo Form::open(array('url'=>'admin/create-slideshow','enctype'=>'multipart/form-data','file' => true)); ?>
+
+				<div class="form-group">
+					<label>Title<span class="class-required">*</span></label>
+					<?php echo Form::text('title',null, array('class' => 'form-control','placeholder'=>'Enter Title')); ?>
+
+					<span class="class-error"><?php echo $errors->first('title'); ?></span>
+				</div>
+
+				<div class="form-group">
+					<label>Link URL<span class="class-required">*</span></label>
+					<?php echo Form::text('url',null, array('class' => 'form-control','placeholder'=>'Enter URL')); ?>
+
+					<span class="class-error"><?php echo $errors->first('url'); ?></span>
+				</div>
+
+				<div class="form-group">
+					<label>Create Date <span class="class-required">*</span></label>
+					<?php echo Form::text('createdDate',null, array('class' => 'form-control datepicker','placeholder'=>'Enter Create Date')); ?>
+
+					<span class="class-error"><?php echo $errors->first('createdDate'); ?></span>
+				</div>
+
+				<div class="form-group">
+					<label>Expire Date <span class="class-required">*</span></label>
+					<?php echo Form::text('ExpireDate',null, array('class' => 'form-control datepicker','placeholder'=>'Enter Expire Date')); ?>
+
+					<span class="class-error"><?php echo $errors->first('ExpireDate'); ?></span>
+				</div>
+
+				<div class="form-group">
+					<label>Picture<span class="class-required">*</span></label>
+					<?php echo Form::file('file',array('class' => 'form-control')); ?>
+
+					<span class="class-error"><?php echo $errors->first('file'); ?></span>
+				</div>
+
+				<div class="form-group">
+					<label>Enter Advertiser</label>
+					<?php echo Form::select('isAdvertiser',array(''=>'Select Advertiser','1'=>'Advertiser'),'key', array('class' => 'form-control','id'=>'isAdvertiser'));; ?>
+
+				</div>
+
+				<div id="isAdvertiserOption">
+					<div class="form-group">
+						<label>Name</label>
+						<?php echo Form::text('name',null, array('class' => 'form-control','placeholder'=>'Enter Name')); ?>
+
+					</div>
+
+					<div class="form-group">
+						<label>Phone</label>
+						<?php echo Form::text('phone',null, array('class' => 'form-control','placeholder'=>'Enter phone')); ?>
+
+					</div>
+
+					<div class="form-group">
+						<label>Email</label>
+						<?php echo Form::text('email',null, array('class' => 'form-control','placeholder'=>'Enter Email')); ?>
+
+					</div>
+
+					<div class="form-group">
+						<label>Address</label>
+						<?php echo Form::text('Address',null, array('class' => 'form-control','placeholder'=>'Enter Address')); ?>
+
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label>Short Description</label>
+					<?php echo Form::textarea('short_desc',null, array('class' => 'form-control','placeholder'=>'Enter short description')); ?>
+
+				</div>
+
+				<div class="form-group">
+					<label>Description</label>
+					<?php echo Form::textarea('desc',null, array('class' => 'form-control','placeholder'=>'Enter description')); ?>
+
+				</div>
+				<?php echo Form::submit('Create', array('class' => 'btn btn-success','name'=>'btnSubmit')); ?>
+
+				<?php echo Form::close(); ?>
+
+			</div>
+		</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+
+			$('#isAdvertiserOption').hide();
+			isAdvertiserDisplay();
+
+	</script>
+ <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('backend/layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
