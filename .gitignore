@@ -4,4 +4,4 @@ public/upload
 .project
 .buildpath
 .settings
-app/config/*
+app/config/app.php
