@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://psarnetwork.local/',
+	'url' => 'http://localhost/psarnetwork/public/',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -121,7 +121,9 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-		'Intervention\Image\ImageServiceProvider'
+		'Intervention\Image\ImageServiceProvider',
+        'Mews\Captcha\CaptchaServiceProvider',
+        
 
 	),
 
@@ -156,6 +158,7 @@ return array(
 		'Auth'              => 'Illuminate\Support\Facades\Auth',
 		'Blade'             => 'Illuminate\Support\Facades\Blade',
 		'Cache'             => 'Illuminate\Support\Facades\Cache',
+        'Captcha'           => 'Mews\Captcha\Facades\Captcha',
 		'ClassLoader'       => 'Illuminate\Support\ClassLoader',
 		'Config'            => 'Illuminate\Support\Facades\Config',
 		'Controller'        => 'Illuminate\Routing\Controller',

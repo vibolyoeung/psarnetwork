@@ -30,6 +30,8 @@ class FeMemberController extends BaseController {
             $loginName = Input::get('loginName');
             $password = Input::get('password');
             $result = $this->mod_member->memberLogin($loginName, $password);
+            var_dump($result);
+            die;
             if (!empty($result)) {
                 Session::put('currentUserId', $result->id);
                 Session::put('currentUserName', $result->name);
@@ -236,6 +238,12 @@ class FeMemberController extends BaseController {
      * @return void
      */
     public function userinfo($usertype = '', $step = '') {
+        //Session::put('currentUserId'
+//        if(Session::has('currentUserId')) {
+//            
+//        } else {
+//            
+//        }
         $limit = $this->mod_setting->getSlidshowNumber();
         $listCategories = self::getCategoriesHomePage();
         $userID = 1;
@@ -516,7 +524,24 @@ class FeMemberController extends BaseController {
                             );
                             $response = DB::table(Config::get('constants.TABLE_NAME.STORE'))->where($where)->update(array('sto_value'=>json_encode($dataSet)));
                         }
-                        break;       
+                        break;
+                        
+                    case 'userLayoutFooter':
+                        $getUserStore = $this->mod_store->getUserStore($userID);
+                        if(!empty($getUserStore)) {
+                            $userStoreID = $getUserStore[0]->id;
+                            $userStoresValue = $getUserStore[0]->sto_value;
+                            $userStoresValueArr = json_decode($userStoresValue, true);
+                            if(array_key_exists('footer_text',$userStoresValueArr)) {
+                                $ValueArr = array('footer_text'=>$MainMenu);
+                                $dataArr = array_merge($userStoresValueArr, $ValueArr);
+                            } else {
+                                $dataArr = array('footer_text'=>$MainMenu,'layout'=>$userStoresValueArr['layout']);
+                            }
+                            $where = array('user_id'=>$userID,'id'=>$userStoreID);
+                            $response = DB::table(Config::get('constants.TABLE_NAME.STORE'))->where($where)->update(array('sto_value'=>json_encode($dataArr)));
+                        }
+                        break;          
                 }
             }
 

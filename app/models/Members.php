@@ -29,6 +29,7 @@ class Members extends Eloquent{
 		$query->where('user_type', '=', Config::get('constants.CLIENT_USER'));
 		$query->where('status', '=', self::STATUS);
 		$result = $query->first();
+        var_dump($result);die;
 		return $result;
 	}
 }

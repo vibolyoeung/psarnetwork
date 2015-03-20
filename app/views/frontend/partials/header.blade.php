@@ -27,7 +27,7 @@
         <link rel="apple-touch-icon-precomposed" sizes="72x72"
               href="{{Config::get('app.url')}}/frontend/images/ico/apple-touch-icon-72-precomposed.png">
     </head>
-    <body>
+    <body>  
 		<header id="header"><!--=====Start Header]==============-->
             <div class="header_top">
                 <!--header_top-->
@@ -66,6 +66,14 @@
                     </div>
                 </div>
             </div><!-- ============End header top here============== -->
+            <!--for mesage alert -->         
+ <div class="message-alert alert alert-warning" data-time="3000" style="display: none;"><strong>Warning!</strong> Better check yourself, you're not looking too good.</div>
+ <div class="message-alert alert alert-warning message-loading" data-time="5000" style="display: none;"><img src="{{Config::get('app.url')}}frontend/images/upload_progress.gif" alt="loading...."/> Loading...</div>
+ <div class="message-alert alert alert-success" data-time="3000" style="display: none;"><strong>Well done!</strong> You successfully read this important alert message.</div>  
+ <div class="message-alert alert alert-success message-success" data-time="3000" style="display: none;"><strong>Updated...</strong></div>  
+ <div class="message-alert alert alert-info" data-time="3000" style="display: none;"><strong>Heads up!</strong> This alert needs your attention, but it's not super important.</div>   
+ <div class="message-alert alert alert-danger" data-time="3000" style="display: none;"><strong>Oh snap!</strong> Change a few things up and try submitting again.</div>    
+ 
             <div class="container-fluid top-menu">
             	<div class="col-lg-5 top_promotion">
             		<div class="col-lg-2">

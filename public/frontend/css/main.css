@@ -2873,7 +2873,6 @@ h2.title {
 #slider-carousel .right{
 	right:3%;
 }
-
 @media screen and (max-width: 1400px){
 	#header .container-fluid > .top_promotion{
 		display:none !important;
@@ -3164,3 +3163,4 @@ a.home_icon{
   overflow: hidden;
   overflow-y: scroll;
 }
+.message-alert {position: absolute;right: 0;left: 0;z-index: 99999;top: 0!important;text-align: center!important;font-size: 120%;}

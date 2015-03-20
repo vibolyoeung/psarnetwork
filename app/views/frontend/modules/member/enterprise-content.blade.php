@@ -163,7 +163,7 @@ var homePage = "{{Config::get('app.url')}}";
 												Your Content Page Design
 											</h3>
 											<div class="col-sm-12">
-												<form id="imageLogo" method="post" enctype="multipart/form-data" action='{{Config::get('app.url ')}}/member/ajaxupload'>
+												<form id="imageLogo" method="post" enctype="multipart/form-data" action='{{Config::get('app.url')}}/member/ajaxupload'>
 													<fieldset>
 														<legend>
 															Logo:
@@ -179,7 +179,7 @@ var homePage = "{{Config::get('app.url')}}";
 												</form>
 											</div>
 											<div class="col-sm-12">
-												<form id="imageBanner" method="post" enctype="multipart/form-data" action='{{Config::get('app.url ')}}/member/ajaxupload'>
+												<form id="imageBanner" method="post" enctype="multipart/form-data" action='{{Config::get('app.url')}}/member/ajaxupload'>
 													<fieldset>
 														<legend>
 															Header:
@@ -220,14 +220,15 @@ var homePage = "{{Config::get('app.url')}}";
 													</div>
 												</fieldset>
 											</div>
-											<!--<div class="col-sm-12">
+											<div class="col-sm-12">
 												<fieldset>
 													<legend>
 														Footer:
 													</legend>
-													<a href="#" onclick="costomizeFooter();">Write your text footer here</a>
+                                                    <textarea id="textFooter" class="form-control" rows="2" placeholder="EX :   Khmer Phone  999 (Buy and Sell all kind of phone )"></textarea
+													<a href="javascript:;" onclick="costomizeFooter();">Write your text footer here</a>
 												</fieldset>
-											</div>-->
+											</div>
 										</div>
 									</div>
 									<!-- end MainMenu Tab -->
@@ -269,6 +270,7 @@ $(document).ready(function(){
                 //console.log(data);
             var obj = JSON.parse(data);
                 if (!obj.error) {
+                    $('.message-success').show();
                     $('#logo-preview').html('<img src="{{Config::get('app.url')}}upload/store/' + obj.image + '" style="height:100px" class="img-thumbnail"/>');
                 }
             }
@@ -283,6 +285,7 @@ $(document).ready(function(){
                 //console.log(data);
             var obj = JSON.parse(data);
                 if (!obj.error) {
+                    $('.message-success').show();
                     $('#banner-preview').html('<img src="{{Config::get('app.url')}}upload/store/' + obj.image + '" style="height:100px" class="img-thumbnail"/>');
                 }
             }
@@ -296,10 +299,21 @@ $(document).ready(function(){
             $("#summit").attr('disabled',true);
         }
     }); 
-    
+ 
+    $('#textFooter').blur(function () {
+        var text = $( this ).val();
+        $.ajax({
+    		url: homePage + "member/getsubmenu?type=userLayoutFooter&id="+text,
+    		type: "get",
+    		success: function(data) {$('.message-success').show();}
+        });
+    });
+     
+ //textFooter   
     $('.costomizeLayout').click(function () {
         //alert(1111);
         if($(this).is(":checked")) {
+            $('.message-success').show();
             var styles = $(this).val();
             $.ajax({
         		url: homePage + "member/getsubmenu?type=userLayout&id="+styles,
@@ -308,6 +322,7 @@ $(document).ready(function(){
         		async: false,
         		success: function(data) {}
             });
+            //$('.message-loading').hide();
             $(".main-stylesheet").attr("href", "{{Config::get('app.url')}}frontend/css/" + styles);
         } else {
             //$("#summit").attr('disabled',true);
@@ -332,6 +347,7 @@ $(document).ready(function(){
         revert: true,
         update: function (event, ui) {
             var stringDiv = "";
+            $('.message-success').show();
             $( this ).children().each(function(i) {
                 var num = i + 1;
                 var id = $(this).attr("id");
@@ -365,20 +381,18 @@ function costomizeLayout(){
 function enableBox(id){
     var checks = $('.page-' + id).is(':checked');
     if (checks) {
+        $('.message-success').show();
         $.ajax({
     		url: homePage + "member/getsubmenu?type=userPageStatus&id="+id+"&st=1",
     		type: "get",
-    		dataType: "json",
-    		async: false,
     		success: function(data) {}
         });
         //$('.page-' + id).attr('checked','checked');
     } else {
+        $('.message-success').show();
         $.ajax({
     		url: homePage + "member/getsubmenu?type=userPageStatus&id="+id+"&st=0",
     		type: "get",
-    		dataType: "json",
-    		async: false,
     		success: function(data) {}
         });
         //$('.page-' + id).removeAttr('checked','checked');

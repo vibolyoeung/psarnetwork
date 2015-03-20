@@ -26,7 +26,8 @@
         "Illuminate\\Validation\\ValidationServiceProvider",
         "Illuminate\\View\\ViewServiceProvider",
         "Illuminate\\Workbench\\WorkbenchServiceProvider",
-        "Intervention\\Image\\ImageServiceProvider"
+        "Intervention\\Image\\ImageServiceProvider",
+        "Mews\\Captcha\\CaptchaServiceProvider"
     ],
     "eager": [
         "Illuminate\\Cookie\\CookieServiceProvider",
@@ -36,7 +37,8 @@
         "Illuminate\\Session\\SessionServiceProvider",
         "Illuminate\\View\\ViewServiceProvider",
         "Illuminate\\Workbench\\WorkbenchServiceProvider",
-        "Intervention\\Image\\ImageServiceProvider"
+        "Intervention\\Image\\ImageServiceProvider",
+        "Mews\\Captcha\\CaptchaServiceProvider"
     ],
     "deferred": {
         "artisan": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",

@@ -57,6 +57,14 @@ Route::filter('auth', function()
 	}
 });
 
+Route::filter('auth_member', function()
+{
+	if (!Session::has('currentUserId'))
+	{
+		return Redirect::to('member/login');
+	}
+});
+
 
 
 

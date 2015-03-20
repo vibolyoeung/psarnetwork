@@ -51,6 +51,15 @@
       </div>
     </div>
   </div>
-</div>           
+</div>
+<script type="text/javascript">
+function hideTagFn(){
+   $('.message-alert').fadeOut(500);
+}
+
+window.setInterval(function () {
+    hideTagFn();
+}, 5000);
+</script>         
 	</body>
 </html>
