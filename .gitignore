@@ -1,8 +1,6 @@
 composer.phar
-vendor/
+vendor/*
 public/upload
 .project
 .buildpath
 .settings
-app/config/database.php
-app/config/app.php
