@@ -1,9 +1,8 @@
-@extends('frontend.modules.product.layout')
+@extends('frontend.nosidebar') 
 @section('title')
 	Product Management
 @endsection
 @section('left')
-	@include('frontend.modules.product.partials.left_product_link')
 @endsection
 	@section('breadcrumb')
 	<ol class="breadcrumb">
@@ -13,6 +12,9 @@
 	</ol>
 	@endsection
 @section('content')
+<div class="col-sm-2">
+	@include('frontend.modules.product.partials.left_product_link')
+</div>
 <div class="col-sm-10">
 	<div class="features_items">
 		<!-- ============Slider end here========= -->
@@ -32,48 +34,55 @@
 		<table class="table table-bordered product-list">
 			<thead>
 				<tr>
-					<th>Picture</th>
-					<th>Title</th>
-					<th>Description</th>
-					<th>Others</th>
-					<th>Action</th>
+					<th width="10%">Picture</th>
+					<th width="15%">Title</th>
+					<th width="55%">Description</th>
+					<th width="10%">Others</th>
+					<th width="10%">Action</th>
 				</tr>
 			</thead>
 			<tbody>
-			@for($i=0;$i<5; $i++)
+			@foreach($products as $product)
 				<tr>
 					<td>
-						{{HTML::image("upload/product/thumb/ring.jpg",'Ring',array('class' => 'img-rounded','width'=>'100'))}}
+						{{HTML::image("upload/product/thumb/$product->thumbnail",$product->title,array('class' => 'img-rounded','width'=>'100'))}}
 					</td>
-					<td>Itally Dimon Ring </td>
-					<td>This is good Ring..</td>
+					<td>{{ $product->title }} </td>
+					<td>{{ $product->description }}</td>
 					<td>
-						<div>700$</div>
-						<div>Somoeun</div>
-						<div>12-Dec-2015</div>
-						<div>View 102</div>
+						<div>{{ $product->price }}$</div>
+						<div>{{ Session::get('currentUserName') }}</div>
+						<div>{{ $product->created_date }}</div>
+						<div>View {{ $product->view }}</div>
 					</td>
 					<td>
 						<div>
 							<a>Top Up</a>
 						</div>
 						<div>
-							<a>Edit</a>
+							<a href="{{URL::to('products/edit')}}/{{$product->id}}">
+								Edit
+							</a>
 						</div>
 						<div>
-							<a>Delete</a>
+							<a href="{{URL::to('products/delete')}}/{{$product->id}}">
+								Delete
+							</a>
 						</div>
 						<div>
-							<a>Disable</a>
+							<a href="{{URL::to('products/ispublished')}}/{{$product->id}}/{{$product->is_publish}}">
+								@if($product->is_publish === 0)
+									Enable
+								@else
+									Disable
+								@endif
+							</a>
 						</div>
 					</td>
 				</tr>
-			@endfor
+			@endforeach
 			</tbody>
 		</table>
 	</div>
 </div>
-@endsection
-@section('footer')
-	@include('frontend.modules.store.partials.footer');
 @endsection

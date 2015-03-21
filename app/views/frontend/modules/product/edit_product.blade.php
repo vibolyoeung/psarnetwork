@@ -11,7 +11,7 @@
 	@endsection
 @section('content')
 	<div class="container">
-		{{Form::open(array('url'=>'products/create','enctype'=>'multipart/form-data','file' => true, 'class'=>'form-horizontal'))}}
+		{{Form::open(array('url'=>'products/edit/$product->id','enctype'=>'multipart/form-data','file' => true, 'class'=>'form-horizontal'))}}
 			<div class="row">
 				<div class="col-md-12 ">
 					<div class="col-md-6">
@@ -23,7 +23,12 @@
 								<div class="col-sm-10">
 									<select required="required" class="form-control" name="s_category">
 										<?php foreach($categoryTree as $cl) : ?>
-											<option value="{{$cl['id']}}">
+											<option
+												@if($product->s_category_id === $cl['id'])
+													selected
+												@endif 
+												value="{{$cl['id']}}"
+											>
 												{{$cl['m_title']}}
 											</option>
 										<?php endforeach;?>
@@ -35,7 +40,7 @@
 									{{trans('product.product_title')}}
 								</label>
 								<div class="col-sm-10">
-									{{Form::text('productTitle',null, array('required'=> 'required','class'=>'form-control'))}}
+									{{Form::text('productTitle',$product->title, array('required'=> 'required','class'=>'form-control'))}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -43,7 +48,7 @@
 									{{trans('product.transfer_as')}}
 								</label>
 								<div class="col-sm-10">
-									{{ Form::select('proTransferType',$proTransferType, null, array('required'=> 'required', 'class' => 'form-control'))}}
+									{{ Form::select('proTransferType',$proTransferType, $product->pro_transfer_type_id, array('required'=> 'required', 'class' => 'form-control'))}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -51,7 +56,7 @@
 									{{trans('product.condition')}}
 								</label>
 								<div class="col-sm-10">
-									{{ Form::select('productCondition',$productCondition, null, array('required'=> 'required', 'class' => 'form-control'))}}
+									{{ Form::select('productCondition',$productCondition, $product->pro_condition_id, array('required'=> 'required', 'class' => 'form-control'))}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -59,7 +64,7 @@
 									{{trans('product.status')}}
 								</label>
 								<div class="col-sm-10">
-									{{ Form::select('productStatus',Product::$PRODUCT_STATUS, null, array('required'=> 'required', 'class' => 'form-control'))}}
+									{{ Form::select('productStatus',Product::$PRODUCT_STATUS, $product->pro_status, array('required'=> 'required', 'class' => 'form-control'))}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -67,7 +72,7 @@
 									{{trans('product.price')}}
 								</label>
 								<div class="col-sm-10">
-									{{Form::text('productPrice', null, array('required'=> 'required', 'class'=>'form-control'))}}
+									{{Form::text('productPrice', $product->price, array('required'=> 'required', 'class'=>'form-control'))}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -75,7 +80,7 @@
 									{{trans('product.description')}}
 								</label>
 								<div class="col-sm-10">
-									{{Form::textarea('desc', null, array('required'=> 'required', 'class'=>'form-control'))}}
+									{{Form::textarea('desc', $product->description, array('required'=> 'required', 'class'=>'form-control'))}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -83,7 +88,7 @@
 									{{trans('product.publish')}}
 								</label>
 								<div class="col-sm-10">
-									{{ Form::select('isPublish',Product::$PRODUCT_IS_PUBLISH, null, array( 'required'=> 'required', 'class' => 'form-control'))}}
+									{{ Form::select('isPublish',Product::$PRODUCT_IS_PUBLISH, $product->is_publish, array( 'required'=> 'required', 'class' => 'form-control'))}}
 								</div>
 							</div>
 						</div>
@@ -110,12 +115,13 @@
 								{{Form::file('quotation', array('class' => 'form-control'))}}
 							</div>
 							<hr />
+							<?php $contactInfo = json_decode($product->contact_info, true)?>
 							<div class="form-group">
 								<label>{{trans('product.contact_name')}}</label>
 								{{ 
 									Form::text(
 										'contactName', 
-										Session::get('currentUserName'), 
+										$contactInfo['contactName'], 
 										array(
 											'required'=> 'required', 
 											'class' => 'form-control'
@@ -128,7 +134,7 @@
 								{{ 
 									Form::text(
 										'contactEmail', 
-										Session::get('currentUserEmail'),
+										$contactInfo['contactEmail'], 
 										array(
 											'required'=> 'required', 
 											'class' => 'form-control'
@@ -141,7 +147,7 @@
 								{{ 
 									Form::text(
 										'contactHP', 
-										Session::get('currentUserPhone'), 
+										$contactInfo['contactHP'], 
 										array(
 											'required'=> 'required', 
 											'class' => 'form-control'
@@ -154,7 +160,7 @@
 								{{ 
 									Form::text(
 										'contactLocation', 
-										null,
+										$contactInfo['contactLocation'], 
 										array(
 											'required'=> 'required', 
 											'class' => 'form-control'

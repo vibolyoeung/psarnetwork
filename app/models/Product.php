@@ -96,4 +96,84 @@ class Product extends Eloquent{
 		return $treeArray;
 	}
 
+	/**
+	 *Persist product informations
+	 * 
+	 * @param array $products
+	 * @return int last id
+	 * @access public
+	 */
+	public function persistToProduct($products) {
+		$lastId = $result = DB::table(Config::get('constants.TABLE_NAME.PRODUCT'))
+			->insertGetId($products);
+		return $lastId;
+	}
+
+	/**
+	 * List all products by current user
+	 * 
+	 * @param array $productInStore
+	 * @return array products
+	 * @access public
+	 */
+	public function findAll(){
+		$product = Config::get('constants.TABLE_NAME.PRODUCT');
+		return DB::table($product .' AS p')
+			->select('*')
+			->where('p.user_id', '=', Session::get('currentUserId'))
+			->paginate(10);
+	}
+
+	/**
+	 * Delete product by id
+	 * 
+	 * @param int $product_id
+	 * @return void
+	 * @access public
+	 */
+	public function deleteProductById($product_id){
+		$product = Config::get('constants.TABLE_NAME.PRODUCT');
+		return DB::table($product)
+			->where('id', '=', $product_id)
+			->where('user_id', '=', Session::get('currentUserId'))
+			->delete();
+	}
+
+	/**
+	 * Disable or Enable product by id
+	 * 
+	 * @param int $product_id
+	 * @param boolean $is_publish
+	 * @return void
+	 * @access public
+	 */
+	public function isPublishProduct($product_id, $is_publish) {
+		if($is_publish == 1) {
+			$status = array('is_publish' => 0);
+		} else {
+			$status = array('is_publish' => 1);
+		}
+
+		$product = Config::get('constants.TABLE_NAME.PRODUCT');
+		return DB::table($product)
+			->where('id', '=', $product_id)
+			->where('user_id', '=', Session::get('currentUserId'))
+			->update($status);
+	}
+
+	/**
+	 * Update product by id
+	 * 
+	 * @param int $product_id
+	 * @return void
+	 * @access public
+	 */
+	public function findProductById($product_id) {
+		$product = Config::get('constants.TABLE_NAME.PRODUCT');
+		return DB::table($product)
+			->where('id', '=', $product_id)
+			->where('user_id', '=', Session::get('currentUserId'))
+			->first();
+	}
+	
 }
