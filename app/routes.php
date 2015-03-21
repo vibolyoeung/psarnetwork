@@ -116,7 +116,7 @@ Route::any('member/login', 'FeMemberController@index');
 Route::any('member/register','FeMemberController@register'); 
 Route::any('member/getdistrict','FeMemberController@getDistric');
 Route::any('member/getmarkettype/{id}','FeMemberController@getMarketType');
-Route::any('/agreement/{usertype}','FeMemberController@agreement');
+Route::any('member/agreement/{usertype}','FeMemberController@agreement');
 Route::group(array('before' => 'auth_member'), function () {
     Route::group(array('prefix' => 'member'), function () {
         /*regirst page*/ 
