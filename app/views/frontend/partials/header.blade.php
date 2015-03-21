@@ -124,11 +124,11 @@
 				        <div class="collapse navbar-collapse promotion-list">
 				            <ul class="nav navbar-nav top_menu_list">
 								<li class="active"><a href="#">All</a></li>
-								<li><a href="{{Config::get('app.url')}}supermarket/list">Super Market</a></li>
-								<li><a href="#">Traditional Market</a></li>
-								<li><a href="#">Private Company</a></li>
-								<li><a href="#">Home Shop</a></li>
-								<li><a href="#">Individual</a></li>
+								<li><a href="{{Config::get('app.url')}}productlocation/1">Super Market</a></li>
+								<li><a href="{{Config::get('app.url')}}productlocation/2">Traditional Market</a></li>
+								<li><a href="{{Config::get('app.url')}}productlocation/3">Private Company</a></li>
+								<li><a href="{{Config::get('app.url')}}productlocation/4">Home Shop</a></li>
+								<li><a href="{{Config::get('app.url')}}productlocation/5">Individual</a></li>
 				            </ul>
 				        </div><!--/.nav-collapse -->
 				</div>

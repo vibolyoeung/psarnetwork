@@ -2542,7 +2542,7 @@ h2.title {
 
 .commnets {
     border: 1px solid #F7F7F0;
-    padding: 18px 18px 18px 0;
+    padding: 18px;
     margin-bottom: 50px
 }
 
@@ -2556,7 +2556,8 @@ h2.title {
 
 .media-heading {
     color: #363432;
-    font-size: 14px;
+    font-size: 16px;
+    text-align:center;
     font-weight: 700;
     font-family: 'Roboto', sans-serif;
     margin-bottom: 15px

@@ -135,10 +135,9 @@ Route::group(array('prefix' => 'products'), function () {
         'FePageController@getProductbyCategory'); }
 );
 
-/*===========Sumper Maket route==*/
-Route::group(array('prefix' => 'supermarket'), function () {
-    Route::any('/list', 'FeSuperMarketController@listSuppermarket'); }
-);
+Route::group(array('prefix'=>'productlocation'),function(){
+	Route::any('/{id}','FePageController@listSuppermarket');
+});
 
 // [your site path]/app/routes.php
 
