@@ -1,0 +1,18 @@
+	<?php echo $__env->make('frontend.partials.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<?php echo $__env->make('frontend.partials.searchtop', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<?php echo App::make('FePageController')->mainCategory(); ?>
+
+
+	<section>
+		<div class="container">
+			<div class="row">
+				<?php echo $__env->make('frontend.partials.left', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+				<?php echo $__env->yieldContent('content'); ?>
+				<?php echo $__env->make('frontend.partials.right', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+			</div>
+		</div>
+		<div class="container client_location">
+			<?php echo $__env->yieldContent('client_location'); ?>
+		</div>
+	</section>
+	<?php echo $__env->make('frontend.partials.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>;
