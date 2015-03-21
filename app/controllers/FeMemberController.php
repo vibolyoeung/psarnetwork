@@ -58,13 +58,13 @@ class FeMemberController extends BaseController {
      * @method createUser
      * @return void
      */
-    public function createUser() {
+    public function tempUser() {
         $addressArr = array(
             'province' => Input::get('province'),
             'disctict' => Input::get('district'),
             'g_latitude_longitude' => Input::get('gLatitudeLongitude'),
             );
-
+        Session::forget('user');
         $data = array(
             'email' => trim(Input::get('email')),
             'name' => trim(Input::get('name')),
@@ -76,32 +76,21 @@ class FeMemberController extends BaseController {
             'account_role' => Input::get('accountRole'),
             'status' => 1,
             'password' => md5(sha1(Input::get('password'))),
-            'create_at' => date(self::CURRENT_DATE));
-
-        /*add data for store*/
-        $uid = $this->user->insertGetId($data);
-
-        $storeData = array(
-            'user_id' => $uid,
-            'sup_id' => trim(Input::get('marketType')),
-            );
-
-        $sid = $this->mod_store->insertGetId($storeData);
-        $accounttype = Input::get('accounttype');
-        //        if ($accounttype == '1') {
-        //            Mail::send(array('member.mails.index', 'text.view'), array('firstname' => Input::get('name')),
-        //                function ($message)
-        //            {
-        //                $message->to(Input::get('email'), Input::get('name'))->
-        //                    subject('Welcome to the Laravel 4 Auth App!'); }
-        //            );
-        //        } elseif ($accounttype == 2) {
-        //
-        //        }
-        return $data = array(
-            'user_id' => $uid,
-            'store_id' => $sid,
-            );
+            'create_at' => date(self::CURRENT_DATE)
+        );
+        Session::push('user.email', trim(Input::get('email')));
+        Session::push('user.name', trim(Input::get('name')));
+        Session::push('user.telephone', trim(Input::get('telephone')));
+        Session::push('user.address', json_encode(@$addressArr));
+        Session::push('user.user_type', Config::get('constants.CLIENT_USER'));
+        Session::push('user.client_type', Input::get('client_type'));
+        Session::push('user.account_type', Input::get('account_type'));
+        Session::push('user.account_role', Input::get('account_role'));
+        Session::push('user.status', 1);
+        Session::push('user.password', md5(sha1(Input::get('password'))));
+        Session::push('user.create_at', date(self::CURRENT_DATE));
+        return Session::get('user');
+        
     }
 
     /**
@@ -122,11 +111,10 @@ class FeMemberController extends BaseController {
 
             if ($validator->passes()) {
                 $checkEmail = $this->user->checkEmail(trim(Input::get('email')));
-                $data_user = $this->createUser();
+                $data_user = $this->tempUser();
                 $accounttype = Input::get('accounttype');
                 $messageRegister = 'Registration operation had been successful, please Login!';
-                return Redirect::to('/member/agreement/' . $accounttype . '?uid=' . $data_user['user_id'] .
-                    '&sid=' . $data_user['store_id'])->with('SECCESS_MESSAGE_REGISTER', $messageRegister);
+                return Redirect::to('/member/agreement/' . $accounttype)->with('SECCESS_MESSAGE_REGISTER', $messageRegister);
             } else {
                 return Redirect::to('/member/register')->withInput()->withErrors($validator);
             }
