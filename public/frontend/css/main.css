@@ -127,12 +127,12 @@ a#scrollUp i {
     width: 100%;
 }
 
-.header_top .language-bar ul li img {
+.header_top .language-bar ul > li > img {
     float: right;
     margin-top: 4px;
 }
 
-.header_top .language-bar ul li {
+.header_top .language-bar ul > li {
     background: #f0f0e9;
     width: 95%;
     padding: 3px 5px 3px 5px;
@@ -140,7 +140,7 @@ a#scrollUp i {
     border-bottom: 1px solid #ffffff;
 }
 
-.header_top .contactinfo > ul li a {
+.header_top .contactinfo > ul > li a {
     padding: 0 15px;
 }
 
@@ -169,14 +169,14 @@ a#scrollUp i {
     margin-top: 0;
 }
 
-.social-icons ul.navbar-nav li a {
+.social-icons ul.navbar-nav > li > a {
     border: 0 none;
     border-radius: 0;
     color: #ffffff;
     padding: 0px;
 }
 
-.social-icons ul li {
+.social-icons ul > li {
     display: inline-block;
 }
 
@@ -337,7 +337,7 @@ a#scrollUp i {
     }
 }
 
-.social-icons > ul li a i {
+.social-icons > ul > li > a > i {
     padding: 11px 4px;
     transition: all 0.9s ease 0s;
     -moz-transition: all 0.9s ease 0s;
@@ -345,12 +345,12 @@ a#scrollUp i {
     -o-transition: all 0.9s ease 0s;
 }
 
-.social-icons > ul li a:hover {
+.social-icons > ul > li > a:hover {
     background-color: transparent;
     color: #5BBCEC;
 }
 
-.social-icons > ul li a i:hover {
+.social-icons > ul > li > a > i:hover {
     background-color: transparent;
     transition: all 0.9s ease 0s;
     -moz-transition: all 0.9s ease 0s;

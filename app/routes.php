@@ -111,6 +111,7 @@ Route::any('/pro/{lang}/{product_name}/{pro_id}', 'FeDetailController@index');
 Route::any('/pro/{product_name}/{pro_id}', 'FeDetailController@index');
 
 /*for member page*/
+Route::any('/logout', 'FePageController@getSignOut');
 Route::any('member/login', 'FeMemberController@index');
 Route::any('member/register','FeMemberController@register'); 
 Route::any('member/getdistrict','FeMemberController@getDistric');

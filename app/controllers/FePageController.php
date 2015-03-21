@@ -172,4 +172,9 @@ class FePageController extends BaseController {
 		->with('listMarket',$marketLists->data)
 		->with('advTops', $advTops->result);
 	}
+    
+    public function getSignOut() {
+        Session::flush();
+        return Redirect::route('/');
+    }    
 }
