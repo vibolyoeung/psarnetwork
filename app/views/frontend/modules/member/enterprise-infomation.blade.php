@@ -20,7 +20,7 @@ var homePage = "{{Config::get('app.url')}}";
 </script>
 <div class="memberlogin">
 	<div class="col-sm-3">
-		@include('frontend.modules.member.sidebar')
+		@include('frontend.modules.member.layout.sidebar')
 		<div class="clear">
 		</div>
 	</div>

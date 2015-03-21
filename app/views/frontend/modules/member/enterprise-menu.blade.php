@@ -19,7 +19,7 @@ var homePage = "{{Config::get('app.url')}}";
 <div class="memberlogin">
 	{{Form::open(array('url'=>'member/userinfo/2/menu','enctype'=>'multipart/form-data','file' => true, 'id'=>'PersonalForm'))}}
 	<div class="col-sm-3">
-        @include('frontend.modules.member.sidebar')
+        @include('frontend.modules.member.layout.sidebar')
 		<div class="clear">
 		</div>
 	</div>
