@@ -1,6 +1,0 @@
-composer.phar
-vendor/*
-public/upload
-.project
-.buildpath
-.settings

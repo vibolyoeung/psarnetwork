@@ -117,11 +117,8 @@ a#scrollUp i {
 
 .header_top .language-bar {
     z-index: 99999;
-    margin-bottom: 10px;
     overflow: hidden;
-    left: 35%;
-    position: absolute;
-    top: 1px;
+    padding-left: 15px;
 }
 
 .header_top .language-bar ul {
@@ -150,7 +147,7 @@ a#scrollUp i {
 .header_top .social-icons > ul > li > a i {
     padding: 5px 4px;
     font-size: 12px;
-    color:black;
+    color:#fff;
 }
 
 .contactinfo > ul li:first-child {
