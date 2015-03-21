@@ -1,7 +1,7 @@
 <?php
-
+use Illuminate\Redis\Database;
 class Market extends Eloquent{
-
+	
 	/**
 	 *
 	 * listingMarkets: this function using for listing all markets
@@ -253,6 +253,36 @@ class Market extends Eloquent{
 		}catch (\Exception $e){
 			$response->result = 0;
 			$response->errorMsg = $e->getMessage();
+		}
+		return $response;
+	}
+	
+	/**
+	 *
+	 * getMarketTofrontend: this function is used for selecting all supper market to front end
+	 * @param id: is id the market weather it is supper market, homeshop, individual or ...
+	 * @access: public
+	 * @author: KIMHIM HOM
+	 * @return true: if have supper markets in Database
+	 * @throws Exception
+	 */
+	
+	public function getMarketTofrontend(){
+		$response = new stdClass();
+		$arr = array();
+		try {
+			$query = DB::table(Config::get('constants.TABLE_NAME.MARKET'));
+			$query->select('*');
+			$query->where('market_type','=', 5);
+			foreach ($result as $marketType) {
+				$arr[$marketType->id] = $marketType->name;
+			}
+			
+			$query->orderBy('id','desc');
+			$result = $query->paginate(Config::get('constants.BACKEND_PAGINATION_MARKET'));
+			$response->data = $arr;
+		}catch (\Exception $e){
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
 		}
 		return $response;
 	}

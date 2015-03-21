@@ -13,12 +13,14 @@ class FePageController extends BaseController {
 	private $mod_category;
 	private $mod_setting;
 	private $mod_advertisment;
+	private $mod_market;
 
 	function __construct(){
 		$this->mod_slideshow = new Slideshow();
 		$this->mod_category = new MCategory();
 		$this->mod_setting = new Setting();
 		$this->mod_advertisment = new Advertisement();
+		$this->mod_market = new Market();
 	}
 
 	public function index()
@@ -152,5 +154,22 @@ class FePageController extends BaseController {
 				->with('advTops', $advTops->result)
 				->with('Provinces', $this->mod_setting->listProvinces()
 			);
+	}
+	
+	/*
+	 * 
+	 */
+	public function listSuppermarket($id=0){
+		$advTops = $this->mod_advertisment
+		->getAdvertisementHomePage(
+				self::HOMEPAGE,
+				self::HOME_PAGE_TOP,
+				1
+		);
+		
+		$marketLists = $this->mod_market->listingMarkets();
+		return View::make('frontend.partials.suppermarket')
+		->with('listMarket',$marketLists->data)
+		->with('advTops', $advTops->result);
 	}
 }

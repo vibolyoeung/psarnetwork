@@ -1,0 +1,25 @@
+<?php echo $__env->make('backend.partials.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container">
+    <!-- Top bar start -->
+    <div class="top-bar">
+        <?php echo $__env->make('backend.partials.top_menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    </div>
+    <!-- Top bar end -->
+
+    <!-- Header start -->
+    <header class="navbar" role="navigation">
+            <?php echo $__env->make('backend.partials.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    </header>
+    <!-- Header end -->
+
+    <!--Breadcrumb Start -->
+    <div class="page-title">
+        <?php echo $__env->make('backend.partials.breadcrumb', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    </div>
+    <!-- Breadcrumb  end -->
+    <!-- Content Start -->
+        <?php echo $__env->yieldContent('content'); ?>
+    <!-- Content End -->
+</div>
+<?php echo $__env->make('backend.partials.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
