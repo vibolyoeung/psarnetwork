@@ -125,18 +125,24 @@ Route::group(array('before' => 'auth_member'), function () {
         Route::any('/ajaxupload','FeMemberController@ajaxupload'); 
         Route::any('/getsubmenu','FeMemberController@getsubmenu'); 
     }); 
+    /*for product*/
+    Route::group(array('prefix' => 'products'), function () {
+        Route::any('/list', 'FeProductController@listAllProducts'); 
+        Route::any('/create',
+            'FeProductController@addProduct'); 
+        Route::any('/ispublished/{product_id}/{is_publish}', 'FeProductController@isPublishProduct');
+        Route::any('/delete/{product_id}', 'FeProductController@deleteProduct');
+        Route::any('/edit/{product_id}', 'FeProductController@editProduct');
+        }
+    );
 });
 
-/*for product*/
-Route::group(array('prefix' => 'products'), function () {
-    Route::any('/list', 'FeProductController@listAllProducts'); 
-    Route::any('/create','FeProductController@addProduct'); 
-    Route::any('/productbycategories/{id}','FePageController@getProductbyCategory'); }
+Route::any('products/productbycategories/{id}',
+            'FePageController@getProductbyCategory'); 
+/*===========Sumper Maket route==*/
+Route::group(array('prefix' => 'supermarket'), function () {
+    Route::any('/list', 'FeSuperMarketController@listSuppermarket'); }
 );
-
-Route::group(array('prefix'=>'productlocation'),function(){
-	Route::any('/{id}','FePageController@listSuppermarket');
-});
 
 // [your site path]/app/routes.php
 

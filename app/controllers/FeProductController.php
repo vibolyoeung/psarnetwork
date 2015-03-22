@@ -15,7 +15,9 @@ class FeProductController extends BaseController {
 	 *@return Response
 	 */
 	public function listAllProducts(){
-		return View::make('frontend.modules.product.index');
+		$products = $this->mod_product->findAll();
+		return View::make('frontend.modules.product.index')
+			->with('products', $products);
 	}
 
 	/**
@@ -27,13 +29,25 @@ class FeProductController extends BaseController {
 	public function addProduct() {
 		if(Input::has('btnAddProduct')) {
 			$files = Input::file('file');
+			$filesQuotation = Input::file('quotation');
+			$quotationFile = '';
+			if(!empty($filesQuotation)){
+				$quotationFile = $this->doUploadQaotation($filesQuotation);
+			}	
 			if (!empty($files)){
-				$newFileNames = $this->doUploadImages($files);
+				$jsonNewFileName = $this->doUploadImages($files);
 			}
 
-			return Redirect::to('products/create')
-				->withInput()
-				->withErrors($validator);
+			$products = $this->prepareDataBindProducts(
+				$jsonNewFileName,
+				$quotationFile
+			);
+
+			$productId = $this->mod_product->persistToProduct(
+				$products
+			);
+
+			return Redirect::to('products/list');
 		}
 
 		$listCategories = $this->mod_product->fetchCategoryTree();
@@ -47,24 +61,96 @@ class FeProductController extends BaseController {
 	}
 
 	/**
+	 * Update a product by product id
+	 *
+	 *@param int $product_id
+	 *@access public
+	 *@return void
+	 */
+	public function editProduct($product_id) {
+
+		$product = $this->mod_product->findProductById($product_id);
+		$listCategories = $this->mod_product->fetchCategoryTree();
+		$productTransferTypes = $this->mod_product->findAllTransferType();
+		$productCondictions = $this->mod_product->findAllCondition();
+		return View::make('frontend.modules.product.edit_product')
+			->with('proTransferType', $productTransferTypes->data)
+			->with('productCondition', $productCondictions->data)
+			->with('categoryTree', $listCategories)
+			->with('product', $product);
+	}
+
+	/**
+	 * Delete a product by product id
+	 *
+	 *@param int $product_id
+	 *@access public
+	 *@return void
+	 */
+	public function deleteProduct($product_id) {
+		$this->mod_product->deleteProductById($product_id);
+		return Redirect::to('products/list');
+	}
+
+	/**
+	 * Disable or Enable  a product by product id
+	 *
+	 *@param int $product_id
+	 *@access public
+	 *@return void
+	 */
+	public function isPublishProduct($product_id, $is_publish) {
+		$this->mod_product->isPublishProduct($product_id, $is_publish);
+		return Redirect::to('products/list');
+	}
+
+	/**
 	 * upload images operation
 	 *
-	 * @param $files
+	 *@param $files
 	 *@access private
-	 *@return string fileNames
+	 *@return json  fileNames
 	 */
 	public function doUploadImages($files){
 		$destinationPath = base_path() . '/public/upload/product/';
 		self::generateFolderUpload($destinationPath);
 		$destinationPathThumb = $destinationPath.'thumb/';
+		$images = [];
 		foreach ($files as $file) {
-			$fileName = $file->getClientOriginalName();
-			$file->move($destinationPath, $fileName);
-			Image::make($destinationPath . $fileName)
+			$originFileName = $file->getClientOriginalName();
+			$newFileName = $this->generateFileName($destinationPath, $originFileName);
+			$file->move($destinationPath, $newFileName);
+			Image::make($destinationPath . $newFileName)
 				->resize(100, 100)
-				->save($destinationPathThumb . $fileName);
+				->save($destinationPathThumb . $newFileName);
+			$images[] = array(
+				'pic' => $newFileName
+			);
 		}
 
+		return json_encode($images);
+	}
+
+	/**
+	 * Do upload quotation file operation
+	 * 
+	 * @param $file
+	 * @return void
+	 * @access private
+	 * @method doUploadQaotation
+	 * @return string $newFileName
+	 */
+	private function doUploadQaotation($file)
+	{
+		$destinationPath = base_path() . '/public/upload/quotation/';
+		if(!is_dir($destinationPath)){
+			mkdir($destinationPath, 0777, true);
+		}
+
+		$originFile = $file->getClientOriginalName();
+		$newFileName = $this->generateFileName($destinationPath, $originFile);
+		$file->move($destinationPath, $newFileName);
+		return $newFileName;
 	}
 
 	/**
@@ -74,37 +160,30 @@ class FeProductController extends BaseController {
 	 * @access private
 	 * @return array object
 	 */
-	private static function prepareDataBindProducts() {
-		$data = array(
-			'title' => trim(Input::get('title_en')),
-			'price' => trim(Input::get('title_km')),
-			'product_service_type_id' => trim(Input::get('desc_en')),
-			'thumbnail' => trim(Input::get('desc_km')),
-			'pictures' => trim(Input::get('province_id')),
-			'created_date' => trim(Input::get('district_id')),
-			'pro_condition_id' => trim(Input::get('amount_stair')),
-			'pro_status' => trim(Input::get('market_type')),
-			'pro_transfer_type_id' => trim(Input::get('market_type')),
-			'is_publish' => trim(Input::get('market_type')),
-			'contact_info' => trim(Input::get('market_type')),
-			'file_quotation' => trim(Input::get('market_type')),
-			'description' => trim(Input::get('market_type'))
+	private static function prepareDataBindProducts($pictures, $quotation) {
+		$thumbnail = json_decode($pictures, true);
+		$contactInfo = array(
+			'contactName' => Input::get('productTitle'),
+			'contactEmail' => Input::get('contactEmail'),
+			'contactHP' => Input::get('contactHP'),
+			'contactLocation' => Input::get('contactLocation')
 		);
-		return $data;
-	}
-
-	/**
-	 *
-	 * This function is using for preparing data before inserting data into database
-	 *
-	 * @return array object
-	 */
-	private static function prepareDateBindProductInStore() {
 		$data = array(
-			'pro_id' => Input::get(''),
-			'user_id' => Input::get(''),
-			'store_id' => Input::get(''),
-			's_category_id' => Input::get('')
+			'title' => trim(Input::get('productTitle')),
+			'price' => trim(Input::get('productPrice')),
+			'thumbnail' => $thumbnail[0]['pic'],
+			'pictures' => $pictures,
+			'created_date' => date('Y-m-d'),
+			'pro_condition_id' => trim(Input::get('isPublish')),
+			'pro_status' => trim(Input::get('productStatus')),
+			'pro_transfer_type_id' => trim(Input::get('proTransferType')),
+			'is_publish' => Input::get('isPublish'),
+			'contact_info' => json_encode($contactInfo),
+			'file_quotation' => $quotation,
+			'description' => Input::get('desc'),
+			'user_id' => Session::get('currentUserId'),
+			'store_id' => Session::get('currentUserId'),
+			's_category_id' => Input::get('s_category')
 		);
 		return $data;
 	}
@@ -139,7 +218,7 @@ class FeProductController extends BaseController {
 
 		$temp = explode(".", $fileName);
 		$fileName = end($temp);
-		$fileName = time(). '.' . $fileName;
+		$fileName = sha1(uniqid(mt_rand(), true)). '.' . $fileName;
 		if (file_exists($pathName . $fileName)) {
 			return generateFileName($pathName);
 		}

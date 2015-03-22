@@ -11,12 +11,12 @@
             "version": "1.0.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ClassPreloader/ClassPreloader.git",
+                "url": "https://github.com/mtdowling/ClassPreloader.git",
                 "reference": "2c9f3bcbab329570c57339895bd11b5dd3b00877"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ClassPreloader/ClassPreloader/zipball/2c9f3bcbab329570c57339895bd11b5dd3b00877",
+                "url": "https://api.github.com/repos/mtdowling/ClassPreloader/zipball/2c9f3bcbab329570c57339895bd11b5dd3b00877",
                 "reference": "2c9f3bcbab329570c57339895bd11b5dd3b00877",
                 "shasum": ""
             },
@@ -58,12 +58,20 @@
             "version": "v1.0.8",
             "source": {
                 "type": "git",
+<<<<<<< Updated upstream
                 "url": "https://github.com/borisrepl/boris.git",
+=======
+                "url": "https://github.com/d11wtq/boris.git",
+>>>>>>> Stashed changes
                 "reference": "125dd4e5752639af7678a22ea597115646d89c6e"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< Updated upstream
                 "url": "https://api.github.com/repos/borisrepl/boris/zipball/125dd4e5752639af7678a22ea597115646d89c6e",
+=======
+                "url": "https://api.github.com/repos/d11wtq/boris/zipball/125dd4e5752639af7678a22ea597115646d89c6e",
+>>>>>>> Stashed changes
                 "reference": "125dd4e5752639af7678a22ea597115646d89c6e",
                 "shasum": ""
             },
@@ -571,12 +579,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tchwork/utf8.git",
-                "reference": "01f0ed1628db7794e2d4e336f55a09daef4248a5"
+                "reference": "985a62a053f95da18917c6945fe1316e907e016d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tchwork/utf8/zipball/01f0ed1628db7794e2d4e336f55a09daef4248a5",
-                "reference": "01f0ed1628db7794e2d4e336f55a09daef4248a5",
+                "url": "https://api.github.com/repos/tchwork/utf8/zipball/985a62a053f95da18917c6945fe1316e907e016d",
+                "reference": "985a62a053f95da18917c6945fe1316e907e016d",
                 "shasum": ""
             },
             "require": {
@@ -620,7 +628,7 @@
                 "utf-8",
                 "utf8"
             ],
-            "time": "2015-01-29 08:36:50"
+            "time": "2015-03-19 14:18:56"
         },
         {
             "name": "phpseclib/phpseclib",
@@ -1712,12 +1720,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/image.git",
-                "reference": "e58192bb1efd7dc26c2bac9ab8ab49b0cbb4552a"
+                "reference": "8f3761154b4c1f5128365dfc32cbf757f27d97b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image/zipball/e58192bb1efd7dc26c2bac9ab8ab49b0cbb4552a",
-                "reference": "e58192bb1efd7dc26c2bac9ab8ab49b0cbb4552a",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/8f3761154b4c1f5128365dfc32cbf757f27d97b6",
+                "reference": "8f3761154b4c1f5128365dfc32cbf757f27d97b6",
                 "shasum": ""
             },
             "require": {
@@ -1760,7 +1768,7 @@
                 "thumbnail",
                 "watermark"
             ],
-            "time": "2015-03-11 22:03:31"
+            "time": "2015-03-18 17:41:04"
         }
     ],
     "aliases": [],
