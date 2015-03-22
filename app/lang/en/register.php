@@ -86,10 +86,12 @@ You will be benefit with free account by posing free ,  owning page free .If you
     'BTN_NEXT' => 'Next',
     'BTN_BACK' => 'Back',
     'BTN_CANCEL' => 'Cancel',
+    'BTN_SAVE' => 'Save',
+    'BTN_SUBMIT' => 'Submit',
     
     /*menu page*/
-    'c_Your_are_registering' => 'Your are registering',
-    'c_Your_As_Seller' => 'As Seller',
+    'c_Your_are_registering' => 'Menu Structure:',
+    'c_Your_As_Seller' => 'Prepear the menu in order to view on your home page by choosing the category you prefer bellow',
     'MESSAGE_NOT_ENOUGH_DATA' => 'Some data are required',
     'MESSAGE_header' => 'Oh snap! You got an error!',
     'MESSAGE_b_a' => 'Interprise Seller , Type',

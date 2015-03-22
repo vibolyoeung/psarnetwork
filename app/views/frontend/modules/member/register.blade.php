@@ -92,15 +92,15 @@
 					</h3>
 				</div>
 				<div class="panel-body">
-                <form method="POST" action="{{Config::get('app.url')}}member/register" id="registerForm">
+                {{ Form::open(array('url' => 'member/register', 'id' => 'registerForm')) }}
 						<div class="well well-sm">
 							<div class="form-group">
 								<label class="radio-inline">
-									<input type="radio" name="accounttype" id="freeAccount" value="1"/>
+                                    {{Form::radio('accounttype', '1', false, array('id'=>'freeAccount'))}}
 									{{trans('register.Free_Account')}}
 								</label>
 								<label class="radio-inline">
-									<input type="radio" name="accounttype" id="interpriseAccount" value="2"/>
+                                    {{Form::radio('accounttype', '2', false, array('id'=>'interpriseAccount'))}}
 									{{trans('register.Interprise_Account')}}
 								</label>
 							</div>
@@ -110,18 +110,13 @@
 										{{trans('register.Who_Are_You')}}
 									</label>
 									<div class="col-sm-8">
-										<select class="form-control" name="accountRole">
-											<option value="">
-												{{trans('register.Manufaturure_label')}}
-											</option>
-											<?php $i=1;?>
-												@foreach($accountRole as $Rol)
-												<option value="{{$Rol->rol_id}}">
-													{{$Rol->rol_name}}
-												</option>
-												<?php $i++;?>
-													@endforeach
-										</select>
+                                        <?php
+                                        $RolArr = array(''=>trans('register.Manufaturure_label'));
+                                         foreach($accountRole as $Rol) {
+                                            $RolArr[$Rol->rol_id] = $Rol->rol_name;
+                                        }
+                                        ?>
+                                        {{Form::select('accountRole', $RolArr, 'S',array('class' => 'form-control'))}}
 									</div>
 								</div>
                                 <div class="form-group">
@@ -129,18 +124,13 @@
 										{{trans('register.Your_Business_Site')}}
 									</label>
 									<div class="col-sm-8">
-										<select class="form-control" name="client_type" id="clientType">
-                                            <option value="">
-												{{trans('register.Manufaturure_select')}}
-											</option>
-                                            <?php $i=1;?>
-												@foreach($clientType as $cType)
-												<option value="{{$cType->id}}">
-													{{$cType->name}}
-												</option>
-												<?php $i++;?>
-													@endforeach
-										</select>
+                                        <?php
+                                        $cTypeArr = array(''=>trans('register.Manufaturure_select'));
+                                         foreach($clientType as $cType) {
+                                            $cTypeArr[$cType->id] = $cType->name;
+                                        }
+                                        ?>
+                                        {{Form::select('client_type', $cTypeArr, 'S',array('class' => 'form-control','id'=>'clientType'))}}
 									</div>
 								</div>
 								<div class="form-group" id="marketType">
@@ -148,18 +138,13 @@
 										{{trans('register.Market_Type')}}
 									</label>
 									<div class="col-sm-8">
-										<select class="form-control" name="marketType" id="marketTypes">
-											<option value="">
-												{{trans('register.Market_Type')}}
-											</option>
-											<?php $i=1;?>
-												@foreach($markets as $mk)
-												<option value="{{$mk->id}}">
-													{{$mk->title_en}}
-												</option>
-												<?php $i++;?>
-													@endforeach
-										</select>
+                                        <?php
+                                        $mkArr = array(''=>trans('register.Market_Type'));
+                                         foreach($markets as $mk) {
+                                            $mkArr[$mk->id] = $mk->title_en;
+                                        }
+                                        ?>
+                                        {{Form::select('marketType', $mkArr, 'S',array('class' => 'form-control','id'=>'marketTypes'))}}
                                         <div 
                                         id="loadingmarketType" 
                                         style="display: none;background:#fff;width:100%;text-align:center;padding:2px;border:1px solid #eee;">
@@ -174,7 +159,7 @@
 							<label for="YourName">
 								{{trans('register.Input_Your_Name_Label')}}
 							</label>
-							<input type="text" name="name" class="form-control" id="YourName" placeholder="{{trans('register.Input_Your_Name_Placeholder')}}" aria-describedby="YourNameStatus" required />
+                            {{Form::text('name', '',array('class'=>'form-control','id'=>'YourName','placeholder'=>trans('register.Input_Your_Name_Placeholder'),'aria-describedby'=>'YourNameStatus','required'=>'required'))}}
 							<span data="YourName" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">
 							</span>
 							<span id="YourNameStatus" class="sr-only">
@@ -185,7 +170,7 @@
 							<label for="eMail">
 								{{trans('register.Input_Email')}}
 							</label>
-							<input type="email" name="email" class="form-control" id="eMail" placeholder="{{trans('register.Input_Email_Placeholder')}}" aria-describedby="eMailStatus" required />
+                            {{Form::email('email', '',array('class'=>'form-control','id'=>'eMail','placeholder'=>trans('register.Input_Email_Placeholder'),'aria-describedby'=>'eMailStatus','required'=>'required'))}}
 							<span data="eMail" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">
 							</span>
 							<span id="eMailStatus" class="sr-only">
@@ -199,7 +184,7 @@
 							<label for="Password">
 								{{trans('register.Input_Password')}}
 							</label>
-							<input type="password" name="password" class="form-control" id="Password" placeholder="{{trans('register.Input_Password_Placeholder')}}" aria-describedby="PasswordStatus" required />
+                            {{Form::password('password',array('class'=>'form-control','id'=>'Password','placeholder'=>trans('register.Input_Password_Placeholder'),'aria-describedby'=>'PasswordStatus','required'=>'required'))}}
 							<span class="error">
 								{{$errors->first('password')}}
 							</span>
@@ -213,7 +198,7 @@
 							<label for="ComfirmPassword">
 								{{trans('register.Input_Comfirm_Password')}}
 							</label>
-							<input type="password" name="password_confirm" class="form-control" id="ComfirmPassword" placeholder="{{trans('register.Input_Comfirm_Password_Placeholder')}}" aria-describedby="ComfirmPasswordStatus" required />
+                            {{Form::password('password_confirm',array('class'=>'form-control','id'=>'ComfirmPassword','placeholder'=>trans('register.Input_Comfirm_Password_Placeholder'),'aria-describedby'=>'ComfirmPasswordStatus','required'=>'required'))}}
 							<span data="ComfirmPassword" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">
 							</span>
 							<span id="ComfirmPasswordStatus" class="sr-only">
@@ -224,7 +209,7 @@
 							<label for="PhoneNumber">
 								{{trans('register.Input_Phone_Number')}}
 							</label>
-							<input type="text" name="telephone" class="form-control" id="PhoneNumber" placeholder="{{trans('register.Input_Phone_Number_Placeholder')}}" aria-describedby="PhoneNumberStatus" required />
+                            {{Form::text('telephone', '',array('class'=>'form-control','id'=>'PhoneNumber','placeholder'=>trans('register.Input_Phone_Number_Placeholder'),'aria-describedby'=>'PhoneNumberStatus','required'=>'required'))}}
 							<span class="error">
 								{{$errors->first('telephone')}}
 							</span>
@@ -307,7 +292,7 @@
 							</div>
 						</div>
 						<input type="submit" id="summit" class="btn btn-primary pull-right" name="btnSubmit" value="{{trans('register.Input_Start')}}"/>
-					</form>
+					{{ Form::close() }}
 				</div>
 			</div>
 			<!--/login form-->

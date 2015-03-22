@@ -21,32 +21,32 @@
 					</h3>
 				</div>
 				<div class="panel-body">
-					<form action="{{URL::to('member/agreement')}}/{{Request::segment(3)}}" id="registerForm" method="post" enctype="multipart/form-data">
+					<form action="{{URL::to('member/agreement')}}/{{Request::segment(3)}}" id="AgreeForm" method="post" enctype="multipart/form-data">
 						<div class="well well-sm">
 							<div class="a-body">
-								{{trans('register.agree_body_free_1')}}
+								{{trans('register.agree_body_1')}}
 								<span>
-									{{trans('register.agree_body_free_2')}}
+									{{trans('register.agree_body_2')}}
 								</span>
-								{{trans('register.agree_body_free_3')}}
+								{{trans('register.agree_body_3')}}
 								<br/>
-								{{trans('register.agree_body_free_6')}}
+								{{trans('register.agree_body_6')}}
 								<span>
-									{{trans('register.agree_body_free_7')}}
+									{{trans('register.agree_body_7')}}
 								</span>
-								{{trans('register.agree_body_free_8')}}
+								{{trans('register.agree_body_8')}}
 								<span>
-									{{trans('register.agree_body_free_9')}}
+									{{trans('register.agree_body_9')}}
 								</span>
-								{{trans('register.agree_body_free_10')}}
+								{{trans('register.agree_body_10')}}
 								<span>
-									{{trans('register.agree_body_free_11')}}
+									{{trans('register.agree_body_11')}}
 								</span>
-								{{trans('register.agree_body_free_12')}}
+								{{trans('register.agree_body_12')}}
 								<span>
-									{{trans('register.agree_body_free_13')}}
+									{{trans('register.agree_body_13')}}
 								</span>
-								{{trans('register.agree_body_free_14')}}
+								{{trans('register.agree_body_14')}}
 								<button type="button" id="under-summit" class="btn btn-primary pull-right">
 									{{trans('register.agree_understand')}}
 								</button>
@@ -84,22 +84,22 @@
 								</div>
 								<div class="col-sm-6">
                                     <div class="form-group">
-										<label for="PageTitle" class="col-sm-4 control-label">
+										<label for="PageUrl" class="col-sm-4 control-label">
 											{{trans('register.agree_head_url')}}
 										</label>
 										<div class="col-sm-8">
-											<input type="text" name="sto_url" class="form-control" id="PageTitle" placeholder="{{trans('register.agree_head_url_placeholder')}}" aria-describedby="PageTitleStatus" required />
+											<input type="text" name="sto_url" class="form-control" id="PageUrl" placeholder="{{trans('register.agree_head_url_placeholder')}}" aria-describedby="PageTitleStatus" required />
                                             <?php if($errors->first('sto_url')):?>
                                                 <label class="error"><?php echo $errors->first('sto_url');?></label>
                                             <?php endif;?>
 										</div>
 									</div>
                                     <div class="form-group">
-										<label for="PageTitle" class="col-sm-4 control-label">
+										<label for="PageBanner" class="col-sm-4 control-label">
 											{{trans('register.agree_head_banner')}}
 										</label>
 										<div class="col-sm-8">
-											<input type="text" name="PageBanner" class="form-control" id="PageTitle" placeholder="{{trans('register.agree_head_banner')}}" aria-describedby="PageTitleStatus" required />
+											<input type="text" name="PageBanner" class="form-control" id="PageBanner" placeholder="{{trans('register.agree_head_banner')}}" aria-describedby="PageTitleStatus" required />
 										</div>
 									</div>
 								</div>
@@ -113,8 +113,6 @@
 								 {{trans('register.agree_acept')}}
 							</label>
 						</div>
-                        <input type="hidden" name="uid" value="{{Input::get('uid')}}"/>
-                        <input type="hidden" name="sid" value="{{Input::get('sid')}}"/>
                         <input type="submit" id="summit" class="btn btn-primary pull-right" name="btnSubmit" value="{{trans('register.agree_btn_submit')}}"/>
 					</form>
 				</div>
@@ -133,8 +131,14 @@ $(document).ready(function(){
     $('#skipDetail').click(function () {
         if($(this).is(":checked")) {
             $("#bodyDetail").slideUp();
+            $("#PageTitle").removeAttr("required");
+            $("#PageUrl").removeAttr("required");
+            $("#PageBanner").removeAttr("required");
         } else {
             $("#bodyDetail").slideDown();
+            $("#PageTitle").attr('required',true);
+            $("#PageUrl").attr('required',true);
+            $("#PageBanner").attr('required',true);
         }
     });    
     $("#AgreeForm").validate({
@@ -149,7 +153,7 @@ $(document).ready(function(){
       }
   }
     });
-    //$("#AgreeForm").validate();
+  $("#AgreeForm").validate();
 
 });
 

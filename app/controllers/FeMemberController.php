@@ -53,10 +53,10 @@ class FeMemberController extends BaseController {
     }
 
     /**
-     * Create a client user(e.g: Freee user or Enterprise user)
-     *
-     * @method createUser
+     * store a client session
+     * @method tempUser
      * @return void
+     * @author Socheat Ngann
      */
     public function tempUser() {
         $addressArr = array(
@@ -65,39 +65,91 @@ class FeMemberController extends BaseController {
             'g_latitude_longitude' => Input::get('gLatitudeLongitude'),
             );
         Session::forget('user');
-        $data = array(
-            'email' => trim(Input::get('email')),
-            'name' => trim(Input::get('name')),
-            'telephone' => Input::get('telephone'),
-            'address' => json_encode(@$addressArr),
-            'user_type' => Config::get('constants.CLIENT_USER'),
-            'client_type' => Input::get('client_type'),
-            'account_type' => Input::get('accounttype'),
-            'account_role' => Input::get('accountRole'),
-            'status' => 1,
-            'password' => md5(sha1(Input::get('password'))),
-            'create_at' => date(self::CURRENT_DATE)
-        );
         Session::push('user.email', trim(Input::get('email')));
         Session::push('user.name', trim(Input::get('name')));
         Session::push('user.telephone', trim(Input::get('telephone')));
         Session::push('user.address', json_encode(@$addressArr));
         Session::push('user.user_type', Config::get('constants.CLIENT_USER'));
         Session::push('user.client_type', Input::get('client_type'));
-        Session::push('user.account_type', Input::get('account_type'));
+        Session::push('user.account_type', Input::get('accounttype'));
         Session::push('user.account_role', Input::get('account_role'));
         Session::push('user.status', 1);
         Session::push('user.password', md5(sha1(Input::get('password'))));
         Session::push('user.create_at', date(self::CURRENT_DATE));
         return Session::get('user');
-        
+
+    }
+
+    /**
+     * Create a client user(e.g: Freee user or Enterprise user)
+     * @method createUser
+     * @return void
+     * @author Socheat Ngann
+     */
+    public function createUser() {
+        if (Session::has('user')) {
+            $addressArr = array(
+                'province' => Input::get('province'),
+                'disctict' => Input::get('district'),
+                'g_latitude_longitude' => Input::get('gLatitudeLongitude'),
+                );
+            $dataUserSession = Session::get('user');
+            $userArr = array();
+            foreach($dataUserSession as $key => $value) {
+                $userArr[$key] = $value[0];
+            }
+            $uid = $this->user->insertGetId($userArr);
+            /*add data for store*/
+            if (!Input::has('skipDetail')) {
+                $fileName = '';
+                if (Input::hasfile('file')) {
+                    /*upload image*/
+                    $destinationPath = base_path() . Config::get('constants.DIR_IMAGE.DIR_STORE');
+                    self::generateFolderUpload($destinationPath);
+                    $destinationPathThumb = $destinationPath . 'thumb/';
+                    $file = Input::file('file');
+                    $fileName = $file->getClientOriginalName();
+                    $fileName = self::generateFileName($destinationPath, $fileName);
+                    $file->move($destinationPath, $fileName);
+                    Image::make($destinationPath . $fileName)->resize(Config::get('constants.DIR_IMAGE.THUMB_WIDTH'),
+                        Config::get('constants.DIR_IMAGE.THUMB_HEIGTH'))->save($destinationPathThumb . $fileName);
+                    /*end upload image*/
+                }
+                $whereData = array(
+                    'user_id' => (int)Input::get('uid'),
+                    'id' => (int)Input::get('sid'),
+                    );
+                $storeData = array(
+                    'title_en' => trim(Input::get('titleen')),
+                    'sto_url' => trim(Input::get('sto_url')),
+                    'sto_banner' => trim(Input::get('PageBanner')),
+                    'image' => trim($fileName),
+                    'user_id' => $uid,
+                    'sup_id' => trim(Input::get('marketType')),
+                    );
+                //$sid = $this->mod_store->where($whereData)->update($storeData);
+            } else {
+                $storeData = array(
+                    'user_id' => $uid,
+                    'sup_id' => trim(Input::get('marketType')),
+                    );
+            }
+            $sid = $this->mod_store->insertGetId($storeData);
+            
+            /*clear session user*/
+            Session::flush();
+        }
+        return $data = array(
+            'user_id' => $uid,
+            'store_id' => $sid,
+            );
     }
 
     /**
      * Registeration operation
-     *
      * @method register
      * @return void
+     * @author Socheat Ngann
      */
     public function register($usertype = '', $step = '') {
         if (Input::has('btnSubmit')) {
@@ -114,7 +166,8 @@ class FeMemberController extends BaseController {
                 $data_user = $this->tempUser();
                 $accounttype = Input::get('accounttype');
                 $messageRegister = 'Registration operation had been successful, please Login!';
-                return Redirect::to('/member/agreement/' . $accounttype)->with('SECCESS_MESSAGE_REGISTER', $messageRegister);
+                return Redirect::to('/member/agreement/' . $accounttype)->with('SECCESS_MESSAGE_REGISTER',
+                    $messageRegister);
             } else {
                 return Redirect::to('/member/register')->withInput()->withErrors($validator);
             }
@@ -164,47 +217,29 @@ class FeMemberController extends BaseController {
 
     public function agreement($usertype) {
         if (Input::has('btnSubmit')) {
-            if (!Input::has('skipDetail')) {
-                if (Input::has('btnSubmit')) {
-                    $rules = array('sto_url' => 'required|unique:store');
-                    if (Input::hasfile('file')) {
-                        //$rules['file'] = Config::get ( 'constants.DIR_IMAGE.ALLOW_FILE' );
-                        $rules['file'] = 'mimes:jpeg,png,bmp,gif|image';
-                    }
-                    $validator = Validator::make(Input::all(), $rules);
-                    if ($validator->passes()) {
-                        $fileName = '';
-                        if (Input::hasfile('file')) {
-                            /*upload image*/
-                            $destinationPath = base_path() . Config::get('constants.DIR_IMAGE.DIR_STORE');
-                            self::generateFolderUpload($destinationPath);
-                            $destinationPathThumb = $destinationPath . 'thumb/';
-                            $file = Input::file('file');
-                            $fileName = $file->getClientOriginalName();
-                            $fileName = self::generateFileName($destinationPath, $fileName);
-                            $file->move($destinationPath, $fileName);
-                            Image::make($destinationPath . $fileName)->resize(Config::get('constants.DIR_IMAGE.THUMB_WIDTH'),
-                                Config::get('constants.DIR_IMAGE.THUMB_HEIGTH'))->save($destinationPathThumb . $fileName);
-                            /*end upload image*/
-                        }
-                        $whereData = array(
-                            'user_id' => (int)Input::get('uid'),
-                            'id' => (int)Input::get('sid'),
-                            );
-                        $storeData = array(
-                            'title_en' => trim(Input::get('titleen')),
-                            'sto_url' => trim(Input::get('sto_url')),
-                            'sto_banner' => trim(Input::get('PageBanner')),
-                            'image' => trim($fileName),
-                            );
-                        $sid = $this->mod_store->where($whereData)->update($storeData);
-                        $messageRegister = 'Registration operation had been successful, please check your email to confirm!';
-                        return Redirect::to('/member/login/')->with('SECCESS_MESSAGE_REGISTER', $messageRegister);
-                    } else {
-                        return Redirect::to('/member/agreement/' . $usertype . '?uid=' . Input::get('uid') .
-                            '&sid=' . Input::get('sid'))->withErrors($validator);
-                    }
+            if (Input::has('skipDetail')) {
+                $rules = array('sto_url' => 'required|unique:store');
+                if (Input::hasfile('file')) {
+                    //$rules['file'] = Config::get ( 'constants.DIR_IMAGE.ALLOW_FILE' );
+                    $rules['file'] = 'mimes:jpeg,png,bmp,gif|image';
                 }
+            } else {
+                $rules = array();
+            }
+            $validator = Validator::make(Input::all(), $rules);
+            if ($validator->passes()) {
+                DB::beginTransaction();
+                try {
+                    $data_user = $this->createUser();
+                }
+                catch (ValidationException $e) {
+                    DB::rollback();
+                }
+                DB::commit();
+                $messageRegister = 'Registration operation had been successful, please check your email to confirm!';
+                return Redirect::to('/member/login/')->with('SECCESS_MESSAGE_REGISTER', $messageRegister);
+            } else {
+                return Redirect::to('/member/agreement/' . $usertype)->withErrors($validator);
             }
             die;
         } elseif (!empty($usertype)) {
@@ -219,15 +254,17 @@ class FeMemberController extends BaseController {
     }
 
     /**
-     * Adding user information by step
-     *
+     * Get step user information by step
      * @method userinfo
      * @return void
+     * @author Socheat Ngann
      */
-    public function userinfo($usertype = '', $step = '') {
+    public function userinfo($step = '') {
         $limit = $this->mod_setting->getSlidshowNumber();
         $listCategories = self::getCategoriesHomePage();
         $userID = Session::get('currentUserId');
+        $userInfo = $this->user->getUser($userID);
+        $usertype = @$userInfo->result->account_type;
         if (!empty($usertype) && $usertype == 2) {
             $usertypes = 'enterprise';
         } else {
@@ -257,7 +294,7 @@ class FeMemberController extends BaseController {
                 /* user page content */
             case 'content':
                 $getUserStore = $this->mod_store->getUserStore($userID);
-                if(!empty($getUserStore)) {
+                if (!empty($getUserStore)) {
                     $storeID = $getUserStore[0]->id;
                 } else {
                     $storeID = null;
@@ -269,42 +306,38 @@ class FeMemberController extends BaseController {
                 $dataStore = $this->mod_store->getUserStore(null, $whereData);
                 $getUserPages = DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))->select('*')->
                     where(array('user_id' => $userID, 'type' => 'widget'))->get();
-                    $dataPageWidget = $this->mod_page->addUserWidgetPages($userID);
+                $dataPageWidget = $this->mod_page->addUserWidgetPages($userID);
                 return View::make('frontend.modules.member.' . $usertypes . '-' . $step)->with('maincategories',
                     $listCategories->result)->with('dataStore', $dataStore)->with('dataPageWidget',
                     $dataPageWidget->result);
                 break;
-                
+
             case 'infomation':
                 $userData = $this->user->getUser($userID);
                 if (Input::has('btnInfo')) {
-                    
-                    $userValueArr = json_decode($userData->result->address,true);
-                    $ValueArr = array('g_latitude_longitude'=>Input::get('gLatitudeLongitude'));
+
+                    $userValueArr = json_decode($userData->result->address, true);
+                    $ValueArr = array('g_latitude_longitude' => Input::get('gLatitudeLongitude'));
                     $dataArr = array_merge($userValueArr, $ValueArr);
                     $data = array(
                         'email' => trim(Input::get('email')),
                         'name' => trim(Input::get('name')),
                         'telephone' => Input::get('telephone'),
                         'address' => json_encode($dataArr),
-                        'update_at' => date(self::CURRENT_DATE)
-                    );
+                        'update_at' => date(self::CURRENT_DATE));
                     /*add data for store*/
-                    $whereUser = array(
-                        'id' => $userID
-                    );
+                    $whereUser = array('id' => $userID);
                     $uid = $this->user->updateUser($whereUser, $data);
                     return Redirect::to('/member/userinfo/' . $usertype . '/infomation');
                 }
                 return View::make('frontend.modules.member.' . $usertypes . '-' . $step)->with('maincategories',
-                    $listCategories->result)
-                    ->with('userData',$userData->result);
-            break;
-            
+                    $listCategories->result)->with('userData', $userData->result);
+                break;
+
             case 'pageinfo':
                 return View::make('frontend.modules.member.' . $usertypes . '-' . $step)->with('maincategories',
                     $listCategories->result);
-            break;
+                break;
 
         }
     }
@@ -517,40 +550,41 @@ class FeMemberController extends BaseController {
                         $order = Input::get('order');
                         $getMainPage = $this->mod_page->addUserWidgetPage($userID, $MainMenu, $order);
                         break;
-                        
+
                     case 'userPageStatus':
                         $status = Input::get('st');
-                        $response = DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))->where(array('id'=>$MainMenu))->update(array('status'=>$status));
-                        break; 
-                        
+                        $response = DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))->where(array('id' =>
+                                $MainMenu))->update(array('status' => $status));
+                        break;
+
                     case 'userLayout':
                         $getUserStore = $this->mod_store->getUserStore($userID);
-                        if(!empty($getUserStore)) {
+                        if (!empty($getUserStore)) {
                             $userStoreID = $getUserStore[0]->id;
-                            $where = array('user_id'=>$userID,'id'=>$userStoreID);
-                            $dataSet = array(
-                                'layout' =>$MainMenu
-                            );
-                            $response = DB::table(Config::get('constants.TABLE_NAME.STORE'))->where($where)->update(array('sto_value'=>json_encode($dataSet)));
+                            $where = array('user_id' => $userID, 'id' => $userStoreID);
+                            $dataSet = array('layout' => $MainMenu);
+                            $response = DB::table(Config::get('constants.TABLE_NAME.STORE'))->where($where)->
+                                update(array('sto_value' => json_encode($dataSet)));
                         }
                         break;
-                        
+
                     case 'userLayoutFooter':
                         $getUserStore = $this->mod_store->getUserStore($userID);
-                        if(!empty($getUserStore)) {
+                        if (!empty($getUserStore)) {
                             $userStoreID = $getUserStore[0]->id;
                             $userStoresValue = $getUserStore[0]->sto_value;
                             $userStoresValueArr = json_decode($userStoresValue, true);
-                            if(array_key_exists('footer_text',$userStoresValueArr)) {
-                                $ValueArr = array('footer_text'=>$MainMenu);
+                            if (array_key_exists('footer_text', $userStoresValueArr)) {
+                                $ValueArr = array('footer_text' => $MainMenu);
                                 $dataArr = array_merge($userStoresValueArr, $ValueArr);
                             } else {
-                                $dataArr = array('footer_text'=>$MainMenu,'layout'=>$userStoresValueArr['layout']);
+                                $dataArr = array('footer_text' => $MainMenu, 'layout' => $userStoresValueArr['layout']);
                             }
-                            $where = array('user_id'=>$userID,'id'=>$userStoreID);
-                            $response = DB::table(Config::get('constants.TABLE_NAME.STORE'))->where($where)->update(array('sto_value'=>json_encode($dataArr)));
+                            $where = array('user_id' => $userID, 'id' => $userStoreID);
+                            $response = DB::table(Config::get('constants.TABLE_NAME.STORE'))->where($where)->
+                                update(array('sto_value' => json_encode($dataArr)));
                         }
-                        break;          
+                        break;
                 }
             }
 

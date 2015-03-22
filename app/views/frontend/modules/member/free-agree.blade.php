@@ -21,7 +21,7 @@
 					</h3>
 				</div>
 				<div class="panel-body">
-					<form action="{{URL::to('member/agreement')}}/{{Request::segment(3)}}" id="registerForm" method="post" enctype="multipart/form-data">
+					<form action="{{URL::to('member/agreement')}}/{{Request::segment(3)}}" id="AgreeForm" method="post" enctype="multipart/form-data">
 						<div class="well well-sm">
 							<div class="a-body">
 								{{trans('register.agree_body_free_1')}}
@@ -125,16 +125,18 @@
 </div>
 {{HTML::script('frontend/js/jquery.validate.js')}}
 <script type='text/javascript'>
-	
-	
-	
-	
 $(document).ready(function(){
     $('#skipDetail').click(function () {
         if($(this).is(":checked")) {
             $("#bodyDetail").slideUp();
+            $("#PageTitle").removeAttr("required");
+            $("#PageUrl").removeAttr("required");
+            $("#PageBanner").removeAttr("required");
         } else {
             $("#bodyDetail").slideDown();
+            $("#PageTitle").attr('required',true);
+            $("#PageUrl").attr('required',true);
+            $("#PageBanner").attr('required',true);
         }
     });    
     $("#AgreeForm").validate({
@@ -149,12 +151,7 @@ $(document).ready(function(){
       }
   }
     });
-    //$("#AgreeForm").validate();
-
+  $("#AgreeForm").validate();
 });
-
-
-
-
 </script>
 @endsection

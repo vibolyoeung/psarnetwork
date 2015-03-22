@@ -49,7 +49,7 @@ var homePage = "{{Config::get('app.url')}}";
 					</p>
 				</div>
 				@endif
-				<div class="alert alert-success fade in" role="alert">
+				<!--<div class="alert alert-success fade in" role="alert">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">
 							&times;
@@ -68,7 +68,7 @@ var homePage = "{{Config::get('app.url')}}";
 					<span style="color: red;">
 						{{trans('register.MESSAGE_b_d')}}
 					</span>
-				</div>
+				</div>-->
 				<div class="category-tab shop-details-tab" style="margin: 0;">
 					<!--category-tab-->
 					<div class="tab-content">
@@ -355,9 +355,7 @@ var homePage = "{{Config::get('app.url')}}";
 				<!--end product detail-->
 				<div class="clear">
 				</div>
-				<input id="summit" type="submit" class="btn btn-default pull-right choosenuser" name="btnStepNext" value="{{trans('register.BTN_NEXT')}}"/>
-				<a id="chooseuser" class="btn btn-warning pull-right choosenuser" href="#">{{trans('register.BTN_BACK')}}</a>
-				<a id="chooseuser" class="btn btn-danger pull-right choosenuser" href="#">{{trans('register.BTN_CANCEL')}}</a>
+				<input id="summit" type="submit" class="btn btn-default pull-right choosenuser" name="btnStepNext" value="{{trans('register.BTN_SAVE')}}"/>
 				{{Form::close()}}
 				<div class="clear">
 				</div>
