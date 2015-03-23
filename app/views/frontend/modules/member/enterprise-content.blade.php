@@ -30,12 +30,6 @@ var homePage = "{{Config::get('app.url')}}";
 	<div class="col-sm-9">
 		<div class="register-form">
 			<!--login form-->
-			<h2>
-				Your are registering
-				<span style="color:orange">
-					As Seller
-				</span>
-			</h2>
 			<div class="conent">
 				<div class="alert alert-success fade in" role="alert">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -108,7 +102,7 @@ var homePage = "{{Config::get('app.url')}}";
 												<div class="row">
 													<div class="col-sm-3">
 														<div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0;">
-															Left
+															{{trans('register.TAB_Left')}}
 														</div>
 													</div>
 													<div class="col-sm-6">
@@ -128,7 +122,7 @@ var homePage = "{{Config::get('app.url')}}";
 													</div>
 													<div class="col-sm-3">
 														<div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0;">
-															Right
+															{{trans('register.TAB_Right')}}
 														</div>
 													</div>
 												</div>
@@ -140,19 +134,19 @@ var homePage = "{{Config::get('app.url')}}";
 									<div class="col-sm-6">
 										<div class="pro-detail">
 											<h3>
-												Your Content Page Design
+												{{trans('register.TAB_Your_content_design')}}
 											</h3>
 											<div class="col-sm-12">
 												<form id="imageLogo" method="post" enctype="multipart/form-data" action='{{Config::get('app.url')}}/member/ajaxupload'>
 													<fieldset>
 														<legend>
-															Logo:
+															{{trans('register.agree_head_Logo')}}:
 														</legend>
 														<div class="form-group">
 															<input type="hidden" value="logoupload" name="page"/>
 															<input type="file" id="logoFile" name="file" accept="image/*"/>
 															<p class="help-block">
-																Upload your logo here
+																{{trans('register.TAB_Your_your_logo_here')}}
 															</p>
 														</div>
 													</fieldset>
@@ -162,13 +156,13 @@ var homePage = "{{Config::get('app.url')}}";
 												<form id="imageBanner" method="post" enctype="multipart/form-data" action='{{Config::get('app.url')}}/member/ajaxupload'>
 													<fieldset>
 														<legend>
-															Header:
+															{{trans('register.TAB_Your_banner_header')}}:
 														</legend>
 														<div class="form-group">
 															<input type="hidden" value="bannerupload" name="page"/>
 															<input type="file" id="bannerFile" name="file" accept="image/*"/>
 															<p class="help-block">
-																upload you header banner here (600px , 200px)
+																{{trans('register.TAB_Your_banner_upload')}}
 															</p>
 														</div>
 													</fieldset>
@@ -177,25 +171,33 @@ var homePage = "{{Config::get('app.url')}}";
 											<div class="col-sm-12">
 												<fieldset>
 													<legend>
-														Layout Color:
+														{{trans('register.TAB_Layout_Color')}}:
 													</legend>
+                                                    <?php 
+                                                        $userOption = json_decode($userStore->sto_value);
+                                                        $userLayout = @$userOption->layout;
+                                                        $userFooter = @$userOption->footer_text;
+                                                        $layoutOne = ($userLayout =='main.css')? true :false;
+                                                        $layoutTwo = ($userLayout =='main-orange.css')? true :false;
+                                                        $layoutThree = ($userLayout =='main-green.css')? true :false;
+                                                    ?>
 													<!--<a href="#" onclick="costomizeLayout();">Costumize layout</a>-->
 													<div class="radio">
 														<label>
-															<input class="costomizeLayout" type="radio" name="costomizeLayout" id="optionsRadios1" value="main.css" checked />
-															Blue
+                                                            {{Form::radio('costomizeLayout', 'main.css', $layoutOne, array('id'=>'optionsRadios1','class'=>'costomizeLayout'))}}
+															{{trans('register.TAB_Layout_one')}}
 														</label>
 													</div>
 													<div class="radio">
 														<label>
-															<input class="costomizeLayout" type="radio" name="costomizeLayout" id="optionsRadios2" value="main-orange.css"/>
-															Orange
+                                                            {{Form::radio('costomizeLayout', 'main-orange.css', $layoutTwo, array('id'=>'optionsRadios2','class'=>'costomizeLayout'))}}
+															{{trans('register.TAB_Layout_two')}}
 														</label>
 													</div>
                                                     <div class="radio">
 														<label>
-															<input class="costomizeLayout" type="radio" name="costomizeLayout" id="optionsRadios2" value="main-green.css"/>
-															Green
+                                                            {{Form::radio('costomizeLayout', 'main-green.css', $layoutThree, array('id'=>'optionsRadios3','class'=>'costomizeLayout'))}}
+															{{trans('register.TAB_Layout_three')}}
 														</label>
 													</div>
 												</fieldset>
@@ -203,10 +205,10 @@ var homePage = "{{Config::get('app.url')}}";
 											<div class="col-sm-12">
 												<fieldset>
 													<legend>
-														Footer:
+														{{trans('register.TAB_Layout_footer')}}:
 													</legend>
-                                                    <textarea id="textFooter" class="form-control" rows="2" placeholder="EX :   Khmer Phone  999 (Buy and Sell all kind of phone )"></textarea
-													<a href="javascript:;" onclick="costomizeFooter();">Write your text footer here</a>
+                                                    <textarea id="textFooter" class="form-control" rows="2" placeholder="{{trans('register.TAB_Layout_footer_placeholder')}}">{{$userFooter}}</textarea
+													<a href="javascript:;" onclick="costomizeFooter();">{{trans('register.TAB_Layout_footer_desc')}}</a>
 												</fieldset>
 											</div>
 										</div>

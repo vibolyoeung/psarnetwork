@@ -340,7 +340,12 @@ class FeMemberController extends BaseController {
                 break;
                 
             case 'toolview':
-                return View::make('frontend.modules.member.toolview')->with('maincategories',
+                return View::make('frontend.modules.member.s-toolview')->with('maincategories',
+                    $listCategories->result);
+                break;
+                
+            case 'slideshow':
+                return View::make('frontend.modules.member.s-slideshow')->with('maincategories',
                     $listCategories->result);
                 break;
 
