@@ -120,10 +120,11 @@ Route::any('member/agreement/{usertype}','FeMemberController@agreement');
 Route::group(array('before' => 'auth_member'), function () {
     Route::group(array('prefix' => 'member'), function () {
         /*regirst page*/ 
-        Route::any('/userinfo/{usertype}/{step}','FeMemberController@userinfo');
+        Route::any('/userinfo/{step}','FeMemberController@userinfo');
         Route::any('/addmenuajax','FeMemberController@addmenuajax'); 
         Route::any('/ajaxupload','FeMemberController@ajaxupload'); 
-        Route::any('/getsubmenu','FeMemberController@getsubmenu'); 
+        Route::any('/getsubmenu','FeMemberController@getsubmenu');
+        Route::any('/toolview','FeMemberController@toolview'); 
     }); 
     /*for product*/
     Route::group(array('prefix' => 'products'), function () {

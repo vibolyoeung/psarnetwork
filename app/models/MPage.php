@@ -118,10 +118,11 @@ class MPage extends Eloquent {
                         'user_id' => $userID,
                         'm_page_id' => $id,
                         'title' => $title,
+                        'type'=>'static',
                         'position' => $position);
                     DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))->insertGetId($data);
                 }
-                $response = $this->getUserPages($userID, array('user_id' => $userID));
+                $response = $this->getUserPages($userID, array('user_id' => $userID,'type'=>'static'));
             } else {
                 $response->result = 0;
             }

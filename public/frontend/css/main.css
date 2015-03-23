@@ -1901,7 +1901,6 @@ h2.title {
     border: 3px solid #4289ED;
     font-weight: bold;
 }
-.register-form .checkbox{margin-bottom:40px}
 .register-form .checkbox input[type=radio]{width:25px;height:25px}
 .register-form .checkbox .des{clear:both;margin-left:-20px}
 .register-form label.big {font-size:140%;}

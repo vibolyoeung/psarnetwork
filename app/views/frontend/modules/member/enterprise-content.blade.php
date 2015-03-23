@@ -23,7 +23,7 @@ var homePage = "{{Config::get('app.url')}}";
 @if($dataStore) @foreach ($dataStore as $userStore)
 <div class="memberlogin">
 	<div class="col-sm-3">
-		@include('frontend.modules.member.sidebar')
+		@include('frontend.modules.member.layout.sidebar')
 		<div class="clear">
 		</div>
 	</div>
@@ -44,18 +44,9 @@ var homePage = "{{Config::get('app.url')}}";
 						</span>
 					</button>
 					<strong>
-						You Are Registering As
+						{{trans('register.con_alert_header')}}
 					</strong>
-					<span style="color: red;">
-						Interprise Seller , Type
-					</span>
-					<strong>
-						Super Market.
-					</strong>
-					This Account will be free only for 3 months for your page site control.
-					<span style="color: red;">
-						Contact !
-					</span>
+					   {{trans('register.con_alert_text')}}
 				</div>
 				<div class="category-tab shop-details-tab" style="margin: 0;">
 					<div class="tab-content">
@@ -71,7 +62,7 @@ var homePage = "{{Config::get('app.url')}}";
 												<div class="row" style="margin: 0;">
 													<div style="border: 1px solid #ccc;display:block;margin: 10px 0 0 0;display:block">
 														<h3>
-															Your Site page Preview
+															{{trans('register.TAB_Your_Site_page_Preview')}}
 														</h3>
 													</div>
 												</div>
@@ -229,12 +220,6 @@ var homePage = "{{Config::get('app.url')}}";
 				<!--end product detail-->
 				<div class="clear">
 				</div>
-				<button id="summit" type="submit" class="btn btn-default pull-right choosenuser">
-					Next
-				</button>
-				<a id="chooseuser" class="btn btn-warning pull-right choosenuser" href="#">Skip</a>
-				<a id="chooseuser" class="btn btn-warning pull-right choosenuser" href="#">Back</a>
-				<a id="chooseuser" class="btn btn-danger pull-right choosenuser" href="#">Cancel</a>
 				</form>
 				<div class="clear">
 				</div>

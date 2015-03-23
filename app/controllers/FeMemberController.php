@@ -278,10 +278,10 @@ class FeMemberController extends BaseController {
                 if (Input::has('btnStepNext')) {
                     $getUserCategory = $this->mod_category->getUserCategory($userID);
                     if (!empty($getUserPages->result) && !empty($getUserCategory->result)) {
-                        return Redirect::to('/member/userinfo/' . $usertype . '/content');
+                        return Redirect::to('/member/userinfo/content');
                     } else {
                         $message = 'MESSAGE_NOT_ENOUGH_DATA';
-                        return Redirect::to('/member/userinfo/' . $usertype . '/' . $step)->with('MESSAGE_NOT_ENOUGH_DATA',
+                        return Redirect::to('/member/userinfo/' . $step)->with('MESSAGE_NOT_ENOUGH_DATA',
                             $message);
                     }
                     die;
@@ -328,7 +328,7 @@ class FeMemberController extends BaseController {
                     /*add data for store*/
                     $whereUser = array('id' => $userID);
                     $uid = $this->user->updateUser($whereUser, $data);
-                    return Redirect::to('/member/userinfo/' . $usertype . '/infomation');
+                    return Redirect::to('/member/userinfo/infomation');
                 }
                 return View::make('frontend.modules.member.' . $usertypes . '-' . $step)->with('maincategories',
                     $listCategories->result)->with('userData', $userData->result);
@@ -336,6 +336,11 @@ class FeMemberController extends BaseController {
 
             case 'pageinfo':
                 return View::make('frontend.modules.member.' . $usertypes . '-' . $step)->with('maincategories',
+                    $listCategories->result);
+                break;
+                
+            case 'toolview':
+                return View::make('frontend.modules.member.toolview')->with('maincategories',
                     $listCategories->result);
                 break;
 
@@ -406,78 +411,81 @@ class FeMemberController extends BaseController {
      */
     public function ajaxupload() {
         $userID = Session::get('currentUserId');
-        $storeID = 29;
         $this->layout = null;
-        $page = Input::get('page');
-        switch ($page) {
-            case 'logoupload':
-                if (Input::hasfile('file')) {
-                    /*upload logo image*/
-                    $destinationPath = base_path() . Config::get('constants.DIR_IMAGE.DIR_STORE');
-                    $file = Input::file('file');
-
-                    /* clean old image*/
-                    $whereData = array(
-                        'user_id' => $userID,
-                        'id' => $storeID,
-                        );
-                    $checkStoreImage = $this->mod_store->getUserStore(null, $whereData);
-                    if (!empty($checkStoreImage)) {
-                        foreach ($checkStoreImage as $oldImage) {
-                            $oldName = $destinationPath . '/' . $oldImage->image;
-                            $thumb = $destinationPath . '/thumb/' . $oldImage->image;
-                            if (File::exists($oldName)) {
-                                File::delete($oldName, $thumb);
+        $getUserStore = $this->mod_store->getUserStore($userID);
+        if (!empty($getUserStore)) {
+            $storeID = $getUserStore[0]->id;
+            $page = Input::get('page');
+            switch ($page) {
+                case 'logoupload':
+                    if (Input::hasfile('file')) {
+                        /*upload logo image*/
+                        $destinationPath = base_path() . Config::get('constants.DIR_IMAGE.DIR_STORE');
+                        $file = Input::file('file');
+    
+                        /* clean old image*/
+                        $whereData = array(
+                            'user_id' => $userID,
+                            'id' => $storeID,
+                            );
+                        $checkStoreImage = $this->mod_store->getUserStore(null, $whereData);
+                        if (!empty($checkStoreImage)) {
+                            foreach ($checkStoreImage as $oldImage) {
+                                $oldName = $destinationPath . '/' . $oldImage->image;
+                                $thumb = $destinationPath . '/thumb/' . $oldImage->image;
+                                if (File::exists($oldName)) {
+                                    File::delete($oldName, $thumb);
+                                }
                             }
                         }
+                        /* add or update new image*/
+                        $images = $this->mod_store->doUpoad($file, $destinationPath, Config::get('constants.DIR_IMAGE.THUMB_WIDTH'),
+                            Config::get('constants.DIR_IMAGE.THUMB_HEIGTH'));
+    
+                        /*update to store table DB*/
+                        $storeData = array('image' => $images['image'], );
+                        $this->mod_store->where($whereData)->update($storeData);
+                        /*end update to store table DB*/
+                    } else {
+                        $images = array("error" => "Sorry, Upload get an error");
                     }
-                    /* add or update new image*/
-                    $images = $this->mod_store->doUpoad($file, $destinationPath, Config::get('constants.DIR_IMAGE.THUMB_WIDTH'),
-                        Config::get('constants.DIR_IMAGE.THUMB_HEIGTH'));
-
-                    /*update to store table DB*/
-                    $storeData = array('image' => $images['image'], );
-                    $this->mod_store->where($whereData)->update($storeData);
-                    /*end update to store table DB*/
-                } else {
-                    $images = array("error" => "Sorry, Upload get an error");
-                }
-                echo json_encode($images);
-                break;
-
-            case 'bannerupload':
-                if (Input::hasfile('file')) {
-                    /*upload banner image*/
-                    $destinationPath = base_path() . Config::get('constants.DIR_IMAGE.DIR_STORE');
-                    $file = Input::file('file');
-
-                    /* clean old image*/
-                    $whereData = array(
-                        'user_id' => $userID,
-                        'id' => $storeID,
-                        );
-                    $checkStoreImage = $this->mod_store->getUserStore(null, $whereData);
-                    if (!empty($checkStoreImage)) {
-                        foreach ($checkStoreImage as $oldImage) {
-                            $oldName = $destinationPath . '/' . $oldImage->sto_banner;
-                            $thumb = $destinationPath . '/thumb/' . $oldImage->sto_banner;
-                            if (File::exists($oldName)) {
-                                File::delete($oldName, $thumb);
+                    echo json_encode($images);
+                    break;
+    
+                case 'bannerupload':
+                    if (Input::hasfile('file')) {
+                        /*upload banner image*/
+                        $destinationPath = base_path() . Config::get('constants.DIR_IMAGE.DIR_STORE');
+                        $file = Input::file('file');
+    
+                        /* clean old image*/
+                        $whereData = array(
+                            'user_id' => $userID,
+                            'id' => $storeID,
+                            );
+                        $checkStoreImage = $this->mod_store->getUserStore(null, $whereData);
+                        if (!empty($checkStoreImage)) {
+                            foreach ($checkStoreImage as $oldImage) {
+                                $oldName = $destinationPath . '/' . $oldImage->sto_banner;
+                                $thumb = $destinationPath . '/thumb/' . $oldImage->sto_banner;
+                                if (File::exists($oldName)) {
+                                    File::delete($oldName, $thumb);
+                                }
                             }
                         }
+    
+                        $images = $this->mod_store->doUpoad($file, $destinationPath, Config::get('constants.DIR_IMAGE.THUMB_WIDTH'),
+                            Config::get('constants.DIR_IMAGE.THUMB_HEIGTH'));
+                        /*update to store table DB*/
+                        $storeData = array('sto_banner' => $images['image']);
+                        $this->mod_store->where($whereData)->update($storeData);
+                        /*end update to store table DB*/
+                    } else {
+                        $images = array("error" => "Sorry, Upload get an error");
                     }
-
-                    $images = $this->mod_store->doUpoad($file, $destinationPath, Config::get('constants.DIR_IMAGE.THUMB_WIDTH'),
-                        Config::get('constants.DIR_IMAGE.THUMB_HEIGTH'));
-                    /*update to store table DB*/
-                    $storeData = array('sto_banner' => $images['image'], );
-                    $this->mod_store->where($whereData)->update($storeData);
-                    /*end update to store table DB*/
-                } else {
-                    $images = array("error" => "Sorry, Upload get an error");
-                }
-                echo json_encode($images);
-                break;
+                    echo json_encode($images);
+                    break;
+            }
         }
         die;
     }

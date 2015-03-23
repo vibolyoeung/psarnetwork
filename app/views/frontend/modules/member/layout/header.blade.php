@@ -15,9 +15,12 @@
 			{{HTML::script('frontend/js/html5shiv.js')}} {{HTML::script('frontend/js/respond.min.js')}}
 		<![endif]-->
 		<link rel="shortcut icon" href="{{Config::get('app.url')}}/frontend/images/ico/favicon.ico">
-		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{Config::get('app.url')}}/frontend/images/ico/apple-touch-icon-144-precomposed.png">
-		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{Config::get('app.url')}}/frontend/images/ico/apple-touch-icon-114-precomposed.png">
-		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{Config::get('app.url')}}/frontend/images/ico/apple-touch-icon-72-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{Config::get('app.url')}}/frontend/images/ico/apple-touch-icon-144-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{Config::get('app.url')}}/frontend/images/ico/apple-touch-icon-114-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{Config::get('app.url')}}/frontend/images/ico/apple-touch-icon-72-precomposed.png" />
+        <script type='text/javascript'>
+        var homePage = "{{Config::get('app.url')}}";
+        </script>
 	</head>
 	<body>
 		<header id="header">
@@ -46,13 +49,10 @@
 										<a href="#">Product Management</a>
 									</li>
 									<li>
-										<a href="#">Enterprise Tool</a>
+										<a href="{{URL::to('member/userinfo/menu')}}">Enterprise Tool</a>
 									</li>
 									<li>
-										<a href="#">Setting</a>
-									</li>
-									<li>
-										<a href="#">My Account</a>
+										<a href="{{URL::to('member/userinfo/infomation')}}">Setting</a>
 									</li>
 									<li role="presentation" class="dropdown">
 										<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">

@@ -20,7 +20,7 @@ var homePage = "{{Config::get('app.url')}}";
 </script>
 <div class="memberlogin">
 	<div class="col-sm-3">
-		@include('frontend.modules.member.layout.sidebar')
+		@include('frontend.modules.member.layout.sidebar-setting')
 		<div class="clear">
 		</div>
 	</div>
@@ -34,27 +34,7 @@ var homePage = "{{Config::get('app.url')}}";
 				</span>
 			</h2>
 			<div class="conent">
-				<div class="alert alert-success fade in" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">
-							&times;
-						</span>
-					</button>
-					<strong>
-						You Are Registering As
-					</strong>
-					<span style="color: red;">
-						Interprise Seller , Type
-					</span>
-					<strong>
-						Super Market.
-					</strong>
-					This Account will be free only for 3 months for your page site control.
-					<span style="color: red;">
-						Contact !
-					</span>
-				</div>
-				<form action="{{Config::get('app.url')}}member/userinfo/{{Request::segment(3)}}/{{Request::segment(4)}}" id="PersonalForm" class="form-horizontal" method="post">
+				<form action="" id="PersonalForm" class="form-horizontal" method="post">
 					<div class="category-tab shop-details-tab" style="margin: 0;">
 						<!--category-tab-->
 						<div class="tab-content">
