@@ -1,21 +1,32 @@
 $(document).ready(function(){
 	//Add curent menu 
-	jQuery(".navbar-nav li:first-child").addClass("active"); 
-	$(".navbar-nav > li").click(function(){
-		$(".navbar-nav >li.active").removeClass('active');
-		$(this).addClass('active');
-	});
-    
-	
-	
-	jQuery('.item:first-child').addClass(' active');
-	jQuery('.bullet:first-child').addClass('active');
-	jQuery('.tab-content .submenu-bar:first-child').addClass(' active');
-	jQuery('#myCarousel').carousel({
-          interval: 5000
-	  });
+//	jQuery(".navbar-nav li:first-child").addClass("active"); 
+//	$(".navbar-nav > li").click(function(){
+//		$(".navbar-nav >li.active").removeClass('active');
+//		$(this).addClass('active');
+//	});
+//    
+//	
+//	
+//	jQuery('.item:first-child').addClass(' active');
+//	jQuery('.bullet:first-child').addClass('active');
+//	jQuery('.tab-content .submenu-bar:first-child').addClass(' active');
+//	jQuery('#myCarousel').carousel({
+//          interval: 5000
+//	  });
 	
 	// Set auto slider for banner slideshow
+	
+	/*user Category*/
+	jQuery('.head-menu li:has(> ul)').addClass('dropdown');
+	jQuery('.head-menu li ul:has(> li)').addClass('dropdown-menu').attr('role', 'menu');
+	jQuery('.head-menu li.dropdown a').addClass('dropdown-toggle').attr('data-toggle', 'dropdown').attr('role', 'button').attr('aria-expanded', 'false');
+	jQuery('.head-menu li.dropdown a').append(' <span class="caret"></span>');
+    
+	jQuery('#menuSub li ul:has(> li)').hide();
+	jQuery('#menuSub li.active ul:has(> li)').slideDown();
+    
+	   
 	jQuery('#slider-carousel.carousel').carousel({
 		interval: 5000
 	});

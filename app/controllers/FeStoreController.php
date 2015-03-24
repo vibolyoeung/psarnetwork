@@ -18,8 +18,10 @@ class FeStoreController extends BaseController {
             $storeID = Request::segment(2);
            $where = array('id'=>$storeID);
            $dataStore = $this->mod_store->getUserStore(null,$where);
+           $dataCategory = $this->mod_category->menuUserList(53, $parent = 0);
            return View::make('frontend.modules.store.index')
-						->with('dataStore', $dataStore);
+						->with('dataStore', $dataStore)
+                        ->with('dataCategory', $dataCategory);
         }
         catch (Exception $e) {
             return $e->getMessages();
