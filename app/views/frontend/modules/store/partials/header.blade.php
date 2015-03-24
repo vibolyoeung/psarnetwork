@@ -13,6 +13,7 @@
         {{HTML::style('frontend/css/bootstrap.min.css')}}
         {{HTML::style('frontend/css/responsive.css')}}
         {{HTML::style('frontend/css/main.css')}}
+        {{HTML::style('frontend/css/member/member.css')}}
         {{HTML::style('frontend/css/layout.css')}}
         {{HTML::script('frontend/js/jquery.js')}}
         <!--[if lt IE 9]>
@@ -127,7 +128,7 @@
             <div class="container-fluid top-menu">
             	<div class="col-lg-4 top_promotion">
             		<div class="col-lg-2">
-						<a href="#"><img src="{{Config::get('app.url')}}frontend/images/home/partner1.png" width="200"/><a>
+						<a href="#"><img src="{{Config::get('app.url')}}frontend/images/home/partner1.png" width="200" class="storeLogo"/><a>
 					</div>
 				</div>
 				
