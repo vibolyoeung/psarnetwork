@@ -36,7 +36,7 @@
                         <div class="col-sm-3">
                             <div class="contactinfo">
                                 <ul class="nav nav-pills">
-                                    <li><a href="{{Config::get('app.url')}}" taget="_blank">www.psarkhmer.com</a></li>
+                                    <li class="user-home"><a href="{{Config::get('app.url')}}" taget="_blank">www.psarkhmer.com</a></li>
                                 </ul>
                             </div>
                         </div>
