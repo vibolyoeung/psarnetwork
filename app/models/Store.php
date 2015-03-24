@@ -20,7 +20,7 @@ class Store extends Eloquent {
                 $where = array('user_id' => $userID);
             }
             $result = DB::table(Config::get('constants.TABLE_NAME.STORE'))->select('*')->
-                where($where)->get();
+                where($where)->first();
             return $result;
         }
         catch (\Exception $e) {

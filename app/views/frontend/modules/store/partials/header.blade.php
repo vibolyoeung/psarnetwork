@@ -36,11 +36,11 @@
             <div class="container-fluid top-menu">
             	<div class="col-lg-4 top_promotion">
             		<div class="col-lg-2">
-						<a href="#"><img src="{{Config::get('app.url')}}frontend/images/home/partner1.png" width="200" class="storeLogo"/><a>
+						<a class="store-logo" href="#"><img src="{{Config::get('app.url')}}{{($dataStore->image ? 'upload/store/'.$dataStore->image : 'frontend/images/home/partner1.png')}}" class="storeLogo"/><a>
 					</div>
 				</div>
 				
 				<div class="col-lg-8">
-				    <h1>Khmer Phone And Computer  Store</h1>
+				    <h1 class="header-right">{{($dataStore->title_en ? $dataStore->{'title_'.Session::get('lang')} : 'Not set yet')}}</h1>
                     </div>
 			</div>
