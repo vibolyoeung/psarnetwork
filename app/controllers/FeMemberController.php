@@ -295,7 +295,7 @@ class FeMemberController extends BaseController {
             case 'content':
                 $getUserStore = $this->mod_store->getUserStore($userID);
                 if (!empty($getUserStore)) {
-                    $storeID = $getUserStore[0]->id;
+                    $storeID = $getUserStore->id;
                 } else {
                     $storeID = null;
                 }
@@ -419,7 +419,7 @@ class FeMemberController extends BaseController {
         $this->layout = null;
         $getUserStore = $this->mod_store->getUserStore($userID);
         if (!empty($getUserStore)) {
-            $storeID = $getUserStore[0]->id;
+            $storeID = $getUserStore->id;
             $page = Input::get('page');
             switch ($page) {
                 case 'logoupload':
@@ -584,8 +584,8 @@ class FeMemberController extends BaseController {
                     case 'userLayoutFooter':
                         $getUserStore = $this->mod_store->getUserStore($userID);
                         if (!empty($getUserStore)) {
-                            $userStoreID = $getUserStore[0]->id;
-                            $userStoresValue = $getUserStore[0]->sto_value;
+                            $userStoreID = $getUserStore->id;
+                            $userStoresValue = $getUserStore->sto_value;
                             $userStoresValueArr = json_decode($userStoresValue, true);
                             if (array_key_exists('footer_text', $userStoresValueArr)) {
                                 $ValueArr = array('footer_text' => $MainMenu);
