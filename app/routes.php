@@ -130,8 +130,7 @@ Route::group(array('before' => 'auth_member'), function () {
     /*for product*/
     Route::group(array('prefix' => 'products'), function () {
         Route::any('/list', 'FeProductController@listAllProducts'); 
-        Route::any('/create',
-            'FeProductController@addProduct'); 
+        Route::any('/create','FeProductController@addProduct'); 
         Route::any('/ispublished/{product_id}/{is_publish}', 'FeProductController@isPublishProduct');
         Route::any('/delete/{product_id}', 'FeProductController@deleteProduct');
         Route::any('/edit/{product_id}', 'FeProductController@editProduct');
