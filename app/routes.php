@@ -124,7 +124,8 @@ Route::group(array('before' => 'auth_member'), function () {
         Route::any('/addmenuajax','FeMemberController@addmenuajax'); 
         Route::any('/ajaxupload','FeMemberController@ajaxupload'); 
         Route::any('/getsubmenu','FeMemberController@getsubmenu');
-        Route::any('/toolview','FeMemberController@toolview'); 
+        Route::any('/toolview','FeMemberController@toolview');
+        Route::any('/slideshow','FeMemberController@slideshow');
     }); 
     /*for product*/
     Route::group(array('prefix' => 'products'), function () {

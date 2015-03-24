@@ -8,8 +8,8 @@
 	<li class="{{(Request::segment(3)=='content' ? 'active':'')}}">
 		<a href="{{URL::to('member/userinfo/content')}}">{{trans('register.MENU_Content_Page')}}</a>
 	</li>
-	<li class="{{(Request::segment(3)=='sideshow' ? 'active':'')}}">
-		<a href="{{URL::to('member/userinfo/sideshow')}}">{{trans('register.MENU_sideshow')}}</a>
+	<li class="{{(Request::segment(3)=='slideshow' ? 'active':'')}}">
+		<a href="{{URL::to('member/userinfo/slideshow')}}">{{trans('register.MENU_sideshow')}}</a>
 	</li>
     <li class="{{(Request::segment(3)=='addpadd' ? 'active':'')}}">
 		<a href="{{URL::to('member/userinfo/addpadd')}}">{{trans('register.MENU_addpadd')}}</a>

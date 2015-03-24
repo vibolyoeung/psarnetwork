@@ -21,7 +21,7 @@
 		<div class="register-form">
 			<!--login form-->
 			<h2>
-				{{trans('register.tool_vivew')}}
+				{{trans('register.slide_show_header')}}
 			</h2>
 			<div class="conent">
 				<form action="" id="PersonalForm" class="form-horizontal" method="post">
@@ -34,34 +34,18 @@
 										<!--product describe-->
 										<div class="col-sm-6">
 											<div class="pro-detail">
-												<div class="checkbox">
+												<div class="radio">
 													<label>
-                                                        {{Form::checkbox('visitor_box', 'value', false)}}
-                                                        {{trans('register.tool_visitor')}}
+                                                        {{Form::radio('display', '1', false, array('id'=>'slideshow1'))}}
+														{{trans('register.slide_show_enable')}}
 													</label>
 												</div>
-                                                
-                                                <div class="checkbox">
+												<div class="radio">
 													<label>
-                                                        {{Form::checkbox('status_box', 'value', false)}}
-                                                        {{trans('register.tool_status_box')}}
+                                                        {{Form::radio('display', '0', false, array('id'=>'slideshow2'))}}
+														{{trans('register.slide_show_disable')}}
 													</label>
 												</div>
-                                                
-                                                <div class="checkbox">
-													<label>
-                                                        {{Form::checkbox('facebook_box', 'value', false)}}
-                                                        {{trans('register.tool_facebook_box')}}
-													</label>
-												</div>
-                                                
-                                                <div class="checkbox">
-													<label>
-                                                        {{Form::checkbox('category_limit', 'value', false)}}
-                                                        {{trans('register.tool_category_limit')}}
-													</label>
-												</div>
-                                                                                                
 											</div>
 										</div>
 										<!--end product describe-->
@@ -81,9 +65,7 @@
 					<!--end product detail-->
 					<div class="clear">
 					</div>
-					<input id="summit" type="submit" class="btn btn-default pull-right choosenuser" name="btnInfo" value="{{trans('register.BTN_NEXT')}}"/>
-					<a id="chooseuser" class="btn btn-warning pull-right choosenuser" href="#">Back</a>
-					<a id="chooseuser" class="btn btn-danger pull-right choosenuser" href="#">Cancel</a>
+					<input id="summit" type="submit" class="btn btn-default pull-right choosenuser" name="btnInfo" value="{{trans('register.BTN_SAVE')}}"/>
 				</form>
 				<div class="clear">
 				</div>

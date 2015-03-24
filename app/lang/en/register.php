@@ -148,4 +148,9 @@ You will be benefit with free account by posing free ,  owning page free .If you
     'tool_status_box' => 'Member Status Box',
     'tool_facebook_box' => 'Facebook Like Page',
     'tool_category_limit' => 'Page Category Show per Page',
+    
+    /* Slide show*/
+    'slide_show_header' => 'Slide show',
+    'slide_show_enable' => 'Enable',
+    'slide_show_disable' => 'Disable',
 );
