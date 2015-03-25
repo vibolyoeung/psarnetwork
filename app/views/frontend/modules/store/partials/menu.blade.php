@@ -40,5 +40,14 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+<div style="clear: both;"></div>
+
+<!-- second menu page -->
+@if($dataUserPage)
+<ol class="breadcrumb">
+  {{$dataUserPage}}
+</ol>
+@endif
+<!-- end second menu page -->
 </header>
 <!--==============Closing header=========-->

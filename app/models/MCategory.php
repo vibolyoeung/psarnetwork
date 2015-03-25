@@ -583,21 +583,20 @@ class MCategory extends Eloquent{
     			foreach($result as $userMenu){
                     if($level ==0) {
                         $id = 'item-'.$userMenu->m_cat_id.$userMenu->m_cat_id;
-                        $hasChild = '';
                     } else {
                         $id = 'item-'.$userMenu->m_cat_id;
-                        $hasChild = 'xxxxxxxxxxxxxxxx';
                     }
     				$userMenus .= "<li class='uu-item uu3-item item-{$userMenu->m_cat_id}' data-id='{$userMenu->m_cat_id}' id='{$id}'>\n";
                         $menuName = $userMenu->{'name_'.Session::get('lang')};                        
-    					$userMenus .= "<a href='#' class='{$hasChild}'>{$menuName}</a>\n";
+    					$userMenus .= "<a href='#'>{$menuName}</a>\n";
     
     					// Run this function again (it would stop running when the mysql_num_result is 0
     					$userMenus .= $this->menuUserSubList($userID, $userMenu->m_cat_id,$level+1);
     				$userMenus .= "</li>\n";
     			} 
             }
-            
+            /*get static page for each user*/
+            $userMenus .= $this->menuUserPage($userID);
             $userMenus .= "</ul>\n";
             return $userMenus;
 		}catch (\Exception $e){
@@ -645,6 +644,41 @@ class MCategory extends Eloquent{
     			} 
             }
             $userMenus .= "</ul>\n";
+            return $userMenus;
+		}catch (\Exception $e){
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+        return $response;
+    }
+    
+    /**
+     * Get User Page
+     * @method menuUserList
+     * @return string
+     * @author Socheat Ngann
+     */
+     public function menuUserPage($userID, $position=1) {
+        $response = new stdClass();
+		try {
+            $where = array(
+                'status' => 1,
+                'user_id' => $userID,
+                'position' => $position
+            );
+			$result = DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))
+            ->select('*')
+			->where($where)
+			->get();
+            $userMenus = "";
+            if(!empty($result)) {
+    			foreach($result as $userMenu){
+    				$userMenus .= "<li class='pp-item pp3-item item-{$userMenu->id}' data-id='{$userMenu->id}'>\n";
+                        $menuName = $userMenu->title; 
+    					$userMenus .= "<a href='#'>{$menuName}</a>\n";
+    				$userMenus .= "</li>\n";
+    			} 
+            }
             return $userMenus;
 		}catch (\Exception $e){
 			$response->result = 0;
