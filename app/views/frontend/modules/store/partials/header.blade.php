@@ -13,8 +13,11 @@
         {{HTML::style('frontend/css/bootstrap.min.css')}}
         {{HTML::style('frontend/css/responsive.css')}}
         {{HTML::style('frontend/css/main.css')}}
+        {{HTML::style('frontend/css/member/member.css')}}
         {{HTML::style('frontend/css/layout.css')}}
         {{HTML::script('frontend/js/jquery.js')}}
+        {{HTML::style('frontend/css/member/ddmenu.css')}}
+        {{HTML::script('frontend/js/member/ddmenu.js')}}
         <!--[if lt IE 9]>
                 {{HTML::script('frontend/js/html5shiv.js')}}
                 {{HTML::script('frontend/js/respond.min.js')}}
@@ -28,110 +31,18 @@
               href="{{Config::get('app.url')}}/frontend/images/ico/apple-touch-icon-72-precomposed.png">
     </head>
     <body>
-        <!-- Fixed navbar  navbar-fixed-top menu-fixed-->
-        <div class="navbar navbar-default navbar-fixed-top menu-fixed" style="display: none">
-           <div class="container">
-                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                         <span class="icon-bar"></span>
-                         <span class="icon-bar"></span> 
-                        <span class="icon-bar"></span>
-                     </button>
-                     <a class="navbar-brand logo-fixed" href="{{Config::get('app.url')}}"><img src="{{Config::get('app.url')}}/frontend/images/home/logo.png" alt="" /></a> 
-                 </div>
-                <div class="navbar-collapse collapse">
-                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                         <li class="dropdown">
-                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Category <b class="caret"></b></a>
-                             <ul class="dropdown-menu">
-                                <li><a href="#tshirt" data-toggle="tab">Phone</a></li>
-                                 <li><a href="#blazers" data-toggle="tab">Tablet</a></li>
-                                 <li><a href="#blazers" data-toggle="tab">Laptop</a></li>
-                                 <li><a href="#blazers" data-toggle="tab">Moto</a></li>
-                                 <li><a href="#blazers" data-toggle="tab">Car</a></li>
-                                 <li><a href="#blazers" data-toggle="tab">House</a></li>
-                                 <li><a href="#blazers" data-toggle="tab">Land</a></li>
-                                 <li><a href="#blazers" data-toggle="tab">Instrument</a></li>
-                                <li><a href="#blazers" data-toggle="tab">Clothes</a></li>
-                                 <li><a href="#blazers" data-toggle="tab">Jewellery</a></li>
-                                 <li><a href="#blazers" data-toggle="tab">Cosmetic Wakeup</a></li>
-                                 <li><a href="#blazers" data-toggle="tab">Food</a></li>
-                                <li><a href="#blazers" data-toggle="tab">Furniture</a></li>
-                                 <li><a href="#blazers" data-toggle="tab">Entertainment</a></li>
-                                 <li><a href="#blazers" data-toggle="tab">Fussiness Service</a></li>
-                             </ul>
-                         </li>
-                     </ul>
-                     <ul class="nav navbar-nav navbar-right"> 
-                         <li><a href="#"><i class="fa">Contact us</i></a></li>
-                        <li><a href="#"><i class="fa">About us</i></a></li>
-                        <li><a href="#"><i class="fa">User Agreement</i></a></li>
-                         <li><a href="#"><i class="fa">Policy</i></a></li>
-                         <li><a href="#"><i class="fa">Usage</i></a></li>
-                        <li><a href="{{Config::get('app.url')}}/member/login"><i class="fa">Sign in /</i></a></li>
-                         <li><a href="{{Config::get('app.url')}}/member/register"><i class="fa">Free Register</i></a></li>
-                         <li class="search">
-                            <!-- search form -->
-                             <form method="get" action="#" class="input-group pull-right">
-                                 <input type="text" class="form-control" name="k" id="k" value="" placeholder="Search">
-                                 <span class="input-group-btn">
-                                    <button class="btn btn-primary notransition" style="margin-top: 8px;"><i class="fa fa-search"></i></button>
-                                 </span>
-                             </form>
-                         <!-- /search form -->
-                         </li> 
-                     </ul>
-                </div><!--/.nav-collapse-->
-			</div>
-		</div>
-
-		<header id="header"><!--=====Start Header]==============-->
-            <div class="header_top">
-                <!--header_top-->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="contactinfo">
-                                <ul class="nav nav-pills">
-                                    <li><a href="{{Config::get('app.url')}}" taget="_blank">www.psarkhmer.com</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="social-icons pull-right ">
-                                <ul class="nav navbar-nav">
-                                    <li><a href="#"><i class="fa">Contact us</i></a></li>
-                                    <li><a href="#"><i class="fa">About us</i></a></li>
-                                    <li><a href="#"><i class="fa">User Agreement</i></a></li>
-                                    <li><a href="#"><i class="fa">Policy</i></a></li>
-                                    <li><a href="#"><i class="fa">Usage</i></a></li>
-                                    <li><a href="{{Config::get('app.url')}}/member/login"><i class="fa">Sign in /</i></a></li>
-                                    <li><a href="{{Config::get('app.url')}}/member/register"><i class="fa">Free Register</i></a></li>
-                                </ul>
-<!--                                 <div class="language-bar"> -->
-<!--                                     <a href="{{Config::get('app.url')}}en" > -->
-<!--                                         <img src="{{Config::get('app.url')}}/frontend/images/en.png" alt="" title="" /> -->
-<!--                                         English -->
-<!--                                     </a> -->
-<!--                                     <a href="{{Config::get('app.url')}}zh"> -->
-<!--                                         <img src="{{Config::get('app.url')}}/frontend/images/cn.png" alt="" title="" /> -->
-<!--                                         Chinese -->
-<!--                                     </a>	 -->
-<!--                                 </div> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- ============End header top here============== -->
+		<header id="header">
+        <!--=====Start Header]==============-->
+        @include('frontend.modules.store.partials.top-menu')
+        <!-- ============End header top here============== -->
             <div class="container-fluid top-menu">
             	<div class="col-lg-4 top_promotion">
             		<div class="col-lg-2">
-						<a href="#"><img src="{{Config::get('app.url')}}frontend/images/home/partner1.png" width="200"/><a>
+						<a class="store-logo" href="{{$userHome}}"><img src="{{Config::get('app.url')}}{{($dataStore->image ? 'upload/store/'.$dataStore->image : 'frontend/images/home/partner1.png')}}" class="storeLogo"/><a>
 					</div>
 				</div>
 				
 				<div class="col-lg-8">
-				    <h1>Khmer Phone And Computer  Store</h1>
+				    <h1 class="header-right"><a href="{{$userHome}}">{{($dataStore->title_en ? $dataStore->{'title_'.Session::get('lang')} : 'Not set yet')}}</a></h1>
                     </div>
 			</div>

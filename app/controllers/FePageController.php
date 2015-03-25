@@ -27,13 +27,6 @@ class FePageController extends BaseController {
 	{
 		$limit = $this->mod_setting->getSlidshowNumber();
 		$listSlideshows = self::getSlideShowHomePage($limit->data->setting_value);
-		$advHorizontalTopLarge = $this->mod_advertisment
-			->getAdvertisementHomePage(
-				self::HOMEPAGE,
-				self::H_MIDDLE_TOP_LARGE,
-				1
-			);
-
 
 		$advVerticalRightSmall = $this->mod_advertisment
 			->getAdvertisementHomePage(
@@ -65,7 +58,6 @@ class FePageController extends BaseController {
 
 		return View::make('frontend.partials.home')
 			->with('slideshows', $listSlideshows->result)
-			->with('advHorizontalTopLarges', $advHorizontalTopLarge->result)
 			->with('advVerticalRightSmalls', $advVerticalRightSmall->result)
 			->with('advVerticalLeftSmalls', $advVerticalLeftSmall->result)
 			->with('advHorizontalLargeCenters', $advHorizontalLargeCenter->result)
@@ -82,6 +74,18 @@ class FePageController extends BaseController {
 		);
 		return View::make('frontend.partials.advertisement')
 			->with('advs', $advs->result);
+	}
+
+	public function getSpecialAds(){
+		$advHorizontalTopLarges = $this->mod_advertisment
+			->getAdvertisementHomePage(
+				self::HOMEPAGE,
+				self::H_MIDDLE_TOP_LARGE,
+				1
+			);
+
+		return View::make('frontend.partials.special_adv')
+			->with('advHorizontalTopLarges', $advHorizontalTopLarges->result);
 	}
 
 	public function mainCategory(){

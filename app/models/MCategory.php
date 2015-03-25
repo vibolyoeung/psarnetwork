@@ -463,10 +463,10 @@ class MCategory extends Eloquent{
     }
     
      /**
-     * Delete all for User category
-     *
-     * @method DelUserCategory
+     * for User category
+     * @method menuShowNested
      * @return void
+     * @author Socheat Ngann
      */
     public function menuShowNested($userID, $parent=0,$level=0) {
         $response = new stdClass();
@@ -492,7 +492,8 @@ class MCategory extends Eloquent{
     				$userMenus .= "<li class='dd-item dd3-item' data-id='{$userMenu->m_cat_id}' id='{$id}'>\n";
                         $userMenus .= "<div class='remove-div'></div>\n";
     					$userMenus .= "<div class='dd-handle dd3-handle'>Drag</div>\n";
-    					$userMenus .= "<div class='dd3-content item-{$userMenu->m_cat_id}'>{$userMenu->name_en}</div>\n";
+                        $menuName = $userMenu->{'name_'.Session::get('lang')};                        
+    					$userMenus .= "<div class='dd3-content item-{$userMenu->m_cat_id}'>{$menuName}</div>\n";
     
     					// Run this function again (it would stop running when the mysql_num_result is 0
     					$userMenus .= $this->menuShowNestedList($userID, $userMenu->m_cat_id,$level+1);
@@ -509,11 +510,11 @@ class MCategory extends Eloquent{
         return $response;
     }
     
-      /**
-     * Delete all for User category
-     *
-     * @method DelUserCategory
+    /**
+     * Get sub User category
+     * @method menuShowNestedList
      * @return void
+     * @author Socheat Ngann
      */
     public function menuShowNestedList($userID, $parent=0,$level=0) {
         $response = new stdClass();
@@ -540,7 +541,8 @@ class MCategory extends Eloquent{
     				$userMenus .= "<li class='dd-item dd3-item' data-id='{$userMenu->m_cat_id}' id='{$id}'>\n";
     					$userMenus .= "<div class='remove-div'></div>\n";
     					$userMenus .= "<div class='dd-handle dd3-handle'>Drag</div>\n";
-    					$userMenus .= "<div class='dd3-content item-{$userMenu->m_cat_id}'>{$userMenu->name_en}</div>\n";
+                        $menuName = $userMenu->{'name_'.Session::get('lang')}; 
+    					$userMenus .= "<div class='dd3-content item-{$userMenu->m_cat_id}'>{$menuName}</div>\n";
     					$userMenus .= "<ol class='dd-list' id='sub{$id_level}-{$userMenu->m_cat_id}'></ol>\n";
     
     					// Run this function again (it would stop running when the mysql_num_result is 0
@@ -555,5 +557,135 @@ class MCategory extends Eloquent{
 			$response->errorMsg = $e->getMessage();
 		}
         return $response;
-    }           
+    }
+    
+     /**
+     * for User category
+     * @method menuUserList
+     * @return String
+     * @author Socheat Ngann
+     */
+    public function menuUserList($userID, $parent=0,$level=0) {
+        $response = new stdClass();
+		try {
+            $where = array(
+                'is_publish' => 1,
+                'user_id' => $userID,
+                'parent_id' => $parent
+            );
+			$result = DB::table(Config::get('constants.TABLE_NAME.S_CATEGORY'))
+            ->select('*')
+			->where($where)
+			->get();
+            $userMenus = "";
+			$userMenus .= "<ul class='sf-menu' id='menunav'>";
+            $homeUrl = Config::get('app.url');
+			$userMenus .= "<li><a class='home' href='{$homeUrl}'>Home</a></li>";
+            if(!empty($result)) {
+    			foreach($result as $userMenu){
+                    if($level ==0) {
+                        $id = 'item-'.$userMenu->m_cat_id.$userMenu->m_cat_id;
+                    } else {
+                        $id = 'item-'.$userMenu->m_cat_id;
+                    }
+    				$userMenus .= "<li>\n";
+                        $menuName = $userMenu->{'name_'.Session::get('lang')};                        
+    					$userMenus .= "<a href='#'>{$menuName}</a>\n";
+    
+    					// Run this function again (it would stop running when the mysql_num_result is 0
+    					$userMenus .= $this->menuUserSubList($userID, $userMenu->m_cat_id,$level+1);
+    				$userMenus .= "</li>\n";
+    			} 
+            }
+            /*get static page for each user*/
+            $userMenus .= $this->menuUserPage($userID);
+            $userMenus .= "</ul>\n";
+            return $userMenus;
+		}catch (\Exception $e){
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+        return $response;
+    }
+    
+    /**
+     * Get User sub category
+     * @method menuUserList
+     * @return string
+     * @author Socheat Ngann
+     */
+    public function menuUserSubList($userID, $parent=0,$level=0) {
+        $response = new stdClass();
+		try {
+            $where = array(
+                'is_publish' => 1,
+                'user_id' => $userID,
+                'parent_id' => $parent
+            );
+			$result = DB::table(Config::get('constants.TABLE_NAME.S_CATEGORY'))
+            ->select('*')
+			->where($where)
+			->get();
+            $userMenus = "";
+			$userMenus .= "<ul>\n";
+            if(!empty($result)) {
+    			foreach($result as $userMenu){
+                    if($level ==0) {
+                        $id = 'item-'.$userMenu->m_cat_id.$userMenu->m_cat_id;
+                    } else {
+                        $id = 'item-'.$userMenu->m_cat_id;
+                    }
+                    $id_level = $level+1;
+    				$userMenus .= "<li>\n";
+                        $menuName = $userMenu->{'name_'.Session::get('lang')}; 
+    					$userMenus .= "<a href='#'>{$menuName}</a>\n";
+    
+    					// Run this function again (it would stop running when the mysql_num_result is 0
+    					$userMenus .= $this->menuUserSubList($userID, $userMenu->m_cat_id,$level+1);
+    				$userMenus .= "</li>\n";
+    			} 
+            }
+            $userMenus .= "</ul>\n";
+            return $userMenus;
+		}catch (\Exception $e){
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+        return $response;
+    }
+    
+    /**
+     * Get User Page
+     * @method menuUserList
+     * @return string
+     * @author Socheat Ngann
+     */
+     public function menuUserPage($userID, $position=1) {
+        $response = new stdClass();
+		try {
+            $where = array(
+                'status' => 1,
+                'user_id' => $userID,
+                'position' => $position
+            );
+			$result = DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))
+            ->select('*')
+			->where($where)
+			->get();
+            $userMenus = "";
+            if(!empty($result)) {
+    			foreach($result as $userMenu){
+    				$userMenus .= "<li class='pp-item pp3-item item-{$userMenu->id}' data-id='{$userMenu->id}'>\n";
+                        $menuName = $userMenu->title; 
+    					$userMenus .= "<a href='#'>{$menuName}</a>\n";
+    				$userMenus .= "</li>\n";
+    			} 
+            }
+            return $userMenus;
+		}catch (\Exception $e){
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+        return $response;
+    }             
 }

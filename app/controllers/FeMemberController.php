@@ -39,8 +39,9 @@ class FeMemberController extends BaseController {
                 if (Input::has('page') && Input::has('page') == 'register') {
                     return Redirect::to('member/userinfo/' . $result->account_type . '/menu');
                 } else {
-                    //return Redirect::to('page/' . strtolower($result->name));
-                    return Redirect::to('/');
+                    $checkStore = $this->mod_store->getUserStore($result->id);
+                    return Redirect::to('page/' . $checkStore->id);
+                    //return Redirect::to('/');
                 }
             } else {
                 return Redirect::to('member/login')->with('INVALID_LOGIN',
@@ -295,7 +296,7 @@ class FeMemberController extends BaseController {
             case 'content':
                 $getUserStore = $this->mod_store->getUserStore($userID);
                 if (!empty($getUserStore)) {
-                    $storeID = $getUserStore[0]->id;
+                    $storeID = $getUserStore->id;
                 } else {
                     $storeID = null;
                 }
@@ -347,6 +348,17 @@ class FeMemberController extends BaseController {
             case 'slideshow':
                 return View::make('frontend.modules.member.s-slideshow')->with('maincategories',
                     $listCategories->result);
+                break;
+                
+            case 'accountinfo':
+                $accountRole = $this->user->accountRole();
+                $clientType = $this->user->getClientType();
+                $result = $this->mod_market->listingMarkets();
+                return View::make('frontend.modules.member.acountinfo')
+                ->with('maincategories',$listCategories->result)
+                ->with('accountRole', $accountRole->data)
+                ->with('clientType', $clientType->data)
+                ->with('markets', $result->data);
                 break;
 
         }
@@ -419,7 +431,7 @@ class FeMemberController extends BaseController {
         $this->layout = null;
         $getUserStore = $this->mod_store->getUserStore($userID);
         if (!empty($getUserStore)) {
-            $storeID = $getUserStore[0]->id;
+            $storeID = $getUserStore->id;
             $page = Input::get('page');
             switch ($page) {
                 case 'logoupload':
@@ -584,8 +596,8 @@ class FeMemberController extends BaseController {
                     case 'userLayoutFooter':
                         $getUserStore = $this->mod_store->getUserStore($userID);
                         if (!empty($getUserStore)) {
-                            $userStoreID = $getUserStore[0]->id;
-                            $userStoresValue = $getUserStore[0]->sto_value;
+                            $userStoreID = $getUserStore->id;
+                            $userStoresValue = $getUserStore->sto_value;
                             $userStoresValueArr = json_decode($userStoresValue, true);
                             if (array_key_exists('footer_text', $userStoresValueArr)) {
                                 $ValueArr = array('footer_text' => $MainMenu);

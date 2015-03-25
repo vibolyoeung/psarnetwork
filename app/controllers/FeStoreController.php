@@ -4,21 +4,37 @@ class FeStoreController extends BaseController {
 	private $mod_slideshow;
 	private $mod_category;
 	private $mod_setting;
+    protected $mod_store;
 	
 	function __construct(){
 		$this->mod_slideshow = new Slideshow();
 		$this->mod_category = new MCategory();
 		$this->mod_setting = new Setting();
+        $this->mod_store = new Store();
 	}
 	public function index()
 	{
-		$limit = $this->mod_setting->getSlidshowNumber();
-		$listSlideshows = self::getSlideshowToHomePage($limit->data->setting_value);
-		$listCategories = self::getCategoriesHomePage();
-		return View::make('frontend.modules.store.index')
-						->with('slideshows', $listSlideshows->result)
-						->with('maincategories', $listCategories->result)
-						->with('Provinces', $this->mod_setting->listProvinces());
+	   try {
+            $storeID = Request::segment(2);
+           $where = array('id'=>$storeID);
+           $dataStore = $this->mod_store->getUserStore(null,$where);
+           $dataCategory = $this->mod_category->menuUserList($dataStore->user_id, $parent = 0);
+           $dataUserPage = $this->mod_category->menuUserPage($dataStore->user_id, 2);
+           return View::make('frontend.modules.store.index')
+						->with('dataStore', $dataStore)
+                        ->with('dataCategory', $dataCategory)
+                        ->with('dataUserPage', $dataUserPage);
+        }
+        catch (Exception $e) {
+            return $e->getMessages();
+        }
+//		$limit = $this->mod_setting->getSlidshowNumber();
+//		$listSlideshows = self::getSlideshowToHomePage($limit->data->setting_value);
+//		$listCategories = self::getCategoriesHomePage();
+//		return View::make('frontend.modules.store.index')
+//						->with('slideshows', $listSlideshows->result)
+//						->with('maincategories', $listCategories->result)
+//						->with('Provinces', $this->mod_setting->listProvinces());
 	}
 	
 	public function getSlideshowToHomePage($limit){

@@ -20,7 +20,7 @@
 var homePage = "{{Config::get('app.url')}}";
 
 </script>
-@if($dataStore) @foreach ($dataStore as $userStore)
+@if($dataStore)
 <div class="memberlogin">
 	<div class="col-sm-3">
 		@include('frontend.modules.member.layout.sidebar')
@@ -63,8 +63,8 @@ var homePage = "{{Config::get('app.url')}}";
 												<div class="row">
 													<div class="col-sm-4">
 														<div id='logo-preview' style="margin: 10px 0 0 0;width: 100px; height: 100px;">
-															@if($userStore->image)
-															<img src="{{Config::get('app.url')}}/upload/store/thumb/{{$userStore->image}}" />
+															@if($dataStore->image)
+															<img src="{{Config::get('app.url')}}/upload/store/thumb/{{$dataStore->image}}" />
 															@else
 															<img src="http://placehold.it/100x100&text=Logo" />
 															@endif
@@ -72,8 +72,8 @@ var homePage = "{{Config::get('app.url')}}";
 													</div>
 													<div class="col-sm-8">
 														<div id='banner-preview' style="margin: 10px 0 0 0;width: 100%; height: 100px;">
-															@if($userStore->sto_banner)
-															<img src="{{Config::get('app.url')}}/upload/store/thumb/{{$userStore->sto_banner}}" style="width: 100%;height:100px" />
+															@if($dataStore->sto_banner)
+															<img src="{{Config::get('app.url')}}/upload/store/thumb/{{$dataStore->sto_banner}}" style="width: 100%;height:100px" />
 															@else
 															<img src="http://placehold.it/500x100&text=Banner here" style="width: 100%;height:100px" />
 															@endif
@@ -174,7 +174,7 @@ var homePage = "{{Config::get('app.url')}}";
 														{{trans('register.TAB_Layout_Color')}}:
 													</legend>
                                                     <?php 
-                                                        $userOption = json_decode($userStore->sto_value);
+                                                        $userOption = json_decode($dataStore->sto_value);
                                                         $userLayout = @$userOption->layout;
                                                         $userFooter = @$userOption->footer_text;
                                                         $layoutOne = ($userLayout =='main.css')? true :false;
@@ -230,7 +230,7 @@ var homePage = "{{Config::get('app.url')}}";
 		<!--/login form-->
 	</div>
 </div>
-@endforeach @endif {{HTML::script('frontend/js/jquery.validate.js')}}
+@endif {{HTML::script('frontend/js/jquery.validate.js')}}
 <script type='text/javascript'>
 	
 	
