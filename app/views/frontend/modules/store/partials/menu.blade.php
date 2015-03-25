@@ -2,7 +2,9 @@
 <nav class='navix' id='nav'>
     <div class='wrap'>      
         <a href='#' id='mobilenav'>Menu</a>
-        {{$dataCategory}}
+        @if($dataCategory)
+            {{$dataCategory}}
+        @endif
         <div id='searchnya'>
             <form action='/search' id='ajax-search-form'>
                 <input name='q' onblur='if (this.value == &quot;&quot;) {this.value = &quot;Text to search...&quot;;}' onfocus='if (this.value == &quot;Text to search...&quot;) {this.value = &quot;&quot;;}' type='text' value='Text to search...'/>

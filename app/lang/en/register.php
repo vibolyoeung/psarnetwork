@@ -138,19 +138,23 @@ You will be benefit with free account by posing free ,  owning page free .If you
     'TAB_Stay_on_Sub_bar' => 'Stay on Sub bar',
     'TAB_Your_menu_category_you_have_chosen' => 'Your menu category you have chosen',
     
-    /*content page*/
+    /* content page */
     'con_alert_header' => 'Your Direction',
     'con_alert_text' => 'This is the content view page layout of your own home page . ther are four defaults group box view which are  New Arrval Product  , Hot Promotion , Second Hand ,  New Product s. So if you want another group of your product  type to  be groupped view first , you must select change from  number 1 order to number 12 . And , if you want to show all the  view group in your own home page . you must select all . Please see you repview testing on your left side.',
     
-    /*Tool view */
+    /* Tool view */
     'tool_vivew' => 'Tool View',
     'tool_visitor' => 'Vistor Inormation Box',
     'tool_status_box' => 'Member Status Box',
     'tool_facebook_box' => 'Facebook Like Page',
     'tool_category_limit' => 'Page Category Show per Page',
     
-    /* Slide show*/
+    /* Slide show */
     'slide_show_header' => 'Slide show',
     'slide_show_enable' => 'Enable',
     'slide_show_disable' => 'Disable',
+    
+    /* Account infomation */
+    'acc_Current_Acount' => 'Your Current Acount Type',
+    'acc_I_want_to' => 'I Want To Be',
 );

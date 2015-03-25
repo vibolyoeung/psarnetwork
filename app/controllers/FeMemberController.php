@@ -349,6 +349,17 @@ class FeMemberController extends BaseController {
                 return View::make('frontend.modules.member.s-slideshow')->with('maincategories',
                     $listCategories->result);
                 break;
+                
+            case 'accountinfo':
+                $accountRole = $this->user->accountRole();
+                $clientType = $this->user->getClientType();
+                $result = $this->mod_market->listingMarkets();
+                return View::make('frontend.modules.member.acountinfo')
+                ->with('maincategories',$listCategories->result)
+                ->with('accountRole', $accountRole->data)
+                ->with('clientType', $clientType->data)
+                ->with('markets', $result->data);
+                break;
 
         }
     }

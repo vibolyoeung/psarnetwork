@@ -33,40 +33,40 @@
 							</a>
 							<ul class="dropdown-menu" role="menu">
 								<li>
-									<a href="#">View Profile info</i></a>
+									<a href="#">View Profile info</a>
 								</li>
 								<li>
-									<a href="#">Your Status</i></a>
+									<a href="#">Your Status</a>
 								</li>
 								<li>
-									<a href="#">Chage Password</i></a>
+									<a href="#">Chage Password</a>
 								</li>
 								<li>
-									<a href="{{URL::to('logout')}}"><i class="glyphicon glyphicon-off"> Log out</i></a>
+									<a href="{{URL::to('logout')}}"><i class="fa fa-power-off"></i> Log out</a>
 								</li>
 							</ul>
 						</li>
 						@else
 						<li>
-							<a href="#"><i class="fa">Contact us</i></a>
+							<a href="#">Contact us</a>
 						</li>
 						<li>
-							<a href="#"><i class="fa">About us</i></a>
+							<a href="#">About us</a>
 						</li>
 						<li>
-							<a href="#"><i class="fa">User Agreement</i></a>
+							<a href="#">User Agreement</a>
 						</li>
 						<li>
-							<a href="#"><i class="fa">Policy</i></a>
+							<a href="#">Policy</a>
 						</li>
 						<li>
-							<a href="#"><i class="fa">Usage</i></a>
+							<a href="#">Usage</a>
 						</li>
 						<li>
-							<a href="{{Config::get('app.url')}}/member/login"><i class="fa">Sign in /</i></a>
+							<a href="{{Config::get('app.url')}}/member/login">Sign in / </a>
 						</li>
 						<li>
-							<a href="{{Config::get('app.url')}}/member/register"><i class="fa">Free Register</i></a>
+							<a href="{{Config::get('app.url')}}/member/register">Free Register</a>
 						</li>
 						@endif
 					</ul>
