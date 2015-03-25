@@ -16,6 +16,8 @@
         {{HTML::style('frontend/css/member/member.css')}}
         {{HTML::style('frontend/css/layout.css')}}
         {{HTML::script('frontend/js/jquery.js')}}
+        {{HTML::style('frontend/css/member/ddmenu.css')}}
+        {{HTML::script('frontend/js/member/ddmenu.js')}}
         <!--[if lt IE 9]>
                 {{HTML::script('frontend/js/html5shiv.js')}}
                 {{HTML::script('frontend/js/respond.min.js')}}

@@ -578,7 +578,9 @@ class MCategory extends Eloquent{
 			->where($where)
 			->get();
             $userMenus = "";
-			$userMenus .= '<ul class="nav navbar-nav user-menu">';
+			$userMenus .= "<ul class='sf-menu' id='menunav'>";
+            $homeUrl = Config::get('app.url');
+			$userMenus .= "<li><a class='home' href='{$homeUrl}'>Home</a></li>";
             if(!empty($result)) {
     			foreach($result as $userMenu){
                     if($level ==0) {
@@ -586,7 +588,7 @@ class MCategory extends Eloquent{
                     } else {
                         $id = 'item-'.$userMenu->m_cat_id;
                     }
-    				$userMenus .= "<li class='uu-item uu3-item item-{$userMenu->m_cat_id}' data-id='{$userMenu->m_cat_id}' id='{$id}'>\n";
+    				$userMenus .= "<li>\n";
                         $menuName = $userMenu->{'name_'.Session::get('lang')};                        
     					$userMenus .= "<a href='#'>{$menuName}</a>\n";
     
@@ -625,7 +627,7 @@ class MCategory extends Eloquent{
 			->where($where)
 			->get();
             $userMenus = "";
-			$userMenus .= "<ul class='dropdown-menu' role='menu' id='sub{$level}-{$parent}'>\n";
+			$userMenus .= "<ul>\n";
             if(!empty($result)) {
     			foreach($result as $userMenu){
                     if($level ==0) {
@@ -634,7 +636,7 @@ class MCategory extends Eloquent{
                         $id = 'item-'.$userMenu->m_cat_id;
                     }
                     $id_level = $level+1;
-    				$userMenus .= "<li class='uu-item uu3-item item-{$userMenu->m_cat_id}' data-id='{$userMenu->m_cat_id}' id='{$id}'>\n";
+    				$userMenus .= "<li>\n";
                         $menuName = $userMenu->{'name_'.Session::get('lang')}; 
     					$userMenus .= "<a href='#'>{$menuName}</a>\n";
     

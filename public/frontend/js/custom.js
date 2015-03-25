@@ -18,10 +18,17 @@ $(document).ready(function(){
 	// Set auto slider for banner slideshow
 	
 	/*user Category*/
-	jQuery('.head-menu li:has(> ul)').addClass('dropdown');
-	jQuery('.head-menu li ul:has(> li)').addClass('dropdown-menu').attr('role', 'menu');
-	jQuery('.head-menu li.dropdown a').addClass('dropdown-toggle').attr('data-toggle', 'dropdown').attr('role', 'button').attr('aria-expanded', 'false');
-	jQuery('.head-menu li.dropdown a').append(' <span class="caret"></span>');
+//	jQuery('.head-menu li:has(> ul)').addClass('dropdown');
+//	jQuery('.head-menu li ul:has(> li)').addClass('dropdown-menu').attr('role', 'menu');
+//	jQuery('.head-menu li.dropdown a').addClass('dropdown-toggle').attr('data-toggle', 'dropdown').attr('role', 'button').attr('aria-expanded', 'false');
+//	jQuery('.head-menu li.dropdown a').append(' <span class="caret"></span>');
+//    
+//    jQuery('.head-menu li ul li a').mouseover(function(){
+//        jQuery( this ).next().addClass('open');
+//    });
+//    jQuery('.head-menu li ul li a').mouseout(function(){
+//        jQuery( this ).next().removeClass('open');
+//    });
     
 	jQuery('#menuSub li ul:has(> li)').hide();
 	jQuery('#menuSub li.active ul:has(> li)').slideDown();
