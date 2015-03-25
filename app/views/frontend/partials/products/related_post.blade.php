@@ -6,7 +6,7 @@
 		</div>
 	</div>
 	<hr />
-	<div class="col-sm-2">
+	<div class="col-sm-3">
 		<div class="product-image-wrapper">
 			<div class="single-products">
 				<div class="productinfo text-center">
@@ -14,14 +14,14 @@
 						<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 					</a>
 					<h2>$56</h2>
-					<p>Easy Polo Black Edition</p>
+					<p>Easy Polo Black</p>
 					<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 				</div>
 				<a href="#" data-toggle="modal" data-target="#myModal">
 					<div class="product-overlay">
 						<div class="overlay-content">
 							<h2>$56</h2>
-							<p>Easy Polo Black Edition</p>
+							<p>Easy Polo Black</p>
 							<a href="#" data-toggle="modal" data-target="#myModal">
 								View Details
 							</a>
@@ -32,7 +32,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-2">
+	<div class="col-sm-3">
 		<div class="product-image-wrapper">
 			<div class="single-products">
 				<div class="productinfo text-center">
@@ -40,14 +40,14 @@
 						<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 					</a>
 					<h2>$56</h2>
-					<p>Easy Polo Black Edition</p>
+					<p>Easy Polo Black</p>
 					<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 				</div>
 				<a href="#" data-toggle="modal" data-target="#myModal">
 					<div class="product-overlay">
 						<div class="overlay-content">
 							<h2>$56</h2>
-							<p>Easy Polo Black Edition</p>
+							<p>Easy Polo Black</p>
 							<a href="#" data-toggle="modal" data-target="#myModal">
 								View Details
 							</a>
@@ -58,7 +58,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-2">
+	<div class="col-sm-3">
 		<div class="product-image-wrapper">
 			<div class="single-products">
 				<div class="productinfo text-center">
@@ -66,14 +66,14 @@
 						<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 					</a>
 					<h2>$56</h2>
-					<p>Easy Polo Black Edition</p>
+					<p>Easy Polo Black</p>
 					<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 				</div>
 				<a href="#" data-toggle="modal" data-target="#myModal">
 					<div class="product-overlay">
 						<div class="overlay-content">
 							<h2>$56</h2>
-							<p>Easy Polo Black Edition</p>
+							<p>Easy Polo Black</p>
 							<a href="#" data-toggle="modal" data-target="#myModal">
 								View Details
 							</a>
@@ -84,7 +84,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-2">
+	<div class="col-sm-3">
 		<div class="product-image-wrapper">
 			<div class="single-products">
 				<div class="productinfo text-center">
@@ -92,14 +92,14 @@
 						<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 					</a>
 					<h2>$56</h2>
-					<p>Easy Polo Black Edition</p>
+					<p>Easy Polo Black</p>
 					<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 				</div>
 				<a href="#" data-toggle="modal" data-target="#myModal">
 					<div class="product-overlay">
 						<div class="overlay-content">
 							<h2>$56</h2>
-							<p>Easy Polo Black Edition</p>
+							<p>Easy Polo Black</p>
 							<a href="#" data-toggle="modal" data-target="#myModal">
 								View Details
 							</a>
@@ -110,7 +110,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-2">
+	<div class="col-sm-3">
 		<div class="product-image-wrapper">
 			<div class="single-products">
 				<div class="productinfo text-center">
@@ -118,14 +118,14 @@
 						<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 					</a>
 					<h2>$56</h2>
-					<p>Easy Polo Black Edition</p>
+					<p>Easy Polo Black</p>
 					<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 				</div>
 				<a href="#" data-toggle="modal" data-target="#myModal">
 					<div class="product-overlay">
 						<div class="overlay-content">
 							<h2>$56</h2>
-							<p>Easy Polo Black Edition</p>
+							<p>Easy Polo Black</p>
 							<a href="#" data-toggle="modal" data-target="#myModal">
 								View Details
 							</a>
@@ -136,7 +136,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-2">
+	<div class="col-sm-3">
 		<div class="product-image-wrapper">
 			<div class="single-products">
 				<div class="productinfo text-center">
@@ -144,14 +144,14 @@
 						<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 					</a>
 					<h2>$56</h2>
-					<p>Easy Polo Black Edition</p>
+					<p>Easy Polo Black</p>
 					<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 				</div>
 				<a href="#" data-toggle="modal" data-target="#myModal">
 					<div class="product-overlay">
 						<div class="overlay-content">
 							<h2>$56</h2>
-							<p>Easy Polo Black Edition</p>
+							<p>Easy Polo Black</p>
 							<a href="#" data-toggle="modal" data-target="#myModal">
 								View Details
 							</a>
@@ -162,7 +162,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-2">
+	<div class="col-sm-3">
 		<div class="product-image-wrapper">
 			<div class="single-products">
 				<div class="productinfo text-center">
@@ -170,14 +170,14 @@
 						<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 					</a>
 					<h2>$56</h2>
-					<p>Easy Polo Black Edition</p>
+					<p>Easy Polo Black</p>
 					<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 				</div>
 				<a href="#" data-toggle="modal" data-target="#myModal">
 					<div class="product-overlay">
 						<div class="overlay-content">
 							<h2>$56</h2>
-							<p>Easy Polo Black Edition</p>
+							<p>Easy Polo Black</p>
 							<a href="#" data-toggle="modal" data-target="#myModal">
 								View Details
 							</a>
@@ -188,7 +188,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-2">
+	<div class="col-sm-3">
 		<div class="product-image-wrapper">
 			<div class="single-products">
 				<div class="productinfo text-center">
@@ -196,14 +196,14 @@
 						<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 					</a>
 					<h2>$56</h2>
-					<p>Easy Polo Black Edition</p>
+					<p>Easy Polo Black</p>
 					<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 				</div>
 				<a href="#" data-toggle="modal" data-target="#myModal">
 					<div class="product-overlay">
 						<div class="overlay-content">
 							<h2>$56</h2>
-							<p>Easy Polo Black Edition</p>
+							<p>Easy Polo Black</p>
 							<a href="#" data-toggle="modal" data-target="#myModal">
 								View Details
 							</a>
@@ -214,7 +214,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-2">
+	<div class="col-sm-3">
 		<div class="product-image-wrapper">
 			<div class="single-products">
 				<div class="productinfo text-center">
@@ -222,14 +222,14 @@
 						<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 					</a>
 					<h2>$56</h2>
-					<p>Easy Polo Black Edition</p>
+					<p>Easy Polo Black</p>
 					<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 				</div>
 				<a href="#" data-toggle="modal" data-target="#myModal">
 					<div class="product-overlay">
 						<div class="overlay-content">
 							<h2>$56</h2>
-							<p>Easy Polo Black Edition</p>
+							<p>Easy Polo Black</p>
 							<a href="#" data-toggle="modal" data-target="#myModal">
 								View Details
 							</a>
@@ -240,7 +240,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-2">
+	<div class="col-sm-3">
 		<div class="product-image-wrapper">
 			<div class="single-products">
 				<div class="productinfo text-center">
@@ -248,14 +248,14 @@
 						<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 					</a>
 					<h2>$56</h2>
-					<p>Easy Polo Black Edition</p>
+					<p>Easy Polo Black</p>
 					<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 				</div>
 				<a href="#" data-toggle="modal" data-target="#myModal">
 					<div class="product-overlay">
 						<div class="overlay-content">
 							<h2>$56</h2>
-							<p>Easy Polo Black Edition</p>
+							<p>Easy Polo Black</p>
 							<a href="#" data-toggle="modal" data-target="#myModal">
 								View Details
 							</a>
@@ -266,7 +266,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-2">
+	<div class="col-sm-3">
 		<div class="product-image-wrapper">
 			<div class="single-products">
 				<div class="productinfo text-center">
@@ -274,14 +274,14 @@
 						<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 					</a>
 					<h2>$56</h2>
-					<p>Easy Polo Black Edition</p>
+					<p>Easy Polo Black</p>
 					<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 				</div>
 				<a href="#" data-toggle="modal" data-target="#myModal">
 					<div class="product-overlay">
 						<div class="overlay-content">
 							<h2>$56</h2>
-							<p>Easy Polo Black Edition</p>
+							<p>Easy Polo Black</p>
 							<a href="#" data-toggle="modal" data-target="#myModal">
 								View Details
 							</a>
@@ -292,7 +292,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-2">
+	<div class="col-sm-3">
 		<div class="product-image-wrapper">
 			<div class="single-products">
 				<div class="productinfo text-center">
@@ -300,14 +300,14 @@
 						<img src="{{Config::get('app.url')}}/frontend/images/home/nokia-lumia.jpg" alt="" />
 					</a>
 					<h2>$56</h2>
-					<p>Easy Polo Black Edition</p>
+					<p>Easy Polo Black</p>
 					<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View Details</a>
 				</div>
 				<a href="#" data-toggle="modal" data-target="#myModal">
 					<div class="product-overlay">
 						<div class="overlay-content">
 							<h2>$56</h2>
-							<p>Easy Polo Black Edition</p>
+							<p>Easy Polo Black</p>
 							<a href="#" data-toggle="modal" data-target="#myModal">
 								View Details
 							</a>

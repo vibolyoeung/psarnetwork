@@ -38,8 +38,7 @@
 							foreach ($sub as $row){
 									echo '<li><a href='.URL::to('product/'.$row->id).'>'.$row->{'name_'.Session::get('lang')}.' <span class="caret"></span></a>';
 										echo '<div class="thumbnail">';
-											$subcategoriesobj->getSubCategoriesDropdown($row->id); 
-											echo '<center><a href="" class="more_categories">More Categories...</a></center>';
+											$subcategoriesobj->getSubCategoriesDropdown($row->id);
 										echo '</div>';
 									echo '</li>';
 							}
