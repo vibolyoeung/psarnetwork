@@ -39,8 +39,9 @@ class FeMemberController extends BaseController {
                 if (Input::has('page') && Input::has('page') == 'register') {
                     return Redirect::to('member/userinfo/' . $result->account_type . '/menu');
                 } else {
-                    //return Redirect::to('page/' . strtolower($result->name));
-                    return Redirect::to('/');
+                    $checkStore = $this->mod_store->getUserStore($result->id);
+                    return Redirect::to('page/' . $checkStore->id);
+                    //return Redirect::to('/');
                 }
             } else {
                 return Redirect::to('member/login')->with('INVALID_LOGIN',
