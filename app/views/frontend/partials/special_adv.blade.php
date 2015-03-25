@@ -1,5 +1,6 @@
+<!-- -============Advertise top special======== -->
 <?php $i = 0; ?>
-@foreach($advs as $adv)
+@foreach($advHorizontalTopLarges as $adv)
 <?php
 	$exp_date = $adv->end_date;
 	$exp_date =str_replace('/', '-', $exp_date);
@@ -21,7 +22,7 @@
 ?>
 	<a href="#" >
 		<img
-			src="{{Config::get('app.url')}}frontend/images/default_adv_115x385.png"
+			src="{{Config::get('app.url')}}frontend/images/default_adv_420x200.jpg"
 			class="img-responsive"
 			alt=""
 		/>
