@@ -80,12 +80,12 @@
 						<a href="{{Config::get('app.url')}}"><img src="{{Config::get('app.url')}}frontend/images/classifieds_logo.png" width="200"/><a>
 					</div>
 					<ul class="promotion_top_menu pull-right">
-						<li><a href="#">Hot Promotion</a></li>
-		                <li><a href="#">New Arrival</a></li>
-		                <li><a href="#">Second Hand</a></li>
-		                <li><a href="#">Buy</a></li>
-		                <li><a href="#">Sell</a></li>
-		                <li><a href="#">Monthly Pay</a></li>
+						<li><a href="{{Config::get('app.url')}}products/productbycategories/45">Hot Promotion</a></li>
+		                <li><a href="{{Config::get('app.url')}}products/productbycategories/43">New Arrival</a></li>
+		                <li><a href="{{Config::get('app.url')}}products/productbycategories/32">Second Hand</a></li>
+		                <li><a href="{{Config::get('app.url')}}products/productbycategories/12">Buy</a></li>
+		                <li><a href="{{Config::get('app.url')}}products/productbycategories/23">Sell</a></li>
+		                <li><a href="{{Config::get('app.url')}}products/productbycategories/12">Monthly Pay</a></li>
 				    </ul>
 				</div>
 				<div class="col-lg-2 top-mg pull-right" style="padding:0;">
@@ -124,11 +124,11 @@
 				        <div class="collapse navbar-collapse promotion-list">
 				            <ul class="nav navbar-nav top_menu_list">
 								<li class="active"><a href="#">All</a></li>
-								<li><a href="{{Config::get('app.url')}}productlocation/1">Super Market</a></li>
-								<li><a href="{{Config::get('app.url')}}productlocation/2">Traditional Market</a></li>
-								<li><a href="{{Config::get('app.url')}}productlocation/3">Private Company</a></li>
-								<li><a href="{{Config::get('app.url')}}productlocation/4">Home Shop</a></li>
-								<li><a href="{{Config::get('app.url')}}productlocation/5">Individual</a></li>
+								<li><a href="{{Config::get('app.url')}}supermarket/list">Super Market</a></li>
+								<li><a href="{{Config::get('app.url')}}supermarket/list">Traditional Market</a></li>
+								<li><a href="{{Config::get('app.url')}}supermarket/list">Private Company</a></li>
+								<li><a href="{{Config::get('app.url')}}supermarket/list">Home Shop</a></li>
+								<li><a href="{{Config::get('app.url')}}supermarket/list">Individual</a></li>
 				            </ul>
 				        </div><!--/.nav-collapse -->
 				</div>
