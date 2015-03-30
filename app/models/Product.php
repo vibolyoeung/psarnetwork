@@ -121,7 +121,25 @@ class Product extends Eloquent{
 		return DB::table($product .' AS p')
 			->select('*')
 			->where('p.user_id', '=', Session::get('currentUserId'))
+			->orderBy('p.id', 'DESC')
 			->paginate(10);
+	}
+
+	/**
+	 * renewProduct by product id
+	 * 
+	 * @param integer $product_id
+	 * @return void
+	 * @access public
+	 */
+	public function renewProduct($product_id) {
+		$data = array(
+			'top_up' => date('Y-m-d H:i:s')
+		);
+		$product = Config::get('constants.TABLE_NAME.PRODUCT');
+		return DB::table($product .' AS p')
+			->where('p.id', '=', $product_id)
+			->update($data);
 	}
 
 	/**
@@ -132,11 +150,34 @@ class Product extends Eloquent{
 	 * @access public
 	 */
 	public function deleteProductById($product_id){
-		$product = Config::get('constants.TABLE_NAME.PRODUCT');
-		return DB::table($product)
-			->where('id', '=', $product_id)
-			->where('user_id', '=', Session::get('currentUserId'))
-			->delete();
+		try{
+			$destinationPathQuotation = base_path() . '/public/upload/quotation/';
+			$destinationPath = base_path() . '/public/upload/product/';
+			$destinationThumb = $destinationPath. 'thumb/';
+			$product = Config::get('constants.TABLE_NAME.PRODUCT');
+			$result = DB::table($product)
+				->where('id', '=', $product_id)
+				->where('user_id', '=', Session::get('currentUserId'))
+				->first();
+			if (!empty($result->file_quotation)) {
+				File::delete($destinationPathQuotation . $result->file_quotation);
+			}
+
+			$fileName = json_decode($result->pictures, true);
+			foreach ($fileName as $file) {
+				if (!empty($file)) {
+					File::delete($destinationPath . $file['pic']);
+					File::delete($destinationThumb . $file['pic']);
+				}
+			}
+			return DB::table($product)
+				->where('id', '=', $product_id)
+				->where('user_id', '=', Session::get('currentUserId'))
+				->delete();
+		} catch (\Exception $e){
+			throw $e;
+		}
+		
 	}
 
 	/**
@@ -174,6 +215,73 @@ class Product extends Eloquent{
 			->where('id', '=', $product_id)
 			->where('user_id', '=', Session::get('currentUserId'))
 			->first();
+	}
+
+	/**
+	 *
+	 * find province by province id
+	 *
+	 * @param integer $provinceId
+	 * @return array provinces
+	 * @access public
+	 */
+	public static function findProvinceById($provinceId){
+		$result = DB::table(Config::get('constants.TABLE_NAME.PROVINCE'))
+			->select('province_id','province_name')
+			->where('province_id', '=', $provinceId)
+			->first();
+		return $result->province_name;
+	}
+
+	/**
+	 *
+	 * find reservation products
+	 *
+	 * @return array reservation products
+	 * @access public
+	 */
+	public function findReservationProducts() {
+		$product = Config::get('constants.TABLE_NAME.PRODUCT');
+		return DB::table($product .' AS p')
+			->select('*')
+			->where('p.user_id', '=', Session::get('currentUserId'))
+			->where('p.publish_date', '>', $now)
+			->orderBy('p.id', 'DESC')
+			->paginate(10);
+	}
+
+	/**
+	 *
+	 * find unpublic products
+	 *
+	 * @return array unpublic products
+	 * @access public
+	 */
+	public function findUnpublicProducts() {
+		$product = Config::get('constants.TABLE_NAME.PRODUCT');
+		return DB::table($product .' AS p')
+			->select('*')
+			->where('p.user_id', '=', Session::get('currentUserId'))
+			->where('p.is_publish', '=', 0)
+			->orderBy('p.id', 'DESC')
+			->paginate(10);
+	}
+
+	/**
+	 *
+	 * find license products
+	 *
+	 * @return array license products
+	 * @access public
+	 */
+	public function findLicenseProducts() {
+		$product = Config::get('constants.TABLE_NAME.PRODUCT');
+		return DB::table($product .' AS p')
+			->select('*')
+			->where('p.user_id', '=', Session::get('currentUserId'))
+			->where('p.point_to_view', '=', 1)
+			->orderBy('p.id', 'DESC')
+			->paginate(10);
 	}
 	
 }

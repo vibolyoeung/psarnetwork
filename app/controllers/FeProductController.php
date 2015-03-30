@@ -3,9 +3,14 @@
 class FeProductController extends BaseController {
 
 	private  $mod_product;
+	protected $mod_category;
+
+	const FREE_ACCOUNT = 1;
+	const ENTERPRISE_ACCOUNT = 2;
 
 	function __construct(){
 		$this->mod_product = new Product();
+		$this->mod_category = new MCategory();
 	}
 
 	/**
@@ -50,7 +55,11 @@ class FeProductController extends BaseController {
 			return Redirect::to('products/list');
 		}
 
-		$listCategories = $this->mod_product->fetchCategoryTree();
+		if (self::FREE_ACCOUNT === Session::get('currentUserAccountType')) {
+			$listCategories = $this->mod_category->fetchCategoryTree();
+		} else {
+			$listCategories = $this->mod_product->fetchCategoryTree();
+		}
 		$productTransferTypes = $this->mod_product->findAllTransferType();
 		$productCondictions = $this->mod_product->findAllCondition();
 		return View::make('frontend.modules.product.new_product')
@@ -78,6 +87,19 @@ class FeProductController extends BaseController {
 			->with('productCondition', $productCondictions->data)
 			->with('categoryTree', $listCategories)
 			->with('product', $product);
+	}
+
+	/**
+	 * Renew  a product by product id
+	 *
+	 *@param int $product_id
+	 *@access public
+	 *@return void
+	 */
+	public function topUpProduct($product_id) {
+
+		$this->mod_product->renewProduct($product_id);
+		return Redirect::to('products/list');
 	}
 
 	/**
@@ -183,7 +205,8 @@ class FeProductController extends BaseController {
 			'description' => Input::get('desc'),
 			'user_id' => Session::get('currentUserId'),
 			'store_id' => Session::get('currentUserId'),
-			's_category_id' => Input::get('s_category')
+			's_category_id' => Input::get('s_category'),
+			'top_up' => date('Y-m-d H:i:s')
 		);
 		return $data;
 	}

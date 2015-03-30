@@ -1,37 +1,38 @@
-/**
- * To do operation for append button browse 
+/*
+ * For upload multiple pictures
  */
-var Product = (function() {
-    "use strict";
+var Upload = (function() {
 
-
-    /**
-     * Append button browse 
+    /*
+     * Append multiple forms upload  picture
      *
      * @public
      * @return void
      */
-    var add_more_fields = function() {
-    	var parent;
-		var children;
-		var htmlField = "<div class='form-group'>"+
-				"<label class='col-sm-2 control-label'>"+
-					"<i onclick='remove_field()' class='glyphicon glyphicon-minus browse-picture-menus'></i>"+
-				"</label>"+
-				"<div class='col-sm-10'>"+
-					"<input type='file' name='picture[]' class='form-control' />"+
-				"</div>"+
-			"</div>";
-		parent = document.getElementById('more_browse_field');
-		children = document.createElement('div');
-		children.innerHTML = htmlField;
-		parent.appendChild(children);
-	};
-	var remove_field = function(){
-		alert(1);
-	};
-	return {
-		add_more_fields : add_more_fields
-	};
+    var append_multiple_upload = function(){
+        var table = document.getElementById('picture-table');
+        var pictureData = document.getElementById('tableColumnPicture').getAttribute('data-prototype');
 
+        var index = table.rows.length;
+        var row = table.insertRow(-1);
+        row.innerHTML = '<td>' + index + '</td>'
+            + '<td>'+ pictureData + '</td>'
+            + '<td><a class="btn btn-danger" onClick="Upload.delete_row(' + index + ')">Remove</a></td>'
+    };
+
+    /*
+     * Delete picture
+     *
+     * @param integer row
+     * @public
+     * @return void
+     */
+    var delete_row = function(row){
+        document.getElementById("picture-table").deleteRow(row);
+    };
+
+    return {
+        delete_row : delete_row,
+        append_multiple_upload: append_multiple_upload
+    };
 }());

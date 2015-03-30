@@ -35,7 +35,9 @@ class FeMemberController extends BaseController {
                 Session::put('currentUserName', $result->name);
                 Session::put('currentUserEmail', $result->email);
                 Session::put('currentUserPhone', $result->telephone);
+                Session::put('currentUserAddress', $result->address);
                 Session::put('currentUserType', $result->user_type);
+                Session::put('currentUserAccountType', $result->account_type);
                 if (Input::has('page') && Input::has('page') == 'register') {
                     return Redirect::to('member/userinfo/' . $result->account_type . '/menu');
                 } else {

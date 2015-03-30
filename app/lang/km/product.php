@@ -18,5 +18,6 @@ return array(
 	'HP' => 'HP',
 	'location' => 'Location',
 	'save_product_ads' => 'Save Product Ads',
-	'point_to_view' => 'Point to View'
+	'point_to_view' => 'Point to View',
+	'date_post' => 'Post Date'
 );

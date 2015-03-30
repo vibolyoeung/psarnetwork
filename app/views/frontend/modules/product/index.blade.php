@@ -57,7 +57,9 @@
 					</td>
 					<td>
 						<div>
-							<a>Top Up</a>
+							<a href="{{URL::to('products/topup')}}/{{$product->id}}">
+								Top Up
+							</a>
 						</div>
 						<div>
 							<a href="{{URL::to('products/edit')}}/{{$product->id}}">
@@ -83,6 +85,7 @@
 			@endforeach
 			</tbody>
 		</table>
+		{{$products->links()}}
 	</div>
 </div>
 @endsection

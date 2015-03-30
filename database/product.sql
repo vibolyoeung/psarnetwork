@@ -36,12 +36,20 @@ CREATE TABLE `product` (
   `contact_info` text,
   `file_quotation` text,
   `description` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `view` int(11) DEFAULT '0',
+  `s_category_id` int(11) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `top_up` varchar(255) DEFAULT NULL,
+  `point_to_view` int(11) DEFAULT '0',
+  `publish_date` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_store_product` (`store_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 /*Data for the table `product` */
 
-insert  into `product`(`id`,`title`,`price`,`product_service_type_id`,`thumbnail`,`pictures`,`created_date`,`expire_date`,`pro_condition_id`,`pro_status`,`pro_transfer_type_id`,`is_publish`,`contact_info`,`file_quotation`,`description`) values (1,'product-slide',20,1,NULL,'1413631092.jpg','2014/11/10','2014/11/26',NULL,1,NULL,NULL,NULL,NULL,'Long Desc'),(2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+insert  into `product`(`id`,`title`,`price`,`product_service_type_id`,`thumbnail`,`pictures`,`created_date`,`expire_date`,`pro_condition_id`,`pro_status`,`pro_transfer_type_id`,`is_publish`,`contact_info`,`file_quotation`,`description`,`view`,`s_category_id`,`store_id`,`user_id`,`top_up`,`point_to_view`,`publish_date`) values (8,'Officia ea quia incidunt tempora facere blanditiis pariatur Consequatur qui ad mollitia quia minus c',813,NULL,'b094700203b967e8a0180114b0286d22adadb86e.png','[{\"pic\":\"b094700203b967e8a0180114b0286d22adadb86e.png\"},{\"pic\":\"52859b55a2434217b736fe2cbfaedb998fab7951.png\"},{\"pic\":\"8a8f27055195fd80596ac012c837e8d6268051f0.jpg\"},{\"pic\":\"3b765ba8e7fc29a05420c373616209e18fe6647f.jpg\"}]','2015-03-28',NULL,0,2,5,0,'{\"contactName\":\"Officia ea quia incidunt tempora facere blanditiis pariatur Consequatur qui ad mollitia quia minus corrupti neque dolorum mollitia laboriosam et\",\"contactEmail\":\"rawecy@yahoo.com\",\"contactHP\":\"+783-84-9309860\",\"contactLocation\":\"Banteay Meanchey\"}','','Enim et dolorem delectus, quisquam laborum. Proident, et minim odit labore dignissimos.',0,57,16,16,'2015-03-28 18:13:48',0,NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
