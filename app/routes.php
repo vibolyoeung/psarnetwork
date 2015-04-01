@@ -141,11 +141,13 @@ Route::group(array('before' => 'auth_member'), function () {
 
 Route::any('products/productbycategories/{id}',
             'FePageController@getProductbyCategory'); 
-/*===========Sumper Maket route==*/
-Route::group(array('prefix' => 'supermarket'), function () {
-    Route::any('/list', 'FePageController@listSuppermarket'); }
-);
 
+/*===========Product Details==*/
+Route::group(array('prefix' => 'product'), function () {
+	Route::any('/list', 'FePageController@listSuppermarket'); 
+	Route::any('/details/{id}', 'FePageController@getProductDetials');
+	}
+	);
 // [your site path]/app/routes.php
 
 Route::any('/doeun/k', 'FeMemberController@test');

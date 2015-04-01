@@ -2987,7 +2987,7 @@ h2.title {
 	right: 3%;
 }
 
-@media screen and (max-width: 1400px) {
+@media screen and (min-width: 1500px) {
 	#header .container-fluid>.top_promotion {
 		display: none !important;
 	}

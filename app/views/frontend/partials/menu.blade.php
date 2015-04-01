@@ -14,7 +14,7 @@
 	
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="dropdown-thumbnail-preview" style="padding:0;border:1px solid #f0ad4e;">
-	      <ul class="nav navbar-nav">
+	      <ul class="nav navbar-nav menu_nav_category">
 	      	<li>
 	      		<a href="{{Config::get('app.url')}}" class="home_icon">
 	      		<span class="glyphicon glyphicon-home" aria-hidden="true"></span>

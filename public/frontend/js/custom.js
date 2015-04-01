@@ -1,12 +1,11 @@
 $(document).ready(function(){
 	//Add curent menu 
-//	jQuery(".navbar-nav li:first-child").addClass("active"); 
-//	$(".navbar-nav > li").click(function(){
-//		$(".navbar-nav >li.active").removeClass('active');
-//		$(this).addClass('active');
-//	});
-//    
-//	
+jQuery(".navbar-nav li:first-child,.menu_nav_category > li:first-child").addClass("active"); 
+	$(".navbar-nav > li").click(function(){
+	$(".navbar-nav >li.active").removeClass('active');
+	$(this).addClass('active');
+});
+	
 //	
 //	jQuery('.item:first-child').addClass(' active');
 //	jQuery('.bullet:first-child').addClass('active');

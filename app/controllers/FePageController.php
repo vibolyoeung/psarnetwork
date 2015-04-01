@@ -176,6 +176,18 @@ class FePageController extends BaseController {
 		->with('listMarket',$marketLists->data)
 		->with('advTops', $advTops->result);
 	}
+	
+	public function getProductDetials(){
+		$advTops = $this->mod_advertisment
+		->getAdvertisementHomePage(
+				self::HOMEPAGE,
+				self::HOME_PAGE_TOP,
+				1
+		);
+		
+		return View::make('frontend.partials.products.detials')
+					->with('advTops', $advTops->result);
+	}
     
     public function getSignOut() {
         Session::flush();

@@ -87,7 +87,7 @@
 			</div>
 			<div class="col-lg-6">
 				<div class="media commnets">
-					<a href="#" class="pull-left col-lg-6">
+					<a href="#" data-toggle="modal" data-target="#myModal" class="pull-left col-lg-6">
 						<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
 					</a>
 					<div class="media-body">
@@ -95,14 +95,98 @@
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 						<div class="blog-socials">
 
-							<a href="" class="btn btn-primary">$20.00</a>
+							<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#myModal">$20.00</a>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-lg-6">
 				<div class="media commnets">
-					<a href="#" class="pull-left col-lg-6">
+					<a href="#" data-toggle="modal" data-target="#myModal" class="pull-left col-lg-6">
+						<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
+					</a>
+					<div class="media-body">
+						<h4 class="media-heading">Annie Davis</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						<div class="blog-socials">
+							<a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-primary">$30.00</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="media commnets">
+					<a href="#" data-toggle="modal" data-target="#myModal" class="pull-left col-lg-6">
+						<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
+					</a>
+					<div class="media-body">
+						<h4 class="media-heading">Annie Davis</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						<div class="blog-socials">
+							<a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-primary">$20.00</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="media commnets">
+					<a href="#" data-toggle="modal" data-target="#myModal"class="pull-left col-lg-6">
+						<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
+					</a>
+					<div class="media-body">
+						<h4 class="media-heading">Annie Davis</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						<div class="blog-socials">
+							<a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-primary">$ 20.00</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="media commnets">
+					<a href="#" data-toggle="modal" data-target="#myModal" class="pull-left col-lg-6">
+						<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
+					</a>
+					<div class="media-body">
+						<h4 class="media-heading">Annie Davis</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						<div class="blog-socials">
+							<a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-primary">$20.00</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="media commnets">
+					<a href="#" data-toggle="modal" data-target="#myModal" class="pull-left col-lg-6">
+						<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
+					</a>
+					<div class="media-body">
+						<h4 class="media-heading">Annie Davis</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						<div class="blog-socials">
+							<a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-primary">$30.00</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="media commnets">
+					<a href="#" data-toggle="modal" data-target="#myModal" class="pull-left col-lg-6">
+						<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
+					</a>
+					<div class="media-body">
+						<h4 class="media-heading">Annie Davis</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						<div class="blog-socials">
+							<a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-primary">$20.00</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="media commnets">
+					<a href="#" data-toggle="modal" data-target="#myModal" class="pull-left col-lg-6">
 						<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
 					</a>
 					<div class="media-body">
@@ -117,105 +201,14 @@
 			</div>
 			<div class="col-lg-6">
 				<div class="media commnets">
-					<a href="#" class="pull-left col-lg-6">
+					<a href="#" data-toggle="modal" data-target="#myModal" class="pull-left col-lg-6">
 						<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
 					</a>
 					<div class="media-body">
 						<h4 class="media-heading">Annie Davis</h4>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 						<div class="blog-socials">
-
-							<a href="" class="btn btn-primary">$20.00</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<div class="media commnets">
-					<a href="#" class="pull-left col-lg-6">
-						<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
-					</a>
-					<div class="media-body">
-						<h4 class="media-heading">Annie Davis</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-						<div class="blog-socials">
-
-							<a href="" class="btn btn-primary">$ 20.00</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<div class="media commnets">
-					<a href="#" class="pull-left col-lg-6">
-						<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
-					</a>
-					<div class="media-body">
-						<h4 class="media-heading">Annie Davis</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-						<div class="blog-socials">
-
-							<a href="" class="btn btn-primary">$20.00</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<div class="media commnets">
-					<a href="#" class="pull-left col-lg-6">
-						<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
-					</a>
-					<div class="media-body">
-						<h4 class="media-heading">Annie Davis</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-						<div class="blog-socials">
-
-							<a href="" class="btn btn-primary">$30.00</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<div class="media commnets">
-					<a href="#" class="pull-left col-lg-6">
-						<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
-					</a>
-					<div class="media-body">
-						<h4 class="media-heading">Annie Davis</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-						<div class="blog-socials">
-
-							<a href="" class="btn btn-primary">$20.00</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<div class="media commnets">
-					<a href="#" class="pull-left col-lg-6">
-						<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
-					</a>
-					<div class="media-body">
-						<h4 class="media-heading">Annie Davis</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-						<div class="blog-socials">
-
-							<a href="" class="btn btn-primary">$30.00</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<div class="media commnets">
-					<a href="#" class="pull-left col-lg-6">
-						<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
-					</a>
-					<div class="media-body">
-						<h4 class="media-heading">Annie Davis</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-						<div class="blog-socials">
-
-							<a href="" class="btn btn-primary">$20.00</a>
+							<a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-primary">$20.00</a>
 						</div>
 					</div>
 				</div>
