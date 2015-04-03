@@ -10,7 +10,7 @@
 		<li>Individual : <span class="number-display">25</span></li>
 		<li>View :<span class="number-display">25</span></li>
 	</ul>
-	<div id="monthly-pay-item-carousel" class="carousel slide"
+	<div id="second-carousel" class="carousel slide"
 		data-ride="carousel">
 		<div class="carousel-inner">
 			<div class="item active">
@@ -227,10 +227,10 @@
 		</div>
 	</div>
 	<a class="left recommended-item-control"
-		href="#monthly-pay-item-carousel" data-slide="prev"> <i
+		href="#second-carousel" data-slide="prev"> <i
 		class="fa fa-angle-left"></i>
 	</a> <a class="right recommended-item-control"
-		href="#monthly-pay-item-carousel" data-slide="next"> <i
+		href="#second-carousel" data-slide="next"> <i
 		class="fa fa-angle-right"></i>
 	</a>
 </div>
