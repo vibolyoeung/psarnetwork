@@ -5,6 +5,11 @@ class Product extends Eloquent{
 	const TRANSFER_TYPE = 'constants.TABLE_NAME.PRODUCT_TRANSFER_TYPE';
 	const  CONDITION = 'constants.TABLE_NAME.PRODUCT_CONDITION';
 	const IS_PUBLISH = 1;
+	const HOT_PROMOTION_PRODUCT = 5;
+	const MONTHLY_PRODUCT = 4;
+	const BUYER_PRODUCT = 2;
+	const NEW_PRODUCT = 1;
+	const SECOND_HAND_PRODUCT = 2;
 
 	public static $PRODUCT_STATUS = array(
 		1 => 'In Stock',
@@ -80,7 +85,7 @@ class Product extends Eloquent{
 			$result = DB::table(Config::get('constants.TABLE_NAME.S_CATEGORY'))
 				->select('id','m_title','is_publish','parent_id')
 				->where('parent_id','=',$parent)
-				->where('user_id', '=', 1)
+				->where('user_id', '=', Session::get('currentUserId'))
 				->where('is_publish', '=', self::IS_PUBLISH)
 				->orderBy('id','asc')
 				->get();
@@ -282,6 +287,108 @@ class Product extends Eloquent{
 			->where('p.point_to_view', '=', 1)
 			->orderBy('p.id', 'DESC')
 			->paginate(10);
+	}
+
+
+	/*This place for frontend */
+
+	/**
+	 *
+	 * find hot-promotion products
+	 *
+	 * @return array hot promotion products
+	 * @access public
+	 */
+	public static function findHotPromotionProducts() {
+		$product = Config::get('constants.TABLE_NAME.PRODUCT');
+		return DB::table($product .' AS p')
+			->select('*')
+			->where('p.pro_transfer_type_id', '=', self::HOT_PROMOTION_PRODUCT)
+			->where('p.is_publish', '=', self::IS_PUBLISH)
+			->orderBy('p.id', 'DESC')
+			->get();
+	}
+
+	/**
+	 *
+	 * find new products
+	 *
+	 * @return array new products
+	 * @access public
+	 */
+	public static function findNewProducts() {
+		$product = Config::get('constants.TABLE_NAME.PRODUCT');
+		return DB::table($product .' AS p')
+			->select('*')
+			->where('p.pro_condition_id', '=', self::NEW_PRODUCT)
+			->where('p.is_publish', '=', self::IS_PUBLISH)
+			->orderBy('p.id', 'DESC')
+			->get();
+	}
+
+	/**
+	 *
+	 * find monthly  products
+	 *
+	 * @return array monthly products
+	 * @access public
+	 */
+	public static function findMonthlyProducts() {
+		$product = Config::get('constants.TABLE_NAME.PRODUCT');
+		return DB::table($product .' AS p')
+			->select('*')
+			->where('p.pro_transfer_type_id', '=', self::MONTHLY_PRODUCT)
+			->where('p.is_publish', '=', self::IS_PUBLISH)
+			->orderBy('p.id', 'DESC')
+			->get();
+	}
+
+	/**
+	 *
+	 * find buyer  products
+	 *
+	 * @return array buyer products
+	 * @access public
+	 */
+	public static function findBuyerProducts() {
+		$product = Config::get('constants.TABLE_NAME.PRODUCT');
+		return DB::table($product .' AS p')
+			->select('*')
+			->where('p.pro_transfer_type_id', '=', self::BUYER_PRODUCT)
+			->where('p.is_publish', '=', self::IS_PUBLISH)
+			->orderBy('p.id', 'DESC')
+			->get();
+	}
+
+	/**
+	 *
+	 * find Second Hand  products
+	 *
+	 * @return array second-handed products
+	 * @access public
+	 */
+	public static function findSecondHandProducts() {
+		$product = Config::get('constants.TABLE_NAME.PRODUCT');
+		return DB::table($product .' AS p')
+			->select('*')
+			->where('p.pro_condition_id', '=', self::SECOND_HAND_PRODUCT)
+			->where('p.is_publish', '=', self::IS_PUBLISH)
+			->orderBy('p.id', 'DESC')
+			->get();
+	}
+
+	/**
+	 * findProductDetail by id
+	 * 
+	 * @param int $product_id
+	 * @return product detail
+	 * @access public
+	 */
+	public function findProductDetailById($product_id) {
+		$product = Config::get('constants.TABLE_NAME.PRODUCT');
+		return DB::table($product)
+			->where('id', '=', $product_id)
+			->first();
 	}
 	
 }

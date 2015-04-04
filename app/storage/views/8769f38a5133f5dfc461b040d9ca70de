@@ -1,0 +1,23 @@
+    <?php 
+        $userHome = @Config::get('app.url').'page/'.$dataStore->id;
+    ?>
+	<?php echo $__env->make('frontend.modules.store.partials.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<?php echo $__env->make('frontend.modules.store.partials.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-1" style="padding:0;">
+					<div class="left-sidebar">
+						<?php echo $__env->yieldContent('left'); ?>
+					</div>
+				</div>
+				<?php echo $__env->yieldContent('content'); ?>
+				<div class="col-lg-1"  style="padding:0;">
+					<div class="left-sidebar">
+						<?php echo $__env->yieldContent('right'); ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<?php echo $__env->make('frontend.modules.store.partials.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>;

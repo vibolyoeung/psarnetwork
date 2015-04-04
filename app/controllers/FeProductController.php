@@ -143,7 +143,7 @@ class FeProductController extends BaseController {
 			$newFileName = $this->generateFileName($destinationPath, $originFileName);
 			$file->move($destinationPath, $newFileName);
 			Image::make($destinationPath . $newFileName)
-				->resize(100, 100)
+				->resize(200, 130)
 				->save($destinationPathThumb . $newFileName);
 			$images[] = array(
 				'pic' => $newFileName

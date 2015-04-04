@@ -145,9 +145,9 @@ Route::any('products/productbycategories/{id}',
 /*===========Product Details==*/
 Route::group(array('prefix' => 'product'), function () {
 	Route::any('/list', 'FePageController@listSuppermarket'); 
-	Route::any('/details/{id}', 'FePageController@getProductDetials');
-	}
-	);
+    Route::any('/details/{id}', 'FePageController@getProductDetials');
+	Route::any('/js_detail/{product_id}', 'FePageController@popupDetailProduct');
+} );
 // [your site path]/app/routes.php
 
 Route::any('/doeun/k', 'FeMemberController@test');

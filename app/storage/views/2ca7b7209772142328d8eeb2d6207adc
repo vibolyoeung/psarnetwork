@@ -21,19 +21,19 @@
 				$buyPro = 1;
 			?>
 			<div class="item active">
-			@foreach($buyerProducts as $buyerProduct)
+			<?php foreach($buyerProducts as $buyerProduct): ?>
 				<div class="col-sm-3">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
-								<a href="#" data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail({{$buyerProduct->id}});">
-									<img src="{{Config::get('app.url')}}/upload/product/thumb/{{$buyerProduct->thumbnail}}" alt="" />
+								<a href="#" data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail(<?php echo $buyerProduct->id; ?>);">
+									<img src="<?php echo Config::get('app.url'); ?>/upload/product/thumb/<?php echo $buyerProduct->thumbnail; ?>" alt="" />
 								</a>
-								<h2>$ {{$buyerProduct->price}}</h2>
+								<h2>$ <?php echo $buyerProduct->price; ?></h2>
 								<p><?php echo substr($buyerProduct->title,0,20)?></p>
-								<a data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail({{$buyerProduct->id}});">View Details</a>
+								<a data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail(<?php echo $buyerProduct->id; ?>);">View Details</a>
 							</div>
-							<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+							<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/sale.png" class="new" alt="" />
 						</div>
 					</div>
 				</div>
@@ -43,7 +43,7 @@
 				}
 				$buyPro ++;
 				?>
-			@endforeach
+			<?php endforeach; ?>
 			</div>
 		</div>
 		<a class="left recommended-item-control"

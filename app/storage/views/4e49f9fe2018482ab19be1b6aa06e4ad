@@ -23,19 +23,19 @@
 				$monthlyPro = 1;
 			?>
 			<div class="item active">
-			@foreach($monthlyProducts as $monthlyProduct)
+			<?php foreach($monthlyProducts as $monthlyProduct): ?>
 				<div class="col-sm-3">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
-								<a href="#" data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail({{$monthlyProduct->id}});">
-									<img src="{{Config::get('app.url')}}/frontend/images/home/iphone6plus.jpg" alt="" />
+								<a href="#" data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail(<?php echo $monthlyProduct->id; ?>);">
+									<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/iphone6plus.jpg" alt="" />
 								</a>
-								<h2>$ {{$monthlyProduct->price}}</h2>
+								<h2>$ <?php echo $monthlyProduct->price; ?></h2>
 								<p><?php echo substr($monthlyProduct->title,0,20)?></p>
-								<a data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail({{$monthlyProduct->id}});">View Details</a>
+								<a data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail(<?php echo $monthlyProduct->id; ?>);">View Details</a>
 							</div>
-							<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+							<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/sale.png" class="new" alt="" />
 						</div>
 					</div>
 				</div>
@@ -45,7 +45,7 @@
 				}
 				$monthlyPro ++;
 				?>
-			@endforeach
+			<?php endforeach; ?>
 			</div>
 
 		</div>

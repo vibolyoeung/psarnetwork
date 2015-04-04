@@ -19,20 +19,20 @@
 		$hotPro = 1;
 	?>
 		<div class="item active">	
-		@foreach($hotPromotionProducts as $hotPromotionProduct)
+		<?php foreach($hotPromotionProducts as $hotPromotionProduct): ?>
 			<?php //var_dump($hotPromotionProduct)?>
 			<div class="col-sm-3">
 				<div class="product-image-wrapper">
 					<div class="single-products">
 						<div class="productinfo text-center">
-							<a onclick="popupDetails.add_popup_detail({{$hotPromotionProduct->id}});" data-toggle="modal" data-target="#myModal">
-								<img src="{{Config::get('app.url')}}/upload/product/thumb/{{$hotPromotionProduct->thumbnail}}" alt="" />
+							<a onclick="popupDetails.add_popup_detail(<?php echo $hotPromotionProduct->id; ?>);" data-toggle="modal" data-target="#myModal">
+								<img src="<?php echo Config::get('app.url'); ?>/upload/product/thumb/<?php echo $hotPromotionProduct->thumbnail; ?>" alt="" />
 							</a>
-							<h2>$ {{$hotPromotionProduct->price}}</h2>
+							<h2>$ <?php echo $hotPromotionProduct->price; ?></h2>
 							<p><?php echo substr($hotPromotionProduct->title,0,20)?></p>
-							<a data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail({{$hotPromotionProduct->id}});">View Details</a>
+							<a data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail(<?php echo $hotPromotionProduct->id; ?>);">View Details</a>
 						</div> 
-						<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+						<img src="<?php echo Config::get('app.url'); ?>/frontend/images/home/sale.png" class="new" alt="" />
 					</div>
 				</div>
 			</div>
@@ -42,7 +42,7 @@
 			}
 			$hotPro ++;
 			?>
-		@endforeach
+		<?php endforeach; ?>
 		</div>
 		
 	</div>

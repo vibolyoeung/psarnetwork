@@ -14,6 +14,7 @@ class FePageController extends BaseController {
 	private $mod_setting;
 	private $mod_advertisment;
 	private $mod_market;
+	private $mod_product;
 
 	function __construct(){
 		$this->mod_slideshow = new Slideshow();
@@ -21,12 +22,14 @@ class FePageController extends BaseController {
 		$this->mod_setting = new Setting();
 		$this->mod_advertisment = new Advertisement();
 		$this->mod_market = new Market();
+		$this->mod_product = new Product();
 	}
 
 	public function index()
 	{
 		$limit = $this->mod_setting->getSlidshowNumber();
 		$listSlideshows = self::getSlideShowHomePage($limit->data->setting_value);
+
 
 		$advVerticalRightSmall = $this->mod_advertisment
 			->getAdvertisementHomePage(
@@ -192,5 +195,11 @@ class FePageController extends BaseController {
     public function getSignOut() {
         Session::flush();
         return Redirect::route('/');
-    }    
+    } 
+
+    public function popupDetailProduct($product_id) {
+    	$productDetail =  $this->mod_product->findProductDetailById($product_id);
+    	return View::make('frontend.partials.products.js_popup_product')
+    		->with('productDetail', $productDetail);
+    }   
 }
