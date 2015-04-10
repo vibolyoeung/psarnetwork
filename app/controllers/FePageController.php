@@ -107,7 +107,7 @@ class FePageController extends BaseController {
 		return $Category;
 	}
 
-	public function getProductbyCategory(){
+	public function getProductbyCategory($category_id){
  		$advHorizontalTopLarge = $this->mod_advertisment
  		->getAdvertisementHomePage(
  				self::HOMEPAGE,
@@ -150,6 +150,7 @@ class FePageController extends BaseController {
  				1
  		);
 
+ 		$productByCategory = $this->mod_product->findPostProductByCategory($category_id);
 
 		return View::make('frontend.modules.detail.index')
 				->with('Provinces', $this->mod_setting->listProvinces())
@@ -159,8 +160,8 @@ class FePageController extends BaseController {
 				->with('advVerticalLeftMiduims', $advVerticalLeftMiduim->result)
 				->with('advHorizontalLargeCenters', $advHorizontalLargeCenter->result)
 				->with('advTops', $advTops->result)
-				->with('Provinces', $this->mod_setting->listProvinces()
-			);
+				->with('Provinces', $this->mod_setting->listProvinces())
+				->with('productByCategory', $productByCategory);
 	}
 	
 	/*
@@ -180,7 +181,7 @@ class FePageController extends BaseController {
 		->with('advTops', $advTops->result);
 	}
 	
-	public function getProductDetials(){
+	public function getProductDetials($product_id){
 		$advTops = $this->mod_advertisment
 		->getAdvertisementHomePage(
 				self::HOMEPAGE,
@@ -188,8 +189,10 @@ class FePageController extends BaseController {
 				1
 		);
 		
+		$detailProduct = $this->mod_product->findProductDetailById($product_id);
 		return View::make('frontend.partials.products.detials')
-					->with('advTops', $advTops->result);
+					->with('advTops', $advTops->result)
+					->with('detailProduct', $detailProduct);
 	}
     
     public function getSignOut() {
@@ -201,5 +204,11 @@ class FePageController extends BaseController {
     	$productDetail =  $this->mod_product->findProductDetailById($product_id);
     	return View::make('frontend.partials.products.js_popup_product')
     		->with('productDetail', $productDetail);
-    }   
+    } 
+
+    public function findRelatedProducts($category_id) {
+    	$relatedPost = $this->mod_product->findRelatedPostProduct($category_id);
+    	return View::make('frontend.partials.products.related_post')
+    		->with('related_post', $relatedPost);
+    }  
 }

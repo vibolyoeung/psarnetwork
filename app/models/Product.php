@@ -390,5 +390,34 @@ class Product extends Eloquent{
 			->where('id', '=', $product_id)
 			->first();
 	}
+
+	/**
+	 * findRelatedPostProduct
+	 * 
+	 * @param int $category id
+	 * @return product that related post
+	 * @access public
+	 */
+	public static function findRelatedPostProduct($category_id) {
+		$product = Config::get('constants.TABLE_NAME.PRODUCT');
+		return DB::table($product)
+			->where('s_category_id', '=', $category_id)
+			->take(8)
+			->get();
+	}
+
+	/**
+	 * findPostProductByCategory
+	 * 
+	 * @param int $category id
+	 * @return products by category
+	 * @access public
+	 */
+	public function findPostProductByCategory($category_id) {
+		$product = Config::get('constants.TABLE_NAME.PRODUCT');
+		return DB::table($product)
+			->where('s_category_id', '=', $category_id)
+			->get();
+	}
 	
 }

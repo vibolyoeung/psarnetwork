@@ -27,95 +27,28 @@ Categories
 			</div>
 		</div>
 		<div class="col-lg-12">
+			@foreach($productByCategory as $product)
 				<div class="product_list_container">
 					<div class="media commnets">
-						<a href="#" class="pull-left product_image">
-							<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
+						<a href="{{Config::get('app.url')}}/product/details/{{$product->id}}" class="pull-left product_image">
+							<img alt="" src="{{Config::get('app.url')}}/upload/product/{{$product->thumbnail}}" class="media-object">
 						</a>
 						
 						<div class="media-body">
-							<h4 class="media-heading">Annie Davis</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+							<h4 class="media-heading">
+								{{$product->title}}
+							</h4>
+							<p>
+								{{$product->description}}
+							</p>
 							<div class="blog-socials">
 								
-								<a href="" class="btn btn-primary">$ 20.00</a>
+								<a href="{{Config::get('app.url')}}/product/details/{{$product->id}}" class="btn btn-primary">$ {{$product->price}}</a>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="product_list_container">
-					<div class="media commnets">
-						<a href="#" class="pull-left product_image">
-							<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
-						</a>
-						<div class="media-body">
-							<h4 class="media-heading">Annie Davis</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							<div class="blog-socials">
-								
-								<a href="" class="btn btn-primary">$20.00</a>
-							</div>
-						</div>
-					</div>
-				</div><div class="product_list_container">
-					<div class="media commnets">
-						<a href="#" class="pull-left product_image">
-							<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
-						</a>
-						<div class="media-body">
-							<h4 class="media-heading">Annie Davis</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							<div class="blog-socials">
-								
-								<a href="" class="btn btn-primary">$ 20.00</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 product_list_container">
-					<div class="media commnets">
-						<a href="#" class="pull-left product_image">
-							<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
-						</a>
-						<div class="media-body">
-							<h4 class="media-heading">Annie Davis</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							<div class="blog-socials">
-								
-								<a href="" class="btn btn-primary">$20.00</a>
-							</div>
-						</div>
-					</div>
-				</div><div class="product_list_container">
-					<div class="media commnets">
-						<a href="#" class="pull-left product_image">
-							<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
-						</a>
-						<div class="media-body">
-							<h4 class="media-heading">Annie Davis</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							<div class="blog-socials">
-								
-								<a href="" class="btn btn-primary">$ 20.00</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="product_list_container">
-					<div class="media commnets">
-						<a href="#" class="pull-left product_image">
-							<img alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">
-						</a>
-						<div class="media-body">
-							<h4 class="media-heading">Annie Davis</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							<div class="blog-socials">
-								
-								<a href="" class="btn btn-primary">$20.00</a>
-							</div>
-						</div>
-					</div>
-				</div>
+			@endforeach
 		</div>
 	</div>
 	<!-- Modal -->
@@ -167,9 +100,15 @@ Categories
 			                            <div class="col-sm-4" id="carousel-text"></div>
 			                            <div id="slide-content" style="display: none;">
 			                                <div id="slide-content-0">
-			                                    <h2>Slider One</h2>
-			                                    <p>Lorem Ipsum Dolor</p>
-			                                    <p class="sub-text">October 24 2014 - <a href="#">Read more</a></p>
+			                                    <h2>
+			                                    	{{$product->title}}
+			                                    </h2>
+			                                    <p>
+			                                    	{{$product->description}}
+			                                    </p>
+			                                    <p class="sub-text">
+			                                    	{{$product->created_date}} - 
+			                                    	<a href="{{Config::get('app.url')}}/product/details/{{$product->id}}">Read more</a></p>
 			                                </div>
 			                            </div>
 			                        </div>

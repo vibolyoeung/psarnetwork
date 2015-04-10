@@ -36,8 +36,12 @@
 				<div class="col-sm-4" id="carousel-text"></div>
 				<div id="slide-content" style="display: none;">
 					<div id="slide-content-0">
-						<h2 style="color:#285EA0;">What is Lorem Ipsum?</h2>
-						<p class="sub-text">October 24 2014</p>
+						<h2 style="color:#285EA0;">
+							{{ $detailProduct->title }}
+						</h2>
+						<p class="sub-text">
+							{{ $detailProduct->created_date }}
+						</p>
 					</div>
 				</div>
 			</div>
