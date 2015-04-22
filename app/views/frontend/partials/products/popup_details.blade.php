@@ -11,7 +11,7 @@
 					
 				</div>
 				<div class="col-lg-4">
-					<img src="{{Config::get('app.url')}}/frontend/images/Easter natural banners with eggs.jpg" class="img-responsive img-thumbnail"/>
+					{{ App::make('FeDetailController')->getVerticalRightAds() }}
 				</div>
 			</div>
 		</div>
