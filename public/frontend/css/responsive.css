@@ -145,7 +145,7 @@
 	z-index: 99999;
 	margin-bottom:10px;
 	overflow:hidden;
-	left:50%;
+	left:0;
 	position: absolute;
 	top:-32px;
 }

@@ -332,6 +332,9 @@ a#scrollUp i {
 		height: 0;
 		z-index: -2;
 	}
+	.carousel > img, #slider-carousel a > img{
+		height: 300px;
+	}
 }
 
 @media ( min-width : 768px) {
@@ -1325,8 +1328,7 @@ h2.title {
 }
 
 .row  #slider-carousel {
-	overflow: hidden;
-	max-height: 240px;
+	max-height: 300px;
 }
 
 .single-products:hover .product-overlay {
@@ -2971,7 +2973,7 @@ h2.title {
 }
 
 .carousel-inner {
-	max-height: 250px;
+	max-height: 300px;
 	padding: 0;
 }
 
@@ -3437,16 +3439,8 @@ fieldset legend {
 	width: 950px;
 }
 
-.carousel-inner>.item>a>img,.top_special_ads a img {
-	height: 228px;
-}
-
-.top_special_ads {
-	border: 2px solid #ddd;
-	padding: 0;
-	max-height: 228px;
-	overflow: hidden;
-	margin-bottom: 10px;
+.carousel-inner>.item>a>img, .top_special_ads a img {
+	max-height: 300px;
 }
 
 a.more_categories {
@@ -3481,4 +3475,10 @@ a.home_icon {
 	top: 0 !important;
 	text-align: center !important;
 	font-size: 120%;
+}
+header#header{
+	position:fixed !important;
+	z-index:999;
+	width:100%;
+	top:0;
 }

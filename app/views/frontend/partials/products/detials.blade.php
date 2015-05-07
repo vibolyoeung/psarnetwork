@@ -33,10 +33,7 @@
 												$thumbnail_id = 1;
 												?>
 												@foreach($images as $image)
-												<?php
-												$classitem = ($thumbnail_id == 1) ? 'item' : 'item active';
-												?>
-													<div class="<?php echo $classitem;?>"
+												<div class="item"
 												data-slide-number="<?= $thumbnail_id; ?>">
 												<img
 													src="{{Config::get('app.url')}}/upload/product/{{$image['pic']}}">

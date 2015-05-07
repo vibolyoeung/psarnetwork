@@ -23,8 +23,8 @@
 					<h2>$ {{$relatedPost->price}}</h2>
 					<p>{{$relatedPost->title}}</p>
 					<a
-						href="{{Config::get('app.url')}}/product/details/{{$relatedPost->id}}">View
-						Details</a>
+						href="{{Config::get('app.url')}}/product/details/{{$relatedPost->id}}">
+						View Details</a>
 				</div>
 				<a
 					href="{{Config::get('app.url')}}/product/details/{{$relatedPost->id}}"

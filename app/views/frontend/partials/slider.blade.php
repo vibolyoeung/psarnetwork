@@ -1,9 +1,12 @@
 <section id="slider">
 	<!--slider-->
 	<div class="row">
-		<div class="col-lg-12 pull-right" style="padding-right:0;">
+		<div class="col-lg-12 pull-right">
 			<div class="col-sm-8">
 				<div id="slider-carousel" class="carousel slide" data-ride="carousel" >
+				<?php 
+				if(count($slideshows) > 0){
+				?>
 					<ol class="carousel-indicators">
 					<?php $i=0;?>
 					@foreach($slideshows as $slideshow)
@@ -17,7 +20,7 @@
 					?>
 					@endforeach
 					</ol>
-					<div class="carousel-inner" style="border: 2px solid #ddd;padding:0;max-height: 230px;">
+					<div class="carousel-inner">
 					@foreach($slideshows as $slideshow)
 						<?php
 							if($slideshow->type == 1){
@@ -26,7 +29,7 @@
 								if(strtotime(date("Y-m-d")) <= strtotime($exp_date)){ ?>
 									<div class="item">
 											<a href='{{URL::to("product/product_detail")}}/{{$slideshow->id}}' target="_blank">
-												<img src="{{Config::get('app.url')}}/upload/advertisement/{{$slideshow->image;}}" class="" alt="" />
+												<img src="{{Config::get('app.url')}}/upload/advertisement/{{$slideshow->image;}}" class="img-responsive img-thumbnail" alt="image" />
 											</a>
 									</div>
 							<?php
@@ -45,7 +48,7 @@
 										<a href='{{URL::to("product/product_detail")}}/{{$slideshow->id}}' class="btn btn-default get">View Details</a>
 									</div>
 									<div class="col-sm-6">
-										<img src="{{Config::get('app.url')}}/upload/advertisement/{{$slideshow->image;}}" class="img-responsive" alt="" />
+										<img src="{{Config::get('app.url')}}/upload/advertisement/{{$slideshow->image;}}" class="img-responsive img-thumbnail" alt="" />
 										<!-- <img src="{{Config::get('app.url')}}/frontend/images/home/pricing.png" class="pricing" alt="" /> -->
 									</div>
 								</div>
@@ -61,10 +64,21 @@
 					<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next"> <i
 						class="fa fa-angle-right"></i>
 					</a>
+					
+				<?php 
+				}else{
+				?>
+					<img src="{{Config::get('app.url')}}/frontend/images/default_slideshow.png" class="img-responsive img-thumbnail" alt="image" />
+				<?php 
+				}
+				?>
 				</div>
 			</div>
-
-			{{ App::make('FePageController')->getSpecialAds() }}
+			
+			<div class="col-lg-4 top_special_ads">
+				{{ App::make('FePageController')->getSpecialAds() }}
+			</div>
+			
 		</div>
 	</div>
 </section>

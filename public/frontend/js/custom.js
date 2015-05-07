@@ -5,14 +5,13 @@ jQuery(".navbar-nav li:first-child,.menu_nav_category > li:first-child").addClas
 	$(".navbar-nav >li.active").removeClass('active');
 	$(this).addClass('active');
 });
-	
-//	
-//	jQuery('.item:first-child').addClass(' active');
-//	jQuery('.bullet:first-child').addClass('active');
-//	jQuery('.tab-content .submenu-bar:first-child').addClass(' active');
-//	jQuery('#myCarousel').carousel({
-//          interval: 5000
-//	  });
+		
+	jQuery('.item:first-child').addClass(' active');
+	jQuery('.bullet:first-child').addClass('active');
+	jQuery('.tab-content .submenu-bar:first-child').addClass(' active');
+	jQuery('#myCarousel').carousel({
+          interval: 5000
+	  });
 	
 	// Set auto slider for banner slideshow
 	
@@ -41,22 +40,43 @@ jQuery(".navbar-nav li:first-child,.menu_nav_category > li:first-child").addClas
 		interval: false
 	});
 	
-	jQuery('#carousel-text').html($('#slide-content-0').html());
+	 $('#DetailCarousel').carousel({
+         interval: 5000
+	 });
+	
+	 $('#carousel-text').html($('#slide-content-0').html());
+	
+	 //Handles the carousel thumbnails
+	$('[id^=carousel-selector-]').click( function(){
+	     var id = this.id.substr(this.id.lastIndexOf("-") + 1);
+	     var id = parseInt(id);
+	     $('#DetailCarousel').carousel(id);
+	 });
+	
+	
+	 // When the carousel slides, auto update the text
+	 $('#DetailCarousel').on('slid.bs.carousel', function (e) {
+	          var id = $('.item.active').data('slide-number');
+	         $('#carousel-text').html($('#slide-content-'+id).html());
+	 });
+	
+	//jQuery('#carousel-text').html($('#slide-content-0').html());
 	
 	  //Handles the carousel thumbnails
-	jQuery('[id^=carousel-selector-]').click( function(){
+	/*jQuery('[id^=carousel-selector-]').click( function(){
 	      var id = this.id.substr(this.id.lastIndexOf("-") + 1);
 	      var id = parseInt(id);
 	      jQuery('#myCarousel').carousel(id);
-	  });
+	  });*/
 
 	
 	
 	// When the carousel slides, auto update the text
-	jQuery('#myCarousel').on('slid.bs.carousel', function (e) {
-	           var id = $('.item.active').data('slide-number');
-	          $('#carousel-text').html($('#slide-content-'+id).html());
-	 });
+	//jQuery('#myCarousel').on('slid.bs.carousel', function (e) {
+	           //var id = $('.item.active').data('slide-number');
+	          //$('#carousel-text').html($('#slide-content-'+id).html());
+	 //});
+	
 	//For switching list view
 	jQuery(".product_list_container").addClass(" col-lg-4")
 	jQuery(".product_image").addClass("col-lg-6");

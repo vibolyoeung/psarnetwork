@@ -1,7 +1,6 @@
 	@include('frontend.partials.header')
 	@include('frontend.partials.searchtop')
 	{{ App::make('FePageController')->mainCategory() }}
-
 	<section>
 		<div class="container">
 			<div class="row">

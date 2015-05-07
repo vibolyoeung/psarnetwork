@@ -1,14 +1,20 @@
 <br />
 <div class="row">
-	<div class="col-lg-12" style="border:1px solid #F7F7F5;padding:0;">
-		<div class="col-lg-3" style="border-right:0px solid #ddd;padding:10px;margin-top:55px;">
-			<center><div class="btn btn-warning">Summary in each locations</div></center>
+	<div class="col-lg-12" style="border: 1px solid #F7F7F5; padding: 0;">
+		<div class="col-lg-3"
+			style="border-right: 0px solid #ddd; padding: 10px; margin-top: 55px;">
+			<center>
+				<div class="btn btn-warning">Summary in each locations</div>
+			</center>
 		</div>
-		<div class="col-lg-9" style="padding:10px;border-left:1px solid #F7F7F5;">
+		<div class="col-lg-9"
+			style="padding: 10px; border-left: 1px solid #F7F7F5;">
 
 			@foreach($Provinces as $province)
-			<div class="btn btn-default" style="border-radius:0;min-width:160px;font-size:12px;border:none;text-align:left;">
-				{{$province->province_name}} &nbsp;&nbsp;<span class="number-display">200</span>
+			<div class="btn btn-default"
+				style="border-radius: 0; min-width: 160px; font-size: 12px; border: none; text-align: left;">
+				{{$province->province_name}} &nbsp;&nbsp;<span
+					class="number-display">200</span>
 			</div>
 			@endforeach
 		</div>

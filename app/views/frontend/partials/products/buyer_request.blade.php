@@ -2,7 +2,8 @@
 <div class="category-tab feature-ad lastest-post">
 	<!--recommended_items-->
 	<ul class="nav nav-tabs">
-		<li><strong>Buyer Requested Products</strong>  &nbsp;&nbsp;&nbsp; &frasl;</li>
+		<li><strong>Buyer Requested Products</strong> &nbsp;&nbsp;&nbsp;
+			&frasl;</li>
 		<li>Products : <span class="number-display">25</span></li>
 		<li>Stores :<span class="number-display">25</span></li>
 		<li>Market :<span class="number-display">25</span></li>
@@ -14,32 +15,39 @@
 	<div id="monthly-pay-item-carousel" class="carousel slide"
 		data-ride="carousel">
 		<div class="carousel-inner">
-			<?php 
-				$buyerProducts = Product::findBuyerProducts();
+			<?php
+			$buyerProducts = Product::findBuyerProducts ();
 			?>
-			<?php 
-				$buyPro = 1;
+			<?php
+			$buyPro = 1;
 			?>
 			<div class="item active">
-			@foreach($buyerProducts as $buyerProduct)
+				@foreach($buyerProducts as $buyerProduct)
 				<div class="col-sm-3">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
-								<a href="#" data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail({{$buyerProduct->id}});">
-									<img src="{{Config::get('app.url')}}/upload/product/thumb/{{$buyerProduct->thumbnail}}" alt="" />
+								<a href="#" data-toggle="modal" data-target="#myModal"
+									onclick="popupDetails.add_popup_detail({{$buyerProduct->id}});">
+									<img
+									src="{{Config::get('app.url')}}/upload/product/thumb/{{$buyerProduct->thumbnail}}"
+									alt="" />
 								</a>
 								<h2>$ {{$buyerProduct->price}}</h2>
 								<p><?php echo substr($buyerProduct->title,0,20)?></p>
-								<a data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail({{$buyerProduct->id}});">View Details</a>
+								<a data-toggle="modal" data-target="#myModal"
+									onclick="popupDetails.add_popup_detail({{$buyerProduct->id}});">View
+									Details</a>
 							</div>
-							<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
+							<img
+								src="{{Config::get('app.url')}}/frontend/images/home/sale.png"
+								class="new" alt="" />
 						</div>
 					</div>
 				</div>
 				<?php
-				if($buyPro >= 4 && $buyPro % 4 == 0){
-				 echo '</div><div class="item"> ';
+				if ($buyPro >= 4 && $buyPro % 4 == 0) {
+					echo '</div><div class="item"> ';
 				}
 				$buyPro ++;
 				?>
