@@ -5,9 +5,10 @@
 	<li><a href="#">Library</a></li>
 	<li class="active">Data</li>
 </ol>
-@endsection @section('content')
+@endsection
+@section('content')
+@include('frontend.partials.left')
 <div class="col-lg-11">@include('frontend.partials.slider')</div>
-
 <div class="col-sm-10">
 	@include('frontend.partials.products.latest')
 	@include('frontend.partials.products.popular') <br />
@@ -27,19 +28,25 @@
 				{{ App::make('FePageController')->getFeAds(1, 6, 3) }}
 
 			</div>
+
 			<div class="col-lg-10">
 				@include('frontend.partials.products.hot_promotion')
 				@include('frontend.partials.products.new_arrival')
 				@include('frontend.partials.products.monthly_pay')
 				@include('frontend.partials.products.buyer_request')
-				@include('frontend.partials.products.second_hand')</div>
+				@include('frontend.partials.products.second_hand')
+			</div>
+
 		</div>
 	</div>
 	@include('frontend.partials.products.popup_details')
 </div>
 </div>
-@endsection @section('client_location')
-@include('frontend.partials.client_location') @endsection
+@include('frontend.partials.right')
+@endsection
+@section('client_location')
+@include('frontend.partials.client_location')
+@endsection
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;

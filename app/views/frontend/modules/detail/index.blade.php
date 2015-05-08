@@ -10,6 +10,7 @@ Categories
 </ol>
 @endsection
 @section('content')
+@include('frontend.partials.categories.left')
 <div class="col-sm-10">
 	<div class="features_items">
 		<!-- ============Slider end here========= -->
@@ -60,6 +61,7 @@ Categories
 		</div>
 	</div>
 </div>
+@include('frontend.partials.categories.right')
 @endsection
 <script src="{{Config::get('app.url')}}/frontend/js/carouselengine/amazingcarousel.js"></script>
 <link rel="stylesheet" type="text/css" href="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.css">
