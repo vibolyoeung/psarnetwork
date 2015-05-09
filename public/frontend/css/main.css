@@ -3068,7 +3068,8 @@ h2.title {
 	padding: 0px 4px;
 }
 
-.promotion-list>.top_menu_list>li>a {
+.promotion-list>.top_menu_list>li>a,
+.facebook-like > .fb-like {
 	font-size: 12px;
 	padding: 5px 8px;
 }

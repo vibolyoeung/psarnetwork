@@ -30,6 +30,17 @@
 	href="{{Config::get('app.url')}}/frontend/images/ico/apple-touch-icon-72-precomposed.png">
 </head>
 <body>
+	<!-- Call facebook script -->
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	<!-- End facebook calling -->
+
 	<header id="header">
 		<!--=====Start Header]==============-->
 		<div class="header_top">
@@ -121,6 +132,9 @@
 								Company</a></li>
 						<li><a href="{{Config::get('app.url')}}product/list">Home Shop</a></li>
 						<li><a href="{{Config::get('app.url')}}product/list">Individual</a></li>
+						<li class="facebook-like">
+							<div class="fb-like" data-href="https://www.facebook.com/khmerabba?ref=hl" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+						</li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
