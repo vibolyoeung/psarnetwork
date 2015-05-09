@@ -268,6 +268,7 @@ class FeMemberController extends BaseController {
         $userID = Session::get('currentUserId');
         $userInfo = $this->user->getUser($userID);
         $usertype = @$userInfo->result->account_type;
+        $getUserStore = $this->mod_store->getUserStore($userID);
         if (!empty($usertype) && $usertype == 2) {
             $usertypes = 'enterprise';
         } else {
@@ -291,12 +292,11 @@ class FeMemberController extends BaseController {
                 }
                 return View::make('frontend.modules.member.' . $usertypes . '-' . $step)->with('maincategories',
                     $listCategories->result)->with('userCategory', $userCategory)->with('getMainPage',
-                    $getMainPage->result)->with('getUserPages', $getUserPages->result);
+                    $getMainPage->result)->with('getUserPages', $getUserPages->result)->with('dataStore', $getUserStore);
                 break;
 
                 /* user page content */
             case 'content':
-                $getUserStore = $this->mod_store->getUserStore($userID);
                 if (!empty($getUserStore)) {
                     $storeID = $getUserStore->id;
                 } else {
@@ -334,22 +334,24 @@ class FeMemberController extends BaseController {
                     return Redirect::to('/member/userinfo/infomation');
                 }
                 return View::make('frontend.modules.member.' . $usertypes . '-' . $step)->with('maincategories',
-                    $listCategories->result)->with('userData', $userData->result);
+                    $listCategories->result)->with('userData', $userData->result)->with('dataStore', $getUserStore);
                 break;
 
             case 'pageinfo':
                 return View::make('frontend.modules.member.' . $usertypes . '-' . $step)->with('maincategories',
-                    $listCategories->result);
+                    $listCategories->result)->with('dataStore', $getUserStore);
                 break;
                 
             case 'toolview':
-                return View::make('frontend.modules.member.s-toolview')->with('maincategories',
-                    $listCategories->result);
+                return View::make('frontend.modules.member.s-toolview')
+                ->with('maincategories',$listCategories->result)
+                ->with('dataStore', $getUserStore);
                 break;
                 
             case 'slideshow':
-                return View::make('frontend.modules.member.s-slideshow')->with('maincategories',
-                    $listCategories->result);
+                return View::make('frontend.modules.member.s-slideshow')
+                ->with('maincategories',$listCategories->result)
+                ->with('dataStore', $getUserStore);
                 break;
                 
             case 'accountinfo':
@@ -360,7 +362,8 @@ class FeMemberController extends BaseController {
                 ->with('maincategories',$listCategories->result)
                 ->with('accountRole', $accountRole->data)
                 ->with('clientType', $clientType->data)
-                ->with('markets', $result->data);
+                ->with('markets', $result->data)
+                ->with('dataStore', $getUserStore);
                 break;
 
         }

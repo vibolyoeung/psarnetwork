@@ -49,5 +49,4 @@
 		<!-- /.container-fluid -->
 	</nav>
 </div>
-</header>
 <!--==============Closing header=========-->
