@@ -73,3 +73,5 @@
 	<p>{{$productDetail->description}}</p>
 </div>
 
+{{App::make('FePageController')->findRelatedProducts($productDetail->s_category_id)}}
+
