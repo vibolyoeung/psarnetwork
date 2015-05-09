@@ -60,6 +60,9 @@
 										</a>
 										<ul class="dropdown-menu" role="menu">
 											<li>
+        										<a href="{{$userHome}}" target="_blank">View your site</i></a>
+        									</li>
+											<li>
         										<a href="#">View Profile info</i></a>
         									</li>
                                             <li>

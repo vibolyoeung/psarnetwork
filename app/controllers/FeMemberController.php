@@ -268,6 +268,7 @@ class FeMemberController extends BaseController {
         $userID = Session::get('currentUserId');
         $userInfo = $this->user->getUser($userID);
         $usertype = @$userInfo->result->account_type;
+        $getUserStore = $this->mod_store->getUserStore($userID);
         if (!empty($usertype) && $usertype == 2) {
             $usertypes = 'enterprise';
         } else {
@@ -291,12 +292,11 @@ class FeMemberController extends BaseController {
                 }
                 return View::make('frontend.modules.member.' . $usertypes . '-' . $step)->with('maincategories',
                     $listCategories->result)->with('userCategory', $userCategory)->with('getMainPage',
-                    $getMainPage->result)->with('getUserPages', $getUserPages->result);
+                    $getMainPage->result)->with('getUserPages', $getUserPages->result)->with('dataStore', $getUserStore);
                 break;
 
                 /* user page content */
             case 'content':
-                $getUserStore = $this->mod_store->getUserStore($userID);
                 if (!empty($getUserStore)) {
                     $storeID = $getUserStore->id;
                 } else {
@@ -334,22 +334,24 @@ class FeMemberController extends BaseController {
                     return Redirect::to('/member/userinfo/infomation');
                 }
                 return View::make('frontend.modules.member.' . $usertypes . '-' . $step)->with('maincategories',
-                    $listCategories->result)->with('userData', $userData->result);
+                    $listCategories->result)->with('userData', $userData->result)->with('dataStore', $getUserStore);
                 break;
 
             case 'pageinfo':
                 return View::make('frontend.modules.member.' . $usertypes . '-' . $step)->with('maincategories',
-                    $listCategories->result);
+                    $listCategories->result)->with('dataStore', $getUserStore);
                 break;
                 
             case 'toolview':
-                return View::make('frontend.modules.member.s-toolview')->with('maincategories',
-                    $listCategories->result);
+                return View::make('frontend.modules.member.s-toolview')
+                ->with('maincategories',$listCategories->result)
+                ->with('dataStore', $getUserStore);
                 break;
                 
             case 'slideshow':
-                return View::make('frontend.modules.member.s-slideshow')->with('maincategories',
-                    $listCategories->result);
+                return View::make('frontend.modules.member.s-slideshow')
+                ->with('maincategories',$listCategories->result)
+                ->with('dataStore', $getUserStore);
                 break;
                 
             case 'accountinfo':
@@ -360,7 +362,8 @@ class FeMemberController extends BaseController {
                 ->with('maincategories',$listCategories->result)
                 ->with('accountRole', $accountRole->data)
                 ->with('clientType', $clientType->data)
-                ->with('markets', $result->data);
+                ->with('markets', $result->data)
+                ->with('dataStore', $getUserStore);
                 break;
 
         }
@@ -449,12 +452,10 @@ class FeMemberController extends BaseController {
                             );
                         $checkStoreImage = $this->mod_store->getUserStore(null, $whereData);
                         if (!empty($checkStoreImage)) {
-                            foreach ($checkStoreImage as $oldImage) {
-                                $oldName = $destinationPath . '/' . $oldImage->image;
-                                $thumb = $destinationPath . '/thumb/' . $oldImage->image;
-                                if (File::exists($oldName)) {
-                                    File::delete($oldName, $thumb);
-                                }
+                            $oldName = $destinationPath . '/' . $checkStoreImage->image;
+                            $thumb = $destinationPath . '/thumb/' . $checkStoreImage->image;
+                            if (File::exists($oldName)) {
+                                File::delete($oldName, $thumb);
                             }
                         }
                         /* add or update new image*/
@@ -484,12 +485,10 @@ class FeMemberController extends BaseController {
                             );
                         $checkStoreImage = $this->mod_store->getUserStore(null, $whereData);
                         if (!empty($checkStoreImage)) {
-                            foreach ($checkStoreImage as $oldImage) {
-                                $oldName = $destinationPath . '/' . $oldImage->sto_banner;
-                                $thumb = $destinationPath . '/thumb/' . $oldImage->sto_banner;
-                                if (File::exists($oldName)) {
-                                    File::delete($oldName, $thumb);
-                                }
+                            $oldName = $destinationPath . '/' . $checkStoreImage->sto_banner;
+                            $thumb = $destinationPath . '/thumb/' . $checkStoreImage->sto_banner;
+                            if (File::exists($oldName)) {
+                                File::delete($oldName, $thumb);
                             }
                         }
     
@@ -587,7 +586,7 @@ class FeMemberController extends BaseController {
                     case 'userLayout':
                         $getUserStore = $this->mod_store->getUserStore($userID);
                         if (!empty($getUserStore)) {
-                            $userStoreID = $getUserStore[0]->id;
+                            $userStoreID = $getUserStore->id;
                             $where = array('user_id' => $userID, 'id' => $userStoreID);
                             $dataSet = array('layout' => $MainMenu);
                             $response = DB::table(Config::get('constants.TABLE_NAME.STORE'))->where($where)->
@@ -600,12 +599,16 @@ class FeMemberController extends BaseController {
                         if (!empty($getUserStore)) {
                             $userStoreID = $getUserStore->id;
                             $userStoresValue = $getUserStore->sto_value;
-                            $userStoresValueArr = json_decode($userStoresValue, true);
-                            if (array_key_exists('footer_text', $userStoresValueArr)) {
-                                $ValueArr = array('footer_text' => $MainMenu);
-                                $dataArr = array_merge($userStoresValueArr, $ValueArr);
+                            if (is_null($userStoresValue)) {
+                                $dataArr = array('footer_text' => $MainMenu);
                             } else {
-                                $dataArr = array('footer_text' => $MainMenu, 'layout' => $userStoresValueArr['layout']);
+                                $userStoresValueArr = json_decode($userStoresValue, true);
+                                if (array_key_exists('footer_text', $userStoresValueArr)) {
+                                    $ValueArr = array('footer_text' => $MainMenu);
+                                    $dataArr = array_merge($userStoresValueArr, $ValueArr);
+                                } else {
+                                    $dataArr = array('footer_text' => $MainMenu, 'layout' => $userStoresValueArr['layout']);
+                                }
                             }
                             $where = array('user_id' => $userID, 'id' => $userStoreID);
                             $response = DB::table(Config::get('constants.TABLE_NAME.STORE'))->where($where)->
