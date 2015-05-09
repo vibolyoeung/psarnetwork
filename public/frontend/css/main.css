@@ -128,6 +128,7 @@ a#scrollUp i {
     overflow: hidden;
     padding:3px 0 0;
     padding-left: 15px;
+    float:right;
 }
 
 .header_top .language-bar ul {
