@@ -112,6 +112,7 @@
 					</div>
 				</div>
 			</div>
+			</header>
 			<!--============End header top here==============-->
 			<!--for mesage alert -->
 			<div class="message-alert alert alert-warning" data-time="3000" style="display: none;">
