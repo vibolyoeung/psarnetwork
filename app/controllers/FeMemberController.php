@@ -449,12 +449,10 @@ class FeMemberController extends BaseController {
                             );
                         $checkStoreImage = $this->mod_store->getUserStore(null, $whereData);
                         if (!empty($checkStoreImage)) {
-                            foreach ($checkStoreImage as $oldImage) {
-                                $oldName = $destinationPath . '/' . $oldImage->image;
-                                $thumb = $destinationPath . '/thumb/' . $oldImage->image;
-                                if (File::exists($oldName)) {
-                                    File::delete($oldName, $thumb);
-                                }
+                            $oldName = $destinationPath . '/' . $checkStoreImage->image;
+                            $thumb = $destinationPath . '/thumb/' . $checkStoreImage->image;
+                            if (File::exists($oldName)) {
+                                File::delete($oldName, $thumb);
                             }
                         }
                         /* add or update new image*/
@@ -484,12 +482,10 @@ class FeMemberController extends BaseController {
                             );
                         $checkStoreImage = $this->mod_store->getUserStore(null, $whereData);
                         if (!empty($checkStoreImage)) {
-                            foreach ($checkStoreImage as $oldImage) {
-                                $oldName = $destinationPath . '/' . $oldImage->sto_banner;
-                                $thumb = $destinationPath . '/thumb/' . $oldImage->sto_banner;
-                                if (File::exists($oldName)) {
-                                    File::delete($oldName, $thumb);
-                                }
+                            $oldName = $destinationPath . '/' . $checkStoreImage->sto_banner;
+                            $thumb = $destinationPath . '/thumb/' . $checkStoreImage->sto_banner;
+                            if (File::exists($oldName)) {
+                                File::delete($oldName, $thumb);
                             }
                         }
     
@@ -587,7 +583,7 @@ class FeMemberController extends BaseController {
                     case 'userLayout':
                         $getUserStore = $this->mod_store->getUserStore($userID);
                         if (!empty($getUserStore)) {
-                            $userStoreID = $getUserStore[0]->id;
+                            $userStoreID = $getUserStore->id;
                             $where = array('user_id' => $userID, 'id' => $userStoreID);
                             $dataSet = array('layout' => $MainMenu);
                             $response = DB::table(Config::get('constants.TABLE_NAME.STORE'))->where($where)->
@@ -600,12 +596,16 @@ class FeMemberController extends BaseController {
                         if (!empty($getUserStore)) {
                             $userStoreID = $getUserStore->id;
                             $userStoresValue = $getUserStore->sto_value;
-                            $userStoresValueArr = json_decode($userStoresValue, true);
-                            if (array_key_exists('footer_text', $userStoresValueArr)) {
-                                $ValueArr = array('footer_text' => $MainMenu);
-                                $dataArr = array_merge($userStoresValueArr, $ValueArr);
+                            if (is_null($userStoresValue)) {
+                                $dataArr = array('footer_text' => $MainMenu);
                             } else {
-                                $dataArr = array('footer_text' => $MainMenu, 'layout' => $userStoresValueArr['layout']);
+                                $userStoresValueArr = json_decode($userStoresValue, true);
+                                if (array_key_exists('footer_text', $userStoresValueArr)) {
+                                    $ValueArr = array('footer_text' => $MainMenu);
+                                    $dataArr = array_merge($userStoresValueArr, $ValueArr);
+                                } else {
+                                    $dataArr = array('footer_text' => $MainMenu, 'layout' => $userStoresValueArr['layout']);
+                                }
                             }
                             $where = array('user_id' => $userID, 'id' => $userStoreID);
                             $response = DB::table(Config::get('constants.TABLE_NAME.STORE'))->where($where)->
