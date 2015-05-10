@@ -128,7 +128,10 @@ a#scrollUp i {
     overflow: hidden;
     padding:3px 0 0;
     padding-left: 15px;
+<<<<<<< HEAD
+=======
     float:right;
+>>>>>>> 396bd408476d4e0806403ebda2b727673d00738e
 }
 
 .header_top .language-bar ul {
@@ -189,9 +192,11 @@ a#scrollUp i {
 .social-icons ul>li {
 	display: inline-block;
 }
+
 .social-icons .dropdown-menu li {
 	display: block;
 }
+
 .nav>li>a:hover,.nav>li>a:focus {
 	background-color: transparent;
 }
@@ -3073,7 +3078,8 @@ h2.title {
 	padding: 0px 4px;
 }
 
-.promotion-list>.top_menu_list>li>a {
+.promotion-list>.top_menu_list>li>a,
+.facebook-like > .fb-like {
 	font-size: 12px;
 	padding: 5px 8px;
 }

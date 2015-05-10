@@ -334,6 +334,7 @@ class MCategory extends Eloquent{
 			->orderBy('id','asc')
  			->get();
 			if(count($results)>0){
+					$i = 1;
 					foreach ($results as $dropdownlist){
 						echo '<li>&nbsp;&nbsp;&nbsp;'; ?>
 						<a href="<?php echo URL::to('products/productbycategories/'.$mainID.'/'.$dropdownlist->id); ?>" >
@@ -341,7 +342,12 @@ class MCategory extends Eloquent{
 						</a>
 						<?php 
 						echo '</li>';
+					$i++;
 					}
+				if(count($results)>3){
+					echo '<li class="more_view'.$mainID.'">&nbsp;&nbsp;&nbsp;<span id="more_view'.$mainID.'"><i>View More...</i></span></li>';
+					
+				}
 			}
 		}catch (\Exception $e){
 			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
