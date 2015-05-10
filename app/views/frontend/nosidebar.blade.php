@@ -1,5 +1,7 @@
 <?php 
-        $userHome = @Config::get('app.url').'page/'.$dataStore->id;
+	if(Session::get('currentUserId')) {
+		$userHome = @Config::get('app.url').'page/'.$dataStore->id;
+	} 
 ?>
 @include('frontend.modules.member.layout.header')
 	<section>
