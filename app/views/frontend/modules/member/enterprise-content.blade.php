@@ -207,6 +207,7 @@ var homePage = "{{Config::get('app.url')}}";
 													<legend>
 														{{trans('register.TAB_Layout_footer')}}:
 													</legend>
+													<div id="foottxt">{{$userFooter}}</div>
                                                     <textarea id="textFooter" class="form-control" rows="2" placeholder="{{trans('register.TAB_Layout_footer_placeholder')}}">{{$userFooter}}</textarea
 													<a href="javascript:;" onclick="costomizeFooter();">{{trans('register.TAB_Layout_footer_desc')}}</a>
 												</fieldset>
