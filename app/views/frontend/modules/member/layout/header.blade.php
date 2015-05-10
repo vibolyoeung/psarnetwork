@@ -72,7 +72,7 @@
         										<a href="#">Chage Password</i></a>
         									</li>
                                             <li>
-        										<a href="{{URL::to('logout')}}"><i class="glyphicon glyphicon-off"> Log out</i></a>
+        										<a href="{{URL::to('member/logout')}}"><i class="glyphicon glyphicon-off"> Log out</i></a>
         									</li>
 										</ul>
 									</li>

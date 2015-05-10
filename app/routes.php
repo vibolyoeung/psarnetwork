@@ -111,12 +111,15 @@ Route::any('/pro/{lang}/{product_name}/{pro_id}', 'FeDetailController@index');
 Route::any('/pro/{product_name}/{pro_id}', 'FeDetailController@index');
 
 /*for member page*/
-Route::any('/logout', 'FePageController@getSignOut');
-Route::any('member/login', 'FeMemberController@index');
-Route::any('member/register','FeMemberController@register'); 
-Route::any('member/getdistrict','FeMemberController@getDistric');
-Route::any('member/getmarkettype/{id}','FeMemberController@getMarketType');
-Route::any('member/agreement/{usertype}','FeMemberController@agreement');
+Route::group(array('prefix' => 'member'), function () {
+	Route::any('/logout', 'FeMemberController@getSignOut');
+	Route::any('/login', 'FeMemberController@index');
+	Route::any('/register','FeMemberController@register'); 
+	Route::any('/getdistrict','FeMemberController@getDistric');
+	Route::any('/getmarkettype/{id}','FeMemberController@getMarketType');
+	Route::any('/agreement/{usertype}','FeMemberController@agreement');
+});
+
 Route::group(array('before' => 'auth_member'), function () {
     Route::group(array('prefix' => 'member'), function () {
         /*regirst page*/ 
