@@ -5,12 +5,13 @@
 	@section('breadcrumb')
 	<ol class="breadcrumb">
 		<li><a href="{{Config::get('app.url')}}">Home</a></li>
-		<li><a href="#">Library</a></li>
-		<li class="active">Data</li>
+		<li><a href="{{URL::to('products/list')}}">Products</a></li>
+		<li class="active">Create</li>
 	</ol>
 	@endsection
 @section('content')
 	{{HTML::script('frontend/js/product.js')}}
+	{{HTML::style('backend/css/jquery-ui.css')}}
 	<div class="container">
 		{{Form::open(array('url'=>'products/create','enctype'=>'multipart/form-data','file' => true, 'class'=>'form-horizontal'))}}
 			<div class="row">
@@ -117,7 +118,7 @@
 									{{trans('product.date_post')}}
 								</label>
 								<div class="col-sm-11">
-									{{Form::text('date_post', null, array('class'=>'form-control'))}}
+									{{Form::text('date_post', null, array('class'=>'form-control datepicker', 'placeholder'=>'Post date: dd/mm/yyyy'))}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -326,6 +327,9 @@
 				</div>
 			</div>
 		{{Form::close()}}
+		{{HTML::script('backend/js/bootstrap.min.js')}}
+        {{HTML::script('backend/js/jquery-ui.js')}}
+        {{HTML::script('backend/js/custom.js')}}
 	</div>
 @endsection
 @section('footer')
