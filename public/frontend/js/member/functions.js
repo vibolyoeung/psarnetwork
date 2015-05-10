@@ -24,8 +24,8 @@ function menu_updatesort(jsonstring,deleteAll) {
 	if (mittXHRobjekt) {
 		mittXHRobjekt.onreadystatechange = function() {
 			if (ajaxRequest.readyState == 4) {
-				var ajaxDisplay = document.getElementById('sortDBfeedback');
-				ajaxDisplay.innerHTML = ajaxRequest.responseText;
+//				var ajaxDisplay = document.getElementById('sortDBfeedback');
+//				ajaxDisplay.innerHTML = ajaxRequest.responseText;
 			} else {
 				// Uncomment this an refer it to a image if you want the loading gif
 				//document.getElementById('sortDBfeedback').innerHTML = "<img style='height:11px;' src='images/ajax-loader.gif' alt='ajax-loader' />";
@@ -94,25 +94,27 @@ function buildMenu(data) {
 				for (j = 0; j < Child_a.length; j++) {
 					var returnValue_A = getDataSelect('SubCategory', Child_a[j].id);
 					if (returnValue_A) {
-						if (Child_a[j].children.length < 1) {
-							var strA = '<a href="javascript:;">' + returnValue_A[0].name + '</a>';
-							linksA += '<li id="sub-a' + Child_a[j].id + '">' + strA + '</li>';
-						} else {
-
-							/*Sub B*/
-							var Child_b = Child_a[j].children;
-							var k;
-							var linksB = '';
-							for (k = 0; k < Child_b.length; k++) {
-								var returnValue_B = getDataSelect('SSubCategory', Child_b[k].id);
-								if (returnValue_B) {
-									var strB = '<a href="javascript:;">' + returnValue_B[0].name + '</a>';
-									linksB += '<li id="sub-a' + Child_b[k].id + '">' + strB + '</li>';
-								}
-							} /*end Sub B*/
-
-							var a_b = '<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">' + returnValue_A[0].name + ' <span class="caret"></span></a>';
-							linksA += '<li class="dropdown">' + a_b + '<ul class="dropdown-menu" role="menu">' + linksB + '</ul>' + '</li>';
+						if(Child_a[j].children) {
+							if (Child_a[j].children.length < 1) {
+								var strA = '<a href="javascript:;">' + returnValue_A[0].name + '</a>';
+								linksA += '<li id="sub-a' + Child_a[j].id + '">' + strA + '</li>';
+							} else {
+	
+								/*Sub B*/
+								var Child_b = Child_a[j].children;
+								var k;
+								var linksB = '';
+								for (k = 0; k < Child_b.length; k++) {
+									var returnValue_B = getDataSelect('SSubCategory', Child_b[k].id);
+									if (returnValue_B) {
+										var strB = '<a href="javascript:;">' + returnValue_B[0].name + '</a>';
+										linksB += '<li id="sub-a' + Child_b[k].id + '">' + strB + '</li>';
+									}
+								} /*end Sub B*/
+	
+								var a_b = '<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">' + returnValue_A[0].name + ' <span class="caret"></span></a>';
+								linksA += '<li class="dropdown">' + a_b + '<ul class="dropdown-menu" role="menu">' + linksB + '</ul>' + '</li>';
+							}
 						}
 					}
 				} /*end Sub A*/
@@ -145,7 +147,7 @@ $(document).ready(function() { /*create menu by get*/
 		if (window.JSON) {
 			buildMenu(list.nestable('serialize'));
 			output.val(window.JSON.stringify(list.nestable('serialize'))); //, null, 2));
-            menu_updatesort(window.JSON.stringify(list.nestable('serialize')),0);
+            menu_updatesort(window.JSON.stringify(list.nestable('serialize')),1);
 		} else {
 			output.val('JSON browser support required for this demo.');
 		}

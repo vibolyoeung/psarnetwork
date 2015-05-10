@@ -428,10 +428,12 @@ class MCategory extends Eloquent{
                             'order' => $key,
                             'parent_id' => $value['parentID']
                         );
+                        var_dump($data);
                         $whereData = array(
                             'user_id' => $userID,
                             'id' => $value['id'],
                         );
+                        var_dump($whereData);
                         DB::table(Config::get('constants.TABLE_NAME.S_CATEGORY'))->where($whereData)->update($data);
                     }
                 }

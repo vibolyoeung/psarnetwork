@@ -219,6 +219,7 @@ class FeMemberController extends BaseController {
     }
 
     public function agreement($usertype) {
+    	
         if (Input::has('btnSubmit')) {
             if (Input::has('skipDetail')) {
                 $rules = array('sto_url' => 'required|unique:store');
@@ -554,7 +555,6 @@ class FeMemberController extends BaseController {
                         // Decode it into an array
                         $jsonDecoded = json_decode($jsonstring, true, 64);
                         $readbleArray = $this->mod_category->userCategory($jsonDecoded);
-
                         /*Add or Update category*/
                         if (!empty($deleteAll)) {
                             $addOrUpdateCategory = $this->mod_category->DelUserCategory($userID);
