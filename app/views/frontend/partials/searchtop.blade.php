@@ -63,7 +63,7 @@
 		?>
 								<a href="{{$adv->link_url}}"> <img
 						src="{{Config::get('app.url')}}/upload/advertisement/{{$adv->image;}}"
-						class="img-responsive" alt="" />
+						class="img-responsive img-thumbanil" alt="" />
 					</a>
 						<?php } ?>
 						@endforeach

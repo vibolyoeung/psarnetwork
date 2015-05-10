@@ -34,8 +34,7 @@
 									</div>
 							<?php
 								}
-							}
-							else{
+							}else{
 								$exp_date = $slideshow->end_date;
 								$exp_date =str_replace('/', '-', $exp_date);
 								if(strtotime(date("d-m-Y")) <= strtotime($exp_date)){ ?>

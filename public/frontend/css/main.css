@@ -337,6 +337,7 @@ a#scrollUp i {
 	}
 	.carousel > img, #slider-carousel a > img{
 		height: 300px;
+		width:820px;
 	}
 }
 
@@ -1065,7 +1066,7 @@ translateY
 
 .control-carousel {
 	position: absolute;
-	top: 40%;
+	top: 42%;
 	font-size: 60px;
 	color: #428bca;
 }
@@ -3485,4 +3486,8 @@ header#header{
 	z-index:999;
 	width:100%;
 	top:0;
+}
+
+.top_special_ads{
+	padding:0;
 }

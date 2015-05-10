@@ -299,7 +299,7 @@ class MCategory extends Eloquent{
 		return $result;
 	}
 
-	public function getSubCategoriesDropdown($parent){
+	public function getSubCategoriesDropdown($mainID, $parent){
 		try {
 			$results = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
 			->select('id','name_en','name_km','status','parent_id')
@@ -315,7 +315,7 @@ class MCategory extends Eloquent{
 								echo $dropdownlist->{'name_'.Session::get('lang')};
 							echo '</b>';
 						echo '</li>';
-						$this->getLastFinalCategories($dropdownlist->id);
+						$this->getLastFinalCategories($mainID, $dropdownlist->id);
 					echo '</ul>';
 				}
 			}
@@ -325,7 +325,7 @@ class MCategory extends Eloquent{
 		return $results;
 	}
 
-	public function getLastFinalCategories($id=null){
+	public function getLastFinalCategories($mainID, $id=null){
 		try {
 			$results = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
 			->select('id','name_en','name_km','status','parent_id')
@@ -336,7 +336,7 @@ class MCategory extends Eloquent{
 			if(count($results)>0){
 					foreach ($results as $dropdownlist){
 						echo '<li>&nbsp;&nbsp;&nbsp;'; ?>
-						<a href="<?php echo URL::to('products/productbycategories') ?>/<?php echo $dropdownlist->id;?>" >
+						<a href="<?php echo URL::to('products/productbycategories/'.$mainID.'/'.$dropdownlist->id); ?>" >
 							<?php echo $dropdownlist->{'name_'.Session::get('lang')};?>
 						</a>
 						<?php 

@@ -71,7 +71,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- ============End header top here============== -->
+		
 		<div class="container-fluid top-menu">
 			<div class="col-lg-6 top_promotion">
 				<div class="col-lg-2">
@@ -126,7 +126,11 @@
 				<!--/.nav-collapse -->
 			</div>
 		</div>
+	
+	
 	</header>
+	
+	
 	<br />
 	<hr>
 		<!--for mesage alert -->

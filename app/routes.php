@@ -139,7 +139,7 @@ Route::group(array('before' => 'auth_member'), function () {
     );
 });
 
-Route::any('products/productbycategories/{id}',
+Route::any('products/productbycategories/{cateID}/{id}',
             'FePageController@getProductbyCategory'); 
 
 /*===========Product Details==*/
