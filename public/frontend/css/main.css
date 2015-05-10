@@ -3290,7 +3290,8 @@ fieldset legend {
 }
 
 /*Login form*/
-
+.titleFxt, .foottxt{padding:10px;border:1px solid #fff;cursor:text}
+.titleFxt:hover,.foottxt:hover {border:1px solid #eee}
 /*costomLayout*/
 #costomLayout {
 	

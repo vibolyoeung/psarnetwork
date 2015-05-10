@@ -17,7 +17,6 @@
 	return ajaxRequest;
 }
 
-
 function menu_updatesort(jsonstring,deleteAll) {
 	mittXHRobjekt = lagXHRobjekt();
 

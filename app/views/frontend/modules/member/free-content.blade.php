@@ -137,6 +137,27 @@ var homePage = "{{Config::get('app.url')}}";
 												{{trans('register.TAB_Your_content_design')}}
 											</h3>
 											<div class="col-sm-12">
+												<fieldset>
+													<legend>
+														{{trans('register.TAB_headerText')}}:
+													</legend>
+													<div id="titleFxt" class="titleFxt" onclick="edit_title_txt();">
+														<?php $headerTitle = @$dataStore->{'title_'.app::getLocale()};?>
+														@if($headerTitle)
+															{{$headerTitle}}
+														@else
+															{{trans('register.TAB_headerText_desc')}}
+														@endif
+													</div>
+													<div id="editTileTxt" style="display: none;">
+                                                    	<textarea id="textTitle" class="form-control" rows="2" placeholder="{{trans('register.headerText')}}">{{$headerTitle}}</textarea>
+														<button id="btnSaveTitle" type="button" class="btn btn-default btn-xs pull-right " style="margin-top:5px;margin-bottom:5px;">
+															Save
+														</button>
+													</div>
+												</fieldset>
+											</div>
+											<div class="col-sm-12">
 												<form id="imageLogo" method="post" enctype="multipart/form-data" action='{{Config::get('app.url')}}/member/ajaxupload'>
 													<fieldset>
 														<legend>
@@ -207,9 +228,19 @@ var homePage = "{{Config::get('app.url')}}";
 													<legend>
 														{{trans('register.TAB_Layout_footer')}}:
 													</legend>
-													<div id="foottxt">{{$userFooter}}</div>
-                                                    <textarea id="textFooter" class="form-control" rows="2" placeholder="{{trans('register.TAB_Layout_footer_placeholder')}}">{{$userFooter}}</textarea
-													<a href="javascript:;" onclick="costomizeFooter();">{{trans('register.TAB_Layout_footer_desc')}}</a>
+													<div id="foottxt" class="foottxt" onclick="edit_foot_txt();">
+														@if($userFooter)
+															{{$userFooter}}
+														@else
+															{{trans('register.TAB_Layout_footer_desc')}}
+														@endif
+													</div>
+													<div id="editfootertxt" style="display: none;">
+                                                    	<textarea id="textFooter" class="form-control" rows="2" placeholder="{{trans('register.TAB_Layout_footer_placeholder')}}">{{$userFooter}}</textarea>
+														<button id="btnsaveFoot" type="button" class="btn btn-default btn-xs pull-right " style="margin-top:5px;margin-bottom:5px;">
+															Save
+														</button>
+													</div>
 												</fieldset>
 											</div>
 										</div>
@@ -277,16 +308,42 @@ $(document).ready(function(){
         }
     }); 
  
-    $('#textFooter').blur(function () {
-        var text = $( this ).val();
-        $.ajax({
-    		url: homePage + "member/getsubmenu?type=userLayoutFooter&id="+text,
-    		type: "get",
-    		success: function(data) {$('.message-success').show();}
-        });
+    $('#btnsaveFoot').click(function () {
+        var text = $('#textFooter').val();
+        if(text) {
+        	$.ajax({
+        		url: homePage + "member/getsubmenu?type=userLayoutFooter&id="+text,
+        		type: "get",
+        		error: function (request, error) {
+        	        
+        	    },
+        		success: function(data) {$('.message-success').show();
+        		$('#foottxt').show().html(text);
+        		$('#editfootertxt').hide();
+        		}
+            });
+        }
     });
-     
- //textFooter   
+ 	//textFooter
+ 	
+$('#btnSaveTitle').click(function () {
+        var text = $('#textFooter').val();
+        if(text) {
+        	$.ajax({
+        		url: homePage + "member/getsubmenu?type=userHeaderTitle&id="+text,
+        		type: "get",
+        		error: function (request, error) {
+        	        
+        	    },
+        		success: function(data) {$('.message-success').show();
+        		$('#foottxt').show().html(text);
+        		$('#editfootertxt').hide();
+        		}
+            });
+        }
+    });
+ 	//textFooter
+  
     $('.costomizeLayout').click(function () {
         //alert(1111);
         if($(this).is(":checked")) {
@@ -385,7 +442,18 @@ function costomizeFooter(){
     
     $('#costomizeFooter').modal('show');
 } 
-
+function edit_foot_txt () {
+	if ($('#foottxt').is(':visible')){
+		$('#foottxt').hide();
+		$('#editfootertxt').show();
+	} 
+}
+function edit_title_txt () {
+	if ($('#titleFxt').is(':visible')){
+		$('#titleFxt').hide();
+		$('#editTileTxt').show();
+	} 
+}
 </script>
 <div class="clear">
 </div>
