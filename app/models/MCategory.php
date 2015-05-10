@@ -317,6 +317,23 @@ class MCategory extends Eloquent{
 						echo '</li>';
 						$this->getLastFinalCategories($mainID, $dropdownlist->id);
 					echo '</ul>';
+					?>
+					<script>
+						jQuery(document).ready(function(){
+							jQuery(".show_more<?php echo $dropdownlist->id?>, .less_view<?php echo $dropdownlist->id?>, #less_view<?php echo $dropdownlist->id?>").hide();
+							jQuery("#more_view<?php echo $dropdownlist->id?>").hover(function(){
+								jQuery(".show_more<?php echo $dropdownlist->id?>").slideDown();
+								jQuery(".less_view<?php echo $dropdownlist->id?>, #less_view<?php echo $dropdownlist->id?>").show();
+								jQuery(".more_view<?php echo $dropdownlist->id?>").hide();
+							});
+							jQuery("#less_view<?php echo $dropdownlist->id?>").hover(function(){
+								jQuery(".show_more<?php echo $dropdownlist->id?>").slideUp();
+								jQuery(".less_view<?php echo $dropdownlist->id?>").hide();
+								jQuery(".more_view<?php echo $dropdownlist->id?>").show();
+							});	
+						});
+					</script>
+					<?php
 				}
 			}
 		}catch (\Exception $e){
@@ -336,7 +353,8 @@ class MCategory extends Eloquent{
 			if(count($results)>0){
 					$i = 1;
 					foreach ($results as $dropdownlist){
-						echo '<li>&nbsp;&nbsp;&nbsp;'; ?>
+						$li = $i > 3 ?'<li class="show_more'.$id.'">':'<li>';
+						echo $li.'&nbsp;&nbsp;&nbsp;'; ?>
 						<a href="<?php echo URL::to('products/productbycategories/'.$mainID.'/'.$dropdownlist->id); ?>" >
 							<?php echo $dropdownlist->{'name_'.Session::get('lang')};?>
 						</a>
@@ -345,9 +363,9 @@ class MCategory extends Eloquent{
 					$i++;
 					}
 				if(count($results)>3){
-					echo '<li class="more_view'.$mainID.'">&nbsp;&nbsp;&nbsp;<span id="more_view'.$mainID.'"><i>View More...</i></span></li>';
-					
+					echo '<li class="more_view'.$id.'">&nbsp;&nbsp;&nbsp;<a id="more_view'.$id.'" href="#" ><i>View More...</i></a></li>';
 				}
+				echo '<li class="less_view'.$id.'">&nbsp;&nbsp;&nbsp;<a id="less_view'.$id.'" href="#" ><i>View Less...</i></a></li>';
 			}
 		}catch (\Exception $e){
 			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
