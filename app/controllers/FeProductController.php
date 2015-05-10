@@ -60,8 +60,9 @@ class FeProductController extends BaseController {
             return Redirect::to('products/list');
         }
 
-        if (self::FREE_ACCOUNT === Session::get('currentUserAccountType')) {
+        if (self::FREE_ACCOUNT === (int)Session::get('currentUserAccountType')) {
             $listCategories = $this->mod_category->fetchCategoryTree();
+        // var_dump(Session::get('currentUserAccountType')); die;
         } else {
             $listCategories = $this->mod_product->fetchCategoryTree();
         }
