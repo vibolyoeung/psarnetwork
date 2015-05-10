@@ -736,4 +736,9 @@ class FeMemberController extends BaseController {
             }
         }
     }
+    
+    public function getSignOut() {
+        Session::flush();
+        return Redirect::to(Config::get('app.url'));
+    }     
 }
