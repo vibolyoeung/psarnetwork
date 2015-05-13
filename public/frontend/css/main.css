@@ -3440,12 +3440,7 @@ fieldset legend {
 	border: 2px solid #f0ad4e;
 	padding: 0;
 	margin: 0;
-	margin-top: 28px;
-}
-
-.top-advertisement img {
-	height: 90px;
-	width: 950px;
+	margin-top: 50px;
 }
 
 .carousel-inner>.item>a>img, .top_special_ads a img {
@@ -3494,4 +3489,9 @@ header#header{
 
 .top_special_ads{
 	padding:0;
+}
+.clear_header{
+	clear:both;
+	with:100%;
+	border:1px #000000 solid;
 }
