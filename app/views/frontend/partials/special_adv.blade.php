@@ -16,7 +16,6 @@ if (strtotime ( date ( "d-m-Y" ) ) <= strtotime ( $exp_date )) {
 ?>
 @endforeach
 <?php
-
 if ($i === 0) {
 	?>
 <a href="#"> 
@@ -24,7 +23,6 @@ if ($i === 0) {
 	src="{{Config::get('app.url')}}frontend/images/default_adv_420x200.jpg"
 	class="img-responsive img-thumbnail" alt="" />
 </a>
-
 <?php
 }
 ?>

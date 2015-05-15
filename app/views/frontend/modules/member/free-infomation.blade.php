@@ -107,13 +107,6 @@ var homePage = "{{Config::get('app.url')}}";
                                                     <div class="col-sm-8">
                                                         <?php
                                                             $locationArr = json_decode($userData->address);
-                                                            if ($locationArr === null) {
-                                                              $locationArr = [
-                                                                'g_latitude_longitude' => '11.5500, 104.9167',
-                                                              ];
-                                                              $locationArr = json_encode($locationArr);
-                                                              $locationArr = json_decode($locationArr);
-                                                            }
                                                         ?>
                             							<input type="text" value="{{$locationArr->g_latitude_longitude}}" name="gLatitudeLongitude" class="form-control" id="latbox" placeholder="{{trans('register.Mapping_Address_Here_Placeholder')}}" aria-describedby="MappingAddressHereStatus" required />
                                                         <span data="MappingAddressHere" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">

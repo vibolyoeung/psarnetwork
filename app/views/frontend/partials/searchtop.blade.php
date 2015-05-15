@@ -1,5 +1,3 @@
-<div class="clear_header"></div>
-<hr>
 <div class="header-middle">
 	<!--header-middle-->
 	<div class="container">
@@ -23,7 +21,7 @@
 						<div class="col-lg-6 pull-right" style="margin: 0; padding: 0;">
 							<div class="btn-group col-lg-12" style="padding: 0; margin: 0;">
 								<button type="button"
-									class="col-lg-12 btn btn-default dropdown-toggle form-control"
+									class="col-lg-12 btn btn-default dropdown-toggle"
 									data-toggle="dropdown" aria-expanded="false"
 									style="border-radius: 0; border: none;">
 									Location <span class="caret"></span>
@@ -39,12 +37,11 @@
 
 						<div class="col-lg-6" style="margin: 0; padding: 0;">
 							<div class="btn-group col-lg-12 " style="margin: 0; padding: 0;">
-								<button type="button" style="border-radius: 0;border:0;border-right:1px solid #ddd;"
-									class="col-lg-12 btn btn-default dropdown-toggle form-control"
+								<button type="button"
+									class="col-lg-12 btn btn-default dropdown-toggle"
 									data-toggle="dropdown" aria-expanded="false"
-									style="">
-									Type 
-									<span class="caret"></span>
+									style="border-radius: 0; border: none; border-right: 1px solid #ddd;">
+									Type <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="#">Action</a></li>
@@ -58,31 +55,19 @@
 				</div>
 				<!-- ==========top advertise blog -->
 				<div class="col-lg-7 top-advertisement">
-					<?php 
-					if(count($advTops) > 0){
-					?>
-						@foreach($advTops as $adv)
-							<?php
-							$exp_date = $adv->end_date;
-							$exp_date = str_replace ( '/', '-', $exp_date );
-							if (strtotime ( date ( "d-m-Y" ) ) <= strtotime ( $exp_date )) {
-								?>
-								<a href="{{$adv->link_url}}">
-									<img
-										src="{{Config::get('app.url')}}/upload/advertisement/{{$adv->image;}}"
-										class="img-responsive img-thumbanil" alt="" />
-									</a>
-							<?php 
-							}
-							?>
+					@foreach($advTops as $adv)
+	<?php
+	$exp_date = $adv->end_date;
+	$exp_date = str_replace ( '/', '-', $exp_date );
+	if (strtotime ( date ( "d-m-Y" ) ) <= strtotime ( $exp_date )) {
+		?>
+								<a href="{{$adv->link_url}}"> <img
+						src="{{Config::get('app.url')}}/upload/advertisement/{{$adv->image;}}"
+						class="img-responsive img-thumbanil" alt="" />
+					</a>
+						<?php } ?>
 						@endforeach
-					<?php 
-					}else{?>
-						<a href="#"><img src="{{Config::get('app.url')}}/frontend/images/topspecialads.png" title="default advertise" alt="default advertise" class="img-responsive img-thumbnail" /></a>
-					<?php
-					}
-					?>
-				</div>
+					</div>
 			</div>
 		</div>
 	</div>

@@ -7,7 +7,8 @@
 	@section('breadcrumb')
 	<ol class="breadcrumb">
 		<li><a href="{{Config::get('app.url')}}">Home</a></li>
-		<li class="active">Products</li>
+		<li><a href="#">Library</a></li>
+		<li class="active">Data</li>
 	</ol>
 	@endsection
 @section('content')
@@ -35,6 +36,7 @@
 				<tr>
 					<th width="10%">Picture</th>
 					<th width="15%">Title</th>
+					<th width="55%">Description</th>
 					<th width="10%">Others</th>
 					<th width="10%">Action</th>
 				</tr>
@@ -46,6 +48,7 @@
 						{{HTML::image("upload/product/thumb/$product->thumbnail",$product->title,array('class' => 'img-rounded','width'=>'100'))}}
 					</td>
 					<td>{{ $product->title }} </td>
+					<td>{{ $product->description }}</td>
 					<td>
 						<div>{{ $product->price }}$</div>
 						<div>{{ Session::get('currentUserName') }}</div>

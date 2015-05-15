@@ -43,12 +43,10 @@
 								<ul class="nav navbar-nav">
 									@if(Session::get('currentUserId'))
 									<li>
-										<a href="{{URL::to('products/create')}}">
-											Add New Products
-										</a>
+										<a href="#">Add New Products</a>
 									</li>
 									<li>
-										<a href="{{URL::to('products/list')}}">Product Management</a>
+										<a href="#">Product Management</a>
 									</li>
 									<li>
 										<a href="{{URL::to('member/userinfo/menu')}}">Enterprise Tool</a>

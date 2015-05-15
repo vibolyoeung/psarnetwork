@@ -5,13 +5,12 @@
 	@section('breadcrumb')
 	<ol class="breadcrumb">
 		<li><a href="{{Config::get('app.url')}}">Home</a></li>
-		<li><a href="{{URL::to('products/list')}}">Products</a></li>
-		<li class="active">Create</li>
+		<li><a href="#">Library</a></li>
+		<li class="active">Data</li>
 	</ol>
 	@endsection
 @section('content')
 	{{HTML::script('frontend/js/product.js')}}
-	{{HTML::style('backend/css/jquery-ui.css')}}
 	<div class="container">
 		{{Form::open(array('url'=>'products/create','enctype'=>'multipart/form-data','file' => true, 'class'=>'form-horizontal'))}}
 			<div class="row">
@@ -47,7 +46,7 @@
 											<select required="required" class="form-control" name="s_category">
 												<?php foreach($categoryTree as $cl) : ?>
 													<option value="{{$cl['id']}}">
-														<?php if ((int)Session::get('currentUserAccountType') === 1): ?>
+														<?php if (Session::get('currentUserAccountType') === 1): ?>
 															{{$cl['name_en']}}
 														<?php else: ?>
 															{{$cl['m_title']}}
@@ -118,7 +117,7 @@
 									{{trans('product.date_post')}}
 								</label>
 								<div class="col-sm-11">
-									{{Form::text('date_post', null, array('class'=>'form-control datepicker', 'placeholder'=>'Post date: dd/mm/yyyy'))}}
+									{{Form::text('date_post', null, array('class'=>'form-control'))}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -327,9 +326,6 @@
 				</div>
 			</div>
 		{{Form::close()}}
-		{{HTML::script('backend/js/bootstrap.min.js')}}
-        {{HTML::script('backend/js/jquery-ui.js')}}
-        {{HTML::script('backend/js/custom.js')}}
 	</div>
 @endsection
 @section('footer')
