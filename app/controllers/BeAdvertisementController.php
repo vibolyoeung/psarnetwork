@@ -54,6 +54,7 @@ class BeAdvertisementController extends BaseController {
 		$licenses = $this->advertisement->findLicense();
 		$paymentMethod = $this->advertisement->findPaymentMethod();
 		$categories = $this->advertisement->findCategory();
+		$userPages = $this->advertisement->findAllUserPages();
 
 		$clients = $this->extractClients();
 		$adminUsers = $this->extractAdminUsers();
@@ -63,6 +64,7 @@ class BeAdvertisementController extends BaseController {
 			->with('licenses', $licenses->data)
 			->with('paymentMethods', $paymentMethod->data)
 			->with('categories', $categories->data)
+			->with('userPages', $userPages->result)
 			->with('adminUsers', $adminUsers)
 			->with('clients', $clients);
 
@@ -172,6 +174,7 @@ class BeAdvertisementController extends BaseController {
 
 		$clients = $this->extractClients();
 		$adminUsers = $this->extractAdminUsers();
+		$userPages = $this->advertisement->findAllUserPages();
 
 		return View::make ('backend.modules.advertisement.edit')
 			->with ('advertisement', $result->data)
@@ -180,6 +183,7 @@ class BeAdvertisementController extends BaseController {
 			->with('paymentMethods', $paymentMethod->data)
 			->with('categories', $categories->data)
 			->with('adminUsers', $adminUsers)
+			->with('userPages', $userPages->result)
 			->with('clients', $clients);
 	}
 
@@ -263,26 +267,26 @@ class BeAdvertisementController extends BaseController {
 	 */
 	private static function prepareDataBind($param, $fileName = null) {
 		$data = array (
-				'title_en'        => trim ( Input::get ('title_en')),
-				'title_km'        => trim ( Input::get ('title_km')),
-				'link_url'        => trim ( Input::get ('url' )),
-				'started_date'    => trim ( Input::get ('startDate')),
-				'end_date'        => trim ( Input::get ('expirationDate')),
-				'description_en'  => trim ( Input::get ('description_en')),
-				'description_km'  => trim ( Input::get ('description_km')),
-				'user_id'         => Input::get('user_id'),
-				'incharger'       => Input::get('incharger_id'),
-				'pro_cat_id'      => Input::get('proCategory'),
-				'adv_cat_page_id' => Input::get('advertiseType'),
-				'adv_page_id'     => Input::get('advertisementPage'),
-				'adv_position_id' => Input::get('advertisementPosition'),
-				'status'          => Input::get('status'),
-				'apearance'       => Input::get('apearance'),
-				'payment_method'  => Input::get('paymentMethods'),
-				'license_id'      => Input::get('license'),
-				'size'            => Input::get('size'),
-				'type'            => Input::get('advertiseType'),
-
+			'title_en'        => trim ( Input::get ('title_en')),
+			'title_km'        => trim ( Input::get ('title_km')),
+			'link_url'        => trim ( Input::get ('url' )),
+			'started_date'    => trim ( Input::get ('startDate')),
+			'end_date'        => trim ( Input::get ('expirationDate')),
+			'description_en'  => trim ( Input::get ('description_en')),
+			'description_km'  => trim ( Input::get ('description_km')),
+			'user_id'         => Input::get('user_id'),
+			'incharger'       => Input::get('incharger_id'),
+			'pro_cat_id'      => Input::get('proCategory'),
+			'adv_cat_page_id' => Input::get('advertiseType'),
+			'adv_page_id'     => Input::get('advertisementPage'),
+			'adv_position_id' => Input::get('advertisementPosition'),
+			'status'          => Input::get('status'),
+			'apearance'       => Input::get('apearance'),
+			'payment_method'  => Input::get('paymentMethods'),
+			'license_id'      => Input::get('license'),
+			'size'            => Input::get('size'),
+			'type'            => Input::get('advertiseType'),
+			'to_page'         => Input::get('pointToPage'),
 		);
 
 		// Check whether it memebership or none

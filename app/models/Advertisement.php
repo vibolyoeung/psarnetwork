@@ -65,7 +65,7 @@ class Advertisement extends Eloquent {
 			$response->result = 0;
 			$response->errorMsg = $e->getMessage ();
 		}
-
+		
 		return $response;
 	}
 
@@ -394,6 +394,21 @@ class Advertisement extends Eloquent {
 			$response->errorMsg = $e->getMessage();
 		}
 
+		return $response;
+	}
+
+	public function findAllUserPages() {
+		$response = new stdClass();
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.STORE'))
+			->orderBy('id','desc')
+			->get();
+			$response->result = $result;
+		} catch (\Exception $e) {
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+		
 		return $response;
 	}
 }

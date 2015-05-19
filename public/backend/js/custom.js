@@ -70,6 +70,8 @@ $(document).ready(function() {
 	dashboardCollapse();
 	AccessPermissionSelectAll();
 	ModifyPermissionSelectAll();
+	//Load get point to view page
+	getPointToPageValue();
 });
 
 function hideAndShowCategory(id) {
@@ -94,6 +96,12 @@ function getClientByName(username) {
 				$('#address').val(data[0].address);
 				$('#phone_number').val(data[0].telephone);
 				$('#user_id').val(data[0].id);
+				// Check if account type is enterprice user
+				if (parseInt(data[0].account_type) === 2) {
+					$('#select-to-view').show();
+				} else {
+					$('#select-to-view').hide();
+				}
 			}
 		},
 	});
@@ -242,6 +250,24 @@ function ModifyPermissionSelectAll() {
 	$('#modifydeselectall').click(function(){
 		$(".modify_access").prop("checked", false);
 	});
+}
+
+function getPointToPageValue() {
+	$('#save-point-to-page').click(function () {
+		var arrayPageIds = [];
+		$('.to-pages:checked').each(function() {
+			var pagesId = $(this).val();
+			arrayPageIds.push($(this).val());
+		});
+
+		var stringPagesId = arrayPageIds.join(',');
+				
+		setValuePointToPageValue(stringPagesId);
+	});
+}
+
+function setValuePointToPageValue(stringPagesId) {
+	$('#hid-poin-to-page').val(stringPagesId);
 }
 
 

@@ -78,4 +78,5 @@
 		</div>
 	</div>
 </div>
+@include('backend.modules.advertisement.add-to-page')
 @endsection

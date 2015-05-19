@@ -56,9 +56,19 @@
 		</div>
 
 		<div class="form-group col-md-6 col-sm-12 col-xs-6 position">
-			{{ Form::select('advertisementPosition',
-			array(), null , array('class' => 'form-control', 'id' =>
-			'ads-position'))}}
+			<div class="col-md-9 col-xs-9"> 
+				{{ Form::select('advertisementPosition',
+				array(), null , array('class' => 'form-control', 'id' =>
+				'ads-position'))}}
+			</div>
+			<div class="col-md-3 col-xs-3">
+				<a id="select-to-view" href="#" data-toggle="modal" data-target="#myModal">
+					Select to view(Incase, It selected as Free or enterprise page)
+				</a>
+			</div>
+
+			{{ Form::hidden('pointToPage', '', array('id' => 'hid-poin-to-page')) }}
+
 		</div>
 
 		<div class="form-group col-md-6 col-sm-12 col-xs-6">
