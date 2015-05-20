@@ -1,6 +1,9 @@
 <!-- =============End of Monthly -->
-<br />
-
+<?php
+	$monthlyProducts = Product::findMonthlyProducts ();
+	if(count($monthlyProducts) > 0){
+?>
+			<br />
 <div class="category-tab feature-ad lastest-post">
 	<!--recommended_items-->
 	<ul class="nav nav-tabs">
@@ -16,9 +19,7 @@
 	<div id="second-hand-item-carousel" class="carousel slide"
 		data-ride="carousel">
 		<div class="carousel-inner">
-			<?php
-			$monthlyProducts = Product::findMonthlyProducts ();
-			?>
+			
 			<?php
 			$monthlyPro = 1;
 			?>
@@ -29,7 +30,7 @@
 						<div class="single-products">
 							<div class="productinfo text-center">
 								<a href="#" data-toggle="modal" data-target="#myModal"
-									onclick="popupDetails.add_popup_detail({{$monthlyProduct->id}});">
+									onclick="popupDetails.add_popup_detail(<?php echo $monthlyProduct->id; ?>)">
 									<img
 									src="{{Config::get('app.url')}}/frontend/images/home/iphone6plus.jpg"
 									alt="" />
@@ -37,7 +38,7 @@
 								<h2>$ {{$monthlyProduct->price}}</h2>
 								<p><?php echo substr($monthlyProduct->title,0,20)?></p>
 								<a data-toggle="modal" data-target="#myModal"
-									onclick="popupDetails.add_popup_detail({{$monthlyProduct->id}});">View
+									onclick="popupDetails.add_popup_detail(<?php echo $monthlyProduct->id;?>)">View
 									Details</a>
 							</div>
 							<img
@@ -65,3 +66,4 @@
 		</a>
 	</div>
 </div>
+<?php } ?>

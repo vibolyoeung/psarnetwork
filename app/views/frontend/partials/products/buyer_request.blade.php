@@ -1,4 +1,8 @@
-<br />
+<?php
+$buyerProducts = Product::findBuyerProducts ();
+if(count($buyerProducts) > 0){
+?>
+			<br />
 <div class="category-tab feature-ad lastest-post">
 	<!--recommended_items-->
 	<ul class="nav nav-tabs">
@@ -15,9 +19,7 @@
 	<div id="monthly-pay-item-carousel" class="carousel slide"
 		data-ride="carousel">
 		<div class="carousel-inner">
-			<?php
-			$buyerProducts = Product::findBuyerProducts ();
-			?>
+
 			<?php
 			$buyPro = 1;
 			?>
@@ -28,7 +30,7 @@
 						<div class="single-products">
 							<div class="productinfo text-center">
 								<a href="#" data-toggle="modal" data-target="#myModal"
-									onclick="popupDetails.add_popup_detail({{$buyerProduct->id}});">
+									onclick="popupDetails.add_popup_detail(<?php echo $buyerProduct->id; ?>)">
 									<img
 									src="{{Config::get('app.url')}}/upload/product/thumb/{{$buyerProduct->thumbnail}}"
 									alt="" />
@@ -36,7 +38,7 @@
 								<h2>$ {{$buyerProduct->price}}</h2>
 								<p><?php echo substr($buyerProduct->title,0,20)?></p>
 								<a data-toggle="modal" data-target="#myModal"
-									onclick="popupDetails.add_popup_detail({{$buyerProduct->id}});">View
+									onclick="popupDetails.add_popup_detail(<?php echo $buyerProduct->id; ?>);">View
 									Details</a>
 							</div>
 							<img
@@ -63,3 +65,6 @@
 		</a>
 	</div>
 </div>
+<?php 
+}
+?>

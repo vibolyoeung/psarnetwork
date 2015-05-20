@@ -42,7 +42,6 @@
 	@include('frontend.partials.products.popup_details')
 </div>
 </div>
-@include('frontend.partials.right')
 @endsection
 @section('client_location')
 @include('frontend.partials.client_location')

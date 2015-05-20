@@ -1,4 +1,9 @@
-
+<?php
+$hotPromotionProducts = Product::findHotPromotionProducts ();
+?>
+<?php 
+if(count($hotPromotionProducts) > 0){
+?>
 <ul class="nav nav-tabs">
 	<li><strong>Hot PromotionProducts</strong> &nbsp;&nbsp;&nbsp; &frasl;</li>
 	<li>Products : <span class="number-display">25</span></li>
@@ -9,9 +14,6 @@
 	<li>Individual : <span class="number-display">25</span></li>
 	<li>View :<span class="number-display">25</span></li>
 </ul>
-<?php
-$hotPromotionProducts = Product::findHotPromotionProducts ();
-?>
 <div id="recommended-item-carousel" class="carousel slide"
 	data-ride="carousel">
 	<div class="carousel-inner">
@@ -25,7 +27,7 @@ $hotPromotionProducts = Product::findHotPromotionProducts ();
 					<div class="single-products">
 						<div class="productinfo text-center">
 							<a href="#"
-								onclick="popupDetails.add_popup_detail({{$hotPromotionProduct->id}});"
+								onclick="popupDetails.add_popup_detail(<?php echo $hotPromotionProduct->id; ?> )"
 								data-toggle="modal" data-target="#myModal">
 								<img
 								src="{{Config::get('app.url')}}/upload/product/thumb/{{$hotPromotionProduct->thumbnail}}"
@@ -34,7 +36,7 @@ $hotPromotionProducts = Product::findHotPromotionProducts ();
 							<h2>$ {{$hotPromotionProduct->price}}</h2>
 							<p><?php echo substr($hotPromotionProduct->title,0,20)?></p>
 							<a data-toggle="modal" data-target="#myModal"
-								onclick="popupDetails.add_popup_detail({{$hotPromotionProduct->id}});">View
+								onclick="popupDetails.add_popup_detail(<?php echo $hotPromotionProduct->id; ?>)">View
 								Details</a>
 						</div>
 						<img
@@ -61,5 +63,7 @@ $hotPromotionProducts = Product::findHotPromotionProducts ();
 		class="fa fa-angle-right"></i>
 	</a>
 </div>
-
+<?php 
+}
+?>
 <br />

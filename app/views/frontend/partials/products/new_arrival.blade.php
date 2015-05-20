@@ -1,3 +1,7 @@
+<?php
+$newProducts = Product::findNewProducts ();
+if(count($newProducts) > 0){
+?>
 <div class="category-tab feature-ad lastest-post">
 	<!--recommended_items-->
 	<ul class="nav nav-tabs">
@@ -14,9 +18,6 @@
 		data-ride="carousel">
 		<div class="carousel-inner">
 			<?php
-			$newProducts = Product::findNewProducts ();
-			?>
-			<?php
 			$newPro = 1;
 			?>
 			<div class="item active">
@@ -26,7 +27,7 @@
 						<div class="single-products">
 							<div class="productinfo text-center">
 								<a href="#" data-toggle="modal" data-target="#myModal"
-									onclick="popupDetails.add_popup_detail({{$newProduct->id}});">
+									onclick="popupDetails.add_popup_detail(<?php echo $newProduct->id; ?>)">
 									<img
 									src="{{Config::get('app.url')}}/upload/product/thumb/{{$newProduct->thumbnail}}"
 									alt="" />
@@ -34,7 +35,7 @@
 								<h2>$ {{$newProduct->price}}</h2>
 								<p><?php echo substr($newProduct->title,0,20)?></p>
 								<a href="#" data-toggle="modal" data-target="#myModal"
-									onclick="popupDetails.add_popup_detail({{$newProduct->id}});">View
+									onclick="popupDetails.add_popup_detail(<?php echo $newProduct->id; ?>)">View
 									Details</a>
 							</div>
 							<img
@@ -62,3 +63,6 @@
 		</a>
 	</div>
 </div>
+<?php 
+}
+?>

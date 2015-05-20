@@ -1,3 +1,7 @@
+<?php
+	$secondHandProducts = Product::findSecondHandProducts ();
+	if(count($secondHandProducts) > 0){
+?>
 <div class="category-tab feature-ad lastest-post">
 	<!--recommended_items-->
 	<ul class="nav nav-tabs">
@@ -15,9 +19,7 @@
 			<div id="detail_product"
 				data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 			<div class="item active">
-				<?php
-				$secondHandProducts = Product::findSecondHandProducts ();
-				?>
+				
 			<?php
 			$secondPro = 1;
 			?>
@@ -27,7 +29,7 @@
 						<div class="single-products">
 							<div class="productinfo text-center">
 								<a href="#"
-									onclick="popupDetails.add_popup_detail({{$secondHandProduct->id}});"
+									onclick="popupDetails.add_popup_detail(<?php echo $secondHandProduct->id; ?>)"
 									data-toggle="modal" data-target="#myModal"> <img
 									src="{{Config::get('app.url')}}/upload/product/thumb/{{$secondHandProduct->thumbnail}}"
 									alt="" />
@@ -35,7 +37,7 @@
 								<h2>$ {{$secondHandProduct->price}}</h2>
 								<p><?php echo substr($secondHandProduct->title,0,20)?></p>
 								<a data-toggle="modal" data-target="#myModal"
-									onclick="popupDetails.add_popup_detail({{$secondHandProduct->id}});">View
+									onclick="popupDetails.add_popup_detail(<?php echo $secondHandProduct -> id;?>)">View
 									Details</a>
 							</div>
 							<img
@@ -59,3 +61,6 @@
 			data-slide="next"> <i class="fa fa-angle-right"></i>
 		</a>
 	</div>
+<?php 
+	}
+?>

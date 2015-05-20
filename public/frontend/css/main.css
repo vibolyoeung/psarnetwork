@@ -354,6 +354,9 @@ a#scrollUp i {
 }
 
 @media ( max-width : 990px) {
+	header#header{
+	   display: none !important;
+	}
 	.menu-fixed li.search {
 		margin: 0;
 		padding: 20px 10px 0 0;
@@ -3481,6 +3484,7 @@ a.home_icon {
 	font-size: 120%;
 }
 header#header{
+	display:block;
 	position:fixed !important;
 	z-index:999;
 	width:100%;
