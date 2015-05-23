@@ -16,13 +16,13 @@
 	<div class="category-tab feature-ad lastest-post">
 		<!--recommended_items-->
 		<div class="col-lg-12">
-			<div class="col-lg-1 pull-right"
+			<div class="col-lg-1 pull-right new_product_right"
 				style="border: 0px solid #ddd; padding: 0;">
 				<!-- type:homepage, position: right small, limit -->
 				{{ App::make('FePageController')->getFeAds(1, 7, 3) }}
 			</div>
 
-			<div class="col-lg-1 pull-left"
+			<div class="col-lg-1 pull-left new_product_left"
 				style="border: 0px solid #ddd; padding: 0;">
 				<!-- type:homepage, position: left small, limit -->
 				{{ App::make('FePageController')->getFeAds(1, 6, 3) }}

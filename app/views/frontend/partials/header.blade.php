@@ -94,20 +94,20 @@
 				<div class="col-lg-10">
 					<ul class="promotion_top_menu pull-right">
 						<li><a
-							href="{{Config::get('app.url')}}products/productbycategories/45">Hot
+							href="{{Config::get('app.url')}}product/list/10">Hot
 								Promotion</a></li>
 						<li><a
-							href="{{Config::get('app.url')}}products/productbycategories/43">New
+							href="{{Config::get('app.url')}}product/list/10">New
 								Arrival</a></li>
 						<li><a
-							href="{{Config::get('app.url')}}products/productbycategories/32">Second
+							href="{{Config::get('app.url')}}product/list/10">Second
 								Hand</a></li>
 						<li><a
-							href="{{Config::get('app.url')}}products/productbycategories/12">Buy</a></li>
+							href="{{Config::get('app.url')}}product/list/10">Buy</a></li>
 						<li><a
-							href="{{Config::get('app.url')}}products/productbycategories/23">Sell</a></li>
+							href="{{Config::get('app.url')}}product/list/10">Sell</a></li>
 						<li><a
-							href="{{Config::get('app.url')}}products/productbycategories/12">Monthly
+							href="{{Config::get('app.url')}}product/list/10">Monthly
 								Pay</a></li>
 					</ul>
 				</div>
@@ -125,13 +125,13 @@
 				<div class="collapse navbar-collapse promotion-list">
 					<ul class="nav navbar-nav top_menu_list">
 						<li><a href="#">All</a></li>
-						<li><a href="{{Config::get('app.url')}}product/list">Super Market</a></li>
-						<li><a href="{{Config::get('app.url')}}product/list">Traditional
+						<li><a href="{{Config::get('app.url')}}product/list/10">Super Market</a></li>
+						<li><a href="{{Config::get('app.url')}}product/list/10">Traditional
 								Market</a></li>
-						<li><a href="{{Config::get('app.url')}}product/list">Private
+						<li><a href="{{Config::get('app.url')}}product/list/10">Private
 								Company</a></li>
-						<li><a href="{{Config::get('app.url')}}product/list">Home Shop</a></li>
-						<li><a href="{{Config::get('app.url')}}product/list">Individual</a></li>
+						<li><a href="{{Config::get('app.url')}}product/list/10">Home Shop</a></li>
+						<li><a href="{{Config::get('app.url')}}product/list/10">Individual</a></li>
 						<li class="facebook-like">
 							<div class="fb-like" data-href="https://www.facebook.com/khmerabba?ref=hl" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
 						</li>
@@ -140,13 +140,7 @@
 				<!--/.nav-collapse -->
 			</div>
 		</div>
-	
-	
 	</header>
-	
-	
-	<br />
-	<hr>
 		<!--for mesage alert -->
 		<div class="message-alert alert alert-warning" data-time="3000"
 			style="display: none;">

@@ -9,11 +9,6 @@
 	<div class="col-sm-12">
 		<!-- ============Relative post=============== -->
 		<div class="col-lg-12" style="padding: 0;">
-			<div class="category-tab feature-ad lastest-post">
-				<div class="col-lg-12">
-					<h3>Product Details</h3>
-				</div>
-			</div>
 			<?php
 			$images = json_decode ( $detailProduct->pictures, true );
 			?>

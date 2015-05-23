@@ -4,7 +4,7 @@ if(count($newProducts) > 0){
 ?>
 <div class="category-tab feature-ad lastest-post">
 	<!--recommended_items-->
-	<ul class="nav nav-tabs">
+	<ul class="nav nav-tabs new_product">
 		<li><strong>New Products</strong> &nbsp;&nbsp;&nbsp; &frasl;</li>
 		<li>Products : <span class="number-display">25</span></li>
 		<li>Stores :<span class="number-display">25</span></li>

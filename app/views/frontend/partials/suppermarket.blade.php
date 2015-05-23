@@ -5,7 +5,7 @@
 	<li class="active">Supper Market</li>
 </ol>
 @endsection @section('content')
-<div class="col-lg-10">
+<div class="col-lg-12">
 	<div class="col-lg-1" style="border: 1px solid red;">Lefe</div>
 	<div class="col-sm-10">
 		<div class="features_items">
