@@ -79,8 +79,8 @@
 						src="{{Config::get('app.url')}}frontend/images/topspecialads.png"
 						class="img-responsive img-thumbnail" alt="" />
 					</a>
-					<?php
-					}
+					<?php 
+				}
 				?>
 					</div>
 			</div>
