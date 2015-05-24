@@ -41,7 +41,7 @@
 	}(document, 'script', 'facebook-jssdk'));</script>
 	<!-- End facebook calling -->
 
-	<header id="header">
+	<header id="header" class="mainHeader">
 		<!--=====Start Header]==============-->
 		<div class="header_top">
 			<!--header_top-->

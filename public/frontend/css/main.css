@@ -3466,12 +3466,11 @@ a.home_icon {
 }
 header#header{
 	display:block;
-	position:fixed !important;
 	z-index:999;
 	width:100%;
 	top:0;
 }
-
+.mainHeader{position:fixed !important}
 .top_special_ads{
 	padding:0;
 }
