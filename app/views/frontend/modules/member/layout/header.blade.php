@@ -63,11 +63,11 @@
         										<a href="{{$userHome}}" target="_blank">View your site</i></a>
         									</li>
 											<li>
-        										<a href="#">View Profile info</i></a>
-        									</li>
-                                            <li>
-        										<a href="#">Your Status</i></a>
-        									</li>
+            									<a href="{{URL::to('member/userinfo/infomation')}}">View Profile info</a>
+            								</li>
+            								<li>
+            									<a href="{{URL::to('member/userinfo/accountinfo')}}">Your Status</a>
+            								</li>
                                             <li>
         										<a href="#">Chage Password</i></a>
         									</li>

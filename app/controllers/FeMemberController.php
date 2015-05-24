@@ -366,7 +366,26 @@ class FeMemberController extends BaseController {
                 ->with('markets', $result->data)
                 ->with('dataStore', $getUserStore);
                 break;
-
+                
+            case 'addpage':
+                if (Input::has('btnInfo')) {
+                    $data = array(
+                        'title' => trim(Input::get('name')),
+                        'description' => trim(Input::get('body')),
+                        'type' => 'page',
+                        'user_id' => $userID,
+                    );
+                    /*add data for user page*/
+                    $where = array('user_id' => $userID, 'type'=>'page');
+                    $checkUserPage = $this->mod_page->getUserPages($userID, $where);
+                    if (empty($checkUserPage->result)) {
+                        $this->mod_page->addUserMenuPages($data);
+                    }
+                }
+                return View::make('frontend.modules.member.s-addpage')
+                ->with('maincategories',$listCategories->result)
+                ->with('dataStore', $getUserStore);
+                break;
         }
     }
 

@@ -33,16 +33,16 @@
 							</a>
 							<ul class="dropdown-menu" role="menu">
 								<li>
-									<a href="#">View Profile info</a>
+									<a href="{{URL::to('member/userinfo/infomation')}}">View Profile info</a>
 								</li>
 								<li>
-									<a href="#">Your Status</a>
+									<a href="{{URL::to('member/userinfo/accountinfo')}}">Your Status</a>
 								</li>
 								<li>
 									<a href="#">Chage Password</a>
 								</li>
 								<li>
-									<a href="{{URL::to('member/logout')}}"><i class="fa fa-power-off"></i> Log out</a>
+									<a href="{{URL::to('member/logout')}}"><i class="glyphicon glyphicon-off"></i> Log out</a>
 								</li>
 							</ul>
 						</li>
