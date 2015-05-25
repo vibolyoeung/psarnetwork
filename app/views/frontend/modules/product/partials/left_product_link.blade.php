@@ -1,3 +1,11 @@
+<style type="text/css">
+	.active{
+		color: #e46c0a !important;
+	}
+	.user-wrapper{
+		margin-top:30px;
+	}
+</style>
 <div class="panel-group category-products" id="accordian">
 	<label class="btn-default get popular-links">
 		Manage Product
@@ -7,9 +15,8 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a
-					data-toggle="collapse"
-					data-parent="#accordian"
-					href="#"
+					class="{{(Request::segment(3) === 'all'  || Request::segment(3) == '')?'active':''}}"
+					href="{{URL::to('products/list/all')}}"
 				>
 					All My Products
 
@@ -19,9 +26,8 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a
-					data-toggle="collapse"
-					data-parent="#accordian"
-					href="#"
+					class="{{(Request::segment(3) === 'reservation')?'active':''}}"
+					href="{{URL::to('products/list/reservation')}}"
 				>
 				Reservation Products
 				</a>
@@ -30,9 +36,8 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a
-					data-toggle="collapse"
-					data-parent="#accordian"
-					href="#"
+					class="{{(Request::segment(3) === 'unpublish')?'active':''}}"
+					href="{{URL::to('products/list/unpublish')}}"
 				>
 				Unpublic Products
 				</a>
@@ -41,9 +46,8 @@
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a
-					data-toggle="collapse"
-					data-parent="#accordian"
-					href="#"
+					class="{{(Request::segment(3) === 'license')?'active':''}}"
+					href="{{URL::to('products/list/license')}}"
 				>
 				Product License
 				</a>

@@ -9,6 +9,11 @@ class FeProductController extends BaseController {
     const FREE_ACCOUNT = 1;
     const ENTERPRISE_ACCOUNT = 2;
 
+    const RESERVATION_PRODUCTS = 'reservation';
+    const UNPUBLISH_PRODUCTS = 'unpublish';
+    const LICENSE_PRODUCTS = 'license';
+    const ALL_PRODUCTS = 'all';
+
     function __construct(){
         $this->mod_product = new Product();
         $this->mod_category = new MCategory();
@@ -21,10 +26,24 @@ class FeProductController extends BaseController {
      *@access public
      *@return Response
      */
-    public function listAllProducts(){
+    public function listAllProducts($list_type = self::ALL_PRODUCTS){
+        switch ($list_type) {
+            case self::RESERVATION_PRODUCTS:
+                $products = $this->mod_product->findReservationProducts();
+                break;
+            case self::UNPUBLISH_PRODUCTS:
+                $products = $this->mod_product->findUnpublicProducts();
+                break;
+            case self::LICENSE_PRODUCTS:
+                $products = $this->mod_product->findLicenseProducts();
+                break;
+            default:
+               $products = $this->mod_product->findAll();
+                break;
+        }
+
         $userID = Session::get('currentUserId');
         $getUserStore = $this->mod_store->getUserStore($userID);
-        $products = $this->mod_product->findAll();
         return View::make('frontend.modules.product.index')
             ->with('products', $products)
             ->with('dataStore', $getUserStore);
@@ -62,7 +81,6 @@ class FeProductController extends BaseController {
 
         if (self::FREE_ACCOUNT === (int)Session::get('currentUserAccountType')) {
             $listCategories = $this->mod_category->fetchCategoryTree();
-        // var_dump(Session::get('currentUserAccountType')); die;
         } else {
             $listCategories = $this->mod_product->fetchCategoryTree();
         }
@@ -87,10 +105,41 @@ class FeProductController extends BaseController {
      *@return void
      */
     public function editProduct($product_id) {
+        if (Input::has('btnAddProduct')) {
+
+            $files = Input::file('file');
+            $filesQuotation = Input::file('quotation');
+            $quotationFile = '';
+            $jsonNewFileName = '';
+            if(!empty($filesQuotation)){
+                $quotationFile = $this->doUploadQaotation($filesQuotation);
+            }   
+            if (!empty($files[0])){
+                $jsonNewFileName = $this->doUploadImages($files);
+            }
+
+            $products = $this->prepareDataBindProducts(
+                $jsonNewFileName,
+                $quotationFile,
+                false
+            );
+            
+            $this->mod_product->updateToProduct(
+                $products,
+                $product_id
+            );
+
+            return Redirect::to('products/list');
+        }
+
         $userID = Session::get('currentUserId');
         $getUserStore = $this->mod_store->getUserStore($userID);
         $product = $this->mod_product->findProductById($product_id);
-        $listCategories = $this->mod_product->fetchCategoryTree();
+        if (self::FREE_ACCOUNT === (int)Session::get('currentUserAccountType')) {
+            $listCategories = $this->mod_category->fetchCategoryTree();
+        } else {
+            $listCategories = $this->mod_product->fetchCategoryTree();
+        }
         $productTransferTypes = $this->mod_product->findAllTransferType();
         $productCondictions = $this->mod_product->findAllCondition();
         return View::make('frontend.modules.product.edit_product')
@@ -145,7 +194,7 @@ class FeProductController extends BaseController {
      *@access private
      *@return json  fileNames
      */
-    public function doUploadImages($files){
+    public function doUploadImages($files) {
         $destinationPath = base_path() . '/public/upload/product/';
         self::generateFolderUpload($destinationPath);
         $destinationPathThumb = $destinationPath.'thumb/';
@@ -194,10 +243,26 @@ class FeProductController extends BaseController {
      * @access private
      * @return array object
      */
-    private static function prepareDataBindProducts($pictures, $quotation) {
-        $thumbnail = json_decode($pictures, true);
+    private function prepareDataBindProducts($pictures, $quotation, $isAdd=true) {
+        $data = $this->additionalProducts();
+        if ($isAdd === true) {
+            $data['top_up'] = date('Y-m-d H:i:s');
+        } 
+        if (!empty($pictures)) {
+            $thumbnail = json_decode($pictures, true);
+            $data['thumbnail'] = $thumbnail[0]['pic'];
+            $data['pictures'] = $pictures;
+        }
+        if (!empty($quotation)) {
+          $data['file_quotation'] = $quotation;  
+        }
+        
+        return $data;
+    }
+
+    private function additionalProducts(){
         $contactInfo = array(
-            'contactName' => Input::get('productTitle'),
+            'contactName' => Input::get('contactName'),
             'contactEmail' => Input::get('contactEmail'),
             'contactHP' => Input::get('contactHP'),
             'contactLocation' => Input::get('contactLocation')
@@ -205,21 +270,18 @@ class FeProductController extends BaseController {
         $data = array(
             'title' => trim(Input::get('productTitle')),
             'price' => trim(Input::get('productPrice')),
-            'thumbnail' => $thumbnail[0]['pic'],
-            'pictures' => $pictures,
-            'created_date' => date('Y-m-d'),
-            'pro_condition_id' => trim(Input::get('isPublish')),
-            'pro_status' => trim(Input::get('productStatus')),
-            'pro_transfer_type_id' => trim(Input::get('proTransferType')),
-            'is_publish' => Input::get('isPublish'),
-            'contact_info' => json_encode($contactInfo),
-            'file_quotation' => $quotation,
+            'publish_date' => Input::get('date_post'),
+            'pro_condition_id' => trim(Input::get('productCondition')),
             'description' => Input::get('desc'),
             'user_id' => Session::get('currentUserId'),
             'store_id' => Session::get('currentUserId'),
             's_category_id' => Input::get('s_category'),
-            'top_up' => date('Y-m-d H:i:s')
+            'pro_status' => trim(Input::get('productStatus')),
+            'pro_transfer_type_id' => trim(Input::get('proTransferType')),
+            'is_publish' => Input::get('isPublish'),
+            'contact_info' => json_encode($contactInfo),
         );
+
         return $data;
     }
 
