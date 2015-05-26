@@ -86,4 +86,13 @@ class Store extends Eloquent {
             }
         }
     }
+
+    public static function findStoreByUser($userId) {
+        $result = DB::table(Config::get('constants.TABLE_NAME.STORE'))
+            ->select('*')
+            ->where('user_id', '=', $userId)
+            ->first();
+
+        return ($result->id) ? $result->id : null;
+    }
 }

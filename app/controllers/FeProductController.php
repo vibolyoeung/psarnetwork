@@ -200,15 +200,17 @@ class FeProductController extends BaseController {
         $destinationPathThumb = $destinationPath.'thumb/';
         $images = [];
         foreach ($files as $file) {
-            $originFileName = $file->getClientOriginalName();
-            $newFileName = $this->generateFileName($destinationPath, $originFileName);
-            $file->move($destinationPath, $newFileName);
-            Image::make($destinationPath . $newFileName)
-                ->resize(200, 130)
+            if (!empty($file)) {
+                $originFileName = $file->getClientOriginalName();
+                $newFileName = $this->generateFileName($destinationPath, $originFileName);
+                $file->move($destinationPath, $newFileName);
+                Image::make($destinationPath . $newFileName)
+                    ->resize(200, 130)
                 ->save($destinationPathThumb . $newFileName);
-            $images[] = array(
-                'pic' => $newFileName
-            );
+                $images[] = array(
+                    'pic' => $newFileName
+                );
+            }
         }
 
         return json_encode($images);
@@ -274,7 +276,7 @@ class FeProductController extends BaseController {
             'pro_condition_id' => trim(Input::get('productCondition')),
             'description' => Input::get('desc'),
             'user_id' => Session::get('currentUserId'),
-            'store_id' => Session::get('currentUserId'),
+            'store_id' => Store::findStoreByUser(Session::get('currentUserId')),
             's_category_id' => Input::get('s_category'),
             'pro_status' => trim(Input::get('productStatus')),
             'pro_transfer_type_id' => trim(Input::get('proTransferType')),

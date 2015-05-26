@@ -17,7 +17,7 @@ class FeStoreController extends BaseController {
 	public function index()
 	{
 	   try {
-            $storeID = Request::segment(2);
+           $storeID = Request::segment(2);
            $where = array('id'=>$storeID);
            $dataStore = $this->mod_store->getUserStore(null,$where);
            $dataCategory = $this->mod_category->menuUserList($dataStore->user_id, $parent = 0);
@@ -54,5 +54,18 @@ class FeStoreController extends BaseController {
 	public function getProductbyCategory(){
 		return View::make('frontend.modules.detail.index')
 				->with('Provinces', $this->mod_setting->listProvinces());
+	}
+
+	public function myDetail($store, $product_id) {
+    	$where = array('id'=>$store);
+ 		$dataStore = $this->mod_store->getUserStore(null, $where);
+ 		$dataCategory = $this->mod_category->menuUserList($dataStore->user_id, $parent = 0);
+ 		$dataUserPage = $this->mod_category->menuUserPage($dataStore->user_id, 2);
+ 		$dataDetailProduct = $this->mod_product->productDetailByOwnStore($product_id);
+		return View::make('frontend.modules.store.detail')
+			->with('dataStore', $dataStore)
+			->with('dataUserPage', $dataUserPage)
+			->with('dataCategory', $dataCategory)
+			->with('dataProductDetail', $dataDetailProduct);
 	}
 }
