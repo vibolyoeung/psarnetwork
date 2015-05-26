@@ -144,6 +144,24 @@ class MPage extends Eloquent {
      * @author Socheat
      */
 
+    public function addUserMenuPages($data) {
+        try {
+            return DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))->insertGetId($data);
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+
+        return $response;
+    }
+    /**
+     * addUserPages : is a function for adding user Page to display front page
+     * @param
+     * @return true : if it user page is added sucessfully
+     * @access public
+     * @author Socheat
+     */
+
     public function addUserWidgetPages($userID) {
         $response = new stdClass();
         try {

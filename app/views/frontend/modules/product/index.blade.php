@@ -4,13 +4,6 @@
 @endsection
 @section('left')
 @endsection
-	@section('breadcrumb')
-	<ol class="breadcrumb">
-		<li><a href="{{Config::get('app.url')}}">Home</a></li>
-		<li><a href="#">Library</a></li>
-		<li class="active">Data</li>
-	</ol>
-	@endsection
 @section('content')
 <div class="col-sm-2">
 	@include('frontend.modules.product.partials.left_product_link')
@@ -36,7 +29,6 @@
 				<tr>
 					<th width="10%">Picture</th>
 					<th width="15%">Title</th>
-					<th width="55%">Description</th>
 					<th width="10%">Others</th>
 					<th width="10%">Action</th>
 				</tr>
@@ -48,7 +40,6 @@
 						{{HTML::image("upload/product/thumb/$product->thumbnail",$product->title,array('class' => 'img-rounded','width'=>'100'))}}
 					</td>
 					<td>{{ $product->title }} </td>
-					<td>{{ $product->description }}</td>
 					<td>
 						<div>{{ $product->price }}$</div>
 						<div>{{ Session::get('currentUserName') }}</div>
@@ -67,7 +58,9 @@
 							</a>
 						</div>
 						<div>
-							<a href="{{URL::to('products/delete')}}/{{$product->id}}">
+							<a 
+								onclick="return confirm('Are you sure to delete?')" 
+								href="{{URL::to('products/delete')}}/{{$product->id}}">
 								Delete
 							</a>
 						</div>

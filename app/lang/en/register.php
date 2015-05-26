@@ -80,7 +80,7 @@ You will be benefit with free account by posing free ,  owning page free .If you
     'agree_head_url_placeholder' => 'www.khmerabba.com/dara shop',
     'agree_head_banner' => 'Banner-Header',
     'agree_acept' => 'I agree to the term and condiction of Khmer Abba shoping',
-    'agree_btn_submit' => 'Start',
+    'agree_btn_submit' => 'Submit',
     
     /*BUTTON*/
     'BTN_NEXT' => 'Next',
@@ -159,4 +159,9 @@ You will be benefit with free account by posing free ,  owning page free .If you
     /* Account infomation */
     'acc_Current_Acount' => 'Your Current Acount Type',
     'acc_I_want_to' => 'I Want To Be',
+    
+    /*create user page*/
+    'acc_page_title' => 'Create new page',
+    'acc_page_name' => 'Title',
+    'acc_page_body' => 'Content',
 );

@@ -43,14 +43,20 @@
 								<ul class="nav navbar-nav">
 									@if(Session::get('currentUserId'))
 									<li>
-										<a href="#">Add New Products</a>
+										<a href="{{URL::to('products/create')}}">
+											Add New Products
+										</a>
 									</li>
 									<li>
-										<a href="#">Product Management</a>
+										<a href="{{URL::to('products/list')}}">
+											Product Management
+										</a>
 									</li>
-									<li>
-										<a href="{{URL::to('member/userinfo/menu')}}">Enterprise Tool</a>
-									</li>
+                                    @if(Session::get('currentUserAccountType') == 2)
+    									<li>
+    										<a href="{{URL::to('member/userinfo/menu')}}">Enterprise Tool</a>
+    									</li>
+                                    @endif
 									<li>
 										<a href="{{URL::to('member/userinfo/infomation')}}">Setting</a>
 									</li>
@@ -63,11 +69,11 @@
         										<a href="{{$userHome}}" target="_blank">View your site</i></a>
         									</li>
 											<li>
-        										<a href="#">View Profile info</i></a>
-        									</li>
-                                            <li>
-        										<a href="#">Your Status</i></a>
-        									</li>
+            									<a href="{{URL::to('member/userinfo/infomation')}}">View Profile info</a>
+            								</li>
+            								<li>
+            									<a href="{{URL::to('member/userinfo/accountinfo')}}">Your Status</a>
+            								</li>
                                             <li>
         										<a href="#">Chage Password</i></a>
         									</li>

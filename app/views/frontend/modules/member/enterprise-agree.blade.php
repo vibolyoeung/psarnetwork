@@ -47,10 +47,6 @@
 									{{trans('register.agree_body_13')}}
 								</span>
 								{{trans('register.agree_body_14')}}
-								<button type="button" id="under-summit" class="btn btn-primary pull-right">
-									{{trans('register.agree_understand')}}
-								</button>
-                                <a  id="not-under-summit" class="btn btn-primary pull-right" style="margin-right: 10px;" href="{{Config::get('app.url')}}" role="button">{{trans('register.agree_not_understand')}}</a>
 							</div>
 							<div style="clear: both;">
 							</div>

@@ -115,6 +115,20 @@ class Product extends Eloquent{
 	}
 
 	/**
+	 *Update product informations
+	 * 
+	 * @param array $products
+	 * @access public
+	 */
+	public function updateToProduct($products, $productId) {
+		$lastId = $result = DB::table(Config::get('constants.TABLE_NAME.PRODUCT'))
+			->where('id', '=', $productId)
+			->where('user_id', '=', Session::get('currentUserId'))
+			->update($products);
+		return $lastId;
+	}
+
+	/**
 	 * List all products by current user
 	 * 
 	 * @param array $productInStore
@@ -250,7 +264,7 @@ class Product extends Eloquent{
 		return DB::table($product .' AS p')
 			->select('*')
 			->where('p.user_id', '=', Session::get('currentUserId'))
-			->where('p.publish_date', '>', $now)
+			->where('p.publish_date', '>', date('d/m/Y'))
 			->orderBy('p.id', 'DESC')
 			->paginate(10);
 	}
@@ -418,6 +432,22 @@ class Product extends Eloquent{
 		return DB::table($product)
 			->where('s_category_id', '=', $category_id)
 			->get();
+	}
+
+	/**
+	 * listAllProductsByOwnStore
+	 * 
+	 * @return products by Own store
+	 * @access public
+	 */
+	public function listAllProductsByOwnStore() {
+		$product = Config::get('constants.TABLE_NAME.PRODUCT');
+		return DB::table($product .' AS p')
+			->select('*')
+			->where('p.user_id', '=', Session::get('currentUserId'))
+			->where('p.store_id', '=', Session::get('currentUserId'))
+			->orderBy('p.id', 'DESC')
+			->paginate(10);
 	}
 	
 }
