@@ -24,18 +24,18 @@
 				{{trans('register.acc_page_title')}}
 			</h2>
 			<div class="conent">
-				<form action="" id="vaildateForm" class="form-horizontal" method="post">
 					<div class="" style="margin: 0;">
 						<!--category-tab-->
 						<div class="tab-content">
 							<div class="tab-pane fade active in" id="personal">
-								<div class="col-sm-12">
-									<div class="pro-detail">
+                                <div class="col-sm-6">
+                                    <form action="" id="vaildateForm" class="form-horizontal" method="post">
+                                    <div class="pro-detail">
                                         <div class="form-group">
-                							<label for="TitleTxt" class="col-sm-4 control-label">
+                							<label for="TitleTxt" class="col-sm-3 control-label">
                 								{{trans('register.acc_page_name')}}
                 							</label>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-9">
                     							<input type="text" value="" name="name" class="form-control" id="TitleTxt" placeholder="{{trans('register.acc_page_name')}}" aria-describedby="TitleTxtStatus" required />
                     							<span data="TitleTxt" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">
                     							</span>
@@ -45,10 +45,10 @@
                                             </div>
                 						</div>
                                         <div class="form-group">
-                							<label for="bodyTxt" class="col-sm-4 control-label">
+                							<label for="bodyTxt" class="col-sm-3 control-label">
                 								{{trans('register.acc_page_body')}}
                 							</label>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-9">
                     							<textarea name="body" class="form-control" id="bodyTxt" placeholder="{{trans('register.acc_page_body')}}" aria-describedby="bodyTxtStatus"></textarea>
                     							<span data="bodyTxt" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">
                     							</span>
@@ -58,15 +58,48 @@
                                             </div>
                 						</div>
 									</div>
+  					                 <input id="summit" type="submit" class="btn btn-default pull-right choosenuser" name="btnInfo" value="{{trans('register.BTN_SUBMIT')}}"/>
+				                    </form>
+                                </div>
+								<div class="col-sm-6">
+                                    <table class="table table-striped">
+                                    <tr>
+                                        <th style="width:40px">ID</th>
+                                        <th style="width:30%">Title</th>
+                                        <th>content</th>
+                                        <th style="width:80px">Action</th>
+                                      </tr>
+                                      @if($datapage)
+                                          @foreach($datapage as $page)
+                                          <tr>
+                                            <td>{{$page->id}}</td>
+                                            <td>{{$page->title}}</td>
+                                            <td>{{$page->description}}</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                  <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Action
+                                                    <span class="caret"></span>
+                                                  </button>
+                                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                        <li>
+                                                            <a href="#">Edit</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Delete</a>
+                                                        </li>
+                                                  </ul>
+                                                </div>
+                                            </td>
+                                          </tr>
+                                          @endforeach
+                                      @endif
+                                    </table>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!--end product detail-->
-					<div class="clear">
-					</div>
-					<input id="summit" type="submit" class="btn btn-default pull-right choosenuser" name="btnInfo" value="{{trans('register.BTN_SAVE')}}"/>
-				</form>
 				<div class="clear">
 				</div>
 			</div>

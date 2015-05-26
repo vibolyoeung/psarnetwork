@@ -372,18 +372,20 @@ class FeMemberController extends BaseController {
                     $data = array(
                         'title' => trim(Input::get('name')),
                         'description' => trim(Input::get('body')),
-                        'type' => 'page',
+                        'type' => 'static',
                         'user_id' => $userID,
                     );
                     /*add data for user page*/
-                    $where = array('user_id' => $userID, 'type'=>'page');
-                    $checkUserPage = $this->mod_page->getUserPages($userID, $where);
+                    $where = array('user_id' => $userID, 'type'=>'static');
+                    $checkUserPage = $this->mod_page->getUserPages(null, $where);
                     if (empty($checkUserPage->result)) {
                         $this->mod_page->addUserMenuPages($data);
                     }
                 }
+                $getUserPage = $this->mod_page->getUserPages($userID);
                 return View::make('frontend.modules.member.s-addpage')
                 ->with('maincategories',$listCategories->result)
+                ->with('datapage',$getUserPage->result)
                 ->with('dataStore', $getUserStore);
                 break;
         }
