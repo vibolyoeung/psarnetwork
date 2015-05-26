@@ -10,6 +10,7 @@
 	</ol>
 	@endsection
 @section('content')
+	{{HTML::style('backend/css/jquery-ui.css')}}
 	{{HTML::script('frontend/js/product.js')}}
 	<div class="container">
 		{{Form::open(array('url'=>'products/create','enctype'=>'multipart/form-data','file' => true, 'class'=>'form-horizontal'))}}
@@ -117,7 +118,7 @@
 									{{trans('product.date_post')}}
 								</label>
 								<div class="col-sm-11">
-									{{Form::text('date_post', null, array('class'=>'form-control'))}}
+									{{Form::text('date_post', null, array('class'=>'form-control datepicker'))}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -327,6 +328,8 @@
 			</div>
 		{{Form::close()}}
 	</div>
+	{{HTML::script('backend/js/jquery-ui.js')}}
+    {{HTML::script('backend/js/custom.js')}}
 @endsection
 @section('footer')
 	@include('frontend.modules.store.partials.footer');
