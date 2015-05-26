@@ -53,11 +53,10 @@
     			</div>               
                 @endforeach
             @endif
-
-
 		</div>
 	</div>
     {{$dataProduct->links()}}
+</div>
 @endsection
 @section('left')
 	@include('frontend.modules.store.partials.slidebar.left_product_link')
