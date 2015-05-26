@@ -15,15 +15,21 @@
 				<div class="social-icons pull-right ">
 					<ul class="nav navbar-nav">
 						@if(Session::get('currentUserId'))
-						<li>
-							<a href="#">Add New Products</a>
-						</li>
-						<li>
-							<a href="#">Product Management</a>
-						</li>
-						<li>
-							<a href="{{URL::to('member/userinfo/menu')}}">Enterprise Tool</a>
-						</li>
+							<li>
+								<a href="{{URL::to('products/create')}}">
+									Add New Products
+								</a>
+							</li>
+							<li>
+								<a href="{{URL::to('products/list')}}">
+									Product Management
+								</a>
+							</li>
+                            @if(Session::get('currentUserAccountType') == 2)
+								<li>
+									<a href="{{URL::to('member/userinfo/menu')}}">Enterprise Tool</a>
+								</li>
+                            @endif
 						<li>
 							<a href="{{URL::to('member/userinfo/infomation')}}">Setting</a>
 						</li>

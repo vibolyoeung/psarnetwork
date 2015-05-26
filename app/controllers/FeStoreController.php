@@ -5,12 +5,14 @@ class FeStoreController extends BaseController {
 	private $mod_category;
 	private $mod_setting;
     protected $mod_store;
+    private $mod_product;
 	
 	function __construct(){
 		$this->mod_slideshow = new Slideshow();
 		$this->mod_category = new MCategory();
 		$this->mod_setting = new Setting();
         $this->mod_store = new Store();
+        $this->mod_product = new Product();
 	}
 	public function index()
 	{
@@ -20,10 +22,12 @@ class FeStoreController extends BaseController {
            $dataStore = $this->mod_store->getUserStore(null,$where);
            $dataCategory = $this->mod_category->menuUserList($dataStore->user_id, $parent = 0);
            $dataUserPage = $this->mod_category->menuUserPage($dataStore->user_id, 2);
+           $dataProduct = $this->mod_product->listAllProductsByOwnStore();
            return View::make('frontend.modules.store.index')
 						->with('dataStore', $dataStore)
                         ->with('dataCategory', $dataCategory)
-                        ->with('dataUserPage', $dataUserPage);
+                        ->with('dataUserPage', $dataUserPage)
+                        ->with('dataProduct', $dataProduct);
         }
         catch (Exception $e) {
             return $e->getMessages();

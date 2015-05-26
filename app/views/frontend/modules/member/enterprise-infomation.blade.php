@@ -131,9 +131,7 @@ var homePage = "{{Config::get('app.url')}}";
 					</div>
 					<!--end product detail-->
                     <div class="clear"></div>
-                    <input id="summit" type="submit" class="btn btn-default pull-right choosenuser" name="btnInfo" value="{{trans('register.BTN_NEXT')}}"/>
-					<a id="chooseuser" class="btn btn-warning pull-right choosenuser" href="#">Back</a>
-					<a id="chooseuser" class="btn btn-danger pull-right choosenuser" href="#">Cancel</a>
+                    <input id="summit" type="submit" class="btn btn-default pull-right choosenuser" name="btnInfo" value="{{trans('register.BTN_SAVE')}}"/>
 				</form>
 				<div class="clear">
 				</div>

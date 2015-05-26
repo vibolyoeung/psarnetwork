@@ -52,9 +52,11 @@
 											Product Management
 										</a>
 									</li>
-									<li>
-										<a href="{{URL::to('member/userinfo/menu')}}">Enterprise Tool</a>
-									</li>
+                                    @if(Session::get('currentUserAccountType') == 2)
+    									<li>
+    										<a href="{{URL::to('member/userinfo/menu')}}">Enterprise Tool</a>
+    									</li>
+                                    @endif
 									<li>
 										<a href="{{URL::to('member/userinfo/infomation')}}">Setting</a>
 									</li>
