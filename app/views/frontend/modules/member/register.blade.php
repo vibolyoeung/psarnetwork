@@ -26,9 +26,9 @@
 				<img 
 				src="{{Config::get('app.url')}}/frontend/images/icons/icon-cart.png"                            
 				style="width: 40px;" class="r-menu-thumb" /></a>
-				<a class="btn btn-default no-border" href="#" role="button"><img src="{{Config::get('app.url')}}/frontend/images/icons/icon-market.png" alt="" style="width: 40px;" class="r-menu-thumb" /> {{trans('register.Tracking_The_Store')}}</a>
-				<a class="btn btn-default no-border" href="#" role="button"><img src="{{Config::get('app.url')}}/frontend/images/icons/icon-connect.png" alt="" style="width: 40px;" class="r-menu-thumb" /> {{trans('register.Seller_connect_with_buyer')}}</a>
-				<a class="btn btn-default no-border" href="#" role="button"><img src="{{Config::get('app.url')}}/frontend/images/icons/icon-cart1.png" alt="" style="width: 40px;" class="r-menu-thumb" /> {{trans('register.Checking_Compare_Products')}}</a>
+				<a class="btn btn-default no-border" href="#" role="button"><img src="{{Config::get('app.url')}}/frontend/images/icons/Tracking-Store.png" alt="" style="width: 40px;" class="r-menu-thumb" /> {{trans('register.Tracking_The_Store')}}</a>
+				<a class="btn btn-default no-border" href="#" role="button"><img src="{{Config::get('app.url')}}/frontend/images/icons/Buyer-Seller.png" alt="" style="width: 40px;" class="r-menu-thumb" /> {{trans('register.Seller_connect_with_buyer')}}</a>
+				<a class="btn btn-default no-border" href="#" role="button"><img src="{{Config::get('app.url')}}/frontend/images/icons/Checking-Product.png" alt="" style="width: 40px;" class="r-menu-thumb" /> {{trans('register.Checking_Compare_Products')}}</a>
 			</div>
 			<div class="constug">
 				<center>
@@ -40,7 +40,7 @@
 			<div class="row r-user-type">
 				<div class="col-sm-3">
 					<div class="r-body">
-						<img src="{{Config::get('app.url')}}/frontend/images/icons/icon-user-group.png" alt="" class="r-menu-thumb" />
+						<img src="{{Config::get('app.url')}}/frontend/images/icons/Join-Free.png" alt="" class="r-menu-thumb" />
 						<span>
 							{{trans('register.Join_Free')}}
 						</span>
@@ -51,7 +51,7 @@
 				</div>
 				<div class="col-sm-3">
 					<div class="r-body">
-						<img src="{{Config::get('app.url')}}/frontend/images/icons/icon-user-group.png" alt="" class="r-menu-thumb" />
+						<img src="{{Config::get('app.url')}}/frontend/images/icons/Free-Page.png" alt="" class="r-menu-thumb" />
 						<span>
 							{{trans('register.Create_Page_for_Bussiness_sale')}}
 						</span>
@@ -62,7 +62,7 @@
 				</div>
 				<div class="col-sm-3">
 					<div class="r-body">
-						<img src="{{Config::get('app.url')}}/frontend/images/icons/icon-user-group.png" alt="" class="r-menu-thumb" />
+						<img src="{{Config::get('app.url')}}/frontend/images/icons/Interprise-Page.png" alt="" class="r-menu-thumb" />
 						<span>
 							{{trans('register.Create_Page_for_persional_sale')}}
 						</span>
@@ -73,7 +73,7 @@
 				</div>
 				<div class="col-sm-3">
 					<div class="r-body">
-						<img src="{{Config::get('app.url')}}/frontend/images/icons/icon-user-group.png" alt="" class="r-menu-thumb" />
+						<img src="{{Config::get('app.url')}}/frontend/images/icons/Post-Ads.png" alt="" class="r-menu-thumb" />
 						<span>
 							{{trans('register.Posting_ads_for_Free')}}
 						</span>
