@@ -116,7 +116,7 @@ var homePage = "{{Config::get('app.url')}}";
                             							</span>
                                                     </div>
                         						</div>
-                                                <div id="addMore"></div>
+                                                <div id="addMore"><a href="{{URL::to('member/userinfo/infomation?pw=1#password')}}">Chage Password</i></a></div>
 											</div>
 										</div>
 										<!--end product describe-->
@@ -252,7 +252,7 @@ $(document).ready(function(){
                                     '</div>'+
                                 '</div>'+
                             '</div>';
-            $('#addMore').append(htmlPass);
+            $('#addMore').html(htmlPass);
       }
       // hash found
   } else {
