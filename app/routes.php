@@ -147,7 +147,7 @@ Route::any('products/productbycategories/{cateID}/{id}',
 
 /*===========Product Details==*/
 Route::group(array('prefix' => 'product'), function () {
-	Route::any('/list', 'FePageController@listSuppermarket'); 
+	Route::any('/list/{ID}', 'FePageController@listSuppermarket'); 
     Route::any('/details/{id}', 'FePageController@getProductDetials');
     Route::any('/js_detail/{product_id}', 'FePageController@popupDetailProduct');
 	Route::any('/findRelatedProducts/{category_id}', 'FePageController@findRelatedProducts');
