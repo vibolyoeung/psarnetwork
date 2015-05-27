@@ -74,7 +74,7 @@ class FeMemberController extends BaseController {
         Session::push('user.user_type', Config::get('constants.CLIENT_USER'));
         Session::push('user.client_type', Input::get('client_type'));
         Session::push('user.account_type', Input::get('accounttype'));
-        Session::push('user.account_role', Input::get('account_role'));
+        Session::push('user.account_role', Input::get('accountRole'));
         Session::push('user.status', 1);
         Session::push('user.password', md5(sha1(Input::get('password'))));
         Session::push('user.create_at', date(self::CURRENT_DATE));
@@ -357,12 +357,37 @@ class FeMemberController extends BaseController {
             case 'accountinfo':
                 $accountRole = $this->user->accountRole();
                 $clientType = $this->user->getClientType();
+                $getUser = $this->user->getUser($userID);
                 $result = $this->mod_market->listingMarkets();
+                
+                /*update*/
+                if (Input::has('btnInfo')) {
+                    $dataEdits = array(
+                        'account_role' =>Input::get('accountRole'),
+                        'client_type' =>Input::get('client_type'),
+                    );
+                    $response = DB::table(Config::get('constants.TABLE_NAME.USER'))
+                                        ->where(array('id' =>$userID))
+                                        ->update($dataEdits);
+                    if (Input::has('marketType')) {
+                        $response = DB::table(Config::get('constants.TABLE_NAME.STORE'))
+                                        ->where(array('user_id' =>$userID))
+                                        ->update(array('sup_id'=>Input::get('marketType')));
+                    } else {
+                        $response = DB::table(Config::get('constants.TABLE_NAME.STORE'))
+                                        ->where(array('user_id' =>$userID))
+                                        ->update(array('sup_id'=>0));
+                    }
+                }
+                
+                /*end update*/
+                
                 return View::make('frontend.modules.member.acountinfo')
                 ->with('maincategories',$listCategories->result)
                 ->with('accountRole', $accountRole->data)
                 ->with('clientType', $clientType->data)
                 ->with('markets', $result->data)
+                ->with('userData', $getUser->result)
                 ->with('dataStore', $getUserStore);
                 break;
                 
@@ -381,8 +406,9 @@ class FeMemberController extends BaseController {
                             'description' => trim(Input::get('body')),
                             'position' => Input::get('menuPosition')
                         );
-                        $response = DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))->where(array('id' =>
-                                Input::get('editPage')))->update($dataEdits);
+                        $response = DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))
+                                        ->where(array('id' =>Input::get('editPage')))
+                                        ->update($dataEdits);
                     } else {
                         /*add data for user page*/
                         $data = array(
@@ -400,6 +426,14 @@ class FeMemberController extends BaseController {
                     }
                     return Redirect::to('member/userinfo/addpage');
                 }
+                
+                /*Delete user static page*/
+                if (Input::has('del')) {
+                    $response = DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))
+                                    ->where(array('id' =>Input::get('del'),'user_id' => $userID))
+                                    ->delete();
+                }
+                /*end Delete user static page*/
                 $getUserPage = $this->mod_page->getUserPages($userID);
                 return View::make('frontend.modules.member.s-addpage')
                 ->with('maincategories',$listCategories->result)
