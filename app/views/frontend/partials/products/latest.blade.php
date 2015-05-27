@@ -1,5 +1,4 @@
 <div class="features_items">
-	<!-- ============Slider end here========= -->
 	<div class="features_items">
 		<div class="category-tab lastest-post">
 			<div class="col-sm-12">
@@ -17,7 +16,7 @@
 		</div>
 	</div>
 	<div class="col-lg-12" style="padding: 0;">
-		<div class="col-sm-2">
+		<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -45,7 +44,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-2">
+		<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -73,7 +72,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-2">
+		<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -101,7 +100,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-2">
+		<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -129,7 +128,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-2">
+		<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -157,7 +156,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-2">
+		<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -185,7 +184,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-2">
+		<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -213,7 +212,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-2">
+		<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -241,7 +240,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-2">
+		<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -269,7 +268,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-2">
+		<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -297,7 +296,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-2">
+		<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
@@ -325,7 +324,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-2">
+		<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">

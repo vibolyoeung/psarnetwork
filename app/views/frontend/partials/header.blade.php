@@ -21,13 +21,13 @@
                 {{HTML::script('frontend/js/respond.min.js')}}
             <![endif]-->
 <link rel="shortcut icon"
-	href="{{Config::get('app.url')}}/frontend/images/ico/favicon.ico">
+	href="{{Config::get('app.url')}}frontend/images/icons/favicon.png">
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="{{Config::get('app.url')}}/frontend/images/ico/apple-touch-icon-144-precomposed.png">
+	href="{{Config::get('app.url')}}frontend/images/icons/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="{{Config::get('app.url')}}/frontend/images/ico/apple-touch-icon-114-precomposed.png">
+	href="{{Config::get('app.url')}}frontend/images/icons/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="{{Config::get('app.url')}}/frontend/images/ico/apple-touch-icon-72-precomposed.png">
+	href="{{Config::get('app.url')}}frontend/images/icons/apple-touch-icon-72-precomposed.png">
 </head>
 <body>
 	<!-- Call facebook script -->
@@ -85,9 +85,9 @@
 		
 		<div class="container-fluid top-menu">
 			<div class="col-lg-6 top_promotion">
-				<div class="col-lg-2">
+				<div class="col-md-6 col-lg-2 col-sm-4 col-xs-4">
 					<a href="{{Config::get('app.url')}}"><img
-						src="{{Config::get('app.url')}}frontend/images/classifieds_logo.png"
+						src="{{Config::get('app.url')}}frontend/images/khmerabba_logo.png"
 						width="200" /><a>
 				
 				</div>
