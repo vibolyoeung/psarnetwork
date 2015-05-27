@@ -368,24 +368,44 @@ class FeMemberController extends BaseController {
                 break;
                 
             case 'addpage':
+                if (Input::has('id')) {
+                    $whereEdit = array('user_id' => $userID, 'type'=>'static','id'=>Input::get('id'));
+                    $dataEditArr = $this->mod_page->getUserPages(null, $whereEdit);
+                    $dataEdit = $dataEditArr->result;
+                } else {
+                    $dataEdit = array();
+                }
                 if (Input::has('btnInfo')) {
-                    $data = array(
-                        'title' => trim(Input::get('name')),
-                        'description' => trim(Input::get('body')),
-                        'type' => 'static',
-                        'user_id' => $userID,
-                    );
-                    /*add data for user page*/
-                    $where = array('user_id' => $userID, 'type'=>'static');
-                    $checkUserPage = $this->mod_page->getUserPages(null, $where);
-                    if (empty($checkUserPage->result)) {
-                        $this->mod_page->addUserMenuPages($data);
+                    if (Input::has('editPage')) {
+                        $dataEdits = array(
+                            'title' => trim(Input::get('name')),
+                            'description' => trim(Input::get('body')),
+                            'position' => Input::get('menuPosition')
+                        );
+                        $response = DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))->where(array('id' =>
+                                Input::get('editPage')))->update($dataEdits);
+                    } else {
+                        /*add data for user page*/
+                        $data = array(
+                            'title' => trim(Input::get('name')),
+                            'description' => trim(Input::get('body')),
+                            'type' => 'static',
+                            'user_id' => $userID,
+                            'position' => Input::get('menuPosition')
+                        );
+                        $where = array('user_id' => $userID, 'type'=>'static','title'=>trim(Input::get('name')));
+                        $checkUserPage = $this->mod_page->getUserPages(null, $where);
+                        if (empty($checkUserPage->result)) {
+                            $this->mod_page->addUserMenuPages($data);
+                        }
                     }
+                    return Redirect::to('member/userinfo/addpage');
                 }
                 $getUserPage = $this->mod_page->getUserPages($userID);
                 return View::make('frontend.modules.member.s-addpage')
                 ->with('maincategories',$listCategories->result)
                 ->with('datapage',$getUserPage->result)
+                ->with('dataEdit',$dataEdit)
                 ->with('dataStore', $getUserStore);
                 break;
         }
@@ -634,6 +654,16 @@ class FeMemberController extends BaseController {
                             $where = array('user_id' => $userID, 'id' => $userStoreID);
                             $response = DB::table(Config::get('constants.TABLE_NAME.STORE'))->where($where)->
                                 update(array('sto_value' => json_encode($dataArr)));
+                        }
+                        break;
+                        
+                    case 'userHeaderTitle':
+                        if($userID && !empty($MainMenu)) {
+                            $response = DB::table(Config::get('constants.TABLE_NAME.STORE'))
+                            ->where(
+                                array('user_id' =>$userID)
+                                )
+                            ->update(array('title_en' => $MainMenu));
                         }
                         break;
                 }

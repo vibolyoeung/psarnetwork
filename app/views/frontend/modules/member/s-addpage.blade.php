@@ -36,7 +36,7 @@
                 								{{trans('register.acc_page_name')}}
                 							</label>
                                             <div class="col-sm-9">
-                    							<input type="text" value="" name="name" class="form-control" id="TitleTxt" placeholder="{{trans('register.acc_page_name')}}" aria-describedby="TitleTxtStatus" required />
+                    							<input type="text" value="@if(!empty($dataEdit)) {{$dataEdit[0]->title}} @endif" name="name" class="form-control" id="TitleTxt" placeholder="{{trans('register.acc_page_name')}}" aria-describedby="TitleTxtStatus" required />
                     							<span data="TitleTxt" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">
                     							</span>
                     							<span id="TitleTxtStatus" class="sr-only">
@@ -49,15 +49,25 @@
                 								{{trans('register.acc_page_body')}}
                 							</label>
                                             <div class="col-sm-9">
-                    							<textarea name="body" class="form-control" id="bodyTxt" placeholder="{{trans('register.acc_page_body')}}" aria-describedby="bodyTxtStatus"></textarea>
-                    							<span data="bodyTxt" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">
-                    							</span>
-                    							<span id="bodyTxtStatus" class="sr-only">
-                    								(error)
-                    							</span>
+                    							<textarea name="body" class="form-control" id="bodyTxt" placeholder="{{trans('register.acc_page_body')}}" aria-describedby="bodyTxtStatus">@if(!empty($dataEdit)){{$dataEdit[0]->description}}@endif</textarea>
+                                            </div>
+                						</div>
+                                        
+                                        <div class="form-group">
+                							<label for="bodyTxt" class="col-sm-3 control-label">
+                								{{trans('register.acc_page_body')}}
+                							</label>
+                                            <div class="col-sm-9">
+                    							<select class="form-control" name="menuPosition">
+                                                    <option value="1" @if(!empty($dataEdit)) @if($dataEdit[0]->position ==1) selected @endif @endif >Menu 1</option>
+                                                    <option value="2" @if(!empty($dataEdit)) @if($dataEdit[0]->position ==2) selected @endif @endif>Menu 2</option>
+                                                </select>                                                       
                                             </div>
                 						</div>
 									</div>
+                                    @if(!empty($dataEdit))
+                                        <input type="hidden" name="editPage" value="{{$dataEdit[0]->id}}"/>
+                                    @endif
   					                 <input id="summit" type="submit" class="btn btn-default pull-right choosenuser" name="btnInfo" value="{{trans('register.BTN_SUBMIT')}}"/>
 				                    </form>
                                 </div>
@@ -83,10 +93,10 @@
                                                   </button>
                                                   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                                         <li>
-                                                            <a href="#">Edit</a>
+                                                            <a href="{{URL::to('member/userinfo/addpage')}}?id={{$page->id}}">Edit</a>
                                                         </li>
                                                         <li>
-                                                            <a href="#">Delete</a>
+                                                            <a href="{{URL::to('member/userinfo/addpage')}}?del={{$page->id}}">Delete</a>
                                                         </li>
                                                   </ul>
                                                 </div>
