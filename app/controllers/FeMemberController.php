@@ -322,12 +322,32 @@ class FeMemberController extends BaseController {
                     $userValueArr = json_decode($userData->result->address, true);
                     $ValueArr = array('g_latitude_longitude' => Input::get('gLatitudeLongitude'));
                     $dataArr = array_merge($userValueArr, $ValueArr);
-                    $data = array(
-                        'email' => trim(Input::get('email')),
-                        'name' => trim(Input::get('name')),
-                        'telephone' => Input::get('telephone'),
-                        'address' => json_encode($dataArr),
-                        'update_at' => date(self::CURRENT_DATE));
+                    if (Input::has('cPass')) {
+                        $queryPass = $this->checkPassword(Input::get('cPass'));
+                        $cPass = Input::get('cPass');
+                        $nPass = Input::get('nPass');
+                        $rPass = Input::get('rPass');
+                        echo $nPass;
+                        if(!empty($queryPass) && $nPass === $rPass && $nPass!=$cPass) {
+                            $data = array(
+                                'email' => trim(Input::get('email')),
+                                'name' => trim(Input::get('name')),
+                                'telephone' => Input::get('telephone'),
+                                'address' => json_encode($dataArr),
+                                'password' => md5(sha1($nPass)),
+                                'update_at' => date(self::CURRENT_DATE)
+                            );
+                        } else {
+                            $data = array(
+                                'email' => trim(Input::get('email')),
+                                'name' => trim(Input::get('name')),
+                                'telephone' => Input::get('telephone'),
+                                'address' => json_encode($dataArr),
+                                'update_at' => date(self::CURRENT_DATE)
+                            );
+                        }
+                    }
+                    
                     /*add data for store*/
                     $whereUser = array('id' => $userID);
                     $uid = $this->user->updateUser($whereUser, $data);
@@ -821,6 +841,16 @@ class FeMemberController extends BaseController {
         }
     }
     
+    public function checkPassword ($password) {
+        $query = DB::table(Config::get('constants.TABLE_NAME.USER'));
+        $query->where(
+            array(
+                'password'=>md5(sha1($password)),
+                'id'=> Session::get('currentUserId')
+            )
+        );
+        return $query->first();
+    }
     public function getSignOut() {
         Session::flush();
         return Redirect::to(Config::get('app.url'));
