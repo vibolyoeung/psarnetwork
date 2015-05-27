@@ -23,7 +23,7 @@ var homePage = "{{Config::get('app.url')}}";
 @if($dataStore)
 <div class="memberlogin">
 	<div class="col-sm-3">
-		@include('frontend.modules.member.layout.sidebar')
+		@include('frontend.modules.member.layout.sidebar-setting')
 		<div class="clear">
 		</div>
 	</div>
@@ -327,7 +327,7 @@ $(document).ready(function(){
  	//textFooter
  	
 $('#btnSaveTitle').click(function () {
-        var text = $('#textFooter').val();
+        var text = $('#textTitle').val();
         if(text) {
         	$.ajax({
         		url: homePage + "member/getsubmenu?type=userHeaderTitle&id="+text,
