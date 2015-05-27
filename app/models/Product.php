@@ -140,6 +140,7 @@ class Product extends Eloquent{
 		return DB::table($product .' AS p')
 			->select('*')
 			->where('p.user_id', '=', Session::get('currentUserId'))
+			->where('p.store_id', '=', Store::findStoreByUser(Session::get('currentUserId')))
 			->orderBy('p.id', 'DESC')
 			->paginate(10);
 	}
@@ -264,6 +265,7 @@ class Product extends Eloquent{
 		return DB::table($product .' AS p')
 			->select('*')
 			->where('p.user_id', '=', Session::get('currentUserId'))
+			->where('p.store_id', '=', Store::findStoreByUser(Session::get('currentUserId')))
 			->where('p.publish_date', '>', date('d/m/Y'))
 			->orderBy('p.id', 'DESC')
 			->paginate(10);
@@ -281,6 +283,7 @@ class Product extends Eloquent{
 		return DB::table($product .' AS p')
 			->select('*')
 			->where('p.user_id', '=', Session::get('currentUserId'))
+			->where('p.store_id', '=', Store::findStoreByUser(Session::get('currentUserId')))
 			->where('p.is_publish', '=', 0)
 			->orderBy('p.id', 'DESC')
 			->paginate(10);
@@ -298,6 +301,7 @@ class Product extends Eloquent{
 		return DB::table($product .' AS p')
 			->select('*')
 			->where('p.user_id', '=', Session::get('currentUserId'))
+			->where('p.store_id', '=', Store::findStoreByUser(Session::get('currentUserId')))
 			->where('p.point_to_view', '=', 1)
 			->orderBy('p.id', 'DESC')
 			->paginate(10);
@@ -445,9 +449,25 @@ class Product extends Eloquent{
 		return DB::table($product .' AS p')
 			->select('*')
 			->where('p.user_id', '=', Session::get('currentUserId'))
-			->where('p.store_id', '=', Session::get('currentUserId'))
+			->where('p.store_id', '=', Store::findStoreByUser(Session::get('currentUserId')))
 			->orderBy('p.id', 'DESC')
 			->paginate(10);
+	}
+
+	/**
+	 * productDetailByOwnStore
+	 * 
+	 * @return products by Own store
+	 * @access public
+	 */
+	public function productDetailByOwnStore($productId) {
+		$product = Config::get('constants.TABLE_NAME.PRODUCT');
+		return DB::table($product .' AS p')
+			->select('*')
+			->where('p.user_id', '=', Session::get('currentUserId'))
+			->where('p.store_id', '=', Store::findStoreByUser(Session::get('currentUserId')))
+			->where('p.id', '=', $productId)
+			->first();
 	}
 	
 }

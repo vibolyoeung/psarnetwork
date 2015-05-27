@@ -14,7 +14,6 @@
     {{HTML::script('frontend/js/product.js')}}
 	<div class="container">
 		{{Form::open(array('url'=>'products/edit/'.$product->id,'enctype'=>'multipart/form-data','file' => true, 'class'=>'form-horizontal'))}}
-			v class="row">
                 <div class="col-md-12 ">
                     <div role="tabpanel">
                         <!-- Nav tabs -->

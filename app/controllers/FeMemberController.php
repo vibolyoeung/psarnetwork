@@ -43,7 +43,6 @@ class FeMemberController extends BaseController {
                 } else {
                     $checkStore = $this->mod_store->getUserStore($result->id);
                     return Redirect::to('page/' . $checkStore->id);
-                    //return Redirect::to('/');
                 }
             } else {
                 return Redirect::to('member/login')->with('INVALID_LOGIN',
