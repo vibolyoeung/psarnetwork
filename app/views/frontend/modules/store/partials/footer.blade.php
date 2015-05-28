@@ -18,7 +18,20 @@
 					</center>
 				</div>
 				<p>
-				<center>Copy Right @ 2014 www.phsarkhmer.com.kh  &nbsp;All Right Reserve</center>
+				<center>
+                <?php
+                $userOption = json_decode($dataStore->sto_value);
+                $userFooter = @$userOption->footer_text;
+                 ?>
+                    @if($userFooter)
+                    {{$userFooter}}
+                    @else
+                    <script type='text/javascript'>
+              copyright=new Date();
+              update=copyright.getFullYear();
+              document.write("Copyright &#169; 2015-"+ update + " | All Rights Reserved | ");</script> www.phsarkhmer.com.kh  &nbsp;All Right Reserve
+                    @endif
+                </center>
 				
 				
 				</p>

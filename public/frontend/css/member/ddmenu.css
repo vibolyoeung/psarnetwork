@@ -126,6 +126,7 @@ background-color:#285EA0;
 margin:0;
 border-top: 1px solid #124788;
 border-bottom: 1px solid #124788;
+min-width:280px
 }
 #topnav .sf-menu ul li, #topnav .sf-menu ul ul li {
 background-color:#1A1A1A;

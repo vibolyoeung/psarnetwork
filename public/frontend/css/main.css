@@ -1872,7 +1872,7 @@ h2.title {
 
 .memberlogin {
 	margin-bottom: 30px;
-	margin-top:30px;
+	margin-top:15px;
 }
 
 #form {
@@ -3212,7 +3212,7 @@ fieldset legend {
 .no-border {
 	border: none
 }
-
+.home .rigister{margin-top: 10px;}
 .home .rigister .r-menu {
 	margin-top: 30px;
 }
@@ -3227,7 +3227,7 @@ fieldset legend {
 }
 
 .home .rigister .constug {
-	margin-top: 40px;
+	margin-top: 5px;
 }
 
 .home .rigister .r-user-type {
@@ -3235,7 +3235,9 @@ fieldset legend {
 }
 
 .home .rigister .r-user-type .r-menu-thumb {
-	width: 40px
+	width: 40px;
+    float:left;
+    margin-right: 8px;
 }
 
 .home .rigister .r-user-type span {

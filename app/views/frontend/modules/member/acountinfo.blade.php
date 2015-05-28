@@ -47,21 +47,23 @@ var homePage = "{{Config::get('app.url')}}";
                                                     <div class="col-sm-8">
                             							<div class="radio">
                                                           <label>
-                                                            {{Form::radio('accounttype', '1', false, array('id'=>'freeAccount'))}}
-                                                            {{trans('register.Free_Account')}}
+                                                            @if(Session::get('currentUserAccountType') == 1)
+                                                                {{trans('register.Free_Account')}}
+                                                            @else
+                                                                {{trans('register.Interprise_Account')}}
+                                                            @endif
                                                           </label>
-                                                        </div>
-                                                        <div class="radio">
-                                                          <label>
-                                                            {{Form::radio('accounttype', '2', false, array('id'=>'interpriseAccount'))}}
-        									                {{trans('register.Interprise_Account')}}
-                                                          </label>
-                                                          <br/><em style="color: red;">Trial ( You Still have 25 days more ) </em>
                                                         </div>
                                                     </div>
                         						</div>
                                                 <div class="alert alert-info" role="alert">
-                                                    <p>You Can Upgrad Your Account Type To       Interprise License    now   20$/month only</p>
+                                                    <p>
+                                                         @if(Session::get('currentUserAccountType') == 1)
+                                                            {{trans('register.Free_Account_desc')}}
+                                                        @else
+                                                            {{trans('register.Interprise_Account_desc')}}
+                                                        @endif
+                                                    </p>
                                                 </div>
                                                 <hr />
                                                 
@@ -71,12 +73,13 @@ var homePage = "{{Config::get('app.url')}}";
                         							</label>
                                                     <div class="col-sm-8">
                                                         <?php
+                                                        $roleSelectd = !empty($userData->account_role) ? $userData->account_role : '';
                                                         $RolArr = array(''=>trans('register.Manufaturure_label'));
                                                          foreach($accountRole as $Rol) {
                                                             $RolArr[$Rol->rol_id] = $Rol->rol_name;
                                                         }
                                                         ?>
-                                                        {{Form::select('accountRole', $RolArr, 'S',array('class' => 'form-control'))}}
+                                                        {{Form::select('accountRole', $RolArr, $roleSelectd,array('class' => 'form-control'))}}
                 									</div>
                         						</div>
                                                 
@@ -86,12 +89,13 @@ var homePage = "{{Config::get('app.url')}}";
                 									</label>
                 									<div class="col-sm-8">
                                                         <?php
+                                                        $clientSelectd = !empty($userData->client_type) ? $userData->client_type : '';
                                                         $cTypeArr = array(''=>trans('register.Manufaturure_select'));
                                                          foreach($clientType as $cType) {
                                                             $cTypeArr[$cType->id] = $cType->name;
                                                         }
                                                         ?>
-                                                        {{Form::select('client_type', $cTypeArr, 'S',array('class' => 'form-control','id'=>'clientType'))}}
+                                                        {{Form::select('client_type', $cTypeArr, $clientSelectd,array('class' => 'form-control','id'=>'clientType'))}}
                 									</div>
                 								</div>
                 								<div class="form-group" id="marketType">
@@ -100,12 +104,13 @@ var homePage = "{{Config::get('app.url')}}";
                 									</label>
                 									<div class="col-sm-8">
                                                         <?php
+                                                        $marketTypeSelected = !is_null($dataStore->sup_id) ? $dataStore->sup_id : '';
                                                         $mkArr = array(''=>trans('register.Market_Type'));
                                                          foreach($markets as $mk) {
                                                             $mkArr[$mk->id] = $mk->title_en;
                                                         }
                                                         ?>
-                                                        {{Form::select('marketType', $mkArr, 'S',array('class' => 'form-control','id'=>'marketTypes'))}}
+                                                        {{Form::select('marketType', $mkArr, $marketTypeSelected,array('class' => 'form-control','id'=>'marketTypes'))}}
                                                         <div 
                                                         id="loadingmarketType" 
                                                         style="display: none;background:#fff;width:100%;text-align:center;padding:2px;border:1px solid #eee;">

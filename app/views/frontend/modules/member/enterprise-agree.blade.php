@@ -21,7 +21,7 @@
 					</h3>
 				</div>
 				<div class="panel-body">
-					<form action="{{URL::to('member/agreement')}}/{{Request::segment(3)}}" id="registerForm" method="post" enctype="multipart/form-data">
+					<form action="{{URL::to('member/agreement')}}/{{Request::segment(3)}}" id="AgreeForm" method="post" enctype="multipart/form-data">
 						<div class="well well-sm">
 							<div class="a-body">
 								{{trans('register.agree_body_1')}}
@@ -135,12 +135,12 @@ $(document).ready(function(){
     });    
     $("#AgreeForm").validate({
           rules: {
-      agreement: {
+      btnagree: {
          required : true
       }
   },
   messages:{
-      agreement: {
+      btnagree: {
         required : "check the checbox"
       }
   }

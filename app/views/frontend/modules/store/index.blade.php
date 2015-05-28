@@ -31,8 +31,12 @@
 		</div>
 		<div class="col-lg-12" style="padding:0;">
             @if(!empty($dataProduct))
+                <?php $i=1;?>
                 @foreach($dataProduct as $product)
-     			<div class="col-sm-2">
+                @if ($i % 4 == 1)
+                    <div class="row">
+                @endif
+     			<div class="col-sm-3">
     				<div class="product-image-wrapper">
     					<div class="single-products">
     						<div class="productinfo text-center">
@@ -50,8 +54,15 @@
     						<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
     					</div>
     				</div>
-    			</div>               
+    			</div>
+                @if ($i % 4 == 0)
+                    </div>
+                @endif
+                <?php $i++;?>             
                 @endforeach
+                @if ($i % 4 != 1)
+                    </div>
+                @endif
             @endif
 		</div>
 	</div>

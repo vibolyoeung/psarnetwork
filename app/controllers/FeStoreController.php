@@ -20,7 +20,12 @@ class FeStoreController extends BaseController {
            $storeID = Request::segment(2);
            $where = array('id'=>$storeID);
            $dataStore = $this->mod_store->getUserStore(null,$where);
-           $dataCategory = $this->mod_category->menuUserList($dataStore->user_id, $parent = 0);
+           if(Session::get('currentUserAccountType')==2) {
+                $dataCategory = $this->mod_category->menuUserList($dataStore->user_id, $parent = 0);
+           } else {
+                $dataCategory = $this->mod_category->menuUserFree($dataStore->user_id, $parent = 0);
+           }
+           
            $dataUserPage = $this->mod_category->menuUserPage($dataStore->user_id, 2);
            $dataProduct = $this->mod_product->listAllProductsByOwnStore();
            return View::make('frontend.modules.store.index')

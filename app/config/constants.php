@@ -68,5 +68,10 @@ return array(
 			'PERMISSION'=>'permission',
 			'PRODUCT_TRANSFER_TYPE'=>'product_transfer_type',
             'ACCOUNT_ROLE'=>'account_role',
-		)
+		),
+        'LAYOUT'=>array(
+            'layout1' =>'main-layout-user-blue.css',
+            'layout2' =>'main-layout-user-orange.css',
+            'layout3' =>'main-layout-user-green.css',
+        )
 );

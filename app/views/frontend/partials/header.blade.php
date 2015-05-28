@@ -63,10 +63,32 @@
 								<li><a href="#"><i class="fa">User Agreement</i></a></li>
 								<li><a href="#"><i class="fa">Policy</i></a></li>
 								<li><a href="#"><i class="fa">Usage</i></a></li>
+                                @if(!Session::get('currentUserId'))
 								<li><a href="{{Config::get('app.url')}}/member/login"><i
 										class="fa">Sign in /</i></a></li>
 								<li><a href="{{Config::get('app.url')}}/member/register"><i
 										class="fa">Free Register</i></a></li>
+                                @else
+                                <li role="presentation" class="dropdown">
+										<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+										My Account <span class="caret"></span>
+										</a>
+										<ul class="dropdown-menu" role="menu">
+											<li>
+            									<a href="{{URL::to('member/userinfo/infomation')}}">View Profile info</a>
+            								</li>
+            								<li>
+            									<a href="{{URL::to('member/userinfo/accountinfo')}}">Your Status</a>
+            								</li>
+                                            <li>
+        										<a href="{{URL::to('member/userinfo/infomation?pw=1#password')}}">Chage Password</i></a>
+        									</li>
+                                            <li>
+        										<a href="{{URL::to('member/logout')}}"><i class="glyphicon glyphicon-off"> Log out</i></a>
+        									</li>
+										</ul>
+									</li>
+                                @endif
 							</ul>
 							<div class="language-bar">
 								<a href="{{Config::get('app.url')}}?lang=en"> <img

@@ -16,6 +16,7 @@
 var homePage = "{{Config::get('app.url')}}";
 
 </script>
+@if(Session::get('currentUserAccountType') == 2)
 <div class="memberlogin">
 	{{Form::open(array('url'=>'member/userinfo/2/menu','enctype'=>'multipart/form-data','file' => true, 'id'=>'PersonalForm'))}}
 	<div class="col-sm-3">
@@ -364,6 +365,13 @@ var homePage = "{{Config::get('app.url')}}";
 		<!--/login form-->
 	</div>
 </div>
+@else
+<div class="memberlogin">
+	<div class="col-sm-12">
+        Sorry you have no permission for this page
+    </div>
+</div>
+@endif
 {{HTML::script('frontend/js/jquery.validate.js')}} {{HTML::script('frontend/js/Nestable-master/jquery.nestable.js')}} {{HTML::style('frontend/css/nestble.css')}} {{HTML::script('frontend/js/member/functions.js')}}
 <div class="clear">
 </div>
