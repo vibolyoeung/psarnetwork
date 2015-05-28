@@ -30,8 +30,9 @@ class FeStoreController extends BaseController {
                         ->with('dataProduct', $dataProduct);
         }
         catch (Exception $e) {
-            return $e->getMessages();
+            return $e->getMessage();
         }
+        
 //		$limit = $this->mod_setting->getSlidshowNumber();
 //		$listSlideshows = self::getSlideshowToHomePage($limit->data->setting_value);
 //		$listCategories = self::getCategoriesHomePage();
