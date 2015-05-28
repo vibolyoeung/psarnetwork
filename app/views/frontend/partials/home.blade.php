@@ -11,7 +11,7 @@
 <div class="col-lg-11">@include('frontend.partials.slider')</div>
 <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
 	@include('frontend.partials.products.latest')
-	@include('frontend.partials.products.popular') <br />
+	@include('frontend.partials.products.popular')
 	<!--/category-tab-->
 	<div class="category-tab feature-ad lastest-post">
 		<!--recommended_items-->

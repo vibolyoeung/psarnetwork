@@ -3035,7 +3035,6 @@ h2.title {
 
 .promotion_top_menu li a {
 	color: #428bca;
-	font-size: 10px;
 }
 
 .top-menu {
@@ -3089,7 +3088,7 @@ ul.item_menu li a {
 }
 
 .promotion_top_menu {
-	padding-top: 4px;
+	padding-top: 20px;
 }
 
 .dropdown-menu {
@@ -3482,6 +3481,11 @@ header#header{
 div.header-middle{
 	margin-top: 100px;
 }
+
+.top-advertisement{
+	padding-right: 0;
+}
+
 @media(max-width:768px){
     header#header, .header-middle, .left_bar, .top_special_ads, div.features_items > .features_items,.center-advertise, .popular_product,.new_product, .new_product_left, .new_product_right{
        display: none !important;

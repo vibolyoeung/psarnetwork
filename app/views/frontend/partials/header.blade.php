@@ -51,7 +51,7 @@
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
 								<li class="user-home"><a href="{{Config::get('app.url')}}"
-									taget="_blank">www.psarkhmer.com</a></li>
+									taget="_blank">www.khmerabba.com</a></li>
 							</ul>
 						</div>
 					</div>
@@ -94,7 +94,7 @@
 				<div class="col-lg-10">
 					<ul class="promotion_top_menu pull-right">
 						<li><a
-							href="{{Config::get('app.url')}}product/list/10">Hot
+								href="{{Config::get('app.url')}}product/list/10">Hot
 								Promotion</a></li>
 						<li><a
 							href="{{Config::get('app.url')}}product/list/10">New
@@ -124,7 +124,6 @@
 				</div>
 				<div class="collapse navbar-collapse promotion-list">
 					<ul class="nav navbar-nav top_menu_list">
-						<li><a href="#">All</a></li>
 						<li><a href="{{Config::get('app.url')}}product/list/10">Super Market</a></li>
 						<li><a href="{{Config::get('app.url')}}product/list/10">Traditional
 								Market</a></li>

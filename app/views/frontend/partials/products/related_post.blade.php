@@ -1,4 +1,3 @@
-
 <!-- ============Relative post=============== -->
 <div class="col-lg-12" style="padding: 0;">
 	<div class="category-tab feature-ad lastest-post">
