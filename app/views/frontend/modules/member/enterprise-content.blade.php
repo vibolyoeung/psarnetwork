@@ -21,6 +21,7 @@ var homePage = "{{Config::get('app.url')}}";
 
 </script>
 @if($dataStore)
+@if(Session::get('currentUserAccountType') == 2)
 <div class="memberlogin">
 	<div class="col-sm-3">
 		@include('frontend.modules.member.layout.sidebar')
@@ -177,26 +178,26 @@ var homePage = "{{Config::get('app.url')}}";
                                                         $userOption = json_decode($dataStore->sto_value);
                                                         $userLayout = @$userOption->layout;
                                                         $userFooter = @$userOption->footer_text;
-                                                        $layoutOne = ($userLayout =='main.css')? true :false;
-                                                        $layoutTwo = ($userLayout =='main-orange.css')? true :false;
-                                                        $layoutThree = ($userLayout =='main-green.css')? true :false;
+                                                        $layoutOne = ($userLayout == Config::get('constants.LAYOUT.layout1'))? true :false;
+                                                        $layoutTwo = ($userLayout == Config::get('constants.LAYOUT.layout2'))? true :false;
+                                                        $layoutThree = ($userLayout == Config::get('constants.LAYOUT.layout3'))? true :false;
                                                     ?>
 													<!--<a href="#" onclick="costomizeLayout();">Costumize layout</a>-->
 													<div class="radio">
 														<label>
-                                                            {{Form::radio('costomizeLayout', 'main.css', $layoutOne, array('id'=>'optionsRadios1','class'=>'costomizeLayout'))}}
+                                                            {{Form::radio('costomizeLayout', Config::get('constants.LAYOUT.layout1'), $layoutOne, array('id'=>'optionsRadios1','class'=>'costomizeLayout'))}}
 															{{trans('register.TAB_Layout_one')}}
 														</label>
 													</div>
 													<div class="radio">
 														<label>
-                                                            {{Form::radio('costomizeLayout', 'main-orange.css', $layoutTwo, array('id'=>'optionsRadios2','class'=>'costomizeLayout'))}}
+                                                            {{Form::radio('costomizeLayout', Config::get('constants.LAYOUT.layout2'), $layoutTwo, array('id'=>'optionsRadios2','class'=>'costomizeLayout'))}}
 															{{trans('register.TAB_Layout_two')}}
 														</label>
 													</div>
                                                     <div class="radio">
 														<label>
-                                                            {{Form::radio('costomizeLayout', 'main-green.css', $layoutThree, array('id'=>'optionsRadios3','class'=>'costomizeLayout'))}}
+                                                            {{Form::radio('costomizeLayout', Config::get('constants.LAYOUT.layout3'), $layoutThree, array('id'=>'optionsRadios3','class'=>'costomizeLayout'))}}
 															{{trans('register.TAB_Layout_three')}}
 														</label>
 													</div>
@@ -208,7 +209,7 @@ var homePage = "{{Config::get('app.url')}}";
 														{{trans('register.TAB_Layout_footer')}}:
 													</legend>
 													<div id="foottxt" class="foottxt">{{$userFooter}}</div>
-                                                    <textarea id="textFooter" class="form-control" rows="2" placeholder="{{trans('register.TAB_Layout_footer_placeholder')}}">{{$userFooter}}</textarea
+                                                    <textarea id="textFooter" class="form-control" rows="2" placeholder="{{trans('register.TAB_Layout_footer_placeholder')}}">{{$userFooter}}</textarea>
 													<a href="javascript:;" onclick="costomizeFooter();">{{trans('register.TAB_Layout_footer_desc')}}</a>
 												</fieldset>
 											</div>
@@ -231,6 +232,13 @@ var homePage = "{{Config::get('app.url')}}";
 		<!--/login form-->
 	</div>
 </div>
+@else
+<div class="memberlogin">
+	<div class="col-sm-12">
+        Sorry you have no permission for this page
+    </div>
+</div>
+@endif
 @endif {{HTML::script('frontend/js/jquery.validate.js')}}
 <script type='text/javascript'>
 	
@@ -300,7 +308,14 @@ $(document).ready(function(){
         		success: function(data) {}
             });
             //$('.message-loading').hide();
-            $(".main-stylesheet").attr("href", "{{Config::get('app.url')}}frontend/css/" + styles);
+            var userLayout = $( "link" ).hasClass( "user-layout" );
+            if(userLayout) {
+                $(".user-layout").attr("href", "{{Config::get('app.url')}}frontend/css/" + styles);
+            } else {
+                $( ".main-stylesheet" ).after( '<link class="user-layout" media="all" type="text/css" rel="stylesheet" href="{{Config::get('app.url')}}frontend/css/' + styles+'"/>' );
+            }
+            
+            //
         } else {
             //$("#summit").attr('disabled',true);
         }

@@ -81,7 +81,7 @@
             									<a href="{{URL::to('member/userinfo/accountinfo')}}">Your Status</a>
             								</li>
                                             <li>
-        										<a href="{{URL::to('member/userinfo/infomation#password')}}">Chage Password</i></a>
+        										<a href="{{URL::to('member/userinfo/infomation?pw=1#password')}}">Chage Password</i></a>
         									</li>
                                             <li>
         										<a href="{{URL::to('member/logout')}}"><i class="glyphicon glyphicon-off"> Log out</i></a>

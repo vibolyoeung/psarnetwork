@@ -1,3 +1,12 @@
+<?php
+$userOption = json_decode($dataStore->sto_value);
+$userLayout = @$userOption->layout;
+if($userLayout) {
+    $userLayout = $userLayout;
+} else {
+    $userLayout = Config::get('constants.LAYOUT.layout1');
+}
+ ?>
 <!doctype html>
 <html lang="en">
     <head>
@@ -12,12 +21,13 @@
         {{HTML::style('frontend/css/animate.css')}}
         {{HTML::style('frontend/css/bootstrap.min.css')}}
         {{HTML::style('frontend/css/responsive.css')}}
-        {{HTML::style('frontend/css/main.css')}}
+        {{HTML::style('frontend/css/main-layout-user.css')}}
         {{HTML::style('frontend/css/member/member.css')}}
         {{HTML::style('frontend/css/layout.css')}}
         {{HTML::script('frontend/js/jquery.js')}}
         {{HTML::style('frontend/css/member/ddmenu.css')}}
         {{HTML::script('frontend/js/member/ddmenu.js')}}
+        <link media="all" type="text/css" rel="stylesheet" href="{{URL::to('frontend/css')}}/{{$userLayout}}"/>
         <!--[if lt IE 9]>
                 {{HTML::script('frontend/js/html5shiv.js')}}
                 {{HTML::script('frontend/js/respond.min.js')}}
@@ -36,13 +46,21 @@
         @include('frontend.modules.store.partials.top-menu')
         <!-- ============End header top here============== -->
             <div class="container-fluid top-menu">
-            	<div class="col-lg-4 top_promotion">
-            		<div class="col-lg-2">
-						<a class="store-logo" href="{{$userHome}}"><img src="{{Config::get('app.url')}}{{($dataStore->image ? 'upload/store/'.$dataStore->image : 'frontend/images/home/partner1.png')}}" class="storeLogo"/><a>
-					</div>
-				</div>
-				
-				<div class="col-lg-8">
-				    <h1 class="header-right"><a href="{{$userHome}}">{{($dataStore->title_en ? $dataStore->{'title_'.Session::get('lang')} : 'Not set yet')}}</a></h1>
+                <div class="container" style="padding-left: 0;padding-right: 0;">
+                	<div class="col-lg-4 top_promotion">
+                		<div class="col-lg-2">
+    						<a class="store-logo" href="{{$userHome}}">
+                            @if($dataStore->image)
+                                <img src="{{Config::get('app.url')}}{{'upload/store/'.$dataStore->image}}" class="storeLogo"/>
+                            @else
+                                <h1 class="header-right"><a href="{{$userHome}}">{{($dataStore->title_en ? $dataStore->{'title_'.Session::get('lang')} : 'Not set yet')}}</a></h1>
+                            @endif
+                            <a>
+    					</div>
+    				</div>
+    				
+    				<div class="col-lg-8">
+    				    
                     </div>
+                </div>
 			</div>

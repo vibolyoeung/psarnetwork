@@ -198,26 +198,26 @@ var homePage = "{{Config::get('app.url')}}";
                                                         $userOption = json_decode($dataStore->sto_value);
                                                         $userLayout = @$userOption->layout;
                                                         $userFooter = @$userOption->footer_text;
-                                                        $layoutOne = ($userLayout =='main.css')? true :false;
-                                                        $layoutTwo = ($userLayout =='main-orange.css')? true :false;
-                                                        $layoutThree = ($userLayout =='main-green.css')? true :false;
+                                                        $layoutOne = ($userLayout == Config::get('constants.LAYOUT.layout1'))? true :false;
+                                                        $layoutTwo = ($userLayout == Config::get('constants.LAYOUT.layout2'))? true :false;
+                                                        $layoutThree = ($userLayout == Config::get('constants.LAYOUT.layout3'))? true :false;
                                                     ?>
 													<!--<a href="#" onclick="costomizeLayout();">Costumize layout</a>-->
 													<div class="radio">
 														<label>
-                                                            {{Form::radio('costomizeLayout', 'main.css', $layoutOne, array('id'=>'optionsRadios1','class'=>'costomizeLayout'))}}
+                                                            {{Form::radio('costomizeLayout', Config::get('constants.LAYOUT.layout1'), $layoutOne, array('id'=>'optionsRadios1','class'=>'costomizeLayout'))}}
 															{{trans('register.TAB_Layout_one')}}
 														</label>
 													</div>
 													<div class="radio">
 														<label>
-                                                            {{Form::radio('costomizeLayout', 'main-orange.css', $layoutTwo, array('id'=>'optionsRadios2','class'=>'costomizeLayout'))}}
+                                                            {{Form::radio('costomizeLayout', Config::get('constants.LAYOUT.layout2'), $layoutTwo, array('id'=>'optionsRadios2','class'=>'costomizeLayout'))}}
 															{{trans('register.TAB_Layout_two')}}
 														</label>
 													</div>
                                                     <div class="radio">
 														<label>
-                                                            {{Form::radio('costomizeLayout', 'main-green.css', $layoutThree, array('id'=>'optionsRadios3','class'=>'costomizeLayout'))}}
+                                                            {{Form::radio('costomizeLayout', Config::get('constants.LAYOUT.layout3'), $layoutThree, array('id'=>'optionsRadios3','class'=>'costomizeLayout'))}}
 															{{trans('register.TAB_Layout_three')}}
 														</label>
 													</div>
@@ -357,7 +357,12 @@ $('#btnSaveTitle').click(function () {
         		success: function(data) {}
             });
             //$('.message-loading').hide();
-            $(".main-stylesheet").attr("href", "{{Config::get('app.url')}}frontend/css/" + styles);
+            var userLayout = $( "link" ).hasClass( "user-layout" );
+            if(userLayout) {
+                $(".user-layout").attr("href", "{{Config::get('app.url')}}frontend/css/" + styles);
+            } else {
+                $( ".main-stylesheet" ).after( '<link class="user-layout" media="all" type="text/css" rel="stylesheet" href="{{Config::get('app.url')}}frontend/css/' + styles+'"/>' );
+            }
         } else {
             //$("#summit").attr('disabled',true);
         }

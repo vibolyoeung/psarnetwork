@@ -1,5 +1,6 @@
 <!--=============Menu==========-->
 <nav class='navix' id='nav'>
+    <div class="container" style="padding-left: 0;padding-right: 0;">
     <div class='wrap'>      
         <a href='#' id='mobilenav'>Menu</a>
         @if($dataCategory)
@@ -11,6 +12,7 @@
                 <button title='Search' type='submit'>Search</button>
             </form>
         </div> 
+    </div>
     </div>
     <div class='bgnya'></div>      
 </nav>

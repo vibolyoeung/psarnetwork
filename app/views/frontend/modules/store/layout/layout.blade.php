@@ -1,8 +1,10 @@
     <?php 
         $userHome = @Config::get('app.url').'page/'.$dataStore->id;
     ?>
+
 	@include('frontend.modules.store.partials.header')
 	@include('frontend.modules.store.partials.menu')
+
 	<section>
 		<div class="container">
 			<div class="row">
