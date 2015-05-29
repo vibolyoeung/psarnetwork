@@ -194,7 +194,7 @@ var homePage = "{{Config::get('app.url')}}";
                     								{{trans('register.gen_Last_Login')}}
                     							</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" id="email" class="form-control" value="19" readonly/>
+                                                    <input type="text" id="email" class="form-control" value="19-5-2015" readonly/>
             									</div>
                     						</div>
 										</div>
