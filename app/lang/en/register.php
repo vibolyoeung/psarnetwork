@@ -109,6 +109,7 @@ You will be benefit with free account by posing free ,  owning page free .If you
     'MENU_addpadd' => 'Create page',
     'MENU_Account_Information' => 'Account Information',
     'MENU_toolview' => 'Tool View',
+    'MENU_summary' => 'General Setting',
     
     /* tab menu */
     'TAB_Main_Menu' => 'Main Menu',
@@ -166,4 +167,20 @@ You will be benefit with free account by posing free ,  owning page free .If you
     'acc_page_title' => 'Create new page',
     'acc_page_name' => 'Title',
     'acc_page_body' => 'Content',
+    
+    /*General setting*/
+    'gen_Registration_Date' => 'Registration Date',
+    'gen_Account_Type' => 'Account Type',
+    'gen_Account_Role' => 'Account Role',
+    'gen_Category_Business' => 'Category Business',
+    'gen_Summary_All' => 'Summary All information',
+    'gen_User_Profile' => 'User Profile Information',
+    'gen_Registration_Information' => 'Registration Information',
+    'gen_Page_Information' => 'Page Information',
+    'gen_Total_Products' => 'Total Products',
+    'gen_Total_Banner' => 'Total Banner',
+    'gen_AdsTotal_Banner' => 'Total Product Ads',
+    'gen_Total_User' => 'Total User Access',
+    'gen_Total_Log' => 'Total Log',
+    'gen_Last_Login' => 'Last Login',
 );
