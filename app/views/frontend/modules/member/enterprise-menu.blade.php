@@ -251,12 +251,14 @@ var homePage = "{{Config::get('app.url')}}";
 																	<option value="">
 																		{{trans('register.TAB_Select_one')}}
 																	</option>
-																	@foreach ($getMainPage as $pages)
-																	<option value="{{$pages->id}}">
-																		<?php echo $pages->
-																			{'title_'.app::getLocale()}; ?>
-																	</option>
-																	@endforeach
+                                                                    @if($getMainPage)
+    																	@foreach ($getMainPage as $pages)
+    																	<option value="{{$pages->id}}">
+    																		<?php echo $pages->
+    																			{'title_'.app::getLocale()}; ?>
+    																	</option>
+    																	@endforeach
+                                                                    @endif
 																</select>
 																<button id="addDefaultPage" type="button" class="btn btn-default" style="width:18%">
 																	{{trans('register.TAB_Add')}}
@@ -326,20 +328,22 @@ var homePage = "{{Config::get('app.url')}}";
 														</h3>
 														<div class="form-inline">
 															<div id="Dresult">
-																@foreach ($getUserPages as $userPages)
-																<div class="row input_fields_wrap subCatAjax" style="margin-bottom:5px">
-																	<div id="Did_{{$userPages->position}}" name="DCategory" class="form-group" style="margin-right:5px">
-																		<input type="text" value="{{$userPages->position}}" class="form-control id_{{$userPages->position}}" id="DCategoryAjaxAdd1" readonly="">
-																	</div>
-																	<div id="Did_{{$userPages->position}}" name="DCategory" class="form-group" style="margin-right:5px">
-																		<input type="text" value="{{$userPages->m_page_id}}" class="form-control" id="Dsub_{{$userPages->m_page_id}}" readonly="">
-																	</div>
-																	<button type="button" class="btn btn-danger DremoveMainCat" dataid="{{$userPages->id}}">
-																		<i class="glyphicon glyphicon-remove">
-																		</i>
-																	</button>
-																</div>
-																@endforeach
+                                                                @if($getUserPages)
+    																@foreach ($getUserPages as $userPages)
+    																<div class="row input_fields_wrap subCatAjax" style="margin-bottom:5px">
+    																	<div id="Did_{{$userPages->position}}" name="DCategory" class="form-group" style="margin-right:5px">
+    																		<input type="text" value="{{$userPages->position}}" class="form-control id_{{$userPages->position}}" id="DCategoryAjaxAdd1" readonly="">
+    																	</div>
+    																	<div id="Did_{{$userPages->position}}" name="DCategory" class="form-group" style="margin-right:5px">
+    																		<input type="text" value="{{$userPages->m_page_id}}" class="form-control" id="Dsub_{{$userPages->m_page_id}}" readonly="">
+    																	</div>
+    																	<button type="button" class="btn btn-danger DremoveMainCat" dataid="{{$userPages->id}}">
+    																		<i class="glyphicon glyphicon-remove">
+    																		</i>
+    																	</button>
+    																</div>
+    																@endforeach
+                                                                @endif
 															</div>
 														</div>
 													</div>
