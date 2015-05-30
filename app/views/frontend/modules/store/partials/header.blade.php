@@ -47,8 +47,7 @@ if($userLayout) {
         <!-- ============End header top here============== -->
         <div class="container" style="padding-left: 0;padding-right: 0;">
             <div class="container-fluid top-menu">
-                	<div class="col-lg-4 top_promotion">
-                		<div class="col-lg-2">
+                	<div class="col-lg-4">
     						<a class="store-logo" href="{{$userHome}}">
                             @if($dataStore->image)
                                 <img src="{{Config::get('app.url')}}{{'upload/store/'.$dataStore->image}}" class="storeLogo"/>
@@ -56,11 +55,12 @@ if($userLayout) {
                                 <h1 class="header-right"><a href="{{$userHome}}">{{($dataStore->title_en ? $dataStore->{'title_'.Session::get('lang')} : 'Not set yet')}}</a></h1>
                             @endif
                             <a>
-    					</div>
     				</div>
     				
     				<div class="col-lg-8">
-    				    
+    				    @if($dataStore->sto_banner)
+                            <img src="{{Config::get('app.url')}}{{'upload/store/'.$dataStore->sto_banner}}" class="storeBanner"/>
+                        @endif
                     </div>
                 </div>
 			</div>
