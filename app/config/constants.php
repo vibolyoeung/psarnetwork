@@ -70,8 +70,8 @@ return array(
             'ACCOUNT_ROLE'=>'account_role',
 		),
         'LAYOUT'=>array(
-            'layout1' =>'main-layout-user-blue.css',
-            'layout2' =>'main-layout-user-orange.css',
-            'layout3' =>'main-layout-user-green.css',
+            'layout1' =>'main-layout-user-a.css',
+            'layout2' =>'main-layout-user-b.css',
+            'layout3' =>'main-layout-user-c.css',
         )
 );

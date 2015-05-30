@@ -1,5 +1,5 @@
 a:link {
-color: #ec005f;
+color: #FF7E00;
 text-decoration:none;
 -webkit-transition:all 0.6s ease-out 0s;
 -moz-transition:all 0.6s ease-out 0s;
@@ -20,29 +20,29 @@ outline: 0;
 a img {
 border: 0;
 }
-.header_top {
-	background: #285EA0!important;
+.nav-tabs li span {color:#FF7E00!important}
+#footer,.sf-menu li:hover > a,.header_top {
+	background: #FF7E00!important;
 }
+.sf-menu a.home, .sf-menu > li > a.home.current{background-color: #FF7E00!important;}
 #header h1 a{color:#428bca}
 
-#footer {
-	background: #428bca!important;
-}
+
 
 #nav .bgnya {
 background-color:#2E2E2E!important;
-border-bottom:4px solid #285EA0!important;
+border-bottom:4px solid #FF7E00!important;
 -moz-box-shadow:0 1px 6px #585858!important;
 -webkit-box-shadow:0 1px 6px #585858!important;
 box-shadow:0 1px 6px #585858!important;
 }
 .popular-links {
-	background-color: #285EA0;
+	background-color: #FF7E00;
 	color: #ffffff;
 }
 .popular-links>.panel-heading:hover a {
 	text-decoration: underline;
-	color: #f0ad4e;
+	color: #FF7E00;
 }
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{  background-color: #337ab7!important;}
 #costomLayout .ui-sortable li{background: #428BCA!important}

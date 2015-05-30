@@ -1,0 +1,51 @@
+a:link {
+color: #00A16C;
+text-decoration:none;
+-webkit-transition:all 0.6s ease-out 0s;
+-moz-transition:all 0.6s ease-out 0s;
+transition:all 0.6s ease-out 0s;
+}
+a:hover {
+text-decoration: none;
+}
+a:active {
+outline: none;
+}
+a:visited {
+text-decoration: none;
+}
+:focus {
+outline: 0;
+}
+a img {
+border: 0;
+}
+.nav-tabs li span {color:#00A16C!important}
+#footer,.sf-menu li:hover > a,.header_top {
+	background: #00A16C!important;
+}
+.sf-menu a.home, .sf-menu > li > a.home.current{background-color: #00A16C!important;}
+#header h1 a{color:#00A16C}
+
+
+
+#nav .bgnya {
+background-color:#2E2E2E!important;
+border-bottom:4px solid #00A16C!important;
+-moz-box-shadow:0 1px 6px #585858!important;
+-webkit-box-shadow:0 1px 6px #585858!important;
+box-shadow:0 1px 6px #585858!important;
+}
+.popular-links {
+	background-color: #00A16C;
+	color: #ffffff;
+}
+.popular-links>.panel-heading:hover a {
+	text-decoration: underline;
+	color: #00A16C;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{  background-color: #337ab7!important;}
+#costomLayout .ui-sortable li{background: #00A16C!important}
+.register-form, .login-form {  border: 3px solid #00A16C!important;}
+.category-tab ul.nav {border-bottom: 2px solid #00A16C!important;}
+.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>li:hover,.dropdown-menu>li:focus {background-color: #00A16C;color: #FFFFFF;}

@@ -11,9 +11,9 @@
 	</li>
 </ol>
 @endsection @section('frontend.partials.left') @endsection @section('content')
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"/>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"/>
 {{HTML::script('frontend/js/jquery-upload/jquery.form.js')}}
-<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 </script>
 <script type='text/javascript'>
 		

@@ -11,17 +11,15 @@
 	</li>
 </ol>
 @endsection @section('frontend.partials.left') @endsection @section('content')
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"/>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"/>
 {{HTML::script('frontend/js/jquery-upload/jquery.form.js')}}
-<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js">
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script type='text/javascript'>
 		
 var homePage = "{{Config::get('app.url')}}";
 
 </script>
 @if($dataStore)
-@if(Session::get('currentUserAccountType') == 2)
 <div class="memberlogin">
 	<div class="col-sm-3">
 		@include('frontend.modules.member.layout.sidebar')
@@ -232,13 +230,6 @@ var homePage = "{{Config::get('app.url')}}";
 		<!--/login form-->
 	</div>
 </div>
-@else
-<div class="memberlogin">
-	<div class="col-sm-12">
-        Sorry you have no permission for this page
-    </div>
-</div>
-@endif
 @endif {{HTML::script('frontend/js/jquery.validate.js')}}
 <script type='text/javascript'>
 	
