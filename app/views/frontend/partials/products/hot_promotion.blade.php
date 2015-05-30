@@ -22,7 +22,7 @@ if(count($hotPromotionProducts) > 0){
 	?>
 		<div class="item active">	
 		@foreach($hotPromotionProducts as $hotPromotionProduct)
-			<div class="col-sm-3">
+			<div class="col-sm-4">
 				<div class="product-image-wrapper">
 					<div class="single-products">
 						<div class="productinfo text-center">
