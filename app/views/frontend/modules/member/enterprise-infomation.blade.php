@@ -116,6 +116,7 @@ var homePage = "{{Config::get('app.url')}}";
                             							</span>
                                                     </div>
                         						</div>
+                                                <div id="addMore"><a href="{{URL::to('member/userinfo/infomation?pw=1#password')}}">Chage Password</i></a></div>
 											</div>
 										</div>
 										<!--end product describe-->
@@ -197,6 +198,50 @@ $(document).ready(function(){
         $(element.form).find("span[data=" + element.id + "]").removeClass('glyphicon-remove').addClass('glyphicon-ok');
       }
     });
+    
+        if(window.location.hash) {
+      var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
+      if(hash == 'password') {
+            //addMore
+            var htmlPass = '<div class="form-group" style="margin-right:0;">'+
+                            '<label for="cPass" class="col-sm-4 control-label">'+
+                            'Password'+
+                            '</label>'+
+                                '<div class="col-sm-8">'+
+                                    '<div class="row">'+
+                                        '<div class="form-group">'+
+                                            '<label for="cPass" class="col-sm-4 control-label">'+
+                                            'Current'+
+                                            '</label>'+
+                                            '<div class="col-sm-8">'+
+                                            '<input type="password" value="" name="cPass" class="form-control" id="cPass" placeholder="" required />'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<div class="form-group">'+
+                                            '<label for="nPass" class="col-sm-4 control-label">'+
+                                            'New'+
+                                            '</label>'+
+                                            '<div class="col-sm-8">'+
+                                            '<input type="password" value="" name="nPass" class="form-control" id="nPass" placeholder="" required />'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<div class="form-group">'+
+                                            '<label for="rPass" class="col-sm-4 control-label">'+
+                                            'Re-type new'+
+                                            '</label>'+
+                                            '<div class="col-sm-8">'+
+                                            '<input type="password" value="" name="rPass" class="form-control" id="rPass" placeholder="" required />'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>';
+            $('#addMore').html(htmlPass);
+      }
+      // hash found
+  } else {
+      // No hash found
+  }
 });
 var idLat = '{{$locationArr->g_latitude_longitude}}';
 showAddress(idLat);
