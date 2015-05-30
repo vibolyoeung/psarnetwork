@@ -21,6 +21,7 @@ if(count($newProducts) > 0){
 			$newPro = 1;
 			?>
 			<div class="item active">
+			<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 				@foreach($newProducts as $newProduct)
 				<div class="col-sm-4">
 					<div class="product-image-wrapper">
@@ -34,8 +35,7 @@ if(count($newProducts) > 0){
 								</a>
 								<h2>$ {{$newProduct->price}}</h2>
 								<p><?php echo substr($newProduct->title,0,20)?></p>
-								<a href="#" data-toggle="modal" data-target="#myModal"
-									onclick="popupDetails.add_popup_detail(<?php echo $newProduct->id; ?>)">View
+								<a href="{{Config::get('app.url')}}/product/details/{{$newProduct->id}}">View
 									Details</a>
 							</div>
 							<img
@@ -45,14 +45,13 @@ if(count($newProducts) > 0){
 					</div>
 				</div>
 				<?php
-				if ($newPro >= 4 && $newPro % 4 == 0) {
+				if ($newPro >= 3 && $newPro % 3 == 0) {
 					echo '</div><div class="item"> ';
 				}
 				$newPro ++;
 				?>
 				@endforeach
 			</div>
-
 		</div>
 		<a class="left recommended-item-control"
 			href="#hotpromotion-item-carousel" data-slide="prev"> <i

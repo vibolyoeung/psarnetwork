@@ -2,6 +2,7 @@ var popupDetails = (function(){
 	"use strict"
 
 	var add_popup_detail = function(product_id) {
+		//alert(product_id);
 		var productUrl = document.querySelector('#detail_product');
   		productUrl = productUrl.dataset.getDetailProductUrl;
   		$(".message-loading").show();

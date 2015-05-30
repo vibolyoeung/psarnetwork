@@ -2,6 +2,7 @@
 	<!-- Slider -->
 	<div class="row">
 	<?php
+	
 	$images = json_decode ($productDetail->pictures, true );
 	?>
 		<div class="col-xs-12" id="slider">

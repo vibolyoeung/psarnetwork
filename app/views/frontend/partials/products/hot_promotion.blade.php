@@ -5,7 +5,7 @@ $hotPromotionProducts = Product::findHotPromotionProducts ();
 if(count($hotPromotionProducts) > 0){
 ?>
 <ul class="nav nav-tabs">
-	<li><strong>Hot PromotionProducts</strong> &nbsp;&nbsp;&nbsp; &frasl;</li>
+	<li><strong>Hot Promotion</strong>&nbsp;&frasl;</li>
 	<li>Products : <span class="number-display">25</span></li>
 	<li>Stores :<span class="number-display">25</span></li>
 	<li>Market :<span class="number-display">25</span></li>
@@ -20,7 +20,8 @@ if(count($hotPromotionProducts) > 0){
 	<?php
 	$hotPro = 1;
 	?>
-		<div class="item active">	
+		<div class="item active">
+		<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 		@foreach($hotPromotionProducts as $hotPromotionProduct)
 			<div class="col-sm-4">
 				<div class="product-image-wrapper">

@@ -340,6 +340,7 @@ class Product extends Eloquent{
 			->select('*')
 			->where('p.pro_condition_id', '=', self::NEW_PRODUCT)
 			->where('p.is_publish', '=', self::IS_PUBLISH)
+			->where('p.publish_date','>=',date("d/m/Y"))
 			->orderBy('p.id', 'DESC')
 			->get();
 	}
@@ -357,6 +358,7 @@ class Product extends Eloquent{
 			->select('*')
 			->where('p.pro_transfer_type_id', '=', self::MONTHLY_PRODUCT)
 			->where('p.is_publish', '=', self::IS_PUBLISH)
+			->where('p.publish_date','>=',date("d/m/Y"))
 			->orderBy('p.id', 'DESC')
 			->get();
 	}
@@ -374,6 +376,7 @@ class Product extends Eloquent{
 			->select('*')
 			->where('p.pro_transfer_type_id', '=', self::BUYER_PRODUCT)
 			->where('p.is_publish', '=', self::IS_PUBLISH)
+			->where('p.publish_date','>=',date("d/m/Y"))
 			->orderBy('p.id', 'DESC')
 			->get();
 	}
@@ -391,6 +394,7 @@ class Product extends Eloquent{
 			->select('*')
 			->where('p.pro_condition_id', '=', self::SECOND_HAND_PRODUCT)
 			->where('p.is_publish', '=', self::IS_PUBLISH)
+			->where('p.publish_date','>=',date("d/m/Y"))
 			->orderBy('p.id', 'DESC')
 			->get();
 	}

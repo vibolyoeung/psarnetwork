@@ -23,6 +23,7 @@
 			<?php
 			$secondPro = 1;
 			?>
+			<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 			@foreach($secondHandProducts as $secondHandProduct)
 				<div class="col-sm-4">
 					<div class="product-image-wrapper">
