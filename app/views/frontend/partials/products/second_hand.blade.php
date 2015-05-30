@@ -24,7 +24,7 @@
 			$secondPro = 1;
 			?>
 			@foreach($secondHandProducts as $secondHandProduct)
-				<div class="col-sm-3">
+				<div class="col-sm-4">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
