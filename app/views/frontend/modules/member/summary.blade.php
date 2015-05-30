@@ -67,9 +67,10 @@ var homePage = "{{Config::get('app.url')}}";
                 										{{trans('register.Input_Location')}}
                 									</label>
                 									<div class="col-sm-8">
-                                                        <?php $userAddress = json_decode($userData->address);
-                                                        if(!empty($userAddress->province)) {
-                                                            $userAddr = $userAddress->province;
+                                                        <?php 
+                                                        $userAddress = @json_decode(@$userData->address);
+                                                        if(!empty($userAddress)) {
+                                                            $userAddr = @$userAddress->province;
                                                         } else {
                                                             $userAddr = '';
                                                         }
@@ -140,7 +141,7 @@ var homePage = "{{Config::get('app.url')}}";
             										{{trans('register.gen_Category_Business')}}
             									</label>
             									<div class="col-sm-8">
-                                                    <input type="text" id="telephone" class="form-control" value="{{$userCategory->name_en}}" readonly/>
+                                                    <input type="text" id="telephone" class="form-control" value="@if($userCategory){{$userCategory->name_en}}@endif" readonly/>
             									</div>
             								</div>
 										</div>

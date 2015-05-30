@@ -183,7 +183,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     }
     public function getUserCategory($userID) {
         $response = new stdClass();
-
         try {
             $result = DB::table(Config::get('constants.TABLE_NAME.S_CATEGORY'))->where(array('user_id'=>$userID, 'parent_id'=>0))->first();
             $response->data = $result;
