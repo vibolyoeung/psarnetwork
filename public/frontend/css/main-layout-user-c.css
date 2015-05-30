@@ -20,6 +20,7 @@ outline: 0;
 a img {
 border: 0;
 }
+.language-bar a {color: #fff;}
 .nav-tabs li span {color:#00A16C!important}
 #footer,.sf-menu li:hover > a,.header_top {
 	background: #00A16C!important;

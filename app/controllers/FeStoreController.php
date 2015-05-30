@@ -6,6 +6,7 @@ class FeStoreController extends BaseController {
 	private $mod_setting;
     protected $mod_store;
     private $mod_product;
+    private $user;
 	
 	function __construct(){
 		$this->mod_slideshow = new Slideshow();
@@ -13,6 +14,7 @@ class FeStoreController extends BaseController {
 		$this->mod_setting = new Setting();
         $this->mod_store = new Store();
         $this->mod_product = new Product();
+        $this->user = new User();
 	}
 	public function index()
 	{
@@ -20,7 +22,14 @@ class FeStoreController extends BaseController {
            $storeID = Request::segment(2);
            $where = array('id'=>$storeID);
            $dataStore = $this->mod_store->getUserStore(null,$where);
-           if(Session::get('currentUserAccountType')==2) {
+           if(!empty($dataStore)) {
+                $dataStore = $dataStore;
+           } else {
+                $where = array('sto_url'=>$storeID);
+                $dataStore = $this->mod_store->getUserStore(null,$where);
+           }
+           $getUser = $this->user->getUser($dataStore->user_id);
+           if($getUser->result->account_type==2) {
                 $dataCategory = $this->mod_category->menuUserList($dataStore->user_id, $parent = 0);
            } else {
                 $dataCategory = $this->mod_category->menuUserFree($dataStore->user_id, $parent = 0);

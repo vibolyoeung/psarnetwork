@@ -649,32 +649,32 @@ class MCategory extends Eloquent{
                 'status' => 1,
                 'parent_id' => $parent
             );
-			$result = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
-            ->select('*')
-			->where($where)
-			->get();
+//			$result = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
+//            ->select('*')
+//			->where($where)
+//			->get();
             $userMenus = "";
 			$userMenus .= "<ul class='sf-menu' id='menunav'>";
             $homeUrl = Config::get('app.url');
             if($level==0) {
                 $userMenus .= "<li><a class='home' href='{$homeUrl}'>Home</a></li>";
             }
-            if(!empty($result)) {
-    			foreach($result as $userMenu){
-                    if($level ==0) {
-                        $id = 'item-'.$userMenu->id.$userMenu->id;
-                    } else {
-                        $id = 'item-'.$userMenu->id;
-                    }
-    				$userMenus .= "<li>\n";
-                        $menuName = $userMenu->{'name_'.Session::get('lang')};                        
-    					$userMenus .= "<a href='#'>{$menuName}</a>\n";
-    
-    					// Run this function again (it would stop running when the mysql_num_result is 0
-    					$userMenus .= $this->menuUserFree($userID, $userMenu->id,$level+1);
-    				$userMenus .= "</li>\n";
-    			} 
-            }
+//            if(!empty($result)) {
+//    			foreach($result as $userMenu){
+//                    if($level ==0) {
+//                        $id = 'item-'.$userMenu->id.$userMenu->id;
+//                    } else {
+//                        $id = 'item-'.$userMenu->id;
+//                    }
+//    				$userMenus .= "<li>\n";
+//                        $menuName = $userMenu->{'name_'.Session::get('lang')};                        
+//    					$userMenus .= "<a href='#'>{$menuName}</a>\n";
+//    
+//    					// Run this function again (it would stop running when the mysql_num_result is 0
+//    					$userMenus .= $this->menuUserFree($userID, $userMenu->id,$level+1);
+//    				$userMenus .= "</li>\n";
+//    			} 
+//            }
             /*get static page for each user*/
             $userMenus .= $this->menuUserPage($userID);
             $userMenus .= "</ul>\n";

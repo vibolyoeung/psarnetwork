@@ -5,6 +5,7 @@ text-decoration:none;
 -moz-transition:all 0.6s ease-out 0s;
 transition:all 0.6s ease-out 0s;
 }
+
 a:hover {
 text-decoration: none;
 }
@@ -20,6 +21,7 @@ outline: 0;
 a img {
 border: 0;
 }
+.language-bar a {color: #fff;}
 .header_top {
 	background: #285EA0!important;
 }
