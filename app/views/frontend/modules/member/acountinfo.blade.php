@@ -33,9 +33,6 @@ var homePage = "{{Config::get('app.url')}}";
 						<div class="tab-content">
 							<div class="tab-pane fade active in" id="personal">
 								<div class="col-sm-12">
-									<div class="row">
-										<!--product describe-->
-										<div class="col-sm-6">
 											<div class="pro-detail">
 												<h3>
 													Your Page Information
@@ -118,14 +115,7 @@ var homePage = "{{Config::get('app.url')}}";
                                                         </div>
                 									</div>
                 								</div>
-											</div>
-										</div>
 										<!--end product describe-->
-										<div class="col-sm-6">
-											<div class="pro-detail">
-                                                <div id="mapWrapper" style="">Your Direction</div>
-											</div>
-										</div>
 									</div>
 								</div>
 							</div>

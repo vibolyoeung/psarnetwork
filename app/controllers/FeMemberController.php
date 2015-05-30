@@ -332,8 +332,7 @@ class FeMemberController extends BaseController {
                         $cPass = Input::get('cPass');
                         $nPass = Input::get('nPass');
                         $rPass = Input::get('rPass');
-                        echo $nPass;
-                        if(!empty($queryPass) && $nPass === $rPass && $nPass!=$cPass) {
+                        if(!empty($queryPass) && $nPass === $rPass) {
                             $data = array(
                                 'email' => trim(Input::get('email')),
                                 'name' => trim(Input::get('name')),
@@ -351,6 +350,14 @@ class FeMemberController extends BaseController {
                                 'update_at' => date(self::CURRENT_DATE)
                             );
                         }
+                    } else {
+                        $data = array(
+                            'email' => trim(Input::get('email')),
+                            'name' => trim(Input::get('name')),
+                            'telephone' => Input::get('telephone'),
+                            'address' => json_encode($dataArr),
+                            'update_at' => date(self::CURRENT_DATE)
+                        );
                     }
                     
                     /*add data for store*/
