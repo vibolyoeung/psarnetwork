@@ -91,8 +91,9 @@
 					<div class="well well-sm">
 						<div class="form-horizontal">
 							<div class="form-group">
+								{{trans('login.Login_By_Name_Email_Phone')}}
 								<label for="WhoAreYou" class="col-sm-4 control-label">
-									{{trans('login.Login_By_Name_Email_Phone')}}
+									{{trans('Username')}}
 								</label>
 								<div class="col-sm-8">
                                     <?php if(!empty($_GET['register'])):?>
