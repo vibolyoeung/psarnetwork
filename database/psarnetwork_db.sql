@@ -16,6 +16,21 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`psarnetwork_db` /*!40100 DEFAULT CHARAC
 
 USE `psarnetwork_db`;
 
+/*Table structure for table `account_role` */
+
+DROP TABLE IF EXISTS `account_role`;
+
+CREATE TABLE `account_role` (
+  `rol_id` int(11) NOT NULL AUTO_INCREMENT,
+  `rol_name` varchar(100) DEFAULT NULL,
+  `acc_type_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`rol_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+/*Data for the table `account_role` */
+
+insert  into `account_role`(`rol_id`,`rol_name`,`acc_type_id`) values (1,'Supplier',0),(2,'Distributor',0),(3,'Retialer',0),(4,'Personal',0);
+
 /*Table structure for table `account_type` */
 
 DROP TABLE IF EXISTS `account_type`;
@@ -80,22 +95,32 @@ DROP TABLE IF EXISTS `advertisement`;
 
 CREATE TABLE `advertisement` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) DEFAULT NULL,
-  `description` text,
+  `title_en` varchar(200) DEFAULT NULL,
+  `title_km` varchar(250) NOT NULL,
+  `description_en` text,
+  `description_km` text NOT NULL,
   `image` varchar(200) DEFAULT NULL,
   `link_url` varchar(200) DEFAULT NULL,
   `started_date` varchar(100) DEFAULT NULL,
   `end_date` varchar(100) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
+  `incharger` int(11) NOT NULL,
+  `pro_cat_id` int(11) DEFAULT '0',
+  `size` int(11) NOT NULL,
+  `type` int(11) NOT NULL,
   `status` int(11) DEFAULT NULL,
+  `apearance` int(11) NOT NULL,
   `adv_position_id` int(11) NOT NULL,
+  `adv_cat_page_id` int(11) NOT NULL,
   `adv_page_id` int(11) DEFAULT NULL,
+  `license_id` int(11) NOT NULL,
+  `payment_method` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `advertisement` */
 
-insert  into `advertisement`(`id`,`title`,`description`,`image`,`link_url`,`started_date`,`end_date`,`user_id`,`status`,`adv_position_id`,`adv_page_id`) values (4,'Web Developer with more than 2 years experiences','Hello world','1417449562.jpg','https://www.google.com.kh','23/12/2014','23/12/2014',2,1,0,2);
+insert  into `advertisement`(`id`,`title_en`,`title_km`,`description_en`,`description_km`,`image`,`link_url`,`started_date`,`end_date`,`user_id`,`incharger`,`pro_cat_id`,`size`,`type`,`status`,`apearance`,`adv_position_id`,`adv_cat_page_id`,`adv_page_id`,`license_id`,`payment_method`) values (2,'Advertisement title eeee','ចំណងជើង2ផ្សព្វ​ផ្សាយ','English title','ការពីពរណា','1422546836.jpg','https://www.google.com.kh','29/01/2015','23/01/2015',0,2,14,0,2,1,0,5,2,5,4,1),(3,'title aaa','Omnis consectetur ut cupidatat eu Nam vel','Atque laborum aut voluptas et amet, excepteur mollitia consequuntur eos vel qui rerum ipsum quo necessitatibus qui esse.','Sed et harum consectetur, in excepteur et quod eligendi sit, sit sit ab aut voluptas quod natus aliquip.','1424532737.jpg','https://www.google.com.kh','14-Jun-2001','12-Apr-1971',0,2,15,30,2,1,1,3,2,3,3,3);
 
 /*Table structure for table `advertiser_profile` */
 
@@ -113,6 +138,35 @@ CREATE TABLE `advertiser_profile` (
 /*Data for the table `advertiser_profile` */
 
 insert  into `advertiser_profile`(`id`,`name`,`phone`,`email`,`address`) values (1,'Englishss','097 27 93 573','updoc.year4@gmail.com','PP'),(2,'Englishss','097 27 93 573','updoc.year4@gmail.com','PP'),(3,'KOCH DOEN','097 27 93 573','doeunkoch@gmail.com','PHP');
+
+/*Table structure for table `cat_page_position_mm` */
+
+DROP TABLE IF EXISTS `cat_page_position_mm`;
+
+CREATE TABLE `cat_page_position_mm` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `adv_page_id` int(11) NOT NULL,
+  `cat_adv_position_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+
+/*Data for the table `cat_page_position_mm` */
+
+insert  into `cat_page_position_mm`(`id`,`adv_page_id`,`cat_adv_position_id`) values (1,1,1),(2,2,1),(3,2,1),(4,3,1),(5,5,1),(6,6,1),(7,7,1),(8,8,1),(9,9,1),(10,1,2),(11,3,2),(12,4,2),(13,5,2),(14,6,2),(15,7,2);
+
+/*Table structure for table `category_adv_position` */
+
+DROP TABLE IF EXISTS `category_adv_position`;
+
+CREATE TABLE `category_adv_position` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+/*Data for the table `category_adv_position` */
+
+insert  into `category_adv_position`(`id`,`name`) values (1,'Banner Advertisment'),(2,'Product Advertisment');
 
 /*Table structure for table `client_type` */
 
@@ -178,6 +232,21 @@ CREATE TABLE `layout` (
 
 /*Data for the table `layout` */
 
+/*Table structure for table `license` */
+
+DROP TABLE IF EXISTS `license`;
+
+CREATE TABLE `license` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name_en` varchar(250) NOT NULL,
+  `name_km` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+/*Data for the table `license` */
+
+insert  into `license`(`id`,`name_en`,`name_km`) values (1,'commercial','ពាណិជ្ជកម្ម'),(2,'free','មិនគឹតថ្លៃ'),(3,'testing','សាកល្បង'),(4,'expired','ផុតកំណត់');
+
 /*Table structure for table `m_category` */
 
 DROP TABLE IF EXISTS `m_category`;
@@ -185,15 +254,15 @@ DROP TABLE IF EXISTS `m_category`;
 CREATE TABLE `m_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name_en` varchar(100) DEFAULT NULL,
-  `name_zh` varchar(100) DEFAULT NULL,
+  `name_km` varchar(100) DEFAULT NULL,
   `parent_id` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8;
 
 /*Data for the table `m_category` */
 
-insert  into `m_category`(`id`,`name_en`,`name_zh`,`parent_id`,`status`) values (13,'testing','testing',11,0),(14,'Vichicle','Vichicle',0,1),(15,'Car','Car',14,1),(16,'luxis','luxis',15,1),(17,'Luxis-330','Luxis-330',16,1),(18,'TV','TV',0,1);
+insert  into `m_category`(`id`,`name_en`,`name_km`,`parent_id`,`status`) values (19,'Electronic','អេឡិចត្រូនិច',0,1),(20,'Computer , Software,Network,Hardware','Computer , Software,Network,Hardware',19,1),(21,'Software','Software',20,1),(22,'System Sale','System Sale',21,1),(23,'Software Development','Software Development',21,1),(24,'Software Mantainnace','Software Mantainnace',21,1),(25,'Hardware &Computer','Hardware &Computer',20,1),(26,'KWM-Switch','KWM-Switch',25,1),(27,'Network-Carbinet','Network-Carbinet',25,1),(28,'Router','Router',25,1),(29,'Switch','Switch',25,1),(30,'Hub','Hub',25,1),(31,'UMPC','UMPC',25,1),(32,'Networking-Storage','Networking-Storage',25,1),(33,'Laptop','Laptop',25,1),(34,'Mini-Laptop','Mini-Laptop',25,1),(35,'Desktop','Desktop',25,1),(36,'Server','Server',25,1),(37,'PDAs','PDAs',25,1),(38,'Tablet PC','Tablet PC',25,1),(39,'Tablet PC Stand','Tablet PC Stand',25,1),(40,'Tablet Stylus Pen','Tablet Stylus Pen',25,1),(41,'Printer','Printer',25,1),(42,'Scanner','Scanner',25,1),(43,'UPS','UPS',25,1),(44,'ATM','ATM',25,1),(45,'Projector','Projector',25,1),(46,'Network-Accessory','Network-Accessory',20,1),(47,'Computer Cable&connector','Computer Cable&connector',46,1),(48,'Phone Cable&Connector','Phone Cable&Connector',46,1),(49,'Camara Cable&Connector','Camara Cable&Connector',46,1),(50,'Firewall & VPN Modem','Firewall & VPN Modem',46,1),(51,'Cable Criper','Cable Criper',46,1),(52,'Network Testing Device','Network Testing Device',46,1),(53,'Phone Puncher','Phone Puncher',46,1),(54,'Trunk cable','Trunk cable',46,1),(55,'Computer-Component','Computer-Component',20,1),(56,'Mother Board','Mother Board',55,1),(57,'Powersuply','Powersuply',55,1),(58,'Ram','Ram',55,1),(59,'CPU','CPU',55,1),(60,'Hard Disk','Hard Disk',55,1),(61,'Sound Card','Sound Card',55,1),(62,'VGA Card','VGA Card',55,1),(63,'Network Card','Network Card',55,1),(64,'USB Port','USB Port',55,1),(65,'Monitor','Monitor',55,1),(66,'Laptop-Battery','Laptop-Battery',55,1),(67,'KeyBoard','KeyBoard',55,1),(68,'Mouse','Mouse',55,1),(69,'DVD Room','DVD Room',55,1),(70,'CD Room','CD Room',55,1),(71,'Case&Towers','Case&Towers',55,1),(72,'Rak','Rak',55,1),(73,'Computer-Accessory','Computer-Accessory',20,1),(74,'Fan&Cooling','Fan&Cooling',73,1),(75,'Screen-Protector','Screen-Protector',73,1),(76,'Keyboard-Cover','Keyboard-Cover',73,1),(77,'Mouse Pad','Mouse Pad',73,1),(78,'USB Flash','USB Flash',73,1),(79,'External Hard Disk','External Hard Disk',73,1),(80,'Blank Media','Blank Media',73,1),(81,'Floopy Disk','Floopy Disk',73,1),(82,'DVD Disk','DVD Disk',73,1),(83,'CD Disk','CD Disk',73,1),(84,'Computer-Bag','Computer-Bag',73,1),(85,'Laptop-Bag','Laptop-Bag',73,1),(86,'Laptop-Loling Pad','Laptop-Loling Pad',73,1),(87,'Card Reader','Card Reader',73,1),(88,'Modem','Modem',73,1),(89,'USB Gaget','USB Gaget',73,1),(90,'USB Hub','USB Hub',73,1),(91,'Cleaner-Sweeper','Cleaner-Sweeper',73,1),(92,'Screen-Cleaning Water','Screen-Cleaning Water',73,1),(93,'Computer-Headset','Computer-Headset',73,1),(94,'Computer-Speaker','Computer-Speaker',73,1),(95,'VGA Cable Connector','VGA Cable Connector',73,1),(96,'Power Cable Connector','Power Cable Connector',73,1),(98,'Installation Service','Installation Service',20,1),(99,'Server Setup Envirement','Server Setup Envirement',98,1),(100,'Firewall & VPN Connection','Firewall & VPN Connection',98,1),(101,'Cable Installation Structure','Cable Installation Structure',98,1),(102,'Replication Database Syncronize','Replication Database Syncronize',98,1),(103,'Electronic Consumer','Electronic Consumer',19,1),(104,'Phone','Phone',103,1),(105,'Smart  Phone (Cell Phone)','Smart  Phone (Cell Phone)',104,1),(106,'Normal Phone(Cell Phone)','Normal Phone(Cell Phone)',104,1),(107,'Home Phone','Home Phone',104,1),(108,'Office Desk phone','Office Desk phone',104,1),(109,'Ecom','Ecom',104,1);
 
 /*Table structure for table `m_page` */
 
@@ -203,18 +272,19 @@ CREATE TABLE `m_page` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sys_user_id` int(11) DEFAULT NULL,
   `title_en` varchar(100) DEFAULT NULL,
-  `title_zh` varchar(50) DEFAULT NULL,
+  `title_km` varchar(50) DEFAULT NULL,
   `short_desc_en` text,
-  `short_desc_zh` text,
+  `short_desc_km` text,
   `status` int(1) DEFAULT '1',
   `create_at` varchar(50) DEFAULT NULL,
   `update_at` varchar(50) DEFAULT NULL,
+  `type` varchar(50) DEFAULT 'static',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 /*Data for the table `m_page` */
 
-insert  into `m_page`(`id`,`sys_user_id`,`title_en`,`title_zh`,`short_desc_en`,`short_desc_zh`,`status`,`create_at`,`update_at`) values (15,2,'Abouts','關於','About','關於',1,'2014-10-20','2014-11-27');
+insert  into `m_page`(`id`,`sys_user_id`,`title_en`,`title_km`,`short_desc_en`,`short_desc_km`,`status`,`create_at`,`update_at`,`type`) values (18,2,'sfdfssssssssssss','dsfd','cvx','cxvcv',1,'2015-01-19','2015-01-19','static');
 
 /*Table structure for table `market` */
 
@@ -223,22 +293,23 @@ DROP TABLE IF EXISTS `market`;
 CREATE TABLE `market` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title_en` varchar(100) DEFAULT NULL,
-  `title_zh` varchar(100) DEFAULT NULL,
+  `title_km` varchar(100) DEFAULT NULL,
   `created_date` varchar(100) DEFAULT NULL,
   `modify_date` varchar(100) DEFAULT NULL,
   `desc_en` text,
-  `desc_zh` text,
+  `desc_km` text,
   `province_id` int(11) DEFAULT NULL,
   `district_id` int(11) DEFAULT NULL,
   `image` varchar(100) DEFAULT NULL,
   `amount_stair` varchar(100) DEFAULT NULL,
   `market_type` int(11) NOT NULL,
+  `address` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 /*Data for the table `market` */
 
-insert  into `market`(`id`,`title_en`,`title_zh`,`created_date`,`modify_date`,`desc_en`,`desc_zh`,`province_id`,`district_id`,`image`,`amount_stair`,`market_type`) values (8,'esss-update','ss-update','2014-11-11','2014-12-02','sfds','sss',1,172,'1415719636.jpg','10',2),(9,'Sovana','At The Old','2014-12-04',NULL,'this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me this is the testing of me ','',2,125,'1417698209.png','4',5),(10,'IT company','That is','2014-12-04',NULL,'This is phom Pehn City company This is phom Pehn City company This is phom Pehn City company This is phom Pehn City company This is phom Pehn City company ','This is phom Pehn City company This is phom Pehn City company This is phom Pehn City company This is phom Pehn City company This is phom Pehn City company ',3,90,'1417698382.png','2',3);
+insert  into `market`(`id`,`title_en`,`title_km`,`created_date`,`modify_date`,`desc_en`,`desc_km`,`province_id`,`district_id`,`image`,`amount_stair`,`market_type`,`address`) values (12,'Sovana','សុវានណា','2015-02-20',NULL,'dfssdfsf','fddsf',2,127,'1424447936.PNG','4',3,'11.619955,105.875244');
 
 /*Table structure for table `migrations` */
 
@@ -251,6 +322,20 @@ CREATE TABLE `migrations` (
 
 /*Data for the table `migrations` */
 
+/*Table structure for table `payment_method` */
+
+DROP TABLE IF EXISTS `payment_method`;
+
+CREATE TABLE `payment_method` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+/*Data for the table `payment_method` */
+
+insert  into `payment_method`(`id`,`name`) values (1,'Yearly'),(2,'Montly'),(3,'Contract');
+
 /*Table structure for table `permission` */
 
 DROP TABLE IF EXISTS `permission`;
@@ -260,11 +345,11 @@ CREATE TABLE `permission` (
   `permission_name` varchar(200) DEFAULT NULL,
   `permission_name_alias` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
 
 /*Data for the table `permission` */
 
-insert  into `permission`(`id`,`permission_name`,`permission_name_alias`) values (1,'admin/users','User'),(2,'admin/create','Create User'),(3,'admin/edit','Edit User'),(4,'admin/delete','Delete User'),(5,'admin/status','Enable User'),(6,'admin/profile','Edit Profile'),(7,'admin/change-password','Change Password'),(8,'admin/dashboard','Dashboard'),(9,'admin/user-group','User Group'),(10,'admin/user-group-add','Create User Group'),(12,'admin/user-group-edit','Edit User Group'),(13,'admin/user-group-delete','Delete User Group'),(14,'admin/pages','Page'),(15,'admin/create-page','Create Page'),(16,'admin/edit-page','Edit Page'),(17,'admin/status-page','Enable Page'),(18,'admin/slideshows','Slideshow'),(19,'admin/create-slideshow','Create Slideshow'),(20,'admin/edit-slideshow','Edit Slideshow'),(21,'admin/delete-slideshow','Delete Slideshow'),(22,'admin/status-slideshow','Enable Slideshow'),(23,'admin/advertisements','Advertisement'),(24,'admin/create-advertisement','Create Advertisement'),(25,'admin/list-ads-positions','List Ads Positions'),(26,'admin/edit-advertisement','Edit Advertisement'),(27,'admin/delete-advertisement','Delete Advertisement'),(28,'admin/status-advertisement','Enable Advertisement'),(29,'admin/categories','Category'),(30,'admin/create-category','Create Category'),(31,'admin/delete-page','Delete Page'),(32,'admin/delete-category','Delete Category'),(33,'admin/status-category','Enable Category'),(34,'admin/markets','Market'),(35,'admin/create-market','Create Market'),(36,'admin/edit-market','Edit Market'),(37,'admin/delete-market','Delete Market'),(38,'admin/list-district','List District'),(39,'admin/delete-page','delete Page'),(42,'admin/edit-category','Edit Category'),(43,'admin/setting-list','Setting'),(46,'admin/setting-add-permission-name','Setting Add Permission'),(48,'admin/setting-delete-permission-name','Setting Delete Permission'),(49,'admin/setting-add-slideshow','Setting Add Slideshow'),(50,'admin/client-user-type','Client User Type'),(51,'admin/client-user-type-edit','Edit Client User Type');
+insert  into `permission`(`id`,`permission_name`,`permission_name_alias`) values (1,'admin/users','User'),(2,'admin/create','Create User'),(3,'admin/edit','Edit User'),(4,'admin/delete','Delete User'),(5,'admin/status','Enable User'),(6,'admin/profile','Edit Profile'),(7,'admin/change-password','Change Password'),(8,'admin/dashboard','Dashboard'),(9,'admin/user-group','User Group'),(10,'admin/user-group-add','Create User Group'),(12,'admin/user-group-edit','Edit User Group'),(13,'admin/user-group-delete','Delete User Group'),(14,'admin/pages','Page'),(15,'admin/create-page','Create Page'),(16,'admin/edit-page','Edit Page'),(17,'admin/status-page','Enable Page'),(18,'admin/slideshows','Slideshow'),(19,'admin/create-slideshow','Create Slideshow'),(20,'admin/edit-slideshow','Edit Slideshow'),(21,'admin/delete-slideshow','Delete Slideshow'),(22,'admin/status-slideshow','Enable Slideshow'),(23,'admin/advertisements','Advertisement'),(24,'admin/create-advertisement','Create Advertisement'),(25,'admin/list-ads-positions','List Ads Positions'),(26,'admin/edit-advertisement','Edit Advertisement'),(27,'admin/delete-advertisement','Delete Advertisement'),(28,'admin/status-advertisement','Enable Advertisement'),(29,'admin/categories','Category'),(30,'admin/create-category','Create Category'),(31,'admin/delete-page','Delete Page'),(32,'admin/delete-category','Delete Category'),(33,'admin/status-category','Enable Category'),(34,'admin/markets','Market'),(35,'admin/create-market','Create Market'),(36,'admin/edit-market','Edit Market'),(37,'admin/delete-market','Delete Market'),(38,'admin/list-district','List District'),(39,'admin/delete-page','delete Page'),(42,'admin/edit-category','Edit Category'),(43,'admin/back-end-setting','Backend Setting'),(46,'admin/setting-add-permission-name','Setting Add Permission'),(48,'admin/setting-delete-permission-name','Setting Delete Permission'),(49,'admin/setting-add-slideshow','Setting Add Slideshow'),(50,'admin/client-user-type','Client User Type'),(51,'admin/client-user-type-edit','Edit Client User Type'),(52,'admin/front-end-setting','Frontend Setting');
 
 /*Table structure for table `product` */
 
@@ -273,61 +358,73 @@ DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) DEFAULT NULL,
-  `short_desc` varchar(200) DEFAULT NULL,
-  `description` text,
   `price` float DEFAULT NULL,
   `product_service_type_id` int(11) DEFAULT NULL,
-  `category_id` int(11) DEFAULT NULL,
-  `image` varchar(200) DEFAULT NULL,
+  `thumbnail` text,
+  `pictures` text,
   `created_date` varchar(20) DEFAULT NULL,
   `expire_date` varchar(20) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `pro_condition_id` int(11) DEFAULT NULL,
+  `pro_status` int(11) DEFAULT NULL,
+  `pro_transfer_type_id` int(11) DEFAULT NULL,
+  `is_publish` int(11) DEFAULT NULL,
+  `contact_info` text,
+  `file_quotation` text,
+  `description` text,
+  `view` int(11) DEFAULT '0',
+  `s_category_id` int(11) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `top_up` varchar(255) DEFAULT NULL,
+  `point_to_view` int(11) DEFAULT '0',
+  `publish_date` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_store_product` (`store_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 /*Data for the table `product` */
 
-insert  into `product`(`id`,`title`,`short_desc`,`description`,`price`,`product_service_type_id`,`category_id`,`image`,`created_date`,`expire_date`,`status`) values (1,'product-slide','ShortDesc','Long Desc',20,1,1,'1413631092.jpg','2014/11/10','2014/11/26',1);
+insert  into `product`(`id`,`title`,`price`,`product_service_type_id`,`thumbnail`,`pictures`,`created_date`,`expire_date`,`pro_condition_id`,`pro_status`,`pro_transfer_type_id`,`is_publish`,`contact_info`,`file_quotation`,`description`,`view`,`s_category_id`,`store_id`,`user_id`,`top_up`,`point_to_view`,`publish_date`) values (24,'Aut quae ullam nihil quo ea sed necessitatibus suscipit',418,NULL,'256d068d034ae1c5d0f3d92b9f9263143c2b8c7d.jpg','[{\"pic\":\"256d068d034ae1c5d0f3d92b9f9263143c2b8c7d.jpg\"},{\"pic\":\"80f643f94a37d037c3127f354ecd0c7f2c163364.jpg\"},{\"pic\":\"0d099205edaeac1f261c99563ed98f75bc9aeedc.jpg\"}]',NULL,NULL,3,3,5,1,'{\"contactName\":\"dara\",\"contactEmail\":\"dara@gmail.com\",\"contactHP\":\"0972793573\",\"contactLocation\":\"Banteay Meanchey\"}','295f4190f346ab83f0f09ecb2b9beb7be6fdf05e.jpg','In assumenda quae dolore facere dolorem ipsum, labore praesentium dolores aut illum, totam.',0,90,12,29,'2015-05-30 16:34:21',0,'15/05/2015');
 
-/*Table structure for table `product_in_store` */
+/*Table structure for table `product_condiction` */
 
-DROP TABLE IF EXISTS `product_in_store`;
+DROP TABLE IF EXISTS `product_condiction`;
 
-CREATE TABLE `product_in_store` (
-  `id` int(11) unsigned zerofill NOT NULL,
-  `pro_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `store_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `product_in_store` */
-
-/*Table structure for table `product_service_type` */
-
-DROP TABLE IF EXISTS `product_service_type`;
-
-CREATE TABLE `product_service_type` (
+CREATE TABLE `product_condiction` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
-/*Data for the table `product_service_type` */
+/*Data for the table `product_condiction` */
 
-insert  into `product_service_type`(`id`,`name`) values (1,'sell'),(2,'Buy'),(3,'Rent'),(4,'Hot Promotion');
+insert  into `product_condiction`(`id`,`name`) values (1,'New'),(2,'Second Hand'),(3,'Repaired'),(4,'Old'),(5,'Broken'),(6,'Unusable');
+
+/*Table structure for table `product_transfer_type` */
+
+DROP TABLE IF EXISTS `product_transfer_type`;
+
+CREATE TABLE `product_transfer_type` (
+  `ptt_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ptt_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+/*Data for the table `product_transfer_type` */
+
+insert  into `product_transfer_type`(`ptt_id`,`name`) values (1,'Sale'),(2,'Buy'),(3,'Rent'),(4,'Monthly Pay'),(5,'Hot Promotion');
 
 /*Table structure for table `province` */
 
 DROP TABLE IF EXISTS `province`;
 
 CREATE TABLE `province` (
-  `province_id` int(11) NOT NULL,
+  `province_id` int(11) NOT NULL AUTO_INCREMENT,
   `province_name` varchar(100) DEFAULT NULL,
   `province_ordering` int(11) DEFAULT NULL,
   `province_lat_long` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`province_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 /*Data for the table `province` */
 
@@ -339,12 +436,17 @@ DROP TABLE IF EXISTS `s_category`;
 
 CREATE TABLE `s_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `m_cat_id` int(11) DEFAULT NULL,
+  `name_en` varchar(150) DEFAULT NULL,
+  `name_km` varchar(200) DEFAULT NULL,
+  `m_cat_id` int(11) NOT NULL,
+  `m_title` varchar(255) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `parent_id` int(11) DEFAULT NULL,
   `order` int(11) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `is_publish` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_user_category` (`user_id`),
+  CONSTRAINT `fk_user_category` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `s_category` */
@@ -359,8 +461,13 @@ CREATE TABLE `s_page` (
   `m_page_id` int(11) DEFAULT NULL,
   `title` varchar(100) DEFAULT NULL,
   `description` text,
-  `position` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `position` int(1) DEFAULT NULL,
+  `order` int(11) DEFAULT NULL,
+  `type` varchar(50) DEFAULT 'static',
+  `status` int(1) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `fk_user_page_id` (`user_id`),
+  CONSTRAINT `fk_user_page_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `s_page` */
@@ -409,7 +516,7 @@ DROP TABLE IF EXISTS `store`;
 
 CREATE TABLE `store` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
   `sup_id` int(11) DEFAULT NULL,
   `title_en` varchar(100) DEFAULT NULL,
   `title_zh` varchar(100) DEFAULT NULL,
@@ -418,12 +525,17 @@ CREATE TABLE `store` (
   `view` int(11) DEFAULT NULL,
   `stair` varchar(100) DEFAULT NULL,
   `image` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  `sto_url` varchar(250) DEFAULT NULL,
+  `sto_banner` varchar(250) DEFAULT NULL,
+  `sto_value` text,
+  PRIMARY KEY (`id`),
+  KEY `fk_user_id` (`user_id`),
+  CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 /*Data for the table `store` */
 
-insert  into `store`(`id`,`user_id`,`sup_id`,`title_en`,`title_zh`,`desc_en`,`desc_zh`,`view`,`stair`,`image`) values (4,NULL,6,'Store1','sdd','SF','SFS',NULL,'23','1414236547.jpg');
+insert  into `store`(`id`,`user_id`,`sup_id`,`title_en`,`title_zh`,`desc_en`,`desc_zh`,`view`,`stair`,`image`,`sto_url`,`sto_banner`,`sto_value`) values (12,29,0,'Dara Page',NULL,NULL,NULL,NULL,NULL,'1432998691.jpg','dara.khan','1433001704.png','{\"layout\":\"main-layout-user-a.css\"}');
 
 /*Table structure for table `template` */
 
@@ -455,13 +567,15 @@ CREATE TABLE `user` (
   `account_type` int(11) DEFAULT NULL,
   `client_type` int(11) DEFAULT NULL,
   `telephone` varchar(50) DEFAULT NULL,
-  `address` varchar(50) DEFAULT NULL,
+  `address` text,
+  `account_role` int(11) DEFAULT NULL,
+  `user_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`name`,`email`,`password`,`password_temp`,`status`,`create_at`,`update_at`,`remember_token`,`user_type`,`account_type`,`client_type`,`telephone`,`address`) values (2,'KOCH Doeun','doeunkoch@gmail.com','$2y$10$9zwNoGkcOPhycNEP/P2xPuWkXJZmuXlT9rEV2Y.0TxQTsO9NbtlXq',NULL,1,'2014-12-04',NULL,'SOtL5IaQRMitMnPTcWerVYpS2QHjBmOztdwLZcyClKDWm4pTTCXTTmsdAUNp',1,NULL,NULL,'0972793573','Phnom Penh'),(3,'HOM Kimhim','kimhim.hom-updated@gmail.com','$2y$10$RY3WZxvzq9K4X/4ZGdQP.uj.usxhCXU2vmhYcC6SXuX/irnlmiJum',NULL,1,NULL,'2014-11-26','',1,NULL,NULL,NULL,NULL),(4,'somoeun','soungsomoeun@gmail.com','$2y$10$tEdDxdASF9CB/1YCy.Ov6uq9rbCJRey/e5sbbzxOqhdQUMV5ynRGe',NULL,1,'2014-12-04',NULL,'LunFK8BV4cKI5F8ogAi5oaNteGU2e332rOvA7WFgTBVpZi72K70GNtnuStIM',5,NULL,NULL,NULL,NULL),(5,'vanny','vanny@gmail.com','$2y$10$o6R5JnD0IBSuI/6w5AP5FuuoWXSZhH26TpZotsjt/PTAn6r72y3Ii',NULL,1,'2014-12-28',NULL,'6J61o6Ao4dbftobegHCQ1usg9KHIoWlKQzBqnU57kKwP5E4fOlkfe97ZtZUA',6,NULL,NULL,NULL,NULL);
+insert  into `user`(`id`,`name`,`email`,`password`,`password_temp`,`status`,`create_at`,`update_at`,`remember_token`,`user_type`,`account_type`,`client_type`,`telephone`,`address`,`account_role`,`user_name`) values (2,'KOCH Doeun','doeunkoch@gmail.com','$2y$10$9zwNoGkcOPhycNEP/P2xPuWkXJZmuXlT9rEV2Y.0TxQTsO9NbtlXq',NULL,1,'2014-12-04',NULL,'ABtnxgwyDL4PlMcYsVYYeRSfrLOH9k1xXlxITtjnCxBxy3scPBquh8R78ZYI',1,NULL,NULL,'0972793573','Phnom Penh',NULL,''),(3,'HOM Kimhim','kimhim.hom-updated@gmail.com','$2y$10$RY3WZxvzq9K4X/4ZGdQP.uj.usxhCXU2vmhYcC6SXuX/irnlmiJum',NULL,1,NULL,'2014-11-26','',1,NULL,NULL,NULL,NULL,NULL,''),(14,'KOCHDOEUN','doeunkoch1@gmail.com','693cfed9dd8adf7c63afbf53cf3a8043',NULL,1,'2015-02-21',NULL,NULL,4,NULL,2,'09727935730','{\"province\":\"15\",\"disctict\":\"9\",\"g_latitude_longit',2,''),(29,'dara','dara@gmail.com','693cfed9dd8adf7c63afbf53cf3a8043',NULL,1,'2015-05-30','2015-05-30',NULL,4,1,2,'0972793573','{\"province\":\"\",\"disctict\":null,\"g_latitude_longitude\":\"11.286161,104.532852\"}',2,'');
 
 /*Table structure for table `user_type` */
 
@@ -476,7 +590,7 @@ CREATE TABLE `user_type` (
 
 /*Data for the table `user_type` */
 
-insert  into `user_type`(`id`,`name`,`permission`) values (1,'Observer','a:2:{s:6:\"access\";a:45:{i:0;s:4:\"sfdf\";i:1;s:27:\"admin/client-user-type-edit\";i:2;s:22:\"admin/client-user-type\";i:3;s:27:\"admin/setting-add-slideshow\";i:4;s:36:\"admin/setting-delete-permission-name\";i:5;s:33:\"admin/setting-add-permission-name\";i:6;s:18:\"admin/setting-list\";i:7;s:19:\"admin/edit-category\";i:8;s:17:\"admin/delete-page\";i:9;s:19:\"admin/list-district\";i:10;s:19:\"admin/delete-market\";i:11;s:17:\"admin/edit-market\";i:12;s:19:\"admin/create-market\";i:13;s:13:\"admin/markets\";i:14;s:21:\"admin/status-category\";i:15;s:21:\"admin/delete-category\";i:16;s:17:\"admin/delete-page\";i:17;s:21:\"admin/create-category\";i:18;s:16:\"admin/categories\";i:19;s:26:\"admin/status-advertisement\";i:20;s:26:\"admin/delete-advertisement\";i:21;s:24:\"admin/edit-advertisement\";i:22;s:24:\"admin/list-ads-positions\";i:23;s:26:\"admin/create-advertisement\";i:24;s:20:\"admin/advertisements\";i:25;s:22:\"admin/status-slideshow\";i:26;s:22:\"admin/delete-slideshow\";i:27;s:20:\"admin/edit-slideshow\";i:28;s:16:\"admin/slideshows\";i:29;s:17:\"admin/status-page\";i:30;s:15:\"admin/edit-page\";i:31;s:17:\"admin/create-page\";i:32;s:11:\"admin/pages\";i:33;s:23:\"admin/user-group-delete\";i:34;s:21:\"admin/user-group-edit\";i:35;s:20:\"admin/user-group-add\";i:36;s:16:\"admin/user-group\";i:37;s:15:\"admin/dashboard\";i:38;s:21:\"admin/change-password\";i:39;s:13:\"admin/profile\";i:40;s:12:\"admin/status\";i:41;s:12:\"admin/delete\";i:42;s:10:\"admin/edit\";i:43;s:12:\"admin/create\";i:44;s:11:\"admin/users\";}s:6:\"modify\";a:44:{i:0;s:4:\"sfdf\";i:1;s:27:\"admin/client-user-type-edit\";i:2;s:22:\"admin/client-user-type\";i:3;s:27:\"admin/setting-add-slideshow\";i:4;s:36:\"admin/setting-delete-permission-name\";i:5;s:33:\"admin/setting-add-permission-name\";i:6;s:18:\"admin/setting-list\";i:7;s:19:\"admin/edit-category\";i:8;s:17:\"admin/delete-page\";i:9;s:19:\"admin/list-district\";i:10;s:19:\"admin/delete-market\";i:11;s:17:\"admin/edit-market\";i:12;s:19:\"admin/create-market\";i:13;s:13:\"admin/markets\";i:14;s:21:\"admin/status-category\";i:15;s:21:\"admin/delete-category\";i:16;s:17:\"admin/delete-page\";i:17;s:21:\"admin/create-category\";i:18;s:16:\"admin/categories\";i:19;s:26:\"admin/status-advertisement\";i:20;s:26:\"admin/delete-advertisement\";i:21;s:24:\"admin/edit-advertisement\";i:22;s:24:\"admin/list-ads-positions\";i:23;s:26:\"admin/create-advertisement\";i:24;s:20:\"admin/advertisements\";i:25;s:22:\"admin/status-slideshow\";i:26;s:22:\"admin/delete-slideshow\";i:27;s:20:\"admin/edit-slideshow\";i:28;s:22:\"admin/create-slideshow\";i:29;s:16:\"admin/slideshows\";i:30;s:17:\"admin/status-page\";i:31;s:15:\"admin/edit-page\";i:32;s:17:\"admin/create-page\";i:33;s:11:\"admin/pages\";i:34;s:23:\"admin/user-group-delete\";i:35;s:21:\"admin/user-group-edit\";i:36;s:20:\"admin/user-group-add\";i:37;s:16:\"admin/user-group\";i:38;s:15:\"admin/dashboard\";i:39;s:12:\"admin/status\";i:40;s:12:\"admin/delete\";i:41;s:10:\"admin/edit\";i:42;s:12:\"admin/create\";i:43;s:11:\"admin/users\";}}'),(2,'Supervisor','a:2:{s:6:\"access\";a:45:{i:0;s:4:\"sfdf\";i:1;s:27:\"admin/client-user-type-edit\";i:2;s:22:\"admin/client-user-type\";i:3;s:27:\"admin/setting-add-slideshow\";i:4;s:36:\"admin/setting-delete-permission-name\";i:5;s:33:\"admin/setting-add-permission-name\";i:6;s:18:\"admin/setting-list\";i:7;s:19:\"admin/edit-category\";i:8;s:17:\"admin/delete-page\";i:9;s:19:\"admin/list-district\";i:10;s:19:\"admin/delete-market\";i:11;s:17:\"admin/edit-market\";i:12;s:19:\"admin/create-market\";i:13;s:13:\"admin/markets\";i:14;s:21:\"admin/status-category\";i:15;s:21:\"admin/delete-category\";i:16;s:17:\"admin/delete-page\";i:17;s:21:\"admin/create-category\";i:18;s:16:\"admin/categories\";i:19;s:26:\"admin/status-advertisement\";i:20;s:26:\"admin/delete-advertisement\";i:21;s:24:\"admin/edit-advertisement\";i:22;s:24:\"admin/list-ads-positions\";i:23;s:26:\"admin/create-advertisement\";i:24;s:20:\"admin/advertisements\";i:25;s:22:\"admin/status-slideshow\";i:26;s:22:\"admin/delete-slideshow\";i:27;s:20:\"admin/edit-slideshow\";i:28;s:16:\"admin/slideshows\";i:29;s:17:\"admin/status-page\";i:30;s:15:\"admin/edit-page\";i:31;s:17:\"admin/create-page\";i:32;s:11:\"admin/pages\";i:33;s:23:\"admin/user-group-delete\";i:34;s:21:\"admin/user-group-edit\";i:35;s:20:\"admin/user-group-add\";i:36;s:16:\"admin/user-group\";i:37;s:15:\"admin/dashboard\";i:38;s:21:\"admin/change-password\";i:39;s:13:\"admin/profile\";i:40;s:12:\"admin/status\";i:41;s:12:\"admin/delete\";i:42;s:10:\"admin/edit\";i:43;s:12:\"admin/create\";i:44;s:11:\"admin/users\";}s:6:\"modify\";a:44:{i:0;s:4:\"sfdf\";i:1;s:27:\"admin/client-user-type-edit\";i:2;s:22:\"admin/client-user-type\";i:3;s:27:\"admin/setting-add-slideshow\";i:4;s:36:\"admin/setting-delete-permission-name\";i:5;s:33:\"admin/setting-add-permission-name\";i:6;s:18:\"admin/setting-list\";i:7;s:19:\"admin/edit-category\";i:8;s:17:\"admin/delete-page\";i:9;s:19:\"admin/list-district\";i:10;s:19:\"admin/delete-market\";i:11;s:17:\"admin/edit-market\";i:12;s:19:\"admin/create-market\";i:13;s:13:\"admin/markets\";i:14;s:21:\"admin/status-category\";i:15;s:21:\"admin/delete-category\";i:16;s:17:\"admin/delete-page\";i:17;s:21:\"admin/create-category\";i:18;s:16:\"admin/categories\";i:19;s:26:\"admin/status-advertisement\";i:20;s:26:\"admin/delete-advertisement\";i:21;s:24:\"admin/edit-advertisement\";i:22;s:24:\"admin/list-ads-positions\";i:23;s:26:\"admin/create-advertisement\";i:24;s:20:\"admin/advertisements\";i:25;s:22:\"admin/status-slideshow\";i:26;s:22:\"admin/delete-slideshow\";i:27;s:20:\"admin/edit-slideshow\";i:28;s:22:\"admin/create-slideshow\";i:29;s:16:\"admin/slideshows\";i:30;s:17:\"admin/status-page\";i:31;s:15:\"admin/edit-page\";i:32;s:17:\"admin/create-page\";i:33;s:11:\"admin/pages\";i:34;s:23:\"admin/user-group-delete\";i:35;s:21:\"admin/user-group-edit\";i:36;s:20:\"admin/user-group-add\";i:37;s:16:\"admin/user-group\";i:38;s:15:\"admin/dashboard\";i:39;s:12:\"admin/status\";i:40;s:12:\"admin/delete\";i:41;s:10:\"admin/edit\";i:42;s:12:\"admin/create\";i:43;s:11:\"admin/users\";}}'),(3,'Watcher','a:2:{s:6:\"access\";a:45:{i:0;s:4:\"sfdf\";i:1;s:27:\"admin/client-user-type-edit\";i:2;s:22:\"admin/client-user-type\";i:3;s:27:\"admin/setting-add-slideshow\";i:4;s:36:\"admin/setting-delete-permission-name\";i:5;s:33:\"admin/setting-add-permission-name\";i:6;s:18:\"admin/setting-list\";i:7;s:19:\"admin/edit-category\";i:8;s:17:\"admin/delete-page\";i:9;s:19:\"admin/list-district\";i:10;s:19:\"admin/delete-market\";i:11;s:17:\"admin/edit-market\";i:12;s:19:\"admin/create-market\";i:13;s:13:\"admin/markets\";i:14;s:21:\"admin/status-category\";i:15;s:21:\"admin/delete-category\";i:16;s:17:\"admin/delete-page\";i:17;s:21:\"admin/create-category\";i:18;s:16:\"admin/categories\";i:19;s:26:\"admin/status-advertisement\";i:20;s:26:\"admin/delete-advertisement\";i:21;s:24:\"admin/edit-advertisement\";i:22;s:24:\"admin/list-ads-positions\";i:23;s:26:\"admin/create-advertisement\";i:24;s:20:\"admin/advertisements\";i:25;s:22:\"admin/status-slideshow\";i:26;s:22:\"admin/delete-slideshow\";i:27;s:20:\"admin/edit-slideshow\";i:28;s:16:\"admin/slideshows\";i:29;s:17:\"admin/status-page\";i:30;s:15:\"admin/edit-page\";i:31;s:17:\"admin/create-page\";i:32;s:11:\"admin/pages\";i:33;s:23:\"admin/user-group-delete\";i:34;s:21:\"admin/user-group-edit\";i:35;s:20:\"admin/user-group-add\";i:36;s:16:\"admin/user-group\";i:37;s:15:\"admin/dashboard\";i:38;s:21:\"admin/change-password\";i:39;s:13:\"admin/profile\";i:40;s:12:\"admin/status\";i:41;s:12:\"admin/delete\";i:42;s:10:\"admin/edit\";i:43;s:12:\"admin/create\";i:44;s:11:\"admin/users\";}s:6:\"modify\";a:44:{i:0;s:4:\"sfdf\";i:1;s:27:\"admin/client-user-type-edit\";i:2;s:22:\"admin/client-user-type\";i:3;s:27:\"admin/setting-add-slideshow\";i:4;s:36:\"admin/setting-delete-permission-name\";i:5;s:33:\"admin/setting-add-permission-name\";i:6;s:18:\"admin/setting-list\";i:7;s:19:\"admin/edit-category\";i:8;s:17:\"admin/delete-page\";i:9;s:19:\"admin/list-district\";i:10;s:19:\"admin/delete-market\";i:11;s:17:\"admin/edit-market\";i:12;s:19:\"admin/create-market\";i:13;s:13:\"admin/markets\";i:14;s:21:\"admin/status-category\";i:15;s:21:\"admin/delete-category\";i:16;s:17:\"admin/delete-page\";i:17;s:21:\"admin/create-category\";i:18;s:16:\"admin/categories\";i:19;s:26:\"admin/status-advertisement\";i:20;s:26:\"admin/delete-advertisement\";i:21;s:24:\"admin/edit-advertisement\";i:22;s:24:\"admin/list-ads-positions\";i:23;s:26:\"admin/create-advertisement\";i:24;s:20:\"admin/advertisements\";i:25;s:22:\"admin/status-slideshow\";i:26;s:22:\"admin/delete-slideshow\";i:27;s:20:\"admin/edit-slideshow\";i:28;s:22:\"admin/create-slideshow\";i:29;s:16:\"admin/slideshows\";i:30;s:17:\"admin/status-page\";i:31;s:15:\"admin/edit-page\";i:32;s:17:\"admin/create-page\";i:33;s:11:\"admin/pages\";i:34;s:23:\"admin/user-group-delete\";i:35;s:21:\"admin/user-group-edit\";i:36;s:20:\"admin/user-group-add\";i:37;s:16:\"admin/user-group\";i:38;s:15:\"admin/dashboard\";i:39;s:12:\"admin/status\";i:40;s:12:\"admin/delete\";i:41;s:10:\"admin/edit\";i:42;s:12:\"admin/create\";i:43;s:11:\"admin/users\";}}'),(4,'client','a:2:{s:6:\"access\";a:45:{i:0;s:4:\"sfdf\";i:1;s:27:\"admin/client-user-type-edit\";i:2;s:22:\"admin/client-user-type\";i:3;s:27:\"admin/setting-add-slideshow\";i:4;s:36:\"admin/setting-delete-permission-name\";i:5;s:33:\"admin/setting-add-permission-name\";i:6;s:18:\"admin/setting-list\";i:7;s:19:\"admin/edit-category\";i:8;s:17:\"admin/delete-page\";i:9;s:19:\"admin/list-district\";i:10;s:19:\"admin/delete-market\";i:11;s:17:\"admin/edit-market\";i:12;s:19:\"admin/create-market\";i:13;s:13:\"admin/markets\";i:14;s:21:\"admin/status-category\";i:15;s:21:\"admin/delete-category\";i:16;s:17:\"admin/delete-page\";i:17;s:21:\"admin/create-category\";i:18;s:16:\"admin/categories\";i:19;s:26:\"admin/status-advertisement\";i:20;s:26:\"admin/delete-advertisement\";i:21;s:24:\"admin/edit-advertisement\";i:22;s:24:\"admin/list-ads-positions\";i:23;s:26:\"admin/create-advertisement\";i:24;s:20:\"admin/advertisements\";i:25;s:22:\"admin/status-slideshow\";i:26;s:22:\"admin/delete-slideshow\";i:27;s:20:\"admin/edit-slideshow\";i:28;s:16:\"admin/slideshows\";i:29;s:17:\"admin/status-page\";i:30;s:15:\"admin/edit-page\";i:31;s:17:\"admin/create-page\";i:32;s:11:\"admin/pages\";i:33;s:23:\"admin/user-group-delete\";i:34;s:21:\"admin/user-group-edit\";i:35;s:20:\"admin/user-group-add\";i:36;s:16:\"admin/user-group\";i:37;s:15:\"admin/dashboard\";i:38;s:21:\"admin/change-password\";i:39;s:13:\"admin/profile\";i:40;s:12:\"admin/status\";i:41;s:12:\"admin/delete\";i:42;s:10:\"admin/edit\";i:43;s:12:\"admin/create\";i:44;s:11:\"admin/users\";}s:6:\"modify\";a:44:{i:0;s:4:\"sfdf\";i:1;s:27:\"admin/client-user-type-edit\";i:2;s:22:\"admin/client-user-type\";i:3;s:27:\"admin/setting-add-slideshow\";i:4;s:36:\"admin/setting-delete-permission-name\";i:5;s:33:\"admin/setting-add-permission-name\";i:6;s:18:\"admin/setting-list\";i:7;s:19:\"admin/edit-category\";i:8;s:17:\"admin/delete-page\";i:9;s:19:\"admin/list-district\";i:10;s:19:\"admin/delete-market\";i:11;s:17:\"admin/edit-market\";i:12;s:19:\"admin/create-market\";i:13;s:13:\"admin/markets\";i:14;s:21:\"admin/status-category\";i:15;s:21:\"admin/delete-category\";i:16;s:17:\"admin/delete-page\";i:17;s:21:\"admin/create-category\";i:18;s:16:\"admin/categories\";i:19;s:26:\"admin/status-advertisement\";i:20;s:26:\"admin/delete-advertisement\";i:21;s:24:\"admin/edit-advertisement\";i:22;s:24:\"admin/list-ads-positions\";i:23;s:26:\"admin/create-advertisement\";i:24;s:20:\"admin/advertisements\";i:25;s:22:\"admin/status-slideshow\";i:26;s:22:\"admin/delete-slideshow\";i:27;s:20:\"admin/edit-slideshow\";i:28;s:22:\"admin/create-slideshow\";i:29;s:16:\"admin/slideshows\";i:30;s:17:\"admin/status-page\";i:31;s:15:\"admin/edit-page\";i:32;s:17:\"admin/create-page\";i:33;s:11:\"admin/pages\";i:34;s:23:\"admin/user-group-delete\";i:35;s:21:\"admin/user-group-edit\";i:36;s:20:\"admin/user-group-add\";i:37;s:16:\"admin/user-group\";i:38;s:15:\"admin/dashboard\";i:39;s:12:\"admin/status\";i:40;s:12:\"admin/delete\";i:41;s:10:\"admin/edit\";i:42;s:12:\"admin/create\";i:43;s:11:\"admin/users\";}}'),(6,'Group Managment','a:1:{s:6:\"access\";a:22:{i:0;s:27:\"admin/client-user-type-edit\";i:1;s:22:\"admin/client-user-type\";i:2;s:27:\"admin/setting-add-slideshow\";i:3;s:36:\"admin/setting-delete-permission-name\";i:4;s:33:\"admin/setting-add-permission-name\";i:5;s:18:\"admin/setting-list\";i:6;s:19:\"admin/edit-category\";i:7;s:17:\"admin/delete-page\";i:8;s:19:\"admin/list-district\";i:9;s:19:\"admin/delete-market\";i:10;s:17:\"admin/edit-market\";i:11;s:19:\"admin/create-market\";i:12;s:13:\"admin/markets\";i:13;s:21:\"admin/status-category\";i:14;s:21:\"admin/delete-category\";i:15;s:17:\"admin/delete-page\";i:16;s:21:\"admin/create-category\";i:17;s:16:\"admin/categories\";i:18;s:26:\"admin/status-advertisement\";i:19;s:26:\"admin/delete-advertisement\";i:20;s:24:\"admin/edit-advertisement\";i:21;s:24:\"admin/list-ads-positions\";}}');
+insert  into `user_type`(`id`,`name`,`permission`) values (1,'Observer','a:2:{s:6:\"access\";a:45:{i:0;s:23:\"admin/front-end-setting\";i:1;s:27:\"admin/client-user-type-edit\";i:2;s:22:\"admin/client-user-type\";i:3;s:27:\"admin/setting-add-slideshow\";i:4;s:36:\"admin/setting-delete-permission-name\";i:5;s:33:\"admin/setting-add-permission-name\";i:6;s:22:\"admin/back-end-setting\";i:7;s:19:\"admin/edit-category\";i:8;s:17:\"admin/delete-page\";i:9;s:19:\"admin/list-district\";i:10;s:19:\"admin/delete-market\";i:11;s:17:\"admin/edit-market\";i:12;s:19:\"admin/create-market\";i:13;s:13:\"admin/markets\";i:14;s:21:\"admin/status-category\";i:15;s:21:\"admin/delete-category\";i:16;s:17:\"admin/delete-page\";i:17;s:21:\"admin/create-category\";i:18;s:16:\"admin/categories\";i:19;s:26:\"admin/status-advertisement\";i:20;s:26:\"admin/delete-advertisement\";i:21;s:24:\"admin/edit-advertisement\";i:22;s:24:\"admin/list-ads-positions\";i:23;s:26:\"admin/create-advertisement\";i:24;s:20:\"admin/advertisements\";i:25;s:22:\"admin/status-slideshow\";i:26;s:22:\"admin/delete-slideshow\";i:27;s:20:\"admin/edit-slideshow\";i:28;s:16:\"admin/slideshows\";i:29;s:17:\"admin/status-page\";i:30;s:15:\"admin/edit-page\";i:31;s:17:\"admin/create-page\";i:32;s:11:\"admin/pages\";i:33;s:23:\"admin/user-group-delete\";i:34;s:21:\"admin/user-group-edit\";i:35;s:20:\"admin/user-group-add\";i:36;s:16:\"admin/user-group\";i:37;s:15:\"admin/dashboard\";i:38;s:21:\"admin/change-password\";i:39;s:13:\"admin/profile\";i:40;s:12:\"admin/status\";i:41;s:12:\"admin/delete\";i:42;s:10:\"admin/edit\";i:43;s:12:\"admin/create\";i:44;s:11:\"admin/users\";}s:6:\"modify\";a:44:{i:0;s:23:\"admin/front-end-setting\";i:1;s:27:\"admin/client-user-type-edit\";i:2;s:22:\"admin/client-user-type\";i:3;s:27:\"admin/setting-add-slideshow\";i:4;s:36:\"admin/setting-delete-permission-name\";i:5;s:33:\"admin/setting-add-permission-name\";i:6;s:22:\"admin/back-end-setting\";i:7;s:19:\"admin/edit-category\";i:8;s:17:\"admin/delete-page\";i:9;s:19:\"admin/list-district\";i:10;s:19:\"admin/delete-market\";i:11;s:17:\"admin/edit-market\";i:12;s:19:\"admin/create-market\";i:13;s:13:\"admin/markets\";i:14;s:21:\"admin/status-category\";i:15;s:21:\"admin/delete-category\";i:16;s:17:\"admin/delete-page\";i:17;s:21:\"admin/create-category\";i:18;s:16:\"admin/categories\";i:19;s:26:\"admin/status-advertisement\";i:20;s:26:\"admin/delete-advertisement\";i:21;s:24:\"admin/edit-advertisement\";i:22;s:24:\"admin/list-ads-positions\";i:23;s:26:\"admin/create-advertisement\";i:24;s:20:\"admin/advertisements\";i:25;s:22:\"admin/status-slideshow\";i:26;s:22:\"admin/delete-slideshow\";i:27;s:20:\"admin/edit-slideshow\";i:28;s:22:\"admin/create-slideshow\";i:29;s:16:\"admin/slideshows\";i:30;s:17:\"admin/status-page\";i:31;s:15:\"admin/edit-page\";i:32;s:17:\"admin/create-page\";i:33;s:11:\"admin/pages\";i:34;s:23:\"admin/user-group-delete\";i:35;s:21:\"admin/user-group-edit\";i:36;s:20:\"admin/user-group-add\";i:37;s:16:\"admin/user-group\";i:38;s:15:\"admin/dashboard\";i:39;s:12:\"admin/status\";i:40;s:12:\"admin/delete\";i:41;s:10:\"admin/edit\";i:42;s:12:\"admin/create\";i:43;s:11:\"admin/users\";}}'),(2,'Supervisor','a:2:{s:6:\"access\";a:45:{i:0;s:4:\"sfdf\";i:1;s:27:\"admin/client-user-type-edit\";i:2;s:22:\"admin/client-user-type\";i:3;s:27:\"admin/setting-add-slideshow\";i:4;s:36:\"admin/setting-delete-permission-name\";i:5;s:33:\"admin/setting-add-permission-name\";i:6;s:18:\"admin/setting-list\";i:7;s:19:\"admin/edit-category\";i:8;s:17:\"admin/delete-page\";i:9;s:19:\"admin/list-district\";i:10;s:19:\"admin/delete-market\";i:11;s:17:\"admin/edit-market\";i:12;s:19:\"admin/create-market\";i:13;s:13:\"admin/markets\";i:14;s:21:\"admin/status-category\";i:15;s:21:\"admin/delete-category\";i:16;s:17:\"admin/delete-page\";i:17;s:21:\"admin/create-category\";i:18;s:16:\"admin/categories\";i:19;s:26:\"admin/status-advertisement\";i:20;s:26:\"admin/delete-advertisement\";i:21;s:24:\"admin/edit-advertisement\";i:22;s:24:\"admin/list-ads-positions\";i:23;s:26:\"admin/create-advertisement\";i:24;s:20:\"admin/advertisements\";i:25;s:22:\"admin/status-slideshow\";i:26;s:22:\"admin/delete-slideshow\";i:27;s:20:\"admin/edit-slideshow\";i:28;s:16:\"admin/slideshows\";i:29;s:17:\"admin/status-page\";i:30;s:15:\"admin/edit-page\";i:31;s:17:\"admin/create-page\";i:32;s:11:\"admin/pages\";i:33;s:23:\"admin/user-group-delete\";i:34;s:21:\"admin/user-group-edit\";i:35;s:20:\"admin/user-group-add\";i:36;s:16:\"admin/user-group\";i:37;s:15:\"admin/dashboard\";i:38;s:21:\"admin/change-password\";i:39;s:13:\"admin/profile\";i:40;s:12:\"admin/status\";i:41;s:12:\"admin/delete\";i:42;s:10:\"admin/edit\";i:43;s:12:\"admin/create\";i:44;s:11:\"admin/users\";}s:6:\"modify\";a:44:{i:0;s:4:\"sfdf\";i:1;s:27:\"admin/client-user-type-edit\";i:2;s:22:\"admin/client-user-type\";i:3;s:27:\"admin/setting-add-slideshow\";i:4;s:36:\"admin/setting-delete-permission-name\";i:5;s:33:\"admin/setting-add-permission-name\";i:6;s:18:\"admin/setting-list\";i:7;s:19:\"admin/edit-category\";i:8;s:17:\"admin/delete-page\";i:9;s:19:\"admin/list-district\";i:10;s:19:\"admin/delete-market\";i:11;s:17:\"admin/edit-market\";i:12;s:19:\"admin/create-market\";i:13;s:13:\"admin/markets\";i:14;s:21:\"admin/status-category\";i:15;s:21:\"admin/delete-category\";i:16;s:17:\"admin/delete-page\";i:17;s:21:\"admin/create-category\";i:18;s:16:\"admin/categories\";i:19;s:26:\"admin/status-advertisement\";i:20;s:26:\"admin/delete-advertisement\";i:21;s:24:\"admin/edit-advertisement\";i:22;s:24:\"admin/list-ads-positions\";i:23;s:26:\"admin/create-advertisement\";i:24;s:20:\"admin/advertisements\";i:25;s:22:\"admin/status-slideshow\";i:26;s:22:\"admin/delete-slideshow\";i:27;s:20:\"admin/edit-slideshow\";i:28;s:22:\"admin/create-slideshow\";i:29;s:16:\"admin/slideshows\";i:30;s:17:\"admin/status-page\";i:31;s:15:\"admin/edit-page\";i:32;s:17:\"admin/create-page\";i:33;s:11:\"admin/pages\";i:34;s:23:\"admin/user-group-delete\";i:35;s:21:\"admin/user-group-edit\";i:36;s:20:\"admin/user-group-add\";i:37;s:16:\"admin/user-group\";i:38;s:15:\"admin/dashboard\";i:39;s:12:\"admin/status\";i:40;s:12:\"admin/delete\";i:41;s:10:\"admin/edit\";i:42;s:12:\"admin/create\";i:43;s:11:\"admin/users\";}}'),(3,'Watcher','a:2:{s:6:\"access\";a:45:{i:0;s:4:\"sfdf\";i:1;s:27:\"admin/client-user-type-edit\";i:2;s:22:\"admin/client-user-type\";i:3;s:27:\"admin/setting-add-slideshow\";i:4;s:36:\"admin/setting-delete-permission-name\";i:5;s:33:\"admin/setting-add-permission-name\";i:6;s:18:\"admin/setting-list\";i:7;s:19:\"admin/edit-category\";i:8;s:17:\"admin/delete-page\";i:9;s:19:\"admin/list-district\";i:10;s:19:\"admin/delete-market\";i:11;s:17:\"admin/edit-market\";i:12;s:19:\"admin/create-market\";i:13;s:13:\"admin/markets\";i:14;s:21:\"admin/status-category\";i:15;s:21:\"admin/delete-category\";i:16;s:17:\"admin/delete-page\";i:17;s:21:\"admin/create-category\";i:18;s:16:\"admin/categories\";i:19;s:26:\"admin/status-advertisement\";i:20;s:26:\"admin/delete-advertisement\";i:21;s:24:\"admin/edit-advertisement\";i:22;s:24:\"admin/list-ads-positions\";i:23;s:26:\"admin/create-advertisement\";i:24;s:20:\"admin/advertisements\";i:25;s:22:\"admin/status-slideshow\";i:26;s:22:\"admin/delete-slideshow\";i:27;s:20:\"admin/edit-slideshow\";i:28;s:16:\"admin/slideshows\";i:29;s:17:\"admin/status-page\";i:30;s:15:\"admin/edit-page\";i:31;s:17:\"admin/create-page\";i:32;s:11:\"admin/pages\";i:33;s:23:\"admin/user-group-delete\";i:34;s:21:\"admin/user-group-edit\";i:35;s:20:\"admin/user-group-add\";i:36;s:16:\"admin/user-group\";i:37;s:15:\"admin/dashboard\";i:38;s:21:\"admin/change-password\";i:39;s:13:\"admin/profile\";i:40;s:12:\"admin/status\";i:41;s:12:\"admin/delete\";i:42;s:10:\"admin/edit\";i:43;s:12:\"admin/create\";i:44;s:11:\"admin/users\";}s:6:\"modify\";a:44:{i:0;s:4:\"sfdf\";i:1;s:27:\"admin/client-user-type-edit\";i:2;s:22:\"admin/client-user-type\";i:3;s:27:\"admin/setting-add-slideshow\";i:4;s:36:\"admin/setting-delete-permission-name\";i:5;s:33:\"admin/setting-add-permission-name\";i:6;s:18:\"admin/setting-list\";i:7;s:19:\"admin/edit-category\";i:8;s:17:\"admin/delete-page\";i:9;s:19:\"admin/list-district\";i:10;s:19:\"admin/delete-market\";i:11;s:17:\"admin/edit-market\";i:12;s:19:\"admin/create-market\";i:13;s:13:\"admin/markets\";i:14;s:21:\"admin/status-category\";i:15;s:21:\"admin/delete-category\";i:16;s:17:\"admin/delete-page\";i:17;s:21:\"admin/create-category\";i:18;s:16:\"admin/categories\";i:19;s:26:\"admin/status-advertisement\";i:20;s:26:\"admin/delete-advertisement\";i:21;s:24:\"admin/edit-advertisement\";i:22;s:24:\"admin/list-ads-positions\";i:23;s:26:\"admin/create-advertisement\";i:24;s:20:\"admin/advertisements\";i:25;s:22:\"admin/status-slideshow\";i:26;s:22:\"admin/delete-slideshow\";i:27;s:20:\"admin/edit-slideshow\";i:28;s:22:\"admin/create-slideshow\";i:29;s:16:\"admin/slideshows\";i:30;s:17:\"admin/status-page\";i:31;s:15:\"admin/edit-page\";i:32;s:17:\"admin/create-page\";i:33;s:11:\"admin/pages\";i:34;s:23:\"admin/user-group-delete\";i:35;s:21:\"admin/user-group-edit\";i:36;s:20:\"admin/user-group-add\";i:37;s:16:\"admin/user-group\";i:38;s:15:\"admin/dashboard\";i:39;s:12:\"admin/status\";i:40;s:12:\"admin/delete\";i:41;s:10:\"admin/edit\";i:42;s:12:\"admin/create\";i:43;s:11:\"admin/users\";}}'),(4,'client','a:2:{s:6:\"access\";a:45:{i:0;s:4:\"sfdf\";i:1;s:27:\"admin/client-user-type-edit\";i:2;s:22:\"admin/client-user-type\";i:3;s:27:\"admin/setting-add-slideshow\";i:4;s:36:\"admin/setting-delete-permission-name\";i:5;s:33:\"admin/setting-add-permission-name\";i:6;s:18:\"admin/setting-list\";i:7;s:19:\"admin/edit-category\";i:8;s:17:\"admin/delete-page\";i:9;s:19:\"admin/list-district\";i:10;s:19:\"admin/delete-market\";i:11;s:17:\"admin/edit-market\";i:12;s:19:\"admin/create-market\";i:13;s:13:\"admin/markets\";i:14;s:21:\"admin/status-category\";i:15;s:21:\"admin/delete-category\";i:16;s:17:\"admin/delete-page\";i:17;s:21:\"admin/create-category\";i:18;s:16:\"admin/categories\";i:19;s:26:\"admin/status-advertisement\";i:20;s:26:\"admin/delete-advertisement\";i:21;s:24:\"admin/edit-advertisement\";i:22;s:24:\"admin/list-ads-positions\";i:23;s:26:\"admin/create-advertisement\";i:24;s:20:\"admin/advertisements\";i:25;s:22:\"admin/status-slideshow\";i:26;s:22:\"admin/delete-slideshow\";i:27;s:20:\"admin/edit-slideshow\";i:28;s:16:\"admin/slideshows\";i:29;s:17:\"admin/status-page\";i:30;s:15:\"admin/edit-page\";i:31;s:17:\"admin/create-page\";i:32;s:11:\"admin/pages\";i:33;s:23:\"admin/user-group-delete\";i:34;s:21:\"admin/user-group-edit\";i:35;s:20:\"admin/user-group-add\";i:36;s:16:\"admin/user-group\";i:37;s:15:\"admin/dashboard\";i:38;s:21:\"admin/change-password\";i:39;s:13:\"admin/profile\";i:40;s:12:\"admin/status\";i:41;s:12:\"admin/delete\";i:42;s:10:\"admin/edit\";i:43;s:12:\"admin/create\";i:44;s:11:\"admin/users\";}s:6:\"modify\";a:44:{i:0;s:4:\"sfdf\";i:1;s:27:\"admin/client-user-type-edit\";i:2;s:22:\"admin/client-user-type\";i:3;s:27:\"admin/setting-add-slideshow\";i:4;s:36:\"admin/setting-delete-permission-name\";i:5;s:33:\"admin/setting-add-permission-name\";i:6;s:18:\"admin/setting-list\";i:7;s:19:\"admin/edit-category\";i:8;s:17:\"admin/delete-page\";i:9;s:19:\"admin/list-district\";i:10;s:19:\"admin/delete-market\";i:11;s:17:\"admin/edit-market\";i:12;s:19:\"admin/create-market\";i:13;s:13:\"admin/markets\";i:14;s:21:\"admin/status-category\";i:15;s:21:\"admin/delete-category\";i:16;s:17:\"admin/delete-page\";i:17;s:21:\"admin/create-category\";i:18;s:16:\"admin/categories\";i:19;s:26:\"admin/status-advertisement\";i:20;s:26:\"admin/delete-advertisement\";i:21;s:24:\"admin/edit-advertisement\";i:22;s:24:\"admin/list-ads-positions\";i:23;s:26:\"admin/create-advertisement\";i:24;s:20:\"admin/advertisements\";i:25;s:22:\"admin/status-slideshow\";i:26;s:22:\"admin/delete-slideshow\";i:27;s:20:\"admin/edit-slideshow\";i:28;s:22:\"admin/create-slideshow\";i:29;s:16:\"admin/slideshows\";i:30;s:17:\"admin/status-page\";i:31;s:15:\"admin/edit-page\";i:32;s:17:\"admin/create-page\";i:33;s:11:\"admin/pages\";i:34;s:23:\"admin/user-group-delete\";i:35;s:21:\"admin/user-group-edit\";i:36;s:20:\"admin/user-group-add\";i:37;s:16:\"admin/user-group\";i:38;s:15:\"admin/dashboard\";i:39;s:12:\"admin/status\";i:40;s:12:\"admin/delete\";i:41;s:10:\"admin/edit\";i:42;s:12:\"admin/create\";i:43;s:11:\"admin/users\";}}'),(6,'Group Managment','a:1:{s:6:\"access\";a:22:{i:0;s:27:\"admin/client-user-type-edit\";i:1;s:22:\"admin/client-user-type\";i:2;s:27:\"admin/setting-add-slideshow\";i:3;s:36:\"admin/setting-delete-permission-name\";i:4;s:33:\"admin/setting-add-permission-name\";i:5;s:18:\"admin/setting-list\";i:6;s:19:\"admin/edit-category\";i:7;s:17:\"admin/delete-page\";i:8;s:19:\"admin/list-district\";i:9;s:19:\"admin/delete-market\";i:10;s:17:\"admin/edit-market\";i:11;s:19:\"admin/create-market\";i:12;s:13:\"admin/markets\";i:13;s:21:\"admin/status-category\";i:14;s:21:\"admin/delete-category\";i:15;s:17:\"admin/delete-page\";i:16;s:21:\"admin/create-category\";i:17;s:16:\"admin/categories\";i:18;s:26:\"admin/status-advertisement\";i:19;s:26:\"admin/delete-advertisement\";i:20;s:24:\"admin/edit-advertisement\";i:21;s:24:\"admin/list-ads-positions\";}}');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
