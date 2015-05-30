@@ -143,6 +143,16 @@ class FeMemberController extends BaseController {
             }
             $sid = $this->mod_store->insertGetId($storeData);
             
+            /*add Defualt Page for user*/
+            $getMainPage = $this->mod_page->getMainPages();
+            if(!empty($getMainPage)) {
+                foreach($getMainPage as $dPage) {
+                    $addDefualtPage = $this->mod_page->addUserPages($uid, $dPage->id, 1);
+                }
+                //$addDefualtPage = $this->mod_page->addUserPages($uid, $MainMenu, $position);
+            }
+            
+            /*end add Defualt Page for user*/
             /*clear session user*/
             Session::flush();
         }
