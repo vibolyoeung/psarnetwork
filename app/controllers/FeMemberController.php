@@ -128,7 +128,7 @@ class FeMemberController extends BaseController {
                         'image' => trim($fileName),
                         'user_id' => $uid,
                         'sup_id' => trim(Input::get('marketType')),
-                        'sto_value' => json_encode(array('layout' => 'main-layout-user-blue.css'))
+                        'sto_value' => json_encode(array('layout' => Config::get('constants.LAYOUT.layout1')))
                     );
                 
                 //$sid = $this->mod_store->where($whereData)->update($storeData);
@@ -136,13 +136,23 @@ class FeMemberController extends BaseController {
                     $storeData = array(
                         'user_id' => $uid,
                         'sup_id' => trim(Input::get('marketType')),
-                        'sto_value' => json_encode(array('layout' => 'main-layout-user-blue.css'))
+                        'sto_value' => json_encode(array('layout' => Config::get('constants.LAYOUT.layout1')))
                     );
                 
                 
             }
             $sid = $this->mod_store->insertGetId($storeData);
             
+            /*add Defualt Page for user*/
+            $getMainPage = $this->mod_page->getMainPages();
+            if(!empty($getMainPage)) {
+                foreach($getMainPage as $dPage) {
+                    $addDefualtPage = $this->mod_page->addUserPages($uid, $dPage->id, 1);
+                }
+                //$addDefualtPage = $this->mod_page->addUserPages($uid, $MainMenu, $position);
+            }
+            
+            /*end add Defualt Page for user*/
             /*clear session user*/
             Session::flush();
         }
