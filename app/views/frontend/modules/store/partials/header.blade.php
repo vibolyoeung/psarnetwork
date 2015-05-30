@@ -45,8 +45,8 @@ if($userLayout) {
         <!--=====Start Header]==============-->
         @include('frontend.modules.store.partials.top-menu')
         <!-- ============End header top here============== -->
+        <div class="container" style="padding-left: 0;padding-right: 0;">
             <div class="container-fluid top-menu">
-                <div class="container" style="padding-left: 0;padding-right: 0;">
                 	<div class="col-lg-4 top_promotion">
                 		<div class="col-lg-2">
     						<a class="store-logo" href="{{$userHome}}">

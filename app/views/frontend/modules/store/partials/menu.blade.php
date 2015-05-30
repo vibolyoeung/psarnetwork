@@ -1,4 +1,5 @@
 <!--=============Menu==========-->
+<div class="container" style="padding-left: 0;padding-right: 0;">
 <nav class='navix' id='nav'>
     <div class="container" style="padding-left: 0;padding-right: 0;">
     <div class='wrap'>      
@@ -16,6 +17,7 @@
     </div>
     <div class='bgnya'></div>      
 </nav>
+</div>
 <div style="clear: both;"></div>
 
 <!-- second menu page -->
