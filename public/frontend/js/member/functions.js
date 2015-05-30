@@ -79,6 +79,7 @@ function buildMenu(data) {
 	var str = '';
 	var i;
 	newSub = 'sub-a';
+    $(".message-success").show();
 	$("#menu_results").html('');
 	for (i = 0; i < data.length; i++) {
 		var returnValue = getDataSelect('Category', data[i].id);

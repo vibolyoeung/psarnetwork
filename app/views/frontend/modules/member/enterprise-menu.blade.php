@@ -144,7 +144,7 @@ var homePage = "{{Config::get('app.url')}}";
                                                             <label for="submitcat" style="display: block;">
 																 <span>&nbsp;</span>
 															</label>
-    														<button id="submitcat" type="button" class="btn btn-default" style="">
+    														<button id="submitcat" type="button" class="btn btn-default choosenuser" style="">
     															{{trans('register.TAB_Add')}}
     														</button>
                                                         </div>
@@ -260,7 +260,7 @@ var homePage = "{{Config::get('app.url')}}";
     																	@endforeach
                                                                     @endif
 																</select>
-																<button id="addDefaultPage" type="button" class="btn btn-default" style="width:18%">
+																<button id="addDefaultPage" type="button" class="btn btn-default choosenuser" style="width:18%">
 																	{{trans('register.TAB_Add')}}
 																</button>
 															</div>
@@ -360,7 +360,9 @@ var homePage = "{{Config::get('app.url')}}";
 				<!--end product detail-->
 				<div class="clear">
 				</div>
-				<input id="summit" type="submit" class="btn btn-default pull-right choosenuser" name="btnStepNext" value="{{trans('register.BTN_SAVE')}}"/>
+				<!--
+<input id="summit" type="submit" class="btn btn-default pull-right choosenuser" name="btnStepNext" value="{{trans('register.BTN_SAVE')}}"/>
+-->
 				{{Form::close()}}
 				<div class="clear">
 				</div>
