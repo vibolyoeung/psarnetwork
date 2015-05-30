@@ -368,6 +368,22 @@ class FeMemberController extends BaseController {
                 ->with('dataStore', $getUserStore);
                 break;
                 
+            case 'summary':
+                $accountRole = $this->user->accountRole();
+                $userData = $this->user->getUser($userID);
+                $clientType = $this->user->getClientType();
+                $userCategory = $this->user->getUserCategory($userID);
+                $userProductsCount = count($this->user->getUserProducts($userID));
+                return View::make('frontend.modules.member.summary')
+                ->with('maincategories',$listCategories->result)
+                ->with('userData', $userData->result)
+                ->with('accountRole', $accountRole->data)
+                ->with('clientType', $clientType->data)
+                ->with('userCategory', $userCategory->data)
+                ->with('ProductsCount', $userProductsCount)
+                ->with('dataStore', $getUserStore);
+                break;
+                
             case 'slideshow':
                 return View::make('frontend.modules.member.s-slideshow')
                 ->with('maincategories',$listCategories->result)

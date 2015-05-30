@@ -23,12 +23,19 @@
 					{{trans('register.Try_It_Today')}} .....
 				</span>
 				<a class="btn btn-default no-border" href="#" role="button">
-				<img 
-				src="{{Config::get('app.url')}}/frontend/images/icons/icon-cart.png"                            
-				style="width: 40px;" class="r-menu-thumb" /></a>
-				<a class="btn btn-default no-border" href="#" role="button"><img src="{{Config::get('app.url')}}/frontend/images/icons/Tracking-Store.png" alt="" style="width: 40px;" class="r-menu-thumb" /> {{trans('register.Tracking_The_Store')}}</a>
-				<a class="btn btn-default no-border" href="#" role="button"><img src="{{Config::get('app.url')}}/frontend/images/icons/Buyer-Seller.png" alt="" style="width: 40px;" class="r-menu-thumb" /> {{trans('register.Seller_connect_with_buyer')}}</a>
-				<a class="btn btn-default no-border" href="#" role="button"><img src="{{Config::get('app.url')}}/frontend/images/icons/Checking-Product.png" alt="" style="width: 40px;" class="r-menu-thumb" /> {{trans('register.Checking_Compare_Products')}}</a>
+				    <img src="{{Config::get('app.url')}}/frontend/images/icons/icon-cart.png" style="width: 40px;" class="r-menu-thumb" />
+                </a>
+				<a class="btn btn-default no-border" href="#" role="button">
+                    <img src="{{Config::get('app.url')}}/frontend/images/icons/Tracking-Store.png" alt="" style="width: 40px;" class="r-menu-thumb" /> {{trans('register.Tracking_The_Store')}}
+                </a>
+				<a class="btn btn-default no-border" href="#" role="button">
+                    <img src="{{Config::get('app.url')}}/frontend/images/icons/Buyer-Seller.png" alt="" style="width: 40px;" class="r-menu-thumb" />
+                    {{trans('register.Seller_connect_with_buyer')}}
+                </a>
+				<a class="btn btn-default no-border" href="#" role="button">
+                    <img src="{{Config::get('app.url')}}/frontend/images/icons/Checking-Product.png" alt="" style="width: 40px;" class="r-menu-thumb" />
+                    {{trans('register.Checking_Compare_Products')}}
+                </a>
 			</div>
 			<div class="constug">
 				<center>

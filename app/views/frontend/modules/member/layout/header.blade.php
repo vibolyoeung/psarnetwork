@@ -72,7 +72,7 @@
             									<a href="{{URL::to('member/userinfo/infomation')}}">View Profile info</a>
             								</li>
             								<li>
-            									<a href="{{URL::to('member/userinfo/accountinfo')}}">Your Status</a>
+            									<a href="{{URL::to('member/userinfo/summary')}}">Your Status</a>
             								</li>
                                             <li>
         										<a href="{{URL::to('member/userinfo/infomation?pw=1#password')}}">Chage Password</i></a>

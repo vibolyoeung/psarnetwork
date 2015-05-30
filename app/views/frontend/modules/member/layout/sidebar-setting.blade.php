@@ -1,4 +1,7 @@
 <ul class="nav nav-pills nav-stacked">
+    <li class="{{(Request::segment(3)=='summary' ? 'active':'')}}">
+		<a href="{{URL::to('member/userinfo/summary')}}">{{trans('register.MENU_summary')}}</a>
+	</li>
 	<li class="{{(Request::segment(3)=='infomation' ? 'active':'')}}">
 		<a href="{{URL::to('member/userinfo/infomation')}}">{{trans('register.MENU_Your_info')}}</a>
 	</li>
