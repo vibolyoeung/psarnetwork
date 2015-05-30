@@ -446,6 +446,9 @@ $(document).ready(function(){
               },
                MappingAddressHere: {
                  required : true,
+              },
+               accounttype: {
+                 required : true,
               }
           },
           messages:{

@@ -121,20 +121,42 @@ class FeMemberController extends BaseController {
                     'user_id' => (int)Input::get('uid'),
                     'id' => (int)Input::get('sid'),
                     );
-                $storeData = array(
-                    'title_en' => trim(Input::get('titleen')),
-                    'sto_url' => trim(Input::get('sto_url')),
-                    'sto_banner' => trim(Input::get('PageBanner')),
-                    'image' => trim($fileName),
-                    'user_id' => $uid,
-                    'sup_id' => trim(Input::get('marketType')),
+                if(Input::get('accounttype') ==1 ) {
+                    $storeData = array(
+                        'title_en' => trim(Input::get('titleen')),
+                        'sto_url' => trim(Input::get('sto_url')),
+                        'sto_banner' => trim(Input::get('PageBanner')),
+                        'image' => trim($fileName),
+                        'user_id' => $uid,
+                        'sup_id' => trim(Input::get('marketType')),
+                        'sto_value' => json_encode(array('layout' => 'main-layout-user-blue.css'))
                     );
+                } else {
+                    $storeData = array(
+                        'title_en' => trim(Input::get('titleen')),
+                        'sto_url' => trim(Input::get('sto_url')),
+                        'sto_banner' => trim(Input::get('PageBanner')),
+                        'image' => trim($fileName),
+                        'user_id' => $uid,
+                        'sup_id' => trim(Input::get('marketType')),
+                    );
+                }
+                
                 //$sid = $this->mod_store->where($whereData)->update($storeData);
             } else {
-                $storeData = array(
-                    'user_id' => $uid,
-                    'sup_id' => trim(Input::get('marketType')),
+                if(Input::get('accounttype') ==1 ) {
+                    $storeData = array(
+                        'user_id' => $uid,
+                        'sup_id' => trim(Input::get('marketType')),
+                        'sto_value' => json_encode(array('layout' => 'main-layout-user-blue.css'))
                     );
+                } else {
+                    $storeData = array(
+                        'user_id' => $uid,
+                        'sup_id' => trim(Input::get('marketType')),
+                    );
+                }
+                
             }
             $sid = $this->mod_store->insertGetId($storeData);
             
