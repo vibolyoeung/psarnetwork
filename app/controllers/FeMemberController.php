@@ -128,7 +128,7 @@ class FeMemberController extends BaseController {
                         'image' => trim($fileName),
                         'user_id' => $uid,
                         'sup_id' => trim(Input::get('marketType')),
-                        'sto_value' => json_encode(array('layout' => 'main-layout-user-blue.css'))
+                        'sto_value' => json_encode(array('layout' => Config::get('constants.LAYOUT.layout1')))
                     );
                 
                 //$sid = $this->mod_store->where($whereData)->update($storeData);
@@ -136,7 +136,7 @@ class FeMemberController extends BaseController {
                     $storeData = array(
                         'user_id' => $uid,
                         'sup_id' => trim(Input::get('marketType')),
-                        'sto_value' => json_encode(array('layout' => 'main-layout-user-blue.css'))
+                        'sto_value' => json_encode(array('layout' => Config::get('constants.LAYOUT.layout1')))
                     );
                 
                 
