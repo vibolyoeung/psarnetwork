@@ -2639,6 +2639,9 @@ h2.title {
 	margin-right: 15px;
 	width: 100%;
 }
+span.price{
+	color:red;
+}
 
 .commnets {
 	border: 1px solid #F7F7F0;

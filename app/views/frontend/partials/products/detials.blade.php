@@ -52,6 +52,7 @@
 									<div id="slide-content-0">
 										<h2 style="color: #285EA0;">{{ $detailProduct->title }}</h2>
 										<p class="sub-text">{{ $detailProduct->created_date }}</p>
+										<b>Price </b>:<span class="price">&nbsp;$&nbsp;<?php echo $detailProduct->price;?></span>
 									</div>
 								</div>
 							</div>

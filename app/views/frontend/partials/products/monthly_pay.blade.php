@@ -26,7 +26,7 @@
 			<div class="item active">
 			<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 				@foreach($monthlyProducts as $monthlyProduct)
-				<div class="col-sm-4">
+				<div class="col-sm-3">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">

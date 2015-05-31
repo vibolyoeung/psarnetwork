@@ -16,29 +16,16 @@
 						data-toggle=""
 						data-target="{{Config::get('app.url')}}/product/details/{{$relatedPost->id}}">
 						<img
-						src="{{Config::get('app.url')}}/upload/product/{{$relatedPost->thumbnail}}"
+						src="{{Config::get('app.url')}}/upload/product/thumb/{{$relatedPost->thumbnail}}"
 						alt="" />
 					</a>
 					<h2>$ {{$relatedPost->price}}</h2>
-					<p>{{$relatedPost->title}}</p>
+					<p>{{substr($relatedPost->title,0,20)}}</p>
 					<a
 						href="{{Config::get('app.url')}}/product/details/{{$relatedPost->id}}">
 						View Details</a>
 				</div>
-				<a
-					href="{{Config::get('app.url')}}/product/details/{{$relatedPost->id}}"
-					data-toggle=""
-					data-target="{{Config::get('app.url')}}/product/details/{{$relatedPost->id}}">
-					<div class="product-overlay">
-						<div class="overlay-content">
-							<h2>$ {{$relatedPost->price}}</h2>
-							<p>{{$relatedPost->title}}</p>
-							<a
-								href="{{Config::get('app.url')}}/product/details/{{$relatedPost->id}}"
-								data-target=""> View Details </a>
-						</div>
-					</div>
-				</a> <img
+				<img
 					src="{{Config::get('app.url')}}/frontend/images/home/sale.png"
 					class="new" alt="" />
 			</div>

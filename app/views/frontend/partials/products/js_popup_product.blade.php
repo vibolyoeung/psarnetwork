@@ -21,7 +21,7 @@
 								<div class="item <?php echo $thumbnail_id == 0?' active':'';?>"
 									data-slide-number="<?php echo $thumbnail_id; ?>">
 									<img
-										src="{{Config::get('app.url')}}/upload/product/{{$image['pic']}}">
+										src="{{Config::get('app.url')}}upload/product/{{$image['pic']}}">
 								</div>
 									<?php $thumbnail_id++; ?>
 								@endforeach

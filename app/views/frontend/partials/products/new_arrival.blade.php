@@ -23,33 +23,36 @@ if(count($newProducts) > 0){
 			<div class="item active">
 			<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 				@foreach($newProducts as $newProduct)
-				<div class="col-sm-4">
-					<div class="product-image-wrapper">
-						<div class="single-products">
-							<div class="productinfo text-center">
-								<a href="#" data-toggle="modal" data-target="#myModal"
-									onclick="popupDetails.add_popup_detail(<?php echo $newProduct->id; ?>)">
-									<img
-									src="{{Config::get('app.url')}}/upload/product/thumb/{{$newProduct->thumbnail}}"
-									alt="" />
-								</a>
-								<h2>$ {{$newProduct->price}}</h2>
-								<p><?php echo substr($newProduct->title,0,20)?></p>
-								<a href="{{Config::get('app.url')}}/product/details/{{$newProduct->id}}">View
-									Details</a>
+				<?php 
+				if(strtotime($newProduct->publish_date) >= strtotime("d/m/Y")){
+				?>
+					<div class="col-sm-3">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<a href="#" data-toggle="modal" data-target="#myModal"
+										onclick="popupDetails.add_popup_detail(<?php echo $newProduct->id; ?>)">
+										<img
+										src="{{Config::get('app.url')}}upload/product/thumb/{{$newProduct->thumbnail}}"
+										alt="" />
+									</a>
+									<h2>$ {{$newProduct->price}}</h2>
+									<p><?php echo substr($newProduct->title,0,20)?></p>
+									<a href="{{Config::get('app.url')}}/product/details/{{$newProduct->id}}">View
+										Details</a>
+								</div>
+								<img
+									src="{{Config::get('app.url')}}/frontend/images/home/sale.png"
+									class="new" alt="" />
 							</div>
-							<img
-								src="{{Config::get('app.url')}}/frontend/images/home/sale.png"
-								class="new" alt="" />
 						</div>
 					</div>
-				</div>
 				<?php
-				
-				if ($newPro >= 3 && $newPro % 3 == 0) {
-					echo '</div><div class="item"> ';
 				}
 				
+				if ($newPro >= 4 && $newPro % 4 == 0) {
+					echo '</div><div class="item"> ';
+				}
 				$newPro ++;
 				?>
 				@endforeach
