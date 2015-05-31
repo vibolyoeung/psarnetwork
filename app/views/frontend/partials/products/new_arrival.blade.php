@@ -45,9 +45,11 @@ if(count($newProducts) > 0){
 					</div>
 				</div>
 				<?php
+				
 				if ($newPro >= 3 && $newPro % 3 == 0) {
 					echo '</div><div class="item"> ';
 				}
+				
 				$newPro ++;
 				?>
 				@endforeach

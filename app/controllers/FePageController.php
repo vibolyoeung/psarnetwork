@@ -107,7 +107,7 @@ class FePageController extends BaseController {
 		return $Category;
 	}
 
-	public function getProductbyCategory($category_id){
+	public function getProductbyCategory($parent_id, $category_id){
  		$advHorizontalTopLarge = $this->mod_advertisment
  		->getAdvertisementHomePage(
  				self::HOMEPAGE,
