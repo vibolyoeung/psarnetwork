@@ -457,7 +457,6 @@ class Product extends Eloquent{
 		$product = Config::get('constants.TABLE_NAME.PRODUCT');
 		return DB::table($product .' AS p')
 			->select('*')
-			->where('p.user_id', '=', Session::get('currentUserId'))
 			->where('p.store_id', '=', Store::findStoreByUser(Session::get('currentUserId')))
 			->orderBy('p.id', 'DESC')
 			->paginate(10);
