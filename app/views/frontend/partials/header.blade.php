@@ -91,10 +91,10 @@
                                 @endif
 							</ul>
 							<div class="language-bar">
-								<a href="{{Config::get('app.url')}}?lang=en"> <img
+								<a href="{{URL::current()}}?lang=en"> <img
 									src="{{Config::get('app.url')}}/frontend/images/en.png" alt=""
 									title="" /> English
-								</a> <a href="{{Config::get('app.url')}}?lang=km"> <img
+								</a> <a href="{{URL::current()}}?lang=km"> <img
 									src="{{Config::get('app.url')}}/frontend/images/km.png" alt=""
 									title="" /> Khmer
 								</a>
