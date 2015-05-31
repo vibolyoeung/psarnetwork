@@ -19,7 +19,6 @@
     </div>
     <div class='bgnya'></div>      
 </nav>
-</div>
 <div style="clear: both;"></div>
 
 <!-- second menu page -->
@@ -28,6 +27,7 @@
   {{$dataUserPage}}
 </ol>
 @endif
+</div>
 <script class='jshilang' type='text/javascript'>
 //<![CDATA[
     menunav(jQuery);

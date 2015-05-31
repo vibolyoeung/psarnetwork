@@ -11,6 +11,9 @@
 	<li class="{{(Request::segment(3)=='content' ? 'active':'')}}">
 		<a href="{{URL::to('member/userinfo/content')}}">{{trans('register.MENU_Content_Page')}}</a>
 	</li>
+    <li class="{{(Request::segment(3)=='addpage' ? 'active':'')}}">
+		<a href="{{URL::to('member/userinfo/addpage')}}">{{trans('register.MENU_addpadd')}}</a>
+	</li>
 	<li class="{{(Request::segment(3)=='toolview' ? 'active':'')}}">
 		<a href="{{URL::to('member/userinfo/toolview')}}">{{trans('register.MENU_toolview')}}</a>
 	</li>

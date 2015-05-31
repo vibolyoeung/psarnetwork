@@ -83,7 +83,7 @@ class Product extends Eloquent{
 				$treeArray = array();
 			}
 			$result = DB::table(Config::get('constants.TABLE_NAME.S_CATEGORY'))
-				->select('id','m_title','is_publish','parent_id')
+				->select('*')
 				->where('parent_id','=',$parent)
 				->where('user_id', '=', Session::get('currentUserId'))
 				->where('is_publish', '=', self::IS_PUBLISH)
@@ -91,7 +91,12 @@ class Product extends Eloquent{
 				->get();
 			if(count($result) > 0){
 				foreach ($result as $row) {
-					$treeArray[] = array('id' => $row->id,'parent_id' => $row->parent_id, 'm_title' => $spacing . $row->m_title);
+					$treeArray[] = array(
+						'id' => $row->id,
+						'parent_id' => $row->parent_id, 
+						'name_en' => $spacing . $row->name_en,
+						'name_km' => $spacing . $row->name_km
+					);
 					$treeArray = self::fetchCategoryTree($row->id, $spacing . '&nbsp;&nbsp;',$treeArray);
 				}
 			}
@@ -451,7 +456,6 @@ class Product extends Eloquent{
 		$product = Config::get('constants.TABLE_NAME.PRODUCT');
 		return DB::table($product .' AS p')
 			->select('*')
-			->where('p.user_id', '=', Session::get('currentUserId'))
 			->where('p.store_id', '=', Store::findStoreByUser(Session::get('currentUserId')))
 			->orderBy('p.id', 'DESC')
 			->paginate(10);
