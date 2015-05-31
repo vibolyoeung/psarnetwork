@@ -21,7 +21,7 @@
 					<div class="media commnets">
 						<a href="#" class="pull-left col-lg-6" style="padding: 0"> <!--<img class="img-thumbnail img-responsive" alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">-->
 							{{HTML::image("upload/market/thumb/".$markets->image,$markets->title_en,array('class'=>'img-thumbnail
-							img-responsive col-lg-12'))}}
+							img-responsive col-lg-12','style'=>'max-height:188px;','title'=>$markets->title_en))}}
 						</a>
 
 						<div class="media-body img-thumbnail" style="padding: 14px;">

@@ -74,7 +74,11 @@ class MCategory extends Eloquent{
 					->get();
 			if(count($result) > 0){
 				foreach ($result as $row) {
-					$treeArray[] = array('id' => $row->id,'parent_id' => $row->parent_id, 'name_en' => $spacing . $row->name_en);
+					$treeArray[] = array(
+							'id' => $row->id,
+							'parent_id' => $row->parent_id, 
+							'name_en' => $spacing . $row->name_en
+						);
 					$treeArray = self::fetchCategoryTree($row->id, $spacing . '&nbsp;&nbsp;',$treeArray);
 				}
 			}
