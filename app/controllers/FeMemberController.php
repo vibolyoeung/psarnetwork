@@ -148,7 +148,7 @@ class FeMemberController extends BaseController {
             var_dump($getMainPage);
             die;
             if(!empty($getMainPage)) {
-                foreach($getMainPage as $dPage) {
+                foreach($getMainPage->result as $dPage) {
                     $addDefualtPage = $this->mod_page->addUserPages($uid, $dPage->id, 1);
                 }
                 //$addDefualtPage = $this->mod_page->addUserPages($uid, $MainMenu, $position);
