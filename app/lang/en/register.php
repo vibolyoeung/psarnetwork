@@ -101,14 +101,14 @@ You will be benefit with free account by posing free ,  owning page free .If you
     'MESSAGE_b_c' => 'This Account will be free only for 3 months for your page site control.',
     'MESSAGE_b_d' => 'Contact !',
     
-    'MENU_MENU' => 'Menu Structure',
-    'MENU_Content_Page' => 'Content Page',
-    'MENU_Your_info' => 'Persoanl Profile',
+    'MENU_MENU' => 'Manage Menu Structure',
+    'MENU_Content_Page' => 'Manage Content View',
+    'MENU_Your_info' => 'Personal Information Management',
     'MENU_Add_Connector' => 'Add Connector',
-    'MENU_sideshow' => 'Sideshow',
-    'MENU_addpadd' => 'Create page',
+    'MENU_sideshow' => 'Manage Slide Show',
+    'MENU_addpadd' => 'Dynamic Creatable Page',
     'MENU_Account_Information' => 'Account Information',
-    'MENU_toolview' => 'Tool View',
+    'MENU_toolview' => 'Disable & Enable Tool',
     'MENU_summary' => 'General Setting',
     
     /* tab menu */
