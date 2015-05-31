@@ -107,7 +107,9 @@ var homePage = "{{Config::get('app.url')}}";
                                                             $mkArr[$mk->id] = $mk->title_en;
                                                         }
                                                         ?>
+                                                        @if($marketTypeSelected)
                                                         {{Form::select('marketType', $mkArr, $marketTypeSelected,array('class' => 'form-control','id'=>'marketTypes'))}}
+                                                        @endif
                                                         <div 
                                                         id="loadingmarketType" 
                                                         style="display: none;background:#fff;width:100%;text-align:center;padding:2px;border:1px solid #eee;">
