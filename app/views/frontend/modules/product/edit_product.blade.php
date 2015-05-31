@@ -50,11 +50,7 @@
                                                         ?> 
                                                         value="{{$cl['id']}}"
                                                     >
-                                                        <?php if (Session::get('currentUserAccountType') === 1): ?>
-                                                            {{$cl['name_en']}}
-                                                        <?php else: ?>
-                                                            {{$cl['m_title']}}
-                                                    <?php endif; ?>
+                                                        {{$cl['name_'.Config::get('app.locale')]}}
                                                     </option>
                                                 <?php endforeach;?>
                                             </select>
