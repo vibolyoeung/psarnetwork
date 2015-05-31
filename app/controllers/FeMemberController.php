@@ -145,16 +145,13 @@ class FeMemberController extends BaseController {
             
             /*add Defualt Page for user*/
             $getMainPage = $this->mod_page->getMainPages();
-            var_dump($getMainPage);
-            die;
             if(!empty($getMainPage)) {
                 foreach($getMainPage->result as $dPage) {
                     $addDefualtPage = $this->mod_page->addUserPages($uid, $dPage->id, 1);
                 }
-                //$addDefualtPage = $this->mod_page->addUserPages($uid, $MainMenu, $position);
             }
-            
             /*end add Defualt Page for user*/
+            
             /*clear session user*/
             Session::flush();
         }
