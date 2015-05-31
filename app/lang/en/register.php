@@ -183,4 +183,10 @@ You will be benefit with free account by posing free ,  owning page free .If you
     'gen_Total_User' => 'Total User Access',
     'gen_Total_Log' => 'Total Log',
     'gen_Last_Login' => 'Last Login',
+    
+    /*message*/
+    'message_save_with_pass' => 'All data had been saved',
+    'message_save_no_pass_but_data' => 'Data had been saved',
+    'message_password_not_change' => 'Password you provided is not corrected',
+    
 );
