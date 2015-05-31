@@ -95,21 +95,25 @@ var homePage = "{{Config::get('app.url')}}";
                                                         {{Form::select('client_type', $cTypeArr, $clientSelectd,array('class' => 'form-control','id'=>'clientType'))}}
                 									</div>
                 								</div>
-                								<div class="form-group" id="marketType">
-                									<label for="Market_Type" class="col-sm-4 control-label">
-                										{{trans('register.Market_Type')}}
-                									</label>
-                									<div class="col-sm-8">
-                                                        <?php
+                                                <?php
                                                         $marketTypeSelected = !is_null($dataStore->sup_id) ? $dataStore->sup_id : '';
                                                         $mkArr = array(''=>trans('register.Market_Type'));
                                                          foreach($markets as $mk) {
                                                             $mkArr[$mk->id] = $mk->title_en;
                                                         }
+                                                        if(!empty($marketTypeSelected)) {
+                                                            $hideMarket = '';
+                                                        } else {
+                                                            $hideMarket = 'display:none;';
+                                                        }
                                                         ?>
-                                                        @if($marketTypeSelected)
+                								<div class="form-group" id="marketType" style="{{$hideMarket}}">
+                									<label for="Market_Type" class="col-sm-4 control-label">
+                										{{trans('register.Market_Type')}}
+                									</label>
+                									<div class="col-sm-8">
+                                                        
                                                         {{Form::select('marketType', $mkArr, $marketTypeSelected,array('class' => 'form-control','id'=>'marketTypes'))}}
-                                                        @endif
                                                         <div 
                                                         id="loadingmarketType" 
                                                         style="display: none;background:#fff;width:100%;text-align:center;padding:2px;border:1px solid #eee;">
@@ -137,8 +141,12 @@ var homePage = "{{Config::get('app.url')}}";
 {{HTML::script('frontend/js/jquery.validate.js')}}
 <script type='text/javascript'>	
 $(document).ready(function(){
+    @if(Session::has('messageSuccess'))
+    $(".alert-success").show();
+    @endif
     $("#clientType").change(function()
         {
+            $('#marketTypes').prop('selectedIndex',0);
             var id = $(this).val();
             var cName = $('option:selected', this).text();
             if(id == {{Config::get('constants.CLIENT_TYPE_ID.INDIVIDUAL')}} || id == {{Config::get('constants.CLIENT_TYPE_ID.HOMESHOP')}}) {
