@@ -440,6 +440,7 @@ class FeMemberController extends BaseController {
                                         ->where(array('user_id' =>$userID))
                                         ->update(array('sup_id'=>0));
                     }
+                    return Redirect::to('/member/userinfo/accountinfo')->with(Session::flash('messageSuccess', 'message_save_success'));
                 }
                 
                 /*end update*/
