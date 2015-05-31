@@ -75,7 +75,15 @@ var homePage = "{{Config::get('app.url')}}";
                                                             $userAddr = '';
                                                         }
                                                         ?>
-                                                        <input type="text" id="telephone" class="form-control" value="{{$userAddr}}" readonly/>
+                                                        @if($userAddr)
+                                                        <?php
+                                                        $RolArr = array(''=>trans('register.Input_Location'));
+                                                         foreach($provinces as $Rol) {
+                                                            $RolArr[$Rol->province_id] = $Rol->province_name;
+                                                        }
+                                                        ?>
+                                                        {{Form::select('province', $RolArr, $userAddr,array('class' => 'form-control', 'readonly'=>'readonly'))}}
+                                                    @endif
                 									</div>
                 								</div>
 											</div>
@@ -204,7 +212,6 @@ var homePage = "{{Config::get('app.url')}}";
 					</div>
 					<!--end product detail-->
                     <div class="clear"></div>
-                    <input id="summit" type="submit" class="btn btn-default pull-right choosenuser" name="btnInfo" value="{{trans('register.BTN_SAVE')}}"/>
 				</form>
 				<div class="clear">
 				</div>

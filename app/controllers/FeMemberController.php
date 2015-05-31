@@ -396,6 +396,7 @@ class FeMemberController extends BaseController {
                 $clientType = $this->user->getClientType();
                 $userCategory = $this->user->getUserCategory($userID);
                 $userProductsCount = count($this->user->getUserProducts($userID));
+                $provinces = $this->mod_setting->listProvinces();
                 return View::make('frontend.modules.member.summary')
                 ->with('maincategories',$listCategories->result)
                 ->with('userData', $userData->result)
@@ -403,6 +404,7 @@ class FeMemberController extends BaseController {
                 ->with('clientType', $clientType->data)
                 ->with('userCategory', $userCategory->data)
                 ->with('ProductsCount', $userProductsCount)
+                ->with('provinces', $provinces)
                 ->with('dataStore', $getUserStore);
                 break;
                 
