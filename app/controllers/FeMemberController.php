@@ -339,6 +339,7 @@ class FeMemberController extends BaseController {
                     $userValueArr = json_decode($userData->result->address, true);
                     $ValueArr = array('g_latitude_longitude' => Input::get('gLatitudeLongitude'));
                     $dataArr = array_merge($userValueArr, $ValueArr);
+                    $messages = '';
                     if (Input::has('cPass')) {
                         $queryPass = $this->checkPassword(Input::get('cPass'));
                         $cPass = Input::get('cPass');
@@ -353,6 +354,7 @@ class FeMemberController extends BaseController {
                                 'password' => md5(sha1($nPass)),
                                 'update_at' => date(self::CURRENT_DATE)
                             );
+                            $messages = 'message_save_with_pass';
                         } else {
                             $data = array(
                                 'email' => trim(Input::get('email')),
@@ -361,6 +363,7 @@ class FeMemberController extends BaseController {
                                 'address' => json_encode($dataArr),
                                 'update_at' => date(self::CURRENT_DATE)
                             );
+                            $messages = 'message_save_no_pass_but_data';
                         }
                     } else {
                         $data = array(
@@ -370,15 +373,19 @@ class FeMemberController extends BaseController {
                             'address' => json_encode($dataArr),
                             'update_at' => date(self::CURRENT_DATE)
                         );
+                        $messages = 'message_save_no_pass_but_data';
                     }
                     
                     /*add data for store*/
                     $whereUser = array('id' => $userID);
                     $uid = $this->user->updateUser($whereUser, $data);
-                    return Redirect::to('/member/userinfo/infomation');
+                    return Redirect::to('/member/userinfo/infomation')
+                    ->with('messsage', $messages);
                 }
-                return View::make('frontend.modules.member.' . $usertypes . '-' . $step)->with('maincategories',
-                    $listCategories->result)->with('userData', $userData->result)->with('dataStore', $getUserStore);
+                return View::make('frontend.modules.member.' . $step)
+                    ->with('maincategories',$listCategories->result)
+                    ->with('userData', $userData->result)
+                    ->with('dataStore', $getUserStore);
                 break;
 
             case 'pageinfo':
