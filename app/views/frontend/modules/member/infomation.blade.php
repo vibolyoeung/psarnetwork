@@ -117,6 +117,20 @@ var homePage = "{{Config::get('app.url')}}";
                                                     </div>
                         						</div>
                                                 <div id="addMore"><a href="{{URL::to('member/userinfo/infomation?pw=1#password')}}">Chage Password</i></a></div>
+                                                    @if (Session::has('messsage'))
+                                                         @if (Session::get('messsage')=='message_save_with_pass')
+                                                        <div class="alert alert-success" role="alert">
+                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        {{trans('register.message_save_with_pass')}}</div>
+                                                        @else
+                                                        <div class="alert alert-success" role="alert">
+                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        {{trans('register.message_save_no_pass_but_data')}}</div>
+                                                        <div class="alert alert-danger" role="alert">
+                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        {{trans('register.message_password_not_change')}}</div>
+                                                        @endif
+                                                    @endif
 											</div>
 										</div>
 										<!--end product describe-->
@@ -224,7 +238,7 @@ $(document).ready(function(){
                             'Password'+
                             '</label>'+
                                 '<div class="col-sm-8">'+
-                                    '<div class="row">'+
+                                    '<div class="row changepassword">'+
                                         '<div class="form-group">'+
                                             '<label for="cPass" class="col-sm-4 control-label">'+
                                             'Current'+
