@@ -29,8 +29,9 @@ class FeStoreController extends BaseController {
                 $dataStore = $this->mod_store->getUserStore(null,$where);
            }
            $getUser = $this->user->getUser($dataStore->user_id);
+           $getUserUrl = $this->mod_store->getStoreUrl($dataStore->id);
            if($getUser->result->account_type==2) {
-                $dataCategory = $this->mod_category->menuUserList($dataStore->user_id, $parent = 0);
+                $dataCategory = $this->mod_category->menuUserList($dataStore->user_id, $parent = 0,0,$getUserUrl);
            } else {
                 $dataCategory = $this->mod_category->menuUserFree($dataStore->user_id, $parent = 0);
            }

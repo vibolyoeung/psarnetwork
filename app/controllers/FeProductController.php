@@ -284,7 +284,6 @@ class FeProductController extends BaseController {
             'is_publish' => Input::get('isPublish'),
             'contact_info' => json_encode($contactInfo),
         );
-
         return $data;
     }
 

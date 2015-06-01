@@ -90,9 +90,21 @@ class Store extends Eloquent {
     public static function findStoreByUser($userId) {
         $result = DB::table(Config::get('constants.TABLE_NAME.STORE'))
             ->select('*')
-            //->where('user_id', '=', $userId)
+            ->where('user_id', '=', $userId)
             ->first();
-
         return ($result->id) ? $result->id : null;
+    }
+    
+    public function getStoreUrl($id){
+        $result = DB::table(Config::get('constants.TABLE_NAME.STORE'))
+            ->select('*')
+            ->where('id', '=', $id)
+            ->first();
+            if(!empty($result->sto_url)) {
+                return Config::get('app.url').'page/'.$result->sto_url;
+           } else {
+                return Config::get('app.url').'page/'.$id;
+                //Config::get('app.url').'page/'.$dataStore->id;
+           }
     }
 }

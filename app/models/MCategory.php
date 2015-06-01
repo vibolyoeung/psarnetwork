@@ -595,7 +595,7 @@ class MCategory extends Eloquent{
      * @return String
      * @author Socheat Ngann
      */
-    public function menuUserList($userID, $parent=0,$level=0) {
+    public function menuUserList($userID, $parent=0,$level=0,$userHome='') {
         $response = new stdClass();
 		try {
             $where = array(
@@ -609,7 +609,7 @@ class MCategory extends Eloquent{
 			->get();
             $userMenus = "";
 			$userMenus .= "<ul class='sf-menu' id='menunav'>";
-            $homeUrl = Config::get('app.url');
+            $homeUrl = $userHome;
 			if($level==0) {
                 $userMenus .= "<li><a class='home' href='{$homeUrl}'>Home</a></li>";
             }

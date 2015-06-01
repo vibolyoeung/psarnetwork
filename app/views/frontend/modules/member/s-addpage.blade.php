@@ -11,6 +11,14 @@
 	</li>
 </ol>
 @endsection @section('frontend.partials.left') @endsection @section('content')
+<?php
+function rm($article, $char) {
+    if (strlen($article) > $char) {
+        return substr($article, 0, $char) . '...';
+    } else
+        return $article;
+}
+?>
 <div class="memberlogin">
 	<div class="col-sm-3">
 		@include('frontend.modules.member.layout.sidebar-setting')
@@ -84,7 +92,10 @@
                                           <tr>
                                             <td>{{$page->id}}</td>
                                             <td>{{$page->title}}</td>
-                                            <td>{{$page->description}}</td>
+                                            <?php 
+                                            $readmore = @rm($page->description, 100);
+                                            ?>
+                                            <td>{{$readmore}}</td>
                                             <td>
                                                 <div class="dropdown">
                                                   <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

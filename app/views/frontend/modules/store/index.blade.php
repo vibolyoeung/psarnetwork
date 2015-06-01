@@ -31,7 +31,9 @@
 		</div>
 		<div class="col-lg-12" style="padding:0;">
             @if(!empty($dataProduct))
-                <?php $i=1;?>
+                <?php
+                //var_dump($dataProduct);
+                 $i=1;?>
                 @foreach($dataProduct as $product)
                 @if ($i % 4 == 1)
                     <div class="row">
@@ -40,7 +42,7 @@
     				<div class="product-image-wrapper">
     					<div class="single-products">
     						<div class="productinfo text-center">
-    							<a href="#" data-toggle="modal" data-target="#myModal">
+    							<a href="{{Config::get('app.url')}}page/{{$product->store_id}}/my/detail/{{$product->id}}">
                                     @if($product->thumbnail)
     								    <img src="{{Config::get('app.url')}}upload/product/thumb/{{$product->thumbnail}}" alt="{{$product->title}}" />
                                     @else
