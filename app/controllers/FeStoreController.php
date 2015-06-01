@@ -7,6 +7,7 @@ class FeStoreController extends BaseController {
     protected $mod_store;
     private $mod_product;
     private $user;
+    protected $mod_page;
 	
 	function __construct(){
 		$this->mod_slideshow = new Slideshow();
@@ -15,6 +16,7 @@ class FeStoreController extends BaseController {
         $this->mod_store = new Store();
         $this->mod_product = new Product();
         $this->user = new User();
+        $this->mod_page = new MPage();
 	}
 	public function index()
 	{
@@ -35,13 +37,20 @@ class FeStoreController extends BaseController {
            } else {
                 $dataCategory = $this->mod_category->menuUserFree($dataStore->user_id, $parent = 0);
            }
-           
+           $whereArr = array(
+                'position' => 100,
+                'user_id' => $dataStore->user_id
+            );
+            $getToolPage = $this->mod_page->getUserPages(null, $whereArr);
+                
+                
            $dataUserPage = $this->mod_category->menuUserPage($dataStore->user_id, 2);
            $dataProduct = $this->mod_product->listAllProductsByOwnStore();
            return View::make('frontend.modules.store.index')
 						->with('dataStore', $dataStore)
                         ->with('dataCategory', $dataCategory)
                         ->with('dataUserPage', $dataUserPage)
+                        ->with('toolView',$getToolPage->result)
                         ->with('dataProduct', $dataProduct);
         }
         catch (Exception $e) {

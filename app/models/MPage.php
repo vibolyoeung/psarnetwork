@@ -12,13 +12,12 @@ class MPage extends Eloquent {
      * @author Socheat
      */
 
-    public function getMainPages($id = null) {
+    public function getMainPages($id = null, $whereArr = array()) {
         $response = new stdClass();
         try {
             if (!is_null($id)) {
                 $where = array(
                     'status' => 1,
-                    'type' => 'static',
                     'id' => $id);
             } else {
                 $where = array(
@@ -26,8 +25,13 @@ class MPage extends Eloquent {
                     'type' => 'static',
                     );
             }
+            if(!empty($whereArr)) {
+                $byWhere = $whereArr;
+            } else {
+                $byWhere = $where;
+            }
             $result = DB::table(Config::get('constants.TABLE_NAME.M_PAGE'))->select('*')->
-                where($where)->get();
+                where($byWhere)->get();
             $response->result = $result;
         }
         catch (\Exception $e) {
@@ -104,7 +108,7 @@ class MPage extends Eloquent {
      * @author Socheat
      */
 
-    public function addUserPages($userID, $id, $position) {
+    public function addUserPages($userID, $id, $position=1, $type= 'static') {
         $response = new stdClass();
         try {
             $where = array('user_id' => $userID, 'm_page_id' => $id);
@@ -118,11 +122,11 @@ class MPage extends Eloquent {
                         'user_id' => $userID,
                         'm_page_id' => $id,
                         'title' => $title,
-                        'type'=>'static',
+                        'type'=>$type,
                         'position' => $position);
                     DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))->insertGetId($data);
                 }
-                $response = $this->getUserPages($userID, array('user_id' => $userID,'type'=>'static'));
+                $response = $this->getUserPages($userID, array('user_id' => $userID,'type'=>$type));
             } else {
                 $response->result = 0;
             }
