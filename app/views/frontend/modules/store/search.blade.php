@@ -30,9 +30,8 @@
 			</div>
 		</div>
 		<div class="col-lg-12" style="padding:0;">
-            @if(!empty($dataProduct))
-                <?php
-                 $i=1;?>
+            @if(count($dataProduct)>0)
+                <?php $i=1;?>
                 @foreach($dataProduct as $product)
                 @if ($i % 4 == 1)
                     <div class="row">
@@ -64,10 +63,10 @@
                 @if ($i % 4 != 1)
                     </div>
                 @endif
-                <div class="col-sm-12">
-                    <h2>{{trans('product.user_product_not_found')}}</h2>
-                </div>
-                @else 
+            @else
+            <div class="col-sm-12">
+                <h2>{{trans('product.user_product_not_found')}}</h2>
+            </div>
             @endif
 		</div>
 	</div>
