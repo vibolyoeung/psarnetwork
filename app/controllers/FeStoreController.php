@@ -75,7 +75,13 @@ class FeStoreController extends BaseController {
 	public function myDetail($store, $product_id) {
     	$where = array('id'=>$store);
  		$dataStore = $this->mod_store->getUserStore(null, $where);
- 		$dataCategory = $this->mod_category->menuUserList($dataStore->user_id, $parent = 0);
+ 		$getUser = $this->user->getUser($dataStore->user_id);
+           $getUserUrl = $this->mod_store->getStoreUrl($dataStore->id);
+           if($getUser->result->account_type==2) {
+                $dataCategory = $this->mod_category->menuUserList($dataStore->user_id, $parent = 0,0,$getUserUrl);
+           } else {
+                $dataCategory = $this->mod_category->menuUserFree($dataStore->user_id, $parent = 0);
+           }
  		$dataUserPage = $this->mod_category->menuUserPage($dataStore->user_id, 2);
  		$dataDetailProduct = $this->mod_product->productDetailByOwnStore($product_id);
 		return View::make('frontend.modules.store.detail')
