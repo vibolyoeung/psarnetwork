@@ -145,6 +145,8 @@ You will be benefit with free account by posing free ,  owning page free .If you
     
     /* content page */
     'con_alert_header' => 'Your Direction',
+    'con_page_manager' => 'Page manager',
+    'con_edit_page' => 'Edit your page',
     'con_alert_text' => 'This is the content view page layout of your own home page . ther are four defaults group box view which are  New Arrval Product  , Hot Promotion , Second Hand ,  New Product s. So if you want another group of your product  type to  be groupped view first , you must select change from  number 1 order to number 12 . And , if you want to show all the  view group in your own home page . you must select all . Please see you repview testing on your left side.',
     
     /* Tool view */

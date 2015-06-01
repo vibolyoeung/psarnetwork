@@ -189,6 +189,18 @@ var homePage = "{{Config::get('app.url')}}";
 													</fieldset>
 												</form>
 											</div>
+                                            <div class="col-sm-12">
+													<fieldset>
+														<legend>
+															{{trans('register.con_page_manager')}}:
+														</legend>
+														<div class="form-group">
+															<p class="help-block">
+																<a href="{{URL::to('member/userinfo/addpage')}}">{{trans('register.con_edit_page')}}</a>
+															</p>
+														</div>
+													</fieldset>
+											</div>
 											<div class="col-sm-12">
 												<fieldset>
 													<legend>

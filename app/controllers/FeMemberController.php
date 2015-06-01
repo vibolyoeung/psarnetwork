@@ -324,7 +324,7 @@ class FeMemberController extends BaseController {
                 $getUserPages = DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))->select('*')->
                     where(array('user_id' => $userID, 'type' => 'widget'))->get();
                 $dataPageWidget = $this->mod_page->addUserWidgetPages($userID);
-                return View::make('frontend.modules.member.' . $usertypes . '-' . $step)->with('maincategories',
+                return View::make('frontend.modules.member.' . $step)->with('maincategories',
                     $listCategories->result)->with('dataStore', $dataStore)->with('dataPageWidget',
                     $dataPageWidget->result);
                 break;
