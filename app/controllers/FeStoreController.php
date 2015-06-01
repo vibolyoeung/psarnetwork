@@ -84,4 +84,41 @@ class FeStoreController extends BaseController {
 			->with('dataCategory', $dataCategory)
 			->with('dataProductDetail', $dataDetailProduct);
 	}
+
+	public function searchUserPropuctByCategory($store, $label) {
+	   $where = array('id'=>$store);
+	   $dataStore = $this->mod_store->getUserStore(null, $where);
+       if(!empty($dataStore)) {
+            /*get user cateory and sub*/
+            $getCategoryByName = $this->mod_category->getCategoryByName($label, $dataStore->user_id);
+           $catArr = array();
+           if(!empty($getCategoryByName->data)) {
+                array_push($catArr, $getCategoryByName->data->id);
+                $subCategory = $this->mod_category->getSubUserCategories($dataStore->user_id,$getCategoryByName->data->id);
+                if(!empty($subCategory)) {
+                    foreach($subCategory as $subCat) {
+                        array_push($catArr, $subCat->id);
+                    }
+                }
+           }
+           $getUser = $this->user->getUser($dataStore->user_id);
+           $getUserUrl = $this->mod_store->getStoreUrl($dataStore->id);
+           if($getUser->result->account_type==2) {
+                $dataCategory = $this->mod_category->menuUserList($dataStore->user_id, $parent = 0,0,$getUserUrl);
+           } else {
+                $dataCategory = $this->mod_category->menuUserFree($dataStore->user_id, $parent = 0);
+           }
+           
+            $dataProduct = $this->mod_product->findProductByCategory($store,$catArr);
+            $dataUserPage = $this->mod_category->menuUserPage($dataStore->user_id, 2);
+           /* end get user cateory and sub*/
+           
+           return View::make('frontend.modules.store.search')
+			->with('dataStore', $dataStore)
+			->with('dataUserPage', $dataUserPage)
+			->with('dataCategory', $dataCategory)
+            ->with('dataProduct', $dataProduct);
+            
+       }
+	}    
 }
