@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v10.00 Beta1
-MySQL - 5.6.17 : Database - psarnetwork_db
+MySQL - 5.6.12-log : Database - psarnetwork_db
 *********************************************************************
 */
 
@@ -32,11 +32,11 @@ CREATE TABLE `m_page` (
   `update_at` varchar(50) DEFAULT NULL,
   `type` varchar(50) DEFAULT 'static',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 /*Data for the table `m_page` */
 
-insert  into `m_page`(`id`,`sys_user_id`,`title_en`,`title_km`,`short_desc_en`,`short_desc_km`,`status`,`create_at`,`update_at`,`type`) values (18,2,'sfdfssssssssssss','dsfd','cvx','cxvcv',1,'2015-01-19','2015-01-19','static'),(20,NULL,'New Arrival Products','New Arrival Products',NULL,NULL,1,NULL,NULL,'widget'),(21,NULL,'Hot Promotion Products',NULL,NULL,NULL,1,NULL,NULL,'widget'),(22,NULL,'Secondhand Products',NULL,NULL,NULL,1,NULL,NULL,'widget'),(23,NULL,'Monthly Pay  Products',NULL,NULL,NULL,1,NULL,NULL,'widget'),(24,NULL,'Urgent Sale',NULL,NULL,NULL,1,NULL,NULL,'widget'),(25,NULL,'test',NULL,NULL,NULL,1,NULL,NULL,'widget');
+insert  into `m_page`(`id`,`sys_user_id`,`title_en`,`title_km`,`short_desc_en`,`short_desc_km`,`status`,`create_at`,`update_at`,`type`) values (1,2,'About','dsfd','cvx','cxvcv',1,'2015-01-19','2015-01-19','static'),(2,NULL,'New Arrival Products','New Arrival Products',NULL,NULL,1,NULL,NULL,'widget'),(3,NULL,'Hot Promotion Products',NULL,NULL,NULL,1,NULL,NULL,'widget'),(4,NULL,'Secondhand Products',NULL,NULL,NULL,1,NULL,NULL,'widget'),(5,NULL,'Monthly Pay  Products',NULL,NULL,NULL,1,NULL,NULL,'widget'),(6,NULL,'Urgent Sale',NULL,NULL,NULL,1,NULL,NULL,'widget'),(7,NULL,'Vistor Inormation Box','tool',NULL,NULL,1,NULL,NULL,'tool_visitor_info'),(8,NULL,'Member Status Box','tool',NULL,NULL,1,NULL,NULL,'tool_memeber_status');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

@@ -34,14 +34,19 @@
 										<!--product describe-->
 										<div class="col-sm-6">
 											<div class="pro-detail">
+                                            @if(count($toolView)>0)
+                                                @foreach($toolView as $tool)
 												<div class="checkbox">
 													<label>
-                                                        {{Form::checkbox('visitor_box', 'value', false)}}
-                                                        {{trans('register.tool_visitor')}}
+                                                    <?php $checks = ($tool->status==1)? true : false;?>
+                                                        {{Form::checkbox('tooview[]', $tool->id, $checks)}}
+                                                        {{$tool->title}}
 													</label>
 												</div>
-                                                
-                                                <div class="checkbox">
+                                                @endforeach
+                                            @endif
+                                                <!--
+<div class="checkbox">
 													<label>
                                                         {{Form::checkbox('status_box', 'value', false)}}
                                                         {{trans('register.tool_status_box')}}
@@ -61,6 +66,7 @@
                                                         {{trans('register.tool_category_limit')}}
 													</label>
 												</div>
+-->
                                                                                                 
 											</div>
 										</div>
@@ -81,9 +87,7 @@
 					<!--end product detail-->
 					<div class="clear">
 					</div>
-					<input id="summit" type="submit" class="btn btn-default pull-right choosenuser" name="btnInfo" value="{{trans('register.BTN_NEXT')}}"/>
-					<a id="chooseuser" class="btn btn-warning pull-right choosenuser" href="#">Back</a>
-					<a id="chooseuser" class="btn btn-danger pull-right choosenuser" href="#">Cancel</a>
+					<input id="summit" type="submit" class="btn btn-default pull-right choosenuser" name="btnInfo" value="{{trans('register.BTN_SAVE')}}"/>
 				</form>
 				<div class="clear">
 				</div>

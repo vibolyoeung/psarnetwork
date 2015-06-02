@@ -75,5 +75,17 @@
 	@include('frontend.modules.store.partials.slidebar.left_product_link')
 @endsection
 @section('right')
-	@include('frontend.modules.store.partials.slidebar.visitor_counter')
+<?php
+$memberTool = array();
+if(!empty($toolView)):
+    foreach($toolView as $tool):
+        if($tool->type =='tool_memeber_status' && $tool->status==1):?>
+            @include('frontend.modules.store.partials.slidebar.visitor_counter')
+        <?php 
+        endif;
+        endforeach;
+endif;
+?>
+    
+	
 @endsection

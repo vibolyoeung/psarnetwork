@@ -152,6 +152,35 @@ class FeMemberController extends BaseController {
             }
             /*end add Defualt Page for user*/
             
+            /*add tool view for user*/
+            $toolType= 'tool';
+            $whereArr = array(
+                'status' => 1,
+                'title_km' => $toolType,
+            );
+            $getToolPage = $this->mod_page->getMainPages(null, $whereArr);
+
+            if(!empty($getToolPage)) {
+                foreach($getToolPage->result as $tooPage) {
+                    $addToolPage = $this->mod_page->addUserPages($uid, $tooPage->id, 100, $tooPage->type);
+                }
+            }
+            /*end add tool view for user*/
+            
+            /*add widget for user*/
+            $widgetType= 'widget';
+            $whereArrWdidget = array(
+                'status' => 1,
+                'type' => $widgetType,
+            );
+            $getWidgetPage = $this->mod_page->getMainPages(null, $whereArrWdidget);
+            if(!empty($getWidgetPage)) {
+                foreach($getWidgetPage->result as $getPage) {
+                    $addToolPage = $this->mod_page->addUserPages($uid, $getPage->id, 1, $widgetType);
+                }
+            }
+            /*end add widget for user*/
+            
             /*clear session user*/
             Session::flush();
         }
@@ -324,7 +353,7 @@ class FeMemberController extends BaseController {
                 $getUserPages = DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))->select('*')->
                     where(array('user_id' => $userID, 'type' => 'widget'))->get();
                 $dataPageWidget = $this->mod_page->addUserWidgetPages($userID);
-                return View::make('frontend.modules.member.' . $usertypes . '-' . $step)->with('maincategories',
+                return View::make('frontend.modules.member.' . $step)->with('maincategories',
                     $listCategories->result)->with('dataStore', $dataStore)->with('dataPageWidget',
                     $dataPageWidget->result);
                 break;
@@ -391,8 +420,24 @@ class FeMemberController extends BaseController {
                 break;
                 
             case 'toolview':
+                if (Input::has('btnInfo')) {
+                    $ToolViewId = Input::get('tooview');
+                    if(!empty($ToolViewId)) {
+                        DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))->where(array('user_id' =>$userID,'position' => 100))->update(array('status'=>0));
+                        foreach($ToolViewId as $toolId) {
+                            DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))->where(array('user_id' =>$userID,'position' => 100,'id'=>$toolId))->update(array('status'=>1));
+                        }
+                    }
+                    return Redirect::to('/member/userinfo/toolview')->with(Session::flash('messsage', 'message_save_success'));
+                }
+                $whereArr = array(
+                    'position' => 100,
+                    'user_id' => $userID
+                );
+                $getToolPage = $this->mod_page->getUserPages(null, $whereArr);
                 return View::make('frontend.modules.member.s-toolview')
                 ->with('maincategories',$listCategories->result)
+                ->with('toolView',$getToolPage->result)
                 ->with('dataStore', $getUserStore);
                 break;
                 

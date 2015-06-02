@@ -113,6 +113,32 @@ class MCategory extends Eloquent{
 		return $response;
 	}
 
+	/**
+	 *
+	 * getCategoryById: the function using for category by id
+	 * @param integer $id: the id of category
+	 * @return array category
+	 * @access public
+	 */
+	public function getCategoryByName($Name, $user){
+		$response = new stdClass();
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.S_CATEGORY'))
+					->select('*')
+					->where('name_en','=',$Name)
+                    ->where('user_id','=',$user)
+					->orderBy('id','asc')
+					->first();
+			$response->data = $result;
+            
+			$response->result = 1;
+
+		}catch (\Exception $e){
+			$response->data = 0;
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+		}
+		return $response;
+	}
 
 	/**
 	 *
@@ -303,6 +329,29 @@ class MCategory extends Eloquent{
 		return $result;
 	}
 
+	/**
+	 *
+	 * getsubCategories: this function is used for get sub categories to front page
+	 * @param integer $parent: parent id of the category
+	 * @return true: if the sub categories is selected
+	 * @access public
+	 */
+
+	public function getSubUserCategories($user, $parent){
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.S_CATEGORY'))
+			->select('*')
+			->where('parent_id','=',$parent)
+			->where('is_publish','=',1)
+            ->where('user_id','=',$user)
+			->orderBy('name_en','asc')
+			->get();
+		}catch (\Exception $e){
+		  $result = array();
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+		}
+		return $result;
+	}
 	public function getSubCategoriesDropdown($mainID, $parent){
 		try {
 			$results = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
@@ -622,15 +671,15 @@ class MCategory extends Eloquent{
                     }
     				$userMenus .= "<li>\n";
                         $menuName = $userMenu->{'name_'.Session::get('lang')};                        
-    					$userMenus .= "<a href='#'>{$menuName}</a>\n";
+    					$userMenus .= "<a href='{$homeUrl}/search/{$menuName}'>{$menuName}</a>\n";
     
     					// Run this function again (it would stop running when the mysql_num_result is 0
-    					$userMenus .= $this->menuUserSubList($userID, $userMenu->m_cat_id,$level+1);
+    					$userMenus .= $this->menuUserSubList($userID, $userMenu->m_cat_id,$level+1,$userHome);
     				$userMenus .= "</li>\n";
     			} 
             }
             /*get static page for each user*/
-            $userMenus .= $this->menuUserPage($userID);
+            $userMenus .= $this->menuUserPage($userID,1,$userHome);
             $userMenus .= "</ul>\n";
             return $userMenus;
 		}catch (\Exception $e){
@@ -646,7 +695,7 @@ class MCategory extends Eloquent{
      * @return String
      * @author Socheat Ngann
      */
-    public function menuUserFree($userID, $parent=0,$level=0) {
+    public function menuUserFree($userID, $parent=0,$level=0,$getUserUrl='') {
         $response = new stdClass();
 		try {
             $where = array(
@@ -659,7 +708,7 @@ class MCategory extends Eloquent{
 //			->get();
             $userMenus = "";
 			$userMenus .= "<ul class='sf-menu' id='menunav'>";
-            $homeUrl = Config::get('app.url');
+            $homeUrl = $getUserUrl;
             if($level==0) {
                 $userMenus .= "<li><a class='home' href='{$homeUrl}'>Home</a></li>";
             }
@@ -680,7 +729,7 @@ class MCategory extends Eloquent{
 //    			} 
 //            }
             /*get static page for each user*/
-            $userMenus .= $this->menuUserPage($userID);
+            $userMenus .= $this->menuUserPage($userID,1,$getUserUrl);
             $userMenus .= "</ul>\n";
             return $userMenus;
 		}catch (\Exception $e){
@@ -695,7 +744,7 @@ class MCategory extends Eloquent{
      * @return string
      * @author Socheat Ngann
      */
-    public function menuUserSubList($userID, $parent=0,$level=0) {
+    public function menuUserSubList($userID, $parent=0,$level=0,$homeUrl='') {
         $response = new stdClass();
 		try {
             $where = array(
@@ -719,10 +768,10 @@ class MCategory extends Eloquent{
                     $id_level = $level+1;
     				$userMenus .= "<li>\n";
                         $menuName = $userMenu->{'name_'.Session::get('lang')}; 
-    					$userMenus .= "<a href='#'>{$menuName}</a>\n";
+    					$userMenus .= "<a href='{$homeUrl}/search/{$menuName}'>{$menuName}</a>\n";
     
     					// Run this function again (it would stop running when the mysql_num_result is 0
-    					$userMenus .= $this->menuUserSubList($userID, $userMenu->m_cat_id,$level+1);
+    					$userMenus .= $this->menuUserSubList($userID, $userMenu->m_cat_id,$level+1,$homeUrl);
     				$userMenus .= "</li>\n";
     			} 
             }
@@ -741,12 +790,13 @@ class MCategory extends Eloquent{
      * @return string
      * @author Socheat Ngann
      */
-     public function menuUserPage($userID, $position=1) {
+     public function menuUserPage($userID, $position=1,$getUserUrl='') {
         $response = new stdClass();
 		try {
             $where = array(
                 'status' => 1,
                 'user_id' => $userID,
+                'type' => 'static',
                 'position' => $position
             );
 			$result = DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))
@@ -758,7 +808,7 @@ class MCategory extends Eloquent{
     			foreach($result as $userMenu){
     				$userMenus .= "<li class='pp-item pp3-item item-{$userMenu->id}' data-id='{$userMenu->id}'>\n";
                         $menuName = $userMenu->title; 
-    					$userMenus .= "<a href='#'>{$menuName}</a>\n";
+    					$userMenus .= "<a href='{$getUserUrl}/p/{$userMenu->id}'>{$menuName}</a>\n";
     				$userMenus .= "</li>\n";
     			} 
             }

@@ -446,6 +446,25 @@ class Product extends Eloquent{
 			->get();
 	}
 
+
+	/**
+	 * findPostProductByCategory
+	 * 
+	 * @param int $category id
+	 * @return products by category
+	 * @access public
+     * @developer Socheat Ngann
+	 */
+	public function findProductByCategory($store, $idArr) {
+		$product = Config::get('constants.TABLE_NAME.PRODUCT');
+		return DB::table($product)
+			->whereIn('s_category_id', $idArr)
+            ->where('store_id','=', $store)
+			->orderBy('id', 'DESC')
+			->paginate(10);
+	}
+    
+    
 	/**
 	 * listAllProductsByOwnStore
 	 * 

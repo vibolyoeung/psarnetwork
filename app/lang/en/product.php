@@ -19,5 +19,8 @@ return array(
 	'location' => 'Location',
 	'save_product_ads' => 'Save Product Ads',
 	'point_to_view' => 'Point to View',
-	'date_post' => 'Post Date'
+	'date_post' => 'Post Date',
+    
+    /*user product*/
+    'user_product_not_found' => 'Not found',
 );
