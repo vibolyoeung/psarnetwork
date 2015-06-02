@@ -679,7 +679,7 @@ class MCategory extends Eloquent{
     			} 
             }
             /*get static page for each user*/
-            $userMenus .= $this->menuUserPage($userID);
+            $userMenus .= $this->menuUserPage($userID,1,$userHome);
             $userMenus .= "</ul>\n";
             return $userMenus;
 		}catch (\Exception $e){
@@ -695,7 +695,7 @@ class MCategory extends Eloquent{
      * @return String
      * @author Socheat Ngann
      */
-    public function menuUserFree($userID, $parent=0,$level=0) {
+    public function menuUserFree($userID, $parent=0,$level=0,$getUserUrl='') {
         $response = new stdClass();
 		try {
             $where = array(
@@ -708,7 +708,7 @@ class MCategory extends Eloquent{
 //			->get();
             $userMenus = "";
 			$userMenus .= "<ul class='sf-menu' id='menunav'>";
-            $homeUrl = Config::get('app.url');
+            $homeUrl = $getUserUrl;
             if($level==0) {
                 $userMenus .= "<li><a class='home' href='{$homeUrl}'>Home</a></li>";
             }
@@ -729,7 +729,7 @@ class MCategory extends Eloquent{
 //    			} 
 //            }
             /*get static page for each user*/
-            $userMenus .= $this->menuUserPage($userID);
+            $userMenus .= $this->menuUserPage($userID,1,$getUserUrl);
             $userMenus .= "</ul>\n";
             return $userMenus;
 		}catch (\Exception $e){
@@ -790,12 +790,13 @@ class MCategory extends Eloquent{
      * @return string
      * @author Socheat Ngann
      */
-     public function menuUserPage($userID, $position=1) {
+     public function menuUserPage($userID, $position=1,$getUserUrl='') {
         $response = new stdClass();
 		try {
             $where = array(
                 'status' => 1,
                 'user_id' => $userID,
+                'type' => 'static',
                 'position' => $position
             );
 			$result = DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))
@@ -807,7 +808,7 @@ class MCategory extends Eloquent{
     			foreach($result as $userMenu){
     				$userMenus .= "<li class='pp-item pp3-item item-{$userMenu->id}' data-id='{$userMenu->id}'>\n";
                         $menuName = $userMenu->title; 
-    					$userMenus .= "<a href='#'>{$menuName}</a>\n";
+    					$userMenus .= "<a href='{$getUserUrl}/p/{$userMenu->id}'>{$menuName}</a>\n";
     				$userMenus .= "</li>\n";
     			} 
             }

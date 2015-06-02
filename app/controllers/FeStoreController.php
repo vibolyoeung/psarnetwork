@@ -35,7 +35,7 @@ class FeStoreController extends BaseController {
            if($getUser->result->account_type==2) {
                 $dataCategory = $this->mod_category->menuUserList($dataStore->user_id, $parent = 0,0,$getUserUrl);
            } else {
-                $dataCategory = $this->mod_category->menuUserFree($dataStore->user_id, $parent = 0);
+                $dataCategory = $this->mod_category->menuUserFree($dataStore->user_id, $parent = 0,$level=0,$getUserUrl);
            }
            $whereArr = array(
                 'position' => 100,
@@ -135,5 +135,43 @@ class FeStoreController extends BaseController {
             ->with('dataProduct', $dataProduct);
             
        }
-	}    
+	}
+    
+    public function getUserPage($store, $page_id){
+        $where = array('id'=>$store);
+        $dataStore = $this->mod_store->getUserStore(null,$where);
+        if(!empty($dataStore)) {
+            $dataStore = $dataStore;
+        } else {
+            $where = array('sto_url'=>$storeID);
+            $dataStore = $this->mod_store->getUserStore(null,$where);
+        }
+        $whereUserPage = array(
+            'id'=>$page_id,
+            'user_id' => $dataStore->user_id,
+            'type' => 'static',
+        );
+        $getUserPage = $this->mod_page->getUserPages(null,$whereUserPage);
+        $getUser = $this->user->getUser($dataStore->user_id);
+           $getUserUrl = $this->mod_store->getStoreUrl($dataStore->id);
+           if($getUser->result->account_type==2) {
+                $dataCategory = $this->mod_category->menuUserList($dataStore->user_id, $parent = 0,0,$getUserUrl);
+           } else {
+                $dataCategory = $this->mod_category->menuUserFree($dataStore->user_id, $parent = 0,$level=0,$getUserUrl);
+           }
+           $whereArr = array(
+                'position' => 100,
+                'user_id' => $dataStore->user_id
+            );
+            $getToolPage = $this->mod_page->getUserPages(null, $whereArr);
+                
+                
+           $dataUserPage = $this->mod_category->menuUserPage($dataStore->user_id, 2);
+           return View::make('frontend.modules.store.page')
+						->with('dataStore', $dataStore)
+                        ->with('dataCategory', $dataCategory)
+                        ->with('dataUserPage', $dataUserPage)
+                        ->with('dataUserPageView', $getUserPage->result)
+                        ->with('toolView',$getToolPage->result);
+    }    
 }
