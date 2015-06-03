@@ -210,5 +210,21 @@ class FePageController extends BaseController {
     	$relatedPost = $this->mod_product->findRelatedPostProduct($category_id);
     	return View::make('frontend.partials.products.related_post')
     		->with('related_post', $relatedPost);
-    }  
+    }
+
+    public function getSearchTypeAndLocations() {
+    	$businessTypes = $this->mod_market->findAllBusinessTypes();
+    	$locations = $this->mod_market->findAllProvinces();
+    	$advTops = $this->mod_advertisment
+		->getAdvertisementHomePage(
+				self::HOMEPAGE,
+				self::HOME_PAGE_TOP,
+				1
+		);
+
+    	return View::make('frontend.partials.searchtop')
+    		->with('businessTypes', $businessTypes->data)
+    		->with('locations', $locations->data)
+    		->with('advTops', $advTops->result);
+    }
 }

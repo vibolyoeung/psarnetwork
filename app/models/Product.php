@@ -495,5 +495,97 @@ class Product extends Eloquent{
 			->where('p.id', '=', $productId)
 			->first();
 	}
+
+	/**
+	 * Find product by location, type and keyword
+	 *
+	 * @param string $keyword
+	 * @param int $province
+	 * @param int $businessType
+	 *
+	 * @return array $products
+	 */
+	public function searchProducts(
+		$keyword = '',
+		$province,
+		$businessType
+	) {
+
+		if ((int) $province !== 0 && (int) $businessType !== 0) {
+			return DB::table($productTable .' AS p')
+				->select('*')
+				->where('p.is_publish', '=', self::IS_PUBLISH)
+				->where('p.title', 'LIKE','%'.$keyword.'%')
+				->orWhere('p.description', 'LIKE', '%'.$keyword.'%')
+				->orderBy('p.id', 'DESC')
+				->get();
+		}
+
+		$usersId = $this->findUserByLocationAndType($province, $businessType);
+		$products = [];
+
+		foreach ($usersId as $userId) {
+			$productTable = Config::get('constants.TABLE_NAME.PRODUCT');
+
+			$data = DB::table($productTable .' AS p')
+				->select('*')
+				->where('p.user_id', '=', $userId)
+				->where('p.is_publish', '=', self::IS_PUBLISH)
+				->where('p.title', 'LIKE','%'.$keyword.'%')
+				->orWhere('p.description', 'LIKE', '%'.$keyword.'%')
+				->orderBy('p.id', 'DESC')
+				->get();
+
+			if (!empty($data)) {
+				$products = $data;
+			}
+
+		}
+
+		return $products;
+	}
+
+	/**
+	 * Get user by province and bussiness type
+	 *
+	 * @param int $province
+	 * @param int $busnissType
+	 * 
+	 * @return array $usersId
+	 */
+	private function findUserByLocationAndType($province, $businessType){
+
+		$userTable = Config::get('constants.TABLE_NAME.USER');
+
+			if ((int) $businessType !== 0) {
+				$usersExcludeProvince = DB::table($userTable . ' AS u')
+					->select('*')
+					->where('u.account_type', '=', $businessType)
+					->get();
+			} else {
+				$usersExcludeProvince = DB::table($userTable . ' AS u')
+					->select('*')
+					->get();
+			}
+
+		$usersId = [];
+
+		foreach($usersExcludeProvince as $userExcludeProvince) {
+			$arrayProvinces = json_decode($userExcludeProvince->address, true);
+
+			if ((int) $province === 0) {
+				$userId[] = $userExcludeProvince->id;				
+			} else {
+				if ((int) $arrayProvinces['province'] === (int) $province) {
+					$usersId[] = $userExcludeProvince->id;
+				}
+			}
+
+		}
+
+
+		return $usersId;
+
+	}
 	
 }

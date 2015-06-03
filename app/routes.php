@@ -92,7 +92,6 @@ Route::group(array('before' => 'auth'), function () {
 
 //=============Routes for front end page==============
 
-Route::any('/{lang}', 'FePageController@index');
 Route::any('/', 'FePageController@index');
 Route::any('/page/{store}', 'FeStoreController@index');
 Route::any('/page/{store}/search/{label}', 'FeStoreController@searchUserPropuctByCategory');
@@ -101,9 +100,8 @@ Route::any('/page/{store}/my/detail/{product_id}', 'FeStoreController@myDetail')
 Route::any('/{lang}/user/signin', 'FeUserController@signIn');
 Route::any('/{lang}/user/signup', 'FeUserController@signUp');
 
-/*for categoy page*/
-Route::any('/{lang}/search/{category_name}', 'FeSearchController@index');
-Route::any('/search/{category_name}', 'FeSearchController@index');
+Route::get('/{lang}/search', 'FeSearchController@search');
+Route::get('/search', 'FeSearchController@search');
 
 /*for detail page*/
 Route::any('/{lang}/pro/{y}/{m}/{d}/{product_name}/{pro_id}',
