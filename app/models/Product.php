@@ -511,12 +511,14 @@ class Product extends Eloquent{
 		$businessType
 	) {
 
-		if ((int) $province !== 0 && (int) $businessType !== 0) {
+		if ((int) $province === 0 && (int) $businessType === 0) {
 			return DB::table($productTable .' AS p')
 				->select('*')
 				->where('p.is_publish', '=', self::IS_PUBLISH)
-				->where('p.title', 'LIKE','%'.$keyword.'%')
-				->orWhere('p.description', 'LIKE', '%'.$keyword.'%')
+				->where(function($query) use($keyword) {
+					$query->orWhere('p.title', 'LIKE','%'.$keyword.'%')
+						->orWhere('p.description', 'LIKE', '%'.$keyword.'%');
+				})
 				->orderBy('p.id', 'DESC')
 				->get();
 		}
@@ -524,15 +526,18 @@ class Product extends Eloquent{
 		$usersId = $this->findUserByLocationAndType($province, $businessType);
 		$products = [];
 
+
 		foreach ($usersId as $userId) {
 			$productTable = Config::get('constants.TABLE_NAME.PRODUCT');
 
 			$data = DB::table($productTable .' AS p')
 				->select('*')
-				->where('p.user_id', '=', $userId)
+				->where('p.user_id', '=', (int)$userId)
 				->where('p.is_publish', '=', self::IS_PUBLISH)
-				->where('p.title', 'LIKE','%'.$keyword.'%')
-				->orWhere('p.description', 'LIKE', '%'.$keyword.'%')
+				->where(function($query) use($keyword) {
+					$query->orWhere('p.title', 'LIKE','%'.$keyword.'%')
+						->orWhere('p.description', 'LIKE', '%'.$keyword.'%');
+				})
 				->orderBy('p.id', 'DESC')
 				->get();
 

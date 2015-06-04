@@ -2,7 +2,7 @@
 	<!--header-middle-->
 	<div class="container-fluid" style="margin-top:120px;">
 		<div class="row">
-			<div class="col-lg-12">
+			<div class="col-lg-12" id="form-search">
 				{{
 					Form::open(
 						array(
