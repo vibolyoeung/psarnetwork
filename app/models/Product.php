@@ -511,6 +511,8 @@ class Product extends Eloquent{
 		$businessType
 	) {
 
+		$productTable = Config::get('constants.TABLE_NAME.PRODUCT');
+		
 		if ((int) $province === 0 && (int) $businessType === 0) {
 			return DB::table($productTable .' AS p')
 				->select('*')
@@ -528,7 +530,6 @@ class Product extends Eloquent{
 
 
 		foreach ($usersId as $userId) {
-			$productTable = Config::get('constants.TABLE_NAME.PRODUCT');
 
 			$data = DB::table($productTable .' AS p')
 				->select('*')
