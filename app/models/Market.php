@@ -287,4 +287,30 @@ class Market extends Eloquent{
 		return $response;
 	}
 
+	public function findAllBusinessTypes() {
+		$response = new stdClass();
+
+		try {
+			$query = DB::table(Config::get('constants.TABLE_NAME.CLIENT_TYPE'))->get();
+			$response->data = $query;
+		} catch (\Exception $e) {
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+		}
+
+		return $response;
+	}
+
+	public function findAllProvinces(){
+		$response = new stdClass();
+
+		try {
+			$query = DB::table(Config::get('constants.TABLE_NAME.PROVINCE'))->get();
+			$response->data = $query;
+		} catch (\Exception $e) {
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+		}
+
+		return $response;
+	}
+
 }

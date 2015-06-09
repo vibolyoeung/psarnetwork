@@ -1,5 +1,5 @@
 @include('frontend.partials.header')
-@include('frontend.partials.searchtop')
+{{ App::make('FePageController')->getSearchTypeAndLocations() }}
 {{ App::make('FePageController')->mainCategory() }}
 <section>
 	<div class="container">
