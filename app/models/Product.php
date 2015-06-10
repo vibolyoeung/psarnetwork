@@ -491,12 +491,11 @@ class Product extends Eloquent{
 	 * @return products by Own store
 	 * @access public
 	 */
-	public function productDetailByOwnStore($productId) {
+	public function productDetailByOwnStore($productId,$userID) {
 		$product = Config::get('constants.TABLE_NAME.PRODUCT');
 		return DB::table($product .' AS p')
 			->select('*')
-			->where('p.user_id', '=', Session::get('currentUserId'))
-			->where('p.user_id', '=', Session::get('currentUserId'))
+			->where('p.user_id', '=', $userID)
 			->where('p.id', '=', $productId)
 			->first();
 	}

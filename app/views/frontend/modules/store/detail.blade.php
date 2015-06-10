@@ -12,8 +12,8 @@
 	</ol>
 @endsection
 @section('content')
-	<div class="col-lg-10" id="slider">
-			<div class="col-xs-10" >
+	<div class="col-lg-8" id="slider">
+			<div class="col-xs-12" >
 		 <!-- Top part of the slider -->
 			<div class="row">
 				<div class="col-sm-8" id="carousel-bounding-box">
