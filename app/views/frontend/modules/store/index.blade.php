@@ -10,25 +10,18 @@
 	</ol>
 @endsection
 @section('content')
-<div class="col-sm-10">
-	<div class="features_items">
+<div class="col-sm-8">
+	<div class="category-tab lastest-post">
 		<!-- ============Slider end here========= -->
-		<div class="features_items">
-			<div class="category-tab lastest-post">
-				<div class="col-sm-12">
+
+                <div class="features_items">
 					<ul class="nav nav-tabs">
 						<li><strong>The latest products</strong>  &nbsp;&nbsp;&nbsp; &frasl;</li>
-						<li>Products : <span class="number-display">25</span></li>
-						<li>Stores :<span class="number-display">25</span></li>
-						<li>Market :<span class="number-display">25</span></li>
-						<li>Companies :<span class="number-display">25</span></li>
-						<li>Home Shop :<span class="number-display">25</span></li>
-						<li>Individual : <span class="number-display">25</span></li>
-						<li>View :<span class="number-display">25</span></li>
+						<li>Products : <span class="number-display">{{($dataProduct)?count($dataProduct):''}}</span></li>
 					</ul>
-				</div>
-			</div>
-		</div>
+                </div>
+
+
 		<div class="col-lg-12" style="padding:0;">
             @if(!empty($dataProduct))
                 <?php
@@ -69,6 +62,22 @@
 		</div>
 	</div>
     {{$dataProduct->links()}}
+    @if(!empty($widtget))
+        @foreach($widtget as $showWidtget)
+            @if($showWidtget->status)
+                @if($showWidtget->title == 'New Arrival Products')
+                    @include('frontend.modules.store.partials.widget-new-arrival')
+                @elseif($showWidtget->title == 'Hot Promotion Products')
+                    @include('frontend.modules.store.partials.widget-hot-promote')
+                @elseif($showWidtget->title == 'Secondhand Products')
+                    @include('frontend.modules.store.partials.widget-secondhand')
+                @elseif($showWidtget->title == 'Monthly Pay  Products')
+                    @include('frontend.modules.store.partials.widget-monthly-pay')
+                @elseif($showWidtget->title == 'Urgent Sale')
+                @endif
+            @endif
+        @endforeach
+    @endif
 </div>
 @endsection
 @section('left')

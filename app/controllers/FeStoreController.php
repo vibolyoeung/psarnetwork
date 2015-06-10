@@ -42,15 +42,25 @@ class FeStoreController extends BaseController {
                 'user_id' => $dataStore->user_id
             );
             $getToolPage = $this->mod_page->getUserPages(null, $whereArr);
-                
+            
+            $widgetWhereArr = array(
+                'type' => 'widget',
+                'user_id' => $dataStore->user_id
+            );
+            $getWidget = $this->mod_page->getUserPages(null, $widgetWhereArr);
+
                 
            $dataUserPage = $this->mod_category->menuUserPage($dataStore->user_id, 2);
-           $dataProduct = $this->mod_product->listAllProductsByOwnStore();
+           $whereProduct = array(
+            'user_id'=>$dataStore->user_id,
+           );
+           $dataProduct = $this->mod_product->listAllProductsByOwnStore($whereProduct);
            return View::make('frontend.modules.store.index')
 						->with('dataStore', $dataStore)
                         ->with('dataCategory', $dataCategory)
                         ->with('dataUserPage', $dataUserPage)
                         ->with('toolView',$getToolPage->result)
+                        ->with('widtget',$getWidget->result)
                         ->with('dataProduct', $dataProduct);
         }
         catch (Exception $e) {

@@ -471,11 +471,16 @@ class Product extends Eloquent{
 	 * @return products by Own store
 	 * @access public
 	 */
-	public function listAllProductsByOwnStore() {
+	public function listAllProductsByOwnStore($where=array()) {
+        if(!empty($where)) {
+            $where = $where;
+        } else {
+            $where = array('user_id'=>Session::get('currentUserId'));
+        }
 		$product = Config::get('constants.TABLE_NAME.PRODUCT');
 		return DB::table($product)
 			->select('*')
-			->where(array('user_id'=>Session::get('currentUserId')))
+			->where($where)
 			->orderBy('id', 'DESC')
 			->paginate(10);
 	}
