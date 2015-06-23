@@ -213,7 +213,6 @@ class FePageController extends BaseController {
     }
 
     public function getSearchTypeAndLocations() {
-    	$businessTypes = $this->mod_market->findAllBusinessTypes();
     	$locations = $this->mod_market->findAllProvinces();
     	$advTops = $this->mod_advertisment
 		->getAdvertisementHomePage(
@@ -223,7 +222,6 @@ class FePageController extends BaseController {
 		);
 
     	return View::make('frontend.partials.searchtop')
-    		->with('businessTypes', $businessTypes->data)
     		->with('locations', $locations->data)
     		->with('advTops', $advTops->result);
     }
