@@ -1,6 +1,6 @@
 <!--features_items-->
 <div class="category-tab feature-ad lastest-post">
-	<div class="col-lg-12 popular_product">
+	<div class="col-lg-12 popular_product" style="padding: 0;">
 		<ul class="nav nav-tabs">
 			<li><strong>Feature & Popular Products</strong> &nbsp;&nbsp;&nbsp;
 				&frasl;</li>

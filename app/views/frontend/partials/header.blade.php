@@ -106,13 +106,23 @@
 		
 		<div class="container-fluid top-menu">
 			<div class="col-lg-12 top_promotion">
+				<div class="col-lg-4 member_ship_home pull-right" style="background-color:#ddd;margin:12px 0 0;padding:3px;">
+					<img src="{{Config::get('app.url')}}frontend/images/icons/login_user.png" title="" alt="" />
+					<a href ="{{Config::get('app.url')}}/member/login">Login</a>
+					&nbsp;/&nbsp;
+					<img src="{{Config::get('app.url')}}frontend/images/icons/register_user.png" title="" alt="" />
+					&nbsp;
+					<a href="{{Config::get('app.url')}}/member/register">
+						Register
+					</a>
+				</div>
 				<div class="col-lg-2">
 					<a href="{{Config::get('app.url')}}"><img
 						src="{{Config::get('app.url')}}frontend/images/khmerabba_logo.png"
 						width="200" />
 					<a>
 				</div>
-				<div class="col-lg-10">
+				<div class="col-lg-6">
 						<div class="col-lg-12" id="form-search">
 					{{
 						Form::open(
@@ -122,7 +132,7 @@
 							)
 						)
 					}}
-					<div class="col-lg-6 search-bar">
+					<div class="col-lg-12 search-bar">
 						<div class="col-lg-8 pull-right" style="padding: 0; margin: 0;">
 							<div class="col-lg-3 pull-right" style="padding: 0; margin: 0;">
 								<button type="submit"
@@ -180,7 +190,6 @@
 							href="{{Config::get('app.url')}}product/list/10">Monthly
 								Pay</a></li>
 					</ul>-->
-				</div>
 			</div>
 			<!--<div class="col-lg-6 navbar navbar-default topmenu-container"
 				role="navigation">

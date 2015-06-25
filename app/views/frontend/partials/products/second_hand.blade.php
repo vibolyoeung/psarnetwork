@@ -2,7 +2,7 @@
 	$secondHandProducts = Product::findSecondHandProducts ();
 	if(count($secondHandProducts) > 0){
 ?>
-<div class="category-tab feature-ad lastest-post">
+<div class="category-tab feature-ad lastest-post" style="padding: 0;">
 	<!--recommended_items-->
 	<ul class="nav nav-tabs">
 		<li><strong>Second Hand Products</strong> &nbsp;&nbsp;&nbsp; &frasl;</li>

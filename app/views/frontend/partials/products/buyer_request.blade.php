@@ -3,7 +3,7 @@ $buyerProducts = Product::findBuyerProducts ();
 if(count($buyerProducts) > 0){
 ?>
 			<br />
-<div class="category-tab feature-ad lastest-post">
+<div class="category-tab feature-ad lastest-post" style="padding: 0;">
 	<!--recommended_items-->
 	<ul class="nav nav-tabs">
 		<li><strong>Buyer Requested Products</strong> &nbsp;&nbsp;&nbsp;

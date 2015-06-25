@@ -2,7 +2,7 @@
 	<!--slider-->
 	<div class="row">
 		<div class="col-lg-12 pull-right" style="padding-right: 0;">
-			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" style="padding-left: 0;">
 				<div id="slider-carousel" class="carousel slide" data-ride="carousel" >
 				<?php 
 				if(count($slideshows) > 0){

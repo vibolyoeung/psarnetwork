@@ -4,7 +4,7 @@
 	if(count($monthlyProducts) > 0){
 ?>
 			<br />
-<div class="category-tab feature-ad lastest-post">
+<div class="category-tab feature-ad lastest-post" style="padding: 0;">
 	<!--recommended_items-->
 	<ul class="nav nav-tabs">
 		<li><strong>Monthly Pay Products</strong> &nbsp;&nbsp;&nbsp; &frasl;</li>

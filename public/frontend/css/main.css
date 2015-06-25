@@ -3494,6 +3494,9 @@ div.header-middle{
 .home_wrapper{
 	margin-top:70px;
 }
+.product_wrapper{
+	padding-right:0;
+}
 
 @media(max-width:768px){
     header#header, .header-middle, .left_bar, .top_special_ads, div.features_items > .features_items,.center-advertise, .popular_product,.new_product, .new_product_left, .new_product_right{

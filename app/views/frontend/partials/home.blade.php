@@ -8,12 +8,12 @@
 @endsection
 @section('content')
 @include('frontend.partials.left')
-<div class="col-lg-11">@include('frontend.partials.slider')</div>
+<div class="col-lg-10">@include('frontend.partials.slider')</div>
 <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
 	@include('frontend.partials.products.latest')
 	@include('frontend.partials.products.popular')
 	<!--/category-tab-->
-	<div class="category-tab feature-ad lastest-post">
+	<div class="category-tab feature-ad lastest-post  product_wrapper">
 		<!--recommended_items-->
 		<div class="col-lg-12">
 			<div class="col-lg-2 pull-right new_product_right"

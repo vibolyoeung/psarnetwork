@@ -1,7 +1,7 @@
 <div class="features_items">
 	<div class="features_items">
 		<div class="category-tab lastest-post">
-			<div class="col-sm-12">
+			<div class="col-sm-12" style="padding: 0;">
 				<ul class="nav nav-tabs">
 					<li><strong>The latest products</strong> &nbsp;&nbsp;&nbsp; &frasl;</li>
 					<li>Products : <span class="number-display">25</span></li>
