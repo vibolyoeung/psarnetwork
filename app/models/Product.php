@@ -528,7 +528,7 @@ class Product extends Eloquent{
 				return $this->searchBySuppliers($usersId, $keyword);
 			
 			default:
-				return $this->searchProductsWithNoSpecified($usersId, $keyword);
+				return;
 		}
 		
 	}
@@ -600,7 +600,6 @@ class Product extends Eloquent{
 		$products = [];
 
 		if ($keyword === '' && empty($usersId)) {
-			// echo 1; die;
 			$data = DB::table($productTable .' AS p')
 				->select('*')
 				->where('p.is_publish', '=', self::IS_PUBLISH)
@@ -636,10 +635,42 @@ class Product extends Eloquent{
 
 	public function searchBySuppliers($usersId, $keyword) {
 
-	}
+		$productTable = Config::get('constants.TABLE_NAME.PRODUCT');
+		$userTable = Config::get('constants.TABLE_NAME.USER');
+		$accountRoleTable = Config::get('constants.TABLE_NAME.ACCOUNT_ROLE');
+		$products = [];
 
-	public function searchProductsWithNoSpecified($usersId, $type) {
+		if ($keyword === '' && empty($usersId)) {
+			$data = DB::table($productTable .' AS p')
+				->join($userTable . ' AS u' , 'u.id', '=', 'p.user_id')
+				->join($accountRoleTable . ' AS ar', 'ar.rol_id', '=', 'u.account_role')
+				->select('*')
+				->where('p.is_publish', '=', self::IS_PUBLISH)
+				->where('p.pro_transfer_type_id', '=', self::BUYER_PRODUCT)
+				->orderBy('p.id', 'DESC')
+				->get();
 
+			return $data;
+		}
+
+		foreach($usersId as $userId) {
+			$data = DB::table($productTable .' AS p')
+				->join($userTable . ' AS u' , 'u.id', '=', 'p.user_id')
+				->join($accountRoleTable . ' AS ar', 'ar.rol_id', '=', 'u.account_role')
+				->select('*')
+				->where('p.user_id', '=', (int)$userId)
+				->where('p.is_publish', '=', self::IS_PUBLISH)
+				->where('p.pro_transfer_type_id', '=', self::BUYER_PRODUCT)
+				->where(function($query) use($keyword) {
+					$query->orWhere('p.title', 'LIKE','%'.$keyword.'%')
+						->orWhere('p.description', 'LIKE', '%'.$keyword.'%');
+				})
+				->orderBy('p.id', 'DESC')
+				->get();
+
+			if (!empty($data)) {
+				$products = $data;
+			}	
+		}
 	}
-	
 }
