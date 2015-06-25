@@ -3491,6 +3491,10 @@ div.header-middle{
 	height: 34px;
 }
 
+.home_wrapper{
+	margin-top:70px;
+}
+
 @media(max-width:768px){
     header#header, .header-middle, .left_bar, .top_special_ads, div.features_items > .features_items,.center-advertise, .popular_product,.new_product, .new_product_left, .new_product_right{
        display: none !important;
@@ -3506,3 +3510,4 @@ div.header-middle{
         padding:inherit !important;
     }
 }
+

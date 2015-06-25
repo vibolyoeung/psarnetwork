@@ -1,7 +1,7 @@
 {{ App::make('FePageController')->getSearchTypeAndLocations() }}
 {{ App::make('FePageController')->mainCategory() }}
 <section>
-	<div class="container">
+	<div class="container home_wrapper">
 		<div class="row">
 			@yield('content')
 		</div>

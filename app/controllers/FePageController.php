@@ -220,8 +220,7 @@ class FePageController extends BaseController {
 				self::HOME_PAGE_TOP,
 				1
 		);
-
-    	return View::make('frontend.partials.searchtop')
+    	return View::make('frontend.partials.header')
     		->with('locations', $locations->data)
     		->with('advTops', $advTops->result);
     }
