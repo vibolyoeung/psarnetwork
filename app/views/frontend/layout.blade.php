@@ -1,4 +1,3 @@
-@include('frontend.partials.header')
 {{ App::make('FePageController')->getSearchTypeAndLocations() }}
 {{ App::make('FePageController')->mainCategory() }}
 <section>

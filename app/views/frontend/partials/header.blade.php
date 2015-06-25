@@ -40,7 +40,6 @@
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
 	<!-- End facebook calling -->
-
 	<header id="header" class="mainHeader">
 		<!--=====Start Header]==============-->
 		<div class="header_top">
@@ -106,15 +105,64 @@
 		</div>
 		
 		<div class="container-fluid top-menu">
-			<div class="col-lg-6 top_promotion">
-				<div class="col-md-6 col-lg-2 col-sm-4 col-xs-4">
+			<div class="col-lg-12 top_promotion">
+				<div class="col-lg-2">
 					<a href="{{Config::get('app.url')}}"><img
 						src="{{Config::get('app.url')}}frontend/images/khmerabba_logo.png"
-						width="200" /><a>
-				
+						width="200" />
+					<a>
 				</div>
 				<div class="col-lg-10">
-					<ul class="promotion_top_menu pull-right">
+						<div class="col-lg-12" id="form-search">
+					{{
+						Form::open(
+							array(
+								'url'=>'search',
+								'method'=>'get'
+							)
+						)
+					}}
+					<div class="col-lg-6 search-bar">
+						<div class="col-lg-8 pull-right" style="padding: 0; margin: 0;">
+							<div class="col-lg-3 pull-right" style="padding: 0; margin: 0;">
+								<button type="submit"
+									class="btn btn-warning pull-right col-lg-12"
+									style="border-radius: 0;">
+									<span class="glyphicon glyphicon-search"></span> Search
+								</button>
+							</div>
+							<div class="col-lg-9" style="padding: 0; margin: 0;">
+								<input type="text" name="q" class="form-control" placeholder="Search here"
+									style="border-radius: 0; border: none; border-left: 1px solid #ddd;" />
+							</div>
+						</div>
+						<div class="col-lg-4" style="margin: 0; padding: 0;">
+							<div class="col-lg-6 pull-right" style="margin: 0; padding: 0;">
+								<div class="btn-group col-lg-12" style="padding: 0; margin: 0;">
+									<select name="location">
+										<option value="0">Location</option>
+										@foreach($locations as $location)
+											<option value="{{$location->province_id}}">{{$location->province_name}}</option>
+										@endforeach;
+									</select>
+								</div>
+							</div>
+	
+							<div class="col-lg-6" style="margin: 0; padding: 0;">
+								<div class="btn-group col-lg-12 " style="margin: 0; padding: 0;">
+									<select name="type">
+										<option value="0">Type</option>
+										@foreach($businessTypes as $businessType)
+											<option value="{{$businessType->id}}">{{$businessType->name}}</option>
+										@endforeach;
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					{{Form::close()}}
+				</div>
+					<!--<ul class="promotion_top_menu pull-right">
 						<li><a
 								href="{{Config::get('app.url')}}product/list/10">Hot
 								Promotion</a></li>
@@ -131,10 +179,10 @@
 						<li><a
 							href="{{Config::get('app.url')}}product/list/10">Monthly
 								Pay</a></li>
-					</ul>
+					</ul>-->
 				</div>
 			</div>
-			<div class="col-lg-6 navbar navbar-default topmenu-container"
+			<!--<div class="col-lg-6 navbar navbar-default topmenu-container"
 				role="navigation">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -158,8 +206,8 @@
 						</li>
 					</ul>
 				</div>
-				<!--/.nav-collapse -->
-			</div>
+				<!--/.nav-collaps
+			</div>-->
 		</div>
 	</header>
 		<!--for mesage alert -->

@@ -222,7 +222,7 @@ class FePageController extends BaseController {
 				1
 		);
 
-    	return View::make('frontend.partials.searchtop')
+    	return View::make('frontend.partials.header')
     		->with('businessTypes', $businessTypes->data)
     		->with('locations', $locations->data)
     		->with('advTops', $advTops->result);
