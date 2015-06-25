@@ -283,11 +283,11 @@ CREATE TABLE `m_page` (
   `update_at` varchar(50) DEFAULT NULL,
   `type` varchar(50) DEFAULT 'static',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 /*Data for the table `m_page` */
 
-insert  into `m_page`(`id`,`sys_user_id`,`title_en`,`title_km`,`short_desc_en`,`short_desc_km`,`status`,`create_at`,`update_at`,`type`) values (18,2,'sfdfssssssssssss','dsfd','cvx','cxvcv',1,'2015-01-19','2015-01-19','static'),(20,NULL,'New Arrival Products','New Arrival Products',NULL,NULL,1,NULL,NULL,'widget'),(21,NULL,'Hot Promotion Products',NULL,NULL,NULL,1,NULL,NULL,'widget'),(22,NULL,'Secondhand Products',NULL,NULL,NULL,1,NULL,NULL,'widget'),(23,NULL,'Monthly Pay  Products',NULL,NULL,NULL,1,NULL,NULL,'widget'),(24,NULL,'Urgent Sale',NULL,NULL,NULL,1,NULL,NULL,'widget'),(25,NULL,'test',NULL,NULL,NULL,1,NULL,NULL,'widget');
+insert  into `m_page`(`id`,`sys_user_id`,`title_en`,`title_km`,`short_desc_en`,`short_desc_km`,`status`,`create_at`,`update_at`,`type`) values (1,2,'About','dsfd','cvx','cxvcv',1,'2015-01-19','2015-01-19','static'),(2,NULL,'New Arrival Products','New Arrival Products',NULL,NULL,1,NULL,NULL,'widget'),(3,NULL,'Hot Promotion Products',NULL,NULL,NULL,1,NULL,NULL,'widget'),(4,NULL,'Secondhand Products',NULL,NULL,NULL,1,NULL,NULL,'widget'),(5,NULL,'Monthly Pay  Products',NULL,NULL,NULL,1,NULL,NULL,'widget'),(6,NULL,'Urgent Sale',NULL,NULL,NULL,1,NULL,NULL,'widget'),(7,NULL,'Vistor Inormation Box','tool',NULL,NULL,1,NULL,NULL,'tool_visitor_info'),(8,NULL,'Member Status Box','tool',NULL,NULL,1,NULL,NULL,'tool_memeber_status');
 
 /*Table structure for table `market` */
 
@@ -373,12 +373,20 @@ CREATE TABLE `product` (
   `contact_info` text,
   `file_quotation` text,
   `description` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `view` int(11) DEFAULT '0',
+  `s_category_id` int(11) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `top_up` varchar(255) DEFAULT NULL,
+  `point_to_view` int(11) DEFAULT '0',
+  `publish_date` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_store_product` (`store_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 /*Data for the table `product` */
 
-insert  into `product`(`id`,`title`,`price`,`product_service_type_id`,`thumbnail`,`pictures`,`created_date`,`expire_date`,`pro_condition_id`,`pro_status`,`pro_transfer_type_id`,`is_publish`,`contact_info`,`file_quotation`,`description`) values (1,'product-slide',20,1,NULL,'1413631092.jpg','2014/11/10','2014/11/26',NULL,1,NULL,NULL,NULL,NULL,'Long Desc'),(2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+insert  into `product`(`id`,`title`,`price`,`product_service_type_id`,`thumbnail`,`pictures`,`created_date`,`expire_date`,`pro_condition_id`,`pro_status`,`pro_transfer_type_id`,`is_publish`,`contact_info`,`file_quotation`,`description`,`view`,`s_category_id`,`store_id`,`user_id`,`top_up`,`point_to_view`,`publish_date`) values (9,'test 1',200,NULL,'245b0129d9325449340ab77b3bedb63a5bc4cea0.jpg','[{\"pic\":\"245b0129d9325449340ab77b3bedb63a5bc4cea0.jpg\"}]',NULL,NULL,1,1,1,1,'{\"contactName\":\"Merrill Cummings\",\"contactEmail\":\"admin1@gmail.com\",\"contactHP\":\"+687-34-9941425\",\"contactLocation\":\"Phnom Penh\"}',NULL,'Description',0,20,54,54,'2015-05-26 11:57:42',0,'26/05/2015'),(10,'uuuu',34,NULL,'52fe58c6b020ea62c685487e963c2a725cfc2ca3.png','[{\"pic\":\"52fe58c6b020ea62c685487e963c2a725cfc2ca3.png\"}]',NULL,NULL,1,1,1,1,'{\"contactName\":\"Merrill Cummings\",\"contactEmail\":\"admin1@gmail.com\",\"contactHP\":\"+687-34-9941425\",\"contactLocation\":\"Phnom Penh\"}',NULL,'yyyy',0,20,54,54,'2015-05-26 12:14:35',0,'26/05/2015'),(11,'test1',111,NULL,'b0b5e6356184d81f82c508d6c672197deeda41f4.png','[{\"pic\":\"b0b5e6356184d81f82c508d6c672197deeda41f4.png\"}]',NULL,NULL,1,1,1,1,'{\"contactName\":\"Cathleen Cohen\",\"contactEmail\":\"admin2@gmail.com\",\"contactHP\":\"+847-90-4555054\",\"contactLocation\":\"Preah Vihear\"}',NULL,'Description',0,19,55,55,'2015-05-26 12:21:27',0,'26/05/2015'),(16,'test1',111,NULL,'34fe7ab2fa4fbfcddef1921fafec45a1f1b46793.png','[{\"pic\":\"34fe7ab2fa4fbfcddef1921fafec45a1f1b46793.png\"}]',NULL,NULL,1,1,1,1,'{\"contactName\":\"Shana Hendrix\",\"contactEmail\":\"admin6@gmail.com\",\"contactHP\":\"+358-78-2458359\",\"contactLocation\":\"Phnom Penh\"}',NULL,'dddddddd',0,415,24,67,'2015-06-01 06:01:09',0,'01/06/2015'),(17,'test1',111,NULL,'3fc1667d7de25a3d5092a8be305509c10adb6170.png','[{\"pic\":\"3fc1667d7de25a3d5092a8be305509c10adb6170.png\"}]',NULL,NULL,1,1,1,1,'{\"contactName\":\"Roanna George update\",\"contactEmail\":\"admin5@gmail.com\",\"contactHP\":\"+717-86-5359133\",\"contactLocation\":\"Kampot\"}',NULL,'ffffff',0,401,20,63,'2015-06-01 13:55:30',0,'01/06/2015');
 
 /*Table structure for table `product_condiction` */
 
@@ -470,11 +478,11 @@ CREATE TABLE `s_category` (
   PRIMARY KEY (`id`),
   KEY `fk_user_category` (`user_id`),
   CONSTRAINT `fk_user_category` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=183 DEFAULT CHARSET=utf8;
 
 /*Data for the table `s_category` */
 
-insert  into `s_category`(`id`,`name_en`,`name_km`,`m_cat_id`,`m_title`,`user_id`,`parent_id`,`order`,`is_publish`) values (1,'Computer , Software,Network,Hardware','Computer , Software,Network,Hardware',20,NULL,53,0,0,1),(2,'Computer-Accessory','Computer-Accessory',73,NULL,53,20,1,1),(3,'Blank Media','Blank Media',80,NULL,53,73,2,1),(4,'Electronic Consumer','Electronic Consumer',103,NULL,53,0,3,1),(5,'Phone','Phone',104,NULL,53,103,4,1),(6,'Ecom','Ecom',109,NULL,53,104,5,1);
+insert  into `s_category`(`id`,`name_en`,`name_km`,`m_cat_id`,`m_title`,`user_id`,`parent_id`,`order`,`is_publish`) values (177,'Computer , Software,Network,Hardware','Computer , Software,Network,Hardware',20,NULL,53,0,0,1),(178,'Computer-Accessory','Computer-Accessory',73,NULL,53,20,1,1),(179,'Blank Media','Blank Media',80,NULL,53,73,2,1),(180,'Electronic Consumer','Electronic Consumer',103,NULL,53,0,3,1),(181,'Phone','Phone',104,NULL,53,103,4,1),(182,'Ecom','Ecom',109,NULL,53,104,5,1);
 
 /*Table structure for table `s_page` */
 
@@ -493,11 +501,11 @@ CREATE TABLE `s_page` (
   PRIMARY KEY (`id`),
   KEY `fk_user_page_id` (`user_id`),
   CONSTRAINT `fk_user_page_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=160 DEFAULT CHARSET=utf8;
 
 /*Data for the table `s_page` */
 
-insert  into `s_page`(`id`,`user_id`,`m_page_id`,`title`,`description`,`position`,`order`,`type`,`status`) values (17,53,20,'New Arrival Products',NULL,NULL,1,'widget',1),(18,53,21,'Hot Promotion Products',NULL,NULL,2,'widget',1),(19,53,22,'Secondhand Products',NULL,NULL,4,'widget',1),(20,53,23,'Monthly Pay  Products',NULL,NULL,3,'widget',1),(21,53,24,'Urgent Sale',NULL,NULL,5,'widget',1),(22,53,25,'test',NULL,NULL,6,'widget',1),(23,53,18,'sfdfssssssssssss',NULL,2,NULL,'static',1);
+insert  into `s_page`(`id`,`user_id`,`m_page_id`,`title`,`description`,`position`,`order`,`type`,`status`) values (139,89,18,'About',NULL,1,NULL,'static',1),(140,89,26,'Vistor Inormation Box',NULL,100,NULL,'tool_visitor_info',1),(141,89,27,'Member Status Box',NULL,100,NULL,'tool_memeber_status',1),(142,89,20,'New Arrival Products',NULL,1,NULL,'widget',1),(143,89,21,'Hot Promotion Products',NULL,1,NULL,'widget',1),(144,89,22,'Secondhand Products',NULL,1,NULL,'widget',1),(145,89,23,'Monthly Pay  Products',NULL,1,NULL,'widget',1),(146,89,24,'Urgent Sale',NULL,1,NULL,'widget',1),(147,90,18,'About',NULL,1,NULL,'static',1),(148,90,26,'Vistor Inormation Box',NULL,100,NULL,'tool_visitor_info',1),(149,90,27,'Member Status Box',NULL,100,NULL,'tool_memeber_status',1),(150,90,20,'New Arrival Products',NULL,1,NULL,'widget',1),(151,90,21,'Hot Promotion Products',NULL,1,NULL,'widget',1),(152,90,22,'Secondhand Products',NULL,1,NULL,'widget',1),(153,90,23,'Monthly Pay  Products',NULL,1,NULL,'widget',1),(154,90,24,'Urgent Sale',NULL,1,NULL,'widget',1),(155,90,2,'New Arrival Products',NULL,NULL,1,'widget',0),(156,90,3,'Hot Promotion Products',NULL,NULL,2,'widget',0),(157,90,4,'Secondhand Products',NULL,NULL,3,'widget',0),(158,90,5,'Monthly Pay  Products',NULL,NULL,4,'widget',0),(159,90,6,'Urgent Sale',NULL,NULL,5,'widget',0);
 
 /*Table structure for table `setting` */
 
@@ -558,11 +566,11 @@ CREATE TABLE `store` (
   PRIMARY KEY (`id`),
   KEY `fk_user_id` (`user_id`),
   CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
 /*Data for the table `store` */
 
-insert  into `store`(`id`,`user_id`,`sup_id`,`title_en`,`title_zh`,`desc_en`,`desc_zh`,`view`,`stair`,`image`,`sto_url`,`sto_banner`,`sto_value`) values (10,53,0,'Page Title',NULL,NULL,NULL,NULL,NULL,'1427102192.jpg','','1427102172.png','{\"footer_text\":\"ssssssssssssssssss\",\"layout\":\"main-orange.css\"}');
+insert  into `store`(`id`,`user_id`,`sup_id`,`title_en`,`title_zh`,`desc_en`,`desc_zh`,`view`,`stair`,`image`,`sto_url`,`sto_banner`,`sto_value`) values (10,53,10,'My header',NULL,NULL,NULL,NULL,NULL,'1431683568.png','','1431683572.png','{\"footer_text\":\"ssssssssssssssssss\",\"layout\":\"main-layout-user-blue.css\"}'),(46,89,0,'',NULL,NULL,NULL,NULL,NULL,'','','','{\"layout\":\"main-layout-user-a.css\"}'),(47,90,0,'',NULL,NULL,NULL,NULL,NULL,'','','','{\"layout\":\"main-layout-user-a.css\"}');
 
 /*Table structure for table `template` */
 
@@ -598,11 +606,11 @@ CREATE TABLE `user` (
   `address` text,
   `user_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`name`,`email`,`password`,`password_temp`,`status`,`create_at`,`update_at`,`remember_token`,`user_type`,`account_type`,`account_role`,`client_type`,`telephone`,`address`,`user_name`) values (2,'KOCH Doeun','doeunkoch@gmail.com','8843028fefce50a6de50acdf064ded27',NULL,1,'2014-12-04',NULL,'twRzIC28EZ3cyZHWAZuYeAki3GHmeKEIol8uibUachKg3fjWNlY8Hp9tcSyI',1,NULL,NULL,NULL,'0972793573','Phnom Penh','admin'),(53,'Cynthia Guy','admin@gmail.com','8843028fefce50a6de50acdf064ded27',NULL,1,'2015-03-22','2015-03-22',NULL,4,1,NULL,5,'+717-41-8789968','{\"province\":\"\",\"disctict\":null,\"g_latitude_longitude\":\"11.070603,106.215820\"}','');
+insert  into `user`(`id`,`name`,`email`,`password`,`password_temp`,`status`,`create_at`,`update_at`,`remember_token`,`user_type`,`account_type`,`account_role`,`client_type`,`telephone`,`address`,`user_name`) values (2,'KOCH Doeun','doeunkoch@gmail.com','8843028fefce50a6de50acdf064ded27',NULL,1,'2014-12-04',NULL,'twRzIC28EZ3cyZHWAZuYeAki3GHmeKEIol8uibUachKg3fjWNlY8Hp9tcSyI',1,NULL,NULL,NULL,'0972793573','Phnom Penh','admin'),(53,'Cynthia Guy test','admin@gmail.com','693cfed9dd8adf7c63afbf53cf3a8043',NULL,1,'2015-03-22','2015-05-27',NULL,4,1,2,3,'+717-41-8789968','{\"province\":\"\",\"disctict\":null,\"g_latitude_longitude\":\"11.071374,106.234563\"}',''),(89,'Kermit Stephenson','fewefy@yahoo.com','3bf7f9ce3190e8b37595e7c8133cc090',NULL,1,'2015-06-01',NULL,NULL,4,2,1,3,'+488-31-5775540','{\"province\":\"\",\"disctict\":null,\"g_latitude_longitude\":\"\"}',''),(90,'Deanna Cervantes','admin1@gmail.com','8843028fefce50a6de50acdf064ded27',NULL,1,'2015-06-01',NULL,NULL,4,1,3,5,'+269-94-9207402','{\"province\":\"\",\"disctict\":null,\"g_latitude_longitude\":\"\"}','');
 
 /*Table structure for table `user_type` */
 

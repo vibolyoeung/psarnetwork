@@ -471,11 +471,16 @@ class Product extends Eloquent{
 	 * @return products by Own store
 	 * @access public
 	 */
-	public function listAllProductsByOwnStore() {
+	public function listAllProductsByOwnStore($where=array()) {
+        if(!empty($where)) {
+            $where = $where;
+        } else {
+            $where = array('user_id'=>Session::get('currentUserId'));
+        }
 		$product = Config::get('constants.TABLE_NAME.PRODUCT');
 		return DB::table($product)
 			->select('*')
-			->where(array('user_id'=>Session::get('currentUserId')))
+			->where($where)
 			->orderBy('id', 'DESC')
 			->paginate(10);
 	}
@@ -486,12 +491,11 @@ class Product extends Eloquent{
 	 * @return products by Own store
 	 * @access public
 	 */
-	public function productDetailByOwnStore($productId) {
+	public function productDetailByOwnStore($productId,$userID) {
 		$product = Config::get('constants.TABLE_NAME.PRODUCT');
 		return DB::table($product .' AS p')
 			->select('*')
-			->where('p.user_id', '=', Session::get('currentUserId'))
-			->where('p.user_id', '=', Session::get('currentUserId'))
+			->where('p.user_id', '=', $userID)
 			->where('p.id', '=', $productId)
 			->first();
 	}
@@ -511,23 +515,63 @@ class Product extends Eloquent{
 		$businessType
 	) {
 
-		$productTable = Config::get('constants.TABLE_NAME.PRODUCT');
+		$usersId = $this->findUserByProvince($province);
+
+		switch ((int) $businessType) {
+			case 1:
+				return $this->searchByProduct($usersId, $keyword);
+
+			case 2:
+				return $this->searchByBuyer($usersId, $keyword);
+
+			case 3:
+				return $this->searchBySuppliers($usersId, $keyword);
+			
+			default:
+				return;
+		}
 		
-		if ((int) $province === 0 && (int) $businessType === 0) {
-			return DB::table($productTable .' AS p')
-				->select('*')
-				->where('p.is_publish', '=', self::IS_PUBLISH)
-				->where(function($query) use($keyword) {
-					$query->orWhere('p.title', 'LIKE','%'.$keyword.'%')
-						->orWhere('p.description', 'LIKE', '%'.$keyword.'%');
-				})
-				->orderBy('p.id', 'DESC')
-				->get();
+	}
+
+	/**
+	 * Get user by province and bussiness type
+	 *
+	 * @param int $province
+	 * 
+	 * @return array $usersId
+	 */
+	private function findUserByProvince($province){
+
+		$userTable = Config::get('constants.TABLE_NAME.USER');
+
+		$usersExcludeProvince = DB::table($userTable . ' AS u')
+			->select('*')
+			->get();
+
+		$usersId = [];
+
+		foreach($usersExcludeProvince as $userExcludeProvince) {
+			$arrayProvinces = json_decode($userExcludeProvince->address, true);
+
+			if ((int) $province === 0) {
+				$userId[] = $userExcludeProvince->id;				
+			} else {
+				if ((int) $arrayProvinces['province'] === (int) $province) {
+					$usersId[] = $userExcludeProvince->id;
+				}
+			}
+
 		}
 
-		$usersId = $this->findUserByLocationAndType($province, $businessType);
-		$products = [];
 
+		return $usersId;
+
+	}
+
+	public function searchByProduct($usersId, $keyword) {
+
+		$productTable = Config::get('constants.TABLE_NAME.PRODUCT');
+		$products = [];
 
 		foreach ($usersId as $userId) {
 
@@ -551,47 +595,82 @@ class Product extends Eloquent{
 		return $products;
 	}
 
-	/**
-	 * Get user by province and bussiness type
-	 *
-	 * @param int $province
-	 * @param int $busnissType
-	 * 
-	 * @return array $usersId
-	 */
-	private function findUserByLocationAndType($province, $businessType){
+	public function searchByBuyer($usersId, $keyword) {
+		$productTable = Config::get('constants.TABLE_NAME.PRODUCT');
+		$products = [];
 
-		$userTable = Config::get('constants.TABLE_NAME.USER');
+		if ($keyword === '' && empty($usersId)) {
+			$data = DB::table($productTable .' AS p')
+				->select('*')
+				->where('p.is_publish', '=', self::IS_PUBLISH)
+				->where('p.pro_transfer_type_id', '=', self::BUYER_PRODUCT)
+				->orderBy('p.id', 'DESC')
+				->get();
 
-			if ((int) $businessType !== 0) {
-				$usersExcludeProvince = DB::table($userTable . ' AS u')
-					->select('*')
-					->where('u.account_type', '=', $businessType)
-					->get();
-			} else {
-				$usersExcludeProvince = DB::table($userTable . ' AS u')
-					->select('*')
-					->get();
-			}
+			return $data;
+		}
 
-		$usersId = [];
+		foreach ($usersId as $userId) {
 
-		foreach($usersExcludeProvince as $userExcludeProvince) {
-			$arrayProvinces = json_decode($userExcludeProvince->address, true);
+			$data = DB::table($productTable .' AS p')
+				->select('*')
+				->where('p.user_id', '=', (int)$userId)
+				->where('p.is_publish', '=', self::IS_PUBLISH)
+				->where('p.pro_transfer_type_id', '=', self::BUYER_PRODUCT)
+				->where(function($query) use($keyword) {
+					$query->orWhere('p.title', 'LIKE','%'.$keyword.'%')
+						->orWhere('p.description', 'LIKE', '%'.$keyword.'%');
+				})
+				->orderBy('p.id', 'DESC')
+				->get();
 
-			if ((int) $province === 0) {
-				$userId[] = $userExcludeProvince->id;				
-			} else {
-				if ((int) $arrayProvinces['province'] === (int) $province) {
-					$usersId[] = $userExcludeProvince->id;
-				}
+			if (!empty($data)) {
+				$products = $data;
 			}
 
 		}
 
-
-		return $usersId;
-
+		return $products;
 	}
-	
+
+	public function searchBySuppliers($usersId, $keyword) {
+
+		$productTable = Config::get('constants.TABLE_NAME.PRODUCT');
+		$userTable = Config::get('constants.TABLE_NAME.USER');
+		$accountRoleTable = Config::get('constants.TABLE_NAME.ACCOUNT_ROLE');
+		$products = [];
+
+		if ($keyword === '' && empty($usersId)) {
+			$data = DB::table($productTable .' AS p')
+				->join($userTable . ' AS u' , 'u.id', '=', 'p.user_id')
+				->join($accountRoleTable . ' AS ar', 'ar.rol_id', '=', 'u.account_role')
+				->select('*')
+				->where('p.is_publish', '=', self::IS_PUBLISH)
+				->where('p.pro_transfer_type_id', '=', self::BUYER_PRODUCT)
+				->orderBy('p.id', 'DESC')
+				->get();
+
+			return $data;
+		}
+
+		foreach($usersId as $userId) {
+			$data = DB::table($productTable .' AS p')
+				->join($userTable . ' AS u' , 'u.id', '=', 'p.user_id')
+				->join($accountRoleTable . ' AS ar', 'ar.rol_id', '=', 'u.account_role')
+				->select('*')
+				->where('p.user_id', '=', (int)$userId)
+				->where('p.is_publish', '=', self::IS_PUBLISH)
+				->where('p.pro_transfer_type_id', '=', self::BUYER_PRODUCT)
+				->where(function($query) use($keyword) {
+					$query->orWhere('p.title', 'LIKE','%'.$keyword.'%')
+						->orWhere('p.description', 'LIKE', '%'.$keyword.'%');
+				})
+				->orderBy('p.id', 'DESC')
+				->get();
+
+			if (!empty($data)) {
+				$products = $data;
+			}	
+		}
+	}
 }

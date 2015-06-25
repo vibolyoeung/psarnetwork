@@ -14,5 +14,8 @@ return array(
     'about_us' => 'About Us',
     'user_agreement' => 'User Agreement',
     'free_register' => 'Free Register',
-    'free_register' => 'Free Register'
+    'free_register' => 'Free Register',
+    'sign_in' => 'Sign In',
+    'policy' => 'Policy',
+    'usage' => 'Usage'
 );

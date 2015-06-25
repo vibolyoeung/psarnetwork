@@ -1245,10 +1245,6 @@ h2.title:before {
 	padding-right: 0;
 }
 
-.features_items {
-	overflow: hidden;
-}
-
 h2.title {
 	color: #428bca;
 	font-family: 'Roboto', sans-serif;
@@ -1411,10 +1407,6 @@ h2.title {
 .choose ul li a:hover {
 	background: none;
 	color: #FE980F;
-}
-
-.category-tab {
-	overflow: hidden;
 }
 
 .category-tab ul.nav {

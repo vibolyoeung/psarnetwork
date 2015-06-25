@@ -78,7 +78,7 @@ class MPage extends Eloquent {
      * @author Socheat
      */
 
-    public function getUserPages($userID, $where = null) {
+    public function getUserPages($userID, $where = null,$order=array()) {
         $response = new stdClass();
         try {
             if (!empty($where)) {
@@ -89,8 +89,11 @@ class MPage extends Eloquent {
                     'type' => 'static',
                     );
             }
+            
             $result = DB::table(Config::get('constants.TABLE_NAME.S_PAGE'))->select('*')->
-                where($where)->get();
+                where($where)
+                ->orderBy('order')
+                ->get();
             $response->result = $result;
         }
         catch (\Exception $e) {

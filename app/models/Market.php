@@ -291,7 +291,7 @@ class Market extends Eloquent{
 		$response = new stdClass();
 
 		try {
-			$query = DB::table(Config::get('constants.TABLE_NAME.CLIENT_TYPE'))->get();
+			$query = DB::table(Config::get('constants.TABLE_NAME.ACCOUNT_ROLE'))->get();
 			$response->data = $query;
 		} catch (\Exception $e) {
 			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());

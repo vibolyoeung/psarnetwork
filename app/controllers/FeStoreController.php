@@ -42,15 +42,25 @@ class FeStoreController extends BaseController {
                 'user_id' => $dataStore->user_id
             );
             $getToolPage = $this->mod_page->getUserPages(null, $whereArr);
-                
+            
+            $widgetWhereArr = array(
+                'type' => 'widget',
+                'user_id' => $dataStore->user_id
+            );
+            $getWidget = $this->mod_page->getUserPages(null, $widgetWhereArr);
+
                 
            $dataUserPage = $this->mod_category->menuUserPage($dataStore->user_id, 2);
-           $dataProduct = $this->mod_product->listAllProductsByOwnStore();
+           $whereProduct = array(
+            'user_id'=>$dataStore->user_id,
+           );
+           $dataProduct = $this->mod_product->listAllProductsByOwnStore($whereProduct);
            return View::make('frontend.modules.store.index')
 						->with('dataStore', $dataStore)
                         ->with('dataCategory', $dataCategory)
                         ->with('dataUserPage', $dataUserPage)
                         ->with('toolView',$getToolPage->result)
+                        ->with('widtget',$getWidget->result)
                         ->with('dataProduct', $dataProduct);
         }
         catch (Exception $e) {
@@ -85,18 +95,32 @@ class FeStoreController extends BaseController {
     	$where = array('id'=>$store);
  		$dataStore = $this->mod_store->getUserStore(null, $where);
  		$getUser = $this->user->getUser($dataStore->user_id);
-           $getUserUrl = $this->mod_store->getStoreUrl($dataStore->id);
-           if($getUser->result->account_type==2) {
-                $dataCategory = $this->mod_category->menuUserList($dataStore->user_id, $parent = 0,0,$getUserUrl);
-           } else {
-                $dataCategory = $this->mod_category->menuUserFree($dataStore->user_id, $parent = 0);
-           }
+        $getUserUrl = $this->mod_store->getStoreUrl($dataStore->id);
+        if($getUser->result->account_type==2) {
+            $dataCategory = $this->mod_category->menuUserList($dataStore->user_id, $parent = 0,0,$getUserUrl);
+       } else {
+            $dataCategory = $this->mod_category->menuUserFree($dataStore->user_id, $parent = 0,$level=0,$getUserUrl);
+       }
+       $whereArr = array(
+                'position' => 100,
+                'user_id' => $dataStore->user_id
+            );
+            $getToolPage = $this->mod_page->getUserPages(null, $whereArr);
+            
+            $widgetWhereArr = array(
+                'type' => 'widget',
+                'user_id' => $dataStore->user_id
+            );
+            $getWidget = $this->mod_page->getUserPages(null, $widgetWhereArr);
+            
  		$dataUserPage = $this->mod_category->menuUserPage($dataStore->user_id, 2);
- 		$dataDetailProduct = $this->mod_product->productDetailByOwnStore($product_id);
+ 		$dataDetailProduct = $this->mod_product->productDetailByOwnStore($product_id,$dataStore->user_id);
 		return View::make('frontend.modules.store.detail')
 			->with('dataStore', $dataStore)
 			->with('dataUserPage', $dataUserPage)
 			->with('dataCategory', $dataCategory)
+            ->with('toolView',$getToolPage->result)
+            ->with('widtget',$getWidget->result)
 			->with('dataProductDetail', $dataDetailProduct);
 	}
 

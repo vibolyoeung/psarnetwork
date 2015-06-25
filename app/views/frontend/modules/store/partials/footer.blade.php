@@ -1,4 +1,4 @@
-
+<div class="container" style="padding-left: 0;padding-right: 0;">
 <footer id="footer">
 	<!--Footer-->
 	<div class="footer-bottom">
@@ -39,6 +39,7 @@
 			</div>
 		</div>
 </footer><!--/Footer-->
+</div>
 		 {{HTML::script('frontend/js/bootstrap.min.js')}}
 		 {{HTML::script('frontend/js/jquery.scrollUp.min.js')}}
 		 {{HTML::script('frontend/js/price-range.js')}}
