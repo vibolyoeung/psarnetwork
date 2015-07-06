@@ -41,7 +41,7 @@
 	}(document, 'script', 'facebook-jssdk'));</script>
 	<!-- End facebook calling -->
 	<header id="header" class="mainHeader">
-		<!--=====Start Header]==============-->
+		<!--=====Start Header==============-->
 		<div class="header_top">
 			<!--header_top-->
 			<div class="container">
@@ -49,8 +49,9 @@
 					<div class="col-sm-3">
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
-								<li class="user-home"><a href="{{Config::get('app.url')}}"
-									taget="_blank">www.khmerabba.com</a></li>
+								<li class="facebook-like">
+									<div class="fb-like" data-href="https://www.facebook.com/khmerabba?ref=hl" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+								 </li>
 							</ul>
 						</div>
 					</div>
@@ -63,9 +64,9 @@
 								<li><a href="#"><i class="fa">Policy</i></a></li>
 								<li><a href="#"><i class="fa">Usage</i></a></li>
                                 @if(!Session::get('currentUserId'))
-								<li><a href="{{Config::get('app.url')}}/member/login"><i
+								<li><a href="{{Config::get('app.url')}}member/login"><i
 										class="fa">Sign in /</i></a></li>
-								<li><a href="{{Config::get('app.url')}}/member/register"><i
+								<li><a href="{{Config::get('app.url')}}member/register"><i
 										class="fa">Free Register</i></a></li>
                                 @else
                                 <li role="presentation" class="dropdown">
@@ -107,20 +108,21 @@
 		<div class="container-fluid top-menu">
 			<div class="col-lg-12 top_promotion">
 				<div class="col-lg-4 member_ship_home pull-right" style="background-color:#ddd;margin:12px 0 0;padding:3px;">
-					<img src="{{Config::get('app.url')}}frontend/images/icons/login_user.png" title="" alt="" />
-					<a href ="{{Config::get('app.url')}}/member/login">Login</a>
+					<img src="{{Config::get('app.url')}}frontend/images/icons/login_user.png" title="" alt="" height="28" />
+					<a href ="{{Config::get('app.url')}}member/login">Login</a>
 					&nbsp;/&nbsp;
-					<img src="{{Config::get('app.url')}}frontend/images/icons/register_user.png" title="" alt="" />
+					<img src="{{Config::get('app.url')}}frontend/images/icons/register_user.png" title="" alt=""/>
 					&nbsp;
-					<a href="{{Config::get('app.url')}}/member/register">
+					<a href="{{Config::get('app.url')}}member/register">
 						Register
-					</a>
+					</a>&nbsp;&nbsp;
+					<a href="#">Notifications &nbsp;</a><span style="color:red;cursor:pointer;font-weight:bold;">20</span>
 				</div>
 				<div class="col-lg-2">
 					<a href="{{Config::get('app.url')}}"><img
 						src="{{Config::get('app.url')}}frontend/images/khmerabba_logo.png"
 						width="200" />
-					<a>
+					</a>
 				</div>
 				<div class="col-lg-6">
 						<div class="col-lg-12" id="form-search">
@@ -172,81 +174,6 @@
 					</div>
 					{{Form::close()}}
 				</div>
-					<!--<ul class="promotion_top_menu pull-right">
-						<li><a
-								href="{{Config::get('app.url')}}product/list/10">Hot
-								Promotion</a></li>
-						<li><a
-							href="{{Config::get('app.url')}}product/list/10">New
-								Arrival</a></li>
-						<li><a
-							href="{{Config::get('app.url')}}product/list/10">Second
-								Hand</a></li>
-						<li><a
-							href="{{Config::get('app.url')}}product/list/10">Buy</a></li>
-						<li><a
-							href="{{Config::get('app.url')}}product/list/10">Sell</a></li>
-						<li><a
-							href="{{Config::get('app.url')}}product/list/10">Monthly
-								Pay</a></li>
-					</ul>-->
 			</div>
-			<!--<div class="col-lg-6 navbar navbar-default topmenu-container"
-				role="navigation">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-						data-target=".navbar-collapse">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-				</div>
-				<div class="collapse navbar-collapse promotion-list">
-					<ul class="nav navbar-nav top_menu_list">
-						<li><a href="{{Config::get('app.url')}}product/list/10">Super Market</a></li>
-						<li><a href="{{Config::get('app.url')}}product/list/10">Traditional
-								Market</a></li>
-						<li><a href="{{Config::get('app.url')}}product/list/10">Private
-								Company</a></li>
-						<li><a href="{{Config::get('app.url')}}product/list/10">Home Shop</a></li>
-						<li><a href="{{Config::get('app.url')}}product/list/10">Individual</a></li>
-						<li class="facebook-like">
-							<div class="fb-like" data-href="https://www.facebook.com/khmerabba?ref=hl" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
-						</li>
-					</ul>
-				</div>
-				<!--/.nav-collaps
-			</div>-->
 		</div>
 	</header>
-		<!--for mesage alert -->
-		<div class="message-alert alert alert-warning" data-time="3000"
-			style="display: none;">
-			<strong>Warning!</strong> Better check yourself, you're not looking
-			too good.
-		</div>
-		<div class="message-alert alert alert-warning message-loading"
-			data-time="5000" style="display: none;">
-			<img
-				src="{{Config::get('app.url')}}frontend/images/upload_progress.gif"
-				alt="loading...." /> Loading...
-		</div>
-		<div class="message-alert alert alert-success" data-time="3000"
-			style="display: none;">
-			<strong>Well done!</strong> You successfully read this important
-			alert message.
-		</div>
-		<div class="message-alert alert alert-success message-success"
-			data-time="3000" style="display: none;">
-			<strong>Updated...</strong>
-		</div>
-		<div class="message-alert alert alert-info" data-time="3000"
-			style="display: none;">
-			<strong>Heads up!</strong> This alert needs your attention, but it's
-			not super important.
-		</div>
-		<div class="message-alert alert alert-danger" data-time="3000"
-			style="display: none;">
-			<strong>Oh snap!</strong> Change a few things up and try submitting
-			again.
-		</div>

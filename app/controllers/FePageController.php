@@ -93,6 +93,7 @@ class FePageController extends BaseController {
 
 	public function mainCategory(){
 		$listCategories = self::getCategoriesHomePage();
+		//var_dump($listCategories);
 		return View::make('frontend.partials.menu')
 			->with('maincategories', $listCategories->result);
 	}

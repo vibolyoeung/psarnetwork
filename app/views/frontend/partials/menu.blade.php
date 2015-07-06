@@ -1,7 +1,7 @@
 <!--=============Menu==========-->
-<div class="header-bottom">
+<div class="container-fluid header-bottom" style="padding:0 0 8px 0;">
 	<nav class="navbar navbar-default" role="navigation">
-		<div class="container-fluid">
+		<div class="col-lg-12 pull-right">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -13,38 +13,13 @@
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="dropdown-thumbnail-preview"
-				style="border: 1px solid #f0ad4e;">
-				<ul class="nav navbar-nav menu_nav_category">
-					<li>
-						<a href="{{Config::get('app.url')}}" class="home_icon"> <span
-								class="glyphicon glyphicon-home" aria-hidden="true"></span>
-								&nbsp;
-						</a>
-					</li>
-				 @foreach ($maincategories as $subcategorylist)
-					<li class="dropdown thumb-dropdown" id="<?php echo $subcategorylist->id; ?>">
-						<a data-toggle="dropdown"
-						class="dropdown-toggle" href="<?php echo URL::to('products/productbycategories') ?>/<?php echo $subcategorylist->id;?>">
-	      					<?php echo $subcategorylist->{'name_'.Session::get('lang')};?> <span
-							class="caret"></span>
-						</a>
-		      			<?php
-									$subcategoriesobj = new MCategory ();
-									$sub = $subcategoriesobj->getSubCategories ( $subcategorylist->id );
-									if (count ( $sub ) > 0) {
-										echo '<ul class="dropdown-menu dropdown_main_menu" role="menu">';
-										foreach ( $sub as $row ) {
-											echo '<li><a href=' . URL::to ( 'products/productbycategories/'.$subcategorylist->id.'/'. $row->id ) . '>' . $row->{'name_' . Session::get ( 'lang' )} . ' <span class="caret"></span></a>';
-											echo '<div class="thumbnail">';
-											$subcategoriesobj->getSubCategoriesDropdown ($subcategorylist->id, $row->id );
-											echo '</div>';
-											echo '</li>';
-										}
-										echo '</ul>';
-									}
-									?>
-			</li> @endforeach
+			<div class="collapse navbar-collapse" id="dropdown-thumbnail-preview"  style="border: 1px solid #f0ad4e" >
+				<ul class="nav navbar-nav top_menu_lists">
+					<li><a href="{{Config::get('app.url')}}product/list/10">Super Market</a></li>
+					<li><a href="{{Config::get('app.url')}}product/list/10">TraditionalMarket</a></li>
+					<li><a href="{{Config::get('app.url')}}product/list/10">PrivateCompany</a></li>
+					<li><a href="{{Config::get('app.url')}}product/list/10">Home Shop</a></li>
+					<li><a href="{{Config::get('app.url')}}product/list/10">Individual</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -60,9 +35,9 @@
 		   var ID = ( this.id );
 		   //alert(jQuery.inArray(ID,explodedurl));
 		   if(jQuery.inArray(ID,explodedurl) == -1){
-				jQuery(".menu_nav_category li:first-child").addClass(" active");
+				//jQuery(".menu_nav_category li:first-child").addClass(" active");
 			}else{
-				jQuery(this).addClass(" active");
+				//jQuery(this).addClass(" active");
 			}
 		});
 	});
