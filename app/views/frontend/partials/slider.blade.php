@@ -1,8 +1,8 @@
 <section id="slider">
 	<!--slider-->
 	<div class="row">
-		<div class="col-lg-12 pull-right" style="padding-right: 0;">
-			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" style="padding-left: 0;">
+		<div class="col-lg-12 pull-right" style="padding:0;">
+			<div class="col-lg-7" style="padding-right:0;">
 				<div id="slider-carousel" class="carousel slide" data-ride="carousel" >
 				<?php 
 				if(count($slideshows) > 0){
@@ -74,13 +74,11 @@
 				</div>
 			</div>
 			
-			<div class="col-lg-4 top_special_ads">
+			<div class="col-lg-5 top_special_ads">
 				{{ App::make('FePageController')->getSpecialAds() }}
 			</div>
 			
 		</div>
 	</div>
 </section>
-<div class="clear"></div>
-<div class="clear"></div>
 <!--/slider-->

@@ -338,7 +338,7 @@ a#scrollUp i {
 		z-index: -2;
 	}
 	.carousel > img, #slider-carousel a > img{
-		height: 300px;
+		height: 390px;
 		width:820px;
 	}
 }
@@ -1314,7 +1314,7 @@ h2.title {
 }
 
 .row  #slider-carousel {
-	max-height: 300px;
+	max-height: 390px;
 }
 
 .single-products:hover .product-overlay {
@@ -3052,10 +3052,12 @@ span.price{
 	padding: 0px 4px;
 }
 
-.promotion-list>.top_menu_list>li>a,
 .facebook-like > .fb-like {
 	font-size: 12px;
 	padding: 5px 8px;
+}
+.top_menu_list>li>a{
+	font-size: 14px;
 }
 
 ul.item_menu li a {
@@ -3063,7 +3065,7 @@ ul.item_menu li a {
 }
 
 .top_menu_list>li {
-	padding: 0;
+	padding: 0 19px 0 0;
 }
 
 .promotion-list {
@@ -3423,7 +3425,7 @@ fieldset legend {
 }
 
 .carousel-inner>.item>a>img, .top_special_ads a img {
-	max-height: 300px;
+	max-height: 390px;
 }
 
 a.more_categories {
@@ -3436,6 +3438,11 @@ a.more_categories {
 .left_bar {
 	padding: 0;
 	min-height: 300px;
+	margin-top: -43px;
+}
+.all_categories_type{
+	padding:6px;
+	background-color:#ddd;
 }
 
 a.home_icon {
@@ -3492,10 +3499,13 @@ div.header-middle{
 }
 
 .header-bottom{
-	margin-top:120px;
+	margin-top:8px;
 }
 .product_wrapper{
 	padding-right:0;
+}
+.menu_header_default{
+	margin-top: 112px;
 }
 
 @media(max-width:768px){
