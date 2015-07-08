@@ -91,10 +91,10 @@ class FePageController extends BaseController {
 			->with('advHorizontalTopLarges', $advHorizontalTopLarges->result);
 	}
 
+
 	public function mainCategory(){
 		$listCategories = self::getCategoriesHomePage();
-		//var_dump($listCategories);
-		return View::make('frontend.partials.menu')
+		return View::make('frontend.partials.left')
 			->with('maincategories', $listCategories->result);
 	}
 

@@ -7,7 +7,7 @@
 </ol>
 @endsection
 @section('content')
-@include('frontend.partials.left')
+{{ App::make('FePageController')->mainCategory() }}
 <div class="col-lg-10">@include('frontend.partials.slider')</div>
 <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
 	@include('frontend.partials.products.latest')
@@ -15,29 +15,19 @@
 	<!--/category-tab-->
 	<div class="category-tab feature-ad lastest-post  product_wrapper">
 		<!--recommended_items-->
-		<div class="col-lg-12">
 			<div class="col-lg-2 pull-right new_product_right"
 				style="border: 0px solid #ddd; padding: 0;">
-				<!-- type:homepage, position: right small, limit -->
+				<!--type:homepage, position: right small, limit -->
 				{{ App::make('FePageController')->getFeAds(1, 7, 3) }}
 			</div>
 
-			<div class="col-lg-2 pull-left new_product_left"
-				style="border: 0px solid #ddd; padding: 0;">
-				<!-- type:homepage, position: left small, limit -->
-				{{ App::make('FePageController')->getFeAds(1, 6, 3) }}
-
-			</div>
-
-			<div class="col-lg-8">
+			<div class="col-lg-10">
 				@include('frontend.partials.products.hot_promotion')
 				@include('frontend.partials.products.new_arrival')
 				@include('frontend.partials.products.monthly_pay')
 				@include('frontend.partials.products.buyer_request')
 				@include('frontend.partials.products.second_hand')
 			</div>
-
-		</div>
 	</div>
 	@include('frontend.partials.products.popup_details')
 </div>
