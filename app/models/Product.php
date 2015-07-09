@@ -10,6 +10,7 @@ class Product extends Eloquent{
 	const BUYER_PRODUCT = 2;
 	const NEW_PRODUCT = 1;
 	const SECOND_HAND_PRODUCT = 2;
+	const PREMINUM = 2;
 
 	public static $PRODUCT_STATUS = array(
 		1 => 'In Stock',
@@ -430,6 +431,23 @@ class Product extends Eloquent{
 			->where('s_category_id', '=', $category_id)
 			->take(8)
 			->get();
+	}
+
+	/**
+	 * Find preminum latest product
+	 * @return Product
+	 */
+	public static function findPreminumLatest() {
+		$product = Config::get('constants.TABLE_NAME.PRODUCT');
+		$user = Config::get('constants.TABLE_NAME.USER');
+
+		return DB::table($product .' AS p')
+			->select('p.*')
+			->join('user AS u', 'p.user_id', '=', 'u.id')
+			->where('u.account_type', '=', self::PREMINUM)
+			->orderBy('p.id', 'DESC')
+			->take(12)
+			->get()	;	
 	}
 
 	/**
