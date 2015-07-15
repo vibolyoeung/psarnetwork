@@ -3044,6 +3044,10 @@ span.price{
 	margin-bottom: 10px;
 }
 
+.list-store .product-image-wrapper {
+	height: 400px;
+}
+
 .promotion_top_menu>li {
 	display: inline;
 	padding: 0px 4px;
