@@ -24,7 +24,8 @@
 					<div class="single-products">
 						<div class="productinfo">
 							<h5><center>{{$latestStore->title_en}}</center></h5>
-							<a href="#" data-toggle="modal" data-target="#myModal">
+							<!-- @TODO: Put link to store -->
+							<a href="#">
 							 <img
 								src="{{Config::get('app.url')}}upload/store/{{$latestStore->image}}"
 								alt="{{$latestStore->title_en}}"
