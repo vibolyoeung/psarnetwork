@@ -144,6 +144,9 @@
 								End date
 							</th>
                             <th>
+								Status
+							</th>
+                            <th>
 								Action
 							</th>
 						</tr>
@@ -176,6 +179,9 @@
 							</td>
 							<td style="width: 110px;">
 								{{$banner->ban_enddate}}
+							</td>
+                            <td style="width: 110px;">
+								{{$banner->ban_status == 1? '<span class="label label-success">Enabled</span>' : '<span class="label label-danger">Disabled</span>'}}
 							</td>
                             <td style="width: 70px;">
 								<div class="dropdown">
