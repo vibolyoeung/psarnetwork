@@ -7,6 +7,7 @@
 </ol>
 @endsection
 @section('content')
+
 {{ App::make('FePageController')->mainCategory() }}
 <div class="col-lg-10">@include('frontend.partials.slider')</div>
 <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
@@ -15,13 +16,7 @@
 	<!--/category-tab-->
 	<div class="category-tab feature-ad lastest-post  product_wrapper">
 		<!--recommended_items-->
-			<div class="col-lg-2 pull-right new_product_right"
-				style="border: 0px solid #ddd; padding: 0;">
-				<!--type:homepage, position: right small, limit -->
-				{{ App::make('FePageController')->getFeAds(1, 7, 3) }}
-			</div>
-
-			<div class="col-lg-10">
+			<div class="col-lg-12">
 				@include('frontend.partials.products.hot_promotion')
 				@include('frontend.partials.products.new_arrival')
 				@include('frontend.partials.products.monthly_pay')

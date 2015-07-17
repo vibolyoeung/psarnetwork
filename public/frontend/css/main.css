@@ -3053,16 +3053,13 @@ span.price{
 	font-size: 12px;
 	padding: 5px 8px;
 }
-.top_menu_list>li>a{
-	font-size: 14px;
-}
 
 ul.item_menu li a {
 	color: #000;
 }
 
 .top_menu_list>li {
-	padding: 0 19px 0 0;
+	padding:0 4px 0 4px;
 }
 
 .promotion-list {
@@ -3506,14 +3503,31 @@ div.header-middle{
 }
 ul.categories_menu{
 	padding:0;
-	border: 1px solid #f0ad4e;
+	border: 1px solid #f7f7f5;
+	margin: 0 auto;
 }
 ul.categories_menu > li > a{
 	display: block;
 	padding:4px 10px;
 }
-ul.categories_menu > li{
-	
+
+ul.submenu_dropdown{
+	border:1px solid red;
+	position: absolute;
+	display: none;
+	padding:5px;
+	right: -68px;
+	z-index: 9999;
+}
+
+ul.categories_menu > li:hover ul.submenu_dropdown{
+	transition-duration: 5s;
+	position: absolute;
+	display: block;
+	width: 200px;
+	padding:5px;
+	right: -68px;
+	z-index: 9999;
 }
 
 @media(max-width:768px){

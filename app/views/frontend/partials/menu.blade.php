@@ -13,17 +13,17 @@
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="dropdown-thumbnail-preview"  style="border: 1px solid #f0ad4e" >
+			<div class="collapse navbar-collapse" id="dropdown-thumbnail-preview"  style="border: 1px solid #f7f7f5" >
 				<ul class="nav navbar-nav top_menu_list">
-					<li><a href="#"><img src="{{Config::get('app.url')}}frontend/images/icons/menu_tap.png" alt="" title=""/></a></li>
+					<li><a href="#"><img src="{{Config::get('app.url')}}frontend/images/icons/basket.png" alt="" title="" height="23"/></a></li>
 					<li><a href="{{Config::get('app.url')}}product/list/10">Super Market</a></li>
 					<li><a href="{{Config::get('app.url')}}product/list/10">TraditionalMarket</a></li>
 					<li><a href="{{Config::get('app.url')}}product/list/10">PrivateCompany</a></li>
 					<li><a href="{{Config::get('app.url')}}product/list/10">Home Shop</a></li>
 					<li><a href="{{Config::get('app.url')}}product/list/10">Individual</a></li>
 				</ul>
-				<ul class="nav navbar-nav menu_right_section">
-					<li style="border-left:1px solid #ddd;"><a href="#"><img src="{{Config::get('app.url')}}frontend/images/icons/menu_tap.png" /></a></li>
+				<ul class="nav navbar-nav menu_right_section pull-right">
+					<li style="border-left:1px solid #ddd;"><a href="#"><img src="{{Config::get('app.url')}}frontend/images/icons/money.png" height="23" /></a></li>
 					<li><a href="{{Config::get('app.url')}}product/list/10">Hot Promotion</a></li>
 					<li><a href="{{Config::get('app.url')}}product/list/10">New Arrival</a></li>
 					<li><a href="{{Config::get('app.url')}}product/list/10">Secondhand</a></li>
@@ -36,6 +36,8 @@
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
+
+	<!--=========Test-->
 </div>
 <script>
 	jQuery(document).ready(function(){

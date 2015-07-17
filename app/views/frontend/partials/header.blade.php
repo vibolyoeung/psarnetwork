@@ -50,7 +50,7 @@
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
 								<li class="facebook-like">
-									<div class="fb-like" data-href="https://www.facebook.com/khmerabba?ref=hl" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+									<div class="fb-like" data-href="https://www.facebook.com/khmerabba?ref=hl" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
 								 </li>
 							</ul>
 						</div>
@@ -108,7 +108,7 @@
 		<div class="container-fluid top-menu">
 			<div class="col-lg-12 top_promotion">
 				<div class="col-lg-4 member_ship_home pull-right" style="background-color:#ddd;margin:12px 0 0;padding:3px;">
-					<img src="{{Config::get('app.url')}}frontend/images/icons/login_user.png" title="" alt="" height="28" />
+					<img src="{{Config::get('app.url')}}frontend/images/icons/login_user.png" title="" alt="" height="20" />
 					<a href ="{{Config::get('app.url')}}member/login">Login</a>
 					&nbsp;/&nbsp;
 					<img src="{{Config::get('app.url')}}frontend/images/icons/register_user.png" title="" alt=""/>
@@ -121,7 +121,7 @@
 				<div class="col-lg-2">
 					<a href="{{Config::get('app.url')}}"><img
 						src="{{Config::get('app.url')}}frontend/images/khmerabba_logo.png"
-						width="200" />
+						height="56"/>
 					</a>
 				</div>
 				<div class="col-lg-6">

@@ -315,7 +315,7 @@ class MCategory extends Eloquent{
 	 * @access public
 	 */
 
-	public function getSubCategories($parent){
+	public function getSubCategories($parent=''){
 		try {
 			$result = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
 			->select('id','name_en','name_km','status','parent_id')
@@ -352,6 +352,18 @@ class MCategory extends Eloquent{
 		}
 		return $result;
 	}
+
+
+
+	/**
+	*
+	* getSubCategoriesDropdown: this function is used for selecting sub menu for homepage
+	* @param integer $mainID: is Top parent ID to be active menu
+	* @param integer $parent : is the parent ID
+	* @return string: if menu selected will display as HTML format
+	* @access public
+	*
+	*/
 	public function getSubCategoriesDropdown($mainID, $parent){
 		try {
 			$results = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
@@ -451,7 +463,8 @@ class MCategory extends Eloquent{
 
 		return $response;
 	}
-    
+
+
     /**
      * Getting menu
      *
