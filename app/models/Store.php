@@ -107,4 +107,27 @@ class Store extends Eloquent {
                 //Config::get('app.url').'page/'.$dataStore->id;
            }
     }
+
+    /**
+     * Get latest store
+     * 
+     * @author vibol
+     * @return Store
+     */
+    public static function getLatestStores()
+    {
+        $response = new stdClass();
+        try {
+            $result = DB::table(Config::get('constants.TABLE_NAME.STORE') . ' AS st')->select('*')
+            ->orderBy('st.id', 'DESC')
+            ->take(12)
+            ->get();
+
+            return $result;
+        }
+        catch (\Exception $e) {
+            $response->result = 0;
+            $response->errorMsg = $e->getMessage();
+        }
+    }
 }
