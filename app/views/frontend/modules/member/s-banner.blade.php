@@ -29,10 +29,14 @@
                     @endif
 				</div>
 				<h3 class="panel-title">
-					@if(Input::get('action')=='add')
-                        Add a banner
+                    @if(Input::get('action'))
+    					@if(Input::get('action')=='add')
+                            Add a banner
+                        @else
+                            Edit banner
+                        @endif
                     @else
-                        Edit banner
+                        Banner
                     @endif
 				</h3>
 			</div>
