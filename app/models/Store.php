@@ -130,4 +130,28 @@ class Store extends Eloquent {
             $response->errorMsg = $e->getMessage();
         }
     }
+    
+    /**
+     * Get store banner
+     * 
+     * @author Socheat
+     * @return banner
+     */
+    public function getStoreBanner($id)
+    {
+        $response = new stdClass();
+        try {
+            $where = array('ban_store_id'=>$id,'ban_status'=>1);
+            $result = DB::table(Config::get('constants.TABLE_NAME.USER_BANNER'))->select('*')
+            ->where($where)
+            ->orderBy('ban_id', 'DESC')
+            ->get();
+
+            return $result;
+        }
+        catch (\Exception $e) {
+            $response->result = 0;
+            $response->errorMsg = $e->getMessage();
+        }
+    }    
 }

@@ -496,6 +496,7 @@ class FeMemberController extends BaseController {
                         $data = array(
                             'ban_title' => trim(Input::get('title')),
                             'ban_enddate' => trim(Input::get('enddate')),
+                            'ban_link' => trim(Input::get('link')),
                             'ban_image' => $image_file,
                             'ban_store_id' => $getUserStore->id,
                             'ban_status' => $status,
@@ -510,6 +511,7 @@ class FeMemberController extends BaseController {
                             'ban_title' => trim(Input::get('title')),
                             'ban_cdate' => date(self::CURRENT_DATE),
                             'ban_enddate' => trim(Input::get('enddate')),
+                            'ban_link' => trim(Input::get('link')),
                             'ban_image' => $image_file,
                             'ban_store_id' => $getUserStore->id,
                             'ban_status' => $status,

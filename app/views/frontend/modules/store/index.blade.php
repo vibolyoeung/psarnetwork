@@ -10,6 +10,10 @@
 	</ol>
 @endsection
 @section('content')
+<?php
+date_default_timezone_set('Asia/Phnom_Penh');
+ $currentDate = date('Y-m-d');
+?>
 <div class="col-sm-8">
 	<div class="category-tab lastest-post">
 		<!-- ============Slider end here========= -->
@@ -21,7 +25,18 @@
 					</ul>
                 </div>
 
-
+    @if(!empty($banner))
+        <div class="col-lg-12" style="padding:0;">
+        @foreach($banner as $ban)
+            @if($ban->ban_position == 'top-c')
+                @if($ban->ban_enddate >= $currentDate)
+                <a class="banner-link" href="{{@$ban->ban_link}}" target="_blank"><img src="{{Config::get('app.url')}}upload/user-banner/{{$ban->ban_image}}" style="width: 100%;max-height: 90px;" /></a>
+                @endif
+            @endif
+        @endforeach
+        </div>
+    @endif
+    
 		<div class="col-lg-12" style="padding:0;">
             @if(!empty($dataProduct))
                 <?php
@@ -59,6 +74,18 @@
                     </div>
                 @endif
             @endif
+            
+            @if(!empty($banner))
+                <div class="col-lg-12" style="padding:0;">
+                @foreach($banner as $ban)
+                    @if($ban->ban_position == 'footer')
+                        @if($ban->ban_enddate >= $currentDate)
+                        <a class="banner-link" href="{{@$ban->ban_link}}" target="_blank"><img src="{{Config::get('app.url')}}upload/user-banner/{{$ban->ban_image}}" style="width: 100%;max-height: 90px;" /></a>
+                        @endif
+                    @endif
+                @endforeach
+                </div>
+            @endif
 		</div>
 	</div>
     {{$dataProduct->links()}}
@@ -82,6 +109,16 @@
 @endsection
 @section('left')
 	@include('frontend.modules.store.partials.slidebar.left_product_link')
+    
+    @if(!empty($banner))
+        @foreach($banner as $ban)
+            @if($ban->ban_position == 'ls')
+                @if($ban->ban_enddate >= $currentDate)
+                    <a class="banner-link" href="{{@$ban->ban_link}}" target="_blank"><img src="{{Config::get('app.url')}}upload/user-banner/{{$ban->ban_image}}" style="width: 100%;" /></a>
+                @endif
+            @endif
+        @endforeach
+    @endif
 @endsection
 @section('right')
 <?php
@@ -95,6 +132,15 @@ if(!empty($toolView)):
         endforeach;
 endif;
 ?>
+@if(!empty($banner))
+    @foreach($banner as $ban)
+        @if($ban->ban_position == 'rs')
+            @if($ban->ban_enddate >= $currentDate)
+                <a class="banner-link" href="{{@$ban->ban_link}}" target="_blank"><img src="{{Config::get('app.url')}}upload/user-banner/{{$ban->ban_image}}" style="width: 100%;" /></a>
+            @endif
+        @endif
+    @endforeach
+@endif
     
 	
 @endsection

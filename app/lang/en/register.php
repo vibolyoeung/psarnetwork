@@ -207,5 +207,6 @@ You will be benefit with free account by posing free ,  owning page free .If you
     'banner_status' => 'Status',
     'banner_status_1' => 'Enable',
     'banner_status_0' => 'Disable',
+    'banner_link' => 'Url Link',
     
 );

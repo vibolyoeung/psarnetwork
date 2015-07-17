@@ -55,7 +55,7 @@
                                 <input type="hidden" value="{{@$dataBanner->ban_id}}" name="edit"/>
                                 <input type="hidden" value="{{@$dataBanner->ban_image}}" name="oldimage"/>
                             @endif
-							<input type="text" value="{{@$dataBanner->ban_title}}" name="title" placeholder="Title" id="demo-hor-title" class="form-control"/>
+							<input type="text" value="{{@$dataBanner->ban_title}}" name="title" placeholder="Title" id="demo-hor-title" class="form-control" required/>
 						</div>
 					</div>
                     
@@ -64,7 +64,16 @@
 							{{trans('register.banner_add_image')}}
 						</label>
 						<div class="col-sm-9">
-							<input type="file" name="file" id="demo-hor-image" class="form-control" accept="image/*"/>
+							<input type="file" name="file" id="demo-hor-image" class="form-control" accept="image/*" @if(Input::get('action')=='add') required @endif />
+						</div>
+					</div>
+                    
+                    <div class="form-group">
+						<label class="col-sm-3 control-label" for="demo-hor-title">
+							{{trans('register.banner_link')}}
+						</label>
+						<div class="col-sm-9">
+							<input value="{{@$dataBanner->ban_link}}" name="link" placeholder="link to url" id="demo-hor-title" class="form-control" type="url" pattern="https?://.+" required/>
 						</div>
 					</div>
                     
@@ -73,22 +82,22 @@
 							{{trans('register.banner_add_position')}}
 						</label>
 						<div class="col-sm-9">
-							<select class="form-control" name="positions" id="demo-hor-position">
+							<select class="form-control" name="positions" id="demo-hor-position" required>
                                 <option value="">Select a position</option>
-                                <option value="top-c">{{trans('register.banner_position_top_content')}}</option>
-                                <option value="ls">{{trans('register.banner_position_left_side')}}</option>
-                                <option value="rs">{{trans('register.banner_position_right_side')}}</option>
-                                <option value="footer">{{trans('register.banner_position_footer')}}</option>
+                                <option value="top-c" {{@$dataBanner->ban_position == 'top-c' ? 'selected="selected"' : ''}}>{{trans('register.banner_position_top_content')}}</option>
+                                <option value="ls" {{@$dataBanner->ban_position == 'ls' ? 'selected="selected"' : ''}}>{{trans('register.banner_position_left_side')}}</option>
+                                <option value="rs" {{@$dataBanner->ban_position == 'rs' ? 'selected="selected"' : ''}}>{{trans('register.banner_position_right_side')}}</option>
+                                <option value="footer" {{@$dataBanner->ban_position == 'footer' ? 'selected="selected"' : ''}}>{{trans('register.banner_position_footer')}}</option>
                             </select>
 						</div>
 					</div>
                     
                     <div class="form-group">
-						<label class="col-sm-3 control-label" for="demo-hor-enddate">
+						<label class="col-sm-3 control-label" for="datepicker">
 							{{trans('register.banner_add_enddate')}}
 						</label>
 						<div class="col-sm-9">
-							<input type="text" value="{{@$dataBanner->ban_enddate}}" name="enddate" placeholder="End date" id="demo-hor-enddate" class="form-control"/>
+							<input type="text" value="{{@$dataBanner->ban_enddate}}" name="enddate" placeholder="End date" id="datepicker" class="form-control"/>
 						</div>
 					</div>
                     
@@ -99,8 +108,8 @@
 						<div class="col-sm-9">
 							<select class="form-control" name="status" id="demo-hor-status">
                                 <option value="">Select one</option>
-                              <option value="1">{{trans('register.banner_status_1')}}</option>
-                              <option value="0">{{trans('register.banner_status_0')}}</option>
+                              <option value="1" {{@$dataBanner->ban_status == '1' ? 'selected="selected"' : ''}}>{{trans('register.banner_status_1')}}</option>
+                              <option value="0" {{@$dataBanner->ban_status == '0' ? 'selected="selected"' : ''}}>{{trans('register.banner_status_0')}}</option>
                             </select>
 						</div>
 					</div>
@@ -234,4 +243,13 @@
 
 
 </style>
+@if(Input::get('action'))
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/smoothness/jquery-ui.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker({ changeMonth: true,changeYear: true,dateFormat:'yy-mm-dd'});
+  });
+</script>
+@endif
 @endsection
