@@ -465,6 +465,84 @@ class FeMemberController extends BaseController {
                 ->with('dataStore', $getUserStore);
                 break;
                 
+            case 'banner':
+                if (Input::has('btnInfo')) {
+                    if (Input::hasfile('file')) {
+                        $destinationPath = base_path() . Config::get('constants.DIR_IMAGE.USER_BANNER');
+                        $file = Input::file('file');
+                        $images = $this->mod_store->doUpoad($file, $destinationPath, 
+                            Config::get('constants.DIR_IMAGE.THUMB_WIDTH'),
+                            Config::get('constants.DIR_IMAGE.THUMB_HEIGTH')
+                        );
+                        if(!empty($images['image'])) {
+                            $image_file = $images['image'];
+                        } else {
+                            $image_file = ' ';
+                        }
+                    } else {
+                        $image_file = ' ';
+                    }
+                    if (Input::has('edit')) {
+                        $status = Input::get('status') ? Input::get('status') : 1;
+                        if(Input::get('oldimage') && Input::hasfile('file')) {
+                            $oldName = $destinationPath . '/' . Input::get('oldimage');
+                            $thumb = $destinationPath . '/thumb/' . Input::get('oldimage');
+                            if (File::exists($oldName)) {
+                                File::delete($oldName, $thumb);
+                            }
+                        } else if(Input::get('oldimage') && !Input::hasfile('file')) {
+                            $image_file = Input::get('oldimage');
+                        }
+                        $data = array(
+                            'ban_title' => trim(Input::get('title')),
+                            'ban_enddate' => trim(Input::get('enddate')),
+                            'ban_image' => $image_file,
+                            'ban_store_id' => $getUserStore->id,
+                            'ban_status' => $status,
+                            'ban_position' => Input::get('positions')
+                        );
+                        $response = DB::table(Config::get('constants.TABLE_NAME.USER_BANNER'))
+                                        ->where(array('ban_id' =>Input::get('edit'),'ban_store_id' =>$getUserStore->id))
+                                        ->update($data);
+                    } else {
+                        $status = Input::get('status') ? Input::get('status') : 1;
+                        $data = array(
+                            'ban_title' => trim(Input::get('title')),
+                            'ban_cdate' => date(self::CURRENT_DATE),
+                            'ban_enddate' => trim(Input::get('enddate')),
+                            'ban_image' => $image_file,
+                            'ban_store_id' => $getUserStore->id,
+                            'ban_status' => $status,
+                            'ban_position' => Input::get('positions')
+                        );
+                        $response = DB::table(Config::get('constants.TABLE_NAME.USER_BANNER'))
+                                        ->insertGetId($data);
+                    }
+                }
+                $result = array();
+                if (Input::has('action')) {
+                    if(Input::get('action') != 'add' && Input::get('action') != 'del') {
+                        $where = array('ban_store_id'=>$getUserStore->id,'ban_id'=>Input::get('action'));
+                        $result = DB::table(Config::get('constants.TABLE_NAME.USER_BANNER'))->select('*')->where($where)->orderBy('ban_id', 'desc')->first();
+                    } else if(Input::get('action') == 'del') {
+                        $where = array('ban_store_id' => $getUserStore->id, 'ban_id' =>Input::get('id'));
+                        DB::table(Config::get('constants.TABLE_NAME.USER_BANNER'))->where($where)->delete();
+                        return Redirect::to('/member/userinfo/banner')->with(Session::flash('messsage', 'message_del_success'));
+                        die;
+                    } else {
+                        $where = array('ban_store_id'=>$getUserStore->id);
+                        $result = DB::table(Config::get('constants.TABLE_NAME.USER_BANNER'))->select('*')->where($where)->orderBy('ban_id', 'desc')->get();
+                    }
+                } else {
+                    $where = array('ban_store_id'=>$getUserStore->id);
+                    $result = DB::table(Config::get('constants.TABLE_NAME.USER_BANNER'))->select('*')->where($where)->orderBy('ban_id', 'desc')->get();
+                }
+                return View::make('frontend.modules.member.s-banner')
+                ->with('maincategories',$listCategories->result)
+                ->with('dataStore', $getUserStore)
+                ->with('dataBanner', $result);
+                break;  
+                              
             case 'accountinfo':
                 $accountRole = $this->user->accountRole();
                 $clientType = $this->user->getClientType();

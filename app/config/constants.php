@@ -34,6 +34,7 @@ return array(
         'THUMB_WIDTH'=>100,
         'THUMB_HEIGTH'=>100,
         'DIR_STORE'=>'/public/upload/store/',
+        'USER_BANNER'=>'/public/upload/user-banner/',
     ),
 	'TABLE_NAME'=>array(
 			'ACCOUNT_TYPE'=>'account_type',
@@ -65,6 +66,7 @@ return array(
 			'TEMPLATE'=>'template',
 			'USER'=>'user',
 			'USER_TYPE'=>'user_type',
+            'USER_BANNER'=>'user_banner',
 			'PERMISSION'=>'permission',
 			'PRODUCT_TRANSFER_TYPE'=>'product_transfer_type',
             'ACCOUNT_ROLE'=>'account_role',

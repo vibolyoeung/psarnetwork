@@ -90,6 +90,7 @@ You will be benefit with free account by posing free ,  owning page free .If you
     'BTN_CANCEL' => 'Cancel',
     'BTN_SAVE' => 'Save',
     'BTN_SUBMIT' => 'Submit',
+    'BTN_UPDATE' => 'Update',
     
     /*menu page*/
     'c_Your_are_registering' => 'Menu Structure:',
@@ -110,6 +111,7 @@ You will be benefit with free account by posing free ,  owning page free .If you
     'MENU_Account_Information' => 'Account Information',
     'MENU_toolview' => 'Disable & Enable Tool',
     'MENU_summary' => 'General Setting',
+    'MENU_banner' => 'Banner',
     
     /* tab menu */
     'TAB_Main_Menu' => 'Main Menu',
@@ -190,5 +192,20 @@ You will be benefit with free account by posing free ,  owning page free .If you
     'message_save_with_pass' => 'All data had been saved',
     'message_save_no_pass_but_data' => 'Data had been saved',
     'message_password_not_change' => 'Password you provided is not corrected',
+    
+    /*banner*/
+    'banner_title' => 'Banner',
+    'banner_add_title' => 'Title',
+    'banner_add_image' => 'Image',
+    'banner_add_position' => 'Show at',
+    'banner_position_top_content' => 'Top content',
+    'banner_position_left_side' => 'Left sidebar',
+    'banner_position_right_side' => 'Right sidebar',
+    'banner_position_footer' => 'Footer',
+    'banner_add_enddate' => 'End date',
+    'banner_add_add' => 'Add new',
+    'banner_status' => 'Status',
+    'banner_status_1' => 'Enable',
+    'banner_status_0' => 'Disable',
     
 );
