@@ -483,7 +483,6 @@ class FeMemberController extends BaseController {
                         $image_file = ' ';
                     }
                     if (Input::has('edit')) {
-                        $status = Input::get('status') ? Input::get('status') : 1;
                         if(Input::get('oldimage') && Input::hasfile('file')) {
                             $oldName = $destinationPath . '/' . Input::get('oldimage');
                             $thumb = $destinationPath . '/thumb/' . Input::get('oldimage');
@@ -499,14 +498,13 @@ class FeMemberController extends BaseController {
                             'ban_link' => trim(Input::get('link')),
                             'ban_image' => $image_file,
                             'ban_store_id' => $getUserStore->id,
-                            'ban_status' => $status,
+                            'ban_status' => Input::get('status'),
                             'ban_position' => Input::get('positions')
                         );
                         $response = DB::table(Config::get('constants.TABLE_NAME.USER_BANNER'))
                                         ->where(array('ban_id' =>Input::get('edit'),'ban_store_id' =>$getUserStore->id))
                                         ->update($data);
                     } else {
-                        $status = Input::get('status') ? Input::get('status') : 1;
                         $data = array(
                             'ban_title' => trim(Input::get('title')),
                             'ban_cdate' => date(self::CURRENT_DATE),
@@ -514,7 +512,7 @@ class FeMemberController extends BaseController {
                             'ban_link' => trim(Input::get('link')),
                             'ban_image' => $image_file,
                             'ban_store_id' => $getUserStore->id,
-                            'ban_status' => $status,
+                            'ban_status' => Input::get('status'),
                             'ban_position' => Input::get('positions')
                         );
                         $response = DB::table(Config::get('constants.TABLE_NAME.USER_BANNER'))

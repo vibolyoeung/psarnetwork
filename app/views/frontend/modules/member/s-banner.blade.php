@@ -107,7 +107,7 @@
 						</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="status" id="demo-hor-status">
-                                <option value="">Select one</option>
+                                <option value="1">Select one</option>
                               <option value="1" {{@$dataBanner->ban_status == '1' ? 'selected="selected"' : ''}}>{{trans('register.banner_status_1')}}</option>
                               <option value="0" {{@$dataBanner->ban_status == '0' ? 'selected="selected"' : ''}}>{{trans('register.banner_status_0')}}</option>
                             </select>
