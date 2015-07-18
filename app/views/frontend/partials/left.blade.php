@@ -5,9 +5,9 @@
 				<img src="{{Config::get('app.url')}}frontend/images/icons/all_category.png" alt="" title="" height="23"/>
 				<strong> &nbsp;&nbsp;&nbsp; All Categocies Type &nbsp;&nbsp;&nbsp;<span class="caret" ></span></strong>
 			</div>
-			<ul class="categories_menu" style="border:1px solid red;">
+			<ul class="categories_menu" style="border:1px solid #f7f7f5;padding:0;">
 				@foreach ($maincategories as $categoriesList)
-					<li class="">
+					<li class="dropdown-mainmenu" style="position:relative;">
 						<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 			      			<?php echo $categoriesList->name_en;  ?> 
 			      		</a>
@@ -15,13 +15,16 @@
 							 $subcategoriesobj = new MCategory();
 							 $sub = $subcategoriesobj->getSubCategories($categoriesList->id);
 							if(count($sub) > 0){
-								echo '<ul class="dropdown_main_menu" style="border:1px solid blue;position:relative;display:-moz-inline-box;z-index:1;background-color:#fff;">';
+								echo '<ul class="dropdown_main_menu">';
 									foreach ($sub as $row){
-											echo '<li><a href='.URL::to('product/'.$row->id).'>'.$row->{'name_en'}.' <span class="caret"></span></a>';
-												//echo '<div class="thumbnails">';
-												//$subcategoriesobj->getSubCategoriesDropdown($categoriesList->id, $row->id); 
-												//echo '</div>';
-												//echo '</li>';
+											echo '<li class="main_category"><a href='.URL::to('product/'.$row->id).'>'.$row->{'name_en'}.'</a>';
+									?>
+										<ul style="padding:0;border:0px solid red;">
+											<li><a>Submenu last child</a></li>
+											<li><a>Submenu last child</a></li>
+											<li><a>Submenu last child</a></li>
+										</ul>
+									<?php
 									}
 								echo '</ul>';
 							}

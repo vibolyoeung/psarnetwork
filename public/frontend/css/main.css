@@ -3549,4 +3549,25 @@ ul.categories_menu > li:hover ul.submenu_dropdown{
         padding:inherit !important;
     }
 }
+ul.dropdown_main_menu{
+	border:1px solid #f7f7f5;
+	position:absolute;
+	z-index:1;
+	background-color:#fff;
+	left: 204px;
+	padding:15px;
+	margin:0;
+	display: none;
+}
+ul.categories_menu > li:hover ul.dropdown_main_menu{
+	display: block;
+	top:0;
+	display:inline-flex;
+}
+ul.dropdown_main_menu > li{
+	min-width: 200px;
+}
+ul.dropdown_main_menu > li > a{
+	font-weight: bold;
+}
 
