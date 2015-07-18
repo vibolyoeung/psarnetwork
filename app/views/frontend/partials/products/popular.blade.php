@@ -19,11 +19,10 @@
 		if(count($latestStores) > 0){
 		?>
 		@foreach($latestStores as $latestStore)
-			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+			<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 				<div class="product-image-wrapper">
 					<div class="single-products">
 						<div class="productinfo">
-							<h5><center>{{$latestStore->title_en}}</center></h5>
 							<!-- @TODO: Put link to store -->
 							<a href="#">
 							 <img
@@ -33,18 +32,9 @@
 							/>
 							</a>
 							<div class="col-lg-12">
-								<h5> {{$latestStore->title_en}}: </h5>
-								<p>
-									<?php
-										$description = $latestStore->{'desc_'.Session::get('lang')}
-									?>
-									{{
-										strlen($description) > 50 ?
-										substr($description, 0, 50) . '....' :
-										$description
-									}} 
-								</p>
-								<strong> View <span class="price">{{$latestStore->view}}</span></strong> 
+								<h5> {{$latestStore->{'title_'.Session::get('lang')};}}</h5>
+								
+								<strong> View: <span class="price">{{$latestStore->view}}</span></strong> 
 							</div>
 						</div>
 					</div>

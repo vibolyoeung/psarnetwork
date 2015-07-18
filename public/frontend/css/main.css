@@ -3045,11 +3045,12 @@ span.price{
 }
 
 .list-store .product-image-wrapper {
-	height: 200px;
+	height: 180px;
 }
 
 .list-store .productinfo img {
 	max-height: 100px;
+	border-radius: 0;
 }
 
 .promotion_top_menu>li {
