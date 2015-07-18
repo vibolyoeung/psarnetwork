@@ -3428,7 +3428,7 @@ fieldset legend {
 }
 
 .carousel-inner>.item>a>img, .top_special_ads a img {
-	max-height: 390px;
+	max-height: 320px;
 }
 
 a.more_categories {
@@ -3579,4 +3579,7 @@ ul.dropdown_main_menu > li > a{
 	margin-left: 8px;
 }
 
+.max-slider{
+    max-height: 390px;
+}
 

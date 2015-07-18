@@ -48,3 +48,7 @@
     padding: 5px;
     border: 1px solid rgb(232, 222, 189);
 }
+
+.max-slider{
+    max-height: 390px;
+}

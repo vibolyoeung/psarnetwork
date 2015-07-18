@@ -67,7 +67,12 @@
 				<?php 
 				}else{
 				?>
-					<img src="{{Config::get('app.url')}}/frontend/images/default_slideshow.png" class="img-responsive img-thumbnail" alt="image" />
+					<img
+						style="max-height:320px; max-width:577px;"
+						src="{{Config::get('app.url')}}/frontend/images/default_slideshow.png" 
+						class="img-responsive img-thumbnail" 
+						alt="image" 
+					/>
 				<?php 
 				}
 				?>
