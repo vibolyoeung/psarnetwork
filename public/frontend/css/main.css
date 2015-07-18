@@ -3045,7 +3045,11 @@ span.price{
 }
 
 .list-store .product-image-wrapper {
-	height: 400px;
+	height: 200px;
+}
+
+.list-store .productinfo img {
+	max-height: 100px;
 }
 
 .promotion_top_menu>li {
