@@ -17,4 +17,7 @@
 	<li class="{{(Request::segment(3)=='toolview' ? 'active':'')}}">
 		<a href="{{URL::to('member/userinfo/toolview')}}">{{trans('register.MENU_toolview')}}</a>
 	</li>
+	<li class="{{(Request::segment(3)=='banner' ? 'active':'')}}">
+		<a href="{{URL::to('member/userinfo/banner')}}">{{trans('register.MENU_banner')}}</a>
+	</li>    
 </ul>

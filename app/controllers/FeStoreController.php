@@ -49,7 +49,8 @@ class FeStoreController extends BaseController {
             );
             $getWidget = $this->mod_page->getUserPages(null, $widgetWhereArr);
 
-                
+            /*get user banner*/
+            $getBanner = $this->mod_store->getStoreBanner($dataStore->id);
            $dataUserPage = $this->mod_category->menuUserPage($dataStore->user_id, 2);
            $whereProduct = array(
             'user_id'=>$dataStore->user_id,
@@ -61,6 +62,7 @@ class FeStoreController extends BaseController {
                         ->with('dataUserPage', $dataUserPage)
                         ->with('toolView',$getToolPage->result)
                         ->with('widtget',$getWidget->result)
+                        ->with('banner',$getBanner)
                         ->with('dataProduct', $dataProduct);
         }
         catch (Exception $e) {
