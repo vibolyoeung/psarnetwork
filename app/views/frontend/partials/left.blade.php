@@ -19,10 +19,10 @@
 									foreach ($sub as $row){
 											echo '<li class="main_category"><a href='.URL::to('product/'.$row->id).'>'.$row->{'name_en'}.'</a>';
 									?>
-										<ul style="padding:0;border:0px solid red;">
-											<li><a>Submenu last child</a></li>
-											<li><a>Submenu last child</a></li>
-											<li><a>Submenu last child</a></li>
+										<ul style="padding:0;border:0px solid red;" class="child-menu">
+											<?php 
+												$subcategoriesobj->getLastFinalCategories($categoriesList->id, $row->id);
+											?>
 										</ul>
 									<?php
 									}

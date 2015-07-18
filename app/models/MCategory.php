@@ -370,6 +370,7 @@ class MCategory extends Eloquent{
 			->select('id','name_en','name_km','status','parent_id')
 			->where('parent_id','=',$parent)
 			->where('status','=',1)
+			->limit(3)
 			->orderBy('name_en','asc')
  			->get();
 			if(count($results)>0){
@@ -407,7 +408,7 @@ class MCategory extends Eloquent{
 		return $results;
 	}
 
-	public function getLastFinalCategories($mainID, $id=null){
+	public function getLastFinalCategories($mainID, $id){
 		try {
 			$results = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
 			->select('id','name_en','name_km','status','parent_id')
@@ -418,19 +419,15 @@ class MCategory extends Eloquent{
 			if(count($results)>0){
 					$i = 1;
 					foreach ($results as $dropdownlist){
-						$li = $i > 3 ?'<li class="show_more'.$id.'">':'<li>';
-						echo $li.'&nbsp;&nbsp;&nbsp;'; ?>
+					?>
+					 <li>
 						<a href="<?php echo URL::to('products/productbycategories/'.$mainID.'/'.$dropdownlist->id); ?>" >
 							<?php echo $dropdownlist->{'name_'.Session::get('lang')};?>
 						</a>
-						<?php 
-						echo '</li>';
-					$i++;
+					   </li>
+					<?php 
+						$i++;
 					}
-				if(count($results)>3){
-					echo '<li class="more_view'.$id.'">&nbsp;&nbsp;&nbsp;<a id="more_view'.$id.'" href="#" ><i>View More...</i></a></li>';
-				}
-				echo '<li class="less_view'.$id.'">&nbsp;&nbsp;&nbsp;<a id="less_view'.$id.'" href="#" ><i>View Less...</i></a></li>';
 			}
 		}catch (\Exception $e){
 			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());

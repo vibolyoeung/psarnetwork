@@ -116,6 +116,7 @@
 					<a href="{{Config::get('app.url')}}member/register">
 						Register
 					</a>&nbsp;&nbsp;
+					<img src="{{Config::get('app.url')}}frontend/images/icons/notification.png" title="" alt=""/>
 					<a href="#">Notifications &nbsp;</a><span style="color:red;cursor:pointer;font-weight:bold;">20</span>
 				</div>
 				<div class="col-lg-2">

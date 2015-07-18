@@ -3565,10 +3565,13 @@ ul.categories_menu > li:hover ul.dropdown_main_menu{
 	display:inline-flex;
 }
 ul.dropdown_main_menu > li{
-	min-width: 200px;
+	min-width: 150px;
 }
 ul.dropdown_main_menu > li > a{
 	font-weight: bold;
+}
+.child-menu > li{
+	margin-left: 8px;
 }
 
 
