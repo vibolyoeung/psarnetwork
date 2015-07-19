@@ -76,7 +76,12 @@
 						</div>
 					</div>
 				</div>
-
+				<input
+					class="btn btn-primary" 
+					type="button" 
+					onclick="ProductDetailPrint.print_product_detail('main_area')" 
+					value="Print Product" 
+				/>
 				<div class="col-lg-12">
 					<h3 style="color: #285EA0;">Product Details</h3>
 					<hr />
@@ -90,6 +95,8 @@
 	</div>
 </div>
 @endsection
+<script
+	src="{{Config::get('app.url')}}/frontend/js/product_detail_print.js"></script>
 <script
 	src="{{Config::get('app.url')}}/frontend/js/carouselengine/amazingcarousel.js"></script>
 <link rel="stylesheet" type="text/css"
