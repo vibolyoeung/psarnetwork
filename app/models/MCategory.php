@@ -370,7 +370,6 @@ class MCategory extends Eloquent{
 			->select('id','name_en','name_km','status','parent_id')
 			->where('parent_id','=',$parent)
 			->where('status','=',1)
-			->limit(3)
 			->orderBy('name_en','asc')
  			->get();
 			if(count($results)>0){
