@@ -17,8 +17,11 @@ Route::post('/admin/send-forget-password', 'BeLoginController@sendResetPassword'
 Route::get('/admin/forget-password', 'BeLoginController@resetPassword');
 
 Route::group(array('before' => 'auth'), function () {
-    Route::get('/admin/dashboard', 'BeLoginController@dashboard'); Route::get('/admin/logout',
-        'BeLoginController@doLogout'); Route::get('/admin/users',
+    Route::get('/admin/user-role-play','BeUserRolePlayController@listUserRolePlay');
+    Route::any('/admin/user-role-play/edit/{role_id}','BeUserRolePlayController@editUserRolePlay');
+    Route::get('/admin/dashboard', 'BeLoginController@dashboard'); 
+    Route::get('/admin/logout','BeLoginController@doLogout'); 
+    Route::get('/admin/users',
         'BeUserController@listUser'); Route::any('/admin/create',
         'BeUserController@createUser'); Route::get('/admin/edit/{id}',
         'BeUserController@editUser'); Route::post('/admin/edit/',
