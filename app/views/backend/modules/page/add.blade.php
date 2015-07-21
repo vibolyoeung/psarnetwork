@@ -26,7 +26,7 @@
               <h3 class="panel-title">Pages</h3>
             </div>
             <div class="panel-body">
-             {{Form::open(array('url'=>'admin/create-page'))}}
+             {{Form::open(array('url'=>"admin/create-page/{$pageBelongTo}"))}}
              	<div class="form-group">
                   <label>Title
                   	<span class="class-required">*</span>
@@ -43,7 +43,12 @@
                  {{ Form::text('title_km',null, array('class' => 'form-control','placeholder'=>'Enter Title'))}}
                  <span class="class-error">{{$errors->first('title_km')}}</span>
                 </div>
-
+                @if($pageBelongTo == 2)
+                  <div class="form-group">
+                    <label>Position:</label>
+                    {{ Form::select('page_position', array(1 => 'Top', 2 => 'bottom'), null, array('class' => 'form-control')) }}
+                  </div>
+                @endif
                 <div class="form-group">
                   <label>Short Description {{HTML::image("backend/images/lang-icons/en.png",'En',array())}}</label>
                  {{ Form::textarea('desc_en',null, array('class' => 'form-control ce_editor','placeholder'=>'Enter description'))}}

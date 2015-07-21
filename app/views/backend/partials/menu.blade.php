@@ -22,7 +22,7 @@
 				<li><a href="#">Client User</a></li>
 				<li><a href="{{URL::to('admin/user-group')}}">User Group</a></li>
 				<li><a href="{{URL::to('admin/client-user-type')}}">Client User Type</a></li>
-				<li><a href="#"> User Role Play</a></li>
+				<li><a href="{{URL::to('admin/user-role-play')}}"> User Role Play</a></li>
 			</ul>
 		</li>
 

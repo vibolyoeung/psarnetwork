@@ -1,6 +1,6 @@
 @extends('backend/layout')
 @section('title')
-    Create
+  Edit
 @endsection
 @section('breadcrumb')
     <ul class="breadcrumb">
@@ -26,7 +26,7 @@
               <h3 class="panel-title">Edit</h3>
             </div>
             <div class="panel-body">
-             {{Form::open(array('url'=>'admin/edit-page'))}}
+             {{Form::open(array('url'=>"admin/edit-page"))}}
              	<div class="form-group">
                   <label>Title
                   	<span class="class-required">*</span>
@@ -43,6 +43,13 @@
                  {{ Form::text('title_km',$pages->title_km, array('class' => 'form-control','placeholder'=>'Enter Title'))}}
                  <span class="class-error">{{$errors->first('title_km')}}</span>
                 </div>
+                @if($pageBelongTo == 2)
+                  <div class="form-group">
+                    <label>Position:</label>
+                    {{ Form::select('page_position', array(1 => 'Top', 2 => 'bottom'), $pages->position, array('class' => 'form-control')) }}
+                  </div>
+                  {{Form::hidden('pageAsWeb', $pageBelongTo)}}
+                @endif
                  {{Form::hidden('id',$pages->id)}}
                 <div class="form-group">
                   <label>Short Description {{HTML::image("backend/images/lang-icons/en.png",'EN',array())}}</label>

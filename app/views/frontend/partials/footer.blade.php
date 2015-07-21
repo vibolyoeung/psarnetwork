@@ -7,12 +7,18 @@
 				<div class="col-sm-12">
 					<center>
 						<ul>
-							<li><a href="#">Contact</a></li>
-							<li><a href="#">About</a></li>
-							<li><a href="#">Advertisement</a></li>
-							<li><a href="#">Usage</a></li>
-							<li><a href="#">User Agreement</a></li>
-							<li><a href="#">Policy</a></li>
+							<?php $mPages = MPage::getPagesToPutBottom();?>
+								@foreach($mPages as $mPage)
+									<li>
+										<a href="#">
+											<i class="fa">
+												<?php 
+                                                   echo $mPage->{'title_'.Config::get('app.locale')}
+												?>
+											</i>
+										</a>
+									</li>
+								@endforeach
 							<li><a href="#">Sign Up now</a></li>
 						</ul>
 					</center>

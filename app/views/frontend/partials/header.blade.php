@@ -58,11 +58,19 @@
 					<div class="col-sm-9">
 						<div class="social-icons pull-right ">
 							<ul class="nav navbar-nav">
-								<li><a href="#"><i class="fa">Contact us</i></a></li>
-								<li><a href="#"><i class="fa">About us</i></a></li>
-								<li><a href="#"><i class="fa">User Agreement</i></a></li>
-								<li><a href="#"><i class="fa">Policy</i></a></li>
-								<li><a href="#"><i class="fa">Usage</i></a></li>
+								<?php $mPages = MPage::getPagesToPutOnTop();?>
+								@foreach($mPages as $mPage)
+									<li>
+										<a href="#">
+											<i class="fa">
+												<?php 
+                                                   echo $mPage->{'title_'.Config::get('app.locale')}
+												?>
+											</i>
+										</a>
+									</li>
+								@endforeach
+								
                                 @if(!Session::get('currentUserId'))
 								<li><a href="{{Config::get('app.url')}}member/login"><i
 										class="fa">Sign in /</i></a></li>

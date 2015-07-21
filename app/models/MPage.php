@@ -1,6 +1,11 @@
 <?php
 class MPage extends Eloquent {
 
+    const PAGE_USER = 1;
+    const PAGE_WEBSITE = 2;
+    const POSITION_TOP = 1;
+    const POSITION_BOTTOM = 2;
+
     protected $table = "m_page";
     public $timestamps = false;
 
@@ -279,6 +284,29 @@ class MPage extends Eloquent {
         }
 
         return $response;
+    }
+
+
+    public static function getPagesToPutOnTop() {
+        $where = array(
+            'page_belong_to' => self::PAGE_WEBSITE,
+            'position' => self::POSITION_TOP
+        );
+
+        return DB::table(Config::get('constants.TABLE_NAME.M_PAGE'))
+            ->where($where)
+            ->get();
+    }
+
+    public static function getPagesToPutBottom() {
+        $where = array(
+            'page_belong_to' => self::PAGE_WEBSITE,
+            'position' => self::POSITION_BOTTOM
+        );
+
+        return DB::table(Config::get('constants.TABLE_NAME.M_PAGE'))
+            ->where($where)
+            ->get();
     }
 
 }

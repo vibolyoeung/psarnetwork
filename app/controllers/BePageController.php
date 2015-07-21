@@ -2,8 +2,12 @@
 
 class BePageController extends BaseController {
 
+	const PAGE_USER = 1;
+	const PAGE_WEBSITE = 2;
+
 	public $m_page;
 	protected $modUserGroup;
+
 	function __construct(){
 		$this->modUserGroup = new UserGroup();
 		$this->m_page = new MPage();
@@ -17,11 +21,19 @@ class BePageController extends BaseController {
 		if(!$this->modUserGroup->isAccessPermission('admin/pages')){
 			return Redirect::to('admin/deny-permisson-page');
 		}
-		$page = $this->m_page
+		$pageForUser = $this->m_page
+				->where('page_belong_to', self::PAGE_USER)
 				->orderBy('id','DESC')
 				->paginate(Config::get('constants.BACKEND_PAGINATION_PAGE'));
+
+		$pageForWebsite = $this->m_page
+				->where('page_belong_to', self::PAGE_WEBSITE)
+				->orderBy('id','DESC')
+				->paginate(Config::get('constants.BACKEND_PAGINATION_PAGE'));
+
 		return View::make('backend.modules.page.list')
-				->with('pages',$page);
+			->with('pagesForWebsite', $pageForWebsite)
+			->with('pagesForUser', $pageForUser);
 	}
 
 	/**
@@ -29,7 +41,7 @@ class BePageController extends BaseController {
 	 * @return true if the page has been created successfully
 	 * @access public
 	 */
-	public function createPage(){
+	public function createPage($belong_to = null){
 		if(!$this->modUserGroup->isAccessPermission('admin/create-page')){
 			return Redirect::to('admin/deny-permisson-page');
 		}
@@ -45,16 +57,26 @@ class BePageController extends BaseController {
 			$validator = Validator::make(Input::all(), $rules);
 			if ($validator->passes()) {
 				$data = $this->prepareDataBind('add');
+				if ($belong_to == self::PAGE_WEBSITE) {
+					$data['page_belong_to'] = self::PAGE_WEBSITE;
+					$data['position'] = Input::get('page_position');
+				} else {
+					$data['page_belong_to'] = self::PAGE_WEBSITE;
+				}
+
 				$this->m_page->insert($data);
 				return Redirect::to('admin/pages')
-				->with('SECCESS_MESSAGE','Page has been created successfully');
+					->with('SECCESS_MESSAGE','Page has been created successfully');
 			}else {
 				return Redirect::to('admin/create-page')
 				->withInput()
 				->withErrors($validator);
 			}
 		}
-		return View::make('backend.modules.page.add');
+
+		$pageBelongTo = ($belong_to == self::PAGE_WEBSITE) ? self::PAGE_WEBSITE : self::PAGE_USER; 
+		return View::make('backend.modules.page.add')
+			->with('pageBelongTo', $pageBelongTo);
 	}
 
 	/**
@@ -64,7 +86,7 @@ class BePageController extends BaseController {
 	 * @return true: if an existing page has been updated successfully
 	 * @access public
 	 */
-	public function editPage($id=null){
+	public function editPage($id=null, $belong_to = null){
 		if(!$this->modUserGroup->isAccessPermission('admin/edit-page')){
 			return Redirect::to('admin/deny-permisson-page');
 		}
@@ -82,6 +104,9 @@ class BePageController extends BaseController {
 			$id = Input::get('id');
 			if ($validator->passes()) {
 				$data = $this->prepareDataBind('edit');
+				if (Input::get('pageAsWeb') == self::PAGE_WEBSITE) {
+					$data['position'] = Input::get('page_position');
+				}
 				$this->m_page->where('id','=',$id)->update($data);
 				return Redirect::to('admin/pages')
 				->with('SECCESS_MESSAGE','Page has been updated successfully');
@@ -92,7 +117,10 @@ class BePageController extends BaseController {
 			}
 		}
 		$pages = $this->m_page->where('id','=',$id)->first();
-		return View::make('backend.modules.page.edit')->with('pages',$pages);
+		$pageBelongTo = ($belong_to == self::PAGE_WEBSITE) ? self::PAGE_WEBSITE : self::PAGE_USER; 
+		return View::make('backend.modules.page.edit')
+			->with('pages',$pages)
+			->with('pageBelongTo', $pageBelongTo);
 	}
 
 	/**
