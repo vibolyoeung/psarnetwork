@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 21, 2015 at 10:35 PM
--- Server version: 5.5.40-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.5
+-- Generation Time: Jul 21, 2015 at 09:15 PM
+-- Server version: 5.5.43-0ubuntu0.14.04.1
+-- PHP Version: 5.5.9-1ubuntu4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -43,20 +43,20 @@ CREATE TABLE IF NOT EXISTS `advertisement` (
   `type` int(11) NOT NULL,
   `status` int(11) DEFAULT NULL,
   `apearance` int(11) NOT NULL,
+  `to_page` varchar(255) DEFAULT NULL,
   `adv_position_id` int(11) NOT NULL,
   `adv_cat_page_id` int(11) NOT NULL,
   `adv_page_id` int(11) DEFAULT NULL,
   `license_id` int(11) NOT NULL,
   `payment_method` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `advertisement`
 --
 
-INSERT INTO `advertisement` (`id`, `title_en`, `title_km`, `description_en`, `description_km`, `image`, `link_url`, `started_date`, `end_date`, `user_id`, `incharger`, `pro_cat_id`, `size`, `type`, `status`, `apearance`, `adv_position_id`, `adv_cat_page_id`, `adv_page_id`, `license_id`, `payment_method`) VALUES
-(2, 'Advertisement title eeee', 'ចំណងជើង2ផ្សព្វ​ផ្សាយ', 'English title', 'ការពីពរណា', '1422546836.jpg', 'https://www.google.com.kh', '29/01/2015', '23/01/2015', 0, 2, 14, 0, 2, 1, 0, 5, 2, 5, 4, 1),
-(3, 'title aaa', 'Omnis consectetur ut cupidatat eu Nam vel', 'Atque laborum aut voluptas et amet, excepteur mollitia consequuntur eos vel qui rerum ipsum quo necessitatibus qui esse.', 'Sed et harum consectetur, in excepteur et quod eligendi sit, sit sit ab aut voluptas quod natus aliquip.', '1424532737.jpg', 'https://www.google.com.kh', '14-Jun-2001', '12-Apr-1971', 0, 2, 15, 30, 2, 1, 1, 3, 2, 3, 3, 3);
+INSERT INTO `advertisement` (`id`, `title_en`, `title_km`, `description_en`, `description_km`, `image`, `link_url`, `started_date`, `end_date`, `user_id`, `incharger`, `pro_cat_id`, `size`, `type`, `status`, `apearance`, `to_page`, `adv_position_id`, `adv_cat_page_id`, `adv_page_id`, `license_id`, `payment_method`) VALUES
+(19, 'english title', 'khmer title', 'Phasellus ullamcorper ipsum rutrum nunc. Praesent egestas tristique nibh. Nullam vel sem. Sed augue ipsum, egestas nec, vestibulum et, malesuada adipiscing, dui. Fusce convallis metus id felis luctus adipiscing.', 'Aenean massa. Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi. Nullam quis ante. Maecenas egestas arcu quis ligula mattis placerat. Etiam iaculis nunc ac metus.', '1437487805.jpg', 'http://vibol.host22.com/', '21/07/2015', '31/07/2015', 18, 2, 0, 30, 1, 1, 0, '', 1, 1, 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -353,7 +353,7 @@ ALTER TABLE `payment_method`
 -- AUTO_INCREMENT for table `advertisement`
 --
 ALTER TABLE `advertisement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `advertiser_profile`
 --
