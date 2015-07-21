@@ -68,10 +68,9 @@
 				}else{
 				?>
 					<img
-						style="max-height:320px; max-width:577px;"
 						src="{{Config::get('app.url')}}/frontend/images/default_slideshow.png" 
-						class="img-responsive img-thumbnail" 
-						alt="image" 
+						class="img-responsive img-thumbnail default-image" 
+						alt="image" alt="" title=""
 					/>
 				<?php 
 				}

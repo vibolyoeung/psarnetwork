@@ -13,7 +13,7 @@
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="dropdown-thumbnail-preview"  style="border: 1px solid #f7f7f5" >
+			<div class="collapse navbar-collapse menu-top" id="dropdown-thumbnail-preview">
 				<ul class="nav navbar-nav top_menu_list">
 					<li><a href="#"><img src="{{Config::get('app.url')}}frontend/images/icons/basket.png" alt="" title="" height="23"/></a></li>
 					<li><a href="{{Config::get('app.url')}}product/list/10">Super Market</a></li>

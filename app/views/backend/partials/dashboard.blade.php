@@ -14,7 +14,7 @@
 			<a href="{{URL::to('admin/front-end-setting')}}">
 				<div class="caption">
 					{{HTML::image('backend/images/icons/setting-front.png','Front End Setting')}}
-					<strong>Front-End Setting</strong>
+					<strong>Front Setting</strong>
 				</div>
 			</a>
 		</div>
@@ -22,7 +22,7 @@
 			<a href="{{URL::to('admin/back-end-setting')}}">
 				<div class="caption">
 					{{HTML::image('backend/images/icons/setting-back.png','Back End Setting')}}
-					<strong>Back-End Setting</strong>
+					<strong>Back Setting</strong>
 				</div>
 			</a>
 		</div>

@@ -5,9 +5,9 @@
 				<img src="{{Config::get('app.url')}}frontend/images/icons/all_category.png" alt="" title="" height="23"/>
 				<strong> &nbsp;&nbsp;&nbsp; All Categocies Type &nbsp;&nbsp;&nbsp;<span class="caret" ></span></strong>
 			</div>
-			<ul class="categories_menu" style="border:1px solid #f7f7f5;padding:0;">
+			<ul class="categories_menu">
 				@foreach ($maincategories as $categoriesList)
-					<li class="dropdown-mainmenu" style="position:relative;">
+					<li class="dropdown-mainmenu">
 						<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 			      			<?php echo $categoriesList->name_en;  ?> 
 			      		</a>

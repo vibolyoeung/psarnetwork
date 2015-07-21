@@ -20,7 +20,7 @@ if ($i === 0) {
 	?>
 <a href="#"> 
 <img
-	src="{{Config::get('app.url')}}frontend/images/default_adv_420x200.jpg"
+	src="{{Config::get('app.url')}}frontend/images/default_adv_420x200.png"
 	class="img-responsive img-thumbnail" alt="" />
 </a>
 <?php
