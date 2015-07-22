@@ -147,6 +147,7 @@ class FeProductController extends BaseController {
         }
         $productTransferTypes = $this->mod_product->findAllTransferType();
         $productCondictions = $this->mod_product->findAllCondition();
+        var_dump($product);die;
         return View::make('frontend.modules.product.edit_product')
             ->with('proTransferType', $productTransferTypes->data)
             ->with('productCondition', $productCondictions->data)
