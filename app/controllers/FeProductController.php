@@ -113,6 +113,8 @@ class FeProductController extends BaseController {
         if (Input::has('btnAddProduct')) {
 
             $files = Input::file('file');
+            $hiddenFilesArr = Input::get('hiddenFiles');
+            $delimagArr = Input::get('delimag');
             $filesQuotation = Input::file('quotation');
             $quotationFile = '';
             $jsonNewFileName = '';
@@ -120,8 +122,32 @@ class FeProductController extends BaseController {
                 $quotationFile = $this->doUploadQaotation($filesQuotation);
             }   
             if (!empty($files[0])){
-                $jsonNewFileName = $this->doUploadImages($files);
+                $jsonNewFileName = $this->doUploadImages($files,$hiddenFilesArr);
+            } else {
+                /*get old image*/
+                $newImg = array();
+                if(!empty($hiddenFilesArr)) {
+                    foreach($hiddenFilesArr as $oldImg) {
+                        $newImg[]['pic'] = $oldImg;
+                    }
+                }
+                /*end get old image*/
+                $jsonNewFileName = json_encode($newImg);
             }
+            
+            /*remove old image*/
+            if(!empty($delimagArr)) {
+                $destinationPath = base_path() . '/public/upload/product/';
+                foreach($delimagArr as $delImg) {
+                    $oldName = $destinationPath . '/' . $delImg;
+                    $thumb = $destinationPath . '/thumb/' . $delImg;
+                    if (File::exists($oldName)) {
+                        File::delete($oldName, $thumb);
+                    }
+                }
+            }
+            /*end remove old image*/
+            
 
             $products = $this->prepareDataBindProducts(
                 $jsonNewFileName,
@@ -147,7 +173,6 @@ class FeProductController extends BaseController {
         }
         $productTransferTypes = $this->mod_product->findAllTransferType();
         $productCondictions = $this->mod_product->findAllCondition();
-        var_dump($product);die;
         return View::make('frontend.modules.product.edit_product')
             ->with('proTransferType', $productTransferTypes->data)
             ->with('productCondition', $productCondictions->data)
@@ -200,11 +225,20 @@ class FeProductController extends BaseController {
      *@access private
      *@return json  fileNames
      */
-    public function doUploadImages($files) {
+    public function doUploadImages($files,$oldFile) {
         $destinationPath = base_path() . '/public/upload/product/';
         self::generateFolderUpload($destinationPath);
         $destinationPathThumb = $destinationPath.'thumb/';
         $images = [];
+        /*get old image*/
+        $newImg = array();
+        if(!empty($oldFile)) {
+            foreach($oldFile as $oldImg) {
+                $newImg[]['pic'] = $oldImg;
+            }
+        }
+        /*end get old image*/
+
         foreach ($files as $file) {
             if (!empty($file)) {
                 $originFileName = $file->getClientOriginalName();
@@ -218,8 +252,8 @@ class FeProductController extends BaseController {
                 );
             }
         }
-
-        return json_encode($images);
+        $dataArr = array_merge($images, $newImg);
+        return json_encode($dataArr);
     }
 
     /**

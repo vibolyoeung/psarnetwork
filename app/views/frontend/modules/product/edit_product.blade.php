@@ -18,16 +18,16 @@
                     <div role="tabpanel">
                         <!-- Nav tabs -->
                          <ul class="nav nav-tabs pro-tab" role="tablist">
-                            <li role="presentation" class="active productInfo">
+                            <li role="presentation gettab" class="active productInfo">
                                 <a href="#productInfo" aria-controls="productInfo" role="tab" data-toggle="tab">Product Info</a>
                             </li>
-                            <li class="picture" role="presentation">
+                            <li class="picture gettab pictures" role="presentation">
                                 <a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab">Picture</a>
                             </li>
-                            <li class="quotation" role="presentation">
+                            <li class="quotation gettab quotation" role="presentation">
                                 <a href="#quotation" aria-controls="quotation" role="tab" data-toggle="tab">Quotation</a>
                             </li>
-                            <li class="contactInfo" role="presentation">
+                            <li class="contactInfo gettab contactInfo" role="presentation">
                                 <a href="#contactInfo" aria-controls="contactInfo" role="tab" data-toggle="tab">Contact Info</a>
                             </li>
                          </ul>
@@ -122,7 +122,17 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <a 
+                                    {{ 
+                                        Form::submit(
+                                            trans('product.save_product_ads'), 
+                                            array(
+                                                'class' => 'btn btn-primary pull-right', 
+                                                'name'=>'btnAddProduct'
+                                            )
+                                        )
+                                    }}
+                                    <a
+                                        style="margin-right: 10px;" 
                                         class="btn btn-primary pull-right" 
                                         href="#pictures" 
                                         aria-controls="pictures" 
@@ -136,7 +146,48 @@
                         </div>
                         <div role="tabpanel" class="tab-pane" id="pictures">
                             <div class="col-md-12">
-                                <div class="well">
+                        		<table class="table">
+                        			<thead>
+                        				<tr>
+                        					<th width="60px" style="width: 100px;">Picture</th>
+                                            <th>File name</th>
+                        					<th style="width: 80px;">Action</th>
+                        				</tr>
+                        			</thead>
+                        			<tbody>
+                                    <?php $imgArr = @json_decode(@$product->pictures, true);
+                                    $i=0;
+                                    ?>
+                        			@foreach(@$imgArr as $productImg)
+                                        <?php $i++;?>
+                        				<tr id="image-id-{{$i}}">
+                        					<td>
+                                            <?php $img = $productImg['pic'];?>
+                        						{{HTML::image("upload/product/thumb/$img",'test',array('class' => 'img-rounded','width'=>'100'))}}
+                        					</td>
+                                            <td>
+                                                {{@$img}}
+                                                <input id="file-id-{{$i}}" 
+                                                    type="hidden"
+                                                    name="hiddenFiles[]"
+                                                    value='{{$img}}' 
+                                                />
+                                            </td>
+                        					<td>
+                    							<a 
+                    								onclick="removeImg('{{$i}}');" 
+                    								href="javascript:;">
+                    								Delete
+                    							</a>
+                        					</td>
+                        				</tr>
+                        			@endforeach
+                        			</tbody>
+                        		</table>
+                            </div>
+                            <!-- end image list -->
+                            
+                            <div class="col-md-12">
                                     <div class="row" id="upload-preview">
                                         <div class="col-md-12">
                                             <div class="well">
@@ -145,11 +196,6 @@
                                                         {{trans('product.upload_file')}}
                                                     </label>
                                                 </div>
-                                                <input 
-                                                    type="hidden"
-                                                    name="hiddenFiles"
-                                                    value='{{$product->pictures}}' 
-                                                >
                                                 <table id="picture-table">
                                                     <thead>
                                                         <tr>
@@ -190,7 +236,17 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-sm-12">
-                                                        <a 
+                                                        {{ 
+                                                            Form::submit(
+                                                                trans('product.save_product_ads'), 
+                                                                array(
+                                                                    'class' => 'btn btn-primary pull-right', 
+                                                                    'name'=>'btnAddProduct'
+                                                                )
+                                                            )
+                                                        }}
+                                                        <a
+                                                            style="margin-right: 10px;" 
                                                             class="btn btn-primary pull-right" 
                                                             href="#quotation" 
                                                             aria-controls="quotation" 
@@ -201,7 +257,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="quotation">
@@ -215,7 +270,17 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <a 
+                                            {{ 
+                                                Form::submit(
+                                                    trans('product.save_product_ads'), 
+                                                    array(
+                                                        'class' => 'btn btn-primary pull-right', 
+                                                        'name'=>'btnAddProduct'
+                                                    )
+                                                )
+                                            }}
+                                            <a
+                                                style="margin-right: 10px;" 
                                                 class="btn btn-primary pull-right" 
                                                 href="#contactInfo" 
                                                 aria-controls="contactInfo"
@@ -309,7 +374,44 @@
                         $('.pro-tab li').removeClass('active');
                         $('.' + id).addClass('active');
                       } 
-
+                      
+                      function removeImg($id) {
+                            var txt;
+                            var r = confirm("are you sure to delete this image?");
+                            if (r == true) {
+                                $("#image-id-" + $id).hide();
+                                $("#file-id-" + $id).attr('name','delimag[]');
+                            } else {
+                                //txt = "You pressed Cancel!";
+                            }
+                            //document.getElementById("demo").innerHTML = txt;
+                        }
+                        
+                        /*set current active page*/
+                        if(window.location.hash) {
+                              var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
+                              $("ul.nav-tabs li").removeClass('active');
+                              $("ul.nav-tabs li." + hash).addClass('active');
+                              
+                              $(".tab-content .tab-pane").removeClass('active');
+                              $(".tab-content #" + hash).addClass('active');
+                          } else {
+                              // No hash found
+                          }
+                          
+                        $(function(){
+                        	$("a[role='tab']").click(function(e){
+                        		pageurl = $(this).attr('href');
+                        		$("ul.nav-tabs li").removeClass('active');
+                                $(this).parent().addClass('active');
+                                $(".tab-content .tab-pane").removeClass('active');
+                                $(".tab-content " + pageurl).addClass('active');
+                        		if(pageurl!=window.location){
+                        			window.history.pushState({path:pageurl},'',pageurl);	
+                        		}
+                        		return false;  
+                        	});
+                        });                          
                     </script>
                             
                         </div>
