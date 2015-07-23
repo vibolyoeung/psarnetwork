@@ -47,6 +47,28 @@ class Product extends Eloquent{
 	}
 
 	/**
+	 * listing all transer type
+	 * @return array
+	 * @access public
+	 */
+	public function listAllTransferType() {
+		return $result = DB::table(Config::get(self::TRANSFER_TYPE))
+			->select('*')
+			->get();
+	}
+
+	/**
+	 * list product condition
+	 * @return array
+	 * @access public
+	 */
+	public function listAllConditions() {
+		return $result = DB::table(Config::get(self::CONDITION))
+			->select('*')
+			->get();
+	}
+
+	/**
 	 *
 	 * listing all product conditions
 	 * @return array

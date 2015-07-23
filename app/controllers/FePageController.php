@@ -161,7 +161,8 @@ class FePageController extends BaseController {
 				->with('advVerticalLeftMiduims', $advVerticalLeftMiduim->result)
 				->with('advHorizontalLargeCenters', $advHorizontalLargeCenter->result)
 				->with('advTops', $advTops->result)
-				->with('Provinces', $this->mod_setting->listProvinces())
+				->with('transferTypes', $this->mod_product->listAllTransferType())
+				->with('conditions', $this->mod_product->listAllConditions())
 				->with('productByCategory', $productByCategory);
 	}
 	
