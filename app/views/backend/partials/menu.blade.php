@@ -19,7 +19,7 @@
 			data-toggle="dropdown">User Management<b class="caret"></b></a>
 			<ul class="dropdown-menu">
 				<li><a href="{{URL::to('admin/users')}}">System User</a></li>
-				<li><a href="#">Client User</a></li>
+				<li><a href="{{URL::to('admin/users/clients')}}">Client User</a></li>
 				<li><a href="{{URL::to('admin/user-group')}}">User Group</a></li>
 				<li><a href="{{URL::to('admin/client-user-type')}}">Client User Type</a></li>
 				<li><a href="{{URL::to('admin/user-role-play')}}"> User Role Play</a></li>

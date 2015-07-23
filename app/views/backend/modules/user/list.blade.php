@@ -12,7 +12,7 @@
 			<div class="panel-heading clearfix"><a
 				href="{{URL::to('admin/create')}}"> <i
 				class="icon-plus btn btn-xs btn-info rounded-buttons">&nbsp;Add</i> </a>
-			<h3 class="panel-title">Users</h3>
+			<h3 class="panel-title">System Users</h3>
 			</div>
 			<div class="panel-body">@if(Session::has('SECCESS_MESSAGE'))
 			<div class="alert alert-block alert-success fade in">

@@ -22,11 +22,16 @@ Route::group(array('before' => 'auth'), function () {
     Route::get('/admin/dashboard', 'BeLoginController@dashboard'); 
     Route::get('/admin/logout','BeLoginController@doLogout'); 
     Route::get('/admin/users',
-        'BeUserController@listUser'); Route::any('/admin/create',
+        'BeUserController@listUser');
+     Route::get('/admin/users/clients',
+        'BeUserController@listClientUser');
+         Route::any('/admin/create',
         'BeUserController@createUser'); Route::get('/admin/edit/{id}',
         'BeUserController@editUser'); Route::post('/admin/edit/',
         'BeUserController@editUser'); Route::any('/admin/delete/{id}',
-        'BeUserController@deleteUser'); Route::get('/admin/status/{status}/{id}',
+        'BeUserController@deleteUser');
+        Route::get('/admin/delete/client/{id}',
+        'BeUserController@deleteClientUser'); Route::get('/admin/status/{status}/{id}/{route?}',
         'BeUserController@changeStatusUser'); Route::any('/admin/profile',
         'BeUserController@updateProfileUser'); Route::any('/admin/change-password',
         'BeUserController@changePasswordUser'); Route::any('/admin/users/filter-user',
