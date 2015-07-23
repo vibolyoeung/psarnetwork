@@ -16,7 +16,56 @@ date_default_timezone_set('Asia/Phnom_Penh');
 ?>
 <div class="col-sm-8">
 	<div class="category-tab lastest-post">
+    
 		<!-- ============Slider end here========= -->
+               <!-- slideshow --> 
+        <div id="carousel-home" class="carousel slide" data-ride="carousel" style="margin-top: 2px;">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+          @if(!empty($banner))
+                <?php $i=0;?>
+                @foreach($banner as $ban)
+                    @if($ban->ban_position == 'top-c')
+                        @if($ban->ban_enddate >= $currentDate)
+                        <li data-target="#carousel-home" data-slide-to="{{$i}}" class="{{$i==0 ? 'active':''}}"></li>
+                        <?php $i++;?>
+                     @endif
+                    @endif
+                @endforeach
+            @endif
+          </ol>
+        
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+          @if(!empty($banner))
+                <?php $i=0;?>
+                @foreach($banner as $ban)
+                    @if($ban->ban_position == 'top-c')
+                        @if($ban->ban_enddate >= $currentDate)
+                        <div class="item {{$i==0 ? 'active':''}}">
+                            <a class="banner-link" href="{{@$ban->ban_link}}" target="_blank"><img src="{{Config::get('app.url')}}upload/user-banner/{{$ban->ban_image}}" style="width: 100%;max-height: 250px;" /></a>
+                            <div class="carousel-caption">
+                                ...
+                            </div>
+                        </div>
+                        <?php $i++;?>
+                        @endif
+                    @endif
+                @endforeach
+            @endif
+          </div>
+        
+          <!-- Controls -->
+          <a class="left carousel-control" href="#carousel-home" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#carousel-home" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        <!-- end slideshow --> 
 
                 <div class="features_items">
 					<ul class="nav nav-tabs">
@@ -24,19 +73,7 @@ date_default_timezone_set('Asia/Phnom_Penh');
 						<li>Products : <span class="number-display">{{($dataProduct)?count($dataProduct):''}}</span></li>
 					</ul>
                 </div>
-
-    @if(!empty($banner))
-        <div class="col-lg-12" style="padding:0;">
-        @foreach($banner as $ban)
-            @if($ban->ban_position == 'top-c')
-                @if($ban->ban_enddate >= $currentDate)
-                <a class="banner-link" href="{{@$ban->ban_link}}" target="_blank"><img src="{{Config::get('app.url')}}upload/user-banner/{{$ban->ban_image}}" style="width: 100%;max-height: 90px;" /></a>
-                @endif
-            @endif
-        @endforeach
-        </div>
-    @endif
-    
+         
 		<div class="col-lg-12" style="padding:0;">
             @if(!empty($dataProduct))
                 <?php
