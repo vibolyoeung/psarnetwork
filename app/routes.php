@@ -80,7 +80,8 @@ Route::group(array('before' => 'auth'), function () {
         'BeSettingController@addPermissionAction'); Route::get('/admin/setting-delete-permission-name/{id}',
         'BeSettingController@deletePermissionAction'); Route::any('/admin/setting-add-slideshow',
         'BeSettingController@addSettingSlideShow'); Route::get('/admin/front-end-setting',
-        'BeSettingController@frontEndSettingAction'); Route::get('/admin/location-setting',
+        'BeSettingController@frontEndSettingAction'); 
+        Route::any('/admin/front-end-setting/view-mode', 'BeSettingController@frontEndViewModeAction');Route::get('/admin/location-setting',
         'BeSettingController@listLocation'); Route::get('/admin/district-setting/{province_id}',
         'BeSettingController@listDistrict'); Route::any('/admin/province/add',
         'BeSettingController@addProvince'); Route::any('/admin/province/edit/{province_id}',

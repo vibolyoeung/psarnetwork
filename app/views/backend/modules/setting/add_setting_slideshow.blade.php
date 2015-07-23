@@ -2,7 +2,7 @@
 @section('breadcrumb')
 	<ul class="breadcrumb">
 		<li><a href="{{URL::to('admin/dashboard')}}">Dashboard</a></li>
-		<li><a href="{{URL::to('admin/setting-list')}}">Setting</a></li>
+		<li><a href="{{URL::to('admin/front-end-setting')}}">Setting</a></li>
 		<li>Display Number Of Slideshows</li>
 	</ul>
 @endsection
