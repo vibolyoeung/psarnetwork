@@ -15,7 +15,7 @@
 						<tr>
 							<th width="300">
 								<i class="icon-plus btn btn-xs btn-info"></i>
-								<a href="#">Home Page View Mode</a>
+								<a href="{{URL::to('admin/front-end-setting/view-mode')}}">Home Page View Mode</a>
 							</th>
 							<th width="300">
 								<i class="icon-plus btn btn-xs btn-info"></i>

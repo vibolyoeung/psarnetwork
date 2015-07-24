@@ -4,6 +4,10 @@ class BeSettingController extends BaseController {
 	protected  $modUserGroup;
 	protected  $modSetting;
 
+	const LATEST_PRODUCT_MODE = 'setting_view_mode_latest_product';
+	const ENTERPRISE_STORE_MODE = 'setting_view_mode_enterprise_store';
+	const BUYER_REQUEST_MODE = 'setting_view_mode_buyer_request';
+
 	public function __construct() {
 		$this->modUserGroup = new UserGroup();
 		$this->modSetting = new Setting();
@@ -218,5 +222,57 @@ class BeSettingController extends BaseController {
 		$productTransferTypeById = $this->modSetting->findProductTransferTypeById($id);
 		return View::make('backend.modules.setting.producttransfertype.edit_product_transfer_type')
 		->with('productTransferTypeById', $productTransferTypeById);
+	}
+
+
+	public function frontEndViewModeAction()
+	{
+		if(Input::has('btnSubmit')){
+			if(Input::has('enterprise_store')){
+				$this->updateViewMode(
+					array('setting_value'=>Input::get('enterprise_store')),
+					self::ENTERPRISE_STORE_MODE
+				);
+			}
+
+			if(Input::has('buyer_request')){
+				$this->updateViewMode(
+					array('setting_value'=>Input::get('buyer_request')),
+					self::BUYER_REQUEST_MODE
+				);
+			}
+
+			if(Input::has('latest_product')){
+				$this->updateViewMode(
+					array('setting_value'=>Input::get('latest_product')),
+					self::LATEST_PRODUCT_MODE
+				);
+			}
+
+			return Redirect::to('admin/front-end-setting/view-mode')
+				->with('SECCESS_MESSAGE','Data has been saved!');
+		}
+
+		$latestProductViewMode = $this->getViewMode(self::LATEST_PRODUCT_MODE);
+		$enterPriseViewMode = $this->getViewMode(self::ENTERPRISE_STORE_MODE);
+		$buyerRequestViewMode = $this->getViewMode(self::BUYER_REQUEST_MODE);
+		return View::make('backend.modules.setting.homepage_view_mode')
+			->with('latestProductViewMode', $latestProductViewMode)
+			->with('enterPriseViewMode', $enterPriseViewMode)
+			->with('buyerRequestViewMode', $buyerRequestViewMode);
+	}
+
+	private function getViewMode($viewMode) 
+	{
+		return DB::table(Config::get('constants.TABLE_NAME.SETTING'))
+			->where('setting_type', $viewMode)
+			->first();
+	}
+
+	private function updateViewMode($data, $viewMode)
+	{
+		DB::table(Config::get('constants.TABLE_NAME.SETTING'))
+			->where('setting_type', $viewMode)
+			->update($data);
 	}
 }

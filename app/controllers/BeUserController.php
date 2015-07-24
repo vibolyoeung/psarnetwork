@@ -4,13 +4,16 @@ class BeUserController extends BaseController {
 
 	protected  $user;
 	protected  $modUserGroup;
+
+	const CLIENT_USER = 4;
+
 	public function __construct() {
 		$this->user = new User();
 		$this->modUserGroup = new UserGroup();
 	}
 
 	/**
-	 * listUser: listing all users
+	 * listUser: listing all system users
 	 * @return users object
 	 */
 	public function listUser(){
@@ -24,7 +27,8 @@ class BeUserController extends BaseController {
 			$arrUserGroup[$user_group->id] = $user_group->name;
 		}
 		
-		$users = $this->user->where('id','!=',Session::get('SESSION_USER_ID'))
+		$users = $this->user->where('id','!=', Session::get('SESSION_USER_ID'))
+				->where('user_type', '!=', self::CLIENT_USER)
 				->orderBy('id','DESC')
 				->paginate(Config::get('constants.BACKEND_PAGINATION_USER'));
 		
@@ -32,6 +36,21 @@ class BeUserController extends BaseController {
 				->with('users', $users)
 				->with('status', $status)
 				->with('arrUserGroup', $arrUserGroup);
+	}
+
+
+	/**
+	 * listUser: listing all client users
+	 * @return users object
+	 */
+	public function listClientUser(){
+		$clientUsers = $this->user->where('id','!=', Session::get('SESSION_USER_ID'))
+				->where('user_type', self::CLIENT_USER)
+				->orderBy('id','DESC')
+				->paginate(Config::get('constants.BACKEND_PAGINATION_USER'));
+		
+		return View::make('backend.modules.user.client_user')
+			->with('clientUsers', $clientUsers);
 	}
 
 	/**
@@ -150,7 +169,7 @@ class BeUserController extends BaseController {
 	 * changeStatusUser: this is function for changing status of user
 	 * @param  status: the status of user
 	 */
-	public function changeStatusUser($status = null,$id = null){
+	public function changeStatusUser($status = null, $id = null, $route = null){
 		if(!$this->modUserGroup->isModifyPermission('admin/status')){
 				return Redirect::to('admin/users')
 				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
@@ -160,8 +179,13 @@ class BeUserController extends BaseController {
 		}else{
 			$status = 1;
 		}
+		if ($route == self::CLIENT_USER) {
+			$routeName = 'admin/users/clients';
+		} else {
+			$routeName = 'admin/users';
+		}
 		$this->user->where('id','=',$id)->update(array('status'=>$status));
-		return Redirect::to('admin/users')->with('SECCESS_MESSAGE','User status has been changed successfully');
+		return Redirect::to($routeName)->with('SECCESS_MESSAGE','User status has been changed successfully');
 	}
 
 	/**
@@ -256,10 +280,24 @@ class BeUserController extends BaseController {
 	 */
 	public function listingUserType(){
 		$dataArrayUserType = array();
-		$listingUserType = DB::table('user_type')->select('*')->where('id','!=',4)->get();
+		$listingUserType = DB::table('user_type')->select('*')->where('id','!=', 4)->get();
 		foreach ($listingUserType as $userType){
 			$dataArrayUserType[$userType->id] = $userType->name;
 		}
 		return $dataArrayUserType;
+	}
+
+	/**
+	 * deleteClientUser: this function using for delete a existing client users
+	 * @return true
+	 * @param id: id of user
+	 */
+	public function deleteClientUser($id=null){
+		$id = (integer)$id;
+		$this->user->where('id','=', $id)
+			->where('id','!=', Session::get('SESSION_USER_ID'))
+			->delete();
+		return Redirect::to('admin/users/clients')
+			->with('SECCESS_MESSAGE','User has been deleted successfully');
 	}
 }

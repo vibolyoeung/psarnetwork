@@ -22,11 +22,16 @@ Route::group(array('before' => 'auth'), function () {
     Route::get('/admin/dashboard', 'BeLoginController@dashboard'); 
     Route::get('/admin/logout','BeLoginController@doLogout'); 
     Route::get('/admin/users',
-        'BeUserController@listUser'); Route::any('/admin/create',
+        'BeUserController@listUser');
+     Route::get('/admin/users/clients',
+        'BeUserController@listClientUser');
+         Route::any('/admin/create',
         'BeUserController@createUser'); Route::get('/admin/edit/{id}',
         'BeUserController@editUser'); Route::post('/admin/edit/',
         'BeUserController@editUser'); Route::any('/admin/delete/{id}',
-        'BeUserController@deleteUser'); Route::get('/admin/status/{status}/{id}',
+        'BeUserController@deleteUser');
+        Route::get('/admin/delete/client/{id}',
+        'BeUserController@deleteClientUser'); Route::get('/admin/status/{status}/{id}/{route?}',
         'BeUserController@changeStatusUser'); Route::any('/admin/profile',
         'BeUserController@updateProfileUser'); Route::any('/admin/change-password',
         'BeUserController@changePasswordUser'); Route::any('/admin/users/filter-user',
@@ -80,7 +85,8 @@ Route::group(array('before' => 'auth'), function () {
         'BeSettingController@addPermissionAction'); Route::get('/admin/setting-delete-permission-name/{id}',
         'BeSettingController@deletePermissionAction'); Route::any('/admin/setting-add-slideshow',
         'BeSettingController@addSettingSlideShow'); Route::get('/admin/front-end-setting',
-        'BeSettingController@frontEndSettingAction'); Route::get('/admin/location-setting',
+        'BeSettingController@frontEndSettingAction'); 
+        Route::any('/admin/front-end-setting/view-mode', 'BeSettingController@frontEndViewModeAction');Route::get('/admin/location-setting',
         'BeSettingController@listLocation'); Route::get('/admin/district-setting/{province_id}',
         'BeSettingController@listDistrict'); Route::any('/admin/province/add',
         'BeSettingController@addProvince'); Route::any('/admin/province/edit/{province_id}',
