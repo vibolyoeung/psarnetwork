@@ -225,7 +225,7 @@ class FeProductController extends BaseController {
      *@access private
      *@return json  fileNames
      */
-    public function doUploadImages($files,$oldFile) {
+    public function doUploadImages($files,$oldFile = null) {
         $destinationPath = base_path() . '/public/upload/product/';
         self::generateFolderUpload($destinationPath);
         $destinationPathThumb = $destinationPath.'thumb/';
