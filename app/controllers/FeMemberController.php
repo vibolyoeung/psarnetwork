@@ -852,7 +852,21 @@ class FeMemberController extends BaseController {
                         if (!empty($getUserStore)) {
                             $userStoreID = $getUserStore->id;
                             $where = array('user_id' => $userID, 'id' => $userStoreID);
-                            $dataSet = array('layout' => $MainMenu);
+                            
+                            
+                            $userStoresValue = $getUserStore->sto_value;
+                            if (is_null($userStoresValue)) {
+                                $dataSet = array('layout' => $MainMenu);
+                            } else {
+                                $userStoresValueArr = json_decode($userStoresValue, true);
+                                var_dump($userStoresValueArr);
+                                if (array_key_exists('layout', $userStoresValueArr)) {
+                                    $ValueArr = array('layout' => $MainMenu);
+                                    $dataSet = array_merge($userStoresValueArr, $ValueArr);
+                                } else {
+                                    $dataSet = array('layout' => $MainMenu, 'footer_text' => $userStoresValueArr['footer_text']);
+                                }
+                            }                                                        
                             $response = DB::table(Config::get('constants.TABLE_NAME.STORE'))->where($where)->
                                 update(array('sto_value' => json_encode($dataSet)));
                         }
