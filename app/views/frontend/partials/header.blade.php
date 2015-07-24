@@ -12,9 +12,11 @@
 {{HTML::style('frontend/css/animate.css')}}
 {{HTML::style('frontend/css/bootstrap.min.css')}}
 {{HTML::style('frontend/css/responsive.css')}}
+{{HTML::style('backend/css/jquery-ui.css')}}
 {{HTML::style('frontend/css/main.css')}}
 {{HTML::style('frontend/css/layout.css')}}
 {{HTML::script('frontend/js/jquery.js')}}
+{{HTML::script('backend/js/jquery-ui.js')}}
 {{HTML::script('frontend/js/popupdetails.js')}}
 <!--[if lt IE 9]>
                 {{HTML::script('frontend/js/html5shiv.js')}}

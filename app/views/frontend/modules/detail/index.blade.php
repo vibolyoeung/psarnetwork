@@ -27,23 +27,15 @@ Categories
 						</div>
 					</div>
 					<div class="btn-group col-lg-2" style="padding: 0; margin: 0;">
-						<select name="location">
+						<select name="location" class="form-control">
 							<option value="0">Location</option>
 							@foreach($Provinces as $location)
 								<option value="{{$location->province_id}}">{{$location->province_name}}</option>
 							@endforeach;
 						</select>
 					</div>
-					<div class="btn-group col-lg-2 " style="margin: 0; padding: 0;">
-						<select name="type">
-							<option value="0">Type</option>
-							<option value="1">Products</option>
-							<option value="2">Buyers</option>
-							<option value="3">Suppliers</option>
-						</select>
-					</div>
 					<div class="btn-group col-lg-2" style="padding: 0; margin: 0;">
-						<select name="location">
+						<select name="location" class="form-control">
 							<option value="0">Transfer Type</option>
 							@foreach($transferTypes as $transferType)
 								<option value="{{$transferType->ptt_id}}">{{$transferType->name}}</option>
@@ -51,12 +43,27 @@ Categories
 						</select>
 					</div>
 					<div class="btn-group col-lg-2" style="padding: 0; margin: 0;">
-						<select name="location">
+						<select name="location" class="form-control">
 							<option value="0">Condition</option>
 							@foreach($conditions as $condition)
 								<option value="{{$condition->id}}">{{$condition->name}}</option>
 							@endforeach;
 						</select>
+					</div>
+					<div class="col-lg-2" style="padding: 0; margin: 0;">
+						<div class="form-group">
+							<input type="text" name="price" placeholder="price" class="form-control" />
+						</div>
+					</div>
+					<div class="col-lg-2" style="padding: 0; margin: 0;">
+						<div class="form-group">
+							<input
+								type="text"
+								name="date"
+								placeholder="Date: dd/mm/yyyy"
+								class="form-control datepicker"
+							/>
+						</div>
 					</div>
 				</div>
 

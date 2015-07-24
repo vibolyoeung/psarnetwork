@@ -1,26 +1,13 @@
 $(document).ready(function(){
+	jQuery('.datepicker' ).datepicker({ dateFormat: 'dd/mm/yy' });
+
 	jQuery('.item:first-child').addClass(' active');
 	jQuery('.bullet:first-child').addClass('active');
 	jQuery('.tab-content .submenu-bar:first-child').addClass(' active');
 	jQuery('#myCarousel').carousel({
           interval: 5000
 	  });
-	
-	// Set auto slider for banner slideshow
-	
-	/*user Category*/
-//	jQuery('.head-menu li:has(> ul)').addClass('dropdown');
-//	jQuery('.head-menu li ul:has(> li)').addClass('dropdown-menu').attr('role', 'menu');
-//	jQuery('.head-menu li.dropdown a').addClass('dropdown-toggle').attr('data-toggle', 'dropdown').attr('role', 'button').attr('aria-expanded', 'false');
-//	jQuery('.head-menu li.dropdown a').append(' <span class="caret"></span>');
-//    
-//    jQuery('.head-menu li ul li a').mouseover(function(){
-//        jQuery( this ).next().addClass('open');
-//    });
-//    jQuery('.head-menu li ul li a').mouseout(function(){
-//        jQuery( this ).next().removeClass('open');
-//    });
-    
+
 	jQuery('#menuSub li ul:has(> li)').hide();
 	jQuery('#menuSub li.active ul:has(> li)').slideDown();
     
@@ -53,23 +40,6 @@ $(document).ready(function(){
 	         $('#carousel-text').html($('#slide-content-'+id).html());
 	 });
 	
-	//jQuery('#carousel-text').html($('#slide-content-0').html());
-	
-	  //Handles the carousel thumbnails
-	/*jQuery('[id^=carousel-selector-]').click( function(){
-	      var id = this.id.substr(this.id.lastIndexOf("-") + 1);
-	      var id = parseInt(id);
-	      jQuery('#myCarousel').carousel(id);
-	  });*/
-
-	
-	
-	// When the carousel slides, auto update the text
-	//jQuery('#myCarousel').on('slid.bs.carousel', function (e) {
-	           //var id = $('.item.active').data('slide-number');
-	          //$('#carousel-text').html($('#slide-content-'+id).html());
-	 //});
-	
 	//For switching list view
 	jQuery(".product_list_container").addClass(" col-lg-4")
 	jQuery(".product_image").addClass("col-lg-6");
@@ -99,9 +69,6 @@ $(document).ready(function(){
 		jQuery(".media-body").removeClass().addClass("social_desc col-lg-12");
 		jQuery(".media-heading").css("margin-top","20");
 	});
-	
-	
-	
 });
 
 function user_register(cos,vals){
