@@ -3539,19 +3539,21 @@ li.main_category{
 }
 
 ul.dropdown_main_menu{
+	background: rgba(255,255,255,1);
 	border:1px solid #f7f7f5;
 	position:absolute;
 	z-index:1;
-	background-color:#fff;
-	left: 204px;
+	left: 220px;
 	padding:15px;
+	min-height: 330px;
+	min-width: 750px;
 	margin:0;
+	top:6.5%;
 	display: none;
 }
 ul.categories_menu > li:hover ul.dropdown_main_menu{
 	display: block;
 	display: inline-flex;
-	top:0;
 	z-index: 99995;
 }
 
@@ -3576,7 +3578,7 @@ ul.dropdown_main_menu > li > a{
 	border: 1px solid #f7f7f5
 }
 .dropdown-mainmenu{
-	position: relative;
+	/*position: relative;*/
 }
 .categories_menu{
 	border:1px solid #f7f7f5;padding:0;

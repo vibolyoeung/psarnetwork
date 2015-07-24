@@ -28,7 +28,7 @@
 								$exp_date =str_replace('/', '-', $exp_date);
 								if(strtotime(date("Y-m-d")) <= strtotime($exp_date)){ ?>
 									<div class="item">
-											<a href='{{URL::to("product/product_detail")}}/{{$slideshow->id}}' target="_blank">
+											<a href='{{$slideshow->link_url}}' target="_blank">
 												<img src="{{Config::get('app.url')}}/upload/advertisement/{{$slideshow->image;}}" class="img-responsive img-thumbnail" alt="image" />
 											</a>
 									</div>

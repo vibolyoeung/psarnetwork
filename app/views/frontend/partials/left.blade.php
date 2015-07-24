@@ -14,20 +14,21 @@
 				      	<?php
 							 $subcategoriesobj = new MCategory();
 							 $sub = $subcategoriesobj->getSubCategories($categoriesList->id);
-							if(count($sub) > 0){
+							//if(count($sub) > 0){
 								echo '<ul class="dropdown_main_menu">';
 									foreach ($sub as $row){
-											echo '<li class="main_category"><a href='.URL::to('product/'.$row->id).'>'.$row->{'name_en'}.'</a>';
+										echo '<li class="main_category"><a href='.URL::to('product/'.$row->id).'>'.$row->{'name_en'}.'</a>';
 									?>
-										<ul style="padding:0;border:0px solid red;" class="child-menu">
-											<?php 
-												$subcategoriesobj->getLastFinalCategories($categoriesList->id, $row->id);
-											?>
-										</ul>
+											<ul style="padding:0;border:0px solid red;" class="child-menu">
+												<?php 
+													$subcategoriesobj->getLastFinalCategories($categoriesList->id, $row->id);
+												?>
+											</ul>
+										</li>
 									<?php
 									}
 								echo '</ul>';
-							}
+							//}
 						?>
 					</li>
 				@endforeach
