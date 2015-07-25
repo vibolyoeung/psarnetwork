@@ -19,6 +19,8 @@ function rm($article, $char) {
         return $article;
 }
 ?>
+{{HTML::style('frontend/plugin/trumbowyg/dist/ui/trumbowyg.css')}}
+{{HTML::style('frontend/plugin/trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.css')}}
 <div class="memberlogin">
 	<div class="col-sm-3">
 		@include('frontend.modules.member.layout.sidebar-setting')
@@ -131,8 +133,160 @@ function rm($article, $char) {
 <div class="clear">
 </div>
 {{HTML::script('frontend/js/jquery.validate.js')}}
+{{HTML::script('frontend/plugin/trumbowyg/dist/trumbowyg.js')}}
+{{HTML::script('frontend/plugin/trumbowyg/dist/plugins/colors/trumbowyg.colors.js')}}
 <script type='text/javascript'>
 $(document).ready(function(){
+/*upload*/
+    'use strict';
+
+    addXhrProgressEvent();
+
+    $.extend(true, $.trumbowyg, {
+        langs: {
+            en: {
+                upload: "Upload",
+                file:   "File",
+                uploadError: "Error"
+            },
+            sk: {
+                upload: "Nahrat",
+                file:   "Súbor",
+                uploadError: "Chyba"
+            },
+            fr: {
+                upload: "Envoi",
+                file:   "Fichier",
+                uploadError: "Erreur"
+            },
+            cs: {
+                upload: "Nahrát obrázek",
+                file:   "Soubor",
+                uploadError: "Chyba"
+            }
+        },
+
+        upload: {
+            serverPath: '{{Config::get('app.url')}}member/ajaxupload?page=pageupload'
+        },
+
+        opts: {
+            btnsDef: {
+                upload: {
+                    func: function(params, tbw){
+                        var file,
+                            pfx = tbw.o.prefix;
+
+                        var $modal = tbw.openModalInsert(
+                            // Title
+                            tbw.lang.upload,
+
+                            // Fields
+                            {
+                                file: {
+                                    type: 'file',
+                                    required: true
+                                },
+                                alt: {
+                                    label: 'description'
+                                }
+                            },
+
+                            // Callback
+                            function(){
+                                var data = new FormData();
+                                data.append('fileToUpload', file);
+
+                                if($('.' + pfx +'progress', $modal).length === 0)
+                                    $('.' + pfx + 'modal-title', $modal)
+                                    .after(
+                                        $('<div/>', {
+                                            'class': pfx +'progress'
+                                        })
+                                        .append(
+                                            $('<div/>', {
+                                                'class': pfx +'progress-bar'
+                                            })
+                                        )
+                                    );
+
+                                $.ajax({
+                                    url:            $.trumbowyg.upload.serverPath,
+                                    type:           'POST',
+                                    data:           data,
+                                    cache:          false,
+                                    dataType:       'json',
+                                    processData:    false,
+                                    contentType:    false,
+
+                                    progressUpload: function(e){
+                                        $('.' + pfx + 'progress-bar').stop().animate({
+                                            width: Math.round(e.loaded * 100 / e.total) + '%'
+                                        }, 200);
+                                    },
+
+                                    success: function(data){
+                                        if(data.message == "uploadSuccess") {
+                                            tbw.execCmd('insertImage', data.file);
+                                            setTimeout(function(){
+                                                tbw.closeModal();
+                                            }, 250);
+                                        } else {
+                                            tbw.addErrorOnModalField(
+                                                $('input[type=file]', $modal),
+                                                tbw.lang[data.message]
+                                            );
+                                        }
+                                    },
+                                    error: function(){
+                                        tbw.addErrorOnModalField(
+                                            $('input[type=file]', $modal),
+                                            tbw.lang.uploadError
+                                        );
+                                    }
+                                });
+                            }
+                        );
+
+                        $('input[type=file]').on('change', function(e){
+                            try {
+                                // If multiple files allowed, we just get the first.
+                                file = e.target.files[0];
+                            } catch (err) {
+                                // In IE8, multiple files not allowed
+                                file = e.target.value;
+                            }
+                        });
+                    },
+                    ico: 'insertImage'
+                }
+            }
+        }
+    });
+
+
+    function addXhrProgressEvent(){
+        if (!$.trumbowyg && !$.trumbowyg.addedXhrProgressEvent) {   // Avoid adding progress event multiple times
+            var originalXhr = $.ajaxSettings.xhr;
+            $.ajaxSetup({
+                xhr: function() {
+                    var req  = originalXhr(),
+                        that = this;
+                    if(req && typeof req.upload == "object" && that.progressUpload !== undefined)
+                        req.upload.addEventListener("progress", function(e){
+                            that.progressUpload(e);
+                        }, false);
+
+                    return req;
+                }
+            });
+            $.trumbowyg.addedXhrProgressEvent = true;
+        }
+    }    
+/*end upload*/    
+    
+    
+    
     $("#vaildateForm").validate({
           rules: {
       name: {
@@ -145,6 +299,45 @@ $(document).ready(function(){
           }
       }
     });
+    
+    /*Editor*/
+    var formTbwOptions = {
+                closable: false,
+                mobile: true,
+                fixedBtnPane: true,
+                fixedFullWidth: true,
+                semantic: true,
+                resetCss: true,
+                removeformatPasted: true,
+
+                autogrow: true,
+
+                btnsDef: {
+                    strong: {
+                        func: 'bold',
+                        key: 'G'
+                    },
+					align: {
+                        dropdown: ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                        ico: 'justifyLeft'
+                    },
+                    image: {
+                        dropdown: ['insertImage', 'upload', 'base64'],
+                        ico: 'insertImage'
+                    }
+                },
+                btns: ['viewHTML',
+                    '|', 'formatting',
+                    '|', 'btnGrp-lists',
+					'|', 'align',
+                    '|', 'image',
+                    '|', 'foreColor', 'backColor']
+            };
+            $('#bodyTxt')
+            .trumbowyg(formTbwOptions)
+            .on('dblclick', function(){
+                $(this).trumbowyg(formTbwOptions);
+            });
 });
 </script>
 @endsection
