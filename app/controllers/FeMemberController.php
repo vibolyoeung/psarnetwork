@@ -773,32 +773,20 @@ class FeMemberController extends BaseController {
                 $file = array_shift($_FILES);
                     if (!empty($file)) {
                         /*upload banner image*/
-                        $destinationPath = base_path() . Config::get('constants.DIR_IMAGE.DIR_STORE');
+                        $destinationPath = base_path() . Config::get('constants.DIR_IMAGE.DIR_DEFAULT');
     
                         /* clean old image*/
-                        $whereData = array(
-                            'user_id' => $userID,
-                            'id' => $storeID,
-                            );
-                        $checkStoreImage = $this->mod_store->getUserStore(null, $whereData);
-                        if (!empty($checkStoreImage)) {
-                            $oldName = $destinationPath . '/' . $checkStoreImage->sto_banner;
-                            $thumb = $destinationPath . '/thumb/' . $checkStoreImage->sto_banner;
-                            if (File::exists($oldName)) {
-                                File::delete($oldName, $thumb);
-                            }
-                        }
     
                         $images = $this->mod_store->doUpoad($file, $destinationPath, Config::get('constants.DIR_IMAGE.THUMB_WIDTH'),
                             Config::get('constants.DIR_IMAGE.THUMB_HEIGTH'));
-                        /*update to store table DB*/
-                        $storeData = array('sto_banner' => $images['image']);
-                        $this->mod_store->where($whereData)->update($storeData);
-                        /*end update to store table DB*/
                     } else {
                         $images = array("error" => "Sorry, Upload get an error");
                     }
-                    echo json_encode($images);
+                    $data = array(
+                        'message' => 'uploadSuccess',
+                        'file'    => Config::get('app.url').'upload/images/'.$images['image'],
+                    );
+                    echo json_encode($data);
                     break;                    
             }
         }
