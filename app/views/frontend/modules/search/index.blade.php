@@ -14,6 +14,9 @@ Categories
 <div class="col-sm-10">
 	<div class="features_items">
 		<!-- ============Slider end here========= -->
+
+		@include('frontend.partials.products.search')
+
 		<div class="features_items">
 			<div class="category-tab lastest-post">
 				<div class="col-sm-12">
@@ -29,8 +32,7 @@ Categories
 		</div>
 		<div class="col-lg-12">
 		<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
-		<?php 
-		// var_dump($products); die;
+		<?php
 		if(count($products) > 0){
 		?>
 			@foreach($products as $product)

@@ -111,6 +111,8 @@ Route::any('/{lang}/user/signup', 'FeUserController@signUp');
 
 Route::get('/{lang}/search', 'FeSearchController@search');
 Route::get('/search', 'FeSearchController@search');
+Route::get('/{lang}/search/products', 'FeSearchController@searchProduct');
+Route::get('/search/products', 'FeSearchController@searchProduct');
 
 /*for detail page*/
 Route::any('/{lang}/pro/{y}/{m}/{d}/{product_name}/{pro_id}',
