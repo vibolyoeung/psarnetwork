@@ -26,7 +26,7 @@ if(count($newProducts) > 0){
 				<?php 
 				if(strtotime($newProduct->publish_date) >= strtotime("d/m/Y")){
 				?>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<div class="product-image-wrapper">
 							<div class="single-products">
 								<div class="productinfo text-center">

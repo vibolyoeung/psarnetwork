@@ -87,4 +87,68 @@ class FeSearchController extends BaseController {
 		$slideshow = $this->mod_slideshow->getSlideShowHomePageFe($limit);
 		return $slideshow;
 	}
+
+	/**
+	 * Search product
+	 *
+	 * return array product
+	 */
+	public function searchProduct(){
+		$limit = $this->mod_setting->getSlidshowNumber();
+		$listSlideshows = self::getSlideShowHomePage($limit->data->setting_value);
+
+
+		$advVerticalRightSmall = $this->mod_advertisment
+			->getAdvertisementHomePage(
+				self::HOMEPAGE,
+				self::V_RIGHT_SMALL,
+				3
+			);
+
+		$advVerticalLeftSmall = $this->mod_advertisment
+			->getAdvertisementHomePage(
+				self::HOMEPAGE,
+				self::V_LEFT_SMALL,
+				3
+			);
+
+		$advHorizontalLargeCenter = $this->mod_advertisment
+			->getAdvertisementHomePage(
+				self::HOMEPAGE,
+				self::H_LARGE_CENTER,
+				3
+			);
+
+		$advTops = $this->mod_advertisment
+			->getAdvertisementHomePage(
+				self::HOMEPAGE,
+				self::HOME_PAGE_TOP,
+				1
+			);
+
+		$province = Request::input('location');
+		$transferType = Request::input('transferType');
+		$condition = Request::input('condition');
+		$price = Request::input('price');
+		$date = Request::input('date');
+
+		$products = $this->mod_product->searchProductFromCategory(
+			$province,
+			$transferType,
+			$condition,
+			$price,
+			$date
+		);
+		
+		return View::make('frontend.modules.search.index')
+			->with('slideshows', $listSlideshows->result)
+			->with('advVerticalRightSmalls', $advVerticalRightSmall->result)
+			->with('advVerticalLeftSmalls', $advVerticalLeftSmall->result)
+			->with('advHorizontalLargeCenters', $advHorizontalLargeCenter->result)
+			->with('advTops', $advTops->result)
+			->with('products', $products)
+			->with('transferTypes', $this->mod_product->listAllTransferType())
+			->with('conditions', $this->mod_product->listAllConditions())
+			->with('Provinces', $this->mod_setting->listProvinces());
+	}
 }
