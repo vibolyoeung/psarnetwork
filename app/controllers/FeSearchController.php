@@ -79,6 +79,8 @@ class FeSearchController extends BaseController {
 			->with('advHorizontalLargeCenters', $advHorizontalLargeCenter->result)
 			->with('advTops', $advTops->result)
 			->with('products', $products)
+			->with('transferTypes', $this->mod_product->listAllTransferType())
+			->with('conditions', $this->mod_product->listAllConditions())
 			->with('Provinces', $this->mod_setting->listProvinces());
 
 	}
