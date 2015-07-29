@@ -346,7 +346,7 @@ a#scrollUp i {
 @media ( min-width : 768px) {
 	.modal-dialog {
 		margin: 30px auto;
-		width: 100% !important;
+		width: 50% !important;
 	}
 	.navbar {
 		border-radius: 0;
@@ -2989,8 +2989,8 @@ span.price{
 		max-width: 2000px;
 	}
 	.item {
-		padding-left: 0px;
-		min-height: 200px;
+		/*padding-left: 0px;
+		min-height: 200px;*/
 	}
 }
 
@@ -3334,10 +3334,6 @@ fieldset legend {
 	border: 0px solid #F7F7F5;
 }
 
-.modal-dialog {
-	
-}
-
 .hide-bullets {
 	list-style: none;
 	margin-left: -40px;
@@ -3453,9 +3449,7 @@ a.home_icon {
 .modal_container {
 	position: relative;
 	padding: 15px;
-	max-height: 650px;
 	overflow: hidden;
-	overflow-y: scroll;
 }
 
 .message-alert {
@@ -3585,3 +3579,15 @@ ul.dropdown_main_menu > li > a{
 .categories_menu{
 	border:1px solid #f7f7f5;padding:0;
 }
+.carousel-inner > .item img{
+	max-height: 200px;
+}
+span.pro-condition{
+	color:#eea236;
+}
+ul#TapTitle > li.active > a{
+	border:1px solid #dddddd;
+}
+
+
+//=========Detail slile===//

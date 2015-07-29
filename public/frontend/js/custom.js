@@ -20,7 +20,7 @@ $(document).ready(function(){
 		interval: false
 	});
 	
-	 $('#DetailCarousel').carousel({
+	 $('#DetailCarousel,#DetailPopupCarousel').carousel({
          interval: 5000
 	 });
 	
@@ -32,10 +32,22 @@ $(document).ready(function(){
 	     var id = parseInt(id);
 	     $('#DetailCarousel').carousel(id);
 	 });
+
+	$('[id^=popup-carousel-selector-]').click( function(){
+		 window.console(222);
+	     var id = this.id.substr(this.id.lastIndexOf("-") + 1);
+	     var id = parseInt(id);
+	     $('#DetailPopupCarousel').carousel(id);
+	 });
 	
 	
 	 // When the carousel slides, auto update the text
 	 $('#DetailCarousel').on('slid.bs.carousel', function (e) {
+	          var id = $('.item.active').data('slide-number');
+	         $('#carousel-text').html($('#slide-content-'+id).html());
+	 });
+
+	  $('#DetailPopupCarousel').on('slid.bs.carousel', function (e) {
 	          var id = $('.item.active').data('slide-number');
 	         $('#carousel-text').html($('#slide-content-'+id).html());
 	 });

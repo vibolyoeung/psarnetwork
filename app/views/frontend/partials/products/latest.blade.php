@@ -20,6 +20,7 @@ if(count($latestProducts) > 0){
 		</div>
 	</div>
 	<div class="row">
+		<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 		@foreach($latestProducts as $latestProduct)
 		<?php 
 		if(strtotime($latestProduct->publish_date) >= strtotime("d/m/Y")){
@@ -28,28 +29,16 @@ if(count($latestProducts) > 0){
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
-						<a href="#" data-toggle="modal" data-target="#myModal"> <img
+						<a href="#" data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail(<?php echo $latestProduct->id; ?>)">
+							<img
 							src="{{Config::get('app.url')}}upload/product/thumb/{{$latestProduct->thumbnail}}"
 							alt="" />
 						</a>
 						<h2>$ {{$latestProduct->price}}</h2>
 						<p><?php echo substr($latestProduct->title,0,20)?></p>
-						<a href="{{Config::get('app.url')}}/pro/simple-product-name/123">View
+						<a href="{{Config::get('app.url')}}product/details/{{$latestProduct->id}}">View
 							Details</a>
 					</div>
-					<a href="#" data-toggle="modal" data-target="#myModal">
-						<div class="product-overlay">
-							<div class="overlay-content">
-								<h2>$56</h2>
-								<p><?php echo substr($latestProduct->title,0,20)?></p>
-								<a href="{{Config::get('app.url')}}/product/details/{{$latestProduct->id}}" data-toggle="modal" data-target="#myModal"> View
-									Details
-								</a>
-							</div>
-						</div>
-					</a> <img
-						src="{{Config::get('app.url')}}/frontend/images/home/sale.png"
-						class="new" alt="" />
 				</div>
 			</div>
 		</div>

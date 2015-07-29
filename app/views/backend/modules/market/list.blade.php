@@ -63,7 +63,7 @@
 			<td>{{$mk->title_km}}</td>
 			<td width="10%">{{$mk->amount_stair}}</td>
 			<td width="11%">
-				{{$marketType[$mk->market_type]}}
+				{{$mk->market_type}}
 			</td>
 			<td align="center"><a title="Edit"
 				href="{{URL::to('admin/edit-market')}}/{{$mk->id}}"> <i
