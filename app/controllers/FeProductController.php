@@ -89,6 +89,7 @@ class FeProductController extends BaseController {
         } else {
             $listCategories = $this->mod_product->fetchCategoryTree();
         }
+        
         $productTransferTypes = $this->mod_product->findAllTransferType();
         $productCondictions = $this->mod_product->findAllCondition();
         $userID = Session::get('currentUserId');

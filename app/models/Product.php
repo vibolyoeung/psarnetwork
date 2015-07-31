@@ -105,6 +105,7 @@ class Product extends Eloquent{
 			if(!is_array($treeArray)){
 				$treeArray = array();
 			}
+			
 			$result = DB::table(Config::get('constants.TABLE_NAME.S_CATEGORY'))
 				->select('*')
 				->where('parent_id','=',$parent)

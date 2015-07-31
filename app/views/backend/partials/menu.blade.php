@@ -29,7 +29,7 @@
 		 <li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Product Management<b class="caret"></b></a>
 			<ul class="dropdown-menu">
-				<li><a href="#">Product</a></li>
+				<li><a href="{{URL::to('admin/products/free')}}">Product</a></li>
 				<li><a href="{{URL::to('admin/categories')}}">Category</a></li>
 			</ul>
 		</li>
@@ -38,33 +38,10 @@
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown">Business Management <b class="caret"></b></a>
 			<ul class="dropdown-menu">
-				<li><a href="#">Product Advertisement</a></li>
+				<li><a href="{{URL::to('admin/products/premium')}}">Product Advertisement</a></li>
 				<li><a href="{{URL::to('admin/advertisements')}}">Banner Advertisement</a></li>
-				<li><a href="#">Enterprise Page</a></li>
-				<li><a href="#">Free Page</a></li>
-			</ul>
-		</li>
-		<li class="dropdown"><a href="#" class="dropdown-toggle"
-			data-toggle="dropdown">Report Management<b class="caret"></b></a>
-			<ul class="dropdown-menu">
-				<li><a href="#">User Report</a></li>
-				<li><a href="#">Product Report </a></li>
-				<li><a href="#">Banner Report</a></li>
-				<li><a href="#">Page Report</a></li>
-			</ul>
-		</li>
-		<li class="dropdown"><a href="#" class="dropdown-toggle"
-			data-toggle="dropdown">Message Management<b class="caret"></b></a>
-			<ul class="dropdown-menu">
-				<li ><a href="#">New User Register</a></li>
-				<li><a href="#">New User Expired </a></li>
-				<li><a href="#">Page Expired</a></li>
-				<li><a href="#">Page Updated</a></li>
-				<li><a href="#">Banner New Register</a></li>
-				<li><a href="#">Banner Expired</a></li>
-				<li><a href="#">Product PIONT To New</a></li>
-				<li><a href="#">Product PIONT TO update</a></li>
-				<li><a href="#">Product PIONT TO Expired </a></li>
+				<li><a href="{{URL::to('admin/stores/premium')}}">Enterprise Page</a></li>
+				<li><a href="{{URL::to('admin/stores/free')}}">Free Page</a></li>
 			</ul>
 		</li>
 	</ul>

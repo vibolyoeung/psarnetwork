@@ -77,7 +77,8 @@ class MCategory extends Eloquent{
 					$treeArray[] = array(
 							'id' => $row->id,
 							'parent_id' => $row->parent_id, 
-							'name_en' => $spacing . $row->name_en
+							'name_en' => $spacing . $row->name_en,
+							'name_km' => $spacing . $row->name_km
 						);
 					$treeArray = self::fetchCategoryTree($row->id, $spacing . '&nbsp;&nbsp;',$treeArray);
 				}
