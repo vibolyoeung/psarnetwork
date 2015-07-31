@@ -27,6 +27,22 @@
 									<?php $thumbnail_id++; ?>
 								@endforeach
 							</div>
+							<div class="row col-lg-12">
+								<div class="row hidden-xs" id="slider-thumbs">
+									<!-- Bottom switcher of slider -->
+									<ul class="hide-bullets">
+									<?php $thumbnails_id = 0; ?>
+										@foreach($images as $image)
+											<li class="col-sm-3"><a class="thumbnail"
+											id="popup-carousel-selector-<?php echo $thumbnails_id;?>">
+											<img
+												src="{{Config::get('app.url')}}/upload/product/thumb/{{$image['pic']}}">
+										</a></li>
+											<?php $thumbnails_id++; ?>
+										@endforeach
+									</ul>
+								</div>
+							</div>
 							<!-- Carousel nav -->
 						</div>
 					</div>
@@ -47,22 +63,5 @@
 		</div>
 	</div>
 	<!--/Slider-->
-
-	<div class="row hidden-xs" id="slider-thumbs">
-		<div class="row">
-			<!-- Bottom switcher of slider -->
-			<ul class="hide-bullets">
-			<?php $thumbnails_id = 0; ?>
-				@foreach($images as $image)
-					<li class="col-sm-3"><a class="thumbnail"
-					id="popup-carousel-selector-<?php echo $thumbnails_id;?>">
-					<img
-						src="{{Config::get('app.url')}}/upload/product/thumb/{{$image['pic']}}">
-				</a></li>
-					<?php $thumbnails_id++; ?>
-				@endforeach
-			</ul>
-		</div>
-	</div>
 </div> 
 

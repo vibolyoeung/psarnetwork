@@ -44,6 +44,7 @@
 
 <script>
 	jQuery(document).ready(function(){
+		jQuery(".categories_menu").hide();
 		jQuery("#menu_toogle").css('cursor','pointer');
 		jQuery("#menu_toogle").click(function(){
 			jQuery(".categories_menu").toggle("slow");

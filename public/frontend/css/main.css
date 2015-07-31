@@ -3577,10 +3577,11 @@ ul.dropdown_main_menu > li > a{
 	/*position: relative;*/
 }
 .categories_menu{
-	border:1px solid #f7f7f5;padding:0;
+	border:1px solid #f7f7f5;
+	padding:0;
 }
 .carousel-inner > .item img{
-	max-height: 200px;
+	max-height: 250px;
 }
 span.pro-condition{
 	color:#eea236;
@@ -3588,6 +3589,28 @@ span.pro-condition{
 ul#TapTitle > li.active > a{
 	border:1px solid #dddddd;
 }
-
+#DetailCarousel > .carousel-inner{
+	border:1px solid #f7f7f5;
+}
+.title-detail{
+	background-color: #ddd;
+	padding:8px 5px;
+}
+.store-name{
+	border:1px solid #f7f7f5;
+	padding:5px;
+}
+.right-ad-detail{
+	left:6px;
+	border:1px solid #f7f7f5;
+	padding:0;
+}
+.top-detail-ads{
+	border:1px solid #f7f7f5;
+	height: 50px;
+}
+.front-loggedin > li >a{
+	padding:5px;
+}
 
 //=========Detail slile===//
