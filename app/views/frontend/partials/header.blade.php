@@ -74,12 +74,18 @@
 								@endforeach
 								
                                 @if(!Session::get('currentUserId'))
-								<li><a href="{{Config::get('app.url')}}member/login"><i
-										class="fa">Sign in /</i></a></li>
-								<li><a href="{{Config::get('app.url')}}member/register"><i
-										class="fa">Free Register</i></a></li>
+								<!-- <li>
+									<a href="{{Config::get('app.url')}}member/login">
+										<i class="fa">Sign in /</i>
+									</a>
+								</li>
+								<li>
+									<a href="{{Config::get('app.url')}}member/register">
+										<i class="fa">Free Register</i>
+									</a>
+								</li> -->
                                 @else
-                                <li role="presentation" class="dropdown">
+                              <!--   <li role="presentation" class="dropdown">
 										<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
 										My Account <span class="caret"></span>
 										</a>
@@ -97,7 +103,7 @@
         										<a href="{{URL::to('member/logout')}}"><i class="glyphicon glyphicon-off"> Log out</i></a>
         									</li>
 										</ul>
-									</li>
+									</li> -->
                                 @endif
 							</ul>
 							<div class="language-bar">
@@ -118,16 +124,41 @@
 		<div class="container-fluid top-menu">
 			<div class="col-lg-12 top_promotion">
 				<div class="col-lg-4 member_ship_home pull-right" style="background-color:#ddd;margin:12px 0 0;padding:3px;">
-					<img src="{{Config::get('app.url')}}frontend/images/icons/login_user.png" title="" alt="" height="20" />
-					<a href ="{{Config::get('app.url')}}member/login">Login</a>
-					&nbsp;/&nbsp;
-					<img src="{{Config::get('app.url')}}frontend/images/icons/register_user.png" title="" alt=""/>
-					&nbsp;
-					<a href="{{Config::get('app.url')}}member/register">
-						Register
-					</a>&nbsp;&nbsp;
-					<img src="{{Config::get('app.url')}}frontend/images/icons/notification.png" title="" alt=""/>
-					<a href="#">Notifications &nbsp;</a><span style="color:red;cursor:pointer;font-weight:bold;">20</span>
+					@if(!Session::get('currentUserId'))
+						<img src="{{Config::get('app.url')}}frontend/images/icons/login_user.png" title="" alt="" height="20" />
+						<a href ="{{Config::get('app.url')}}member/login">Sign In</a>
+						&nbsp;/&nbsp;
+						<img src="{{Config::get('app.url')}}frontend/images/icons/register_user.png" title="" alt=""/>
+						&nbsp;
+						<a href="{{Config::get('app.url')}}member/register">
+							Register
+						</a>
+					@else
+						<ul class="nav navbar-nav front-loggedin">
+							<li role="presentation" class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+								My Account <span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu" role="menu">
+									<li>
+										<a href="{{URL::to('member/userinfo/infomation')}}">View Profile info</a>
+									</li>
+									<li>
+										<a href="{{URL::to('member/userinfo/summary')}}">Your Status</a>
+									</li>
+		                            <li>
+										<a href="{{URL::to('member/userinfo/infomation?pw=1#password')}}">Chage Password</i></a>
+									</li>
+		                            <li>
+										<a href="{{URL::to('member/logout')}}"><i class="glyphicon glyphicon-off"> Log out</i></a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						&nbsp;&nbsp;
+						<img src="{{Config::get('app.url')}}frontend/images/icons/notification.png" title="" alt=""/>
+						<a href="#">Notifications &nbsp;</a><span style="color:red;cursor:pointer;font-weight:bold;">20</span>
+                    @endif
 				</div>
 				<div class="col-lg-2">
 					<a href="{{Config::get('app.url')}}"><img

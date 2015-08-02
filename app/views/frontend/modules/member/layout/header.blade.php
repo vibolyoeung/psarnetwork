@@ -129,12 +129,12 @@
 										<a href="#"><i class="fa">{{trans('member.usage')}}</i></a>
 									</li>
 									<li>
-										<a href="{{Config::get('app.url')}}/member/login">
+										<a href="{{Config::get('app.url')}}member/login">
 											<i class="fa">{{trans('member.sign_in')}} /</i>
 										</a>
 									</li>
 									<li>
-										<a href="{{Config::get('app.url')}}/member/register">
+										<a href="{{Config::get('app.url')}}member/register">
 											<i class="fa">{{trans('member.free_register')}}</i>
 										</a>
 									</li>
@@ -143,7 +143,7 @@
 								<div class="language-bar">
 									<a href="{{URL::current()}}?lang=en">
 									<img src="{{Config::get('app.url')}}/frontend/images/en.png" alt="" title="" />
-									English
+									English 
 									</a>
 									<a href="{{URL::current()}}?lang=km">
 									<img src="{{Config::get('app.url')}}/frontend/images/km.png" alt="" title="" />

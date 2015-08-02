@@ -346,7 +346,7 @@ a#scrollUp i {
 @media ( min-width : 768px) {
 	.modal-dialog {
 		margin: 30px auto;
-		width: 100% !important;
+		width: 50% !important;
 	}
 	.navbar {
 		border-radius: 0;
@@ -1288,6 +1288,7 @@ h2.title {
 
 .productinfo img {
 	width: 100%;
+	height: 115px;
 }
 
 .productinfo {
@@ -2623,6 +2624,7 @@ h2.title {
 .commnets .media-object {
 	margin-right: 15px;
 	width: 100%;
+	max-height: 150px;
 }
 span.price{
 	color:red;
@@ -2987,8 +2989,8 @@ span.price{
 		max-width: 2000px;
 	}
 	.item {
-		padding-left: 0px;
-		min-height: 200px;
+		/*padding-left: 0px;
+		min-height: 200px;*/
 	}
 }
 
@@ -3332,10 +3334,6 @@ fieldset legend {
 	border: 0px solid #F7F7F5;
 }
 
-.modal-dialog {
-	
-}
-
 .hide-bullets {
 	list-style: none;
 	margin-left: -40px;
@@ -3451,9 +3449,7 @@ a.home_icon {
 .modal_container {
 	position: relative;
 	padding: 15px;
-	max-height: 650px;
 	overflow: hidden;
-	overflow-y: scroll;
 }
 
 .message-alert {
@@ -3581,5 +3577,40 @@ ul.dropdown_main_menu > li > a{
 	/*position: relative;*/
 }
 .categories_menu{
-	border:1px solid #f7f7f5;padding:0;
+	border:1px solid #f7f7f5;
+	padding:0;
 }
+.carousel-inner > .item img{
+	max-height: 250px;
+}
+span.pro-condition{
+	color:#eea236;
+}
+ul#TapTitle > li.active > a{
+	border:1px solid #dddddd;
+}
+#DetailCarousel > .carousel-inner{
+	border:1px solid #f7f7f5;
+}
+.title-detail{
+	background-color: #ddd;
+	padding:8px 5px;
+}
+.store-name{
+	border:1px solid #f7f7f5;
+	padding:5px;
+}
+.right-ad-detail{
+	left:6px;
+	border:1px solid #f7f7f5;
+	padding:0;
+}
+.top-detail-ads{
+	border:1px solid #f7f7f5;
+	height: 50px;
+}
+.front-loggedin > li >a{
+	padding:5px;
+}
+
+//=========Detail slile===//

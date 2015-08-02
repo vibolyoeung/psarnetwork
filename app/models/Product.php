@@ -105,6 +105,7 @@ class Product extends Eloquent{
 			if(!is_array($treeArray)){
 				$treeArray = array();
 			}
+			
 			$result = DB::table(Config::get('constants.TABLE_NAME.S_CATEGORY'))
 				->select('*')
 				->where('parent_id','=',$parent)
@@ -570,6 +571,86 @@ class Product extends Eloquent{
 			default:
 				return;
 		}
+		
+	}
+
+	/**
+	 * Find product by location, type and keyword
+	 *
+	 * @param string $keyword
+	 * @param int $province
+	 * @param int $businessType
+	 *
+	 * @return array $products
+	 */
+	public function searchProductFromCategory(
+		$province,
+		$transferType,
+		$condition,
+		$price,
+		$date
+	) {
+
+		$productTable = Config::get('constants.TABLE_NAME.PRODUCT');
+		$products = [];
+
+		if ((int)$province === 0) {
+			$query = DB::table($productTable .' AS p');
+			$query->select('*');
+			$query->where('p.is_publish', '=', self::IS_PUBLISH);
+			if((int)$transferType !== 0) {
+				$query->where('p.pro_transfer_type_id', '=', (int)$transferType);
+			}
+			if((int)$condition !== 0) {
+				$query->where('p.pro_condition_id', '=', (int)$condition);
+			}
+			if(!empty($date)) {
+				$query->where('p.publish_date', '=', $date);
+			}
+			if(!empty($price)) {
+				$query->where('p.price', '=', $price);
+			}
+			$query->orderBy('p.id', 'DESC');
+
+			$data = $query->get();
+
+			if (!empty($data)) {
+				$products = $data;
+			}
+		}
+
+		return $products;
+
+		$usersId = $this->findUserByProvince($province);
+
+		foreach ($usersId as $userId) {
+			$query = DB::table($productTable .' AS p');
+			$query->select('*');
+			$query->where('p.user_id', '=', (int)$userId);
+			$query->where('p.is_publish', '=', self::IS_PUBLISH);
+			if((int)$transferType !== 0) {
+				$query->where('p.pro_transfer_type_id', '=', (int)$transferType);
+			}
+			if((int)$condition !== 0) {
+				$query->where('p.pro_condition_id', '=', (int)$condition);
+			}
+			if(!empty($date)) {
+				$query->where('p.publish_date', '=', $date);
+			}
+			if(!empty($price)) {
+				$query->where('p.price', '=', $price);
+			}
+			$query->orderBy('p.id', 'DESC');
+
+			$data = $query->get();
+
+			if (!empty($data)) {
+				$products = $data;
+			}
+
+		}
+
+		return $products;
 		
 	}
 
