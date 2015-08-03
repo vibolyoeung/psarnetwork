@@ -88,6 +88,11 @@ $(document).ready(function(){
 		jQuery(".media-body").removeClass().addClass("social_desc col-lg-12");
 		jQuery(".media-heading").css("margin-top","20");
 	});
+
+	jQuery('#disply-number').change(function () {
+		jQuery('#displayFrm').submit();
+	});
+
 });
 
 function user_register(cos,vals){

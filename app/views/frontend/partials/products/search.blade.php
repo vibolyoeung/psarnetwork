@@ -1,10 +1,10 @@
 <div class="col-lg-12" style="padding-left:0;padding-top:15px;border:1px solid #ddd;background-color:#ddd;">
 	{{
 		Form::open(
-			array(
+			[
 				'url'=>'search/products',
 				'method'=>'get'
-			)
+			]
 		)
 	}}
 	
@@ -55,5 +55,27 @@
 			</button>
 		</div>
 	</div>
+	{{Form::close()}}
+</div>
+<div class="col-lg-12">
+	{{
+		Form::open(
+			[
+				'url'=> FeSearchController::getFullUrl(),
+				'method'=>'get',
+				'id' => 'displayFrm'
+			]
+		)
+	}}
+		<div class="btn-group col-lg-2" style="padding: 0; margin: 0;">
+			<label for="">Display:</label>
+			<select id="disply-number" name="displayNumber" class="form-control">
+				<option value="20">20</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+				<option value="150">150</option>
+				<option value="200">200</option>
+			</select>
+		</div>
 	{{Form::close()}}
 </div>
