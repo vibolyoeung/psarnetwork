@@ -33,6 +33,12 @@
 												<img src="{{Config::get('app.url')}}/upload/advertisement/{{$slideshow->image;}}" class="img-responsive img-thumbnail" alt="image" />
 											</a>
 									</div>
+									<a href="#slider-carousel" class="left control-carousel hidden-xs"
+										data-slide="prev"> <i class="fa fa-angle-left"></i>
+									</a>
+									<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next"> <i
+										class="fa fa-angle-right"></i>
+									</a>
 							<?php
 								}else{ ?>
 									<img
@@ -65,13 +71,6 @@
 							?>
 					@endforeach
 					</div>
-					<a href="#slider-carousel" class="left control-carousel hidden-xs"
-						data-slide="prev"> <i class="fa fa-angle-left"></i>
-					</a>
-					<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next"> <i
-						class="fa fa-angle-right"></i>
-					</a>
-					
 				<?php 
 				}else{
 				?>
