@@ -3583,6 +3583,10 @@ ul.dropdown_main_menu > li > a{
 .carousel-inner > .item img{
 	max-height: 250px;
 }
+ .detail-popup > .item img{
+ 	max-height: 190px;
+ 	width:100%;
+ }
 span.pro-condition{
 	color:#eea236;
 }
@@ -3611,6 +3615,9 @@ ul#TapTitle > li.active > a{
 }
 .front-loggedin > li >a{
 	padding:5px;
+}
+.left-sidebar{
+	border:1px solid #f7f7f5;
 }
 
 //=========Detail slile===//

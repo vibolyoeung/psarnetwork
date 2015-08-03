@@ -39,18 +39,25 @@
 								<div class="carousel slide" id="DetailCarousel">
 									<!-- Carousel items -->
 									<div class="carousel-inner">
-											<?php
-											$thumbnail_id = 0;
-											?>
-											@foreach($images as $image)
-											<div class="item"
+										<?php
+										$thumbnail_id = 0;
+										?>
+										@foreach($images as $image)
+										<div class="item"
 											data-slide-number="<?= $thumbnail_id; ?>">
 											<img
 												src="{{Config::get('app.url')}}/upload/product/{{$image['pic']}}">
 										</div>
-												<?php $thumbnail_id++; ?>
-											@endforeach
-										</div>
+											<?php $thumbnail_id++; ?>
+										@endforeach
+
+										  <a class="left carousel-control" href="#DetailCarousel" role="button" data-slide="prev">
+                                        	<span class="glyphicon glyphicon-chevron-left"></span>                                       
+	                                      </a>
+	                                      <a class="right carousel-control" href="#DetailCarousel" role="button" data-slide="next">
+	                                        <span class="glyphicon glyphicon-chevron-right"></span>                                       
+	                                      </a>                                
+									</div>
 									<!-- Carousel nav -->
 								</div>
 								<div class="row col-lg-12">
@@ -154,7 +161,7 @@
 		</div><!--============End detail container hre=====-->
 	</div>
 	<div class="col-lg-2 pull-right right-ad-detail">
-		{{ App::make('FePageController')->getFeAds(1, 4, 3) }}
+		@include('frontend.partials.categories.right')
 	</div>
 </div>
 @endsection

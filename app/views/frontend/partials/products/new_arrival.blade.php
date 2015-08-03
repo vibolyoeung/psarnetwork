@@ -38,7 +38,7 @@ if(count($newProducts) > 0){
 									</a>
 									<h2>$ {{$newProduct->price}}</h2>
 									<p><?php echo substr($newProduct->title,0,20)?></p>
-									<a href="{{Config::get('app.url')}}/product/details/{{$newProduct->id}}">View
+									<a href="{{Config::get('app.url')}}product/details/{{$newProduct->id}}">View
 										Details</a>
 								</div>
 								<img

@@ -5,6 +5,7 @@
 			<div class="col-lg-7" style="padding-right:0;">
 				<div id="slider-carousel" class="carousel slide" data-ride="carousel" >
 				<?php 
+				//echo count($slideshows);
 				if(count($slideshows) > 0){
 				?>
 					<ol class="carousel-indicators">
@@ -33,6 +34,13 @@
 											</a>
 									</div>
 							<?php
+								}else{ ?>
+									<img
+										src="{{Config::get('app.url')}}/frontend/images/default_slideshow.png" 
+										class="img-responsive img-thumbnail default-image" 
+										alt="image" alt="" title=""
+									/>
+								<?php
 								}
 							}else{
 								$exp_date = $slideshow->end_date;

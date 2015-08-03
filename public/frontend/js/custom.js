@@ -25,21 +25,19 @@ $(document).ready(function(){
 	 });
 	
 	 $('#carousel-text').html($('#slide-content-0').html());
-	
-	 //Handles the carousel thumbnails
-	$('[id^=carousel-selector-]').click( function(){
-	     var id = this.id.substr(this.id.lastIndexOf("-") + 1);
-	     var id = parseInt(id);
-	     $('#DetailCarousel').carousel(id);
-	 });
 
 	$('[id^=popup-carousel-selector-]').click( function(){
-		 window.console(222);
 	     var id = this.id.substr(this.id.lastIndexOf("-") + 1);
 	     var id = parseInt(id);
 	     $('#DetailPopupCarousel').carousel(id);
 	 });
 	
+	  //Handles the carousel thumbnails
+	$('[id^=carousel-selector-]').click( function(){
+	     var id = this.id.substr(this.id.lastIndexOf("-") + 1);
+	     var id = parseInt(id);
+	     $('#DetailCarousel').carousel(id);
+	 });
 	
 	 // When the carousel slides, auto update the text
 	 $('#DetailCarousel').on('slid.bs.carousel', function (e) {
@@ -54,7 +52,7 @@ $(document).ready(function(){
 	
 	//For switching list view
 	jQuery(".product_list_container").addClass(" col-lg-4")
-	jQuery(".product_image").addClass("col-lg-6");
+	jQuery(".product_image").addClass(" col-lg-6");
 	
 	
 	jQuery("#grid_view").click(function(){
