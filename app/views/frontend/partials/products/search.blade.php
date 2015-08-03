@@ -8,7 +8,7 @@
 		)
 	}}
 	
-	<div class="btn-group col-lg-3">
+	<div class="btn-group col-lg-2">
 		<select name="location" class="form-control">
 			<option value="0">Location</option>
 			@foreach($Provinces as $location)
@@ -16,7 +16,7 @@
 			@endforeach;
 		</select>
 	</div>
-	<div class="btn-group col-lg-3">
+	<div class="btn-group col-lg-2">
 		<select name="transferType" class="form-control">
 			<option value="0">Transfer Type</option>
 			@foreach($transferTypes as $transferType)
@@ -24,7 +24,7 @@
 			@endforeach;
 		</select>
 	</div>
-	<div class="btn-group col-lg-3">
+	<div class="btn-group col-lg-2">
 		<select name="condition" class="form-control">
 			<option value="0">Condition</option>
 			@foreach($conditions as $condition)
@@ -32,12 +32,12 @@
 			@endforeach;
 		</select>
 	</div>
-	<div class="col-lg-3">
+	<div class="col-lg-2">
 		<div class="form-group">
 			<input type="text" name="price" placeholder="price" class="form-control" />
 		</div>
 	</div>
-	<div class="col-lg-3">
+	<div class="col-lg-2">
 		<div class="form-group">
 			<input
 				type="text"
@@ -47,11 +47,11 @@
 			/>
 		</div>
 	</div>
-	<div class="col-lg-3">
+	<div class="col-lg-2">
 		<div class="col-lg-12 pull-right" style="padding: 0; margin: 0;">
 			<button type="submit"
 				class="btn btn-warning col-lg-12 ">
-				<span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;<b>Search</b>
+				&nbsp;&nbsp;<b>Update</b>
 			</button>
 		</div>
 	</div>

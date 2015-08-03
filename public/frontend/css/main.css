@@ -3619,5 +3619,10 @@ ul#TapTitle > li.active > a{
 .left-sidebar{
 	border:1px solid #f7f7f5;
 }
+.ui-datepicker {
+    background: #fff;
+    border: 1px solid #555;
+    color: #000;
+}
 
 //=========Detail slile===//

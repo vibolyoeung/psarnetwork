@@ -1,5 +1,12 @@
 $(document).ready(function(){
-	jQuery('.datepicker' ).datepicker({ dateFormat: 'dd/mm/yy' });
+	jQuery('.datepicker' ).datepicker({ 
+		dateFormat: 'dd/mm/yy',
+		changeMonth: true,
+    	changeYear: true,
+        autoclose: true,
+        todayHighlight: true,
+        
+	});
 
 	jQuery('.item:first-child').addClass(' active');
 	jQuery('.bullet:first-child').addClass('active');
@@ -25,19 +32,21 @@ $(document).ready(function(){
 	 });
 	
 	 $('#carousel-text').html($('#slide-content-0').html());
-
-	$('[id^=popup-carousel-selector-]').click( function(){
+	 
+	   //Handles the carousel thumbnails
+	$('[id^=carousel-selector-]').click( function(){
 	     var id = this.id.substr(this.id.lastIndexOf("-") + 1);
 	     var id = parseInt(id);
 	     $('#DetailPopupCarousel').carousel(id);
 	 });
-	
-	  //Handles the carousel thumbnails
-	$('[id^=carousel-selector-]').click( function(){
+
+	$('[id^=popup-carousel-selector-]').click( function(){
 	     var id = this.id.substr(this.id.lastIndexOf("-") + 1);
 	     var id = parseInt(id);
 	     $('#DetailCarousel').carousel(id);
 	 });
+	
+	
 	
 	 // When the carousel slides, auto update the text
 	 $('#DetailCarousel').on('slid.bs.carousel', function (e) {
