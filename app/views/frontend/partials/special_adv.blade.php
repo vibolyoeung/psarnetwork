@@ -12,6 +12,13 @@ if (strtotime ( date ( "d-m-Y" ) ) <= strtotime ( $exp_date )) {
 </a>
 <?php
 	$i ++;
+}else{ ?>
+	<a href="#"> 
+		<img
+			src="{{Config::get('app.url')}}frontend/images/default_adv_420x200.png"
+			class="img-responsive img-thumbnail" alt="" />
+	</a>
+<?php
 }
 ?>
 @endforeach
