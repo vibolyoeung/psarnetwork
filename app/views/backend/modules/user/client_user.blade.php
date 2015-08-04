@@ -49,7 +49,17 @@
 						<td>{{$user->email}}</td>
 						<td>{{$user->telephone}}</td>
 						<td>{{$user->create_at}}</td>
-						<td>Client</td>
+						<td>
+							@if($user->account_type === 1)
+								<span class="label label-primary">
+									Free User Account
+								</span>
+							@else 
+								<span class="label label-success">
+									Enterprise User Account
+								</span>
+							@endif
+						</td>
 						<td>
 							<a
 								href='{{URL::to("admin/status")}}/{{$user->status}}/{{$user->id}}/4'>

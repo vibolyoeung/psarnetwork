@@ -17,9 +17,13 @@ Route::post('/admin/send-forget-password', 'BeLoginController@sendResetPassword'
 Route::get('/admin/forget-password', 'BeLoginController@resetPassword');
 
 Route::group(array('before' => 'auth'), function () {
+    Route::get('/admin/stores/delete/{page}/{userid}/{storeid}','BeStoreController@deleteStore');
+    Route::get('/admin/stores/status/{page}/{userid}/{status}','BeStoreController@disableAndEnableStore');
     Route::get('/admin/stores/free','BeStoreController@listAllStoresFree');
     Route::get('/admin/stores/premium','BeStoreController@listAllStoresPremium');
+    Route::get('/admin/products/delete/{page}/{productid}','BeProductController@deleteProduct');
     Route::get('/admin/products/free','BeProductController@listAllProductsFree');
+    Route::get('/admin/products/status/{page}/{productid}/{status}','BeProductController@disableAndEnableProduct');
     Route::get('/admin/products/premium','BeProductController@listAllProductsPremium');
     Route::get('/admin/user-role-play','BeUserRolePlayController@listUserRolePlay');
     Route::any('/admin/user-role-play/edit/{role_id}','BeUserRolePlayController@editUserRolePlay');

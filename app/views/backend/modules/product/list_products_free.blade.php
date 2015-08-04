@@ -14,11 +14,11 @@
             <h3 class="panel-title">Free Product List</h3>
             </div>
             <div class="panel-body">
-            @if(Session::has('SECCESS_MESSAGE'))
+            @if(Session::has('SMG_SUCCESS'))
                 <div class="alert alert-block alert-success fade in">
-                <button data-dismiss="alert" class="close" type="button"
-                    data-original-title="">x</button>
-                <p>{{Session::get('SECCESS_MESSAGE')}}</p>
+                    <button data-dismiss="alert" class="close" type="button"
+                        data-original-title="">x</button>
+                    <p>{{Session::get('SMG_SUCCESS')}}</p>
                 </div>
             @endif
         <div class="table-responsive">
@@ -55,9 +55,14 @@
                             @endif
                         </td>
                         <td>
-                            <a>Disabled</a> |
-                            <a>Enable</a> | 
-                            <a>Delete</a>
+                            <a href="{{URL::to('admin/products/status')}}/free/{{$product->pro_id}}/2">Disabled</a> |
+                            <a href="{{URL::to('admin/products/status')}}/free/{{$product->pro_id}}/1">Enable</a> | 
+                            <a 
+                                href="{{URL::to('admin/products/delete')}}/free/{{$product->pro_id}}"
+                                onclick="return confirm('Are you sure you want to delete this item?');" 
+                            >
+                                Delete
+                            </a>
                         </td>
                     </tr>
                 @endforeach
