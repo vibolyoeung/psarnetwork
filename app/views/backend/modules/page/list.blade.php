@@ -32,7 +32,7 @@
             <a href="{{URL::to('admin/create-page/2')}}">
               <i class="icon-plus btn btn-xs btn-info rounded-buttons" >&nbsp;Add</i>
              </a>
-             <h3 class="panel-title">Default Pages For Website</h3>
+             <h3 class="panel-title">Default Pages For KhmerAbba Website</h3>
             </div>
             <div class="panel-body">
               <div class="table-responsive">
