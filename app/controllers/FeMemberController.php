@@ -461,8 +461,39 @@ class FeMemberController extends BaseController {
                 break;
                 
             case 'slideshow':
+            	$wherePage = array(
+            			'user_id' => $userID,
+            			'type' => 'config',
+            			'title' => 'slideside_status',
+            	);
+            	$dataSlideshowConfig = $this->mod_page->getUserPages(null, $wherePage);
+            	if (Input::has('btnInfo')) {
+            		/*check for slideshow config*/
+            		if(!empty($dataSlideshowConfig->result)) {
+            			$whereUpdatePage = array(
+            					'id' => $dataSlideshowConfig->result[0]->id,
+            					'user_id' => $userID,
+            					'type' => 'config',
+            					'title' => 'slideside_status',
+            			);
+            			$dataPage = array(
+            					'status' => Input::get('display'),
+            			);
+            			$updateSlideshow = $this->mod_page->updateUserPages($dataPage, $whereUpdatePage);
+            			if($updateSlideshow) {
+            				return Redirect::to('/member/userinfo/slideshow')->with(Session::flash('messsage', 'message_save_success'));
+            			}
+            			/*if exist slideshow in config page and update*/
+            			
+            		} else {
+            			
+            			/*if not exist slideshow in config page and then add*/
+            			$addDataSlideshowConfig = $this->mod_page->addUserPagesConfig($userID, $title = 'slideside_status');
+            		}
+            	}
                 return View::make('frontend.modules.member.s-slideshow')
                 ->with('maincategories',$listCategories->result)
+                ->with('slideshowStatus',$dataSlideshowConfig->result)
                 ->with('dataStore', $getUserStore);
                 break;
                 

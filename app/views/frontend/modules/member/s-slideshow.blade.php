@@ -36,13 +36,13 @@
 											<div class="pro-detail">
 												<div class="radio">
 													<label>
-                                                        {{Form::radio('display', '1', false, array('id'=>'slideshow1'))}}
+                                                        {{Form::radio('display', '1', (@$slideshowStatus[0]->status==1 ? true :false), array('id'=>'slideshow1'))}}
 														{{trans('register.slide_show_enable')}}
 													</label>
 												</div>
 												<div class="radio">
 													<label>
-                                                        {{Form::radio('display', '0', false, array('id'=>'slideshow2'))}}
+                                                        {{Form::radio('display', '0', (@$slideshowStatus[0]->status==0 ? true :false), array('id'=>'slideshow2'))}}
 														{{trans('register.slide_show_disable')}}
 													</label>
 												</div>

@@ -55,6 +55,20 @@ class FeStoreController extends BaseController {
            $whereProduct = array(
             'user_id'=>$dataStore->user_id,
            );
+           
+           /*slideshow*/
+           $wherePage = array(
+           		'user_id' => $dataStore->user_id,
+           		'type' => 'config',
+           		'title' => 'slideside_status',
+           );
+           $dataSlideshowConfig = $this->mod_page->getUserPages(null, $wherePage);
+           if(!empty($dataSlideshowConfig->result)) {
+           		$slideshowConfig = $dataSlideshowConfig->result[0]->status;
+           } else {
+           		$slideshowConfig = 0;
+           }
+           
            $dataProduct = $this->mod_product->listAllProductsByOwnStore($whereProduct);
            return View::make('frontend.modules.store.index')
 						->with('dataStore', $dataStore)
@@ -63,6 +77,7 @@ class FeStoreController extends BaseController {
                         ->with('toolView',$getToolPage->result)
                         ->with('widtget',$getWidget->result)
                         ->with('banner',$getBanner)
+                        ->with('SlideshowConfig',$slideshowConfig)
                         ->with('dataProduct', $dataProduct);
         }
         catch (Exception $e) {

@@ -18,6 +18,8 @@ date_default_timezone_set('Asia/Phnom_Penh');
 	<div class="category-tab lastest-post">
     
 		<!-- ============Slider end here========= -->
+		{{$SlideshowConfig}}
+		@if($SlideshowConfig)
                <!-- slideshow --> 
         <div id="carousel-home" class="carousel slide" data-ride="carousel" style="margin-top: 2px;">
           <!-- Indicators -->
@@ -65,7 +67,8 @@ date_default_timezone_set('Asia/Phnom_Penh');
             <span class="sr-only">Next</span>
           </a>
         </div>
-        <!-- end slideshow --> 
+        @endif
+        <!-- end slideshow -->
 
                 <div class="features_items">
 					<ul class="nav nav-tabs">
