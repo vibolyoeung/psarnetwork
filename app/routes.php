@@ -174,4 +174,6 @@ Route::group(array('prefix' => 'product'), function () {
 } );
 // [your site path]/app/routes.php
 
+Route::any('page.html/{page_id}', 'FePageController@pagesList');
+
 Route::any('/doeun/k', 'FeMemberController@test');

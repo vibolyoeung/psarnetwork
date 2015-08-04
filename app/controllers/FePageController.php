@@ -8,6 +8,7 @@ class FePageController extends BaseController {
 	const V_RIGHT_SMALL = 7;
 	const H_MIDDLE_TOP_LARGE = 8;
 	const H_LARGE_CENTER = 9;
+	const PAGE_WEBSITE = 2;
 
 	private $mod_slideshow;
 	private $mod_category;
@@ -15,6 +16,7 @@ class FePageController extends BaseController {
 	private $mod_advertisment;
 	private $mod_market;
 	private $mod_product;
+	public $m_page;
 
 	function __construct(){
 		$this->mod_slideshow = new Slideshow();
@@ -23,6 +25,7 @@ class FePageController extends BaseController {
 		$this->mod_advertisment = new Advertisement();
 		$this->mod_market = new Market();
 		$this->mod_product = new Product();
+		$this->m_page = new MPage();
 	}
 
 	public function index()
@@ -225,5 +228,18 @@ class FePageController extends BaseController {
     	return View::make('frontend.partials.header')
     		->with('locations', $locations->data)
     		->with('advTops', $advTops->result);
+    }
+
+    // list all static pages
+
+    public function pagesList($page_id)
+    {
+    	$pageForWebsite = $this->m_page
+    		->where('id', $page_id)
+			->where('page_belong_to', self::PAGE_WEBSITE)
+			->first();
+
+    	return View::make('frontend.partials.static_page')
+    		->with('page', $pageForWebsite);
     }
 }

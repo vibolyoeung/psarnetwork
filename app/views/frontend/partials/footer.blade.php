@@ -10,7 +10,7 @@
 							<?php $mPages = MPage::getPagesToPutBottom();?>
 								@foreach($mPages as $mPage)
 									<li>
-										<a href="#">
+										<a href="{{URL::to('page.html')}}/{{$mPage->id}}">
 											<i class="fa">
 												<?php 
                                                    echo $mPage->{'title_'.Config::get('app.locale')}
