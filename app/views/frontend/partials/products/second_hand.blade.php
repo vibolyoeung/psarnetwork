@@ -25,7 +25,7 @@
 			?>
 			<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 			@foreach($secondHandProducts as $secondHandProduct)
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">

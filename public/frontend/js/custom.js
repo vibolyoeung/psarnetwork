@@ -1,5 +1,12 @@
 $(document).ready(function(){
-	jQuery('.datepicker' ).datepicker({ dateFormat: 'dd/mm/yy' });
+	jQuery('.datepicker' ).datepicker({ 
+		dateFormat: 'dd/mm/yy',
+		changeMonth: true,
+    	changeYear: true,
+        autoclose: true,
+        todayHighlight: true,
+        
+	});
 
 	jQuery('.item:first-child').addClass(' active');
 	jQuery('.bullet:first-child').addClass('active');
@@ -25,20 +32,20 @@ $(document).ready(function(){
 	 });
 	
 	 $('#carousel-text').html($('#slide-content-0').html());
-	
-	 //Handles the carousel thumbnails
+	 
+	   //Handles the carousel thumbnails
 	$('[id^=carousel-selector-]').click( function(){
-	     var id = this.id.substr(this.id.lastIndexOf("-") + 1);
-	     var id = parseInt(id);
-	     $('#DetailCarousel').carousel(id);
-	 });
-
-	$('[id^=popup-carousel-selector-]').click( function(){
-		 window.console(222);
 	     var id = this.id.substr(this.id.lastIndexOf("-") + 1);
 	     var id = parseInt(id);
 	     $('#DetailPopupCarousel').carousel(id);
 	 });
+
+	$('[id^=popup-carousel-selector-]').click( function(){
+	     var id = this.id.substr(this.id.lastIndexOf("-") + 1);
+	     var id = parseInt(id);
+	     $('#DetailCarousel').carousel(id);
+	 });
+	
 	
 	
 	 // When the carousel slides, auto update the text
@@ -54,7 +61,7 @@ $(document).ready(function(){
 	
 	//For switching list view
 	jQuery(".product_list_container").addClass(" col-lg-4")
-	jQuery(".product_image").addClass("col-lg-6");
+	jQuery(".product_image").addClass(" col-lg-6");
 	
 	
 	jQuery("#grid_view").click(function(){
@@ -81,6 +88,11 @@ $(document).ready(function(){
 		jQuery(".media-body").removeClass().addClass("social_desc col-lg-12");
 		jQuery(".media-heading").css("margin-top","20");
 	});
+
+	jQuery('#disply-number').change(function () {
+		jQuery('#displayFrm').submit();
+	});
+
 });
 
 function user_register(cos,vals){

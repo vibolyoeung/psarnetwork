@@ -14,27 +14,33 @@
 					<div class="col-sm-8" id="carousel-bounding-box">
 						<div class="carousel slide" id="DetailPopupCarousel">
 							<!-- Carousel items -->
-							<div class="carousel-inner">
+							<div class="carousel-inner detail-popup">
 								<?php 
-								$thumbnail_id = 0;
+								$thumbnail_id = 1;
 								?>
 								@foreach($images as $image)
-								<div class="item<?php echo $thumbnail_id == 0?' active':'';?>"
+								<div class="item<?php echo $thumbnail_id == 1?' active':'';?>"
 									data-slide-number="<?php echo $thumbnail_id; ?>">
 									<img
 										src="{{Config::get('app.url')}}upload/product/{{$image['pic']}}">
 								</div>
 									<?php $thumbnail_id++; ?>
-								@endforeach
+								@endforeach 
 							</div>
+							<a class="left carousel-control" href="#DetailPopupCarousel" role="button" data-slide="prev">
+	                        	<span class="glyphicon glyphicon-chevron-left"></span>                                       
+	                          </a>
+	                          <a class="right carousel-control" href="#DetailPopupCarousel" role="button" data-slide="next">
+	                            <span class="glyphicon glyphicon-chevron-right"></span>                                       
+	                          </a>    
 							<div class="row col-lg-12">
 								<div class="row hidden-xs" id="slider-thumbs">
 									<!-- Bottom switcher of slider -->
 									<ul class="hide-bullets">
-									<?php $thumbnails_id = 0; ?>
+									<?php $thumbnails_id = 1; ?>
 										@foreach($images as $image)
 											<li class="col-sm-3"><a class="thumbnail"
-											id="popup-carousel-selector-<?php echo $thumbnails_id;?>">
+											id="carousel-selector-<?php echo $thumbnails_id; ?>">
 											<img
 												src="{{Config::get('app.url')}}/upload/product/thumb/{{$image['pic']}}">
 										</a></li>
@@ -56,7 +62,7 @@
                         <div class="col-lg-12 text-centered" style="background-color:#eea236;padding:5px 10px;text-align:center;"><a href="#" style="color:white;font-weight:bold;">www.khmerabba.com/total</a></div>
                         <div class="clear"></div>
                         <div class="col-lg-12 text-centered" style="background-color:#eea236;padding:5px 10px;font-weight:bold;text-align:center;">
-                                <a href="#">See : Page Detail</a></div>
+                                <a href="{{Config::get('app.url')}}product/details/{{$productDetail->id}}">See : Page Detail</a></div>
                     </div>
 				</div>
             </div>

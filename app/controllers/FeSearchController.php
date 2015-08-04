@@ -153,4 +153,8 @@ class FeSearchController extends BaseController {
 			->with('conditions', $this->mod_product->listAllConditions())
 			->with('Provinces', $this->mod_setting->listProvinces());
 	}
+
+	public static function getFullUrl() {
+		return $_SERVER['REQUEST_URI'];
+	}
 }

@@ -5,6 +5,7 @@
 			<div class="col-lg-7" style="padding-right:0;">
 				<div id="slider-carousel" class="carousel slide" data-ride="carousel" >
 				<?php 
+				//echo count($slideshows);
 				if(count($slideshows) > 0){
 				?>
 					<ol class="carousel-indicators">
@@ -32,7 +33,20 @@
 												<img src="{{Config::get('app.url')}}/upload/advertisement/{{$slideshow->image;}}" class="img-responsive img-thumbnail" alt="image" />
 											</a>
 									</div>
+									<a href="#slider-carousel" class="left control-carousel hidden-xs"
+										data-slide="prev"> <i class="fa fa-angle-left"></i>
+									</a>
+									<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next"> <i
+										class="fa fa-angle-right"></i>
+									</a>
 							<?php
+								}else{ ?>
+									<img
+										src="{{Config::get('app.url')}}/frontend/images/default_slideshow.png" 
+										class="img-responsive img-thumbnail default-image" 
+										alt="image" alt="" title=""
+									/>
+								<?php
 								}
 							}else{
 								$exp_date = $slideshow->end_date;
@@ -57,13 +71,6 @@
 							?>
 					@endforeach
 					</div>
-					<a href="#slider-carousel" class="left control-carousel hidden-xs"
-						data-slide="prev"> <i class="fa fa-angle-left"></i>
-					</a>
-					<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next"> <i
-						class="fa fa-angle-right"></i>
-					</a>
-					
 				<?php 
 				}else{
 				?>

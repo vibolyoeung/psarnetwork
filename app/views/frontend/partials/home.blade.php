@@ -7,7 +7,6 @@
 </ol>
 @endsection
 @section('content')
-
 {{ App::make('FePageController')->mainCategory() }}
 <div class="col-lg-10">@include('frontend.partials.slider')</div>
 <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
@@ -20,8 +19,8 @@
 				@include('frontend.partials.products.hot_promotion')
 				@include('frontend.partials.products.new_arrival')
 				@include('frontend.partials.products.monthly_pay')
-				@include('frontend.partials.products.buyer_request')
 				@include('frontend.partials.products.second_hand')
+				@include('frontend.partials.products.buyer_request')
 			</div>
 	</div>
 	@include('frontend.partials.products.popup_details')
