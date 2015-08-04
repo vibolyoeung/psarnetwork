@@ -38,12 +38,24 @@ class Store extends Eloquent {
      */
     public function doUpoad($file, $destinationPath,$width=100, $height=100) {
         /*upload logo image*/
-        self::generateFolderUpload($destinationPath);
         $destinationPathThumb = $destinationPath . 'thumb/';
-        $fileName = $file->getClientOriginalName();
-        $fileName = self::generateFileName($destinationPath, $fileName);
-        $file->move($destinationPath, $fileName);
-        Image::make($destinationPath . $fileName)->resize($width,$height)->save($destinationPathThumb . $fileName);
+        self::generateFolderUpload($destinationPath);
+        if(is_array($file)) {
+            $fileName = $this->normalize_str($file['name']);
+            if(move_uploaded_file($file['tmp_name'], $destinationPath . basename($fileName))) {
+                $fileName = $fileName;
+            } else {
+                $error = true;
+                $fileName = array(
+                    'message' => 'uploadError',
+                );
+            }
+        } else {
+            $fileName = $file->getClientOriginalName();
+            $fileName = self::generateFileName($destinationPath, $fileName);
+            $file->move($destinationPath, $fileName);    
+            Image::make($destinationPath . $fileName)->resize($width,$height)->save($destinationPathThumb . $fileName);
+        }
         /*end upload logo image*/
 
         $images = array('image' => $fileName);
@@ -153,5 +165,96 @@ class Store extends Eloquent {
             $response->result = 0;
             $response->errorMsg = $e->getMessage();
         }
-    }    
+    }
+    
+    function normalize_str($str) {
+        $invalid = array(
+            'Š' => '&Scaron;',
+            'š' => '&scaron;',
+            'Ğ' => '&ETH;',
+            '' => '&#381;',
+            '' => '&#382;',
+            'À' => '&Agrave;',
+            'Á' => '&Aacute;',
+            'Â' => '&Acirc;',
+            'Ã' => '&Atilde;',
+            'Ä' => '&Auml;',
+            'Å' => '&Aring;',
+            'Æ' => '&AElig;',
+            'Ç' => '&Ccedil;',
+            'È' => '&Egrave;',
+            'É' => '&Eacute;',
+            'Ê' => '&Ecirc;',
+            'Ë' => '&Euml;',
+            'Ì' => '&Igrave;',
+            'Í' => '&Iacute;',
+            'Î' => '&Icirc;',
+            'Ï' => '&Iuml;',
+            'Ñ' => '&Ntilde;',
+            'Ò' => '&Ograve;',
+            'Ó' => '&Oacute;',
+            'Ô' => '&Ocirc;',
+            'Õ' => '&Otilde;',
+            'Ö' => '&Ouml;',
+            'Ø' => '&Oslash;',
+            'Ù' => '&Ugrave;',
+            'Ú' => '&Uacute;',
+            'Û' => '&Ucirc;',
+            'Ü' => '&Uuml;',
+            'İ' => '&Yacute;',
+            'Ş' => '&THORN;',
+            'ß' => '&szlig;',
+            'à' => '&agrave;',
+            'á' => '&aacute;',
+            'â' => '&acirc;',
+            'ã' => '&atilde;',
+            'ä' => '&auml;',
+            'å' => '&aring;',
+            'æ' => '&aelig;',
+            'ç' => '&ccedil;',
+            'è' => '&egrave;',
+            'é' => '&eacute;',
+            'ê' => '&ecirc;',
+            'ë' => '&euml;',
+            'ì' => '&igrave;',
+            'í' => '&iacute;',
+            'î' => '&icirc;',
+            'ï' => '&iuml;',
+            'ğ' => '&eth;',
+            'ñ' => '&ntilde;',
+            'ò' => '&ograve;',
+            'ó' => '&oacute;',
+            'ô' => '&ocirc;',
+            'õ' => '&otilde;',
+            'ö' => '&ouml;',
+            'ø' => '&oslash;',
+            'ù' => '&ugrave;',
+            'ú' => '&uacute;',
+            'û' => '&ucirc;',
+            'ı' => '&yacute;',
+            'ı' => '&yacute;',
+            'ş' => '&thorn;',
+            'ÿ' => '&yuml;',
+            'ƒ' => '&fnof;',
+            "`" => "-",
+            "´" => "-",
+            "„" => "-",
+            "`" => "-",
+            "´" => "-",
+            "“" => "-",
+            "”" => "-",
+            "´" => "-",
+            "&acirc;€™" => "-",
+            "{" => "-",
+            "~" => "-",
+            "–" => "-",
+            "’" => "-",
+            "°" => "-",
+            "º" => "-",
+        );
+    
+        $str = str_replace(array_keys($invalid), array_values($invalid), $str);
+    
+        return $str;
+    }   
 }

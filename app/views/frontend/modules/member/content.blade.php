@@ -62,20 +62,20 @@ var homePage = "{{Config::get('app.url')}}";
 												</div>
 												<div class="row">
 													<div class="col-sm-4">
-														<div id='logo-preview' style="margin: 10px 0 0 0;width: 100px; height: 100px;">
+														<div id='logo-preview' style="margin: 10px 0 0 0;max-width: 100%; max-height: 90px;">
 															@if($dataStore->image)
-															<img src="{{Config::get('app.url')}}/upload/store/thumb/{{$dataStore->image}}" />
+															<img src="{{Config::get('app.url')}}/upload/store/thumb/{{$dataStore->image}}" style="max-width: 100%;max-height:90px" />
 															@else
-															<img src="http://placehold.it/100x100&text=Logo" />
+															<img src="http://placehold.it/300x90&text=300x90" style="max-width: 100%;max-height:90px;height:90px" />
 															@endif
 														</div>
 													</div>
 													<div class="col-sm-8">
 														<div id='banner-preview' style="margin: 10px 0 0 0;width: 100%; height: 100px;">
 															@if($dataStore->sto_banner)
-															<img src="{{Config::get('app.url')}}/upload/store/thumb/{{$dataStore->sto_banner}}" style="width: 100%;height:100px" />
+															<img src="{{Config::get('app.url')}}/upload/store/thumb/{{$dataStore->sto_banner}}" style="max-width: 100%;max-height:90px" />
 															@else
-															<img src="http://placehold.it/500x100&text=Banner here" style="width: 100%;height:100px" />
+															<img src="http://placehold.it/500x100&text=750px+x+90px" style="max-width: 100%;max-height:90px;height:90px" />
 															@endif
 														</div>
 													</div>

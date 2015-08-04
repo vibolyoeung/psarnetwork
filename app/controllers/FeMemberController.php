@@ -461,8 +461,39 @@ class FeMemberController extends BaseController {
                 break;
                 
             case 'slideshow':
+            	$wherePage = array(
+            			'user_id' => $userID,
+            			'type' => 'config',
+            			'title' => 'slideside_status',
+            	);
+            	$dataSlideshowConfig = $this->mod_page->getUserPages(null, $wherePage);
+            	if (Input::has('btnInfo')) {
+            		/*check for slideshow config*/
+            		if(!empty($dataSlideshowConfig->result)) {
+            			$whereUpdatePage = array(
+            					'id' => $dataSlideshowConfig->result[0]->id,
+            					'user_id' => $userID,
+            					'type' => 'config',
+            					'title' => 'slideside_status',
+            			);
+            			$dataPage = array(
+            					'status' => Input::get('display'),
+            			);
+            			$updateSlideshow = $this->mod_page->updateUserPages($dataPage, $whereUpdatePage);
+            			if($updateSlideshow) {
+            				return Redirect::to('/member/userinfo/slideshow')->with(Session::flash('messsage', 'message_save_success'));
+            			}
+            			/*if exist slideshow in config page and update*/
+            			
+            		} else {
+            			
+            			/*if not exist slideshow in config page and then add*/
+            			$addDataSlideshowConfig = $this->mod_page->addUserPagesConfig($userID, $title = 'slideside_status');
+            		}
+            	}
                 return View::make('frontend.modules.member.s-slideshow')
                 ->with('maincategories',$listCategories->result)
+                ->with('slideshowStatus',$dataSlideshowConfig->result)
                 ->with('dataStore', $getUserStore);
                 break;
                 
@@ -774,32 +805,20 @@ class FeMemberController extends BaseController {
                 $file = array_shift($_FILES);
                     if (!empty($file)) {
                         /*upload banner image*/
-                        $destinationPath = base_path() . Config::get('constants.DIR_IMAGE.DIR_STORE');
+                        $destinationPath = base_path() . Config::get('constants.DIR_IMAGE.DIR_DEFAULT');
     
                         /* clean old image*/
-                        $whereData = array(
-                            'user_id' => $userID,
-                            'id' => $storeID,
-                            );
-                        $checkStoreImage = $this->mod_store->getUserStore(null, $whereData);
-                        if (!empty($checkStoreImage)) {
-                            $oldName = $destinationPath . '/' . $checkStoreImage->sto_banner;
-                            $thumb = $destinationPath . '/thumb/' . $checkStoreImage->sto_banner;
-                            if (File::exists($oldName)) {
-                                File::delete($oldName, $thumb);
-                            }
-                        }
     
                         $images = $this->mod_store->doUpoad($file, $destinationPath, Config::get('constants.DIR_IMAGE.THUMB_WIDTH'),
                             Config::get('constants.DIR_IMAGE.THUMB_HEIGTH'));
-                        /*update to store table DB*/
-                        $storeData = array('sto_banner' => $images['image']);
-                        $this->mod_store->where($whereData)->update($storeData);
-                        /*end update to store table DB*/
                     } else {
                         $images = array("error" => "Sorry, Upload get an error");
                     }
-                    echo json_encode($images);
+                    $data = array(
+                        'message' => 'uploadSuccess',
+                        'file'    => Config::get('app.url').'upload/images/'.$images['image'],
+                    );
+                    echo json_encode($data);
                     break;                    
             }
         }
