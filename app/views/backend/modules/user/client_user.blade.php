@@ -7,6 +7,70 @@
 @endsection
 @section('content')
 <div class="row">
+    <div class="col-md-12 col-sm-12 col-sx-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                            />
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Telephone</label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                            />
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Date Register</label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                            />
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Account Type</label>
+                            <select class="form-control">
+                                <option>Free</option>
+                                <option>Enterprise</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select class="form-control">
+                                <option>Enable</option>
+                                <option>Disabled</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <input
+                            style="width:100%; margin-top:24px;"
+                            type="submit" 
+                            class="btn btn-primary"
+                            value="Filter" 
+                        />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
 	<div class="col-md-12 col-sm-12 col-sx-12">
 		<div class="panel panel-default">
 			<div class="panel-heading clearfix">
@@ -36,7 +100,7 @@
 					<th>Email</th>
 					<th>Telephone</th>
 					<th>Date Register</th>
-					<th>User Type</th>
+					<th>Account Type</th>
 					<th class="class-center">Action</th>
 				</tr>
 			</thead>
@@ -49,7 +113,17 @@
 						<td>{{$user->email}}</td>
 						<td>{{$user->telephone}}</td>
 						<td>{{$user->create_at}}</td>
-						<td>Client</td>
+						<td>
+							@if($user->account_type === 1)
+								<span class="label label-primary">
+									Free User Account
+								</span>
+							@else 
+								<span class="label label-success">
+									Enterprise User Account
+								</span>
+							@endif
+						</td>
 						<td>
 							<a
 								href='{{URL::to("admin/status")}}/{{$user->status}}/{{$user->id}}/4'>

@@ -10,15 +10,69 @@
 <div class="row">
     <div class="col-md-12 col-sm-12 col-sx-12">
         <div class="panel panel-default">
+            <div class="panel-body">
+                <form>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                            />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Client Name</label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                            />
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Create Date</label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                            />
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select class="form-control">
+                                <option>Enable</option>
+                                <option>Disabled</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <input
+                            style="width:100%; margin-top:24px;"
+                            type="submit" 
+                            class="btn btn-primary"
+                            value="Filter" 
+                        />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-sx-12">
+        <div class="panel panel-default">
             <div class="panel-heading clearfix">
             <h3 class="panel-title">Free Product List</h3>
             </div>
             <div class="panel-body">
-            @if(Session::has('SECCESS_MESSAGE'))
+            @if(Session::has('SMG_SUCCESS'))
                 <div class="alert alert-block alert-success fade in">
-                <button data-dismiss="alert" class="close" type="button"
-                    data-original-title="">x</button>
-                <p>{{Session::get('SECCESS_MESSAGE')}}</p>
+                    <button data-dismiss="alert" class="close" type="button"
+                        data-original-title="">x</button>
+                    <p>{{Session::get('SMG_SUCCESS')}}</p>
                 </div>
             @endif
         <div class="table-responsive">
@@ -55,9 +109,14 @@
                             @endif
                         </td>
                         <td>
-                            <a>Disabled</a> |
-                            <a>Enable</a> | 
-                            <a>Delete</a>
+                            <a href="{{URL::to('admin/products/status')}}/free/{{$product->pro_id}}/2">Disabled</a> |
+                            <a href="{{URL::to('admin/products/status')}}/free/{{$product->pro_id}}/1">Enable</a> | 
+                            <a 
+                                href="{{URL::to('admin/products/delete')}}/free/{{$product->pro_id}}"
+                                onclick="return confirm('Are you sure you want to delete this item?');" 
+                            >
+                                Delete
+                            </a>
                         </td>
                     </tr>
                 @endforeach
