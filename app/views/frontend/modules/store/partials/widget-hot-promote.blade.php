@@ -9,7 +9,7 @@ $PayMonthly = $thisProduct->listAllProductsByOwnStore($whereHotPromote);
 <div class="category-tab Hot-Promotion">
 	<div class="features_items">
 		<ul class="nav nav-tabs">
-			<li><strong>Monthly Pay  Products</strong>&nbsp;&frasl;</li>
+			<li><strong>Hot Promotion Products</strong>&nbsp;&frasl;</li>
 			<li>Products : <span class="number-display">25</span></li>
 		</ul>
 		<div class="col-lg-12" style="padding:0;">
