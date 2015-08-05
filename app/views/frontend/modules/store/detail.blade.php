@@ -4,6 +4,7 @@
 		{{$dataProductDetail->title}}
 	@endif
 @endsection
+@section('description')@if(!empty($dataProductDetail->description)){{$dataProductDetail->description}} @endif @endsection
 @section('breadcrumb')
 	<ol class="breadcrumb">
 		<li><a href="{{Config::get('app.url')}}">Home</a></li>

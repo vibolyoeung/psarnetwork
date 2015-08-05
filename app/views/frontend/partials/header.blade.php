@@ -2,10 +2,46 @@
 <html lang="en">
 <head>
 <title>@yield('title')</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
+	<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="@yield('description')">
+        <meta name="author" content="">
+        <meta content='article' property='og:type'/>
+		<meta content='summary' name='twitter:card'/>
+		<meta content='Global' name='distribution'/>
+		<meta content='General' name='rating'/>
+		<meta content='index, follow' name='robots'/>
+		<meta content='3 days' name='revisit-after'/>
+		<meta content='en-us' name='language'/>
+		<meta content='4.5' property='og:rating'/>
+		<meta content='5' property='og:rating_scale'/>
+		<meta content='120' property='og:rating_count'/>
+		<meta content='unisex' property='product:gender'/>
+		<meta content='index, follow' name='robots'/>
+		<meta content='global' name='distribution'/>
+		<meta content='3 days' name='revisit-after'/>
+		<meta content='document' name='resource-type'/>
+		<meta content='all' name='audience'/>
+		<meta content='all' name='robots'/>
+		<meta content='true' name='MSSmartTagsPreventParsing'/>
+		<meta content='all' name='audience'/>
+		<meta content='index,follow,snipet' name='googlebot'/>
+		<meta content='follow, all' name='msnbot'/>
+		<meta content='nopreview' name='msnbot'/>
+		<meta content='follow, all' name='alexabot'/>
+		<meta content='100' name='alexa'/>
+		<meta content='10' name='pagerank'/>
+		<meta content='1, 2, 3, 10, 11, 12, 13, ATF' name='serps'/>
+		<meta content='follow, all' name='Slurp'/>
+		<meta content='follow, all' name='ZyBorg'/>
+		<meta content='follow, all' name='Scooter'/>
+		<meta content='follow, all' name='Googlebot-Image'/>
+		<meta content='noodp' name='robots'/>
+		<meta content='ALL' name='SPIDERS'/>
+		<meta content='ALL' name='WEBCRAWLERS'/>
+		<meta content='no-cache' http-equiv='cache-control'/>
+		<meta content='no-cache' http-equiv='pragma'/>
+		<meta content='global' name='target'/>
 {{HTML::style('frontend/css/font-awesome.min.css')}}
 {{HTML::style('frontend/css/prettyPhoto.css')}}
 {{HTML::style('frontend/css/price-range.css')}}

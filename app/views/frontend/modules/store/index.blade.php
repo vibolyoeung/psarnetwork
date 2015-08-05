@@ -1,7 +1,6 @@
 @extends('frontend.modules.store.layout.layout')
-@section('title')
-	Home
-@endsection
+@section('title') {{($dataStore->title_en ? $dataStore->{'title_'.Session::get('lang')} : 'Welcome to my page')}} @endsection
+@section('description')Buy, Sell @endsection
 @section('breadcrumb')
 	<ol class="breadcrumb">
 		<li><a href="{{Config::get('app.url')}}">Home</a></li>
