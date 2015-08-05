@@ -446,13 +446,13 @@ class MCategory extends Eloquent{
 	 * @author kimhim
 	 */
 
-	public function getMainCategories(){
+	public function getMainCategories($parentid = 0){
 		$response = new stdClass();
 		try {
 			$result = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
 			->select('*')
 			->where('status','=', 1)
-			->where('parent_id','=','0')->get();
+			->where('parent_id','=',$parentid)->get();
 			$response->result = $result;
 		}catch (\Exception $e){
 			$response->result = 0;

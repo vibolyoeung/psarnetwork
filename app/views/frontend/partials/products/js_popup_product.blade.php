@@ -1,4 +1,4 @@
-<div id="main_area">
+  <div id="main_area">
 	<!-- Slider -->
 	<div class="row">
 	<?php

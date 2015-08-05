@@ -17,7 +17,7 @@
 							//if(count($sub) > 0){
 								echo '<ul class="dropdown_main_menu">';
 									foreach ($sub as $row){
-										echo '<li class="main_category"><a href='.URL::to('product/'.$row->id).'>'.$row->{'name_en'}.'</a>';
+										echo '<li class="main_category"><a href='.URL::to('products/productbycategories/'.$categoriesList->id).'>'.$row->{'name_en'}.'</a>';
 									?>
 											<ul style="padding:0;border:0px solid red;" class="child-menu">
 												<?php 
@@ -44,7 +44,6 @@
 
 <script>
 	jQuery(document).ready(function(){
-		jQuery(".categories_menu").hide();
 		jQuery("#menu_toogle").css('cursor','pointer');
 		jQuery("#menu_toogle").click(function(){
 			jQuery(".categories_menu").toggle("slow");

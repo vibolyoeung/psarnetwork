@@ -15,7 +15,7 @@
 	<!--/category-tab-->
 	<div class="category-tab feature-ad lastest-post  product_wrapper">
 		<!--recommended_items-->
-			<div class="col-lg-12">
+			<div class="col-lg-12" style="padding: 0;">
 				@include('frontend.partials.products.hot_promotion')
 				@include('frontend.partials.products.new_arrival')
 				@include('frontend.partials.products.monthly_pay')

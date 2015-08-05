@@ -20,11 +20,12 @@
 		?>
 		@foreach($latestStores as $latestStore)
 			<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+				<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 				<div class="product-image-wrapper">
 					<div class="single-products">
 						<div class="productinfo">
 							<!-- @TODO: Put link to store -->
-							<a href="#">
+							<a href="#" data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail(<?php echo $latestStore->id; ?>)">
 							 <img
 								src="{{Config::get('app.url')}}upload/store/{{$latestStore->image}}"
 								alt="{{$latestStore->title_en}}"

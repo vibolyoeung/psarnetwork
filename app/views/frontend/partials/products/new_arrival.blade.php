@@ -36,10 +36,12 @@ if(count($newProducts) > 0){
 										src="{{Config::get('app.url')}}upload/product/thumb/{{$newProduct->thumbnail}}"
 										alt="" />
 									</a>
-									<h2>$ {{$newProduct->price}}</h2>
-									<p><?php echo substr($newProduct->title,0,20)?></p>
-									<a href="{{Config::get('app.url')}}product/details/{{$newProduct->id}}">View
-										Details</a>
+									<h2 class="price">$ {{$newProduct->price}}</h2>
+									<center>
+										<a href="{{Config::get('app.url')}}product/details/{{$newProduct->id}}">View
+											<?php echo substr($newProduct->title,0,20)?>
+										</a>
+									</center>
 								</div>
 								<img
 									src="{{Config::get('app.url')}}/frontend/images/home/sale.png"
