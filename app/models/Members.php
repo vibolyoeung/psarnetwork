@@ -22,7 +22,7 @@ class Members extends Eloquent{
 				$query->where('telephone','=', $loginName);
 				break;
 			default:
-				$query->where('user_name','=', $loginName);
+				$query->where('name','=', $loginName);
 				break;
 		}
 		$query->where('password', '=', md5(sha1($password)));
