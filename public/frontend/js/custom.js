@@ -22,7 +22,10 @@ $(document).ready(function(){
 	jQuery('#slider-carousel.carousel').carousel({
 		interval: 5000
 	});
-	
+	jQuery('#slider-home').carousel({
+		interval: true,
+		interval: 5000
+	});
 	jQuery('.carousel').carousel({
 		interval: false
 	});
