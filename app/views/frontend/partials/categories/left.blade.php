@@ -3,14 +3,22 @@
 		<div class="panel-group category-products" id="accordian">
 			<div class="all_categories_type" id="menu_toogle">
 				<img src="{{Config::get('app.url')}}frontend/images/icons/all_category.png" alt="" title="" height="23"/>
-				<strong> &nbsp;&nbsp;&nbsp; All Categocies Type &nbsp;&nbsp;&nbsp;<span class="caret" ></span></strong>
+				<strong> &nbsp;&nbsp;&nbsp; 
+					@foreach ($MaindetailCategory as $maincate)
+					<?php 
+						echo $maincate->{'name_'.Session::get('lang')};
+					?> 
+					@endforeach
+					&nbsp;&nbsp;&nbsp;<span class="caret" ></span></strong>
 			</div>
 			<ul class="categories_menu">
+				@foreach ($detailCategory as $categoriesList)
 					<li class="dropdown-mainmenu">
-						<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-							Menu 
+						<a href="<?php echo URL::to('products/productbycategories/'.$categoriesList->parent_id.'/'.$categoriesList->id); ?>">
+							<?php echo $categoriesList->{'name_'.Session::get('lang')};?>
 			      		</a>
 					</li>
+				@endforeach
 			</ul>
 		</div>
 		<!--=========Register seller============ -->
