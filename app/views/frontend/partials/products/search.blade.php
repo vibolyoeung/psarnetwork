@@ -1,4 +1,4 @@
-<div class="col-lg-12" style="padding-left:0;padding-top:15px;border:1px solid #ddd;background-color:#ddd;">
+<div style="padding-left:0;padding-top:15px;border:1px solid #ddd;background-color:#ddd;">
 	{{
 		Form::open(
 			[
@@ -51,21 +51,9 @@
 		<div class="col-lg-12 pull-right" style="padding: 0; margin: 0;">
 			<button type="submit"
 				class="btn btn-warning col-lg-12 ">
-				&nbsp;&nbsp;<b>Search</b>
+				&nbsp;&nbsp;<b>Filter</b>
 			</button>
 		</div>
 	</div>
 	{{Form::close()}}
-</div>
-<div class="col-lg-12"
-	<div class="btn-group col-lg-2" style="padding: 0; margin: 0;">
-		<label for="">Display:</label>
-		<select id="disply-number" name="displayNumber" class="form-control">
-			<option value="20">20</option>
-			<option value="50">50</option>
-			<option value="100">100</option>
-			<option value="150">150</option>
-			<option value="200">200</option>
-		</select>
-	</div>
 </div>

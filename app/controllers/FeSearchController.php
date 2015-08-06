@@ -143,7 +143,6 @@ class FeSearchController extends BaseController {
 			$date,
 			$displayNumber
 		);
-		
 		return View::make('frontend.modules.search.index')
 			->with('slideshows', $listSlideshows->result)
 			->with('advVerticalRightSmalls', $advVerticalRightSmall->result)

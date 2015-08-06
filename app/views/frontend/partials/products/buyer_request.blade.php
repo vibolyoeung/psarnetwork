@@ -37,10 +37,8 @@ if(count($buyerProducts) > 0){
 									alt="" />
 								</a>
 								<h2>$ {{$buyerProduct->price}}</h2>
-								<p><?php echo substr($buyerProduct->title,0,20)?></p>
-								<a data-toggle="modal" data-target="#myModal"
-									onclick="popupDetails.add_popup_detail(<?php echo $buyerProduct->id; ?>);">View
-									Details</a>
+								<p></p>
+								<a href="{{Config::get('app.url')}}product/details/{{$buyerProduct->id}}"><?php echo substr($buyerProduct->title,0,20)?></a>
 							</div>
 							<img
 								src="{{Config::get('app.url')}}/frontend/images/home/sale.png"
