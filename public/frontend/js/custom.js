@@ -93,10 +93,22 @@ $(document).ready(function(){
 	});
 
 	jQuery('#disply-number').change(function () {
-		jQuery('#displayFrm').submit();
+		var fullUrl = window.location.href;
+		var lastParam = fullUrl.substring(fullUrl.lastIndexOf('&')) + 1;
+		displayNumber = $(this).val();
+		var displayNumParam = lastParam.split('=')[0];
+		// check condition for avoid adding duplicate param
+		if (displayNumParam === '&displayNumber') {
+			fullUrl = fullUrl.split('&displayNumber')[0];
+		}
+		refresh_page_with_param_added(fullUrl, displayNumber);
 	});
 
 });
+
+function refresh_page_with_param_added(url, displayNumber) {
+	window.location.href = url + '&displayNumber=' + displayNumber;
+}
 
 function user_register(cos,vals){
    if($(cos).is(':checked')) {

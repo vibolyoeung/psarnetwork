@@ -61,6 +61,9 @@ Categories
 						</div>
 					</div>
 				@endforeach
+				<div id="pagination">
+					{{$products->links()}}
+				</div>
 			<?php 
 				}else{
 					echo '<h3><center style="color:red;">Product not found!</center></h3>';

@@ -133,13 +133,15 @@ class FeSearchController extends BaseController {
 		$condition = Request::input('condition');
 		$price = Request::input('price');
 		$date = Request::input('date');
+		$displayNumber = Request::input('displayNumber');
 
 		$products = $this->mod_product->searchProductFromCategory(
 			$province,
 			$transferType,
 			$condition,
 			$price,
-			$date
+			$date,
+			$displayNumber
 		);
 		
 		return View::make('frontend.modules.search.index')
@@ -152,9 +154,5 @@ class FeSearchController extends BaseController {
 			->with('transferTypes', $this->mod_product->listAllTransferType())
 			->with('conditions', $this->mod_product->listAllConditions())
 			->with('Provinces', $this->mod_setting->listProvinces());
-	}
-
-	public static function getFullUrl() {
-		return $_SERVER['REQUEST_URI'];
 	}
 }
