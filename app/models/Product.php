@@ -437,8 +437,10 @@ class Product extends Eloquent{
 	 */
 	public function findProductDetailById($product_id) {
 		$product = Config::get('constants.TABLE_NAME.PRODUCT');
-		return DB::table($product)
-			->where('id', '=', $product_id)
+		$productCondition = Config::get('constants.TABLE_NAME.PRODUCT_CONDITION');
+		return DB::table($product. ' AS p ')
+			->join($productCondition . ' AS pcon', 'pcon.id', '=', 'p.pro_condition_id')
+			->where('p.id', '=', $product_id)
 			->first();
 	}
 

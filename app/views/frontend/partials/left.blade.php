@@ -8,8 +8,8 @@
 			<ul class="categories_menu">
 				@foreach ($maincategories as $categoriesList)
 					<li class="dropdown-mainmenu">
-						<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-			      			<?php echo $categoriesList->name_en;  ?> 
+						<a data-toggle="dropdown" class="dropdown-toggle" href="<?php echo URL::to("products/productbycategories/".$categoriesList->id);?>">
+			      			<?php echo $categoriesList->{'name_'.Session::get('lang')};  ?> 
 			      		</a>
 				      	<?php
 							 $subcategoriesobj = new MCategory();
@@ -17,11 +17,11 @@
 							//if(count($sub) > 0){
 								echo '<ul class="dropdown_main_menu">';
 									foreach ($sub as $row){
-										echo '<li class="main_category"><a href='.URL::to('products/productbycategories/'.$categoriesList->id).'>'.$row->{'name_en'}.'</a>';
+										echo '<li class="main_category"><a href='.URL::to('products/productbycategories/'.$row->id).'/0>'.$row->{'name_'.Session::get('lang')}.'</a>';
 									?>
 											<ul style="padding:0;border:0px solid red;" class="child-menu">
 												<?php 
-													$subcategoriesobj->getLastFinalCategories($categoriesList->id, $row->id);
+													$subcategoriesobj->getLastFinalCategories($row->id);
 												?>
 											</ul>
 										</li>
@@ -41,12 +41,3 @@
 		</div>
 	</div>
 </div>
-
-<script>
-	jQuery(document).ready(function(){
-		jQuery("#menu_toogle").css('cursor','pointer');
-		jQuery("#menu_toogle").click(function(){
-			jQuery(".categories_menu").toggle("slow");
-		});
-	});
-</script>

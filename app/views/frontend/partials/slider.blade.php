@@ -10,7 +10,7 @@
 						$thumbnail_id = 0;
 						?>
 						@foreach($slideshows as $slideshow)
-						<div class="item"
+						<div class="item <?php echo $thumbnail_id == 0?'active':'';?>"
 							data-slide-number="<?= $thumbnail_id; ?>">
 							<a  href='{{$slideshow->link_url}}' target="_blank">
 								<img

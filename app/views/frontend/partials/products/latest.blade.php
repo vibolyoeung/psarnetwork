@@ -52,3 +52,4 @@ if(count($latestProducts) > 0){
 	</div>
 </div>
 <?php } ?>
+{{HTML::script('frontend/js/jquery.js')}}

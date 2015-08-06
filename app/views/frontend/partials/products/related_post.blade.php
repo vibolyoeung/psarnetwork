@@ -7,6 +7,7 @@
 			<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 			@foreach($related_post as $relatedPost)
 			<?php 
+			//var_dump($relatedPost);
 				if(strtotime($relatedPost->publish_date) >= strtotime("d/m/Y")){
 				?>
 				<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
@@ -19,9 +20,7 @@
 									alt="" />
 								</a>
 								<h2>$ {{$relatedPost->price}}</h2>
-								<p><?php echo substr($relatedPost->title,0,20)?></p>
-								<a href="{{Config::get('app.url')}}product/details/{{$relatedPost->id}}">View
-									Details</a>
+								<a href="{{Config::get('app.url')}}product/details/{{$relatedPost->id}}"><?php echo substr($relatedPost->title,0,20)?></a>
 							</div>
 						</div>
 					</div>
