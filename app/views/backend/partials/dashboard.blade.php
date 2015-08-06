@@ -31,7 +31,14 @@
 				<div class="caption">
 					{{HTML::image('backend/images/icons/system-user.png','System User')}}
 					<strong>System User</strong>
-					<span class="mg-number count-num">5</span>
+					<span class="mg-number count-num">
+						<?php 
+							$countSystemUser = DB::table('user')
+								->where('user_type', '!=', 4)
+								->count(); 
+							echo $countSystemUser;
+						?>
+					</span>
 				</div>
 			</a>
 		</div>
@@ -40,7 +47,14 @@
 				<div class="caption">
 					{{HTML::image('backend/images/icons/client-user.png','Client User')}}
 					<strong>Client User</strong>
-					<span class="mg-number count-num">5</span>
+					<span class="mg-number count-num">
+						<?php 
+							$countClientUser = DB::table('user')
+								->where('user_type', '=', 4)
+								->count(); 
+							echo $countClientUser;
+						?>
+					</span>
 				</div>
 			</a>
 		</div>
@@ -49,7 +63,14 @@
 				<div class="caption">
 					{{HTML::image('backend/images/icons/user-group.png','User Group')}}
 					<strong>User Group</strong>
-					<span class="mg-number count-num">5</span>
+					<span class="mg-number count-num">
+						<?php 
+							$countUserGroup = DB::table('user_type')
+								->where('id', '!=', 4)
+								->count(); 
+							echo $countUserGroup;
+						?>
+					</span>
 				</div>
 			</a>
 		</div>
@@ -58,7 +79,13 @@
 				<div class="caption">
 						{{HTML::image('backend/images/icons/category.png','Category')}}
 						<strong>Category</strong>
-						<span class="mg-number count-num">5</span>
+						<span class="mg-number count-num">
+						<?php 
+							$countCategory = DB::table('m_category')
+								->count(); 
+							echo $countCategory;
+						?>
+						</span>
 				</div>
 			</a>
 		</div>
@@ -67,7 +94,13 @@
 				<div class="caption">
 						{{HTML::image('backend/images/icons/product.png','Category')}}
 						<strong>Product</strong>
-						<span class="mg-number count-num">5</span>
+						<span class="mg-number count-num">
+						<?php 
+							$countProduct = DB::table('product')
+								->count(); 
+							echo $countProduct;
+						?>
+						</span>
 				</div>
 			</a>
 		</div>
@@ -76,7 +109,13 @@
 				<div class="caption">
 					{{HTML::image('backend/images/icons/advertisment.png','Advertisement')}}
 					<strong>Advertisment</strong>
-					<span class="mg-number count-num">5</span>
+					<span class="mg-number count-num">
+						<?php 
+							$countAdvertisment = DB::table('advertisement')
+								->count(); 
+							echo $countAdvertisment;
+						?>
+					</span>
 				</div>
 			</a>
 		</div>
@@ -85,7 +124,15 @@
 				<div class="caption">
 					{{HTML::image('backend/images/icons/business-page.jpg','Business Page')}}
 					<strong>Bussiness Page</strong>
-					<span class="mg-number count-num">5</span>
+					<span class="mg-number count-num">
+						<?php 
+							$countBusinessPage = DB::table('store as s')
+								->join('user AS u', 'u.id','=', 's.user_id')
+								->where('u.account_type', 2)
+								->count(); 
+							echo $countBusinessPage;
+						?>
+					</span>
 				</div>
 			</a>
 		</div>
@@ -94,7 +141,15 @@
 				<div class="caption">
 					{{HTML::image('backend/images/icons/personal-page.png','Personal Page')}}
 					<strong>Personal Page</strong>
-					<span class="mg-number count-num">5</span>
+					<span class="mg-number count-num">
+						<?php 
+							$countBusinessPage = DB::table('store as s')
+								->join('user AS u', 'u.id','=', 's.user_id')
+								->where('u.account_type', 1)
+								->count(); 
+							echo $countBusinessPage;
+						?>
+					</span>
 				</div>
 			</a>
 		</div>
