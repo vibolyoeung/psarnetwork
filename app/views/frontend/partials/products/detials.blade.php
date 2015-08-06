@@ -113,6 +113,9 @@
 				   <li class="dropdown">
 				      <a href="#contact" data-toggle="tab">Contact</a>
 				   </li>
+				   <li class="dropdown">
+				      <a href="#quotation" data-toggle="tab">Quotation</a>
+				   </li>
 				</ul>
 				<div id="productTabContent" class="tab-content">
 				   <div class="tab-pane fade in active" id="speification_detail">
@@ -134,8 +137,12 @@
 				      Java application for load and performance testing.</p>
 				   </div>
 
-				    <div class="tab-pane fade" id="contact">
+				   <div class="tab-pane fade" id="contact">
 				      <p>Contact to prodcut poster is add here</p>
+				   </div>
+
+				   <div class="tab-pane fade" id="quotation">
+				      <p>Quotation will be here</p>
 				   </div>
 				</div>
 				<script>
@@ -172,4 +179,13 @@
 <script
 	src="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.js"></script>
 
-
+{{HTML::script('frontend/js/jquery.js')}}
+<script>
+	jQuery(document).ready(function(){
+		jQuery(".categories_menu").hide();
+		jQuery("#menu_toogle").css('cursor','pointer');
+		jQuery("#menu_toogle").click(function(){
+			jQuery(".categories_menu").toggle("slow");
+		});
+	});
+</script>

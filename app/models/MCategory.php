@@ -409,7 +409,7 @@ class MCategory extends Eloquent{
 		return $results;
 	}
 
-	public function getLastFinalCategories($mainID, $id){
+	public function getLastFinalCategories($id){
 		try {
 			$results = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
 			->select('id','name_en','name_km','status','parent_id')
@@ -422,7 +422,7 @@ class MCategory extends Eloquent{
 					foreach ($results as $dropdownlist){
 					?>
 					 <li>
-						<a href="<?php echo URL::to('products/productbycategories/'.$mainID.'/'.$dropdownlist->id); ?>" >
+						<a href="<?php echo URL::to('products/productbycategories/'.$id.'/'.$dropdownlist->id); ?>" >
 							<?php echo $dropdownlist->{'name_'.Session::get('lang')};?>
 						</a>
 					   </li>
@@ -453,6 +453,22 @@ class MCategory extends Eloquent{
 			->select('*')
 			->where('status','=', 1)
 			->where('parent_id','=',$parentid)->get();
+			$response->result = $result;
+		}catch (\Exception $e){
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+
+		return $response;
+	}
+
+	public function getMainCategoriesForDetail($parent_id){
+		$response = new stdClass();
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
+			->select('*')
+			->where('status','=', 1)
+			->where('id','=',$parent_id)->get();
 			$response->result = $result;
 		}catch (\Exception $e){
 			$response->result = 0;

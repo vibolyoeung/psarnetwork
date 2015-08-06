@@ -94,11 +94,11 @@ class FePageController extends BaseController {
 			->with('advHorizontalTopLarges', $advHorizontalTopLarges->result);
 	}
 
-	public function categoryCategoryPage($parent_id){
-		$Category = $this->mod_category->getMainCategories($parent_id);
-		return View::make('frontend.partials.categories.left')
-			->with('Categories', $listCategories->result);
-	}
+	// public function categoryCategoryPage($parent_id){
+	// 	$Category = $this->mod_category->getMainCategories($parent_id);
+	// 	return View::make('frontend.partials.categories.left')
+	// 		->with('detailCategory', $Category->result);
+	// }
 
 	public function mainCategory(){
 		$listCategories = self::getCategoriesHomePage();
@@ -160,7 +160,8 @@ class FePageController extends BaseController {
  		);
 
  		$productByCategory = $this->mod_product->findPostProductByCategory($category_id);
-
+ 		$Category = $this->mod_category->getMainCategories($parent_id);
+ 		$MainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($parent_id);
 		return View::make('frontend.modules.detail.index')
 				->with('Provinces', $this->mod_setting->listProvinces())
 				->with('advHorizontalTopLarges', $advHorizontalTopLarge->result)
@@ -171,6 +172,8 @@ class FePageController extends BaseController {
 				->with('advTops', $advTops->result)
 				->with('transferTypes', $this->mod_product->listAllTransferType())
 				->with('conditions', $this->mod_product->listAllConditions())
+				->with('detailCategory', $Category->result)
+				->with('MaindetailCategory', $MainCategoryDetail->result)
 				->with('productByCategory', $productByCategory);
 	}
 	

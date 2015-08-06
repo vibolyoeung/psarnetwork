@@ -3624,5 +3624,7 @@ ul#TapTitle > li.active > a{
     border: 1px solid #555;
     color: #000;
 }
-
+.panel-group{
+	margin-bottom: 0;
+}
 //=========Detail slile===//
