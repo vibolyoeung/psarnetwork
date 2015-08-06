@@ -10,30 +10,50 @@ class BeProductController extends BaseController {
 	
 	public function listAllProductsFree()
 	{
-		$tblProduct = Config::get ('constants.TABLE_NAME.PRODUCT');
-		$tblUser = Config::get ('constants.TABLE_NAME.USER');
-		$products = DB::table($tblProduct .' AS pro')
-			->join($tblUser .' AS u', 'u.id','=', 'pro.user_id')
-			->select(DB::raw('pro.id as pro_id, pro.*, u.*'))
-			->where('account_type', self::FREE_USER_ACCOUNT)
-			->orderBy('pro.id','desc')
-			->paginate(10);
+		$products = $this->searchOperation(self::FREE_USER_ACCOUNT);
+
 		return View::make(self::PRODUCT_FREE_PAGE)
 			->with('products', $products);
 	}
 
 	public function listAllProductsPremium()
 	{
-		$tblProduct = Config::get ('constants.TABLE_NAME.PRODUCT');
-		$tblUser = Config::get ('constants.TABLE_NAME.USER');
-		$products = DB::table($tblProduct .' AS pro')
-			->join($tblUser .' AS u', 'u.id','=', 'pro.user_id')
-			->select(DB::raw('pro.id as pro_id, pro.*, u.*'))
-			->where('account_type', self::PREMIUM_USER_ACCOUNT)
-			->orderBy('pro.id','desc')
-			->paginate(10);
+		$products = $this->searchOperation(self::PREMIUM_USER_ACCOUNT);
+		
 		return View::make(self::PRODUCT_PREMIUM_PAGE)
 			->with('products', $products);
+	}
+
+	private function searchOperation($accountType)
+	{
+		$tblProduct = Config::get ('constants.TABLE_NAME.PRODUCT');
+		$tblUser = Config::get ('constants.TABLE_NAME.USER');
+		$qb = DB::table($tblProduct .' AS pro');
+		$qb->join($tblUser .' AS u', 'u.id','=', 'pro.user_id');
+		$qb->select(DB::raw('pro.id as pro_id, pro.*, u.*'));
+		$qb->where('account_type', $accountType);
+
+		if (Input::has('title')) {
+			$qb->where('pro.title', Input::get('title'));
+		}
+
+		if (Input::has('client_name')) {
+			$qb->where('u.name', Input::get('client_name'));
+		}
+
+		if (Input::has('date_create')) {
+			$qb->where('pro.publish_date', Input::get('date_create'));
+		}
+
+		if (Input::has('status')) {
+			$status = (Input::get('status') == 1) ? 1 : 0;
+			$qb->where('pro.admin_status', $status);
+		}
+
+		$qb->orderBy('pro.id','desc');
+		$products = $qb->paginate(10);
+
+		return $products;
 	}
 
 	public function disableAndEnableProduct($page, $productid, $status)
