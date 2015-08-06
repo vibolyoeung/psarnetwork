@@ -51,34 +51,21 @@
 		<div class="col-lg-12 pull-right" style="padding: 0; margin: 0;">
 			<button type="submit"
 				class="btn btn-warning col-lg-12 ">
-				&nbsp;&nbsp;<b>Update</b>
+				&nbsp;&nbsp;<b>Search</b>
 			</button>
 		</div>
 	</div>
 	{{Form::close()}}
 </div>
-<div class="col-lg-12">
-	{{
-		Form::open(
-			[
-				'url'=> FeSearchController::getFullUrl(),
-				'method'=>'get',
-				'id' => 'displayFrm'
-			]
-		)
-	}}
-		<div class="btn-group col-lg-2" style="padding: 0; margin: 0;">
-			<label for="">Display:</label>
-			<select id="disply-number" name="displayNumber" class="form-control">
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="5">5</option>
-				<option value="20">20</option>
-				<option value="50">50</option>
-				<option value="100">100</option>
-				<option value="150">150</option>
-				<option value="200">200</option>
-			</select>
-		</div>
-	{{Form::close()}}
+<div class="col-lg-12"
+	<div class="btn-group col-lg-2" style="padding: 0; margin: 0;">
+		<label for="">Display:</label>
+		<select id="disply-number" name="displayNumber" class="form-control">
+			<option value="20">20</option>
+			<option value="50">50</option>
+			<option value="100">100</option>
+			<option value="150">150</option>
+			<option value="200">200</option>
+		</select>
+	</div>
 </div>

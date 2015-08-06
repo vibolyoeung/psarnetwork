@@ -11,6 +11,7 @@ class Product extends Eloquent{
 	const NEW_PRODUCT = 1;
 	const SECOND_HAND_PRODUCT = 2;
 	const PREMINUM = 2;
+	const LIST_NUMBER = 20;
 
 	public static $PRODUCT_STATUS = array(
 		1 => 'In Stock',
@@ -577,9 +578,12 @@ class Product extends Eloquent{
 	/**
 	 * Find product by location, type and keyword
 	 *
-	 * @param string $keyword
-	 * @param int $province
-	 * @param int $businessType
+	 * @param int    $province
+	 * @param int    $transferType
+	 * @param int    $condition
+	 * @param int    $price
+	 * @param string $date
+	 * @param int    $displayNumber
 	 *
 	 * @return array $products
 	 */
@@ -588,11 +592,11 @@ class Product extends Eloquent{
 		$transferType,
 		$condition,
 		$price,
-		$date
+		$date,
+		$displayNumber = null
 	) {
 
 		$productTable = Config::get('constants.TABLE_NAME.PRODUCT');
-		$products = [];
 
 		if ((int)$province === 0) {
 			$query = DB::table($productTable .' AS p');
@@ -612,11 +616,12 @@ class Product extends Eloquent{
 			}
 			$query->orderBy('p.id', 'DESC');
 
-			$data = $query->get();
-
-			if (!empty($data)) {
-				$products = $data;
+			$limitNumber = self::LIST_NUMBER;
+			if ($displayNumber !== null) {
+				$limitNumber = $displayNumber;
 			}
+			
+			return $query->paginate($limitNumber);
 		}
 
 		return $products;
