@@ -38,9 +38,10 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	</head>
 	<body>
-	<div id="login-container">
-		<div id="logo"></div>
-			<div id="login">
+	<div 
+		id="login-container"
+		style="border:2px solid #ddd; padding:10px; border-radius:5px;" 
+	>
 				<h3><span>Administrator</span></h3>
 				<h5>Please sign in to get access.</h5>
 				@if (Session::has('invalid'))
@@ -61,11 +62,7 @@
 				<div class="form-group">
 					<input name="remember_me" type="checkbox" <?php echo isset($_COOKIE['remember_username'])?"checked":"";?> /> Remembered me
 				</div>
-				<div class="form-group">
-					<a href="{{URL::to('admin/send-forget-password')}}" class="btn btn-default">Forgot Password?</a>
-				</div>
 			</form>
-		</div>
 	</div>
 	</body>
 </html>
