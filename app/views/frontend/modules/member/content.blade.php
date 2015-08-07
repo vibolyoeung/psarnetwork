@@ -228,9 +228,6 @@ var homePage = "{{Config::get('app.url')}}";
 																																																				$userOption = json_decode ( $dataStore->sto_value );
 																																																				$userLayout = @$userOption->layout;
 																																																				$userFooter = @$userOption->footer_text;
-																																																				$layoutOne = ($userLayout == Config::get ( 'constants.LAYOUT.layout1' )) ? true : false;
-																																																				$layoutTwo = ($userLayout == Config::get ( 'constants.LAYOUT.layout2' )) ? true : false;
-																																																				$layoutThree = ($userLayout == Config::get ( 'constants.LAYOUT.layout3' )) ? true : false;
 																																																				?>
 													
 <style>
@@ -259,7 +256,7 @@ ul.skin-colors {
 													<ul id="skin-colors" class="clearfix skin-colors">
 														@if(Config::get('constants.LAYOUT'))
 														@foreach(Config::get('constants.LAYOUT') as $skin)
-														<li><a class="skin-changer" data-skin="{{$skin['stylesheet']}}"
+														<li><a class="skin-changer {{($userLayout ==$skin['stylesheet']? 'active': '')}}" data-skin="{{$skin['stylesheet']}}"
 															data-toggle="tooltip" title=""
 															style="background-color: {{$skin['color']}};"
 															data-original-title=" {{$skin['name']}}"> </a></li>
@@ -384,7 +381,8 @@ $('#btnSaveTitle').click(function () {
  	//textFooter
   
     $('.skin-changer').click(function () {
-        //alert(1111);
+    	$('.skin-changer').removeClass('active');
+    	$(this).addClass('active');
         if($(this).attr("data-skin")) {
             $('.message-success').show();
             var styles = $(this).attr("data-skin");
@@ -393,7 +391,8 @@ $('#btnSaveTitle').click(function () {
         		type: "get",
         		dataType: "json",
         		async: false,
-        		success: function(data) {}
+        		success: function(data) {
+            	}
             });
             //$('.message-loading').hide();
             var userLayout = $( "link" ).hasClass( "user-layout" );
