@@ -204,7 +204,7 @@ You will be benefit with free account by posing free ,  owning page free .If you
     'banner_add_title' => 'Title',
     'banner_add_image' => 'Image',
     'banner_add_position' => 'Show at',
-    'banner_position_top_content' => 'Top content',
+    'banner_position_top_content' => 'Slideshow',
     'banner_position_left_side' => 'Left sidebar',
     'banner_position_right_side' => 'Right sidebar',
     'banner_position_footer' => 'Footer',
