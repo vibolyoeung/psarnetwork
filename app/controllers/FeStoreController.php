@@ -21,9 +21,19 @@ class FeStoreController extends BaseController {
 	public function index()
 	{
 	   try {
-           $storeID = Request::segment(2);
-           $where = array('id'=>$storeID);
-           $dataStore = $this->mod_store->getUserStore(null,$where);
+           $storeurl = Request::segment(2);
+           $getUlr = preg_match('/store-/',$storeurl);
+           if($getUlr) {
+           		$storeArr = explode('store-', $storeurl);
+           		$storeID = $storeArr[1];
+           		$where = array('id'=>$storeID);
+           		$dataStore = $this->mod_store->getUserStore(null,$where);
+           } else {
+           		$storeID = $storeurl;
+           		
+           		$where = array('sto_url'=>$storeID);
+           		$dataStore = $this->mod_store->getUserStore(null,$where);
+           }
            if(!empty($dataStore)) {
                 $dataStore = $dataStore;
            } else {

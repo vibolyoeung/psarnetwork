@@ -149,6 +149,7 @@ var homePage = "{{Config::get('app.url')}}";
 														style="display: inline-block;">
 														{{Config::get('app.url')}} <input type="text" id="addUrl"
 															class="form-control"
+															value="{{@$dataStore->sto_url}}"
 															placeholder="{{trans('register.TAB_SiteRUL')}}"
 															style="width: 200px; display: inline-block;"> <span
 															class="glyphicon glyphicon-remove form-control-feedback"

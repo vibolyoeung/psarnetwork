@@ -4,7 +4,7 @@ $userLayout = @$userOption->layout;
 if($userLayout) {
     $userLayout = $userLayout;
 } else {
-    $userLayout = Config::get('constants.LAYOUT.layout1');
+    $userLayout = @Config::get('constants.LAYOUT')[0]['stylesheet'];
 }
  ?>
 <!doctype html>
