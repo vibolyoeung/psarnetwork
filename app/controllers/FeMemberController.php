@@ -982,10 +982,16 @@ class FeMemberController extends BaseController {
 					break;
 				case 'checkaddURL' :
 					if ($userID && ! empty ( $MainMenu )) {
+						$getUserStore = $this->mod_store->getUserStore ( $userID );
+						
 						$whereUrl = array (
 								'sto_url' => $MainMenu 
 						);
-						$getURL = $this->mod_store->getStore ( $whereUrl );
+						$getURL = DB::table(Config::get('constants.TABLE_NAME.STORE'))
+				    	->select('*')
+				    	->where('sto_url', '=', $MainMenu)
+				    	->where('id', '!=', $getUserStore->id)
+				    	->first();
 						if (! empty ( $getURL )) {
 							$urlData = array (
 									'result' => 1 

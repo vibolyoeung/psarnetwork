@@ -145,7 +145,7 @@ var homePage = "{{Config::get('app.url')}}";
 													{{Config::get('app.url')}} <input type="text" id="addUrl" class="form-control" placeholder="{{trans('register.TAB_SiteRUL')}}" style="width:200px;display:inline-block;">
 													<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="false"></span>
 													</div>
-													<button id="btnSaveUrl" type="button" class="btn btn-default" style="margin-top:-4px;">
+													<button id="btnSaveUrl" type="button" class="btn btn-default" style="margin-top:-4px;display:none">
 														Save
 													</button>
 													
@@ -405,6 +405,7 @@ $('#btnSaveTitle').click(function () {
         		dataType: "json",
         		async: false,
         		success: function(data) {
+        			$("#btnSaveUrl").show();
             		if(data.result == 1) {
                 		$("#urlAdd").addClass('has-error').removeClass('has-success');
                 		$(".glyphicon").addClass('glyphicon-remove').removeClass('glyphicon-ok').show();
