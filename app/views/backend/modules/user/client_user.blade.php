@@ -10,54 +10,79 @@
     <div class="col-md-12 col-sm-12 col-sx-12">
         <div class="panel panel-default">
             <div class="panel-body">
-                <form>
+                <form
+                    action="{{URL::to('admin/users/clients')}}"
+                    method="get"
+                >
                     <div class="col-md-2">
                         <div class="form-group">
                             <label>Email</label>
-                            <input 
-                                type="text" 
-                                class="form-control" 
-                            />
+                            {{ Form::text(
+                                'email',
+                                Input::get('email'), 
+                                array(
+                                    'class' => 'form-control'
+                                )
+                            )}}
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label>Telephone</label>
-                            <input 
-                                type="text" 
-                                class="form-control" 
-                            />
+                            {{ Form::text(
+                                'telephone',
+                                Input::get('telephone'), 
+                                array(
+                                    'class' => 'form-control'
+                                )
+                            )}}
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label>Date Register</label>
-                            <input 
-                                type="text" 
-                                class="form-control" 
-                            />
+                            <label>Create Date</label>
+                            {{ Form::text(
+                                'date_create',
+                                Input::get('date_create'), 
+                                array(
+                                    'class' => 'form-control'
+                                )
+                            )}}
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label>Account Type</label>
-                            <select class="form-control">
-                                <option>Free</option>
-                                <option>Enterprise</option>
-                            </select>
+                            {{Form::select(
+                                'account_type', 
+                                array(
+                                    '' => 'Select',
+                                    1 => 'Free',
+                                    2 => 'Enterprise'
+                                ),
+                                Input::get('account_type'),
+                                array('class' => 'form-control')
+                            )}}
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label>Status</label>
-                            <select class="form-control">
-                                <option>Enable</option>
-                                <option>Disabled</option>
-                            </select>
+                            {{Form::select(
+                                'status', 
+                                array(
+                                    '' => 'Select',
+                                    1 => 'Enable',
+                                    2 => 'Disabled'
+                                ),
+                                Input::get('status'),
+                                array('class' => 'form-control')
+                            )}}
                         </div>
                     </div>
                     <div class="col-md-2">
                         <input
+                            name="btn_filter"
                             style="width:100%; margin-top:24px;"
                             type="submit" 
                             class="btn btn-primary"

@@ -34,19 +34,10 @@
 			</li>
 		</ul>
 	</div>
-	<div class="class-message">
-		<label>Message</label>
-		<span class="mg-number">5</span>
-		<b class="caret"></b>
-		<ul class="message-list">
-			<li><a href="#">Message One</a></li>
-			<li><a href="#">Message Two</a></li>
-		</ul>
-	</div>
 	<div class="class-alert">
 		<label>
 			<a target="_blank" class="view-site" href="{{URL::to('/')}}">
-				View Site
+				<i class="icon-leaf"></i> View Site
 			</a>
 		</label>
 	</div>

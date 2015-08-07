@@ -44,13 +44,45 @@ class BeUserController extends BaseController {
 	 * @return users object
 	 */
 	public function listClientUser(){
-		$clientUsers = $this->user->where('id','!=', Session::get('SESSION_USER_ID'))
-				->where('user_type', self::CLIENT_USER)
-				->orderBy('id','DESC')
-				->paginate(Config::get('constants.BACKEND_PAGINATION_USER'));
 		
+		$clientUsers = $this->searchOperation();
+
 		return View::make('backend.modules.user.client_user')
 			->with('clientUsers', $clientUsers);
+	}
+
+	private function searchOperation()
+	{
+		$tblUser = Config::get ('constants.TABLE_NAME.USER');
+		$qb = DB::table($tblUser);
+		$qb->where('id','!=', Session::get('SESSION_USER_ID'));
+		$qb->where('user_type', self::CLIENT_USER);
+
+		if (Input::has('email')) {
+			$qb->where('email', Input::get('email'));
+		}
+
+		if (Input::has('telephone')) {
+			$qb->where('telephone', Input::get('telephone'));
+		}
+
+		if (Input::has('date_create')) {
+			$qb->where('create_at', Input::get('date_create'));
+		}
+
+		if (Input::has('account_type')) {
+			$qb->where('account_type', Input::get('account_type'));
+		}
+
+		if (Input::has('status')) {
+			$status = (Input::get('status') == 1) ? 1 : 0;
+			$qb->where('status', $status);
+		}
+
+		$qb->orderBy('id','DESC');
+		$clients = $qb->paginate(Config::get('constants.BACKEND_PAGINATION_USER'));
+
+		return $clients;
 	}
 
 	/**

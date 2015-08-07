@@ -1,5 +1,9 @@
-    <?php 
-        $userHome = @Config::get('app.url').'page/'.$dataStore->id;
+    <?php
+    if(!empty($dataStore->sto_url)) {
+    	$userHome = @Config::get('app.url').'page/'.$dataStore->sto_url;
+    } else {
+    	$userHome = @Config::get('app.url').'page/store-'.$dataStore->id;
+    }
     ?>
 
 	@include('frontend.modules.store.partials.header')

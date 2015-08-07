@@ -10,14 +10,7 @@ class BeStoreController extends BaseController {
     
     public function listAllStoresFree()
     {
-        $tblStore = Config::get ('constants.TABLE_NAME.STORE');
-        $tblUser = Config::get ('constants.TABLE_NAME.USER');
-        $stores = DB::table($tblStore .' AS s')
-            ->join($tblUser .' AS u', 'u.id','=', 's.user_id')
-            ->select(DB::raw('s.id as store_id, s.*, u.*'))
-            ->where('u.account_type', self::FREE_USER_ACCOUNT)
-            ->orderBy('s.id','desc')
-            ->paginate(10);
+        $stores = $this->searchOperation(self::FREE_USER_ACCOUNT);
 
         return View::make(self::STORE_FREE_PAGE)
             ->with('stores', $stores);
@@ -25,16 +18,42 @@ class BeStoreController extends BaseController {
 
     public function listAllStoresPremium()
     {
-        $tblStore = Config::get ('constants.TABLE_NAME.STORE');
-        $tblUser = Config::get ('constants.TABLE_NAME.USER');
-        $stores = DB::table($tblStore .' AS s')
-            ->join($tblUser .' AS u', 'u.id','=', 's.user_id')
-            ->select(DB::raw('s.id as store_id, s.*, u.id as user_id, u.*'))
-            ->where('u.account_type', self::PREMIUM_USER_ACCOUNT)
-            ->orderBy('s.id','desc')
-            ->paginate(10);
+        $stores = $this->searchOperation(self::PREMIUM_USER_ACCOUNT);
+
         return View::make(self::STORE_PREMIUM_PAGE)
             ->with('stores', $stores);
+    }
+
+    private function searchOperation($accountType)
+    {
+        $tblStore = Config::get ('constants.TABLE_NAME.STORE');
+        $tblUser = Config::get ('constants.TABLE_NAME.USER');
+        $qb = DB::table($tblStore .' AS s');
+        $qb->join($tblUser .' AS u', 'u.id','=', 's.user_id');
+        $qb->select(DB::raw('s.id as store_id, s.*, u.id as user_id, u.*'));
+        $qb->where('u.account_type', $accountType);
+
+        if (Input::has('user_owner_page')) {
+            $qb->where('u.name', Input::get('user_owner_page'));
+        }
+
+        if (Input::has('page_title')) {
+            $qb->where('s.title_en', Input::get('page_title'));
+        }
+
+        if (Input::has('date_create')) {
+            $qb->where('u.create_at', Input::get('date_create'));
+        }
+
+        if (Input::has('status')) {
+            $status = (Input::get('status') == 1) ? 1 : 0;
+            $qb->where('u.status', $status);
+        }
+
+        $qb->orderBy('s.id','desc');
+        $stores = $qb->paginate(10);
+
+        return $stores;
     }
 
     public function disableAndEnableStore($page, $userid, $status)

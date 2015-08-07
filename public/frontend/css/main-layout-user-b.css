@@ -1,10 +1,11 @@
 a:link {
-color: #FF7E00;
+color: #fff;
 text-decoration:none;
 -webkit-transition:all 0.6s ease-out 0s;
 -moz-transition:all 0.6s ease-out 0s;
 transition:all 0.6s ease-out 0s;
 }
+
 a:hover {
 text-decoration: none;
 }
@@ -21,32 +22,36 @@ a img {
 border: 0;
 }
 .language-bar a {color: #fff;}
-.nav-tabs li span {color:#FF7E00!important}
-#footer,.sf-menu li:hover > a,.header_top {
-	background: #FF7E00!important;
+.header_top {
+	background: #2980b9!important;
 }
-.sf-menu a.home, .sf-menu > li > a.home.current{background-color: #FF7E00!important;}
-#header h1 a{color:#428bca}
+#header h1 a{color:#2980b9}
 
-
+#footer {
+	background: #2980b9!important;
+}
 
 #nav .bgnya {
 background-color:#2E2E2E!important;
-border-bottom:4px solid #FF7E00!important;
--moz-box-shadow:0 1px 6px #585858!important;
--webkit-box-shadow:0 1px 6px #585858!important;
-box-shadow:0 1px 6px #585858!important;
+border-bottom:4px solid #2980b9!important;
+box-shadow: none!important;
 }
 .popular-links {
-	background-color: #FF7E00;
+	background-color: #2980b9;
 	color: #ffffff;
 }
 .popular-links>.panel-heading:hover a {
 	text-decoration: underline;
-	color: #FF7E00;
+	color: #001966;
 }
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{  background-color: #337ab7!important;}
-#costomLayout .ui-sortable li{background: #428BCA!important}
-.register-form, .login-form {  border: 3px solid #428bca!important;}
-.category-tab ul.nav {border-bottom: 2px solid #428bca!important;}
-.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>li:hover,.dropdown-menu>li:focus {background-color: #428bca;color: #FFFFFF;}
+#costomLayout .ui-sortable li{background: #2980b9!important}
+.register-form, .login-form {  border: 3px solid #2980b9!important;}
+.category-tab ul.nav {border-bottom: 2px solid #2980b9!important;}
+.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>li:hover,.dropdown-menu>li:focus {background-color: #2980b9;color: #FFFFFF;}
+.sf-menu a.home, .sf-menu > li > a.home.current {background-color: #2980b9!important;}
+.sf-menu li:hover > a,
+.sf-menu li.sfHover > a,
+.sf-menu > li > a.current {background-color:#206491!important;color:#FFFFFF;}
+.carousel-indicators li.active{  background: #00008C!important;}
+.nav-tabs li span {color: #2980b9!important;}
