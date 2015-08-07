@@ -31,7 +31,7 @@ var homePage = "{{Config::get('app.url')}}";
 		<div class="register-form">
 			<!--login form-->
 			<div class="conent">
-				<div class="alert alert-success fade in" role="alert">
+				<div class="alert alert-info fade in" role="alert">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">
 							&times;
@@ -136,6 +136,22 @@ var homePage = "{{Config::get('app.url')}}";
 											<h3>
 												{{trans('register.TAB_Your_content_design')}}
 											</h3>
+											<div class="col-sm-12">
+												<fieldset>
+													<legend>
+														{{trans('register.TAB_SiteRUL')}}:
+													</legend>
+													<div  id="urlAdd" class="has-feedback" style="display: inline-block;">
+													{{Config::get('app.url')}} <input type="text" id="addUrl" class="form-control" placeholder="{{trans('register.TAB_SiteRUL')}}" style="width:200px;display:inline-block;">
+													<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="false"></span>
+													</div>
+													<button id="btnSaveUrl" type="button" class="btn btn-default" style="margin-top:-4px;">
+														Save
+													</button>
+													
+													<div class="clear"></div>
+												</fieldset>
+											</div>
 											<div class="col-sm-12">
 												<fieldset>
 													<legend>
@@ -380,7 +396,50 @@ $('#btnSaveTitle').click(function () {
         }
     });
     
-       
+ 	//Url Address btnSaveUrl
+    $('#addUrl').blur(function () {
+        if($(this).val()) {
+            $.ajax({
+        		url: homePage + "member/getsubmenu?type=checkaddURL&id="+$(this).val(),
+        		type: "get",
+        		dataType: "json",
+        		async: false,
+        		success: function(data) {
+            		if(data.result == 1) {
+                		$("#urlAdd").addClass('has-error').removeClass('has-success');
+                		$(".glyphicon").addClass('glyphicon-remove').removeClass('glyphicon-ok').show();
+                		$(".alert-danger").show();
+            		} else {
+            			$("#urlAdd").removeClass('has-error').addClass('has-success');
+            			$(".glyphicon").addClass('glyphicon-ok').removeClass('glyphicon-remove').show();
+            			$(".alert-success").show();
+            		}
+            	}
+            });
+        }
+    });
+
+ 	//Url Address save
+    $('#btnSaveUrl').click(function () {
+        if($('#addUrl').val()) {
+            $.ajax({
+        		url: homePage + "member/getsubmenu?type=addURL&id="+$('#addUrl').val(),
+        		type: "get",
+        		dataType: "json",
+        		async: false,
+        		success: function(data) {
+            		if(data.result == 1) {
+                		$("#urlAdd").addClass('has-error').removeClass('has-success');
+                		$(".alert-danger").show();
+            		} else {
+            			$("#urlAdd").removeClass('has-error').addClass('has-success');
+            			$(".alert-success").show();
+            		}
+            	}
+            });
+        }
+    });
+     	
     $("#PersonalForm").validate({
           rules: {
       FullName: {

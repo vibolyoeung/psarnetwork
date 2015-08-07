@@ -166,6 +166,25 @@ class Store extends Eloquent {
             $response->errorMsg = $e->getMessage();
         }
     }
+
+    
+    /**
+     * Get store by condition
+     *
+     * @author Socheat
+     * @return array()
+     */    
+    public function getStore($where){
+    	$result = DB::table(Config::get('constants.TABLE_NAME.STORE'))
+    	->select('*')
+    	->where($where)
+    	->first();
+    	if(!empty($result)) {
+    		return $result;
+    	} else {
+    		return false;
+    	}
+    }
     
     function normalize_str($str) {
         $invalid = array(

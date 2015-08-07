@@ -129,6 +129,7 @@ You will be benefit with free account by posing free ,  owning page free .If you
     'TAB_Your_content_design' => 'Your Content Page Design',
     'TAB_Your_your_logo_here' => 'Upload your logo here',
     'TAB_Your_banner_header' => 'Header banner',
+	'TAB_SiteRUL' => 'URL address',
 	'TAB_headerText' => 'Header title',
 	'TAB_headerText_desc' => 'Write your text header title here',
     'TAB_Your_banner_upload' => 'upload you header banner here (600px , 200px)',
