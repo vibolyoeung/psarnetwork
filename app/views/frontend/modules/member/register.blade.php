@@ -419,6 +419,7 @@ $(document).ready(function(){
 
     $("#District").change(function() {
             var gid = $('option:selected', this).attr('data-gps');
+            $("#latbox").val(gid);
             showAddress(gid);
     });
                    
