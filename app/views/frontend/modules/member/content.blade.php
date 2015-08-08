@@ -74,7 +74,7 @@ var homePage = "{{Config::get('app.url')}}";
 																src="{{Config::get('app.url')}}/upload/store/{{$dataStore->sto_banner}}"
 																style="max-width: 100%; max-height: 90px; height: 90px" />
 															@else <img
-																src="http://placehold.it/500x100&text=750px+x+90px"
+																src="http://placehold.it/500x100&text=840px+x+90px"
 																style="max-width: 100%; max-height: 90px; height: 90px" />
 															@endif
 														</div>

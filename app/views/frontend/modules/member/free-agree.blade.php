@@ -71,31 +71,46 @@
 									</div>
 									<div class="form-group">
 										<label for="BusinessSite" class="col-sm-4 control-label">
-											{{trans('register.agree_head_Logo')}}
+											{{trans('register.agree_head_Logo')}} <span class="label label-danger" style="color:#fff">{{trans('register.agree_logo_size')}}</span>
 										</label>
 										<div class="col-sm-8">
-											<input type="file" id="exampleInputFile" name="file"/>
+											<input type="file" id="exampleInputFile" name="file" class="form-control"/>
 										</div>
 									</div>
 								</div>
 								<div class="col-sm-6">
                                     <div class="form-group">
-										<label for="PageTitle" class="col-sm-4 control-label">
+										<label for="PageUrl" class="col-sm-4 control-label">
 											{{trans('register.agree_head_url')}}
 										</label>
 										<div class="col-sm-8">
-											<input type="text" name="sto_url" class="form-control" id="PageTitle" placeholder="{{trans('register.agree_head_url_placeholder')}}" aria-describedby="PageTitleStatus" required />
+											{{URL::to('/')}}/<div id="urlAdd" class="has-feedback"
+														style="display: inline-block;"><input 
+											style="width:150px;display: inline-block;" 
+											type="text" name="sto_url" 
+											class="form-control" 
+											id="PageUrl" 
+											placeholder="{{trans('register.agree_head_url_placeholder')}}" 
+											aria-describedby="PageTitleStatus" required />
+											<span
+												class="glyphicon glyphicon-remove form-control-feedback"
+												aria-hidden="false"></span></div>
                                             <?php if($errors->first('sto_url')):?>
                                                 <label class="error"><?php echo $errors->first('sto_url');?></label>
                                             <?php endif;?>
 										</div>
+										<style>
+										.has-error .form-control{  border-color: #a94442!important;}
+										.has-error .form-control-feedback{color:#a94442!important;}
+										.has-success .form-control-feedback {color: #3c763d!important;}
+										</style>
 									</div>
                                     <div class="form-group">
 										<label for="PageTitle" class="col-sm-4 control-label">
-											{{trans('register.agree_head_banner')}}
+											{{trans('register.agree_head_banner')}} <span class="label label-danger" style="color:#fff">{{trans('register.agree_banner_size')}}</span>
 										</label>
 										<div class="col-sm-8">
-											<input type="text" name="PageBanner" class="form-control" id="PageTitle" placeholder="{{trans('register.agree_head_banner')}}" aria-describedby="PageTitleStatus" required />
+											<input type="file" name="PageBanner" class="form-control" id="PageTitle" placeholder="{{trans('register.agree_head_banner')}}" aria-describedby="PageTitleStatus" required />
 										</div>
 									</div>
 								</div>
@@ -148,6 +163,31 @@ $(document).ready(function(){
   }
     });
   $("#AgreeForm").validate();
+
+	//Url Address btnSaveUrl
+  $('#PageUrl').blur(function () {
+      if($(this).val()) {
+          $.ajax({
+      		url: homePage + "member/geturladress?type=checkaddURL&id="+$(this).val(),
+      		type: "get",
+      		dataType: "json",
+      		async: false,
+      		success: function(data) {
+      			$("#btnSaveUrl").show();
+          		if(data.result == 1) {
+              		$("#urlAdd").addClass('has-error').removeClass('has-success');
+              		$(".glyphicon").addClass('glyphicon-remove').removeClass('glyphicon-ok').show();
+              		$(".alert-danger").show();
+          		} else {
+          			$("#urlAdd").removeClass('has-error').addClass('has-success');
+          			$(".glyphicon").addClass('glyphicon-ok').removeClass('glyphicon-remove').show();
+          			$(".alert-success").show();
+          		}
+          	}
+          });
+      }
+  });
+  
 });
 </script>
 @endsection

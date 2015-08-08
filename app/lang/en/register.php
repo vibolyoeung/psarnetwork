@@ -79,10 +79,12 @@ You will be benefit with free account by posing free ,  owning page free .If you
     'agree_head_title' => 'Page Title',
     'agree_head_Logo' => 'Logo',
     'agree_head_url' => 'Page Address',
-    'agree_head_url_placeholder' => 'www.khmerabba.com/dara shop',
+    'agree_head_url_placeholder' => 'darashop',
     'agree_head_banner' => 'Banner-Header',
     'agree_acept' => 'I agree to the term and condiction of Khmer Abba shoping',
     'agree_btn_submit' => 'Submit',
+	'agree_logo_size' => '(300x90)',
+	'agree_banner_size' => '(840x90)',
     
     /*BUTTON*/
     'BTN_NEXT' => 'Next',
