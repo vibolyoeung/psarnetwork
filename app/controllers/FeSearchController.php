@@ -134,6 +134,7 @@ class FeSearchController extends BaseController {
 		$price = Request::input('price');
 		$date = Request::input('date');
 		$displayNumber = Request::input('displayNumber');
+		$categorId = Request::input('categoryId');
 
 		$products = $this->mod_product->searchProductFromCategory(
 			$province,
@@ -143,6 +144,8 @@ class FeSearchController extends BaseController {
 			$date,
 			$displayNumber
 		);
+		$Category = $this->mod_category->getMainCategories($categorId);
+ 		$MainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($categorId);
 		return View::make('frontend.modules.search.index')
 			->with('slideshows', $listSlideshows->result)
 			->with('advVerticalRightSmalls', $advVerticalRightSmall->result)
@@ -152,6 +155,8 @@ class FeSearchController extends BaseController {
 			->with('products', $products)
 			->with('transferTypes', $this->mod_product->listAllTransferType())
 			->with('conditions', $this->mod_product->listAllConditions())
+			->with('detailCategory', $Category->result)
+			->with('MaindetailCategory', $MainCategoryDetail->result)
 			->with('Provinces', $this->mod_setting->listProvinces());
 	}
 }

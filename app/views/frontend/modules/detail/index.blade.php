@@ -16,7 +16,7 @@ Categories
 			@include('frontend.partials.categories.right')
 		</div>
 		<div class="col-lg-10"  style="padding-left:0;">
-			<div class="col-lg-12">
+			<div>
 				<!-- ============Slider end here========= -->
 				@include('frontend.partials.products.search')
 				<div class="features_items">
@@ -24,7 +24,7 @@ Categories
 						<div style="padding:0;">
 							<ul class="nav nav-tabs" style="background-color:#ddd;">
 								<li class="col-lg-2 pull-right">
-									<select id="disply-number" name="displayNumber" class="form-control">
+									<select id="disply-number" name="displayNumber" class="form-control form-select-khmerabba">
 										<option value="0" selected="selected">-Select-</option>
 										<option value="20">20</option>
 										<option value="50">50</option>

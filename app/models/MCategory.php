@@ -323,7 +323,7 @@ class MCategory extends Eloquent{
 			->where('parent_id','=',$parent)
 			->where('status','=',1)
 			->orderBy('name_en','asc')
-			->take(5)
+			->take(6)
 			->get();
 		}catch (\Exception $e){
 			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());

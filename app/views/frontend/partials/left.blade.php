@@ -14,7 +14,6 @@
 				      	<?php
 							 $subcategoriesobj = new MCategory();
 							 $sub = $subcategoriesobj->getSubCategories($categoriesList->id);
-							//if(count($sub) > 0){
 								echo '<ul class="dropdown_main_menu">';
 									foreach ($sub as $row){
 										echo '<li class="main_category"><a href='.URL::to('products/productbycategories/'.$row->id).'/0>'.$row->{'name_'.Session::get('lang')}.'</a>';
@@ -28,7 +27,6 @@
 									<?php
 									}
 								echo '</ul>';
-							//}
 						?>
 					</li>
 				@endforeach
