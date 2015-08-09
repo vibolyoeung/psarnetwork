@@ -462,6 +462,10 @@ class MCategory extends Eloquent{
 		return $response;
 	}
 
+	/**
+	* getMainCategoriesForDetail is function for getting menu in detail page of khmerabba
+	*
+	*/
 	public function getMainCategoriesForDetail($parent_id){
 		$response = new stdClass();
 		try {
@@ -477,6 +481,22 @@ class MCategory extends Eloquent{
 
 		return $response;
 	}
+
+
+	public function countCategory($categoryid){
+		$response = new stdClass();
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
+			->select('*')
+			->where('status','=', 1)
+			->where('parent_id','=',$categoryid)->count();
+		}catch (\Exception $e){
+			$result = 0;
+			$result->errorMsg = $e->getMessage();
+		}
+		return $result;
+	}
+
 
 
     /**

@@ -12,13 +12,22 @@
 					&nbsp;&nbsp;&nbsp;<span class="caret" ></span></strong>
 			</div>
 			<ul class="categories_menu">
-				@foreach ($detailCategory as $categoriesList)
-					<li class="dropdown-mainmenu">
-						<a href="<?php echo URL::to('products/productbycategories/'.$categoriesList->parent_id.'/'.$categoriesList->id); ?>">
-							<?php echo $categoriesList->{'name_'.Session::get('lang')};?>
-			      		</a>
-					</li>
-				@endforeach
+				<?php
+				$finalCategory = new MCategory();
+				if(count($detailCategory)){
+				?>
+					@foreach ($detailCategory as $categoriesList)
+						<li class="dropdown-mainmenu">
+							<a href="<?php echo URL::to('products/productbycategories/'.$categoriesList->parent_id.'/'.$categoriesList->id); ?>">
+								<?php echo $categoriesList->{'name_'.Session::get('lang')};?>
+				      		</a>
+						</li>
+					@endforeach
+				<?php
+				}else{
+					echo '<span class="price"><center>No Category</center></span>';
+				}
+				?>
 			</ul>
 		</div>
 		<!--=========Register seller============ -->

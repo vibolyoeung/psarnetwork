@@ -162,8 +162,13 @@ Route::group(array('before' => 'auth_member'), function () {
     );
 });
 
-Route::any('products/productbycategories/{cateID}/{id}',
-            'FePageController@getProductbyCategory'); 
+// Route::any('products/productbycategories/{cateID}/{id}',
+//             'FePageController@getProductbyCategory'); 
+
+Route::group(array('prefix' => 'products'), function () {
+    Route::any('/productbycategories/{cateID}', 'FePageController@getProductbyCategory'); 
+    Route::any('/productbycategories/{cateID}/{id}', 'FePageController@getProductbyCategory');
+} );
 
 /*===========Product Details==*/
 Route::group(array('prefix' => 'product'), function () {

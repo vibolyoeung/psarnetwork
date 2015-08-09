@@ -116,7 +116,7 @@ class FePageController extends BaseController {
 		return $Category;
 	}
 
-	public function getProductbyCategory($parent_id, $category_id){
+	public function getProductbyCategory($parent_id, $category_id=''){
  		$advHorizontalTopLarge = $this->mod_advertisment
  		->getAdvertisementHomePage(
  				self::HOMEPAGE,
@@ -160,8 +160,16 @@ class FePageController extends BaseController {
  		);
 
  		$productByCategory = $this->mod_product->findPostProductByCategory($category_id);
+
  		$Category = $this->mod_category->getMainCategories($parent_id);
  		$MainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($parent_id);
+ 		// var_dump($category_id);
+ 		//$this->mod_category->countCategory($category_id);die;
+ 		if($category_id=='' || $this->mod_category->countCategory($category_id) > 0){
+ 			$Category = $this->mod_category->getMainCategories($category_id);
+ 			$MainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($category_id);
+ 		}
+ 		
 		return View::make('frontend.modules.detail.index')
 				->with('Provinces', $this->mod_setting->listProvinces())
 				->with('advHorizontalTopLarges', $advHorizontalTopLarge->result)
@@ -176,10 +184,8 @@ class FePageController extends BaseController {
 				->with('MaindetailCategory', $MainCategoryDetail->result)
 				->with('productByCategory', $productByCategory);
 	}
-	
-	/*
-	 * 
-	 */
+
+
 	public function listSuppermarket($id=0){
 		$advTops = $this->mod_advertisment
 		->getAdvertisementHomePage(

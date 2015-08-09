@@ -16,10 +16,10 @@
 							 $sub = $subcategoriesobj->getSubCategories($categoriesList->id);
 								echo '<ul class="dropdown_main_menu">';
 									foreach ($sub as $row){
-										echo '<li class="main_category"><a href='.URL::to('products/productbycategories/'.$row->id).'/0>'.$row->{'name_'.Session::get('lang')}.'</a>';
+										echo '<li class="main_category"><a href='.URL::to('products/productbycategories/'.$row->id.'/1').'>'.$row->{'name_'.Session::get('lang')}.'</a>';
 									?>
 											<ul style="padding:0;border:0px solid red;" class="child-menu">
-												<?php 
+												<?php
 													$subcategoriesobj->getLastFinalCategories($row->id);
 												?>
 											</ul>

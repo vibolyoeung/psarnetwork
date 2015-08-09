@@ -23,7 +23,13 @@ Categories
 					<div class="category-tab lastest-post">
 						<div style="padding:0;">
 							<ul class="nav nav-tabs" style="background-color:#ddd;">
-								<li class="col-lg-2 pull-right">
+								<li>
+									<strong>View As : </strong>
+									<span id="grid_view">Grid View</span> |
+									<span id="list_view">List View</span> |
+									<span id="social_view">Social View</span>
+								</li>
+								<li class="col-lg-2">
 									<select id="disply-number" name="displayNumber" class="form-control form-select-khmerabba">
 										<option value="0" selected="selected">-Select-</option>
 										<option value="20">20</option>
@@ -32,12 +38,6 @@ Categories
 										<option value="150">150</option>
 										<option value="200">200</option>
 									</select>
-								</li>
-								<li>
-									<strong>View As : </strong>
-									<span id="grid_view">Grid View</span> |
-									<span id="list_view">List View</span> |
-									<span id="social_view">Social View</span>
 								</li>
 							</ul>
 						</div>
