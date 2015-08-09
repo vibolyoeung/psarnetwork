@@ -43,7 +43,7 @@
 			</a>
 		</div>
 		<div class="col-md-1 thumbnail panel-position">
-			<a href="#">
+			<a href="{{URL::to('admin/users/clients')}}">
 				<div class="caption">
 					{{HTML::image('backend/images/icons/client-user.png','Client User')}}
 					<strong>Client User</strong>
@@ -90,7 +90,7 @@
 			</a>
 		</div>
 		<div class="col-md-1 thumbnail panel-position">
-			<a href="#">
+			<a href="{{URL::to('admin/products/free')}}">
 				<div class="caption">
 						{{HTML::image('backend/images/icons/product.png','Category')}}
 						<strong>Product</strong>
