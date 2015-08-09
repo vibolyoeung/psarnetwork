@@ -270,6 +270,7 @@ class Store extends Eloquent {
             "’" => "-",
             "°" => "-",
             "º" => "-",
+        	" " => "",
         );
     
         $str = str_replace(array_keys($invalid), array_values($invalid), $str);

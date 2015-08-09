@@ -83,7 +83,7 @@ if($userLayout) {
         <!-- ============End header top here============== -->
         <div class="container" style="padding-left: 0;padding-right: 0;">
             <div class="container-fluid top-menu">
-                	<div class="col-lg-4">
+                	<div class="col-lg-3 col-md-4 col-sm-12">
     						<a class="store-logo" href="{{$userHome}}">
                             @if($dataStore->image)
                                 <img src="{{Config::get('app.url')}}{{'upload/store/'.$dataStore->image}}" class="storeLogo"/>
@@ -93,7 +93,7 @@ if($userLayout) {
                             <a>
     				</div>
     				
-    				<div class="col-lg-8">
+    				<div class="col-lg-9 col-md-8 col-sm-12">
     				    @if($dataStore->sto_banner)
                             <img src="{{Config::get('app.url')}}{{'upload/store/'.$dataStore->sto_banner}}" class="storeBanner"/>
                         @endif

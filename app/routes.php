@@ -136,6 +136,7 @@ Route::group(array('prefix' => 'member'), function () {
 	Route::any('/login', 'FeMemberController@index');
 	Route::any('/register','FeMemberController@register'); 
 	Route::any('/getdistrict','FeMemberController@getDistric');
+	Route::any('/geturladress','FeMemberController@checkUrlAddress');
 	Route::any('/getmarkettype/{id}','FeMemberController@getMarketType');
 	Route::any('/agreement/{usertype}','FeMemberController@agreement');
 });

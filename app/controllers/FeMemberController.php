@@ -41,7 +41,12 @@ class FeMemberController extends BaseController {
 				} else {
 					
 					$checkStore = $this->mod_store->getUserStore ( $result->id );
-					return Redirect::to ( 'page/' . $checkStore->id );
+					if(!empty($checkStore->sto_url)){
+						return Redirect::to ( 'page/' . $checkStore->sto_url);
+					} else {
+						return Redirect::to ( 'page/store-' . $checkStore->id );
+					}
+					
 				}
 			} else {
 				return Redirect::to ( 'member/login' )->with ( 'INVALID_LOGIN', 'Username and Password is invalid!' )->withInput ();
@@ -101,6 +106,8 @@ class FeMemberController extends BaseController {
 			$uid = $this->user->insertGetId ( $userArr );
 			/* add data for store */
 			if (! Input::has ( 'skipDetail' )) {
+				
+				/* upload logo */
 				$fileName = '';
 				if (Input::hasfile ( 'file' )) {
 					/* upload image */
@@ -114,14 +121,33 @@ class FeMemberController extends BaseController {
 					Image::make ( $destinationPath . $fileName )->resize ( Config::get ( 'constants.DIR_IMAGE.THUMB_WIDTH' ), Config::get ( 'constants.DIR_IMAGE.THUMB_HEIGTH' ) )->save ( $destinationPathThumb . $fileName );
 					/* end upload image */
 				}
+				/* end upload logo */
+				
+				/* upload logo */
+				$fileBanner = '';
+				if (Input::hasfile ( 'PageBanner' )) {
+					/* upload image */
+					$destinationPath = base_path () . Config::get ( 'constants.DIR_IMAGE.DIR_STORE' );
+					self::generateFolderUpload ( $destinationPath );
+					$destinationPathThumb = $destinationPath . 'thumb/';
+					$file = Input::file ( 'PageBanner' );
+					$fileBanner = $file->getClientOriginalName ();
+					$fileBanner = self::generateFileName ( $destinationPath, $fileBanner );
+					$file->move ( $destinationPath, $fileBanner );
+					Image::make ( $destinationPath . $fileBanner )->resize ( Config::get ( 'constants.DIR_IMAGE.THUMB_WIDTH' ), Config::get ( 'constants.DIR_IMAGE.THUMB_HEIGTH' ) )->save ( $destinationPathThumb . $fileBanner );
+					/* end upload image */
+				}
+				/* end upload logo */
+				
 				$whereData = array (
 						'user_id' => ( int ) Input::get ( 'uid' ),
 						'id' => ( int ) Input::get ( 'sid' ) 
 				);
+				$getUrl = $this->mod_store->normalize_str( Input::get ( 'sto_url' ) );
 				$storeData = array (
 						'title_en' => trim ( Input::get ( 'titleen' ) ),
-						'sto_url' => trim ( Input::get ( 'sto_url' ) ),
-						'sto_banner' => trim ( Input::get ( 'PageBanner' ) ),
+						'sto_url' => trim ( strtolower( $getUrl ) ),
+						'sto_banner' => $fileBanner,
 						'image' => trim ( $fileName ),
 						'user_id' => $uid,
 						'sup_id' => trim ( Input::get ( 'marketType' ) ),
@@ -1123,6 +1149,41 @@ class FeMemberController extends BaseController {
 		}
 		
 		return $fileName;
+	}
+	
+	/**
+	 * checkUrlAddress check for url address
+	 *
+	 * @return boolean
+	 * @access public
+	 * @method checkUrlAddress
+	 */
+	public function checkUrlAddress() {
+		$MainMenu = Input::get ( 'id' );
+		$getType = Input::get ( 'type' );
+		switch ($getType) {
+			case 'checkaddURL':
+				if (! empty ( $MainMenu )) {
+					$whereUrl = array (
+							'sto_url' => $MainMenu
+					);
+					$getURL = DB::table(Config::get('constants.TABLE_NAME.STORE'))
+					->select('*')
+					->where('sto_url', '=', $MainMenu)
+					->first();
+					if (! empty ( $getURL )) {
+						$urlData = array (
+								'result' => 1
+						);
+					} else {
+						$urlData = array (
+								'result' => 0
+						);
+					}
+				}
+				echo json_encode ( $urlData );
+				break;
+		}
 	}
 	
 	/**
