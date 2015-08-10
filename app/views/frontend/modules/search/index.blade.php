@@ -80,10 +80,10 @@ Categories
 					</div>
 				</div>
 				<div class="col-lg-12">
-								<div id="pagination">
-									{{$products->links()}}
-								</div>
-							</div>
+					<div id="pagination">
+						{{ $products->appends(Input::except('page'))->links(); }}
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
