@@ -253,6 +253,22 @@ class MPage extends Eloquent {
 						);
 						DB::table ( Config::get ( 'constants.TABLE_NAME.S_PAGE' ) )->insertGetId ( $data );
 					}
+				} else {
+					/*if not set to defualt*/
+					$dataDefualt = array('New Arrival Products', 'Hot Promotion Products', 'Secondhand Products', 'Monthly Pay  Products');
+					$i =0 ;
+					foreach ( $dataDefualt as $Widget ) {
+						$i ++;
+						/* add new */
+						$data = array (
+								'user_id' => $userID,
+								'title' => $Widget,
+								'order' => $i,
+								'type' => 'widget'
+						);
+						DB::table ( Config::get ( 'constants.TABLE_NAME.S_PAGE' ) )->insertGetId ( $data );
+					}
+					/*end if not set to defualt*/
 				}
 				$response->result = DB::table ( Config::get ( 'constants.TABLE_NAME.S_PAGE' ) )->select ( '*' )->where ( $where )->orderBy ( 'order', 'asc' )->get ();
 			} else {
@@ -293,7 +309,6 @@ class MPage extends Eloquent {
 			$response->result = 0;
 			$response->errorMsg = $e->getMessage ();
 		}
-		
 		return $response;
 	}
 	

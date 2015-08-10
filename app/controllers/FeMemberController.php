@@ -41,12 +41,11 @@ class FeMemberController extends BaseController {
 				} else {
 					
 					$checkStore = $this->mod_store->getUserStore ( $result->id );
-					if(!empty($checkStore->sto_url)){
-						return Redirect::to ( 'page/' . $checkStore->sto_url);
+					if (! empty ( $checkStore->sto_url )) {
+						return Redirect::to ( 'page/' . $checkStore->sto_url );
 					} else {
 						return Redirect::to ( 'page/store-' . $checkStore->id );
 					}
-					
 				}
 			} else {
 				return Redirect::to ( 'member/login' )->with ( 'INVALID_LOGIN', 'Username and Password is invalid!' )->withInput ();
@@ -143,10 +142,10 @@ class FeMemberController extends BaseController {
 						'user_id' => ( int ) Input::get ( 'uid' ),
 						'id' => ( int ) Input::get ( 'sid' ) 
 				);
-				$getUrl = $this->mod_store->normalize_str( Input::get ( 'sto_url' ) );
+				$getUrl = $this->mod_store->normalize_str ( Input::get ( 'sto_url' ) );
 				$storeData = array (
 						'title_en' => trim ( Input::get ( 'titleen' ) ),
-						'sto_url' => trim ( strtolower( $getUrl ) ),
+						'sto_url' => trim ( strtolower ( $getUrl ) ),
 						'sto_banner' => $fileBanner,
 						'image' => trim ( $fileName ),
 						'user_id' => $uid,
@@ -1013,11 +1012,7 @@ class FeMemberController extends BaseController {
 						$whereUrl = array (
 								'sto_url' => $MainMenu 
 						);
-						$getURL = DB::table(Config::get('constants.TABLE_NAME.STORE'))
-				    	->select('*')
-				    	->where('sto_url', '=', $MainMenu)
-				    	->where('id', '!=', $getUserStore->id)
-				    	->first();
+						$getURL = DB::table ( Config::get ( 'constants.TABLE_NAME.STORE' ) )->select ( '*' )->where ( 'sto_url', '=', $MainMenu )->where ( 'id', '!=', $getUserStore->id )->first ();
 						if (! empty ( $getURL )) {
 							$urlData = array (
 									'result' => 1 
@@ -1162,22 +1157,19 @@ class FeMemberController extends BaseController {
 		$MainMenu = Input::get ( 'id' );
 		$getType = Input::get ( 'type' );
 		switch ($getType) {
-			case 'checkaddURL':
+			case 'checkaddURL' :
 				if (! empty ( $MainMenu )) {
 					$whereUrl = array (
-							'sto_url' => $MainMenu
+							'sto_url' => $MainMenu 
 					);
-					$getURL = DB::table(Config::get('constants.TABLE_NAME.STORE'))
-					->select('*')
-					->where('sto_url', '=', $MainMenu)
-					->first();
+					$getURL = DB::table ( Config::get ( 'constants.TABLE_NAME.STORE' ) )->select ( '*' )->where ( 'sto_url', '=', $MainMenu )->first ();
 					if (! empty ( $getURL )) {
 						$urlData = array (
-								'result' => 1
+								'result' => 1 
 						);
 					} else {
 						$urlData = array (
-								'result' => 0
+								'result' => 0 
 						);
 					}
 				}

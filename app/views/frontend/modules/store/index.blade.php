@@ -159,8 +159,7 @@ $currentDate = date ( 'Y-m-d' );
 	</div>
 </div>
 {{$dataProduct->links()}} @if(!empty($widtget)) @foreach($widtget as
-$showWidtget) @if($showWidtget->status) @if($showWidtget->title == 'New
-Arrival Products')
+$showWidtget) @if($showWidtget->status) @if($showWidtget->title == 'New Arrival Products')
 @include('frontend.modules.store.partials.widget-new-arrival')
 @elseif($showWidtget->title == 'Hot Promotion Products')
 @include('frontend.modules.store.partials.widget-hot-promote')
