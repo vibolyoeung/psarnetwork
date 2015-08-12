@@ -420,15 +420,26 @@ class MCategory extends Eloquent{
 			if(count($results)>0){
 					$i = 1;
 					foreach ($results as $dropdownlist){
-					?>
-					 <li>
-						<a href="<?php echo URL::to('products/productbycategories/'.$id.'/'.$dropdownlist->id); ?>" >
-							<?php echo $dropdownlist->{'name_'.Session::get('lang')};?>
-						</a>
-					   </li>
-					<?php 
+						if($i<=10){
+							?>
+							<li>
+								<a href="<?php echo URL::to('products/productbycategories/'.$id.'/'.$dropdownlist->id); ?>" >
+									<?php echo $dropdownlist->{'name_'.Session::get('lang')};?>
+								</a>
+							</li>
+						<?php 
+						}
 						$i++;
 					}
+			}
+			if(count($results)>10){
+				?>
+				<li>
+					<a href="<?php echo URL::to('products/productbycategories/'.$id.'/1'); ?>" >
+						More...
+					</a>
+				</li>
+				<?php		
 			}
 		}catch (\Exception $e){
 			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
