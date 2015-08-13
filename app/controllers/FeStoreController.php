@@ -61,7 +61,7 @@ class FeStoreController extends BaseController {
 
             /*get user banner*/
             $getBanner = $this->mod_store->getStoreBanner($dataStore->id);
-           $dataUserPage = $this->mod_category->menuUserPage($dataStore->user_id, 2);
+           $dataUserPage = $this->mod_category->menuUserPage($dataStore->user_id, 2,$getUserUrl);
            $whereProduct = array(
             'user_id'=>$dataStore->user_id,
            );
@@ -140,7 +140,7 @@ class FeStoreController extends BaseController {
             );
             $getWidget = $this->mod_page->getUserPages(null, $widgetWhereArr);
             
- 		$dataUserPage = $this->mod_category->menuUserPage($dataStore->user_id, 2);
+ 		$dataUserPage = $this->mod_category->menuUserPage($dataStore->user_id, 2,$getUserUrl);
  		$dataDetailProduct = $this->mod_product->productDetailByOwnStore($product_id,$dataStore->user_id);
 		return View::make('frontend.modules.store.detail')
 			->with('dataStore', $dataStore)
@@ -176,7 +176,7 @@ class FeStoreController extends BaseController {
            }
            
             $dataProduct = $this->mod_product->findProductByCategory($store,$catArr);
-            $dataUserPage = $this->mod_category->menuUserPage($dataStore->user_id, 2);
+            $dataUserPage = $this->mod_category->menuUserPage($dataStore->user_id, 2,$getUserUrl);
            /* end get user cateory and sub*/
            
            return View::make('frontend.modules.store.search')
@@ -221,7 +221,7 @@ class FeStoreController extends BaseController {
             $getToolPage = $this->mod_page->getUserPages(null, $whereArr);
                 
                 
-           $dataUserPage = $this->mod_category->menuUserPage($dataStore->user_id, 2);
+           $dataUserPage = $this->mod_category->menuUserPage($dataStore->user_id, 2,$getUserUrl);
            return View::make('frontend.modules.store.page')
 						->with('dataStore', $dataStore)
                         ->with('dataCategory', $dataCategory)
