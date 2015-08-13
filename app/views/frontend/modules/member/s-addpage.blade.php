@@ -13,6 +13,7 @@
 @endsection @section('frontend.partials.left') @endsection @section('content')
 <?php
 function rm($article, $char) {
+	$article = preg_replace("/<img[^>]+\>/i", "(image) ", $article);
     if (strlen($article) > $char) {
         return substr($article, 0, $char) . '...';
     } else
