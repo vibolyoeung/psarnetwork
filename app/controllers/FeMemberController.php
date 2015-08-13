@@ -467,6 +467,24 @@ class FeMemberController extends BaseController {
 						'user_id' => $userID 
 				);
 				$getToolPage = $this->mod_page->getUserPages ( null, $whereArr );
+				if(empty($getToolPage->result)) {
+					/*if not set to defualt*/
+					$dataDefualt = array('tool_visitor_info'=>'Vistor Inormation Box', 'tool_memeber_status'=>'Member Status Box');
+					$i =0 ;
+					foreach ( $dataDefualt as $key => $Widget ) {
+						$i ++;
+						/* add new */
+						$dataNewTool = array (
+								'user_id' => $userID,
+								'title' => $Widget,
+								'order' => $i,
+								'position' => 100,
+								'type' => $key
+						);
+						DB::table ( Config::get ( 'constants.TABLE_NAME.S_PAGE' ) )->insertGetId ( $dataNewTool );
+					}
+					/*end if not set to defualt*/
+				}
 				return View::make ( 'frontend.modules.member.s-toolview' )->with ( 'maincategories', $listCategories->result )->with ( 'toolView', $getToolPage->result )->with ( 'dataStore', $getUserStore );
 				break;
 			

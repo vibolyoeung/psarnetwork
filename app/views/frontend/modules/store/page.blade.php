@@ -31,5 +31,26 @@
 	@include('frontend.modules.store.partials.slidebar.left_product_link')
 @endsection
 @section('right')
-	@include('frontend.modules.store.partials.slidebar.visitor_counter')
-@endsection
+<?php
+$memberTool = array ();
+if (! empty ( $toolView )) :
+	foreach ( $toolView as $tool ) :
+		if ($tool->type == 'tool_memeber_status' && $tool->status == 1) :
+			?>
+            @include('frontend.modules.store.partials.slidebar.visitor_counter')
+        
+		<?php 
+        endif;
+	endforeach
+	;
+
+endif;
+?>
+@if(!empty($banner))
+    @foreach($banner as $ban)
+        @if($ban->ban_position == 'rs')
+            @if($ban->ban_enddate >= $currentDate)
+<a class="banner-link" href="{{@$ban->ban_link}}" target="_blank"><img
+	src="{{Config::get('app.url')}}upload/user-banner/{{$ban->ban_image}}"
+	style="width: 100%;" /></a>
+@endif @endif @endforeach @endif @endsection
