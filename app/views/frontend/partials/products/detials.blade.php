@@ -19,8 +19,8 @@
 				</div>
 			</div>
 			<div class="col-lg-3 store-name">
-				<img src="{{Config::get('app.url')}}frontend/images/user_store.png" title="" alt="" style="float:left;"/>
-				<div class="col-lg-10 pull-right" style="margin-top:8px;"><b>Store Name</b></div>
+				<img src="{{Config::get('app.url')}}upload/store/{{$detailProduct->image}}" title="" alt="" />
+				<div class="col-lg-10 pull-right" style="margin-top:8px;"><b>{{$detailProduct->{'title_'.Session::get('lang')};}}</b></div>
 			</div>
 		</div>
 		<div class="clear"></div>
@@ -81,15 +81,23 @@
 									
 									<div class="col-lg-12 text-centered" style="border:1px solid #dddddd;background-color:#dddddd;padding:5px 10px;font-weight:bold;font-size:18px;">Current Price : <span class="price">{{$detailProduct->price}}$</span></div>
 									<div class="clear"></div>
-									<div>Genuine Price &nbsp;<span class="pro-condition">500$</span></div>
+									<div>Genuine Price &nbsp;<span class="pro-condition">{{$detailProduct->price}}$</span></div>
 									<div>Discount &nbsp;<span class="pro-condition">10%</span></div>
 									<div>Product ID   &nbsp;<span class="pro-condition">{{$detailProduct->id}}</span></div>
-									<div>View &nbsp;<span class="pro-condition">200</span></div>
+									<div>View &nbsp;<span class="pro-condition">{{$detailProduct->view}}</span></div>
 									<div>Post Date :&nbsp;<span class="pro-condition"><?php echo date("d/M/Y",strtotime($detailProduct->created_date)); ?> </span></div>
-									<div>Post by :&nbsp;<span class="pro-condition">KIMHIM</span></div>
-									<div>Location :&nbsp;<span class="pro-condition">Phnom Penh</span></div>
+									<div>Post by :&nbsp;<span class="pro-condition">{{$detailProduct->name}}</span></div>
+									<div>Location :&nbsp;<span class="pro-condition">
+										{{
+											FePageController::extractAddress($detailProduct->address);
+										}}
+									</span></div>
 									<div class="clear"></div>
-									<div class="col-lg-12 text-centered" style="background-color:#eea236;padding:5px 10px;text-align:center;"><a href="#" style="color:white;font-weight:bold;">www.khmerabba.com/kimhim</a></div>
+									<div class="col-lg-12 text-centered" style="background-color:#eea236;padding:5px 10px;text-align:center;">
+										<a href="{{Config::get('app.url')}}page/{{$detailProduct->sto_url;}}" style="color:white;font-weight:bold;">
+										{{Config::get('app.url')}}page/{{$detailProduct->sto_url;}}
+										</a>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -119,11 +127,7 @@
 				</ul>
 				<div id="productTabContent" class="tab-content">
 				   <div class="tab-pane fade in active" id="speification_detail">
-				      <p>Tutorials Point is a place for beginners in all technical areas. 
-				         This website covers most of the latest technoligies and explains 
-				         each of the technology with simple examples. You also have a 
-				         <b>tryit</b> editor, wherein you can edit your code and 
-				         try out different possibilities of the examples.</p>
+				      {{$detailProduct->description}}
 				   </div>
 				   <div class="tab-pane fade" id="picture_summary">
 				      <p>iOS is a mobile operating system developed and distributed by Apple 
@@ -133,16 +137,38 @@
 				         OS X operating system used on Apple computers.</p>
 				   </div>
 				   <div class="tab-pane fade" id="location_map">
-				      <p>jMeter is an Open Source testing software. It is 100% pure 
-				      Java application for load and performance testing.</p>
+				   		<?php $locationArr = json_decode($detailProduct->address); ?>
+				   		<input
+				   			type="text"
+				   			value="{{$locationArr->g_latitude_longitude}}"
+				   			name="gLatitudeLongitude"
+				   			class="hide"
+				   			id="latbox" 
+				   			aria-describedby="MappingAddressHereStatus"
+				   		/>
+				   		<span
+				   			data="MappingAddressHere"
+				   			class="glyphicon glyphicon-remove form-control-feedback"
+				   			aria-hidden="true"
+				   		></span>
+						<span id="MappingAddressHereStatus" class="sr-only">
+							(error)
+						</span>
+				      <div id="mapWrapper" style=""><div id="gmap" style="width: 100%; height: 375px"></div></div>
 				   </div>
 
 				   <div class="tab-pane fade" id="contact">
-				      <p>Contact to prodcut poster is add here</p>
+				   		<?php $contactInfo = json_decode($detailProduct->contact_info); ?>
+						<p><label>Contact Name:</label> {{$contactInfo->contactName}}</p>
+						<p><label>Contact Email:</label> {{$contactInfo->contactEmail}}</p>
+						<p><label>Telephone:</label> {{$contactInfo->contactHP}}</p>
+						<p><label>Location:</label> {{$contactInfo->contactLocation}}</p>
 				   </div>
 
 				   <div class="tab-pane fade" id="quotation">
-				      <p>Quotation will be here</p>
+				      	<a href="{{Config::get('app.url')}}upload/quotation/{{$detailProduct->file_quotation;}}">
+							{{$detailProduct->file_quotation;}}
+						</a>
 				   </div>
 				</div>
 				<script>

@@ -3605,6 +3605,10 @@ ul#TapTitle > li.active > a{
 .store-name{
 	border:1px solid #f7f7f5;
 	padding:5px;
+	text-align: center;
+}
+.store-name img {
+	max-width: 100px;
 }
 .right-ad-detail{
 	left:6px;

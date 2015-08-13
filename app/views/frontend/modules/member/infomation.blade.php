@@ -11,13 +11,7 @@
 	</li>
 </ol>
 @endsection @section('frontend.partials.left') @endsection @section('content')
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-{{HTML::script("frontend/js/map.js")}}
-<script type='text/javascript'>
-	
-var homePage = "{{Config::get('app.url')}}";
 
-</script>
 <div class="memberlogin">
 	<div class="col-sm-3">
 		@include('frontend.modules.member.layout.sidebar-setting')

@@ -280,6 +280,7 @@ class Product extends Eloquent{
 			->select('province_id','province_name')
 			->where('province_id', '=', $provinceId)
 			->first();
+
 		return $result->province_name;
 	}
 
@@ -438,8 +439,13 @@ class Product extends Eloquent{
 	public function findProductDetailById($product_id) {
 		$product = Config::get('constants.TABLE_NAME.PRODUCT');
 		$productCondition = Config::get('constants.TABLE_NAME.PRODUCT_CONDITION');
+		$store = Config::get('constants.TABLE_NAME.STORE');
+		$user = Config::get('constants.TABLE_NAME.USER');
 		return DB::table($product. ' AS p ')
+			->select('*')
+			->join($store . ' AS st', 'st.id', '=', 'p.store_id')
 			->join($productCondition . ' AS pcon', 'pcon.id', '=', 'p.pro_condition_id')
+			->join($user . ' AS u', 'u.id', '=', 'p.user_id')
 			->where('p.id', '=', $product_id)
 			->first();
 	}

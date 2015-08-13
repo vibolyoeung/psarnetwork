@@ -94,12 +94,6 @@ class FePageController extends BaseController {
 			->with('advHorizontalTopLarges', $advHorizontalTopLarges->result);
 	}
 
-	// public function categoryCategoryPage($parent_id){
-	// 	$Category = $this->mod_category->getMainCategories($parent_id);
-	// 	return View::make('frontend.partials.categories.left')
-	// 		->with('detailCategory', $Category->result);
-	// }
-
 	public function mainCategory(){
 		$listCategories = self::getCategoriesHomePage();
 		return View::make('frontend.partials.left')
@@ -161,13 +155,11 @@ class FePageController extends BaseController {
 
  		$productByCategory = $this->mod_product->findPostProductByCategory($category_id);
 
- 		$Category = $this->mod_category->getMainCategories($parent_id);
- 		$MainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($parent_id);
- 		// var_dump($category_id);
- 		//$this->mod_category->countCategory($category_id);die;
+ 		$category = $this->mod_category->getMainCategories($parent_id);
+ 		$mainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($parent_id);
  		if($category_id=='' || $this->mod_category->countCategory($category_id) > 0){
- 			$Category = $this->mod_category->getMainCategories($category_id);
- 			$MainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($category_id);
+ 			$category = $this->mod_category->getMainCategories($category_id);
+ 			$mainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($category_id);
  		}
  		
 		return View::make('frontend.modules.detail.index')
@@ -180,11 +172,17 @@ class FePageController extends BaseController {
 				->with('advTops', $advTops->result)
 				->with('transferTypes', $this->mod_product->listAllTransferType())
 				->with('conditions', $this->mod_product->listAllConditions())
-				->with('detailCategory', $Category->result)
-				->with('MaindetailCategory', $MainCategoryDetail->result)
+				->with('detailCategory', $category->result)
+				->with('MaindetailCategory', $mainCategoryDetail->result)
 				->with('productByCategory', $productByCategory);
 	}
 
+	public static function extractAddress($jsonAddress) {
+		$arrayAddress = json_decode($jsonAddress, true);
+		$provinceId = (int)$arrayAddress['province'];
+
+		return Product::findProvinceById($provinceId);
+	}
 
 	public function listSuppermarket($id=0){
 		$advTops = $this->mod_advertisment
