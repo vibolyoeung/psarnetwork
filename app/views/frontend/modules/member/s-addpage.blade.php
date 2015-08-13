@@ -97,7 +97,7 @@ function rm($article, $char) {
                                             <?php 
                                             $readmore = @rm($page->description, 100);
                                             ?>
-                                            <td>{{$readmore}}</td>
+                                            <td class="content-page">{{$readmore}}</td>
                                             <td>
                                                 <div class="dropdown">
                                                   <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -340,4 +340,9 @@ $(document).ready(function(){
             });
 });
 </script>
+<<style>
+<!--
+.content-page img {display: none}
+-->
+</style>
 @endsection
