@@ -115,7 +115,7 @@ class Store extends Eloquent {
             if(!empty($result->sto_url)) {
                 return Config::get('app.url').'page/'.$result->sto_url;
            } else {
-                return Config::get('app.url').'page/'.$id;
+                return Config::get('app.url').'page/store-'.$id;
                 //Config::get('app.url').'page/'.$dataStore->id;
            }
     }
