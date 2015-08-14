@@ -900,7 +900,7 @@ class FeMemberController extends BaseController {
 				case 'name' :
 					$Category = $this->mod_category->getCategoryById ( $MainMenu );
 					$subMmenu = array ();
-					if ($Category->result) {
+					if (!empty($Category->data)) {
 						foreach ( $Category as $subMenus ) {
 							$subMmenu [] = $subMenus;
 						}
