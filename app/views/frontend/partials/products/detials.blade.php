@@ -135,7 +135,10 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo">
-											<img src="{{Config::get('app.url')}}/upload/product/{{$image['pic']}}">
+											<img 
+												class="img-thumbnail img-responsive"
+												src="{{Config::get('app.url')}}/upload/product/{{$image['pic']}}"
+											>
 										</div>
 									</div>
 								</div>
