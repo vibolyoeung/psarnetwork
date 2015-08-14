@@ -126,15 +126,21 @@
 				   </li>
 				</ul>
 				<div id="productTabContent" class="tab-content">
-				   <div class="tab-pane fade in active" id="speification_detail">
+				   	<div class="tab-pane fade in active" id="speification_detail">
 				      {{$detailProduct->description}}
-				   </div>
-				   <div class="tab-pane fade" id="picture_summary">
-				      <p>iOS is a mobile operating system developed and distributed by Apple 
-				         Inc. Originally released in 2007 for the iPhone, iPod Touch, and 
-				         Apple TV. iOS is derived from OS X, with which it shares the 
-				         Darwin foundation. iOS is Apple's mobile version of the 
-				         OS X operating system used on Apple computers.</p>
+				    </div>
+					<div class="tab-pane fade" id="picture_summary">
+						@foreach($images as $image)
+							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo">
+											<img src="{{Config::get('app.url')}}/upload/product/{{$image['pic']}}">
+										</div>
+									</div>
+								</div>
+							</div>
+						@endforeach
 				   </div>
 				   <div class="tab-pane fade" id="location_map">
 				   		<?php $locationArr = json_decode($detailProduct->address); ?>
