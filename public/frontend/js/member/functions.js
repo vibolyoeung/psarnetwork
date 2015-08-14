@@ -79,7 +79,7 @@ function getDataSelect(id, eTo) {
 		dataType : "json",
 		async : false,
 		success : function(data) {
-			if (data) {
+			if (data[0]) {
 				str.push({
 					id : data[0].id,
 					name : data[0].name_en
