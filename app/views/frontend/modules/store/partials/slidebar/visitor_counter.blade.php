@@ -3,10 +3,18 @@
 		Vistor Counter
 	</label>
 	<!--category-products-->
-	<div class="panel panel-default popular-links">
-		<span style="color: black;">Total Vistor &nbsp;: &nbsp;</span><span style="color: red;"> 300</span><br />
-		<span style="color: red;">&nbsp;Cambodia &nbsp; &nbsp; : &nbsp; &nbsp;150</span><br />
-		<span style="color: red;">&nbsp;Foriegner &nbsp; &nbsp; &nbsp;: &nbsp; &nbsp;150</span><br />
-		<span style="color: red;">&nbsp;User Online &nbsp;: &nbsp; &nbsp;10 &nbsp;Connector&nbsp;</span><br />
+	<div class="panel panel-default popular-links" style="color:#000;padding:5px">
+		<p>
+		Company Name: the name of company <br />
+Contact person: Dara <br />
+Tel: 015308248<br />
+Email: soungsomoeun@gmail.com<br />
+Location: Pnom Penh 
+		
+		</p>
+		<span style="color: black;">Member Since: &nbsp;</span><span style="color: red;"> 1-jan-20</span><br />
+		<span style="color: red;">Account Type: &nbsp; &nbsp;Free</span><br />
+		<span style="color: red;">Access Log: &nbsp; &nbsp;15</span><br />
+		<span style="color: red;">Last Login: &nbsp; &nbsp;10 &nbsp;</span><br />
 	</div>
 </div>
