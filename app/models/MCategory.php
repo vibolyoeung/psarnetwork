@@ -316,14 +316,13 @@ class MCategory extends Eloquent{
 	 * @access public
 	 */
 
-	public function getSubCategories($parent){
+	public function getSubCategories($parent=0){
 		try {
 			$result = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
 			->select('id','name_en','name_km','status','parent_id')
 			->where('parent_id','=',$parent)
 			->where('status','=',1)
 			->orderBy('name_en','asc')
-			->take(6)
 			->get();
 		}catch (\Exception $e){
 			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());

@@ -108,10 +108,22 @@ class FeStoreController extends BaseController {
 		return View::make ( 'frontend.modules.detail.index' )->with ( 'Provinces', $this->mod_setting->listProvinces () );
 	}
 	public function myDetail($store, $product_id) {
-		$where = array (
-				'id' => $store 
-		);
-		$dataStore = $this->mod_store->getUserStore ( null, $where );
+		$getUlr = preg_match ( '/store-/', $store );
+		if ($getUlr) {
+			$storeArr = explode ( 'store-', $store );
+			$storeID = $storeArr [1];
+			$where = array (
+					'id' => $storeID 
+			);
+			$dataStore = $this->mod_store->getUserStore ( null, $where );
+		} else {
+			$storeID = $store;
+			
+			$where = array (
+					'sto_url' => $storeID 
+			);
+			$dataStore = $this->mod_store->getUserStore ( null, $where );
+		}
 		$getUser = $this->user->getUser ( $dataStore->user_id );
 		$getUserUrl = $this->mod_store->getStoreUrl ( $dataStore->id );
 		if ($getUser->result->account_type == 2) {
@@ -136,10 +148,22 @@ class FeStoreController extends BaseController {
 		return View::make ( 'frontend.modules.store.detail' )->with ( 'dataStore', $dataStore )->with ( 'dataUserPage', $dataUserPage )->with ( 'dataCategory', $dataCategory )->with ( 'toolView', $getToolPage->result )->with ( 'widtget', $getWidget->result )->with ( 'dataProductDetail', $dataDetailProduct );
 	}
 	public function searchUserPropuctByCategory($store, $label) {
-		$where = array (
-				'id' => $store 
-		);
-		$dataStore = $this->mod_store->getUserStore ( null, $where );
+		$getUlr = preg_match ( '/store-/', $store );
+		if ($getUlr) {
+			$storeArr = explode ( 'store-', $store );
+			$storeID = $storeArr [1];
+			$where = array (
+					'id' => $storeID 
+			);
+			$dataStore = $this->mod_store->getUserStore ( null, $where );
+		} else {
+			$storeID = $store;
+			
+			$where = array (
+					'sto_url' => $storeID 
+			);
+			$dataStore = $this->mod_store->getUserStore ( null, $where );
+		}
 		if (! empty ( $dataStore )) {
 			/* get user cateory and sub */
 			$getCategoryByName = $this->mod_category->getCategoryByName ( $label, $dataStore->user_id );
@@ -164,7 +188,11 @@ class FeStoreController extends BaseController {
 			$dataProduct = $this->mod_product->findProductByCategory ( $store, $catArr );
 			$dataUserPage = $this->mod_category->menuUserPage ( $dataStore->user_id, 2, $getUserUrl );
 			/* end get user cateory and sub */
-			
+			$whereArr = array (
+					'position' => 100,
+					'user_id' => $dataStore->user_id
+			);
+			$getToolPage = $this->mod_page->getUserPages ( null, $whereArr );
 			return View::make ( 'frontend.modules.store.search' )->with ( 'dataStore', $dataStore )->with ( 'dataUserPage', $dataUserPage )->with ( 'dataCategory', $dataCategory )->with ( 'toolView', $getToolPage->result )->with ( 'dataProduct', $dataProduct );
 		}
 	}
