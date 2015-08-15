@@ -876,5 +876,32 @@ class MCategory extends Eloquent{
 			$response->errorMsg = $e->getMessage();
 		}
         return $response;
-    }             
+    } 
+
+
+    public function getClientType(){
+    	try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.CLIENT_TYPE'))
+			->select('*')
+			->orderBy('id','DESC')
+			->get();
+		}catch (\Exception $e){
+		  $result = array();
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+		}
+		return $result;
+    }
+
+
+    public function getProductTransfterType(){
+    	try {
+			$results = DB::table(Config::get('constants.TABLE_NAME.PRODUCT_TRANSFER_TYPE'))
+			->select('*')
+			->get();
+		}catch (\Exception $e){
+		  $result = array();
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+		}
+		return $results;
+    }
 }

@@ -5,8 +5,8 @@
 	<li class="active">Supper Market</li>
 </ol>
 @endsection @section('content')
-<div class="col-lg-12">
-	<div class="col-lg-1" style="border: 1px solid red;">Lefe</div>
+{{ App::make('FePageController')->mainCategory() }}
+<div class="col-lg-10">
 	<div class="col-sm-10">
 		<div class="features_items">
 		 	@foreach($listMarket as $markets)
@@ -52,7 +52,6 @@
 			@endforeach
 		</div>
 	</div>
-	<div class="col-lg-1" style="border: 1px solid red;">Right</div>
 </div>
 
 <!-- Modal -->
@@ -180,4 +179,13 @@
 	href="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.css">
 <script
 	src="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.js"></script>
+	{{HTML::script('frontend/js/jquery.js')}}
+<script>
+	jQuery(document).ready(function(){
+		jQuery("#menu_toogle").css('cursor','pointer');
+		jQuery("#menu_toogle").click(function(){
+			jQuery(".categories_menu").toggle("slow");
+		});
+	});
+</script>
 

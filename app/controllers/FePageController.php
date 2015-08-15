@@ -62,14 +62,22 @@ class FePageController extends BaseController {
 				1
 			);
 
+		
+
+
 		return View::make('frontend.partials.home')
 			->with('slideshows', $listSlideshows->result)
 			->with('advVerticalRightSmalls', $advVerticalRightSmall->result)
 			->with('advVerticalLeftSmalls', $advVerticalLeftSmall->result)
 			->with('advHorizontalLargeCenters', $advHorizontalLargeCenter->result)
 			->with('advTops', $advTops->result)
+			->with('client_type',$this->mod_category->getClientType())
+			->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
 			->with('Provinces', $this->mod_setting->listProvinces());
 	}
+
+
+
 
 	public function getFeAds($type, $position, $limit) {
 		$advs = $this->mod_advertisment
@@ -174,6 +182,8 @@ class FePageController extends BaseController {
 				->with('conditions', $this->mod_product->listAllConditions())
 				->with('detailCategory', $category->result)
 				->with('MaindetailCategory', $mainCategoryDetail->result)
+				->with('client_type',$this->mod_category->getClientType())
+				->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
 				->with('productByCategory', $productByCategory);
 	}
 
@@ -195,6 +205,9 @@ class FePageController extends BaseController {
 		$marketLists = $this->mod_market->listingMarkets();
 		return View::make('frontend.partials.suppermarket')
 		->with('listMarket',$marketLists->data)
+		->with('client_type',$this->mod_category->getClientType())
+		->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
+		->with('conditions', $this->mod_product->listAllConditions())
 		->with('advTops', $advTops->result);
 	}
 	
@@ -209,6 +222,8 @@ class FePageController extends BaseController {
 		$detailProduct = $this->mod_product->findProductDetailById($product_id);
 		return View::make('frontend.partials.products.detials')
 					->with('advTops', $advTops->result)
+					->with('client_type',$this->mod_category->getClientType())
+					->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
 					->with('detailProduct', $detailProduct);
 	}
     

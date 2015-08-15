@@ -16,20 +16,15 @@
 			<div class="collapse navbar-collapse menu-top" id="dropdown-thumbnail-preview">
 				<ul class="nav navbar-nav top_menu_list">
 					<li><a href="#"><img src="{{Config::get('app.url')}}frontend/images/icons/basket.png" alt="" title="" height="23"/></a></li>
-					<li><a href="{{Config::get('app.url')}}product/list/10">Super Market</a></li>
-					<li><a href="{{Config::get('app.url')}}product/list/10">TraditionalMarket</a></li>
-					<li><a href="{{Config::get('app.url')}}product/list/10">PrivateCompany</a></li>
-					<li><a href="{{Config::get('app.url')}}product/list/10">Home Shop</a></li>
-					<li><a href="{{Config::get('app.url')}}product/list/10">Individual</a></li>
+					@foreach($client_type as $client_type)
+						<li><a href="{{Config::get('app.url')}}product/list/{{$client_type->id}}">{{$client_type->name}}</a></li>
+					@endforeach
 				</ul>
 				<ul class="nav navbar-nav menu_right_section pull-right">
 					<li style="border-left:1px solid #ddd;"><a href="#"><img src="{{Config::get('app.url')}}frontend/images/icons/money.png" height="23" /></a></li>
-					<li><a href="{{Config::get('app.url')}}product/list/10">Hot Promotion</a></li>
-					<li><a href="{{Config::get('app.url')}}product/list/10">New Arrival</a></li>
-					<li><a href="{{Config::get('app.url')}}product/list/10">Secondhand</a></li>
-					<li><a href="{{Config::get('app.url')}}product/list/10">Buy</a></li>
-					<li><a href="{{Config::get('app.url')}}product/list/10">Sell</a></li>
-					<li><a href="{{Config::get('app.url')}}product/list/10">Monthly Pay</a></li>
+					@foreach($pro_transfer_type as $pro_transfer_types)
+						<li><a href="{{Config::get('app.url')}}product/list/{{$pro_transfer_types->ptt_id}}">{{$pro_transfer_types->name}}</a></li>
+					@endforeach
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->

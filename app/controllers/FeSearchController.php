@@ -157,6 +157,8 @@ class FeSearchController extends BaseController {
 			->with('conditions', $this->mod_product->listAllConditions())
 			->with('detailCategory', $Category->result)
 			->with('MaindetailCategory', $MainCategoryDetail->result)
+			->with('client_type',$this->mod_category->getClientType())
+			->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
 			->with('Provinces', $this->mod_setting->listProvinces());
 	}
 }

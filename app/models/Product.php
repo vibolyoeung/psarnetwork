@@ -596,7 +596,7 @@ class Product extends Eloquent{
 	 * @return array $products
 	 */
 	public function searchProductFromCategory(
-		$province,
+		$location,
 		$transferType,
 		$condition,
 		$price,
@@ -606,7 +606,7 @@ class Product extends Eloquent{
 
 		$productTable = Config::get('constants.TABLE_NAME.PRODUCT');
 
-		if ((int)$province === 0) {
+		if ((int)$location === 0) {
 			$query = DB::table($productTable .' AS p');
 			$query->select('*');
 			$query->where('p.is_publish', '=', self::IS_PUBLISH);
