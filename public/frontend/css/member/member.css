@@ -3,3 +3,32 @@
 .storeLogo {height: 90px;}
 .user-menu .dropdown-menu.open {display:block!important}
 .storeBanner{height: 90px;}
+
+.panel-heading {
+  position: relative;
+  height: 50px;
+  padding: 0;
+}
+.panel-title {
+  font-weight: 300;
+  padding: 0 20px 0 20px;
+  font-size: 1.416em;
+  line-height: 50px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}	
+.panel-control {
+  height: 100%;
+  position: relative;
+  float: right;
+  padding: 0 15px;
+}
+.panel-control:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  left: -1em;
+  position: relative;
+}

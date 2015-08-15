@@ -1,6 +1,10 @@
 <?php
 // This is the EN one.
 return array(
+	'enable' => 'Enable',
+	'disable' => 'Disable',
+	'status' => 'Status',
+		
 	'Register_Header' => 'Register Form',
 	'Try_It_Today' => 'Try It Today',
 	'Tracking_The_Store' => 'Tracking The Store',
@@ -177,6 +181,8 @@ You will be benefit with free account by posing free ,  owning page free .If you
     
     /*create user page*/
     'acc_page_title' => 'Create new page',
+    'acc_eidt_page_title' => 'Edit page',
+    'acc_page_status' => 'Status',
     'acc_page_name' => 'Title',
     'acc_page_body' => 'Content',
     
