@@ -177,7 +177,7 @@ $showWidtget) @if($showWidtget->status) @if($showWidtget->title == 'New Arrival 
 @endif
 </div>
 @endsection @section('left')
-@include('frontend.modules.store.partials.slidebar.left_product_link')
+@include('frontend.modules.store.partials.slidebar.visitor_counter')
 
 @if(!empty($banner)) @foreach($banner as $ban) @if($ban->ban_position ==
 'ls') @if($ban->ban_enddate >= $currentDate)
@@ -196,7 +196,7 @@ if (! empty ( $toolView )) :
 	foreach ( $toolView as $tool ) :
 		if ($tool->type == 'tool_memeber_status' && $tool->status == 1) :
 			?>
-            @include('frontend.modules.store.partials.slidebar.visitor_counter')
+            @include('frontend.modules.store.partials.slidebar.left_product_link')
         
 		<?php 
         endif;
