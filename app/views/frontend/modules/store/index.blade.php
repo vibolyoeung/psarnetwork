@@ -12,6 +12,12 @@
 <?php
 date_default_timezone_set ( 'Asia/Phnom_Penh' );
 $currentDate = date ( 'Y-m-d' );
+
+if(!empty($dataStore->sto_url)) {
+	$userHome = @Config::get('app.url').'page/'.$dataStore->sto_url;
+} else {
+	$userHome = @Config::get('app.url').'page/store-'.$dataStore->id;
+}
 ?>
 <div class="col-sm-8">
 	<div class="category-tab lastest-post">
@@ -120,7 +126,7 @@ $currentDate = date ( 'Y-m-d' );
 						<div class="single-products">
 							<div class="productinfo text-center">
 								<a
-									href="{{Config::get('app.url')}}page/{{$product->store_id}}/my/detail/{{$product->id}}">
+									href="{{$userHome}}/my/detail/{{$product->id}}">
 									@if($product->thumbnail) <img
 									src="{{Config::get('app.url')}}upload/product/thumb/{{$product->thumbnail}}"
 									alt="{{$product->title}}" /> @else <img
@@ -130,7 +136,7 @@ $currentDate = date ( 'Y-m-d' );
 								<h2>{{$product->title}}</h2>
 								<p>{{$product->price}} $</p>
 								<a
-									href="{{Config::get('app.url')}}page/{{$product->store_id}}/my/detail/{{$product->id}}">View
+									href="{{$userHome}}/my/detail/{{$product->id}}">View
 									Details</a>
 							</div>
 							<img
