@@ -111,6 +111,16 @@ return array (
 						'stylesheet' => 'main-layout-user-h.css',
 						'color' => '#808080',
 						'name' => trans('register.TAB_Layout_h')
+				),
+				8 => array (
+						'stylesheet' => 'main-layout-user-i.css',
+						'color' => '#F52887',
+						'name' => trans('register.TAB_Layout_i')
+				),
+				9 => array (
+						'stylesheet' => 'main-layout-user-j.css',
+						'color' => '#800080',
+						'name' => trans('register.TAB_Layout_j')
 				)
 		) 
 );

@@ -148,6 +148,8 @@ You will be benefit with free account by posing free ,  owning page free .If you
 	'TAB_Layout_f' => 'Dark yellow',
 	'TAB_Layout_g' => 'Dark Red',
 	'TAB_Layout_h' => 'Grey',
+	'TAB_Layout_i' => 'Pink',
+	'TAB_Layout_j' => 'Purple',
     'TAB_Layout_footer' => 'Footer',
     'TAB_Layout_footer_placeholder' => 'EX :   Khmer Phone  999 (Buy and Sell all kind of phone )',
     'TAB_Layout_footer_desc' => 'Write your text footer here',

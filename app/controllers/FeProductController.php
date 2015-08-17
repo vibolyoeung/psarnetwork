@@ -5,6 +5,7 @@ class FeProductController extends BaseController {
     private  $mod_product;
     protected $mod_category;
     protected $mod_store;
+    protected $mod_page;
 
     const FREE_ACCOUNT = 1;
     const ENTERPRISE_ACCOUNT = 2;
@@ -18,6 +19,7 @@ class FeProductController extends BaseController {
         $this->mod_product = new Product();
         $this->mod_category = new MCategory();
         $this->mod_store = new Store();
+        $this->mod_page = new MPage ();
     }
 
     /**
@@ -61,6 +63,7 @@ class FeProductController extends BaseController {
      *@return Response
      */
     public function addProduct() {
+    	$userID = Session::get('currentUserId');
         if(Input::has('btnAddProduct')) {
             $files = Input::file('file');
             $filesQuotation = Input::file('quotation');
@@ -87,12 +90,12 @@ class FeProductController extends BaseController {
         if (self::FREE_ACCOUNT === (int)Session::get('currentUserAccountType')) {
             $listCategories = $this->mod_category->fetchCategoryTree();
         } else {
-            $listCategories = $this->mod_product->fetchCategoryTree();
+            $listCategories = $this->mod_product->getCategoryTree( $userID, $parent = 0 );
+            //$listCategories = $this->mod_page->getUserPages ( $userID );
         }
         
         $productTransferTypes = $this->mod_product->findAllTransferType();
         $productCondictions = $this->mod_product->findAllCondition();
-        $userID = Session::get('currentUserId');
         $getUserStore = $this->mod_store->getUserStore($userID);
 
         return View::make('frontend.modules.product.new_product')

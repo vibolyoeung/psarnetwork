@@ -13,7 +13,7 @@ $PayMonthly = $thisProduct->listAllProductsByOwnStore($wherePayMonthly);
 			<li>Products : <span class="number-display">25</span></li>
 		</ul>
 		<div class="col-lg-12" style="padding:0;">
-		@if(count($PayMonthly)>1)
+		@if(count($PayMonthly)>0)
                 <?php
                 //var_dump($dataProduct);
                  $i=1;?>

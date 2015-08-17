@@ -84,18 +84,21 @@ if($userLayout) {
         <div class="container" style="padding-left: 0;padding-right: 0;">
             <div class="container-fluid top-menu">
                 	<div class="col-lg-3 col-md-4 col-sm-12">
-    						<a class="store-logo" href="{{$userHome}}">
                             @if($dataStore->image)
-                                <img src="{{Config::get('app.url')}}{{'upload/store/'.$dataStore->image}}" class="storeLogo"/>
+                                <a class="store-logo" href="{{$userHome}}">
+                                	<img src="{{Config::get('app.url')}}{{'upload/store/'.$dataStore->image}}" class="storeLogo"/>
+                                </a>
                             @else
-                                <h1 class="header-right"><a href="{{$userHome}}">{{($dataStore->title_en ? $dataStore->{'title_'.Session::get('lang')} : 'Welcome to my page')}}</a></h1>
+                                <a class="store-logo" href="{{$userHome}}">
+                                	<img src="https://placeholdit.imgix.net/~text?txtsize=20&txt={{($dataStore->title_en ? $dataStore->{'title_'.Session::get('lang')} : 'my page')}}&w=300&h=90" class="storeLogo"/>
+                                </a>
                             @endif
-                            <a>
     				</div>
-    				
     				<div class="col-lg-9 col-md-8 col-sm-12">
     				    @if($dataStore->sto_banner)
                             <img src="{{Config::get('app.url')}}{{'upload/store/'.$dataStore->sto_banner}}" class="storeBanner"/>
+                        @else
+                        	<img src="https://placeholdit.imgix.net/~text?txtsize=20&txt=850+x+90&w=850&h=90" class="storeBanner"/>
                         @endif
                     </div>
                 </div>

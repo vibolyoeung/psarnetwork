@@ -1,8 +1,8 @@
 .user-wrapper {margin-top:0px}
 .changepassword label {color:green}
-.storeLogo {height: 90px;}
+.storeLogo {height: 90px;max-width: 100%;}
 .user-menu .dropdown-menu.open {display:block!important}
-.storeBanner{height: 90px;}
+.storeBanner{height: 90px;max-width: 100%;}
 
 .panel-heading {
   position: relative;

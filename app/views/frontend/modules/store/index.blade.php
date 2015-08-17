@@ -165,7 +165,7 @@ $showWidtget) @if($showWidtget->status) @if($showWidtget->title == 'New Arrival 
 @include('frontend.modules.store.partials.widget-hot-promote')
 @elseif($showWidtget->title == 'Secondhand Products')
 @include('frontend.modules.store.partials.widget-secondhand')
-@elseif($showWidtget->title == 'Monthly Pay Products')
+@elseif($showWidtget->title == 'Monthly Pay  Products')
 @include('frontend.modules.store.partials.widget-monthly-pay')
 @elseif($showWidtget->title == 'Urgent Sale') @endif @endif @endforeach
 @endif
