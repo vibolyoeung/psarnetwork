@@ -24,8 +24,7 @@
 				<div class="product-image-wrapper">
 					<div class="single-products">
 						<div class="productinfo">
-							<!-- @TODO: Put link to store -->
-							<a href="#" data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail(<?php echo $latestStore->id; ?>)">
+							<a href="{{Config::get('app.url')}}page/{{$latestStore->sto_url}}">
 							 <img
 								src="{{Config::get('app.url')}}upload/store/{{$latestStore->image}}"
 								alt="{{$latestStore->title_en}}"
