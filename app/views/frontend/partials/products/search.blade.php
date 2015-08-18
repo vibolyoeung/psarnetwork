@@ -62,17 +62,12 @@
 		var url  = window.location.href; 
 		 url = url.split("/");
 		 var finalurl = url[5];
-		 //alert(url[5]);
 		 if(url[5] == undefined){
 		 	 url = url[4].split("?");
 			 url = url[1].split("=");
 			 url = url[1].split("&");
 			 finalurl = url[0];
-			//var finalurl =  $("#categoryId").attr('value');
 		 }
-		 //alert(finalurl);
 		 $("#categoryId").val(finalurl);
-
-		 
 	});
 </script>

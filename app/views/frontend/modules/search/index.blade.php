@@ -79,11 +79,13 @@ Categories
 						?>
 					</div>
 				</div>
+				@if (!isset($topSearch))
 				<div class="col-lg-12">
 					<div id="pagination">
 						{{ $products->appends(Input::except('page'))->links(); }}
 					</div>
 				</div>
+				@endif
 			</div>
 		</div>
 	</div>
