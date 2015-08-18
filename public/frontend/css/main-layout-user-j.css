@@ -1,0 +1,63 @@
+a:link {
+color: #fff;
+text-decoration:none;
+-webkit-transition:all 0.6s ease-out 0s;
+-moz-transition:all 0.6s ease-out 0s;
+transition:all 0.6s ease-out 0s;
+}
+
+a:hover {
+text-decoration: none;
+}
+a:active {
+outline: none;
+}
+a:visited {
+text-decoration: none;
+}
+:focus {
+outline: 0;
+}
+a img {
+border: 0;
+}
+.language-bar a {color: #fff;}
+.header_top {
+	background: #800080!important;
+}
+#header h1 a{color:#800080}
+
+#footer {
+	background: #800080!important;
+}
+
+#nav .bgnya {
+	background-color:#000!important;
+	border-bottom:4px solid #800080!important;
+	box-shadow: none!important;
+}
+.popular-links {
+	background-color: #800080;
+	color: #ffffff;
+}
+.popular-links>.panel-heading:hover a {
+	text-decoration: underline;
+	color: #001966;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{  background-color: #337ab7!important;}
+#costomLayout .ui-sortable li{background: #800080!important}
+.register-form, .login-form {  border: 3px solid #800080!important;}
+.category-tab ul.nav {border-bottom: 2px solid #800080!important;}
+.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>li:hover,.dropdown-menu>li:focus {background-color: #800080;color: #FFFFFF;}
+.sf-menu a.home, .sf-menu > li > a.home.current {background-color: #800080!important;}
+.sf-menu li:hover > a,
+.sf-menu li.sfHover > a,
+.sf-menu > li > a.current {background-color:#800080!important;color:#FFFFFF;}
+.carousel-indicators li.active{  background: #851C10!important;}
+.nav-tabs li span {color: #800080!important;}
+.sf-menu ul li,
+.sf-menu ul li ul li {
+  border-top: 1px solid #800080;
+  border-bottom: 1px solid #CA226B;
+  background: #800080
+}
