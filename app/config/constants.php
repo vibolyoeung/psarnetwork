@@ -2,6 +2,11 @@
 // file : app/config/constants.php
 return array (
 		'SUPER_ADMINISTRATOR' => 1,
+		'GoogleAnalytics' => array(
+				'email' => "698385122092-fnj9lbbsa3ep5d64dhh1qsucq2u0j2j6@developer.gserviceaccount.com",
+				'oauthkeyfile' => "Project-6247018c782f.p12", // please check in \app\library
+				'profileDd' => 75180249, //In Google Analytics *Administration > User Management*, give the service account 'Read and Analyse' permissions on the analytics accounts you want to access
+		),
 		'ADMINISTRATOR' => 2,
 		'ADMIN' => 3,
 		'BACKEND_PAGINATION_USER' => 10,
