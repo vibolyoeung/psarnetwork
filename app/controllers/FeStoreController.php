@@ -185,7 +185,7 @@ class FeStoreController extends BaseController {
 				$dataCategory = $this->mod_category->menuUserFree ( $dataStore->user_id, $parent = 0 );
 			}
 			
-			$dataProduct = $this->mod_product->findProductByCategory ( $store, $catArr );
+			$dataProduct = $this->mod_product->findProductByCategory ( $dataStore->id, $catArr );
 			$dataUserPage = $this->mod_category->menuUserPage ( $dataStore->user_id, 2, $getUserUrl );
 			/* end get user cateory and sub */
 			$whereArr = array (
