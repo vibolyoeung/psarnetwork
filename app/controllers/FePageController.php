@@ -55,6 +55,7 @@ class FePageController extends BaseController {
 				3
 			);
 
+
 		$advTops = $this->mod_advertisment
 			->getAdvertisementHomePage(
 				self::HOMEPAGE,
@@ -62,14 +63,14 @@ class FePageController extends BaseController {
 				1
 			);
 
-		
-
+		$productAdvs = $this->mod_advertisment->getProductAdvertisement(self::HOMEPAGE);
 
 		return View::make('frontend.partials.home')
 			->with('slideshows', $listSlideshows->result)
 			->with('advVerticalRightSmalls', $advVerticalRightSmall->result)
 			->with('advVerticalLeftSmalls', $advVerticalLeftSmall->result)
 			->with('advHorizontalLargeCenters', $advHorizontalLargeCenter->result)
+			->with('productAdvs', $productAdvs->result)
 			->with('advTops', $advTops->result)
 			->with('client_type',$this->mod_category->getClientType())
 			->with('pro_transfer_type',$this->mod_category->getProductTransfterType())

@@ -10,6 +10,7 @@
 {{ App::make('FePageController')->mainCategory() }}
 <div class="col-lg-10">@include('frontend.partials.slider')</div>
 <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+	@include('frontend.partials.products.homepage_adv')
 	@include('frontend.partials.products.latest')
 	@include('frontend.partials.products.popular')
 	<!--/category-tab-->
