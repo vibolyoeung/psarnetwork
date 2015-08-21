@@ -53,6 +53,7 @@ return array (
 				'PAYMENT_METHOD' => 'payment_method',
 				'ADVERTISER_PROFILE' => 'advertiser_profile',
 				'CLIENT_TYPE' => 'client_type',
+				'COUNTER' => 'counter',
 				'DISTRICT' => 'district',
 				'IMAGE' => 'image',
 				'LAYOUT' => 'layout',

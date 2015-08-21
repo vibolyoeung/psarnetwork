@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Input;
 class FeStoreController extends BaseController {
 	private $mod_slideshow;
 	private $mod_category;
@@ -83,7 +84,22 @@ class FeStoreController extends BaseController {
 			}
 			
 			$dataProduct = $this->mod_product->listAllProductsByOwnStore ( $whereProduct );
-			return View::make ( 'frontend.modules.store.index' )->with ( 'dataStore', $dataStore )->with ( 'dataCategory', $dataCategory )->with ( 'dataUserPage', $dataUserPage )->with ( 'toolView', $getToolPage->result )->with ( 'widtget', $getWidget->result )->with ( 'banner', $getBanner )->with ( 'SlideshowConfig', $slideshowConfig )->with ( 'dataProduct', $dataProduct );
+			
+			/*get counter visitor*/
+			$this->getTracking($dataStore->id);
+			/*end get counter visitor*/
+			
+			$getTrackingBy = $this->mod_store->getTrackingBy(array('cnt_page' => Request::path ()));
+			return View::make ( 'frontend.modules.store.index' )
+			->with ( 'dataStore', $dataStore )
+			->with ( 'dataCategory', $dataCategory )
+			->with ( 'dataUserPage', $dataUserPage )
+			->with ( 'toolView', $getToolPage->result )
+			->with ( 'widtget', $getWidget->result )
+			->with ( 'banner', $getBanner )
+			->with ( 'SlideshowConfig', $slideshowConfig )
+			->with ( 'getTracking', $getTrackingBy )
+			->with ( 'dataProduct', $dataProduct );
 		} catch ( Exception $e ) {
 			return $e->getMessage ();
 		}
@@ -145,8 +161,13 @@ class FeStoreController extends BaseController {
 		
 		$dataUserPage = $this->mod_category->menuUserPage ( $dataStore->user_id, 2, $getUserUrl );
 		$dataDetailProduct = $this->mod_product->productDetailByOwnStore ( $product_id, $dataStore->user_id );
+		/*get counter visitor*/
+		$this->getTracking($dataStore->id);
+		/*end get counter visitor*/
 		return View::make ( 'frontend.modules.store.detail' )->with ( 'dataStore', $dataStore )->with ( 'dataUserPage', $dataUserPage )->with ( 'dataCategory', $dataCategory )->with ( 'toolView', $getToolPage->result )->with ( 'widtget', $getWidget->result )->with ( 'dataProductDetail', $dataDetailProduct );
 	}
+	
+	
 	public function searchUserPropuctByCategory($store, $label) {
 		$getUlr = preg_match ( '/store-/', $store );
 		if ($getUlr) {
@@ -190,8 +211,11 @@ class FeStoreController extends BaseController {
 			/* end get user cateory and sub */
 			$whereArr = array (
 					'position' => 100,
-					'user_id' => $dataStore->user_id
+					'user_id' => $dataStore->user_id 
 			);
+			/*get counter visitor*/
+			$this->getTracking($dataStore->id);
+			/*end get counter visitor*/
 			$getToolPage = $this->mod_page->getUserPages ( null, $whereArr );
 			return View::make ( 'frontend.modules.store.search' )->with ( 'dataStore', $dataStore )->with ( 'dataUserPage', $dataUserPage )->with ( 'dataCategory', $dataCategory )->with ( 'toolView', $getToolPage->result )->with ( 'dataProduct', $dataProduct );
 		}
@@ -231,21 +255,152 @@ class FeStoreController extends BaseController {
 				'user_id' => $dataStore->user_id 
 		);
 		$getToolPage = $this->mod_page->getUserPages ( null, $whereArr );
-		
+		$getTracking = $this->mod_store->getTracking(array('cnt_page' => Request::path ()));
+
 		$dataUserPage = $this->mod_category->menuUserPage ( $dataStore->user_id, 2, $getUserUrl );
-		return View::make ( 'frontend.modules.store.page' )->with ( 'dataStore', $dataStore )->with ( 'dataCategory', $dataCategory )->with ( 'dataUserPage', $dataUserPage )->with ( 'dataUserPageView', $getUserPage->result )->with ( 'toolView', $getToolPage->result );
+		
+		/*get counter visitor*/
+		$this->getTracking($dataStore->id);
+		/*end get counter visitor*/
+		
+		return View::make ( 'frontend.modules.store.page' )
+		->with ( 'dataStore', $dataStore )
+		->with ( 'dataCategory', $dataCategory )
+		->with ( 'dataUserPage', $dataUserPage )
+		->with ( 'dataUserPageView', $getUserPage->result )
+		->with ( 'getTracking', $getTracking->result )
+		->with ( 'toolView', $getToolPage->result );
+	}
+	public function getAnalytics() {
+		define ( 'ga_profile_id', Config::get ( 'constants.GoogleAnalytics.profileDd' ) );
+		$ga = new gapi ( Config::get ( 'constants.GoogleAnalytics.email' ), Config::get ( 'constants.GoogleAnalytics.oauthkeyfile' ) );
+		$ga->requestReportData ( ga_profile_id, array (
+				'browser',
+				'browserVersion' 
+		), array (
+				'pageviews',
+				'visits' 
+		) );
+		$dataAnalytics = array (
+				'getVisits' => $ga->getVisits (),
+				'getPageviews' => $ga->getPageviews (),
+				'getTotalResults' => $ga->getTotalResults (),
+				'getResults' => $ga->getResults () 
+		);
+		echo json_encode ( $dataAnalytics );
 	}
 	
-	public function getAnalytics() {
-		define('ga_profile_id',Config::get ( 'constants.GoogleAnalytics.profileDd' ));
-		$ga = new gapi(Config::get ( 'constants.GoogleAnalytics.email' ), Config::get ( 'constants.GoogleAnalytics.oauthkeyfile' ));
-		$ga->requestReportData(ga_profile_id,array('browser','browserVersion'),array('pageviews','visits'));
-		$dataAnalytics = array(
-				'getVisits' => $ga->getVisits(),
-				'getPageviews' => $ga->getPageviews(),
-				'getTotalResults' => $ga->getTotalResults(),
-				'getResults' => $ga->getResults(),
+	/*
+	 * get visitor
+	 * @deverloper Socheat
+	 */
+	public function getCounter() {
+	}
+	
+	/*
+	 * get visitor
+	 * @deverloper Socheat
+	 */
+	public function getTracking($getOjbect = '', $type = 'page') {
+		$visitor_ip = GetHostByName ( $_SERVER ['REMOTE_ADDR'] );
+		$visitor_browser = $this->getBrowser()['name'];
+		$visitor_hour = date ( "h" );
+		$visitor_minute = date ( "i" );
+		$visitor_day = date ( "d" );
+		$visitor_month = date ( "m" );
+		$visitor_year = date ( "Y" );
+		$visitor_refferer = GetHostByName ( isset ( $_SERVER ['HTTP_REFERER'] ) ? $_SERVER ['HTTP_REFERER'] : '' );
+		$data = array (
+				'cnt_page' => Request::path (),
+				'cnt_type' => $type,
+				'cnt_ip' => $visitor_ip,
+				'cnt_browser' => $visitor_browser,
+				'cnt_hour' => $visitor_hour,
+				'cnt_minute' => $visitor_minute,
+				'cnt_day' => $visitor_day,
+				'cnt_month' => $visitor_month,
+				'cnt_year' => $visitor_year,
+				'cnt_object_id' => @$getOjbect,
+				'cnt_refferer' => $visitor_refferer 
 		);
-		echo json_encode($dataAnalytics);
+		$this->mod_store->visitorTracking ( $data );
+	}
+	
+	/*
+	 * get divice function
+	 */
+	function getBrowser() {
+		$u_agent = $_SERVER ['HTTP_USER_AGENT'];
+		$bname = 'Unknown';
+		$platform = 'Unknown';
+		$version = "";
+		
+		// First get the platform?
+		if (preg_match ( '/linux/i', $u_agent )) {
+			$platform = 'linux';
+		} elseif (preg_match ( '/macintosh|mac os x/i', $u_agent )) {
+			$platform = 'mac';
+		} elseif (preg_match ( '/windows|win32/i', $u_agent )) {
+			$platform = 'windows';
+		}
+		
+		// Next get the name of the useragent yes seperately and for good reason
+		if (preg_match ( '/MSIE/i', $u_agent ) && ! preg_match ( '/Opera/i', $u_agent )) {
+			$bname = 'Internet Explorer';
+			$ub = "MSIE";
+		} elseif (preg_match ( '/Firefox/i', $u_agent )) {
+			$bname = 'Mozilla Firefox';
+			$ub = "Firefox";
+		} elseif (preg_match ( '/Chrome/i', $u_agent )) {
+			$bname = 'Google Chrome';
+			$ub = "Chrome";
+		} elseif (preg_match ( '/Safari/i', $u_agent )) {
+			$bname = 'Apple Safari';
+			$ub = "Safari";
+		} elseif (preg_match ( '/Opera/i', $u_agent )) {
+			$bname = 'Opera';
+			$ub = "Opera";
+		} elseif (preg_match ( '/Netscape/i', $u_agent )) {
+			$bname = 'Netscape';
+			$ub = "Netscape";
+		}
+		
+		// finally get the correct version number
+		$known = array (
+				'Version',
+				$ub,
+				'other' 
+		);
+		$pattern = '#(?<browser>' . join ( '|', $known ) . ')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
+		if (! preg_match_all ( $pattern, $u_agent, $matches )) {
+			// we have no matching number just continue
+		}
+		
+		// see how many we have
+		$i = count ( $matches ['browser'] );
+		if ($i != 1) {
+			// we will have two since we are not using 'other' argument yet
+			// see if version is before or after the name
+			if (strripos ( $u_agent, "Version" ) < strripos ( $u_agent, $ub )) {
+				$version = $matches ['version'] [0];
+			} else {
+				$version = $matches ['version'] [1];
+			}
+		} else {
+			$version = $matches ['version'] [0];
+		}
+		
+		// check if we have a number
+		if ($version == null || $version == "") {
+			$version = "?";
+		}
+		
+		return array (
+				'userAgent' => $u_agent,
+				'name' => $bname,
+				'version' => $version,
+				'platform' => $platform,
+				'pattern' => $pattern 
+		);
 	}
 }
