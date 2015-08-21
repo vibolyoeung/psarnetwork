@@ -45,7 +45,7 @@ if(count($hotPromotionProducts) > 0){
 				</div>
 			</div>
 			<?php
-			if ($hotPro >= 4 && $hotPro % 4 == 0) {
+			if ($hotPro >= 6 && $hotPro % 6 == 0) {
 				echo '</div><div class="item"> ';
 			}
 			$hotPro ++;

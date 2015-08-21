@@ -903,4 +903,20 @@ class MCategory extends Eloquent{
 		}
 		return $results;
     }
+
+
+
+    public function getMainCategoriesSupermarket($parent_id){
+    	$response = new stdClass();
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.MARKET'))
+			->select('*')
+			->where('market_type','=', $parent_id)->get();
+			$response->result = $result;
+		}catch (\Exception $e){
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+		return $response;
+    }
 }

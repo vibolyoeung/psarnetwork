@@ -1,4 +1,10 @@
 $(document).ready(function(){
+
+	jQuery('#hotpromotion-item-carousel').carousel({
+		 pause: true,
+    	 interval: false
+	});
+
 	jQuery('.datepicker' ).datepicker({ 
 		dateFormat: 'dd/mm/yy',
 		changeMonth: true,
@@ -11,6 +17,8 @@ $(document).ready(function(){
 	jQuery('.item:first-child').addClass(' active');
 	jQuery('.bullet:first-child').addClass('active');
 	jQuery('.tab-content .submenu-bar:first-child').addClass(' active');
+
+
 	jQuery('#myCarousel').carousel({
           interval: 5000
 	  });
@@ -25,9 +33,6 @@ $(document).ready(function(){
 	jQuery('#slider-home').carousel({
 		interval: true,
 		interval: 5000
-	});
-	jQuery('.carousel').carousel({
-		interval: false
 	});
 	
 	 $('#DetailCarousel,#DetailPopupCarousel').carousel({

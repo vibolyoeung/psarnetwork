@@ -19,30 +19,6 @@ Categories
 			<div>
 				<!-- ============Slider end here========= -->
 				@include('frontend.partials.products.search')
-				<div class="features_items">
-					<div class="category-tab lastest-post">
-						<div style="padding:0;">
-							<ul class="nav nav-tabs" style="background-color:#ddd;">
-								<li>
-									<strong>View As : </strong>
-									<span id="grid_view">Grid View</span> |
-									<span id="list_view">List View</span> |
-									<span id="social_view">Social View</span>
-								</li>
-								<li class="col-lg-2">
-									<select id="disply-number" name="displayNumber" class="form-control form-select-khmerabba">
-										<option value="0" selected="selected">-Select-</option>
-										<option value="20">20</option>
-										<option value="50">50</option>
-										<option value="100">100</option>
-										<option value="150">150</option>
-										<option value="200">200</option>
-									</select>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
 				<div class="col-lg-12">
 					<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 					<?php

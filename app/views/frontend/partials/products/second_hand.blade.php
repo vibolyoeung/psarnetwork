@@ -45,7 +45,7 @@
 					</div>
 				</div>
 				<?php
-				if ($secondPro >= 4 && $secondPro % 4 == 0) {
+				if ($secondPro >= 6&& $secondPro % 6 == 0) {
 					echo '</div><div class="item"> ';
 				}
 				$secondPro ++;

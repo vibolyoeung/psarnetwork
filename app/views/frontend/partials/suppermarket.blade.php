@@ -5,7 +5,7 @@
 	<li class="active">Supper Market</li>
 </ol>
 @endsection @section('content')
-{{ App::make('FePageController')->mainCategory() }}
+@include('frontend.partials.left-supermarket')
 <div class="col-lg-10">
 	<div class="col-sm-10">
 		<div class="features_items">

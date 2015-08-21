@@ -313,4 +313,36 @@ class Market extends Eloquent{
 		return $response;
 	}
 
+
+	public function mainMarket($id){
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.CLIENT_TYPE'))
+			->select('*')
+			->where('id','=', $id)
+			->take(1)
+			->get();
+		} catch (\Exception $e) {
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+		}
+
+		return $result;
+	}
+
+	public function listsupermarketfront($parent_id){
+		$response = new stdClass();
+
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.MARKET'))
+			->select('*')
+			->where('market_type','=', $parent_id)->get();
+			$response = $result;
+		} catch (\Exception $e) {
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+		}
+
+		return $response;
+	}
+
+
+
 }

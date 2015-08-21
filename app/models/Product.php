@@ -453,7 +453,7 @@ class Product extends Eloquent {
 		$user = Config::get ( 'constants.TABLE_NAME.USER' );
 		return DB::table ( $product . ' AS p ' )->select ( '*' )->join ( $store . ' AS st', 'st.id', '=', 'p.store_id' )->join ( $productCondition . ' AS pcon', 'pcon.id', '=', 'p.pro_condition_id' )->join ( $user . ' AS u', 'u.id', '=', 'p.user_id' )->where ( 'p.id', '=', $product_id )->first ();
 	}
-	
+
 	/**
 	 * findRelatedPostProduct
 	 *

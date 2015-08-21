@@ -17,13 +17,13 @@
 				<ul class="nav navbar-nav top_menu_list">
 					<li><a href="#"><img src="{{Config::get('app.url')}}frontend/images/icons/basket.png" alt="" title="" height="23"/></a></li>
 					@foreach($client_type as $client_type)
-						<li><a href="{{Config::get('app.url')}}product/list/{{$client_type->id}}">{{$client_type->name}}</a></li>
+						<li><a href="{{Config::get('app.url')}}product/list/{{$client_type->id}}/0">{{$client_type->name}}</a></li>
 					@endforeach
 				</ul>
 				<ul class="nav navbar-nav menu_right_section pull-right">
 					<li style="border-left:1px solid #ddd;"><a href="#"><img src="{{Config::get('app.url')}}frontend/images/icons/money.png" height="23" /></a></li>
 					@foreach($pro_transfer_type as $pro_transfer_types)
-						<li><a href="{{Config::get('app.url')}}product/list/{{$pro_transfer_types->ptt_id}}">{{$pro_transfer_types->name}}</a></li>
+						<li><a href="{{Config::get('app.url')}}product/list/{{$pro_transfer_types->ptt_id}}/0">{{$pro_transfer_types->name}}</a></li>
 					@endforeach
 				</ul>
 			</div>

@@ -38,7 +38,7 @@ if(count($newProducts) > 0){
 									</a>
 									<h2 class="price">$ {{$newProduct->price}}</h2>
 									<center>
-										<a href="{{Config::get('app.url')}}product/details/{{$newProduct->id}}">View
+										<a href="{{Config::get('app.url')}}product/details/{{$newProduct->id}}">
 											<?php echo substr($newProduct->title,0,20)?>
 										</a>
 									</center>
@@ -52,7 +52,7 @@ if(count($newProducts) > 0){
 				<?php
 				}
 				
-				if ($newPro >= 4 && $newPro % 4 == 0) {
+				if ($newPro >= 6 && $newPro % 6 == 0) {
 					echo '</div><div class="item"> ';
 				}
 				$newPro ++;
