@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Redis\Database;
 class Market extends Eloquent{
+	const IS_PUBLISH = 1;
 	
 	/**
 	 *
@@ -341,6 +342,35 @@ class Market extends Eloquent{
 		}
 
 		return $response;
+	}
+
+	public function listproductofsupermarket($client_type_id){
+		// try {
+		// 	$result = DB::table(Config::get('constants.TABLE_NAME.PRODUCT'))
+		// 	->select('*')
+		// 	//->where('id','=', $id)
+		// 	->take(1)
+		// 	->get();
+		// } catch (\Exception $e) {
+		// 	Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+		// }
+		// var_dump($result);die;
+		$productTable = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
+		$userTable = Config::get ( 'constants.TABLE_NAME.USER' );
+		$storeTable = Config::get ( 'constants.TABLE_NAME.STORE' );
+
+		try {
+			$data = DB::table ( $userTable . ' AS user' )
+			->join ( $productTable . ' AS pro', 'user.id', '=', 'pro.user_id' )
+			->where ( 'pro.is_publish', '=', self::IS_PUBLISH )
+			->orderBy ('pro.id', 'DESC' )
+			->select ( '*' )
+			->where('user.client_type','=', $client_type_id)
+			->get();
+		} catch (\Exception $e) {
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+		}
+		return $data;
 	}
 
 
