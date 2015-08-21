@@ -68,10 +68,16 @@ var homePage = "{{Config::get('app.url')}}";
 														</div>
 													</div>
 													<div class="col-sm-8">
+													<?php 
+													$getBanner = new Store ();
+													$getBannerImage = $getBanner->getStoreBanner(null,array('ban_store_id'=>$dataStore->id,'ban_position'=>'right_header','ban_status' => 1));
+													$bannerLink = !empty($getBannerImage[0]->ban_link)? $getBannerImage[0]->ban_link : '';
+													$bannerLink = !empty($getBannerImage[0]->ban_link)? $getBannerImage[0]->ban_link : '';
+													?>
 														<div id='banner-preview'
 															style="margin: 10px 0 0 0; width: 100%; height: 100px;">
-															@if($dataStore->sto_banner) <img
-																src="{{Config::get('app.url')}}/upload/store/{{$dataStore->sto_banner}}"
+															@if(!empty($getBannerImage[0])) <img
+																src="{{Config::get('app.url')}}/upload/user-banner/{{$getBannerImage[0]->ban_image}}"
 																style="max-width: 100%; max-height: 90px; height: 90px" />
 															@else <img
 																src="http://placehold.it/500x100&text=840px+x+90px"
@@ -208,6 +214,15 @@ var homePage = "{{Config::get('app.url')}}";
 																accept="image/*" />
 															<p class="help-block">
 																{{trans('register.TAB_Your_banner_upload')}}</p>
+															<input type="text" id="addBannerLink"
+															class="form-control"
+															value="{{@$bannerLink}}"
+															placeholder="{{trans('register.banner_link')}}"
+															name="link"
+															style="display: inline-block;"/>
+															<button id="btnSaveLink" type="button"
+															class="btn btn-default btn-xs pull-right "
+															style="margin-top: 5px; margin-bottom: 5px;display:none">Save</button>
 														</div>
 													</fieldset>
 												</form>
@@ -331,12 +346,38 @@ $(document).ready(function(){
             var obj = JSON.parse(data);
                 if (!obj.error) {
                     $('.message-success').show();
-                    $('#banner-preview').html('<img src="{{Config::get('app.url')}}upload/store/' + obj.image + '" style="height:100px" class="img-thumbnail"/>');
+                    $('#banner-preview').html('<img src="{{Config::get('app.url')}}upload/user-banner/' + obj.image + '" style="height:100px" class="img-thumbnail"/>');
                 }
             }
         }).submit();
    	});  
-        
+
+    $('#addBannerLink').blur(function () {
+        var link = $( this ).val();
+        if(link) {
+        	$('#btnSaveLink').show();
+        } else {
+        	$('#btnSaveLink').hide();
+        }
+    });
+    $('#btnSaveLink').click(function () {
+        var bLink = $('#addBannerLink').val();
+        if(bLink) {
+        	$.ajax({
+        		url: homePage + "member/getsubmenu?type=bannerlink&id="+bLink,
+        		type: "get",
+        		error: function (request, error) {
+        	        
+        	    },
+        		success: function(data) {
+            	$('.message-success').show();
+        		//$('##addBannerLink').html(text);
+        		$('#btnSaveLink').hide();
+        		}
+            });
+        }
+    });
+      
     $('#agreement').click(function () {
         if($(this).is(":checked")) {
             $("#summit").removeAttr("disabled");

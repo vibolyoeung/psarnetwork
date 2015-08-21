@@ -827,30 +827,67 @@ class FeMemberController extends BaseController {
 				case 'bannerupload' :
 					if (Input::hasfile ( 'file' )) {
 						/* upload banner image */
-						$destinationPath = base_path () . Config::get ( 'constants.DIR_IMAGE.DIR_STORE' );
-						$file = Input::file ( 'file' );
-						
+						$destinationPath = base_path () . Config::get ( 'constants.DIR_IMAGE.USER_BANNER' );
 						/* clean old image */
 						$whereData = array (
-								'user_id' => $userID,
-								'id' => $storeID 
+								'ban_position' => 'right_header',
+								'ban_store_id' => $storeID 
 						);
-						$checkStoreImage = $this->mod_store->getUserStore ( null, $whereData );
+						$checkStoreImage = $response = DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )
+						->select ( '*' )
+						->where ( $whereData )
+						->first();
+						
+						$file = Input::file ( 'file' );
+						$images = $this->mod_store->doUpoad ( $file, $destinationPath, Config::get ( 'constants.DIR_IMAGE.THUMB_WIDTH' ), Config::get ( 'constants.DIR_IMAGE.THUMB_HEIGTH' ) );
+						
 						if (! empty ( $checkStoreImage )) {
-							$oldName = $destinationPath . '/' . $checkStoreImage->sto_banner;
-							$thumb = $destinationPath . '/thumb/' . $checkStoreImage->sto_banner;
+							$oldName = $destinationPath . '/' . $checkStoreImage->ban_image;
+							$thumb = $destinationPath . '/thumb/' . $checkStoreImage->ban_image;
 							if (File::exists ( $oldName )) {
 								File::delete ( $oldName, $thumb );
 							}
+							/*update if exist*/
+							if (! empty ( $images ['image'] )) {
+								$image_file = $images ['image'];
+								$data = array (
+										'ban_link' => trim ( Input::get ( 'link' ) ),
+										'ban_image' => $image_file,
+								);
+								$response = DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )
+								->where($whereData)
+								->update ($data);
+								$images = array (
+										"image" => $image_file
+								);
+							} else {
+								$images = array (
+										"error" => "Sorry, Upload get an error"
+								);
+							}
+							/*end update if exist*/
+						} else {
+							if (! empty ( $images ['image'] )) {
+								$image_file = $images ['image'];
+								$data = array (
+										'ban_title' => 'banner-header',
+										'ban_cdate' => date ( self::CURRENT_DATE ),
+										'ban_link' => trim ( Input::get ( 'link' ) ),
+										'ban_image' => $image_file,
+										'ban_store_id' => $getUserStore->id,
+										'ban_status' => 1,
+										'ban_position' => 'right_header'
+								);
+								$response = DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )->insertGetId ( $data );
+								$images = array (
+										"image" => $image_file
+								);
+							} else {
+								$images = array (
+									"error" => "Sorry, Upload get an error" 
+								);
+							}
 						}
-						
-						$images = $this->mod_store->doUpoad ( $file, $destinationPath, Config::get ( 'constants.DIR_IMAGE.THUMB_WIDTH' ), Config::get ( 'constants.DIR_IMAGE.THUMB_HEIGTH' ) );
-						/* update to store table DB */
-						$storeData = array (
-								'sto_banner' => $images ['image'] 
-						);
-						$this->mod_store->where ( $whereData )->update ( $storeData );
-						/* end update to store table DB */
 					} else {
 						$images = array (
 								"error" => "Sorry, Upload get an error" 
@@ -1076,6 +1113,27 @@ class FeMemberController extends BaseController {
 					}
 					echo json_encode ( $urlData );
 					break;
+					
+				case 'bannerlink' :
+					$getUserStore = $this->mod_store->getUserStore ( $userID );
+						if ($userID && ! empty ( $MainMenu )) {
+							$response = DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )->where ( array (
+									'ban_store_id' => $getUserStore->id,
+							) )->update ( array (
+									'ban_link' => $MainMenu
+							) );
+							if ($response) {
+								$urlData = array (
+										'result' => 0
+								);
+							} else {
+								$urlData = array (
+										'result' => 1
+								);
+							}
+						}
+						echo json_encode ( $urlData );
+						break;
 			}
 		}
 		

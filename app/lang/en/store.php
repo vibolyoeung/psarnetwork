@@ -2,7 +2,7 @@
 // This is the EN one.
 return array(
 	'no_product' => 'No product to display', 
-	'visitor' => 'Visitor', 
+	'visitor' => 'Visitor counter', 
 	'visitorToday' => 'Today', 
 	'visitorYesterday' => 'Yesterday', 
 	'visitorLastWeek' => 'Last week', 
@@ -10,7 +10,7 @@ return array(
 		
 	'memeberSince' => 'Member Since', 
 	'memeberStatus' => 'Memeber status', 
-	'memeberCompanyName' => 'Company Name', 
+	'memeberCompanyName' => 'Company', 
 	'memeberContactPerson' => 'Contact person', 
 	'Tel' => 'Tel', 
 	'Email' => 'Email',

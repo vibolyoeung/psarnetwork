@@ -9,7 +9,6 @@ $getUserData = $getUser->getUser($dataStore->user_id);
 	<!--category-products-->
 	<div class="panel panel-default popular-links" style="color:#000;padding:5px">
 		<p>
-		<b>{{trans('store.memeberCompanyName')}}</b>: {{@$dataStore->title_en}} <br />
 		<b>{{trans('store.memeberContactPerson')}}</b>: {{@$getUserData->result->name}} <br />
 		<b>{{trans('store.Tel')}}</b>: {{@$getUserData->result->telephone}}<br />
 		<b>{{trans('store.Email')}}</b>: {{@$getUserData->result->email}}<br />

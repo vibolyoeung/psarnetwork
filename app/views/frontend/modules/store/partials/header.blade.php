@@ -95,8 +95,15 @@ if($userLayout) {
                             @endif
     				</div>
     				<div class="col-lg-9 col-md-8 col-sm-12">
-    				    @if($dataStore->sto_banner)
-                            <img src="{{Config::get('app.url')}}{{'upload/store/'.$dataStore->sto_banner}}" class="storeBanner"/>
+    					<?php 
+    					$getBanner = new Store ();
+    					$getBannerImage = $getBanner->getStoreBanner(null,array('ban_store_id'=>$dataStore->id,'ban_position'=>'right_header','ban_status' => 1));
+    					$bannerLink = !empty($getBannerImage[0]->ban_link)? $getBannerImage[0]->ban_link : '';
+    					?>
+    				    @if(!empty($getBannerImage[0]))
+                            <a class="store-logo" href="{{$bannerLink}}" target="_blank">
+                            	<img src="{{Config::get('app.url')}}/upload/user-banner/{{$getBannerImage[0]->ban_image}}" class="storeBanner"/>
+                            </a>
                         @else
                         	<img src="https://placeholdit.imgix.net/~text?txtsize=20&txt=850+x+90&w=850&h=90" class="storeBanner"/>
                         @endif

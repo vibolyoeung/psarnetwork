@@ -141,13 +141,17 @@ class Store extends Eloquent {
 	 * @author Socheat
 	 * @return banner
 	 */
-	public function getStoreBanner($id) {
+	public function getStoreBanner($id, $wheres = array()) {
 		$response = new stdClass ();
 		try {
-			$where = array (
-					'ban_store_id' => $id,
-					'ban_status' => 1 
-			);
+			if(!empty($wheres)) {
+				$where = $wheres;
+			} else {
+				$where = array (
+						'ban_store_id' => $id,
+						'ban_status' => 1 
+				);
+			}
 			$result = DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )->select ( '*' )->where ( $where )->orderBy ( 'ban_id', 'DESC' )->get ();
 			
 			return $result;
