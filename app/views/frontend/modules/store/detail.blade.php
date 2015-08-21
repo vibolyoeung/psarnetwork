@@ -99,24 +99,26 @@
 	</div>              
 @endsection
 @section('left')
-	@include('frontend.modules.store.partials.slidebar.left_product_link')
+	@if (! empty ( $toolView ))
+		@foreach ( $toolView as $tool )
+			@if($tool->type == 'tool_memeber_status' && $tool->status == 1)
+				@include('frontend.modules.store.partials.slidebar.memeber_status')
+			@endif
+		@endforeach
+	@endif
 @endsection
-@section('right')
-<?php
-$memberTool = array ();
-if (! empty ( $toolView )) :
-	foreach ( $toolView as $tool ) :
-		if ($tool->type == 'tool_memeber_status' && $tool->status == 1) :
-			?>
-            @include('frontend.modules.store.partials.slidebar.visitor_counter')
-        
-		<?php 
-        endif;
-	endforeach
-	;
 
-endif;
-?>
+@section('right')
+
+@if (! empty ( $toolView ))
+	@foreach ( $toolView as $tool )
+		@if($tool->type == 'tool_visitor_info' && $tool->status == 1)
+		@include('frontend.modules.store.partials.slidebar.tool_visitor')
+		@endif
+	@endforeach
+@endif
+
+
 @if(!empty($banner))
     @foreach($banner as $ban)
         @if($ban->ban_position == 'rs')
