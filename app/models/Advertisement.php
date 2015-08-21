@@ -2,6 +2,7 @@
 class Advertisement extends Eloquent {
 	public $timestamps = false;
 	const CLIENT = 4;
+	const PRODUCT_ADV = 2;
 
 	/**
 	 *
@@ -397,6 +398,30 @@ class Advertisement extends Eloquent {
 		return $response;
 	}
 
+	/*
+	 * Get product advertisement for home page
+	 *
+	 * @param integer $page
+	 *
+	 * @return stdClass
+	 */
+	public function getProductAdvertisement($page) {
+		$response = new stdClass();
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.ADVERTISEMENT').' AS adv')
+			->where('status', 1)
+			->where('adv_page_id', $page)
+			->where('type', self::PRODUCT_ADV)
+			->orderBy('adv.id','desc')
+			->take('limit', 6)->get();
+			$response->result = $result;
+		} catch (\Exception $e) {
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+
+		return $response;
+	}
 	public function findAllUserPages() {
 		$response = new stdClass();
 		try {

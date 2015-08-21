@@ -25,7 +25,7 @@ $PayMonthly = $thisProduct->listAllProductsByOwnStore($whereHotPromote);
     				<div class="product-image-wrapper">
     					<div class="single-products">
     						<div class="productinfo text-center">
-    							<a href="{{Config::get('app.url')}}page/{{$productHotPromote->store_id}}/my/detail/{{$productHotPromote->id}}">
+    							<a href="{{$userHome}}/my/detail/{{$productHotPromote->id}}">
                                     @if($productHotPromote->thumbnail)
     								    <img src="{{Config::get('app.url')}}upload/product/thumb/{{$productHotPromote->thumbnail}}" alt="{{$productHotPromote->title}}" />
                                     @else
@@ -34,7 +34,7 @@ $PayMonthly = $thisProduct->listAllProductsByOwnStore($whereHotPromote);
     							</a>
     							<h2>{{$productHotPromote->title}}</h2>
     							<p>{{$productHotPromote->price}} $</p>
-    							<a href="{{Config::get('app.url')}}page/{{$productHotPromote->store_id}}/my/detail/{{$productHotPromote->id}}">View Details</a>
+    							<a href="{{$userHome}}/my/detail/{{$productHotPromote->id}}">View Details</a>
     						</div>
     						<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
     					</div>

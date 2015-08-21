@@ -25,7 +25,7 @@ $PayMonthly = $thisProduct->listAllProductsByOwnStore($whereNewArr);
     				<div class="product-image-wrapper">
     					<div class="single-products">
     						<div class="productinfo text-center">
-    							<a href="{{Config::get('app.url')}}page/{{$productNewArr->store_id}}/my/detail/{{$productNewArr->id}}">
+    							<a href="{{$userHome}}/my/detail/{{$productNewArr->id}}">
                                     @if($productNewArr->thumbnail)
     								    <img src="{{Config::get('app.url')}}upload/product/thumb/{{$productNewArr->thumbnail}}" alt="{{$productNewArr->title}}" />
                                     @else
@@ -34,7 +34,7 @@ $PayMonthly = $thisProduct->listAllProductsByOwnStore($whereNewArr);
     							</a>
     							<h2>{{$productNewArr->title}}</h2>
     							<p>{{$productNewArr->price}} $</p>
-    							<a href="{{Config::get('app.url')}}page/{{$productNewArr->store_id}}/my/detail/{{$productNewArr->id}}">View Details</a>
+    							<a href="{{$userHome}}/my/detail/{{$productNewArr->id}}">View Details</a>
     						</div>
     						<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
     					</div>

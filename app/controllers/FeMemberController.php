@@ -650,6 +650,12 @@ class FeMemberController extends BaseController {
 				break;
 			
 			case 'addpage' :
+				$editId = Input::get ( 'id' );
+				$addAction = Input::get ( 'add' );
+					$addActions = 0;
+				if(!empty($addAction) || !empty($editId)) {
+					$addActions = 1;
+				}
 				if (Input::has ( 'id' )) {
 					$whereEdit = array (
 							'user_id' => $userID,
@@ -666,6 +672,7 @@ class FeMemberController extends BaseController {
 						$dataEdits = array (
 								'title' => trim ( Input::get ( 'name' ) ),
 								'description' => trim ( Input::get ( 'body' ) ),
+								'status' => trim ( Input::get ( 'status' ) ),
 								'position' => Input::get ( 'menuPosition' ) 
 						);
 						$response = DB::table ( Config::get ( 'constants.TABLE_NAME.S_PAGE' ) )->where ( array (
@@ -678,6 +685,7 @@ class FeMemberController extends BaseController {
 								'description' => trim ( Input::get ( 'body' ) ),
 								'type' => 'static',
 								'user_id' => $userID,
+								'status' => trim ( Input::get ( 'status' ) ),
 								'position' => Input::get ( 'menuPosition' ) 
 						);
 						$where = array (
@@ -702,7 +710,12 @@ class FeMemberController extends BaseController {
 				}
 				/* end Delete user static page */
 				$getUserPage = $this->mod_page->getUserPages ( $userID );
-				return View::make ( 'frontend.modules.member.s-addpage' )->with ( 'maincategories', $listCategories->result )->with ( 'datapage', $getUserPage->result )->with ( 'dataEdit', $dataEdit )->with ( 'dataStore', $getUserStore );
+				return View::make ( 'frontend.modules.member.s-addpage' )
+					->with ( 'maincategories', $listCategories->result )
+					->with ( 'datapage', $getUserPage->result )
+				->with ( 'dataEdit', $dataEdit )
+				->with ( 'addActions', $addActions )
+				->with ( 'dataStore', $getUserStore );
 				break;
 		}
 	}

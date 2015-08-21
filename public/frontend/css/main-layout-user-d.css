@@ -23,21 +23,26 @@ border: 0;
 }
 .language-bar a {color: #fff;}
 .header_top {
-	background: #FFFF33!important;
+	background: #ff8000!important;
 }
-#header h1 a{color:#FFFF33}
+#header h1 a{color:#ff8000}
 
 #footer {
-	background: #FFFF33!important;
+	background: #ff8000!important;
 }
 
 #nav .bgnya {
-background-color:#FFFF33!important;
-border-bottom:4px solid #FFFF33!important;
+background-color:#333!important;
+border-bottom:4px solid #ff8000!important;
 box-shadow: none!important;
 }
+.sf-menu ul li, .sf-menu ul li ul li {
+	border-top: 1px solid #ff8000;
+  	border-bottom: 1px solid #000000;
+  	background-color: #ff8000;
+}
 .popular-links {
-	background-color: #FFFF33;
+	background-color: #ff8000;
 	color: #ffffff;
 }
 .popular-links>.panel-heading:hover a {
@@ -45,13 +50,13 @@ box-shadow: none!important;
 	color: #f0ad4e;
 }
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{  background-color: #00661A!important;}
-#costomLayout .ui-sortable li{background: #FFFF33!important}
-.register-form, .login-form {  border: 3px solid #FFFF33!important;}
-.category-tab ul.nav {border-bottom: 2px solid #FFFF33!important;}
-.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>li:hover,.dropdown-menu>li:focus {background-color: #FFFF33;color: #FFFFFF;}
-.sf-menu a.home, .sf-menu > li > a.home.current {background-color: #FFFF33!important;}
+#costomLayout .ui-sortable li{background: #ff8000!important}
+.register-form, .login-form {  border: 3px solid #ff8000!important;}
+.category-tab ul.nav {border-bottom: 2px solid #ff8000!important;}
+.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>li:hover,.dropdown-menu>li:focus {background-color: #ff8000;color: #FFFFFF;}
+.sf-menu a.home, .sf-menu > li > a.home.current {background-color: #ff8000!important;}
 .sf-menu li:hover > a,
 .sf-menu li.sfHover > a,
-.sf-menu > li > a.current {background-color:#00661A!important;color:#E6E6E6;}
+.sf-menu > li > a.current {background-color:#ff9900!important;color:#E6E6E6;}
 .carousel-indicators li.active{  background: #004040!important;}
-.nav-tabs li span {color: #FFFF33!important;}
+.nav-tabs li span {color: #ff8000!important;}

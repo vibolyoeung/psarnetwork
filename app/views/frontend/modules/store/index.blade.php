@@ -12,6 +12,12 @@
 <?php
 date_default_timezone_set ( 'Asia/Phnom_Penh' );
 $currentDate = date ( 'Y-m-d' );
+
+if(!empty($dataStore->sto_url)) {
+	$userHome = @Config::get('app.url').'page/'.$dataStore->sto_url;
+} else {
+	$userHome = @Config::get('app.url').'page/store-'.$dataStore->id;
+}
 ?>
 <div class="col-sm-8">
 	<div class="category-tab lastest-post">
@@ -120,7 +126,7 @@ $currentDate = date ( 'Y-m-d' );
 						<div class="single-products">
 							<div class="productinfo text-center">
 								<a
-									href="{{Config::get('app.url')}}page/{{$product->store_id}}/my/detail/{{$product->id}}">
+									href="{{$userHome}}/my/detail/{{$product->id}}">
 									@if($product->thumbnail) <img
 									src="{{Config::get('app.url')}}upload/product/thumb/{{$product->thumbnail}}"
 									alt="{{$product->title}}" /> @else <img
@@ -130,7 +136,7 @@ $currentDate = date ( 'Y-m-d' );
 								<h2>{{$product->title}}</h2>
 								<p>{{$product->price}} $</p>
 								<a
-									href="{{Config::get('app.url')}}page/{{$product->store_id}}/my/detail/{{$product->id}}">View
+									href="{{$userHome}}/my/detail/{{$product->id}}">View
 									Details</a>
 							</div>
 							<img
@@ -165,13 +171,13 @@ $showWidtget) @if($showWidtget->status) @if($showWidtget->title == 'New Arrival 
 @include('frontend.modules.store.partials.widget-hot-promote')
 @elseif($showWidtget->title == 'Secondhand Products')
 @include('frontend.modules.store.partials.widget-secondhand')
-@elseif($showWidtget->title == 'Monthly Pay Products')
+@elseif($showWidtget->title == 'Monthly Pay  Products')
 @include('frontend.modules.store.partials.widget-monthly-pay')
 @elseif($showWidtget->title == 'Urgent Sale') @endif @endif @endforeach
 @endif
 </div>
 @endsection @section('left')
-@include('frontend.modules.store.partials.slidebar.left_product_link')
+@include('frontend.modules.store.partials.slidebar.visitor_counter')
 
 @if(!empty($banner)) @foreach($banner as $ban) @if($ban->ban_position ==
 'ls') @if($ban->ban_enddate >= $currentDate)
@@ -190,7 +196,7 @@ if (! empty ( $toolView )) :
 	foreach ( $toolView as $tool ) :
 		if ($tool->type == 'tool_memeber_status' && $tool->status == 1) :
 			?>
-            @include('frontend.modules.store.partials.slidebar.visitor_counter')
+            @include('frontend.modules.store.partials.slidebar.left_product_link')
         
 		<?php 
         endif;

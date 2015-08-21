@@ -185,7 +185,7 @@ class FeStoreController extends BaseController {
 				$dataCategory = $this->mod_category->menuUserFree ( $dataStore->user_id, $parent = 0 );
 			}
 			
-			$dataProduct = $this->mod_product->findProductByCategory ( $store, $catArr );
+			$dataProduct = $this->mod_product->findProductByCategory ( $dataStore->id, $catArr );
 			$dataUserPage = $this->mod_category->menuUserPage ( $dataStore->user_id, 2, $getUserUrl );
 			/* end get user cateory and sub */
 			$whereArr = array (
@@ -234,5 +234,18 @@ class FeStoreController extends BaseController {
 		
 		$dataUserPage = $this->mod_category->menuUserPage ( $dataStore->user_id, 2, $getUserUrl );
 		return View::make ( 'frontend.modules.store.page' )->with ( 'dataStore', $dataStore )->with ( 'dataCategory', $dataCategory )->with ( 'dataUserPage', $dataUserPage )->with ( 'dataUserPageView', $getUserPage->result )->with ( 'toolView', $getToolPage->result );
+	}
+	
+	public function getAnalytics() {
+		define('ga_profile_id',Config::get ( 'constants.GoogleAnalytics.profileDd' ));
+		$ga = new gapi(Config::get ( 'constants.GoogleAnalytics.email' ), Config::get ( 'constants.GoogleAnalytics.oauthkeyfile' ));
+		$ga->requestReportData(ga_profile_id,array('browser','browserVersion'),array('pageviews','visits'));
+		$dataAnalytics = array(
+				'getVisits' => $ga->getVisits(),
+				'getPageviews' => $ga->getPageviews(),
+				'getTotalResults' => $ga->getTotalResults(),
+				'getResults' => $ga->getResults(),
+		);
+		echo json_encode($dataAnalytics);
 	}
 }

@@ -13,7 +13,7 @@ $PayMonthly = $thisProduct->listAllProductsByOwnStore($wherePayMonthly);
 			<li>Products : <span class="number-display">25</span></li>
 		</ul>
 		<div class="col-lg-12" style="padding:0;">
-		@if(count($PayMonthly)>1)
+		@if(count($PayMonthly)>0)
                 <?php
                 //var_dump($dataProduct);
                  $i=1;?>
@@ -25,7 +25,7 @@ $PayMonthly = $thisProduct->listAllProductsByOwnStore($wherePayMonthly);
     				<div class="product-image-wrapper">
     					<div class="single-products">
     						<div class="productinfo text-center">
-    							<a href="{{Config::get('app.url')}}page/{{$productMonthly->store_id}}/my/detail/{{$productMonthly->id}}">
+    							<a href="{{$userHome}}/my/detail/{{$product->id}}">
                                     @if($productMonthly->thumbnail)
     								    <img src="{{Config::get('app.url')}}upload/product/thumb/{{$productMonthly->thumbnail}}" alt="{{$productMonthly->title}}" />
                                     @else
@@ -34,7 +34,7 @@ $PayMonthly = $thisProduct->listAllProductsByOwnStore($wherePayMonthly);
     							</a>
     							<h2>{{$productMonthly->title}}</h2>
     							<p>{{$productMonthly->price}} $</p>
-    							<a href="{{Config::get('app.url')}}page/{{$productMonthly->store_id}}/my/detail/{{$productMonthly->id}}">View Details</a>
+    							<a href="{{$userHome}}/my/detail/{{$product->id}}">View Details</a>
     						</div>
     						<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
     					</div>

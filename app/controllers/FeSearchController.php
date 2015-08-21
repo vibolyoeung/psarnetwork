@@ -71,6 +71,10 @@ class FeSearchController extends BaseController {
 			$province,
 			$businessType
 		);
+
+		$categorId = Request::input('categoryId');
+		$category = $this->mod_category->getMainCategories($categorId);
+ 		$mainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($categorId);
 		
 		return View::make('frontend.modules.search.index')
 			->with('slideshows', $listSlideshows->result)
@@ -81,6 +85,11 @@ class FeSearchController extends BaseController {
 			->with('products', $products)
 			->with('transferTypes', $this->mod_product->listAllTransferType())
 			->with('conditions', $this->mod_product->listAllConditions())
+			->with('detailCategory', $category->result)
+			->with('MaindetailCategory', $mainCategoryDetail->result)
+			->with('topSearch', true)
+			->with('client_type',$this->mod_category->getClientType())
+			->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
 			->with('Provinces', $this->mod_setting->listProvinces());
 
 	}
@@ -144,8 +153,8 @@ class FeSearchController extends BaseController {
 			$date,
 			$displayNumber
 		);
-		$Category = $this->mod_category->getMainCategories($categorId);
- 		$MainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($categorId);
+		$category = $this->mod_category->getMainCategories($categorId);
+ 		$mainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($categorId);
 		return View::make('frontend.modules.search.index')
 			->with('slideshows', $listSlideshows->result)
 			->with('advVerticalRightSmalls', $advVerticalRightSmall->result)
@@ -155,8 +164,8 @@ class FeSearchController extends BaseController {
 			->with('products', $products)
 			->with('transferTypes', $this->mod_product->listAllTransferType())
 			->with('conditions', $this->mod_product->listAllConditions())
-			->with('detailCategory', $Category->result)
-			->with('MaindetailCategory', $MainCategoryDetail->result)
+			->with('detailCategory', $category->result)
+			->with('MaindetailCategory', $mainCategoryDetail->result)
 			->with('client_type',$this->mod_category->getClientType())
 			->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
 			->with('Provinces', $this->mod_setting->listProvinces());

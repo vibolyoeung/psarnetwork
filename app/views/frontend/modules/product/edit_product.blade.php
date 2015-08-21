@@ -43,16 +43,12 @@
                                         </label>
                                         <div class="col-sm-11">
                                             <select required="required" class="form-control" name="s_category">
-                                                <?php foreach($categoryTree as $cl) : ?>
-                                                    <option
-                                                        <?php 
-                                                            echo ($product->s_category_id == $cl['id']) ? 'selected': '';
-                                                        ?> 
-                                                        value="{{$cl['id']}}"
-                                                    >
-                                                        {{$cl['name_'.Config::get('app.locale')]}}
-                                                    </option>
-                                                <?php endforeach;?>
+                                                <?php
+													$userID = Session::get('currentUserId');
+													$subcategoriesobj=new Product(); 
+													$getUserDropMenu=$subcategoriesobj->getCategoryTree($userID, $parent=0,$level=0, $product->s_category_id);
+												?>
+												{{@$getUserDropMenu}}
                                             </select>
                                         </div>
                                     </div>

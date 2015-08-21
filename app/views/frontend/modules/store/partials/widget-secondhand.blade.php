@@ -25,7 +25,7 @@ $PayMonthly = $thisProduct->listAllProductsByOwnStore($whereSecondHand);
     				<div class="product-image-wrapper">
     					<div class="single-products">
     						<div class="productinfo text-center">
-    							<a href="{{Config::get('app.url')}}page/{{$productSecondHand->store_id}}/my/detail/{{$productSecondHand->id}}">
+    							<a href="{{$userHome}}/my/detail/{{$productSecondHand->id}}">
                                     @if($productSecondHand->thumbnail)
     								    <img src="{{Config::get('app.url')}}upload/product/thumb/{{$productSecondHand->thumbnail}}" alt="{{$productSecondHand->title}}" />
                                     @else
@@ -34,7 +34,7 @@ $PayMonthly = $thisProduct->listAllProductsByOwnStore($whereSecondHand);
     							</a>
     							<h2>{{$productSecondHand->title}}</h2>
     							<p>{{$productSecondHand->price}} $</p>
-    							<a href="{{Config::get('app.url')}}page/{{$productSecondHand->store_id}}/my/detail/{{$productSecondHand->id}}">View Details</a>
+    							<a href="{{$userHome}}/my/detail/{{$productSecondHand->id}}">View Details</a>
     						</div>
     						<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
     					</div>

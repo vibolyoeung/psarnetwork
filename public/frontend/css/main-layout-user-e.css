@@ -27,31 +27,44 @@ border: 0;
 }
 .header_top a, #header h1 a{color:#000000!important}
 
-#footer {
-	background: #FFFF33!important;
-}
-
 #nav .bgnya {
-background-color:#000000!important;
 border-bottom:4px solid #FFFF33!important;
 box-shadow: none!important;
+color:#fff!important;
 }
 .popular-links {
-	background-color: #FFFF33;
-	color: #000000;
+	color: #FFFF33;
 }
 .popular-links>.panel-heading:hover a {
 	text-decoration: underline;
 	color: #000000;
 }
-.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{  background-color: #00661A!important;}
-#costomLayout .ui-sortable li{background: #FFFF33!important}
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{  background-color: #00661A!important}
+
 .register-form, .login-form {  border: 3px solid #FFFF33!important;}
-.category-tab ul.nav {border-bottom: 2px solid #FFFF33!important;}
-.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>li:hover,.dropdown-menu>li:focus {background-color: #FFFF33;color: #FFFFFF;}
-.sf-menu a.home, .sf-menu > li > a.home.current {background-color: #959500!important;}
+.category-tab ul.nav {border-bottom: 2px solid #ddd!important;}
+.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>li:hover,.dropdown-menu>li:focus {background-color: #FFFF33;color: #FFFFFF!important;}
+.sf-menu a.home, .sf-menu > li > a.home.current {background-color: #fff000!important;}
 .sf-menu li:hover > a,
 .sf-menu li.sfHover > a,
-.sf-menu > li > a.current {background-color:#959500!important;color:#E6E6E6;}
+.sf-menu > li > a.current {color:#fff!important;}
 .carousel-indicators li.active{  background: #FFBF00!important;}
 .nav-tabs li span {color: #FFBF00!important;}
+.sf-menu a {color:#fff!important;}
+.header_top, 
+#costomLayout .ui-sortable li,
+.sf-menu li:hover > a,
+.sf-menu li.sfHover > a,
+.sf-menu > li > a.current,#footer,
+#nav .bgnya,
+label.popular-links,
+.sf-menu ul li {background: #333!important}"public/frontend/css/main-layout-user-d.css"
+#header .nav, #header .language-bar a, #footer{color:#fff!important;}
+#header .nav a, #footer a{color:#fff000!important;}
+.sf-menu a.home:before {color:#000!important;}
+
+.sf-menu ul li,
+.sf-menu ul li ul li {
+  border-top: 1px solid #515100;
+  border-bottom: 1px solid #fff000;
+}
