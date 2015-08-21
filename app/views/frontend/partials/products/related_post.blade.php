@@ -5,6 +5,9 @@
 		data-ride="carousel">
 		<div class="carousel-inner" style="padding-top:15px;">
 			<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
+			<?php
+			$secondPro = 1;
+			?>
 			@foreach($related_post as $relatedPost)
 			<?php 
 			//var_dump($relatedPost);
@@ -26,7 +29,11 @@
 					</div>
 				</div>
 				<?php }
-			?>
+				if ($secondPro >= 6&& $secondPro % 6 == 0) {
+					echo '</div><div class="item"> ';
+				}
+				$secondPro ++;
+				?>
 			@endforeach
 		</div>
 	</div>

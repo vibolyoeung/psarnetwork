@@ -194,7 +194,7 @@ class FePageController extends BaseController {
 		return Product::findProvinceById($provinceId);
 	}
 
-	public function listSuppermarket($id=0){
+	public function listSuppermarket($parent_id,$id){
 		$advTops = $this->mod_advertisment
 		->getAdvertisementHomePage(
 				self::HOMEPAGE,
@@ -202,9 +202,11 @@ class FePageController extends BaseController {
 				1
 		);
 		
-		$marketLists = $this->mod_market->listingMarkets();
+		$mainSup = $this->mod_market->mainMarket($parent_id);
 		return View::make('frontend.partials.suppermarket')
-		->with('listMarket',$marketLists->data)
+		->with('mainID',$mainSup['0']->id)
+		->with('mainmarket',$mainSup['0']->name)
+		->with('listMarket',$this->mod_market->listsupermarketfront($parent_id))
 		->with('client_type',$this->mod_category->getClientType())
 		->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
 		->with('conditions', $this->mod_product->listAllConditions())
@@ -269,4 +271,5 @@ class FePageController extends BaseController {
     	return View::make('frontend.partials.static_page')
     		->with('page', $pageForWebsite);
     }
+
 }

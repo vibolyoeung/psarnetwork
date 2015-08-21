@@ -450,6 +450,7 @@ class Product extends Eloquent{
 			->first();
 	}
 
+
 	/**
 	 * findRelatedPostProduct
 	 * 

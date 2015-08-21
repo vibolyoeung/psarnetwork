@@ -47,7 +47,7 @@ if(count($buyerProducts) > 0){
 					</div>
 				</div>
 				<?php
-				if ($buyPro >= 4 && $buyPro % 4 == 0) {
+				if ($buyPro >= 6 && $buyPro % 6 == 0) {
 					echo '</div><div class="item"> ';
 				}
 				$buyPro ++;
