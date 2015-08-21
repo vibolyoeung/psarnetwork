@@ -9,46 +9,28 @@
 <div class="col-lg-10">
 	<div class="col-sm-10">
 		<div class="features_items">
-		 	@foreach($listMarket as $markets)
-		 	<?php
-				// var_dump($markets);
-				?>
-			<div class="col-lg-6">
-				<div class="col-lg-12" style="padding: 0; margin: 0;">
-					<div class="col-lg-12">
-						View: <a href="#">&nbsp;&nbsp;Stores &nbsp;&nbsp;|</a> <a href="#">Products</a>
-					</div>
-					<div class="media commnets">
-						<a href="#" class="pull-left col-lg-6" style="padding: 0"> <!--<img class="img-thumbnail img-responsive" alt="" src="{{Config::get('app.url')}}/frontend/images/home/product6.jpg" class="media-object">-->
-							{{HTML::image("upload/market/thumb/".$markets->image,$markets->title_en,array('class'=>'img-thumbnail
-							img-responsive col-lg-12','style'=>'max-height:188px;','title'=>$markets->title_en))}}
-						</a>
-
-						<div class="media-body img-thumbnail" style="padding: 14px;">
-							<h4 class="media-heading"><?php echo $markets->{'title_'.Session::get('lang')} ?></h4>
-							<h5>
-								Stair : <span class="number-display"><?php echo $markets->amount_stair;?></span></span>
-							</h5>
-							<h5>
-								Stores : <span class="number-display">10</span></span>
-							</h5>
-							<h5>
-								Product : <span class="number-display">200</span></span>
-							</h5>
-							<h5>
-								Location : <span class="number-display">Phnom Penh</span></span>
-							</h5>
-							<h5>
-								Date : <span class="number-display"><?php echo $markets->created_date;?></span></span>
-							</h5>
-						</div>
-						<br />
-						<div class="col-lg-12 img-thumbnail img-responsive">
-							<?php echo $markets->{'desc_'.Session::get('lang')}?>
+			<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
+		 	@foreach($listProductSupermarket as $markets)
+			<div class="col-sm-2">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<a href="#" data-toggle="modal" data-target="#myModal"
+										onclick="popupDetails.add_popup_detail(<?php echo $markets->id; ?>)">
+										<img
+										src="{{Config::get('app.url')}}upload/product/thumb/{{$markets->thumbnail}}"
+										alt="" />
+									</a>
+									<h2 class="price">$ {{$markets->price}}</h2>
+									<center>
+										<a href="{{Config::get('app.url')}}product/details/{{$markets->id}}">
+											<?php echo substr($markets->title,0,20)?>
+										</a>
+									</center>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>
 			@endforeach
 		</div>
 	</div>

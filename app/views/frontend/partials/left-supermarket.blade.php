@@ -12,7 +12,7 @@
 				<?php
 				$finalCategory = new MCategory();
 				?>
-					@foreach ($listMarket as $categoriesList)
+					@foreach ($listMarkets as $categoriesList)
 						<li class="dropdown-mainmenu">
 							<a href="<?php echo URL::to('product/list/'.$mainID.'/'.$categoriesList->id); ?>">
 								<?php echo $categoriesList->{'title_'.Session::get('lang')};?>
