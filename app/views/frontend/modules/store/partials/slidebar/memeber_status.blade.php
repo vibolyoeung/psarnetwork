@@ -25,7 +25,8 @@ $getUserData = $getUser->getUser($dataStore->user_id);
 		@endif
 		@if($getUserData->result->account_type == 2)
 			{{trans('register.Interprise_Account')}}
-		@endif
-		</span>
+		@endif</span><br/>
+		<b>{{trans('store.Webpage')}}</b>: {{Config::get('app.url')}}/page/{{@$dataStore->sto_url}}
+		
 	</div>
 </div>

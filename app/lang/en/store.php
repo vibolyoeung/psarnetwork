@@ -14,4 +14,5 @@ return array(
 	'memeberContactPerson' => 'Contact person', 
 	'Tel' => 'Tel', 
 	'Email' => 'Email',
+	'Webpage' => 'Webpage',
 );
