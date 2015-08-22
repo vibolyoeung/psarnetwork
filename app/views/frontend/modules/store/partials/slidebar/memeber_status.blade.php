@@ -21,9 +21,10 @@ $getUserData = $getUser->getUser($dataStore->user_id);
 		<b>{{trans('store.memeberSince')}}</b><span style="color: red;"> {{@$getUserData->result->create_at}}</span><br />
 		<b>{{trans('register.gen_Account_Type')}}</b>: <span style="color: red;">
 		@if($getUserData->result->account_type == 1)
-			{{trans('register.Interprise_Account')}}
-		@else
 			{{trans('register.Free_Account')}}
+		@endif
+		@if($getUserData->result->account_type == 2)
+			{{trans('register.Interprise_Account')}}
 		@endif
 		</span>
 	</div>

@@ -209,6 +209,10 @@ class FeMemberController extends BaseController {
 			}
 			/* end add widget for user */
 			
+			/*slideshow config*/
+			$addDataSlideshowConfig = $this->mod_page->addUserPagesConfig ( $uid, $title = 'slideside_status' );
+			/*end slideshow config*/
+			
 			/* clear session user */
 			Session::flush ();
 		}
