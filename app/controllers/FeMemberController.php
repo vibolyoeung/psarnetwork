@@ -24,6 +24,10 @@ class FeMemberController extends BaseController {
 	 * @return void
 	 */
 	public function index() {
+		if(Session::get ( 'currentUserId' )) {
+			return Redirect::to ( '/' );
+			die;
+		}
 		if (Input::has ( 'BtnLogin' )) {
 			$loginName = Input::get ( 'loginName' );
 			$password = Input::get ( 'password' );

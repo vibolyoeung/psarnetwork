@@ -26,4 +26,5 @@
 			</div>
 		</div>
 	</section>
+	<link href='//netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css' rel='stylesheet'/>
 	@include('frontend.modules.store.partials.footer');

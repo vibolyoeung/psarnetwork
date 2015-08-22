@@ -1,3 +1,10 @@
+#header #store-logo {position: relative}
+#header #store-banner-header {position: relative}
+#header .edit-logo {}
+#header .edit-banner {}
+#header .edit-logo a, #header .edit-banner  a{}
+#header .edit-logo, #header .edit-banner{  margin-top: 0;position: absolute;  padding:5px;background:rgba(0, 0, 0, 0.38);display:block;top: 10px;left:10px;}
+#header .edit-logo:hover, #header .edit-banner:hover{;background:rgba(0, 0, 0, 0.7);}
 .user-wrapper {margin-top:0px}
 .changepassword label {color:green}
 .storeLogo {height: 90px;max-width: 100%;}

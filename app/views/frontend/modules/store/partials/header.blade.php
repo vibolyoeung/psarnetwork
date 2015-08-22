@@ -51,6 +51,26 @@ if($userLayout) {
 		<meta content='no-cache' http-equiv='cache-control'/>
 		<meta content='no-cache' http-equiv='pragma'/>
 		<meta content='global' name='target'/>
+		<meta content='website' property='og:type'/>
+		<meta content="@yield('title')" itemprop='name'/>
+		
+		@if(!empty($dataProductDetail->thumbnail))
+		<meta name="title" content="@yield('title')">
+		<meta content="@yield('title')" property='og:site_name'/>
+		
+		<meta property="og:site_name" content="@yield('title')">
+      	<meta property="og:url" content="{{Config::get('app.url')}}{{Request::path ()}}">
+	    <meta property="og:title" content="@yield('description')">
+	    <meta property="og:image" content="{{Config::get('app.url')}}upload/product/{{$dataProductDetail->thumbnail}}">
+	    <meta property="og:description" content="@yield('description')">
+    
+		<meta name="twitter:url" content="{{Config::get('app.url')}}{{Request::path ()}}">
+	    <meta name="twitter:title" content="@yield('title')">
+	    <meta name="twitter:description" content="@yield('description')">
+	    <meta name="twitter:image" content="{{Config::get('app.url')}}upload/product/{{$dataProductDetail->thumbnail}}">
+	    <meta content="{{Config::get('app.url')}}upload/product/{{$dataProductDetail->thumbnail}}" itemprop='image'/>
+	    <link href="{{Config::get('app.url')}}upload/product/{{$dataProductDetail->thumbnail}}" rel='image_src'/>
+	    @endif
         {{HTML::style('frontend/css/font-awesome.min.css')}}
         {{HTML::style('frontend/css/prettyPhoto.css')}}
         {{HTML::style('frontend/css/price-range.css')}}
@@ -84,6 +104,7 @@ if($userLayout) {
         <div class="container" style="padding-left: 0;padding-right: 0;">
             <div class="container-fluid top-menu">
                 	<div class="col-lg-3 col-md-4 col-sm-12">
+                		<div id="store-logo">
                             @if($dataStore->image)
                                 <a class="store-logo" href="{{$userHome}}">
                                 	<img src="{{Config::get('app.url')}}{{'upload/store/'.$dataStore->image}}" class="storeLogo"/>
@@ -93,20 +114,137 @@ if($userLayout) {
                                 	<img src="https://placeholdit.imgix.net/~text?txtsize=20&txt={{($dataStore->title_en ? $dataStore->{'title_'.Session::get('lang')} : 'my page')}}&w=300&h=90" class="storeLogo"/>
                                 </a>
                             @endif
+                            @if(Session::get ( 'currentUserId' ))
+                            <button type="button" class="btn btn-primary btn-lg edit-logo" data-toggle="modal" data-target="#editLogo">
+							  <i class="icon-pencil"></i> update logo
+							</button>
+                            @endif
+                    	</div>
     				</div>
     				<div class="col-lg-9 col-md-8 col-sm-12">
-    					<?php 
-    					$getBanner = new Store ();
-    					$getBannerImage = $getBanner->getStoreBanner(null,array('ban_store_id'=>$dataStore->id,'ban_position'=>'right_header','ban_status' => 1));
-    					$bannerLink = !empty($getBannerImage[0]->ban_link)? $getBannerImage[0]->ban_link : '';
-    					?>
-    				    @if(!empty($getBannerImage[0]))
-                            <a class="store-logo" href="{{$bannerLink}}" target="_blank">
-                            	<img src="{{Config::get('app.url')}}/upload/user-banner/{{$getBannerImage[0]->ban_image}}" class="storeBanner"/>
-                            </a>
-                        @else
-                        	<img src="https://placeholdit.imgix.net/~text?txtsize=20&txt=850+x+90&w=850&h=90" class="storeBanner"/>
-                        @endif
+    					<div id="store-banner-header">
+	    					<?php 
+	    					$getBanner = new Store ();
+	    					$getBannerImage = $getBanner->getStoreBanner(null,array('ban_store_id'=>$dataStore->id,'ban_position'=>'right_header','ban_status' => 1));
+	    					$bannerLink = !empty($getBannerImage[0]->ban_link)? $getBannerImage[0]->ban_link : '';
+	    					?>
+	    				    @if(!empty($getBannerImage[0]))
+	                            <a class="store-banner" href="{{$bannerLink}}" target="_blank">
+	                            	<img src="{{Config::get('app.url')}}/upload/user-banner/{{$getBannerImage[0]->ban_image}}" class="storeBanner"/>
+	                            </a>
+	                        @else
+	                        	<a class="store-banner" href="#">
+	                        	<img src="https://placeholdit.imgix.net/~text?txtsize=20&txt=850+x+90&w=850&h=90" class="storeBanner"/>
+	                        	</a>
+	                        @endif
+	                        @if(Session::get ( 'currentUserId' ))
+                            <button type="button" class="btn btn-primary btn-lg edit-banner" data-toggle="modal" data-target="#editBanner">
+							  <i class="icon-pencil"></i> update banner
+							</button>
+                            @endif
+                        </div>
                     </div>
                 </div>
 			</div>
+			
+			@if(Session::get ( 'currentUserId' ))
+			{{HTML::script('frontend/js/jquery-upload/jquery.form.js')}}
+			<script type="text/javascript">
+			$( document ).ready(function(){
+				$('#bannerFile').change(function(){
+			        $("#banner-preview").html('<img src="{{Config::get('app.url')}}frontend/images/upload_progress.gif" alt="Uploading...."/>');
+			    	$("#imageBanner").ajaxForm({
+			            success: function(data) {
+			                //console.log(data);
+			            var obj = JSON.parse(data);
+			                if (!obj.error) {
+			                    $('.message-success').show();
+			                    $('a.store-banner').html('<img src="{{Config::get('app.url')}}upload/user-banner/' + obj.image + '" style="max-height:90px" class="storeBanner"/>');
+			                    $('#editBanner').modal('hide');
+			                }
+			            }
+			        }).submit();
+			   	});
+
+				/*logo upload*/
+			    $('#logoFile').change(function(){
+			        $("#logo-preview").html('<img src="{{Config::get('app.url')}}frontend/images/upload_progress.gif" alt="Uploading...."/>');
+			    	$("#imageLogo").ajaxForm({
+			            success: function(data) {
+			                //console.log(data);
+			            var obj = JSON.parse(data);
+			                if (!obj.error) {
+			                    $('.message-success').show();
+			                    $('a.store-logo').html('<img src="{{Config::get('app.url')}}upload/store/' + obj.image + '" style="max-height:90px" class="storeLogo"/>');
+			                    $('#editLogo').modal('hide');
+			                }
+			            }
+			        }).submit();
+			   	});
+			});
+			</script>
+
+<!-- Modal -->
+<div class="container">
+	<div class="modal fade" id="editLogo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">{{trans('register.agree_head_Logo')}}</h4>
+	      </div>
+	      <div class="modal-body">
+	        <!-- body -->
+	        <form id="imageLogo" method="post" enctype="multipart/form-data" action='{{Config::get('app.url')}}/member/ajaxupload'>
+				<div class="form-group">
+					<input type="hidden" value="logoupload" name="page" /> <input
+						type="file" id="logoFile" name="file" accept="image/*" />
+					<p class="help-block">
+						{{trans('register.TAB_Your_your_logo_here')}}</p>
+				</div>
+			</form>
+	        <!-- end body -->
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="modal fade" id="editBanner" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">{{trans('register.TAB_Your_banner_header')}}</h4>
+	      </div>
+	      <div class="modal-body">
+	        <!-- body -->
+	        <form id="imageBanner" method="post" enctype="multipart/form-data" action='{{Config::get('app.url')}}/member/ajaxupload'>
+				<div class="form-group">
+					<input type="text" id="addBannerLink"
+					class="form-control"
+					value="{{@$bannerLink}}"
+					placeholder="{{trans('register.banner_link')}}"
+					name="link"
+					style="display: inline-block;margin-bottom:10px" required />
+					<input type="hidden" value="bannerupload" name="page" />
+					<input type="file" id="bannerFile" name="file"
+						accept="image/*" />
+					<p class="help-block">
+						{{trans('register.TAB_Your_banner_upload')}}</p>
+					
+					<button id="btnSaveLink" type="button"
+					class="btn btn-default btn-xs pull-right "
+					style="margin-top: 5px; margin-bottom: 5px;display:none">Save</button>
+				</div>
+			</form>
+	        <!-- end body -->
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>
+
+
+			@endif
