@@ -1,3 +1,4 @@
+@if(count($productAdvs) > 0)
 <div class="category-tab feature-ad product-adv">
 	<div class="col-lg-12 product-adv" style="padding: 0;">
 		<ul class="nav nav-tabs">
@@ -6,7 +7,6 @@
 		</ul>
 	</div>
 	<div class="row list-store">
-		@if(count($productAdvs) > 0)
 			@foreach($productAdvs as $adv)
 				<?php
 					$exp_date = $adv->end_date;
@@ -32,6 +32,6 @@
 				</div>
 				@endif
 			@endforeach
-		@endif
 	</div>
 </div>
+@endif

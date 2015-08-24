@@ -1,4 +1,4 @@
-<section id="slider">
+<section id="slider" class="hide_responsive">
 	<!--slider-->
 	<div class="row">
 		<div class="col-lg-12 pull-right" style="padding:0;">

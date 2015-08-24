@@ -64,7 +64,6 @@ class FePageController extends BaseController {
 			);
 
 		$productAdvs = $this->mod_advertisment->getProductAdvertisement(self::HOMEPAGE);
-
 		return View::make('frontend.partials.home')
 			->with('slideshows', $listSlideshows->result)
 			->with('advVerticalRightSmalls', $advVerticalRightSmall->result)
@@ -119,7 +118,7 @@ class FePageController extends BaseController {
 		return $Category;
 	}
 
-	public function getProductbyCategory($parent_id, $category_id=''){
+	public function getProductbyCategory($parent_id, $category_id){
  		$advHorizontalTopLarge = $this->mod_advertisment
  		->getAdvertisementHomePage(
  				self::HOMEPAGE,
@@ -163,12 +162,11 @@ class FePageController extends BaseController {
  		);
 
  		$productByCategory = $this->mod_product->findPostProductByCategory($category_id);
-
  		$category = $this->mod_category->getMainCategories($parent_id);
  		$mainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($parent_id);
- 		if($category_id=='' || $this->mod_category->countCategory($category_id) > 0){
+ 		if($this->mod_category->countCategory($category_id) > 0){
  			$category = $this->mod_category->getMainCategories($category_id);
- 			$mainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($category_id);
+ 			$mainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($parent_id);
  		}
  		
 		return View::make('frontend.modules.detail.index')
@@ -222,7 +220,6 @@ class FePageController extends BaseController {
 				self::HOME_PAGE_TOP,
 				1
 		);
-		
 		$detailProduct = $this->mod_product->findProductDetailById($product_id);
 		return View::make('frontend.partials.products.detials')
 					->with('advTops', $advTops->result)
@@ -234,7 +231,7 @@ class FePageController extends BaseController {
     public function getSignOut() {
         Session::flush();
         return Redirect::route('/');
-    } 
+    }
 
     public function popupDetailProduct($product_id) {
     	$productDetail =  $this->mod_product->findProductDetailById($product_id);

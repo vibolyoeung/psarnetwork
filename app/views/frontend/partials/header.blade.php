@@ -102,45 +102,12 @@
 										<a href="{{URL::to('page.html')}}/{{$mPage->id}}">
 											<i class="fa">
 												<?php 
-                                                   echo $mPage->{'title_'.Config::get('app.locale')}
+                                                   echo $mPage->{'title_'.Session::get('lang')}
 												?>
 											</i>
 										</a>
 									</li>
 								@endforeach
-								
-                                @if(!Session::get('currentUserId'))
-								<!-- <li>
-									<a href="{{Config::get('app.url')}}member/login">
-										<i class="fa">Sign in /</i>
-									</a>
-								</li>
-								<li>
-									<a href="{{Config::get('app.url')}}member/register">
-										<i class="fa">Free Register</i>
-									</a>
-								</li> -->
-                                @else
-                              <!--   <li role="presentation" class="dropdown">
-										<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-										My Account <span class="caret"></span>
-										</a>
-										<ul class="dropdown-menu" role="menu">
-											<li>
-            									<a href="{{URL::to('member/userinfo/infomation')}}">View Profile info</a>
-            								</li>
-            								<li>
-            									<a href="{{URL::to('member/userinfo/summary')}}">Your Status</a>
-            								</li>
-                                            <li>
-        										<a href="{{URL::to('member/userinfo/infomation?pw=1#password')}}">Chage Password</i></a>
-        									</li>
-                                            <li>
-        										<a href="{{URL::to('member/logout')}}"><i class="glyphicon glyphicon-off"> Log out</i></a>
-        									</li>
-										</ul>
-									</li> -->
-                                @endif
 							</ul>
 							<div class="language-bar">
 								<a href="{{URL::current()}}?lang=en"> <img
@@ -192,8 +159,38 @@
 							</li>
 						</ul>
 						&nbsp;&nbsp;
-						<img src="{{Config::get('app.url')}}frontend/images/icons/notification.png" title="" alt=""/>
-						<a href="#">Notifications &nbsp;</a><span style="color:red;cursor:pointer;font-weight:bold;">20</span>
+						
+						<ul class="nav navbar-nav front-loggedin">
+							<li role="presentation" class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+									Notifications 
+									<span style="color:red;cursor:pointer;font-weight:bold;">
+										<?php 
+											$productNotification = Product::productPosttoday();
+											echo count($productNotification);
+										?>
+									</span>
+								</a>
+								<ul class="dropdown-menu notification-product" role="menu">
+									<?php 
+										if(count($productNotification)){ ?>
+												@foreach($productNotification as $noticproduct)
+													<li>
+														<a href="{{Config::get('app.url')}}product/details/{{$noticproduct->id}}">
+															<img src="{{Config::get('app.url')}}upload/product/thumb/{{$noticproduct->thumbnail}}" title="" alt=""/>
+															&nbsp;&nbsp;{{$noticproduct->title}}
+														</a>
+													</li>
+												@endforeach
+											<?php
+										}
+									?>
+								</ul>
+							</li>
+						</ul>
+
+
+						
                     @endif
 				</div>
 				<div class="col-lg-2">

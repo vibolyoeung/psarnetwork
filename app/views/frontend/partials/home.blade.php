@@ -9,14 +9,15 @@
 @section('content')
 {{ App::make('FePageController')->mainCategory() }}
 <div class="col-lg-10">@include('frontend.partials.slider')</div>
-<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-	@include('frontend.partials.products.homepage_adv')
-	@include('frontend.partials.products.latest')
-	@include('frontend.partials.products.popular')
+<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 pull-right">
+	
 	<!--/category-tab-->
 	<div class="category-tab feature-ad lastest-post  product_wrapper">
 		<!--recommended_items-->
 			<div class="col-lg-12" style="padding: 0;">
+				@include('frontend.partials.products.homepage_adv')
+				@include('frontend.partials.products.latest')
+				@include('frontend.partials.products.popular')
 				@include('frontend.partials.products.hot_promotion')
 				@include('frontend.partials.products.new_arrival')
 				@include('frontend.partials.products.monthly_pay')
@@ -39,6 +40,7 @@
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+
 <script>
 	jQuery(document).ready(function(){
 		jQuery("#menu_toogle").css('cursor','pointer');

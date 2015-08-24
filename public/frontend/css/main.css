@@ -1062,7 +1062,7 @@ translateY
 }
 
 .navbar-nav li a i {
-	font-family: 'Roboto', sans-serif;
+	font-family:'Hanuman';
 }
 
 .navbar-nav .language {
@@ -1286,7 +1286,7 @@ h2.title {
 	color: #696763;
 }
 
-.productinfo img {
+.left-sideba .productinfo>a>img {
 	width: 100%;
 	height: 115px;
 }
@@ -3436,7 +3436,6 @@ a.more_categories {
 
 .left_bar {
 	padding-right: 0;
-	min-height: 450px;
 	margin-top: -43px;
 }
 .all_categories_type{
@@ -3521,7 +3520,7 @@ li.main_category{
 }
 
 @media(max-width:768px){
-    header#header, .header-middle, .left_bar, .top_special_ads, div.features_items > .features_items,.center-advertise, .popular_product,.new_product, .new_product_left, .new_product_right{
+    header#header, .header-middle, .top_special_ads, div.features_items > .features_items,.center-advertise, .popular_product,.new_product, .new_product_left, .new_product_right, .hide_responsive{
        display: none !important;
     }
     .navbar-header{
@@ -3533,6 +3532,10 @@ li.main_category{
     }
     #slider .top_special_ads{
         padding:inherit !important;
+    }
+    .left_bar{
+    	margin-top:0;
+    	padding-right:15px;
     }
 }
 
@@ -3570,7 +3573,7 @@ ul.dropdown_main_menu > li > a{
 }
 .menu_right_section>li{
 	border:0px solid red;
-	padding:0 2px 0;
+	padding:0 3px 0;
 }
 .menu-top{
 	border: 1px solid #f7f7f5
@@ -3587,7 +3590,6 @@ ul.dropdown_main_menu > li > a{
 }
  .detail-popup > .item img{
  	max-height: 190px;
- 	width:100%;
  }
 span.pro-condition{
 	color:#eea236;
@@ -3603,12 +3605,11 @@ ul#TapTitle > li.active > a{
 	padding:8px 5px;
 }
 .store-name{
-	border:1px solid #f7f7f5;
-	padding:5px;
+	padding:0;
 	text-align: center;
 }
 .store-name img {
-	max-width: 100px;
+	width:100%;
 }
 .right-ad-detail{
 	left:6px;
@@ -3640,4 +3641,17 @@ ul#TapTitle > li.active > a{
 .child-menu > li{
 	line-height: 25px;
 }
+.member_ship_home img{
+	margin-top:4px;
+}
+ .member_ship_home a{
+ 	margin-top:8px;
+ }
+ .notification-product>li{
+ 	border:1px solid red;
+ 	padding:0;
+ }
+ .dropdown-menu > li > a{
+ 	padding: 3px 6px;;
+ }
 //=========Detail slile===//

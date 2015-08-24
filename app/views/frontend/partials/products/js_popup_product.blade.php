@@ -59,7 +59,7 @@
                         <strong>Condition :&nbsp;<span class="pro-condition">{{ $productDetail->name }}</span></strong><br />
                         <strong>Post Date :&nbsp;<span class="pro-condition"><?php echo date("d/M/Y",strtotime($productDetail->created_date)); ?> </span></strong>
 					    <div class="clear"></div> <div class="clear"></div>
-                        <div class="col-lg-12 text-centered" style="background-color:#eea236;padding:5px 10px;text-align:center;"><a href="#" style="color:white;font-weight:bold;">www.khmerabba.com/total</a></div>
+                        <div class="col-lg-12 text-centered" style="background-color:#eea236;padding:5px 0;text-align:center;"><a href="{{Config::get('app.url')}}page/store-{{$productDetail->store_id;}}" style="color:white;font-weight:bold;" target="_blank">{{Config::get('app.url')}}page/store-{{$productDetail->store_id;}}</a></div>
                         <div class="clear"></div>
                         <div class="col-lg-12 text-centered" style="background-color:#eea236;padding:5px 10px;font-weight:bold;text-align:center;">
                                 <a href="{{Config::get('app.url')}}product/details/{{$productDetail->id}}">See : Page Detail</a></div>

@@ -6,6 +6,10 @@
 </ol>
 @endsection @section('content')
 {{ App::make('FePageController')->mainCategory() }}
+
+<?php
+	//var_dump($detailProduct);
+?>
 <div class="col-lg-10">
 	<!-- ============Relative post=============== -->
 	<div class="col-lg-10" style="padding-top:10px;background-color:fcfcfc;">
@@ -94,8 +98,8 @@
 									</span></div>
 									<div class="clear"></div>
 									<div class="col-lg-12 text-centered" style="background-color:#eea236;padding:5px 10px;text-align:center;">
-										<a href="{{Config::get('app.url')}}page/{{$detailProduct->sto_url;}}" style="color:white;font-weight:bold;">
-										{{Config::get('app.url')}}page/{{$detailProduct->sto_url;}}
+										<a href="{{Config::get('app.url')}}page/store-{{$detailProduct->store_id;}}" style="color:white;font-weight:bold;">
+										{{Config::get('app.url')}}page/store-{{$detailProduct->store_id;}}
 										</a>
 									</div>
 								</div>
