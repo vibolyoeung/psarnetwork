@@ -91,9 +91,7 @@ class FeProductController extends BaseController {
             $listCategories = $this->mod_category->fetchCategoryTree();
         } else {
             $listCategories = $this->mod_product->getCategoryTree( $userID, $parent = 0 );
-            //$listCategories = $this->mod_page->getUserPages ( $userID );
         }
-        
         $productTransferTypes = $this->mod_product->findAllTransferType();
         $productCondictions = $this->mod_product->findAllCondition();
         $getUserStore = $this->mod_store->getUserStore($userID);
@@ -170,11 +168,18 @@ class FeProductController extends BaseController {
         $userID = Session::get('currentUserId');
         $getUserStore = $this->mod_store->getUserStore($userID);
         $product = $this->mod_product->findProductById($product_id);
+
         if (self::FREE_ACCOUNT === (int)Session::get('currentUserAccountType')) {
             $listCategories = $this->mod_category->fetchCategoryTree();
         } else {
-            $listCategories = $this->mod_product->fetchCategoryTree();
-        }
+            $listCategories = $this->mod_product->getCategoryTree(
+                $userID,
+                $parent=0,
+                $level=0, 
+                $product->s_category_id
+            );
+        } 
+
         $productTransferTypes = $this->mod_product->findAllTransferType();
         $productCondictions = $this->mod_product->findAllCondition();
         return View::make('frontend.modules.product.edit_product')
@@ -233,6 +238,8 @@ class FeProductController extends BaseController {
         $destinationPath = base_path() . '/public/upload/product/';
         self::generateFolderUpload($destinationPath);
         $destinationPathThumb = $destinationPath.'thumb/';
+        $destinationPathPicSlideshow = $destinationPath.'/picslideshow/';
+        $destinationPathThumbSlideshow = $destinationPath.'/thumbslideshow/';
         $images = [];
         /*get old image*/
         $newImg = array();
@@ -249,8 +256,14 @@ class FeProductController extends BaseController {
                 $newFileName = $this->generateFileName($destinationPath, $originFileName);
                 $file->move($destinationPath, $newFileName);
                 Image::make($destinationPath . $newFileName)
-                    ->resize(200, 130)
+                    ->resize(140, 115)
                 ->save($destinationPathThumb . $newFileName);
+                Image::make($destinationPath . $newFileName)
+                    ->resize(500, 250)
+                ->save($destinationPathPicSlideshow . $newFileName);
+                Image::make($destinationPath . $newFileName)
+                    ->resize(90, 55)
+                ->save($destinationPathThumbSlideshow . $newFileName);
                 $images[] = array(
                     'pic' => $newFileName
                 );
@@ -293,11 +306,14 @@ class FeProductController extends BaseController {
         $data = $this->additionalProducts();
         if ($isAdd === true) {
             $data['top_up'] = date('Y-m-d H:i:s');
+            $data['created_date'] = date('Y-m-d');
         } 
         if (!empty($pictures)) {
             $thumbnail = json_decode($pictures, true);
             $data['thumbnail'] = $thumbnail[0]['pic'];
             $data['pictures'] = $pictures;
+            $data['pictures_slideshow'] = $pictures;
+            $data['thumbnails_slideshow'] = $pictures;
         }
         if (!empty($quotation)) {
           $data['file_quotation'] = $quotation;  
@@ -325,7 +341,7 @@ class FeProductController extends BaseController {
             'pro_status' => trim(Input::get('productStatus')),
             'pro_transfer_type_id' => trim(Input::get('proTransferType')),
             'is_publish' => Input::get('isPublish'),
-            'contact_info' => json_encode($contactInfo),
+            'contact_info' => json_encode($contactInfo)
         );
         return $data;
     }
@@ -340,11 +356,23 @@ class FeProductController extends BaseController {
     private static function generateFolderUpload($destinationPath) {
 
         $destinationPathThumb = $destinationPath.'/thumb/';
+        $destinationPathPicSlideshow = $destinationPath.'/picslideshow/';
+        $destinationPathThumbSlideshow = $destinationPath.'/thumbslideshow/';
+        
         if (!file_exists($destinationPath)) {
             mkdir($destinationPath, 0777, true);
-            if (!file_exists($destinationPathThumb)) {
-                mkdir($destinationPathThumb, 0777, true);
-            }
+        }
+
+        if (!file_exists($destinationPathThumb)) {
+            mkdir($destinationPathThumb, 0777, true);
+        }
+
+        if (!file_exists($destinationPathPicSlideshow)) {
+            mkdir($destinationPathPicSlideshow, 0777, true);
+        }
+
+        if (!file_exists($destinationPathThumbSlideshow)) {
+            mkdir($destinationPathThumbSlideshow, 0777, true);
         }
 
     }

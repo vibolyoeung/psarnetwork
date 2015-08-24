@@ -43,12 +43,15 @@
                                         </label>
                                         <div class="col-sm-11">
                                             <select required="required" class="form-control" name="s_category">
-                                                <?php
-													$userID = Session::get('currentUserId');
-													$subcategoriesobj=new Product(); 
-													$getUserDropMenu=$subcategoriesobj->getCategoryTree($userID, $parent=0,$level=0, $product->s_category_id);
-												?>
-												{{@$getUserDropMenu}}
+                                                @if(1 === (int)Session::get('currentUserAccountType'))
+                                                    @foreach($categoryTree as $category)
+                                                        <option value="{{$category['id']}}">
+                                                            {{$category['name_'.Session::get('lang')]}}
+                                                        </option>
+                                                    @endforeach
+                                                @else 
+                                                    {{$categoryTree}}
+                                                @endif
                                             </select>
                                         </div>
                                     </div>

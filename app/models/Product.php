@@ -143,18 +143,18 @@ class Product extends Eloquent {
 					'parent_id' => $parent 
 			);
 			$result = DB::table ( Config::get ( 'constants.TABLE_NAME.S_CATEGORY' ) )->select ( '*' )->where ( $where )->get ();
-			//$userMenus .= '<ol id="result" class="dd-list mainsub">';
 			if (! empty ( $result )) {
 				foreach ( $result as $userMenu ) {
 					$select = '';
-					if($selected == $userMenu->id) {
+					// echo $userMenu->m_cat_id;die;
+					if($selected == $userMenu->m_cat_id) {
 						$select =' selected="selected"';
 					}
-					$userMenus .= "<option value='{$userMenu->id}' {$select}>";
+					$userMenus .= "<option value='{$userMenu->m_cat_id}' {$select}>";
 					$userMenus .= $userMenu->{'name_' . Session::get ( 'lang' )};
 					
 					// Run this function again (it would stop running when the mysql_num_result is 0
-					$userMenus .= $this->menuShowNestedList ( $userID, $userMenu->m_cat_id, $level + 1 , $selected);
+					$userMenus .= $this->menuShowNestedList ($userID, $userMenu->m_cat_id, $level + 1 , $selected);
 					$userMenus .= "</option>\n";
 				}
 			}
@@ -191,10 +191,10 @@ class Product extends Eloquent {
 				foreach($result as $userMenu){
 					$id_level = $level+1;
 					$select = '';
-					if($selected == $userMenu->id) {
+					if($selected == $userMenu->m_cat_id) {
 						$select =' selected="selected"';
 					}
-					$userMenus .= "<option value='{$userMenu->id}' {$select}>";
+					$userMenus .= "<option value='{$userMenu->m_cat_id}' {$select}>";
 					$userMenus .= str_repeat('&#8212;&nbsp;', $level) . $userMenu->{'name_'.Session::get('lang')};
 	
 					// Run this function again (it would stop running when the mysql_num_result is 0
@@ -255,7 +255,7 @@ class Product extends Eloquent {
 	 */
 	public function renewProduct($product_id) {
 		$data = array (
-				'top_up' => date ( 'Y-m-d H:i:s' ) 
+			'top_up' => date( 'Y-m-d H:i:s' ) 
 		);
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		return DB::table ( $product . ' AS p' )->where ( 'p.id', '=', $product_id )->update ( $data );
@@ -273,6 +273,9 @@ class Product extends Eloquent {
 			$destinationPathQuotation = base_path () . '/public/upload/quotation/';
 			$destinationPath = base_path () . '/public/upload/product/';
 			$destinationThumb = $destinationPath . 'thumb/';
+			$destinationPathPicSlideshow = $destinationPath.'/picslideshow/';
+        	$destinationPathThumbSlideshow = $destinationPath.'/thumbslideshow/';
+
 			$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 			$result = DB::table ( $product )->where ( 'id', '=', $product_id )->where ( 'user_id', '=', Session::get ( 'currentUserId' ) )->first ();
 			if (! empty ( $result->file_quotation )) {
@@ -284,6 +287,8 @@ class Product extends Eloquent {
 				if (! empty ( $file )) {
 					File::delete ( $destinationPath . $file ['pic'] );
 					File::delete ( $destinationThumb . $file ['pic'] );
+					File::delete ( $destinationPathPicSlideshow . $file ['pic'] );
+					File::delete ( $destinationPathThumbSlideshow . $file ['pic'] );
 				}
 			}
 			return DB::table ( $product )->where ( 'id', '=', $product_id )->where ( 'user_id', '=', Session::get ( 'currentUserId' ) )->delete ();
