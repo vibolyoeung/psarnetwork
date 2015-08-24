@@ -1,5 +1,5 @@
 <!--=============Menu==========-->
-<div class="container-fluid header-bottom" style="padding:0 9px 8px 12px;">
+<div class="container-fluid header-bottom hide_responsive" style="padding:0 9px 8px 12px;">
 	<nav class="navbar navbar-default menu_header_default" role="navigation">
 		<div class="col-lg-10 col-xs-12 pull-right">
 			<!-- Brand and toggle get grouped for better mobile display -->

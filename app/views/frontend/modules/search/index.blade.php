@@ -10,7 +10,7 @@ Categories
 </ol>
 @endsection
 @section('content')
-@include('frontend.partials.categories.left')
+{{ App::make('FePageController')->mainCategory() }}
 	<div class="col-lg-10" style="padding-right:%;">
 		<div class="col-lg-2 pull-right" style="padding:0;">
 			@include('frontend.partials.categories.right')
@@ -70,3 +70,13 @@ Categories
 <script src="{{Config::get('app.url')}}/frontend/js/carouselengine/amazingcarousel.js"></script>
 <link rel="stylesheet" type="text/css" href="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.css">
 <script src="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.js"></script>
+<script src="{{Config::get('app.url')}}/frontend/js/jquery.js"></script>
+
+<script>
+	jQuery(document).ready(function(){
+		jQuery("#menu_toogle").css('cursor','pointer');
+		jQuery("#menu_toogle").click(function(){
+			jQuery(".categories_menu").toggle("slow");
+		});
+	});
+</script>

@@ -35,9 +35,9 @@ if(count($latestProducts) > 0){
 							alt="" />
 						</a>
 						<h2>$ {{$latestProduct->price}}</h2>
-						<p><?php echo substr($latestProduct->title,0,20)?></p>
-						<a href="{{Config::get('app.url')}}product/details/{{$latestProduct->id}}">View
-							Details</a>
+						<a href="{{Config::get('app.url')}}product/details/{{$latestProduct->id}}">
+							<?php echo substr($latestProduct->title,0,20)?>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -45,10 +45,8 @@ if(count($latestProducts) > 0){
 		<?php } ?>
 		@endforeach
 	</div>
-	<div class="col-lg-12">
-		<div class="col-lg-12 center-advertise">
-			@include('frontend.partials.horizontal_center_adv')
-		</div>
+	<div class="col-lg-12 center-advertise">
+		@include('frontend.partials.horizontal_center_adv')
 	</div>
 </div>
 <?php } ?>

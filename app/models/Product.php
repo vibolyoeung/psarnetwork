@@ -458,7 +458,6 @@ class Product extends Eloquent {
 		$user = Config::get ( 'constants.TABLE_NAME.USER' );
 		return DB::table ( $product . ' AS p ' )->select ( '*' )->join ( $store . ' AS st', 'st.id', '=', 'p.store_id' )->join ( $productCondition . ' AS pcon', 'pcon.id', '=', 'p.pro_condition_id' )->join ( $user . ' AS u', 'u.id', '=', 'p.user_id' )->where ( 'p.id', '=', $product_id )->first ();
 	}
-
 	/**
 	 * findRelatedPostProduct
 	 *
@@ -721,6 +720,8 @@ class Product extends Eloquent {
 			return $data;
 		}
 		
+
+
 		foreach ( $usersId as $userId ) {
 			$data = DB::table ( $productTable . ' AS p' )->join ( $userTable . ' AS u', 'u.id', '=', 'p.user_id' )->join ( $accountRoleTable . ' AS ar', 'ar.rol_id', '=', 'u.account_role' )->select ( '*' )->where ( 'p.user_id', '=', ( int ) $userId )->where ( 'p.is_publish', '=', self::IS_PUBLISH )->where ( 'p.pro_transfer_type_id', '=', self::BUYER_PRODUCT )->where ( function ($query) use($keyword) {
 				$query->orWhere ( 'p.title', 'LIKE', '%' . $keyword . '%' )->orWhere ( 'p.description', 'LIKE', '%' . $keyword . '%' );
@@ -731,4 +732,9 @@ class Product extends Eloquent {
 			}
 		}
 	}
+
+	public static function productPosttoday(){
+		return DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ))->get ();
+	}
+
 }

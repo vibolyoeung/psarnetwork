@@ -375,6 +375,7 @@ class MPage extends Eloquent {
 		
 		return DB::table ( Config::get ( 'constants.TABLE_NAME.M_PAGE' ) )->where ( $where )->get ();
 	}
+	
 	public static function getPagesToPutBottom() {
 		$where = array (
 				'page_belong_to' => self::PAGE_WEBSITE,
