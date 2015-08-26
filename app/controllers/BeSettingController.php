@@ -106,11 +106,15 @@ class BeSettingController extends BaseController {
 	public function addProvince(){
 
 		if(Input::has('btnSubmit')){
-			$rules = array('province_name' => 'required');
+			$rules = array(
+				'province_name_en' => 'required',
+				'province_name_km' => 'required'
+			);
 			$validator = Validator::make(Input::all(), $rules);
 			if ($validator->passes()) {
 				$data = array(
-					'province_name'=>trim(Input::get('province_name'))
+					'province_name_en'=>trim(Input::get('province_name_en')),
+					'province_name_km'=>trim(Input::get('province_name_km'))
 				);
 				DB::table(Config::get('constants.TABLE_NAME.PROVINCE'))
 				->insertGetId($data);
@@ -127,8 +131,9 @@ class BeSettingController extends BaseController {
 	public function editProvince($province_id) {
 		if(Input::has('btnSubmit')){
 			$data = array(
-					'province_name'=>trim(Input::get('province_name'))
-				);
+				'province_name_en'=>trim(Input::get('province_name_en')),
+				'province_name_km'=>trim(Input::get('province_name_km'))
+			);
 			DB::table(Config::get('constants.TABLE_NAME.PROVINCE'))
 				->where('province_id', $province_id)
 				->update($data);
@@ -143,11 +148,15 @@ class BeSettingController extends BaseController {
 
 	public function addDistrict($province_id) {
 		if(Input::has('btnSubmit')){
-			$rules = array('dis_name' => 'required');
+			$rules = array(
+				'dis_name_en' => 'required',
+				'dis_name_km' => 'required'
+			);
 			$validator = Validator::make(Input::all(), $rules);
 			if ($validator->passes()) {
 				$data = array(
-					'dis_name'=>trim(Input::get('dis_name')),
+					'dis_name_en'=>trim(Input::get('dis_name_en')),
+					'dis_name_km'=>trim(Input::get('dis_name_km')),
 					'province_id' => $province_id
 				);
 				DB::table(Config::get('constants.TABLE_NAME.DISTRICT'))
@@ -168,8 +177,9 @@ class BeSettingController extends BaseController {
 	public function editDistrict($district_id, $province_id) {
 		if(Input::has('btnSubmit')){
 			$data = array(
-					'dis_name'=>trim(Input::get('dis_name'))
-				);
+				'dis_name_en'=>trim(Input::get('dis_name_en')),
+				'dis_name_km'=>trim(Input::get('dis_name_km'))
+			);
 			DB::table(Config::get('constants.TABLE_NAME.DISTRICT'))
 				->where('id', $district_id)
 				->update($data);
@@ -179,7 +189,8 @@ class BeSettingController extends BaseController {
 		->where('id', $district_id)
 		->first();
 		return View::make('backend.modules.setting.location.edit_district')
-		->with('district', $district);
+		->with('district', $district)
+		->with('province_id', $province_id);
 	}
 
 	public function loadProductConditionList() {
@@ -191,8 +202,9 @@ class BeSettingController extends BaseController {
 	public function loadProductConditionEdit($id=null) {
 		if(Input::has('btnSubmit')){
 			$data = array(
-					'name'=>trim(Input::get('product_condition'))
-				);
+				'name_en'=>trim(Input::get('product_condition_en')),
+				'name_km'=>trim(Input::get('product_condition_km')),
+			);
 			DB::table(Config::get('constants.TABLE_NAME.PRODUCT_CONDITION'))
 				->where('id', $id)
 				->update($data);
@@ -212,7 +224,8 @@ class BeSettingController extends BaseController {
 	public function loadProductTransferTypeEdit($id = null) {
 		if(Input::has('btnSubmit')){
 			$data = array(
-					'name'=>trim(Input::get('product_transfer_type'))
+					'name_en'=>trim(Input::get('product_transfer_type_en')),
+					'name_km'=>trim(Input::get('product_transfer_type_km'))
 				);
 			DB::table(Config::get('constants.TABLE_NAME.PRODUCT_TRANSFER_TYPE'))
 				->where('ptt_id', $id)

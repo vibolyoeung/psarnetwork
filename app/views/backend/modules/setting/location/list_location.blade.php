@@ -21,7 +21,8 @@
 					<table class="table table-bordered no-margin">
 						<tr>
 							<th>ID</th>
-							<th>Location</th>
+							<th>Name {{HTML::image("backend/images/lang-icons/en.png",'En',array())}}</th>
+							<th>Name {{HTML::image("backend/images/lang-icons/km.png",'Km',array())}}</th>
 							<th>View District</th>
 							<th>Action</th>
 						</tr>
@@ -29,7 +30,8 @@
 						<?php foreach ($provinces as $province):?>
 						<tr>
 							<td>{{$i}}</td>
-							<td>{{$province->province_name}}</td>
+							<td>{{$province->province_name_en}}</td>
+							<td>{{$province->province_name_km}}</td>
 							<td>
 								<a href="{{URL::to('admin/district-setting')}}/{{$province->province_id}}">View Districts</a>
 							</td>

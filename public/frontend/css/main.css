@@ -3597,18 +3597,24 @@ ul#TapTitle > li.active > a{
 	border:1px solid #dddddd;
 }
 #DetailCarousel > .carousel-inner{
-	border:1px solid #f7f7f5;
+	border:1px solid #999;
 }
 .title-detail{
 	background-color: #ddd;
 	padding:8px 5px;
+	font-size:18px;
+	color:#333;
+	font-weight:bolder;
 }
 .store-name{
 	padding:0;
 	text-align: center;
+	
 }
 .store-name img {
 	width:100%;
+	max-width: 150px;
+	max-height:50px;
 }
 .right-ad-detail{
 	left:6px;
@@ -3617,7 +3623,7 @@ ul#TapTitle > li.active > a{
 }
 .top-detail-ads{
 	border:1px solid #f7f7f5;
-	height: 50px;
+	height: 65px;
 }
 .front-loggedin > li >a{
 	padding:5px;

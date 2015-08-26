@@ -20,20 +20,20 @@
 		<div class="col-sm-8">
 			<div class="r-menu">
 				<span class="r-menu-text">
-					{{trans('register.Try_It_Today')}} .....
+					{{trans('register.Try_It_Today')}}
 				</span>
 				<a class="btn btn-default no-border" href="#" role="button">
-				    <img src="{{Config::get('app.url')}}/frontend/images/icons/icon-cart.png" style="width: 40px;" class="r-menu-thumb" />
+				    <img src="{{Config::get('app.url')}}/frontend/images/icons/icon-cart.png" style="width:25px;" class="r-menu-thumb" />
+                </a>..... 
+				<a class="btn btn-default no-border" href="#" role="button">
+                    <img src="{{Config::get('app.url')}}/frontend/images/icons/Tracking-Store.png" alt="" style="width: 25px;" class="r-menu-thumb" /> {{trans('register.Tracking_The_Store')}}
                 </a>
 				<a class="btn btn-default no-border" href="#" role="button">
-                    <img src="{{Config::get('app.url')}}/frontend/images/icons/Tracking-Store.png" alt="" style="width: 40px;" class="r-menu-thumb" /> {{trans('register.Tracking_The_Store')}}
-                </a>
-				<a class="btn btn-default no-border" href="#" role="button">
-                    <img src="{{Config::get('app.url')}}/frontend/images/icons/Buyer-Seller.png" alt="" style="width: 40px;" class="r-menu-thumb" />
+                    <img src="{{Config::get('app.url')}}/frontend/images/icons/Buyer-Seller.png" alt="" style="width: 25px;" class="r-menu-thumb" />
                     {{trans('register.Seller_connect_with_buyer')}}
                 </a>
 				<a class="btn btn-default no-border" href="#" role="button">
-                    <img src="{{Config::get('app.url')}}/frontend/images/icons/Checking-Product.png" alt="" style="width: 40px;" class="r-menu-thumb" />
+                    <img src="{{Config::get('app.url')}}/frontend/images/icons/Checking-Product.png" alt="" style="width: 25px;" class="r-menu-thumb" />
                     {{trans('register.Checking_Compare_Products')}}
                 </a>
 			</div>
@@ -237,7 +237,7 @@
 								<?php $i=1;?>
 									@foreach($provinces as $locat)
 									<option value="{{$locat->province_id}}" data-lat="{{$locat->province_lat_long}}">
-										{{$locat->province_name}}
+										<?php echo $locat->{'province_name_'.Session::get('lang')};?>
 									</option>
 									<?php $i++;?>
 										@endforeach

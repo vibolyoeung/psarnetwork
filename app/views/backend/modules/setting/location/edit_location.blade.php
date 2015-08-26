@@ -16,12 +16,42 @@
 		</div>
 			<div class="panel-body">
 				{{Form::open(array('url'=>'admin/province/edit/'.$province->province_id,'enctype'=>'multipart/form-data','file' => true))}}
-					<div class="form-group col-md-11">
-						{{Form::text('province_name',$province->province_name, array('class' => 'form-control','placeholder'=>'Enter Province'))}}
-						<span class="class-error">{{$errors->first('province_name')}}</span>
+					<div class="form-group col-md-12">
+						<label>Name {{HTML::image("backend/images/lang-icons/en.png",'En',array())}}</label>
+						{{Form::text(
+							'province_name_en',
+							$province->province_name_en, 
+							array(
+								'class' => 'form-control',
+								'placeholder'=>'Enter Province'
+							)
+						)}}
+						<span class="class-error">
+							{{$errors->first('province_name_en')}}
+						</span>
 					</div>
-					<div class="form-group col-md-1">
-						{{Form::submit('Update', array('class' => 'btn btn-success','name'=>'btnSubmit'))}}
+					<div class="form-group col-md-12">
+						<label>Name {{HTML::image("backend/images/lang-icons/km.png",'Km',array())}}</label>
+						{{Form::text(
+							'province_name_km',
+							$province->province_name_km, 
+							array(
+								'class' => 'form-control',
+								'placeholder'=>'Enter Province'
+							)
+						)}}
+						<span class="class-error">
+							{{$errors->first('province_name_km')}}
+						</span>
+					</div>
+					<div class="form-group col-md-12">
+						{{Form::submit(
+							'Update', 
+							array(
+								'class' => 'btn btn-success',
+								'name'=>'btnSubmit'
+							)
+						)}}
 						{{Form::close()}}
 					</div>
 			</div>

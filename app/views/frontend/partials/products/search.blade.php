@@ -12,7 +12,9 @@
 		<select name="location" class="form-control form-select-khmerabba">
 			<option value="0">Location</option>
 			@foreach($Provinces as $location)
-				<option value="{{$location->province_id}}">{{$location->province_name}}</option>
+				<option value="{{$location->province_id}}">
+					<?php echo $location->{'province_name_'.Session::get('lang')};?>
+				</option>
 			@endforeach
 		</select>
 	</div>
@@ -20,7 +22,9 @@
 		<select name="transferType" class="form-control form-select-khmerabba">
 			<option value="0">Transfer</option>
 			@foreach($transferTypes as $transferType)
-				<option value="{{$transferType->ptt_id}}">{{$transferType->name}}</option>
+				<option value="{{$transferType->ptt_id}}">
+					<?php echo $transferType->{'name_'.Session::get('lang')};?>
+				</option>
 			@endforeach
 		</select>
 	</div>
@@ -28,7 +32,9 @@
 		<select name="condition" class="form-control form-select-khmerabba">
 			<option value="0">Condition</option>
 			@foreach($conditions as $condition)
-				<option value="{{$condition->id}}">{{$condition->name}}</option>
+				<option value="{{$condition->id}}">
+					<?php echo $condition->{'name_'.Session::get('lang')};?>
+				</option>
 			@endforeach
 		</select>
 	</div>

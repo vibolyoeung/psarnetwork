@@ -18,14 +18,18 @@
 					<table class="table table-bordered no-margin">
 						<tr>
 							<th>ID</th>
-							<th>Name</th>
+							<th>Name {{HTML::image("backend/images/lang-icons/en.png",'En',array())}}</th>
+							<th>Name {{HTML::image("backend/images/lang-icons/km.png",'Km',array())}}</th>
 							<th>Action</th>
 						</tr>
 						<?php $i=1;?>
 						<?php foreach ($productTransferType as $productTransferType):?>
 						<tr>
 							<td>{{$i}}</td>
-							<td>{{$productTransferType->name}}</td>
+							<td>
+								{{$productTransferType->name_en}}
+							</td>
+							<td>{{$productTransferType->name_km}}</td>
 							<td>
 								<a href="{{URL::to('admin/product-transfer-type/edit')}}/{{$productTransferType->ptt_id}}">
 									<i class="icon-edit primary"></i>

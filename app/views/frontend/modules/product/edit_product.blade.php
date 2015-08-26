@@ -43,7 +43,7 @@
                                         </label>
                                         <div class="col-sm-11">
                                             <select required="required" class="form-control" name="s_category">
-                                                @if(1 === (int)Session::get('currentUserAccountType'))
+                                               @if(1 === (int)Session::get('currentUserAccountType'))
                                                     @foreach($categoryTree as $category)
                                                         <option value="{{$category['id']}}">
                                                             {{$category['name_'.Session::get('lang')]}}
@@ -60,7 +60,14 @@
                                     {{trans('product.product_title')}}
                                 </label>
                                 <div class="col-sm-11">
-                                    {{Form::text('productTitle',$product->title, array('required'=> 'required','class'=>'form-control'))}}
+                                    {{Form::text(
+                                        'productTitle',
+                                        $product->title, 
+                                        array(
+                                            'required'=> 'required',
+                                            'class'=>'form-control'
+                                        )
+                                    )}}
                                 </div>
                             </div>
                             <div class="form-group">
@@ -68,7 +75,15 @@
                                     {{trans('product.transfer_as')}}
                                 </label>
                                 <div class="col-sm-11">
-                                    {{ Form::select('proTransferType',$proTransferType, $product->pro_transfer_type_id, array('required'=> 'required', 'class' => 'form-control'))}}
+                                    {{ Form::select(
+                                        'proTransferType',
+                                        $proTransferType, 
+                                        $product->pro_transfer_type_id, 
+                                        array(
+                                            'required'=> 'required', 
+                                            'class' => 'form-control'
+                                        )
+                                    )}}
                                 </div>
                             </div>
                             <div class="form-group">
@@ -76,7 +91,15 @@
                                     {{trans('product.condition')}}
                                 </label>
                                 <div class="col-sm-11">
-                                    {{ Form::select('productCondition',$productCondition, $product->pro_condition_id, array('required'=> 'required', 'class' => 'form-control'))}}
+                                    {{ Form::select(
+                                        'productCondition',
+                                        $productCondition, 
+                                        $product->pro_condition_id, 
+                                        array(
+                                            'required'=> 'required', 
+                                            'class' => 'form-control'
+                                        )
+                                    )}}
                                 </div>
                             </div>
                             <div class="form-group">
@@ -84,7 +107,15 @@
                                     {{trans('product.status')}}
                                 </label>
                                 <div class="col-sm-11">
-                                    {{ Form::select('productStatus',Product::$PRODUCT_STATUS, $product->pro_status, array('required'=> 'required', 'class' => 'form-control'))}}
+                                    {{ Form::select(
+                                        'productStatus',
+                                        Product::$PRODUCT_STATUS, 
+                                        $product->pro_status, 
+                                        array(
+                                            'required'=> 'required', 
+                                            'class' => 'form-control'
+                                        )
+                                    )}}
                                 </div>
                             </div>
                             <div class="form-group">
@@ -92,7 +123,14 @@
                                     {{trans('product.price')}}
                                 </label>
                                 <div class="col-sm-11">
-                                    {{Form::text('productPrice', $product->price, array('required'=> 'required', 'class'=>'form-control'))}}
+                                    {{Form::text(
+                                        'productPrice', 
+                                        $product->price, 
+                                        array(
+                                            'required'=> 'required', 
+                                            'class'=>'form-control'
+                                        )
+                                    )}}
                                 </div>
                             </div>
                             <div class="form-group">
@@ -100,7 +138,14 @@
                                     {{trans('product.description')}}
                                 </label>
                                 <div class="col-sm-11">
-                                    {{Form::textarea('desc', $product->description, array('required'=> 'required', 'class'=>'form-control'))}}
+                                    {{Form::textarea(
+                                        'desc', 
+                                        $product->description, 
+                                        array(
+                                            'required'=> 'required', 
+                                            'class'=>'form-control'
+                                        )
+                                    )}}
                                 </div>
                             </div>
                             <div class="form-group">
@@ -108,7 +153,15 @@
                                     {{trans('product.publish')}}
                                 </label>
                                 <div class="col-sm-11">
-                                    {{ Form::select('isPublish',Product::$PRODUCT_IS_PUBLISH, $product->is_publish, array( 'required'=> 'required', 'class' => 'form-control'))}}
+                                    {{ Form::select(
+                                        'isPublish',
+                                        Product::$PRODUCT_IS_PUBLISH, 
+                                        $product->is_publish, 
+                                        array( 
+                                            'required'=> 'required', 
+                                            'class' => 'form-control'
+                                        )
+                                    )}}
                                 </div>
                             </div>
                             <div class="form-group">
@@ -116,7 +169,13 @@
                                     {{trans('product.date_post')}}
                                 </label>
                                 <div class="col-sm-11">
-                                    {{Form::text('date_post', $product->publish_date, array('class'=>'form-control datepicker'))}}
+                                    {{Form::text(
+                                        'date_post', 
+                                        $product->publish_date, 
+                                        array(
+                                            'class'=>'form-control datepicker'
+                                        )
+                                    )}}
                                 </div>
                             </div>
                             <div class="form-group">

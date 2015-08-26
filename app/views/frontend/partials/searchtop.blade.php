@@ -31,7 +31,9 @@
 								<select name="location">
 									<option value="0">Location</option>
 									@foreach($locations as $location)
-										<option value="{{$location->province_id}}">{{$location->province_name}}</option>
+										<option value="{{$location->province_id}}">
+											<?php echo $location->{'province_name_'.Session::get('lang')};?>
+										</option>
 									@endforeach;
 								</select>
 							</div>
