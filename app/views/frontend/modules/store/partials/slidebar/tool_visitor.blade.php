@@ -1,3 +1,4 @@
+@if($currentUserType == 2)
 <div class="panel-group category-products" id="accordian">
 	<label class="btn-default get popular-links"> {{trans('store.visitor')}}</label>
 	<!--category-products-->
@@ -27,3 +28,4 @@
 		</p>
 	</div>
 </div>
+@endif
