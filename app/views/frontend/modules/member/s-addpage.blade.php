@@ -19,7 +19,7 @@ function rm($article, $char) {
 {{HTML::style('frontend/plugin/trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.css')}}
 <div class="memberlogin">
 	<div class="col-sm-3">
-		@include('frontend.modules.member.layout.sidebar-setting')
+		@include('frontend.modules.member.layout.sidebar')
 		<div class="clear"></div>
 	</div>
 	<div class="col-sm-9">

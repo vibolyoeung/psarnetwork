@@ -48,7 +48,7 @@
             @endif
             
             @if(count($topSlideShowArr)<1)
-            <div class="item active">
+            	<div class="item active">
 					<a class="banner-link" href="#"><img
 						src="https://placeholdit.imgix.net/~text?txtsize=60&txt=[1]+750+x+200&w=750&h=200"
 						style="width: 100%; max-height: 250px;" /></a>
@@ -71,9 +71,12 @@
 
 			<!-- Controls -->
 			<a class="left carousel-control" href="#carousel-home" role="button"
-				data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"
-				aria-hidden="true"></span> <span class="sr-only">Previous</span>
-			</a> <a class="right carousel-control" href="#carousel-home"
+				data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left"
+				aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#carousel-home"
 				role="button" data-slide="next"> <span
 				class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 				<span class="sr-only">Next</span>
