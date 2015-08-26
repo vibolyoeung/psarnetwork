@@ -13,6 +13,9 @@
 date_default_timezone_set ( 'Asia/Phnom_Penh' );
 $currentDate = date ( 'Y-m-d' );
 
+$userClass = new User ();
+$userData = $userClass->getUser($dataStore->user_id);
+$currentUserType =$userData->result->account_type;
 if(!empty($dataStore->sto_url)) {
 	$userHome = @Config::get('app.url').'page/'.$dataStore->sto_url;
 } else {
@@ -21,11 +24,11 @@ if(!empty($dataStore->sto_url)) {
 ?>
 <div class="col-sm-8">
 	<div class="category-tab lastest-post">
-
+	@if($currentUserType == 2)
 		<!-- ============Slider end here========= -->
 		@include('frontend.modules.store.partials.slideshow')
 		<!-- end slideshow -->
-
+	@endif
 		<div class="features_items">
 			<ul class="nav nav-tabs">
 				<li><strong>The latest products</strong> &nbsp;&nbsp;&nbsp; &frasl;</li>
@@ -86,16 +89,18 @@ if(!empty($dataStore->sto_url)) {
 		@endif
 	</div>
 </div>
-{{$dataProduct->links()}} @if(!empty($widtget)) @foreach($widtget as
-$showWidtget) @if($showWidtget->status) @if($showWidtget->title == 'New Arrival Products')
-@include('frontend.modules.store.partials.widget-new-arrival')
-@elseif($showWidtget->title == 'Hot Promotion Products')
-@include('frontend.modules.store.partials.widget-hot-promote')
-@elseif($showWidtget->title == 'Secondhand Products')
-@include('frontend.modules.store.partials.widget-secondhand')
-@elseif($showWidtget->title == 'Monthly Pay  Products')
-@include('frontend.modules.store.partials.widget-monthly-pay')
-@elseif($showWidtget->title == 'Urgent Sale') @endif @endif @endforeach
+@if($currentUserType == 2)
+	{{$dataProduct->links()}} @if(!empty($widtget)) @foreach($widtget as
+	$showWidtget) @if($showWidtget->status) @if($showWidtget->title == 'New Arrival Products')
+	@include('frontend.modules.store.partials.widget-new-arrival')
+	@elseif($showWidtget->title == 'Hot Promotion Products')
+	@include('frontend.modules.store.partials.widget-hot-promote')
+	@elseif($showWidtget->title == 'Secondhand Products')
+	@include('frontend.modules.store.partials.widget-secondhand')
+	@elseif($showWidtget->title == 'Monthly Pay  Products')
+	@include('frontend.modules.store.partials.widget-monthly-pay')
+	@elseif($showWidtget->title == 'Urgent Sale') @endif @endif @endforeach
+	@endif
 @endif
 </div>
 @endsection 
