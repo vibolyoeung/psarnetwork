@@ -1,3 +1,4 @@
+.user-member .header_top {-webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);-moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);border-bottom:1px solid #777}
 #header #store-logo {position: relative}
 #header #store-banner-header {position: relative}
 #header .edit-logo {}
@@ -10,13 +11,33 @@
 .storeLogo {height: 90px;max-width: 100%;}
 .user-menu .dropdown-menu.open {display:block!important}
 .storeBanner{height: 90px;max-width: 100%;}
+.user-wrapper .panel,
+.user-wrapper .panel-heading ,
+.user-wrapper .btn-group->.btn,
+.user-wrapper .btn,
+.user-wrapper .nav-pills>li>a{border-radius: 0;}
 
-.panel-heading {
+.user-wrapper .btn {background-color: #FF6B00;color: #fff;}
+.user-wrapper .nav-pills>li>a {color: #333;background-color: #eee;border: 1px solid #fff;}
+.user-wrapper .nav-pills>li.tool-header>a {color: #fff;background-color: #999;border: 1px solid #fff;font-weight:bold;text-transform: uppercase;margin-bottom:10px;padding: 12px 5px 11px 5px;}
+.user-wrapper .nav-pills>li.tool-header>a > i{padding:3px;background-color: #FF6B00;color: #fff;margin-right:5px;font-size:13px; margin-left:5px}
+.user-wrapper .nav-pills>li.active>a,
+.user-wrapper .nav-pills>li.active>a:focus {color: #333;background-color: #fff;border: 1px solid #FF6B00;}
+.user-wrapper .nav-pills>li>a:hover{color: #333;background-color: #ddd;}
+
+.user-wrapper .panel-heading {
   position: relative;
   height: 50px;
   padding: 0;
+  background-color: #999;
+  border-color: #777;
 }
-.panel-title {
+
+.user-wrapper .panel-primary {
+  border-color: #ddd;
+}
+
+.user-wrapper .panel-title {
   font-weight: 300;
   padding: 0 20px 0 20px;
   font-size: 1.416em;
@@ -25,13 +46,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }	
-.panel-control {
+.user-wrapper .panel-control {
   height: 100%;
   position: relative;
   float: right;
   padding: 0 15px;
 }
-.panel-control:before {
+.user-wrapper .panel-control:before {
   content: '';
   display: inline-block;
   height: 100%;
@@ -39,3 +60,9 @@
   left: -1em;
   position: relative;
 }
+
+/*content*/
+.user-member .register-form, .user-member .login-form {border: 1px solid #ddd;padding:0;}
+.user-member .register-form h2, .user-member .login-form h2{background-color: #999;border:none}
+/*footer*/
+.user-member .header_top, .user-member .footer-bottom {background-color: #555;color: #fff;}

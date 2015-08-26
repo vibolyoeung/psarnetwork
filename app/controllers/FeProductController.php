@@ -312,8 +312,6 @@ class FeProductController extends BaseController {
             $thumbnail = json_decode($pictures, true);
             $data['thumbnail'] = $thumbnail[0]['pic'];
             $data['pictures'] = $pictures;
-            $data['pictures_slideshow'] = $pictures;
-            $data['thumbnails_slideshow'] = $pictures;
         }
         if (!empty($quotation)) {
           $data['file_quotation'] = $quotation;  

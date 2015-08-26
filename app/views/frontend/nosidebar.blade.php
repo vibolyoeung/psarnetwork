@@ -1,3 +1,4 @@
+<div class="user-member">
 <?php 
 	if(Session::get('currentUserId')) {
 	    if(!empty($dataStore->sto_url)) {
@@ -18,3 +19,4 @@
 		</div>
 	</section>
 	@include('frontend.partials.footer')
+</div>
