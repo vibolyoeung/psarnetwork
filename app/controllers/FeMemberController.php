@@ -1183,7 +1183,7 @@ class FeMemberController extends BaseController {
 		if (! empty ( $pro_id )) {
 			$disctrict = $this->user->getDistrict ( $pro_id );
 			foreach ( $disctrict->data as $disct ) {
-				$disct_val .= '<option value="' . $disct->id . '" data-gps="' . $disct->dis_lat_long . '">' . $disct->dis_name . '</option>';
+				$disct_val .= '<option value="' . $disct->id . '" data-gps="' . $disct->dis_lat_long . '">' . $disct->{'dis_name_'.Session::get('lang')}. '</option>';
 			}
 			echo $disct_val;
 		}
