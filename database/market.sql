@@ -35,11 +35,11 @@ CREATE TABLE `market` (
   `market_type` int(11) NOT NULL,
   `address` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 /*Data for the table `market` */
 
-insert  into `market`(`id`,`title_en`,`title_km`,`created_date`,`modify_date`,`desc_en`,`desc_km`,`province_id`,`district_id`,`image`,`amount_stair`,`market_type`,`address`) values (12,'Sovana','សុវានណា','2015-02-20',NULL,'dfssdfsf','fddsf',2,127,'1424447936.PNG','4',3,'11.619955,105.875244');
+insert  into `market`(`id`,`title_en`,`title_km`,`created_date`,`modify_date`,`desc_en`,`desc_km`,`province_id`,`district_id`,`image`,`amount_stair`,`market_type`,`address`) values (12,'Sovanas','សុវានណា','2015-02-20','2015-08-27','dfssdfsf','fddsf',2,127,'1424447936.PNG','4',3,'11.619955,105.875244'),(13,'test','test','2015-08-27',NULL,'test','eswt',4,134,'1440608464.jpg','3',3,'11.393879,105.512695'),(14,'kkk','kkkk','2015-08-27',NULL,'llll','jkjj',1,172,'1440609169.jpg','5',3,'10.730778,105.726929');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
