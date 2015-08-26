@@ -55,7 +55,7 @@
 						<label>Districts</label>
 						<select class="form-control" name="district_id" id="district_option">
 							@foreach(Market::listingAllDistricts()->data as $district)
-								<option <?php echo ($mk->district_id == $district->id) ? 'selected':'';?> value="{{$district->id}}">{{$district->dis_name}}</option>
+								<option <?php echo ($mk->district_id == $district->id) ? 'selected':'';?> value="{{$district->id}}">{{$district->dis_name_en}}</option>
 							@endforeach
 
 
