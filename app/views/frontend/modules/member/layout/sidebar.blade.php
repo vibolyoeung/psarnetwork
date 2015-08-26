@@ -1,6 +1,6 @@
 <ul class="nav nav-pills nav-stacked">
 	<li class="tool-header">
-		<a href="javascript:;"><i class="fa fa-cog"></i> {{trans('register.Interprise_Account')}}</a>
+		<a href="javascript:;"><i class="fa fa-cog"></i> {{trans('register.MENU_Interprise')}}</a>
 	</li>
 	
 	<li class="{{(Request::segment(3)=='menu' ? 'active':'')}}">

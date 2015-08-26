@@ -109,6 +109,8 @@ You will be benefit with free account by posing free ,  owning page free .If you
     'MESSAGE_b_d' => 'Contact !',
     
     'MENU_MENU' => 'Manage Menu Structure',
+    'MENU_Interprise' => 'Interprise tool',
+    'MENU_setting' => 'Setting',
     'MENU_Content_Page' => 'Manage Content View',
     'MENU_Your_info' => 'Personal Information Management',
     'MENU_Add_Connector' => 'Add Connector',

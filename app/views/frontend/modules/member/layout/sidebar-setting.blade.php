@@ -1,6 +1,6 @@
 <ul class="nav nav-pills nav-stacked">
 	<li class="tool-header">
-		<a href="javascript:;"><i class="fa fa-cog"></i> {{trans('register.MENU_summary')}}</a>
+		<a href="javascript:;"><i class="fa fa-cog"></i> {{trans('register.MENU_setting')}}</a>
 	</li>
     <li class="{{(Request::segment(3)=='summary' ? 'active':'')}}">
 		<a href="{{URL::to('member/userinfo/summary')}}">{{trans('register.MENU_summary')}}</a>
