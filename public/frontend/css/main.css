@@ -3653,10 +3653,14 @@ ul#TapTitle > li.active > a{
  	margin-top:8px;
  }
  .notification-product>li{
- 	border:1px solid red;
  	padding:0;
  }
- .dropdown-menu > li > a{
- 	padding: 3px 6px;;
+ .notification-product{
+ 	position: absolute;
+ 	left:-75px;
+ 	padding:0;
+ }
+ .notification-product>li>a>img{
+ 	width:30px;
  }
 //=========Detail slile===//

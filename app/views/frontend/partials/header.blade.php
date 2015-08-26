@@ -158,40 +158,35 @@
 								</ul>
 							</li>
 						</ul>
-						&nbsp;&nbsp;
-						
-						<ul class="nav navbar-nav front-loggedin">
+						 @endif
+						<ul class="nav navbar-nav front-loggedin <?php echo !Session::get('currentUserId')?'pull-right':'';?>">
 							<li role="presentation" class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-									Notifications 
-									<span style="color:red;cursor:pointer;font-weight:bold;">
+									Notifications&nbsp;<span class="label label-danger">
 										<?php 
 											$productNotification = Product::productPosttoday();
 											echo count($productNotification);
 										?>
 									</span>
 								</a>
+								<?php 
+								if(count($productNotification)){
+								?>
 								<ul class="dropdown-menu notification-product" role="menu">
-									<?php 
-										if(count($productNotification)){ ?>
-												@foreach($productNotification as $noticproduct)
-													<li>
-														<a href="{{Config::get('app.url')}}product/details/{{$noticproduct->id}}">
-															<img src="{{Config::get('app.url')}}upload/product/thumb/{{$noticproduct->thumbnail}}" title="" alt=""/>
-															&nbsp;&nbsp;{{$noticproduct->title}}
-														</a>
-													</li>
-												@endforeach
-											<?php
-										}
-									?>
+									@foreach($productNotification as $noticproduct)
+										<li>
+											<a href="{{Config::get('app.url')}}product/details/{{$noticproduct->id}}">
+												<img src="{{Config::get('app.url')}}upload/product/thumb/{{$noticproduct->thumbnail}}" title="" alt=""/>
+												&nbsp;<span class="price">$&nbsp;{{$noticproduct->price}}</span>&nbsp;{{substr($noticproduct->title,0,15)}}
+											</a>
+										</li>
+									@endforeach
 								</ul>
+								<?php
+								}
+								?>
 							</li>
 						</ul>
-
-
-						
-                    @endif
 				</div>
 				<div class="col-lg-2">
 					<a href="{{Config::get('app.url')}}"><img

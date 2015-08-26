@@ -458,7 +458,7 @@ class Product extends Eloquent {
 		$productCondition = Config::get ( 'constants.TABLE_NAME.PRODUCT_CONDITION' );
 		$store = Config::get ( 'constants.TABLE_NAME.STORE' );
 		$user = Config::get ( 'constants.TABLE_NAME.USER' );
-		return DB::table ( $product . ' AS p ' )->select ( '*' )->join ( $store . ' AS st', 'st.id', '=', 'p.store_id' )->join ( $productCondition . ' AS pcon', 'pcon.id', '=', 'p.pro_condition_id' )->join ( $user . ' AS u', 'u.id', '=', 'p.user_id' )->where ( 'p.id', '=', $product_id )->first ();
+		return DB::table ( $product . ' AS p ' )->select ('p.title','p.id','st.title_en','st.title_km','p.pictures as pictures','st.image','p.price','p.view','p.created_date','u.name as name','u.address as address','p.store_id as store_id','p.description as description','p.contact_info as contact_info','p.file_quotation as file_quotation','p.s_category_id as s_category_id')->join ( $store . ' AS st', 'st.id', '=', 'p.store_id' )->join ( $productCondition . ' AS pcon', 'pcon.id', '=', 'p.pro_condition_id' )->join ( $user . ' AS u', 'u.id', '=', 'p.user_id' )->where ( 'p.id', '=', $product_id )->first ();
 	}
 	/**
 	 * findRelatedPostProduct
@@ -736,7 +736,7 @@ class Product extends Eloquent {
 	}
 
 	public static function productPosttoday(){
-		return DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ))->get ();
+		return DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ))->where('publish_date','=',date('Y-m-d'))->get ();
 	}
 
 }
