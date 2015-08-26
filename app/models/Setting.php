@@ -132,7 +132,7 @@ class Setting extends Eloquent{
 	public function listProvinces(){
 		$result = DB::table(Config::get('constants.TABLE_NAME.PROVINCE'))
 			->select('*')
-			->orderBy('province_name','ASC')
+			->orderBy('province_name_en','ASC')
 			->get();
 		return $result;
 	}
@@ -141,7 +141,6 @@ class Setting extends Eloquent{
 		$result = DB::table(Config::get('constants.TABLE_NAME.DISTRICT'))
 			->select('*')
 			->where('province_id','=',$province_id)
-			->orderBy('id','desc')
 			->get();
 		return $result;
 	}

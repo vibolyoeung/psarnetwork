@@ -237,7 +237,7 @@
 								<?php $i=1;?>
 									@foreach($provinces as $locat)
 									<option value="{{$locat->province_id}}" data-lat="{{$locat->province_lat_long}}">
-										{{$locat->province_name}}
+										<?php echo $locat->{'province_name_'.Session::get('lang')};?>
 									</option>
 									<?php $i++;?>
 										@endforeach
