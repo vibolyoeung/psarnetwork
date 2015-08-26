@@ -51,6 +51,7 @@ class FeStoreController extends BaseController {
 			} else {
 				$dataCategory = $this->mod_category->menuUserFree ( $dataStore->user_id, $parent = 0, $level = 0, $getUserUrl );
 			}
+			var_dump($dataCategory);
 			$whereArr = array (
 					'position' => 100,
 					'user_id' => $dataStore->user_id 
