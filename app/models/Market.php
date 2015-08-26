@@ -75,11 +75,11 @@ class Market extends Eloquent{
 		$arr = array();
 		try {
 			$result = DB::table(Config::get('constants.TABLE_NAME.PROVINCE'))
-			->select('province_id','province_name')
+			->select('province_id','province_name_en', 'province_name_km')
 			->get();
 			$arr[''] = 'Select Province';
 			foreach ($result as $provinces) {
-				$arr[$provinces->province_id] = $provinces->province_name;
+				$arr[$provinces->province_id] = $provinces->{'province_name_'.Session::get('lang')};
 			}
 			$response->data = $arr;
 		}catch (\Exception $e){
@@ -99,11 +99,11 @@ class Market extends Eloquent{
 		$arr = array();
 		try {
 			$result = DB::table(Config::get('constants.TABLE_NAME.DISTRICT'))
-			->select('id','dis_name')
+			->select('id','dis_name_en', 'dis_name_km')
 			->where('province_id','=', $id)
 			->get();
 			foreach ($result as $districts) {
-				$arr[$districts->id] = $districts->dis_name;
+				$arr[$districts->id] = $districts->{'dis_name_'.Session::get('lang')};
 			}
 			$response->data = $arr;
 		}catch (\Exception $e){
@@ -123,7 +123,7 @@ class Market extends Eloquent{
 		$arr = array();
 		try {
 			$result = DB::table(Config::get('constants.TABLE_NAME.DISTRICT'))
-			->select('id','dis_name')
+			->select('id','dis_name_en', 'dis_name_km')
 			->get();
 			$response->data = $result;
 		}catch (\Exception $e){
