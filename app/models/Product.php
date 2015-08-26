@@ -458,7 +458,12 @@ class Product extends Eloquent {
 		$productCondition = Config::get ( 'constants.TABLE_NAME.PRODUCT_CONDITION' );
 		$store = Config::get ( 'constants.TABLE_NAME.STORE' );
 		$user = Config::get ( 'constants.TABLE_NAME.USER' );
-		return DB::table ( $product . ' AS p ' )->select ( '*' )->join ( $store . ' AS st', 'st.id', '=', 'p.store_id' )->join ( $productCondition . ' AS pcon', 'pcon.id', '=', 'p.pro_condition_id' )->join ( $user . ' AS u', 'u.id', '=', 'p.user_id' )->where ( 'p.id', '=', $product_id )->first ();
+		return DB::table ( $product . ' AS p ' )
+			->select ( '*' )
+			->join ( $store . ' AS st', 'st.id', '=', 'p.store_id' )
+			->join ( $productCondition . ' AS pcon', 'pcon.id', '=', 'p.pro_condition_id' )
+			->join ( $user . ' AS u', 'u.id', '=', 'p.user_id' )
+			->where ( 'p.id', '=', $product_id )->first ();
 	}
 	/**
 	 * findRelatedPostProduct
@@ -736,7 +741,31 @@ class Product extends Eloquent {
 	}
 
 	public static function productPosttoday(){
-		return DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ))->get ();
+		return DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ))
+			->get ();
+	}
+
+	public static function countViewOfUserClickProduct($product_id) {
+		$oldViewCount = self::findCountViewOfUserClick($product_id);
+		$totalView = 1 + $oldViewCount;
+		$data = array(
+			'view' => $totalView 
+		);
+
+		return DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ))
+			->where('id', $product_id)
+			->update($data);
+	}
+
+	public static function findCountViewOfUserClick($product_id) {
+
+		$oldViewCount = DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ))
+			->select('view')
+			->where('id', $product_id)
+			->first ();
+		$totalView = $oldViewCount->view;
+		
+		return $totalView;
 	}
 
 }

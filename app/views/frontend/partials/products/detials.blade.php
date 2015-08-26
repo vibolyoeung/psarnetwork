@@ -88,7 +88,7 @@
 									<div>Genuine Price &nbsp;<span class="pro-condition">{{$detailProduct->price}}$</span></div>
 									<div>Discount &nbsp;<span class="pro-condition">10%</span></div>
 									<div>Product ID   &nbsp;<span class="pro-condition">{{$detailProduct->id}}</span></div>
-									<div>View &nbsp;<span class="pro-condition">{{$detailProduct->view}}</span></div>
+									<div>View &nbsp;<span class="pro-condition"><?php echo $detailProduct->view;?></span></div>
 									<div>Post Date :&nbsp;<span class="pro-condition"><?php echo date("d/M/Y",strtotime($detailProduct->created_date)); ?> </span></div>
 									<div>Post by :&nbsp;<span class="pro-condition">{{$detailProduct->name}}</span></div>
 									<div>Location :&nbsp;<span class="pro-condition">
