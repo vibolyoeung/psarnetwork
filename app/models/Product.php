@@ -75,7 +75,7 @@ class Product extends Eloquent {
 		try {
 			$result = DB::table ( Config::get ( self::CONDITION ) )->select ( '*' )->get ();
 			foreach ( $result as $row ) {
-				$arr [$row->id] = $row->name;
+				$arr [$row->id] = $row->{'name_'.Session::get('lang')};
 			}
 			$response->data = $arr;
 		} catch ( \Exception $e ) {

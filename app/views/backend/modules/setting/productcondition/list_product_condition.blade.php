@@ -18,14 +18,16 @@
 					<table class="table table-bordered no-margin">
 						<tr>
 							<th>ID</th>
-							<th>Product Condition</th>
+							<th>Name {{HTML::image("backend/images/lang-icons/en.png",'En',array())}}</th>
+							<th>Name {{HTML::image("backend/images/lang-icons/km.png",'Km',array())}}</th>
 							<th>Action</th>
 						</tr>
 						<?php $i=1;?>
 						<?php foreach ($product_condition as $productCondition):?>
 						<tr>
 							<td>{{$i}}</td>
-							<td>{{$productCondition->name}}</td>
+							<td>{{$productCondition->name_en}}</td>
+							<td>{{$productCondition->name_km}}</td>
 							<td>
 								<a href="{{URL::to('admin/product-condition/edit')}}/{{$productCondition->id}}">
 									<i class="icon-edit primary"></i>

@@ -191,8 +191,9 @@ class BeSettingController extends BaseController {
 	public function loadProductConditionEdit($id=null) {
 		if(Input::has('btnSubmit')){
 			$data = array(
-					'name'=>trim(Input::get('product_condition'))
-				);
+				'name_en'=>trim(Input::get('product_condition_en')),
+				'name_km'=>trim(Input::get('product_condition_km')),
+			);
 			DB::table(Config::get('constants.TABLE_NAME.PRODUCT_CONDITION'))
 				->where('id', $id)
 				->update($data);
