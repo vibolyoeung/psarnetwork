@@ -341,9 +341,11 @@ class Product extends Eloquent {
 	 * @access public
 	 */
 	public static function findProvinceById($provinceId) {
-		$result = DB::table ( Config::get ( 'constants.TABLE_NAME.PROVINCE' ) )->select ( 'province_id', 'province_name' )->where ( 'province_id', '=', $provinceId )->first ();
+		$result = DB::table (Config::get ( 'constants.TABLE_NAME.PROVINCE' ) )
+		->select ( 'province_id', 'province_name_en', 'province_name_km' )
+		->where ( 'province_id', '=', $provinceId )->first ();
 		
-		return $result->province_name;
+		return $result->{'province_name_'.Session::get('lang')};
 	}
 	
 	/**
