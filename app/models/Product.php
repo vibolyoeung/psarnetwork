@@ -33,7 +33,7 @@ class Product extends Eloquent {
 		try {
 			$result = DB::table ( Config::get ( self::TRANSFER_TYPE ) )->select ( '*' )->get ();
 			foreach ( $result as $row ) {
-				$arr [$row->ptt_id] = $row->name;
+				$arr [$row->ptt_id] = $row->{'name_'.Session::get('lang')};
 			}
 			$response->data = $arr;
 		} catch ( \Exception $e ) {

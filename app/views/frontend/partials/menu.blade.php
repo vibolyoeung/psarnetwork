@@ -21,9 +21,20 @@
 					@endforeach
 				</ul>
 				<ul class="nav navbar-nav menu_right_section pull-right">
-					<li style="border-left:1px solid #ddd;"><a href="#"><img src="{{Config::get('app.url')}}frontend/images/icons/money.png" height="23" /></a></li>
+					<li style="border-left:1px solid #ddd;">
+						<a href="#">
+							<img 
+								src="{{Config::get('app.url')}}frontend/images/icons/money.png" height="23" 
+							/>
+						</a>
+					</li>
 					@foreach($pro_transfer_type as $pro_transfer_types)
-						<li><a href="{{Config::get('app.url')}}product/list/{{$pro_transfer_types->ptt_id}}/0">{{$pro_transfer_types->name}}</a></li>
+						<li>
+							<a 
+								href="{{Config::get('app.url')}}product/list/{{$pro_transfer_types->ptt_id}}/0">
+								<?php echo $pro_transfer_types->{'name_'.Session::get('lang')};?>
+							</a>
+						</li>
 					@endforeach
 				</ul>
 			</div>

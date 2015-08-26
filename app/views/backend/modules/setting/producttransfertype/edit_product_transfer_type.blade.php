@@ -16,10 +16,23 @@
 		</div>
 			<div class="panel-body">
 				{{Form::open(array('url'=>'admin/product-transfer-type/edit/'.$productTransferTypeById->ptt_id,'enctype'=>'multipart/form-data','file' => true))}}
-					<div class="form-group col-md-11">
-						{{Form::text('product_transfer_type',$productTransferTypeById->name, array('class' => 'form-control'))}}
+					<div class="form-group col-md-12">
+						<label>Name: {{HTML::image("backend/images/lang-icons/en.png",'En',array())}}</label>
+						{{Form::text(
+							'product_transfer_type_en',
+							$productTransferTypeById->name_en, 
+							array('class' => 'form-control')
+						)}}
 					</div>
-					<div class="form-group col-md-1">
+					<div class="form-group col-md-12">
+						<label>Name: {{HTML::image("backend/images/lang-icons/km.png",'Km',array())}}</label>
+						{{Form::text(
+							'product_transfer_type_km',
+							$productTransferTypeById->name_km, 
+							array('class' => 'form-control')
+						)}}
+					</div>
+					<div class="form-group col-md-12">
 						{{Form::submit('Update', array('class' => 'btn btn-success','name'=>'btnSubmit'))}}
 						{{Form::close()}}
 					</div>

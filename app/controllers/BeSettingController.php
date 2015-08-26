@@ -212,7 +212,8 @@ class BeSettingController extends BaseController {
 	public function loadProductTransferTypeEdit($id = null) {
 		if(Input::has('btnSubmit')){
 			$data = array(
-					'name'=>trim(Input::get('product_transfer_type'))
+					'name_en'=>trim(Input::get('product_transfer_type_en')),
+					'name_km'=>trim(Input::get('product_transfer_type_km'))
 				);
 			DB::table(Config::get('constants.TABLE_NAME.PRODUCT_TRANSFER_TYPE'))
 				->where('ptt_id', $id)

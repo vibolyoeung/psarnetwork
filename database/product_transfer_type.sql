@@ -22,13 +22,14 @@ DROP TABLE IF EXISTS `product_transfer_type`;
 
 CREATE TABLE `product_transfer_type` (
   `ptt_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
+  `name_en` varchar(255) DEFAULT NULL,
+  `name_km` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ptt_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `product_transfer_type` */
 
-insert  into `product_transfer_type`(`ptt_id`,`name`) values (1,'Sale'),(2,'Buy'),(3,'Rent'),(4,'Monthly Pay'),(5,'Promotion'),(6,'Other');
+insert  into `product_transfer_type`(`ptt_id`,`name_en`,`name_km`) values (1,'Sale','លក់'),(2,'Buy','ទិញ'),(3,'Rent',NULL),(4,'Monthly Pay',NULL),(5,'Hot Promotion',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

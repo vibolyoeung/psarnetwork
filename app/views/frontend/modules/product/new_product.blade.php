@@ -62,7 +62,14 @@
 									{{trans('product.product_title')}}
 								</label>
 								<div class="col-sm-11">
-									{{Form::text('productTitle',null, array('required'=> 'required','class'=>'form-control'))}}
+									{{Form::text(
+										'productTitle',
+										null, 
+										array(
+											'required'=> 'required',
+											'class'=>'form-control'
+										)
+									)}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -70,7 +77,15 @@
 									{{trans('product.transfer_as')}}
 								</label>
 								<div class="col-sm-11">
-									{{ Form::select('proTransferType',$proTransferType, null, array('required'=> 'required', 'class' => 'form-control'))}}
+									{{ Form::select(
+										'proTransferType',
+										$proTransferType, 
+										null, 
+										array(
+											'required'=> 'required', 
+											'class' => 'form-control'
+										)
+									)}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -78,7 +93,15 @@
 									{{trans('product.condition')}}
 								</label>
 								<div class="col-sm-11">
-									{{ Form::select('productCondition',$productCondition, null, array('required'=> 'required', 'class' => 'form-control'))}}
+									{{ Form::select(
+										'productCondition',
+										$productCondition, 
+										null, 
+										array(
+											'required'=> 'required', 
+											'class' => 'form-control'
+										)
+									)}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -86,7 +109,15 @@
 									{{trans('product.status')}}
 								</label>
 								<div class="col-sm-11">
-									{{ Form::select('productStatus',Product::$PRODUCT_STATUS, null, array('required'=> 'required', 'class' => 'form-control'))}}
+									{{ Form::select(
+										'productStatus',
+										Product::$PRODUCT_STATUS, 
+										null, 
+										array(
+											'required'=> 'required', 
+											'class' => 'form-control'
+										)
+									)}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -94,7 +125,14 @@
 									{{trans('product.price')}}
 								</label>
 								<div class="col-sm-11">
-									{{Form::text('productPrice', null, array('required'=> 'required', 'class'=>'form-control'))}}
+									{{Form::text(
+										'productPrice', 
+										null, 
+										array(
+											'required'=> 'required', 
+											'class'=>'form-control'
+										)
+									)}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -102,7 +140,14 @@
 									{{trans('product.description')}}
 								</label>
 								<div class="col-sm-11">
-									{{Form::textarea('desc', null, array('required'=> 'required', 'class'=>'form-control'))}}
+									{{Form::textarea(
+										'desc', 
+										null, 
+										array(
+											'required'=> 'required', 
+											'class'=>'form-control'
+										)
+									)}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -110,7 +155,15 @@
 									{{trans('product.publish')}}
 								</label>
 								<div class="col-sm-11">
-									{{ Form::select('isPublish',Product::$PRODUCT_IS_PUBLISH, null, array( 'required'=> 'required', 'class' => 'form-control'))}}
+									{{ Form::select(
+										'isPublish',
+										Product::$PRODUCT_IS_PUBLISH, 
+										null, 
+										array(
+											'required'=> 'required', 
+											'class' => 'form-control'
+										)
+									)}}
 								</div>
 							</div>
 							<div class="form-group">
@@ -118,7 +171,13 @@
 									{{trans('product.date_post')}}
 								</label>
 								<div class="col-sm-11">
-									{{Form::text('date_post', null, array('class'=>'form-control datepicker'))}}
+									{{Form::text(
+										'date_post', 
+										null, 
+										array(
+											'class'=>'form-control datepicker'
+										)
+									)}}
 								</div>
 							</div>
 							<div class="form-group">
