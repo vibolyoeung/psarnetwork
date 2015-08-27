@@ -6,26 +6,26 @@
 #header .edit-logo a, #header .edit-banner  a{}
 #header .edit-logo, #header .edit-banner{  margin-top: 0;position: absolute;  padding:5px;background:rgba(0, 0, 0, 0.38);display:block;top: 10px;left:10px;}
 #header .edit-logo:hover, #header .edit-banner:hover{;background:rgba(0, 0, 0, 0.7);}
-.user-wrapper {margin-top:0px}
+.user-member {margin-top:0px}
 .changepassword label {color:green}
 .storeLogo {height: 90px;max-width: 100%;}
 .user-menu .dropdown-menu.open {display:block!important}
 .storeBanner{height: 90px;max-width: 100%;}
-.user-wrapper .panel,
-.user-wrapper .panel-heading ,
-.user-wrapper .btn-group->.btn,
-.user-wrapper .btn,
-.user-wrapper .nav-pills>li>a{border-radius: 0;}
+.user-member .panel,
+.user-member .panel-heading ,
+.user-member .btn-group->.btn,
+.user-member .btn,
+.user-member .nav-pills>li>a{border-radius: 0;}
 
-.user-wrapper .btn {background-color: #FF6B00;color: #fff;}
-.user-wrapper .nav-pills>li>a {color: #333;background-color: #eee;border: 1px solid #fff;}
-.user-wrapper .nav-pills>li.tool-header>a {color: #fff;background-color: #999;border: 1px solid #fff;font-weight:bold;text-transform: uppercase;margin-bottom:10px;padding: 12px 5px 11px 5px;}
-.user-wrapper .nav-pills>li.tool-header>a > i{padding:3px;background-color: #FF6B00;color: #fff;margin-right:5px;font-size:13px; margin-left:5px}
-.user-wrapper .nav-pills>li.active>a,
-.user-wrapper .nav-pills>li.active>a:focus {color: #333;background-color: #fff;border: 1px solid #FF6B00;}
-.user-wrapper .nav-pills>li>a:hover{color: #333;background-color: #ddd;}
+.user-member .btn {background-color: #FF6B00;color: #fff;}
+.user-member .nav-pills>li>a {color: #333;background-color: #eee;border: 1px solid #fff;}
+.user-member .nav-pills>li.tool-header>a {color: #fff;background-color: #999;border: 1px solid #fff;font-weight:bold;text-transform: uppercase;margin-bottom:10px;padding: 12px 5px 11px 5px;}
+.user-member .nav-pills>li.tool-header>a > i{padding:3px;background-color: #FF6B00;color: #fff;margin-right:5px;font-size:13px; margin-left:5px}
+.user-member .nav-pills>li.active>a,
+.user-member .nav-pills>li.active>a:focus {color: #333;background-color: #fff;border: 1px solid #FF6B00;}
+.user-member .nav-pills>li>a:hover{color: #333;background-color: #ddd;}
 
-.user-wrapper .panel-heading {
+.user-member .panel-heading {
   position: relative;
   height: 50px;
   padding: 0;
@@ -33,11 +33,11 @@
   border-color: #777;
 }
 
-.user-wrapper .panel-primary {
+.user-member .panel-primary {
   border-color: #ddd;
 }
 
-.user-wrapper .panel-title {
+.user-member .panel-title {
   font-weight: 300;
   padding: 0 20px 0 20px;
   font-size: 1.416em;
@@ -46,13 +46,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }	
-.user-wrapper .panel-control {
+.user-member .panel-control {
   height: 100%;
   position: relative;
   float: right;
   padding: 0 15px;
 }
-.user-wrapper .panel-control:before {
+.user-member .panel-control:before {
   content: '';
   display: inline-block;
   height: 100%;
