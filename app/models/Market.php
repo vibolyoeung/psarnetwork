@@ -143,12 +143,12 @@ class Market extends Eloquent{
 		$arr = array();
 		try {
 			$result = DB::table(Config::get('constants.TABLE_NAME.CLIENT_TYPE'))
-			->select('id','name','account_type_id')
+			->select('id','name_en', 'name_km', 'account_type_id')
 			->where('id','!=', 1)
 			->where('id','!=', 2)
 			->get();
 			foreach ($result as $marketType) {
-				$arr[$marketType->id] = $marketType->name;
+				$arr[$marketType->id] = $marketType->name_en;
 			}
 			$response->data = $arr;
 		}catch (\Exception $e){
@@ -167,7 +167,7 @@ class Market extends Eloquent{
 		//$arr = array(''=>'Market Type');
 		try {
 			$result = DB::table(Config::get('constants.TABLE_NAME.CLIENT_TYPE'))
-			->select('id','name','account_type_id')
+			->select('id','name_en','name_km','account_type_id')
 			->where('account_type_id','!=',1)
 			->get();
 			$response->data = $result;
@@ -373,6 +373,13 @@ class Market extends Eloquent{
 		return $data;
 	}
 
+	public static function findMarketTypeById($marketTypeId) {
+		$result = DB::table(Config::get('constants.TABLE_NAME.CLIENT_TYPE'))
+			->select('name_en')
+			->where('id','=', $marketTypeId)
+			->first();
 
+		return !empty($result->name_en) ? $result->name_en : null;
+	}
 
 }

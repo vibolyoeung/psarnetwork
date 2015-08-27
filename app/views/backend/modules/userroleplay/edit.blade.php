@@ -25,10 +25,34 @@
                 <div class="table-responsive">
                     {{Form::open(array('url'=>"admin/user-role-play/edit/{$editData->rol_id}"))}}
                         <div class="form-group">
-                            <label>Name</label>
-                            {{ Form::text('name',$editData->rol_name, array('class' =>'form-control','placeholder'=>'Enter Name'))}}
+                            <label>Name {{HTML::image("backend/images/lang-icons/en.png",'En',array())}}</label>
+                            {{ Form::text(
+                                'name_en',
+                                $editData->rol_name_en, 
+                                array(
+                                    'class' =>'form-control',
+                                    'placeholder'=>'Enter Name English'
+                                )
+                            )}}
                         </div>
-                        {{Form::submit('Save', array('class' => 'btn btn-success','name'=>'btnSubmit'))}}
+                        <div class="form-group">
+                            <label>Name {{HTML::image("backend/images/lang-icons/km.png",'Km',array())}}</label>
+                            {{ Form::text(
+                                'name_km',
+                                $editData->rol_name_km, 
+                                array(
+                                    'class' =>'form-control',
+                                    'placeholder'=>'Enter Name Khmer'
+                                )
+                            )}}
+                        </div>
+                        {{Form::submit(
+                            'Save', 
+                            array(
+                                'class' => 'btn btn-success',
+                                'name'=>'btnSubmit'
+                            )
+                        )}}
                     {{Form::close()}}
                 </div>
             </div>

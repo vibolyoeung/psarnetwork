@@ -23,14 +23,20 @@
                     <table class="table table-bordered no-margin">
                         <thead>
                             <th>ID</th>
-                            <th>Name</th>
+                            <th>
+                                Name {{HTML::image("backend/images/lang-icons/en.png",'EN',array())}}
+                            </th>
+                            <th>
+                                Name {{HTML::image("backend/images/lang-icons/km.png",'KM',array())}}
+                            </th>
                             <th>Action</th>
                         </thead>
                         <tbody>
                             @foreach($accountRole as $role)
                                 <tr>
                                     <td>{{$role->rol_id}}</td>
-                                    <td>{{$role->rol_name}}</td>
+                                    <td>{{$role->rol_name_en}}</td>
+                                    <td>{{$role->rol_name_km}}</td>
                                     <td>
                                         <a 
                                             title="Edit"

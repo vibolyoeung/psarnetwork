@@ -79,7 +79,7 @@ var homePage = "{{Config::get('app.url')}}";
                                                         <?php
                                                         $RolArr = array(''=>trans('register.Input_Location'));
                                                          foreach($provinces as $Rol) {
-                                                            $RolArr[$Rol->province_id] = $Rol->province_name;
+                                                            $RolArr[$Rol->province_id] = $Rol->{'province_name_'.Session::get('lang')};
                                                         }
                                                         ?>
                                                         {{Form::select('province', $RolArr, $userAddr,array('class' => 'form-control', 'readonly'=>'readonly'))}}
@@ -123,7 +123,7 @@ var homePage = "{{Config::get('app.url')}}";
                                                         $roleSelectd = !empty($userData->account_role) ? $userData->account_role : '';
                                                         $RolArr = array(''=>trans('register.Manufaturure_label'));
                                                          foreach($accountRole as $Rol) {
-                                                            $RolArr[$Rol->rol_id] = $Rol->rol_name;
+                                                            $RolArr[$Rol->rol_id] = $Rol->{'rol_name_'.Session::get('lang')};
                                                         }
                                                     ?>
                                                     {{Form::select('accountRole', $RolArr, $roleSelectd,array('class' => 'form-control disabled'))}}
@@ -138,7 +138,7 @@ var homePage = "{{Config::get('app.url')}}";
                                                     $clientSelectd = !empty($userData->client_type) ? $userData->client_type : '';
                                                     $cTypeArr = array(''=>trans('register.Manufaturure_select'));
                                                      foreach($clientType as $cType) {
-                                                        $cTypeArr[$cType->id] = $cType->name;
+                                                        $cTypeArr[$cType->id] = $cType->{'name_'.Session::get('lang')};
                                                     }
                                                     ?>
                                                     {{Form::select('client_type', $cTypeArr, $clientSelectd,array('class' => 'form-control','id'=>'clientType'))}}

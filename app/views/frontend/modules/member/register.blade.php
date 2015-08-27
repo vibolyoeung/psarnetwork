@@ -120,7 +120,7 @@
                                         <?php
                                         $RolArr = array(''=>trans('register.Manufaturure_label'));
                                          foreach($accountRole as $Rol) {
-                                            $RolArr[$Rol->rol_id] = $Rol->rol_name;
+                                            $RolArr[$Rol->rol_id] = $Rol->{'rol_name_'.Session::get('lang')};
                                         }
                                         ?>
                                         {{Form::select('accountRole', $RolArr, 'S',array('class' => 'form-control'))}}
@@ -134,7 +134,7 @@
                                         <?php
                                         $cTypeArr = array(''=>trans('register.Manufaturure_select'));
                                          foreach($clientType as $cType) {
-                                            $cTypeArr[$cType->id] = $cType->name;
+                                            $cTypeArr[$cType->id] = $cType->{'name_'.Session::get('lang')};
                                         }
                                         ?>
                                         {{Form::select('client_type', $cTypeArr, 'S',array('class' => 'form-control','id'=>'clientType'))}}

@@ -1214,7 +1214,7 @@ class FeMemberController extends BaseController {
 		$Client_val = '';
 		$getClientType = $this->user->getClientType ( $id );
 		foreach ( $getClientType->data as $ClientType ) {
-			$Client_val .= '<option value="' . $ClientType->id . '">' . $ClientType->name . '</option>';
+			$Client_val .= '<option value="' . $ClientType->id . '">' . $ClientType->{'name_'.Session::get('lang')} . '</option>';
 		}
 		echo $Client_val;
 	}

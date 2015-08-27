@@ -35,7 +35,8 @@ Client User Type
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>Client User Type Name</th>
+					<th>Name {{HTML::image("backend/images/lang-icons/en.png",'En',array())}}</th>
+							<th>Name {{HTML::image("backend/images/lang-icons/km.png",'Km',array())}}</th>
 					<th class="class-center">Action</th>
 		</tr>
 	</thead>
@@ -44,7 +45,8 @@ Client User Type
 		@foreach($clentTypes as $clentType)
 		<tr>
 			<td>{{$i}}</td>
-			<td>{{$clentType->name}}</td>
+			<td>{{$clentType->name_en}}</td>
+			<td>{{$clentType->name_km}}</td>
 			<td align="center">
 				<a title="Edit" href="{{URL::to('admin/client-user-type-edit')}}/{{$clentType->id}}">
 					<i class="icon-edit primary"></i>

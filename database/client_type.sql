@@ -16,21 +16,21 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`psarnetwork_db` /*!40100 DEFAULT CHARAC
 
 USE `psarnetwork_db`;
 
-/*Table structure for table `account_role` */
+/*Table structure for table `client_type` */
 
-DROP TABLE IF EXISTS `account_role`;
+DROP TABLE IF EXISTS `client_type`;
 
-CREATE TABLE `account_role` (
-  `rol_id` int(11) NOT NULL AUTO_INCREMENT,
-  `rol_name_en` varchar(255) DEFAULT NULL,
-  `rol_name_km` varchar(255) DEFAULT NULL,
-  `acc_type_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`rol_id`)
+CREATE TABLE `client_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name_en` varchar(100) DEFAULT NULL,
+  `name_km` varchar(255) DEFAULT NULL,
+  `account_type_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
-/*Data for the table `account_role` */
+/*Data for the table `client_type` */
 
-insert  into `account_role`(`rol_id`,`rol_name_en`,`rol_name_km`,`acc_type_id`) values (1,'Manufacturer','ដកសលដកថលសថ',0),(2,'Supplier',NULL,0),(3,'Distributor',NULL,0),(4,'Retailer',NULL,0),(5,'Individual','បាននា​ន',NULL);
+insert  into `client_type`(`id`,`name_en`,`name_km`,`account_type_id`) values (1,'Individual',NULL,1),(2,'Homeshop',NULL,2),(3,'Private company',NULL,2),(4,'Traditional Market','ផ្សារបែបបុរាណ',2),(5,'Supermarket','ផ្សារទំនើប',2);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

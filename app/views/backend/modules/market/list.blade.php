@@ -61,9 +61,11 @@
 			$mk->title_en,array())}}</td>
 			<td>{{$mk->title_en}}</td>
 			<td>{{$mk->title_km}}</td>
-			<td width="10%">{{$mk->amount_stair}}</td>
-			<td width="11%">
-				{{$mk->market_type}}
+			<td width="5%">{{$mk->amount_stair}}</td>
+			<td width="15%">
+				<?php 
+					echo Market::findMarketTypeById($mk->market_type);
+				?>
 			</td>
 			<td align="center"><a title="Edit"
 				href="{{URL::to('admin/edit-market')}}/{{$mk->id}}"> <i

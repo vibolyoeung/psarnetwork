@@ -125,8 +125,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         $response = new stdClass();
 
         try {
-            $result = DB::table(Config::get('constants.TABLE_NAME.CLIENT_TYPE'))->orderBy('name',
-                'asc')->get();
+            $result = DB::table(Config::get('constants.TABLE_NAME.CLIENT_TYPE'))
+                ->orderBy('name_en','asc')->get();
             $response->data = $result;
         }
         catch (\Exception $e) {
@@ -155,7 +155,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         $response = new stdClass();
 
         try {
-            $result = DB::table(Config::get('constants.TABLE_NAME.ACCOUNT_ROLE'))->orderBy('rol_name',
+            $result = DB::table(Config::get('constants.TABLE_NAME.ACCOUNT_ROLE'))->orderBy('rol_name_en',
                 'asc')->get();
             $response->data = $result;
         }

@@ -758,7 +758,7 @@ class Product extends Eloquent {
 			->where('id', $product_id)
 			->first ();
 		$totalView = $oldViewCount->view;
-		
+
 		return $totalView;
 	}
 

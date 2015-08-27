@@ -28,7 +28,10 @@ class BeClientUserTypeController extends BaseController {
 				return Redirect::to('admin/client-user-type')
 				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
 			}
-			$data = array('name'=>trim(Input::get('client_user_type')));
+			$data = array(
+				'name_en'=>trim(Input::get('client_user_type_en')),
+				'name_km'=>trim(Input::get('client_user_type_km'))
+			);
 			$id = Input::get('hid');
 			$this->modClientType->updateClientUserType($data, $id);
 			return Redirect::to('admin/client-user-type')

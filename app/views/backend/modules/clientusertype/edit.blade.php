@@ -31,18 +31,40 @@
 					</div>
 				@endif
 					{{Form::open(array('url'=>'admin/client-user-type-edit'))}}
-					<table class="table table-bordered no-margin">
-						<tr>
-							<th>
-							{{ Form::text('client_user_type',$clentTypes->name, array('class' =>'form-control','placeholder'=>'Enter Client User Type'))}}
-					{{Form::hidden('hid', $clentTypes->id)}}
-							</th>
-							<th width="300">
-								{{Form::submit('Update', array('class' =>'btn btn-success','name'=>'btnSubmit'))}}
-							</th>
-						</tr>
-					</table>
-				 {{Form::close()}}
+						<div class="row">
+							<div class="col-md-12">
+								<label>Name {{HTML::image("backend/images/lang-icons/en.png",'En',array())}}</label>
+								{{ Form::text(
+									'client_user_type_en',
+									$clentTypes->name_en, 
+									array(
+										'class' =>'form-control',
+										'placeholder'=>'Enter Client User Type'
+									)
+								)}}
+								{{Form::hidden('hid', $clentTypes->id)}}
+							</div>
+							<div class="col-md-12">
+								<label>Name {{HTML::image("backend/images/lang-icons/km.png",'Km',array())}}</label>
+								{{ Form::text(
+									'client_user_type_km',
+									$clentTypes->name_km, 
+									array(
+										'class' =>'form-control',
+										'placeholder'=>'Enter Client User Type'
+									)
+								)}}
+							</div>
+						</div>
+						<br />
+						{{Form::submit(
+							'Update', 
+							array(
+								'class' =>'btn btn-success',
+								'name'=>'btnSubmit'
+							)
+						)}}
+						{{Form::close()}}
 					</div>
 				</div>
 			</div>

@@ -57,8 +57,6 @@
 							@foreach(Market::listingAllDistricts()->data as $district)
 								<option <?php echo ($mk->district_id == $district->id) ? 'selected':'';?> value="{{$district->id}}">{{$district->dis_name_en}}</option>
 							@endforeach
-
-
 						</select>
 						<span class="class-error">{{$errors->first('district_id')}}</span>
 					</div>

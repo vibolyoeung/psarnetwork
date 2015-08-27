@@ -18,7 +18,8 @@ class BeUserRolePlayController extends BaseController {
 	public function editUserRolePlay($role_id) {
 		if (Input::has('btnSubmit')) {
 			$data = array(
-				'rol_name' => Input::get('name')
+				'rol_name_en' => Input::get('name_en'),
+				'rol_name_km' => Input::get('name_km')
 			);
 
 			DB::table(Config::get(self::ACCOUNT_ROLE_TABLE))
