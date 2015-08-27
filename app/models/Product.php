@@ -739,4 +739,27 @@ class Product extends Eloquent {
 		return DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ))->where('publish_date','=',date('Y-m-d'))->get ();
 	}
 
+	public static function countViewOfUserClickProduct($product_id) {
+		$oldViewCount = self::findCountViewOfUserClick($product_id);
+		$totalView = 1 + $oldViewCount;
+		$data = array(
+			'view' => $totalView 
+		);
+
+		return DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ))
+			->where('id', $product_id)
+			->update($data);
+	}
+
+	public static function findCountViewOfUserClick($product_id) {
+
+		$oldViewCount = DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ))
+			->select('view')
+			->where('id', $product_id)
+			->first ();
+		$totalView = $oldViewCount->view;
+		
+		return $totalView;
+	}
+
 }
