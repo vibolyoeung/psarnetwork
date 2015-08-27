@@ -268,7 +268,15 @@ class FeMemberController extends BaseController {
 		$accountRole = $this->user->accountRole ();
 		$clientType = $this->user->getClientType ();
 		
-		return View::make ( 'frontend.modules.member.register' )->with ( 'maincategories', $listCategories->result )->with ( 'marketType', $marketType->data )->with ( 'provinces', $provinces )->with ( 'accountRole', $accountRole->data )->with ( 'clientType', $clientType->data )->with ( 'markets', $result->data );
+		return View::make ( 'frontend.modules.member.register' )
+		->with ( 'maincategories', $listCategories->result )
+		->with ( 'marketType', $marketType->data )
+		->with ( 'provinces', $provinces )
+		->with ( 'accountRole', $accountRole->data )
+		->with ( 'clientType', $clientType->data )
+		->with ( 'markets', $result->data )
+		->with ( 'loginwrapper', 1 )
+		;
 	}
 	public function test() {
 		$limit = $this->mod_setting->getSlidshowNumber ();
