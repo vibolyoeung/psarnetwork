@@ -56,7 +56,11 @@ class FeMemberController extends BaseController {
 			}
 		}
 		$listCategories = self::getCategoriesHomePage ();
-		return View::make ( 'frontend.modules.member.index' )->with ( 'maincategories', $listCategories->result );
+		return View::make ( 'frontend.modules.member.index' )
+		->with ( 'maincategories', $listCategories->result )
+		->with ( 'loginwrapper', 1 )
+		
+		;
 	}
 	
 	/**

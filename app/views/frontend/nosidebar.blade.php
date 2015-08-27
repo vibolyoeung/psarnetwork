@@ -1,4 +1,4 @@
-<div class="user-member">
+<div class="@if(empty($loginwrapper))user-member @endif">
 <?php 
 	if(Session::get('currentUserId')) {
 	    if(!empty($dataStore->sto_url)) {
