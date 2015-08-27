@@ -17,6 +17,7 @@ body,html{
 	position: relative;
 	height: 100%;
 	font-size: 12px;
+	font-family: Hanuman,Arial;
 }
 
 ul li {
@@ -3019,10 +3020,6 @@ span.price{
 	color: #ffffff;
 }
 
-.dropdown-menu li {
-	padding: 3px 1px 3px 1px;
-}
-
 .promotion_top_menu li a {
 	color: #428bca;
 }
@@ -3649,9 +3646,7 @@ ul#TapTitle > li.active > a{
 .member_ship_home img{
 	margin-top:4px;
 }
- .member_ship_home a{
- 	margin-top:8px;
- }
+
  .notification-product>li{
  	padding:0;
  }
@@ -3659,6 +3654,9 @@ ul#TapTitle > li.active > a{
  	position: absolute;
  	left:-110px;
  	padding:0;
+ }
+ .notification-product>li>a{
+ 	padding:3px 8px;
  }
  .notification-product>li>a>img{
  	width:30px;

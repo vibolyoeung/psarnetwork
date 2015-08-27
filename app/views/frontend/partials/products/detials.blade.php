@@ -50,7 +50,7 @@
 										<div class="item"
 											data-slide-number="<?= $thumbnail_id; ?>">
 											<img
-												src="{{Config::get('app.url')}}/upload/product/{{$image['pic']}}">
+												src="{{Config::get('app.url')}}upload/product/picslideshow/{{$image['pic']}}">
 										</div>
 											<?php $thumbnail_id++; ?>
 										@endforeach                               
@@ -71,7 +71,7 @@
 												@foreach($images as $image)
 													<li class="col-sm-3"><a class="thumbnail"
 												id="popup-carousel-selector-<?= $thumbnails_id;?>"> <img
-													src="{{Config::get('app.url')}}/upload/product/thumb/{{$image['pic']}}">
+													src="{{Config::get('app.url')}}upload/product/thumbslideshow/{{$image['pic']}}">
 											</a></li>
 													<?php $thumbnails_id++; ?>
 												@endforeach
