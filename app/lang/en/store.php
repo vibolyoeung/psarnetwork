@@ -15,4 +15,5 @@ return array(
 	'Tel' => 'Tel', 
 	'Email' => 'Email',
 	'Webpage' => 'Webpage',
+	'fbLike' => 'Facebook  Page',
 );

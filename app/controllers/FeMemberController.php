@@ -215,6 +215,7 @@ class FeMemberController extends BaseController {
 			
 			/*slideshow config*/
 			$addDataSlideshowConfig = $this->mod_page->addUserPagesConfig ( $uid, $title = 'slideside_status' );
+			$addDataLikeConfig = $this->mod_page->addUserPagesConfig ( $uid, $title = 'fb_like' , 0);
 			/*end slideshow config*/
 			
 			/* clear session user */
@@ -1154,6 +1155,28 @@ class FeMemberController extends BaseController {
 						}
 						echo json_encode ( $urlData );
 						break;
+						
+					case 'fblike' :
+							if ($userID && ! empty ( $MainMenu )) {
+								$response = DB::table ( Config::get ( 'constants.TABLE_NAME.S_PAGE' ) )->where ( array (
+										'user_id' => $userID,
+										'title' => 'fb_like',
+								) )->update ( array (
+										'description' => $MainMenu,
+										'status' => 1,
+								) );
+								if ($response) {
+									$urlData = array (
+											'result' => 0
+									);
+								} else {
+									$urlData = array (
+											'result' => 1
+									);
+								}
+							}
+							echo json_encode ( $urlData );
+							break;
 			}
 		}
 		

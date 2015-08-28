@@ -64,5 +64,11 @@
 /*content*/
 .user-member .register-form, .user-member .login-form {border: 1px solid #ddd;padding:0;}
 .user-member .register-form h2, .user-member .login-form h2{background-color: #999;border:none}
+/*widget*/
+.facebook-like {margin:5px 0;padding:5px}
+.facebook-like iframe{width:100%!important}
+.facebook-like .title {padding:9px 0;font-weight:bold}
+.btn-like {background-color:#3a5795;color:#fff}
+
 /*footer*/
 .user-member .header_top, .user-member .footer-bottom {background-color: #555;color: #fff;}

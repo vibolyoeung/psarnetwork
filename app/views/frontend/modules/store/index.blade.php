@@ -126,20 +126,25 @@ if(!empty($dataStore->sto_url)) {
 @endsection
 
 @section('right')
-<?php $memberTool = array ();?>
-@if (! empty ( $toolView ))
-	@foreach ( $toolView as $tool )
-		@if($tool->type == 'tool_visitor_info' && $tool->status == 1)
-		@include('frontend.modules.store.partials.slidebar.tool_visitor')
-		@endif
-	@endforeach
-@endif
-
-@if(!empty($banner))
-    @foreach($banner as $ban)
-        @if($ban->ban_position == 'rs')
-            @if($ban->ban_enddate >= $currentDate)
-<a class="banner-link" href="{{@$ban->ban_link}}" target="_blank"><img
-	src="{{Config::get('app.url')}}upload/user-banner/{{$ban->ban_image}}"
-	style="width: 100%;" /></a>
-@endif @endif @endforeach @endif @endsection
+	@include('frontend.modules.store.partials.slidebar.fb_like')
+	<?php $memberTool = array ();?>
+	@if (! empty ( $toolView ))
+		@foreach ( $toolView as $tool )
+			@if($tool->type == 'tool_visitor_info' && $tool->status == 1)
+			@include('frontend.modules.store.partials.slidebar.tool_visitor')
+			@endif
+		@endforeach
+	@endif
+	
+	@if(!empty($banner))
+	    @foreach($banner as $ban)
+	        @if($ban->ban_position == 'rs')
+	            @if($ban->ban_enddate >= $currentDate)
+				<a class="banner-link" href="{{@$ban->ban_link}}" target="_blank"><img
+					src="{{Config::get('app.url')}}upload/user-banner/{{$ban->ban_image}}"
+					style="width: 100%;" /></a>
+				@endif 
+			@endif 
+		@endforeach 
+	@endif 
+@endsection
