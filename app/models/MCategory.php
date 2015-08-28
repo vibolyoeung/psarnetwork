@@ -424,8 +424,9 @@ class MCategory extends Eloquent{
 							<li>
 								<a href="<?php echo URL::to('products/productbycategories/'.$id.'/'.$dropdownlist->id); ?>" >
 									<?php
-									$limit = Session::get('lang')=='km'?200:20;
-									echo substr($dropdownlist->{'name_'.Session::get('lang')},0,$limit);?>
+									$finalCateName = $dropdownlist->{'name_'.Session::get('lang')};
+									echo str_limit($finalCateName, $limit = 20, $end = '...');
+									?>
 								</a>
 							</li>
 						<?php 

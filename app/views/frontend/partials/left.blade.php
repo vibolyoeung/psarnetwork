@@ -9,16 +9,22 @@
 				@foreach ($maincategories as $categoriesList)
 					<li class="dropdown-mainmenu">
 						<a class="dropdown-toggle" href="<?php echo URL::to("products/productbycategories/".$categoriesList->id.'/'.$categoriesList->id);?>">
-			      			<?php 
-			      			$limit = Session::get('lang')=='km'?200:25;
-			      			echo substr($categoriesList->{'name_'.Session::get('lang')},0,$limit);  ?> 
+			      			<?php
+			      			$cateName = $categoriesList->{'name_'.Session::get('lang')};
+			      			?>
+			      			{{ str_limit($cateName, $limit = 28, $end = '...') }}
 			      		</a>
 				      	<?php
 							 $subcategoriesobj = new MCategory();
 							 $sub = $subcategoriesobj->getSubCategories($categoriesList->id);
 								echo '<ul class="dropdown_main_menu">';
 									foreach ($sub as $row){
-										echo '<li class="main_category"><a href='.URL::to('products/productbycategories/'.$row->id.'/'.$row->id).'>'.substr($row->{'name_'.Session::get('lang')},0,$limit).'</a>';
+										echo '<li class="main_category"><a href='.URL::to('products/productbycategories/'.$row->id.'/'.$row->id).'>';
+											$subCateName = $row->{'name_'.Session::get('lang')};
+						      			?>
+											{{ str_limit($subCateName, $limit = 22, $end = '...') }}
+									<?php
+										echo '</a>';
 									?>
 											<ul style="padding:0;border:0px solid red;" class="child-menu">
 												<?php

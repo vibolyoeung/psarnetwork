@@ -259,7 +259,7 @@ class FeProductController extends BaseController {
                     ->resize(140, 115)
                 ->save($destinationPathThumb . $newFileName);
                 Image::make($destinationPath . $newFileName)
-                    ->resize(500, 250)
+                    ->resize(550, 250)
                 ->save($destinationPathPicSlideshow . $newFileName);
                 Image::make($destinationPath . $newFileName)
                     ->resize(90, 55)

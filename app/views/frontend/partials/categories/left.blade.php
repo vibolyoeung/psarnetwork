@@ -19,7 +19,10 @@
 					@foreach ($detailCategory as $categoriesList)
 						<li class="dropdown-mainmenu">
 							<a href="<?php echo URL::to('products/productbycategories/'.$categoriesList->parent_id.'/'.$categoriesList->id); ?>">
-								<?php echo $categoriesList->{'name_'.Session::get('lang')};?>
+								<?php
+									$subcate = $categoriesList->{'name_'.Session::get('lang')};
+								?>
+								{{ str_limit($subcate, $limit = 30, $end = '...') }}
 				      		</a>
 						</li>
 					@endforeach
