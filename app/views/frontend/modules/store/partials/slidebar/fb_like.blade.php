@@ -1,4 +1,3 @@
-@if($currentUserType == 2)
 <?php
 	if (! empty ( $dataStore->sto_url )) {
 		$userSrore = 'page/' . $dataStore->sto_url;
@@ -17,6 +16,7 @@
 ?>
 	@if(@$getFbConfig->result[0]->status == 0 || empty($getFbConfig))
 		@if($dataUserSession)
+		@if($currentUserType == 2)
 		<div class="panel-group widget" id="fb-like">
 			<!--category-products-->
 			<div class="panel panel-default facebook-like">
@@ -36,6 +36,7 @@
 			<div style="clear:both"></div>
 		</div>
 		@endif
+		@endif
 	@else
 	<div class="panel-group widget" id="fb-like">
 		<div class="panel panel-default facebook-like">
@@ -45,9 +46,11 @@
 		style="border:none; overflow:hidden;height:250px;" 
 		src="http://www.facebook.com/plugins/likebox.php?href={{$getFbConfig->result[0]->description}}&width=150&colorscheme=light&show_faces=true&border_color=ffffff&stream=false&header=false&height=250"></iframe>
 		@if($dataUserSession)
+		@if($currentUserType == 2)
 		<button type="button" class="btn btn-primary edit-like" data-toggle="modal" data-target="#fbLike" style="margin: 0">
 		edit
 		</button>
+		@endif
 		@endif
 		</div>
 	</div>
@@ -71,5 +74,5 @@
 	    </div>
 	  </div>
 	</div>
-@endif
+
 
