@@ -22,7 +22,7 @@
 								<div class="item<?php echo $thumbnail_id == 1?' active':'';?>"
 									data-slide-number="<?php echo $thumbnail_id; ?>">
 									<img
-										src="{{Config::get('app.url')}}upload/product/{{$image['pic']}}">
+										src="{{Config::get('app.url')}}upload/product/picslideshow/{{$image['pic']}}">
 								</div>
 									<?php $thumbnail_id++; ?>
 								@endforeach 
@@ -39,10 +39,10 @@
 									<ul class="hide-bullets">
 									<?php $thumbnails_id = 1; ?>
 										@foreach($images as $image)
-											<li class="col-sm-3"><a class="thumbnail"
+											<li class="col-sm-3"><a 
 											id="carousel-selector-<?php echo $thumbnails_id; ?>">
 											<img
-												src="{{Config::get('app.url')}}/upload/product/thumb/{{$image['pic']}}">
+												src="{{Config::get('app.url')}}upload/product/thumbslideshow/{{$image['pic']}}">
 										</a></li>
 											<?php $thumbnails_id++; ?>
 										@endforeach

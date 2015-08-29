@@ -6,14 +6,13 @@ $(document).ready(function(){
 	});
 
 	jQuery('.datepicker' ).datepicker({ 
-		dateFormat: 'dd/mm/yy',
+		dateFormat: "yy-mm-dd",
 		changeMonth: true,
     	changeYear: true,
         autoclose: true,
         todayHighlight: true,
-        
 	});
-
+	$(".datepicker").datepicker("setDate", new Date());
 	jQuery('.item:first-child').addClass(' active');
 	jQuery('.bullet:first-child').addClass('active');
 	jQuery('.tab-content .submenu-bar:first-child').addClass(' active');
