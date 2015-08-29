@@ -53,9 +53,11 @@ Categories
 			</div>
 		</div>
 	</div>
-
+@include('frontend.partials.products.popup_details')
 @endsection
+<script src="{{Config::get('app.url')}}/frontend/js/jquery.js"></script>
 <script src="{{Config::get('app.url')}}/frontend/js/carouselengine/amazingcarousel.js"></script>
 <link rel="stylesheet" type="text/css" href="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.css">
 <script src="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.js"></script>
+
 

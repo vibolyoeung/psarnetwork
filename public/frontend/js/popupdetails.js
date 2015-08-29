@@ -5,6 +5,7 @@ var popupDetails = (function(){
 		//alert(product_id);
 		var productUrl = document.querySelector('#detail_product');
   		productUrl = productUrl.dataset.getDetailProductUrl;
+  		//alert(productUrl);
   		$(".message-loading").show();
 		$('#details_view').load(productUrl + 'product/js_detail/' + product_id, function() {
 		});

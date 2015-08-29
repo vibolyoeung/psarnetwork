@@ -73,7 +73,8 @@ class FePageController extends BaseController {
 			->with('advTops', $advTops->result)
 			->with('client_type',$this->mod_category->getClientType())
 			->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
-			->with('Provinces', $this->mod_setting->listProvinces());
+			->with('Provinces', $this->mod_setting->listProvinces())
+			->with('seller_type', $this->mod_category->listSellerType());
 	}
 
 

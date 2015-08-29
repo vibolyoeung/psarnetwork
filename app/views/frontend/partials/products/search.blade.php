@@ -48,7 +48,7 @@
 			<input
 				type="text"
 				name="date"
-				placeholder="Date: dd/mm/yyyy"
+				placeholder="yyyy-mm-dd"
 				class="form-control datepicker form-select-khmerabba"
 			/>
 		</div>

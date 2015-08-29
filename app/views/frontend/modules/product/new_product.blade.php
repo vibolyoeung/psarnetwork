@@ -387,9 +387,10 @@
 			</div>
 		{{Form::close()}}
 	</div>
-	{{HTML::script('backend/js/jquery-ui.js')}}
-    {{HTML::script('backend/js/custom.js')}}
-@endsection
 @section('footer')
 	@include('frontend.modules.store.partials.footer');
+@endsection
+
+{{HTML::script('backend/js/jquery-ui.js')}}
+    {{HTML::script('backend/js/custom.js')}}
 @endsection

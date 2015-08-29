@@ -16,7 +16,7 @@
 body,html{
 	position: relative;
 	height: 100%;
-	font-size: 12px;
+	font-size: 14px;
 	font-family: Hanuman,Arial;
 }
 
@@ -346,7 +346,7 @@ a#scrollUp i {
 @media ( min-width : 768px) {
 	.modal-dialog {
 		margin: 30px auto;
-		width: 50% !important;
+		width: 65% !important;
 	}
 	.navbar {
 		border-radius: 0;
@@ -1251,7 +1251,6 @@ h2.title {
 
 .product-image-wrapper {
 	border: 1px solid #F7F7F5;
-	overflow: hidden;
 	margin-bottom: 30px;
 }
 
@@ -1293,6 +1292,10 @@ h2.title {
 
 .productinfo {
 	position: relative;
+}
+
+#picture_summary .productinfo>img{
+	max-height: 90px;
 }
 
 .product-overlay {
@@ -3587,12 +3590,6 @@ ul.dropdown_main_menu > li > a{
 	border:1px solid #f7f7f5;
 	padding:0;
 }
-.carousel-inner > .item img{
-	max-height: 250px;
-}
- .detail-popup > .item img{
- 	max-height: 190px;
- }
 span.pro-condition{
 	color:#eea236;
 }
@@ -3660,11 +3657,13 @@ ul#TapTitle > li.active > a{
  	position: absolute;
  	left:-110px;
  	padding:0;
+ 	overflow: scroll-y;
+ 	max-height: 520px;
  }
  .notification-product>li>a{
  	padding:3px 8px;
  }
  .notification-product>li>a>img{
- 	width:30px;
+ 	width:45px;
  }
 //=========Detail slile===//

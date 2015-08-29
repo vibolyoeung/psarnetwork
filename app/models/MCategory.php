@@ -923,4 +923,13 @@ class MCategory extends Eloquent{
 		}
 		return $response;
     }
+
+
+    public function listSellerType(){
+		$result = DB::table(Config::get('constants.TABLE_NAME.ACCOUNT_ROLE'))
+			->select('*')
+			->orderBy('rol_id','ASC')
+			->get();
+		return $result;
+    }
 }

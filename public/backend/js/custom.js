@@ -1,5 +1,13 @@
 $(document).ready(function() {
-	$('.datepicker' ).datepicker({ dateFormat: 'dd/mm/yy' });
+
+	jQuery('.datepicker' ).datepicker({ 
+		dateFormat: "yy-mm-dd",
+		changeMonth: true,
+    	changeYear: true,
+        autoclose: true,
+        todayHighlight: true,
+	});
+	$(".datepicker").datepicker("setDate", new Date());
 	
 	// call list advertisement pages
 	var advType = $('[name="advertiseType"]').prop("checked", true).val();

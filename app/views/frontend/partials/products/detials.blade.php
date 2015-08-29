@@ -75,10 +75,12 @@
 										<ul class="hide-bullets">
 											<?php $thumbnails_id = 0; ?>
 												@foreach($images as $image)
-													<li class="col-sm-3"><a class="thumbnail"
-												id="popup-carousel-selector-<?= $thumbnails_id;?>"> <img
-													src="{{Config::get('app.url')}}upload/product/thumbslideshow/{{$image['pic']}}">
-											</a></li>
+													<li class="col-sm-3">
+														<a 
+														   id="popup-carousel-selector-<?= $thumbnails_id;?>"> <img
+													       src="{{Config::get('app.url')}}upload/product/thumbslideshow/{{$image['pic']}}">
+														</a>
+													</li>
 													<?php $thumbnails_id++; ?>
 												@endforeach
 											</ul>
@@ -104,7 +106,7 @@
 									</span></div>
 									<div class="clear"></div>
 									<div class="col-lg-12 text-centered" style="background-color:#eea236;padding:5px 10px;text-align:center;">
-										<a href="{{Config::get('app.url')}}page/store-{{$detailProduct->store_id;}}" style="color:white;font-weight:bold;">
+										<a href="{{Config::get('app.url')}}page/store-{{$detailProduct->store_id;}}" style="color:white;font-weight:bold;" target="_blank">
 										{{Config::get('app.url')}}page/store-{{$detailProduct->store_id;}}
 										</a>
 									</div>
@@ -147,7 +149,7 @@
 										<div class="productinfo">
 											<img 
 												class="img-thumbnail img-responsive"
-												src="{{Config::get('app.url')}}/upload/product/{{$image['pic']}}"
+												src="{{Config::get('app.url')}}upload/product/{{$image['pic']}}"
 											>
 										</div>
 									</div>
@@ -216,15 +218,14 @@
 	</div>
 @endsection
 <script
-	src="{{Config::get('app.url')}}/frontend/js/product_detail_print.js"></script>
+	src="{{Config::get('app.url')}}frontend/js/product_detail_print.js"></script>
 <script
-	src="{{Config::get('app.url')}}/frontend/js/carouselengine/amazingcarousel.js"></script>
+	src="{{Config::get('app.url')}}frontend/js/carouselengine/amazingcarousel.js"></script>
 <link rel="stylesheet" type="text/css"
-	href="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.css">
+	href="{{Config::get('app.url')}}frontend/js/carouselengine/initcarousel-1.css">
 <script
-	src="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.js"></script>
+	src="{{Config::get('app.url')}}frontend/js/carouselengine/initcarousel-1.js"></script>
 
-{{HTML::script('frontend/js/jquery.js')}}
 <script>
 	jQuery(document).ready(function(){
 		jQuery(".categories_menu").hide();
