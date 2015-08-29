@@ -3581,12 +3581,7 @@ ul.dropdown_main_menu > li > a{
 	border:1px solid #f7f7f5;
 	padding:0;
 }
-.carousel-inner > .item img{
-	max-height: 250px;
-}
- .detail-popup > .item img{
- 	max-height: 190px;
- }
+
 span.pro-condition{
 	color:#eea236;
 }
