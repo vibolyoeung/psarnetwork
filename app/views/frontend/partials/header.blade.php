@@ -44,7 +44,7 @@
 		<meta content='global' name='target'/>
 {{HTML::style('frontend/css/font-awesome.min.css')}}
 {{HTML::style('frontend/css/prettyPhoto.css')}}
-{{HTML::style('frontend/css/price-range.css')}}
+{{HTML::style('frontend/css/colorbox.css')}}
 {{HTML::style('frontend/css/animate.css')}}
 {{HTML::style('frontend/css/bootstrap.min.css')}}
 {{HTML::style('frontend/css/responsive.css')}}
@@ -52,6 +52,7 @@
 {{HTML::style('frontend/css/main.css')}}
 {{HTML::style('frontend/css/layout.css')}}
 {{HTML::script('frontend/js/jquery.js')}}
+{{HTML::script('frontend/js/jquery.colorbox-min.js')}}
 {{HTML::script('backend/js/jquery-ui.js')}}
 {{HTML::script('frontend/js/popupdetails.js')}}
 <!--[if lt IE 9]>

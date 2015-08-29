@@ -70,6 +70,13 @@ if($userLayout) {
 	    <meta name="twitter:image" content="{{Config::get('app.url')}}upload/product/{{$dataProductDetail->thumbnail}}">
 	    <meta content="{{Config::get('app.url')}}upload/product/{{$dataProductDetail->thumbnail}}" itemprop='image'/>
 	    <link href="{{Config::get('app.url')}}upload/product/{{$dataProductDetail->thumbnail}}" rel='image_src'/>
+	    @else
+	    <meta property="og:url"           content="{{Config::get('app.url')}}" />
+	    <meta property="og:title"         content="@yield('title')" />
+	    <meta property="og:description"   content="@yield('description')" />
+		    @if(!empty($dataStore->image))
+		    <meta property="og:image"         content="{{Config::get('app.url')}}{{'upload/store/'.$dataStore->image}}" />
+		    @endif
 	    @endif
         {{HTML::style('frontend/css/font-awesome.min.css')}}
         {{HTML::style('frontend/css/prettyPhoto.css')}}
@@ -150,6 +157,7 @@ if($userLayout) {
 			@if(Session::get ( 'currentUserId' ))
 			{{HTML::script('frontend/js/jquery-upload/jquery.form.js')}}
 			<script type="text/javascript">
+			var homePage = "{{Config::get('app.url')}}";
 			$( document ).ready(function(){
 				$('#bannerFile').change(function(){
 			        $("#banner-preview").html('<img src="{{Config::get('app.url')}}frontend/images/upload_progress.gif" alt="Uploading...."/>');
@@ -181,6 +189,24 @@ if($userLayout) {
 			            }
 			        }).submit();
 			   	});
+
+				$('#fb_likes').click(function(){
+					var bFb = $('#fblikeValue').val();
+			        if(bFb) {
+			        	$.ajax({
+			        		url: homePage + "member/getsubmenu?type=fblike&id=" + bFb,
+			        		type: "get",
+			        		error: function (request, error) {
+			        	        
+			        	    },
+			        		success: function(data) {
+			            	$('.message-success').show();
+			            		window.location = "{{$bannerLink}}";
+			        		}
+			            });
+			        }
+				});
+			   	
 			});
 			</script>
 
@@ -245,6 +271,5 @@ if($userLayout) {
 	  </div>
 	</div>
 </div>
-
 
 			@endif

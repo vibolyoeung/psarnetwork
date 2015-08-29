@@ -108,6 +108,8 @@ $(document).ready(function(){
 		refresh_page_with_param_added(fullUrl, displayNumber);
 	});
 
+	$(".slideshow-group").colorbox({rel:'slideshow-group'});
+
 });
 
 function refresh_page_with_param_added(url, displayNumber) {

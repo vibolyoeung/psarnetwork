@@ -18,8 +18,12 @@
 		?>
 		<div class="col-lg-12">
 			<div class="col-lg-9 pull-right">
-				<div class="col-lg-12 top-detail-ads">
-					Top ads
+				<div class="col-lg-12">
+					<?php $contactInfo = json_decode($detailProduct->contact_info); ?>
+					<p><label>Contact Name:</label> {{$contactInfo->contactName}}</p>
+					<p><label>Contact Email:</label> {{$contactInfo->contactEmail}}</p>
+					<p><label>Telephone:</label> {{$contactInfo->contactHP}}</p>
+					<p><label>Location:</label> {{$contactInfo->contactLocation}}</p>
 				</div>
 			</div>
 			<div class="col-lg-3 store-name">
@@ -49,8 +53,10 @@
 										@foreach($images as $image)
 										<div class="item"
 											data-slide-number="<?= $thumbnail_id; ?>">
-											<img
-												src="{{Config::get('app.url')}}upload/product/picslideshow/{{$image['pic']}}">
+											<a class="slideshow-group" href="{{Config::get('app.url')}}upload/product/{{$image['pic']}}">
+												<img
+													src="{{Config::get('app.url')}}upload/product/picslideshow/{{$image['pic']}}">
+											</a>
 										</div>
 											<?php $thumbnail_id++; ?>
 										@endforeach                               
