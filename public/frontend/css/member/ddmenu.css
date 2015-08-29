@@ -360,6 +360,7 @@ background-color: #F9538F;
 #icon-socialmn .sopint a:hover {
 background-color: #CB2027;
 }
+#mobilenav {display:none}
 #topmobilenav, #mobilenav {
 position: absolute;
 width: 35px;
@@ -567,6 +568,7 @@ width: auto;
 }
 }
 @media only screen and (max-width:479px) {
+#mobilenav {display:display:block}	
 #outer-wrapper,
 #nav {
 width:320px;
