@@ -49,22 +49,22 @@
             
             @if(count($topSlideShowArr)<1)
             	<div class="item active">
-					<a class="banner-link" href="#"><img
+					<a class="banner-link" href="{{Config::get('app.url')}}member/userinfo/banner"><img
 						src="https://placeholdit.imgix.net/~text?txtsize=60&txt=[1]+750+x+200&w=750&h=200"
 						style="width: 100%; max-height: 250px;" /></a>
-					<div class="carousel-caption">...</div>
+					<div class="carousel-caption"><a class="banner-link" href="{{Config::get('app.url')}}member/userinfo/banner">add slidehow</a></div>
 				</div>
 				<div class="item">
-					<a class="banner-link" href="#"><img
+					<a class="banner-link" href="{{Config::get('app.url')}}member/userinfo/banner"><img
 						src="https://placeholdit.imgix.net/~text?txtsize=60&txt=[2]+750+x+200&w=750&h=200"
 						style="width: 100%; max-height: 250px;" /></a>
-					<div class="carousel-caption">...</div>
+					<div class="carousel-caption"><a class="banner-link" href="{{Config::get('app.url')}}member/userinfo/banner">add slidehow</a></div>
 				</div>
 				<div class="item">
-					<a class="banner-link" href="#"><img
+					<a class="banner-link" href="{{Config::get('app.url')}}member/userinfo/banner"><img
 						src="https://placeholdit.imgix.net/~text?txtsize=60&txt=[3]+750+x+200&w=750&h=200"
 						style="width: 100%; max-height: 250px;" /></a>
-					<div class="carousel-caption">...</div>
+					<div class="carousel-caption"><a class="banner-link" href="{{Config::get('app.url')}}member/userinfo/banner">add slidehow</a></div>
 				</div>
 				@endif
 			</div>
