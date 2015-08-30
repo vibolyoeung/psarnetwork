@@ -3,11 +3,11 @@
 		<div class="panel-group category-products" id="accordian">
 			<div class="all_categories_type" id="menu_toogle">
 				<img src="{{Config::get('app.url')}}frontend/images/icons/all_category.png" alt="" title="" height="23"/>
-				<strong> &nbsp;&nbsp;&nbsp; 
+				<strong> &nbsp; 
 					@foreach ($MaindetailCategory as $maincate)
 					<?php 
 						echo $maincate->{'name_'.Session::get('lang')};
-					?> 
+					?>
 					@endforeach
 					&nbsp;&nbsp;&nbsp;<span class="caret" ></span></strong>
 			</div>

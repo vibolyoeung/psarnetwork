@@ -6,13 +6,7 @@ if(count($newProducts) > 0){
 	<!--recommended_items-->
 	<ul class="nav nav-tabs new_product">
 		<li><strong>New Products</strong> &nbsp;&nbsp;&nbsp; &frasl;</li>
-		<li>Products : <span class="number-display">25</span></li>
-		<li>Stores :<span class="number-display">25</span></li>
-		<li>Market :<span class="number-display">25</span></li>
-		<li>Companies :<span class="number-display">25</span></li>
-		<li>Home Shop :<span class="number-display">25</span></li>
-		<li>Individual : <span class="number-display">25</span></li>
-		<li>View :<span class="number-display">25</span></li>
+		<li>Products : <span class="number-display price"><?php echo count($newProducts)?></span></li>
 	</ul>
 	<div id="hotpromotion-item-carousel" class="carousel slide"
 		data-ride="carousel">
@@ -43,9 +37,6 @@ if(count($newProducts) > 0){
 										</a>
 									</center>
 								</div>
-								<img
-									src="{{Config::get('app.url')}}/frontend/images/home/sale.png"
-									class="new" alt="" />
 							</div>
 						</div>
 					</div>

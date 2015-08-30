@@ -17,20 +17,21 @@
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
-								<a href="#" data-toggle="modal" data-target="#myModal"
-										onclick="popupDetails.add_popup_detail(<?php echo $relatedPost->id; ?>)" >
+								<a href="" data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail(<?php echo $relatedPost->id; ?>)">
 									<img
 									src="{{Config::get('app.url')}}upload/product/thumb/{{$relatedPost->thumbnail}}"
 									alt="" />
 								</a>
 								<h2>$ {{$relatedPost->price}}</h2>
-								<a href="{{Config::get('app.url')}}product/details/{{$relatedPost->id}}"><?php echo substr($relatedPost->title,0,20)?></a>
+								<a href="{{Config::get('app.url')}}product/details/{{$relatedPost->id}}">
+									<?php echo substr($relatedPost->title,0,20)?>
+								</a>
 							</div>
 						</div>
 					</div>
 				</div>
 				<?php }
-				if ($secondPro >= 6&& $secondPro % 6 == 0) {
+				if ($secondPro >= 6 && $secondPro % 6 == 0) {
 					echo '</div><div class="item"> ';
 				}
 				$secondPro ++;

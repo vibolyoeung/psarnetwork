@@ -40,9 +40,6 @@ if(count($buyerProducts) > 0){
 								<p></p>
 								<a href="{{Config::get('app.url')}}product/details/{{$buyerProduct->id}}"><?php echo substr($buyerProduct->title,0,20)?></a>
 							</div>
-							<img
-								src="{{Config::get('app.url')}}/frontend/images/home/sale.png"
-								class="new" alt="" />
 						</div>
 					</div>
 				</div>

@@ -205,7 +205,7 @@ class FePageController extends BaseController {
 		$mainSup = $this->mod_market->mainMarket($parent_id);
 		return View::make('frontend.partials.suppermarket')
 		->with('mainID',$mainSup['0']->id)
-		->with('mainmarket',$mainSup['0']->name)
+		->with('mainmarket',$mainSup['0'])
 		->with('listMarkets',$this->mod_market->listsupermarketfront($parent_id))
 		->with('listProductSupermarket',$this->mod_market->listproductofsupermarket($parent_id))
 		->with('client_type',$this->mod_category->getClientType())

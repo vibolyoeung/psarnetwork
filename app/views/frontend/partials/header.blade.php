@@ -236,7 +236,6 @@
 							<div class="col-lg-6" style="margin: 0; padding: 0;">
 								<div class="btn-group col-lg-12 " style="margin: 0; padding: 0;">
 									<select name="type">
-										<option value="0">Type</option>
 										<option value="1">Products</option>
 										<option value="2">Buyers</option>
 										<option value="3">Suppliers</option>

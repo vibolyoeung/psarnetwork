@@ -5,7 +5,7 @@
 			<div class="all_categories_type" id="menu_toogle">
 				<img src="{{Config::get('app.url')}}frontend/images/icons/all_category.png" alt="" title="" height="23"/>
 				<strong> &nbsp;&nbsp;&nbsp; 
-					{{$mainmarket}}
+					<?php echo $mainmarket->{'name_'.Session::get('lang')};?>
 					&nbsp;&nbsp;&nbsp;<span class="caret" ></span></strong>
 			</div>
 			<ul class="categories_menu">

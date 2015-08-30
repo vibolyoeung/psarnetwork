@@ -38,9 +38,6 @@ if(count($hotPromotionProducts) > 0){
 							<a href="{{Config::get('app.url')}}product/details/{{$hotPromotionProduct->id}}" ><?php echo substr($hotPromotionProduct->title,0,20)?>
 							</a>
 						</div>
-						<img
-							src="{{Config::get('app.url')}}/frontend/images/home/sale.png"
-							class="new" alt="" />
 					</div>
 				</div>
 			</div>

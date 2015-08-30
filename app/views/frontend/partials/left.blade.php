@@ -3,7 +3,7 @@
 		<div class="panel-group category-products" id="accordian">
 			<div class="all_categories_type" id="menu_toogle">
 				<img src="{{Config::get('app.url')}}frontend/images/icons/all_category.png" alt="" title="" height="23"/>
-				<strong> &nbsp;&nbsp;&nbsp; All Categocies Type &nbsp;&nbsp;&nbsp;<span class="caret" ></span></strong>
+				<strong> &nbsp;All Categocies Type &nbsp;&nbsp;&nbsp;<span class="caret" ></span></strong>
 			</div>
 			<ul class="categories_menu">
 				@foreach ($maincategories as $categoriesList)
