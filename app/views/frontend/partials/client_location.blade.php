@@ -13,7 +13,7 @@
 				@foreach($Provinces as $province)
 				<div class="btn btn-default"
 					style="border-radius: 0; min-width: 160px; font-size: 12px; border: none; text-align: left;">
-					<a href="#">
+					<a href="{{Config::get('app.url')}}search?q=&location=<?php echo $province->province_id?>&type=1">
 					<?php echo $province->{'province_name_'.Session::get('lang')}; ?> &nbsp;&nbsp;<span
 						class="number-display">200</span>
 					</a>
@@ -36,7 +36,7 @@
 				@foreach($seller_type as $sellertype)
 				<div class="btn btn-default"
 					style="border-radius: 0; min-width: 160px; font-size: 12px; border: none; text-align: left;">
-					<a href="#" >
+					<a href="{{Config::get('app.url')}}product/list/<?php echo $sellertype->rol_id ?>/0" >
 					  <?php 
 					  	echo $sellertype->{'rol_name_'.Session::get('lang')}; ?>
 					  	&nbsp;&nbsp;
@@ -61,7 +61,7 @@
 				@foreach($client_type as $clienttype)
 				<div class="btn btn-default"
 					style="border-radius: 0; min-width: 160px; font-size: 12px; border: none; text-align: left;">
-					<a href="#" >
+					<a href="{{Config::get('app.url')}}product/list/<?php echo $clienttype->id ?>/0" >
 					  <?php 
 					  	echo $clienttype->{'name_'.Session::get('lang')}; ?>
 					  	&nbsp;&nbsp;
