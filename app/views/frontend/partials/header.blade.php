@@ -139,6 +139,11 @@
 						</a>
 					@else
 						<ul class="nav navbar-nav front-loggedin">
+							<li>
+								<a>
+								Hi &nbsp;{{Session::get('currentUserName')}}
+								</a>
+							</li>
 							<li role="presentation" class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
 								My Account <span class="caret"></span>
