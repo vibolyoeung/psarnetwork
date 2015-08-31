@@ -3669,4 +3669,7 @@ ul#TapTitle > li.active > a{
  .notification-product>li>a>img{
  	width:45px;
  }
+ .product-list-item{
+ 	padding:5px;
+ }
 //=========Detail slile===//
