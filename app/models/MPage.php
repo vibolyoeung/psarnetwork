@@ -159,13 +159,14 @@ class MPage extends Eloquent {
 	 * @access public
 	 * @author Socheat
 	 */
-	public function addUserPagesConfig($userID, $title = 'config', $status = 1, $type = 'config') {
+	public function addUserPagesConfig($userID, $title = 'config', $status = 1, $type = 'config', $position = 0) {
 		$response = new stdClass ();
 		try {
 			$data = array (
 					'user_id' => $userID,
 					'title' => $title,
 					'type' => $type,
+					'position' => $position,
 					'status' => $status 
 			);
 			DB::table ( Config::get ( 'constants.TABLE_NAME.S_PAGE' ) )->insertGetId ( $data );

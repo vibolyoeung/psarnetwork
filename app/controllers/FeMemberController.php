@@ -215,7 +215,8 @@ class FeMemberController extends BaseController {
 			
 			/*slideshow config*/
 			$addDataSlideshowConfig = $this->mod_page->addUserPagesConfig ( $uid, $title = 'slideside_status' );
-			$addDataLikeConfig = $this->mod_page->addUserPagesConfig ( $uid, $title = 'fb_like' , 0);
+			//$userID, $title = 'config', $status = 1, $type = 'config', $position = 0
+			$addDataLikeConfig = $this->mod_page->addUserPagesConfig ( $uid, $title = 'fb_like' , 0, $type = 'config', $position = 100);
 			/*end slideshow config*/
 			
 			/* clear session user */
