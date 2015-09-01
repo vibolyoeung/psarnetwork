@@ -93,17 +93,16 @@
 									
 									<div class="col-lg-12 text-centered" style="border:1px solid #dddddd;background-color:#dddddd;padding:5px 10px;font-weight:bold;font-size:18px;">Current Price : <span class="price">{{$detailProduct->price}}$</span></div>
 									<div class="clear"></div>
-									<div>Genuine Price &nbsp;<span class="pro-condition">{{$detailProduct->price}}$</span></div>
-									<div>Discount &nbsp;<span class="pro-condition">10%</span></div>
-									<div>Product ID   &nbsp;<span class="pro-condition">{{$detailProduct->id}}</span></div>
-									<div>View &nbsp;<span class="pro-condition"><?php echo $detailProduct->view;?></span></div>
+									<div>Product ID:   &nbsp;<span class="pro-condition">{{$detailProduct->id}}</span></div>
+									<div>View: &nbsp;<span class="pro-condition"><?php echo $detailProduct->view;?></span></div>
 									<div>Post Date :&nbsp;<span class="pro-condition"><?php echo date("d/M/Y",strtotime($detailProduct->created_date)); ?> </span></div>
+									<div>Transfer :&nbsp;<span class="pro-condition">{{$detailProduct->{'type_name_'.Session::get('lang')};}}</span></div>
+									<div>Condition :&nbsp;<span class="pro-condition">{{$detailProduct->{'pcon_name_'.Session::get('lang')};}}</span></div>
+									<div>Status :&nbsp;<span class="pro-condition">{{Product::getProductStatus($detailProduct->pro_status)}}</span></div>
+									<hr />
+									<div>Company type :&nbsp;<span class="pro-condition">{{$detailProduct->{'role_name_'.Session::get('lang')};}}</span></div>
+									<div>Bussiness site :&nbsp;<span class="pro-condition">{{$detailProduct->{'client_type_name_'.Session::get('lang')};}}</span></div>
 									<div>Post by :&nbsp;<span class="pro-condition">{{$detailProduct->name}}</span></div>
-									<div>Location :&nbsp;<span class="pro-condition">
-										{{
-											FePageController::extractAddress($detailProduct->address);
-										}}
-									</span></div>
 									<div class="clear"></div>
 									<div class="col-lg-12 text-centered" style="background-color:#eea236;padding:5px 10px;text-align:center;">
 										<a href="{{Config::get('app.url')}}page/store-{{$detailProduct->store_id;}}" style="color:white;font-weight:bold;" target="_blank">

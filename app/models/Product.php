@@ -456,10 +456,63 @@ class Product extends Eloquent {
 	public function findProductDetailById($product_id) {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		$productCondition = Config::get ( 'constants.TABLE_NAME.PRODUCT_CONDITION' );
+		$productTransferType = Config::get('constants.TABLE_NAME.PRODUCT_TRANSFER_TYPE');
+		$accountRole = Config::get ( 'constants.TABLE_NAME.ACCOUNT_ROLE' );
+		$clientType = Config::get ( 'constants.TABLE_NAME.CLIENT_TYPE' );
 		$store = Config::get ( 'constants.TABLE_NAME.STORE' );
 		$user = Config::get ( 'constants.TABLE_NAME.USER' );
-		return DB::table ( $product . ' AS p ' )->select ('p.title','p.id','st.title_en','st.title_km','p.pictures as pictures','st.image','p.price','p.view','p.created_date','u.name as name','u.address as address','p.store_id as store_id','p.description as description','p.contact_info as contact_info','p.file_quotation as file_quotation','p.s_category_id as s_category_id')->join ( $store . ' AS st', 'st.id', '=', 'p.store_id' )->join ( $productCondition . ' AS pcon', 'pcon.id', '=', 'p.pro_condition_id' )->join ( $user . ' AS u', 'u.id', '=', 'p.user_id' )->where ( 'p.id', '=', $product_id )->first ();
+		return DB::table ( $product . ' AS p ' )->select (
+			'p.title',
+			'p.id',
+			'st.title_en',
+			'st.title_km',
+			'p.pictures as pictures',
+			'st.image',
+			'p.pro_status',
+			'p.price',
+			'p.view',
+			'p.created_date',
+			'u.name as name',
+			'u.address as address',
+			'p.store_id as store_id',
+			'p.description as description',
+			'p.contact_info as contact_info',
+			'p.file_quotation as file_quotation',
+			'p.s_category_id as s_category_id',
+			'proType.name_en as type_name_en',
+			'proType.name_km as type_name_km',
+			'pcon.name_en as pcon_name_en',
+			'pcon.name_km as pcon_name_km',
+			'role.rol_name_en as role_name_en',
+			'role.rol_name_km as role_name_km',
+			'cType.name_en as client_type_name_en',
+			'cType.name_km as client_type_name_km'
+
+		)->join (
+			$store . ' AS st', 
+			'st.id', '=', 'p.store_id'
+		)->join (
+			$productCondition . ' AS pcon', 
+			'pcon.id', '=', 'p.pro_condition_id'
+		)->join(
+			$productTransferType . ' AS proType',
+			'proType.ptt_id', '=', 'p.pro_transfer_type_id'
+		)->join (
+			$user . ' AS u',
+			'u.id', '=', 'p.user_id'
+		)->join (
+			$accountRole . ' AS role',
+			'u.account_role', '=', 'role.rol_id'
+		)->join (
+			$clientType . ' AS cType',
+			'u.client_type', '=', 'cType.id'
+		)->where ( 'p.id', '=', $product_id )->first ();
 	}
+
+	public static function getProductStatus($status) {
+		return self::$PRODUCT_STATUS[$status];
+	}
+
 	/**
 	 * findRelatedPostProduct
 	 *
