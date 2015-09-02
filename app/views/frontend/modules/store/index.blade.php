@@ -1,14 +1,3 @@
-@extends('frontend.modules.store.layout.layout') @section('title')
-{{($dataStore->title_en ? $dataStore->{'title_'.Session::get('lang')} :
-'Welcome to my page')}} @endsection @section('description')Buy, Sell
-@endsection @section('breadcrumb')
-<ol class="breadcrumb">
-	<li><a href="{{Config::get('app.url')}}">Home</a></li>
-	<li><a href="#">Library</a></li>
-	<li class="active">Data</li>
-</ol>
-@endsection
-@section('content')
 <?php
 date_default_timezone_set ( 'Asia/Phnom_Penh' );
 $currentDate = date ( 'Y-m-d' );
@@ -22,6 +11,17 @@ if(!empty($dataStore->sto_url)) {
 	$userHome = @Config::get('app.url').'page/store-'.$dataStore->id;
 }
 ?>
+@extends('frontend.modules.store.layout.layout') @section('title')
+{{($dataStore->title_en ? $dataStore->{'title_'.Session::get('lang')} :
+'Welcome to my page')}} @endsection @section('description')Buy, Sell
+@endsection @section('breadcrumb')
+<ol class="breadcrumb">
+	<li><a href="{{Config::get('app.url')}}">Home</a></li>
+	<li><a href="#">Library</a></li>
+	<li class="active">Data</li>
+</ol>
+@endsection
+@section('content')
 <div class="col-sm-8">
 	<div class="category-tab lastest-post">
 	@if($currentUserType == 2)

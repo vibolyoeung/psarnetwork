@@ -71,14 +71,15 @@ class Product extends Eloquent {
 	 */
 	public function findAllCondition() {
 		$response = new stdClass ();
-		$arr = array ();
 		try {
+			$arr = array ();
 			$result = DB::table ( Config::get ( self::CONDITION ) )->select ( '*' )->get ();
 			foreach ( $result as $row ) {
 				$arr [$row->id] = $row->{'name_'.Session::get('lang')};
 			}
 			$response->data = $arr;
 		} catch ( \Exception $e ) {
+			$response->data = array();
 			Log::error ( 'Message: ' . $e->getMessage () . ' File:' . $e->getFile () . ' Line' . $e->getLine () );
 		}
 		return $response;

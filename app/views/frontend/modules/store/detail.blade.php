@@ -1,4 +1,17 @@
 @extends('frontend.modules.store.layout.layout')
+<?php
+date_default_timezone_set ( 'Asia/Phnom_Penh' );
+$currentDate = date ( 'Y-m-d' );
+
+$userClass = new User ();
+$userData = $userClass->getUser($dataStore->user_id);
+$currentUserType =$userData->result->account_type;
+if(!empty($dataStore->sto_url)) {
+	$userHome = @Config::get('app.url').'page/'.$dataStore->sto_url;
+} else {
+	$userHome = @Config::get('app.url').'page/store-'.$dataStore->id;
+}
+?>
 @section('title')
 	@if (!empty($dataProductDetail))
 		{{$dataProductDetail->title}}
@@ -47,7 +60,7 @@
 						</div>
 				</div>
 				<div class="col-sm-4" id="carousel-text"></div>
-				<div id="slide-content" style="display: none;">
+				<div id="slide-content" style="">
 					<div id="slide-content-0">
 						<h2>
 							@if (!empty($dataProductDetail))
