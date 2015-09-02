@@ -943,6 +943,27 @@ class FeMemberController extends BaseController {
 					);
 					echo json_encode ( $data );
 					break;
+					
+				case 'imgproduct' :
+					if (Input::hasfile ( 'file' )) {
+						$file = Input::file ( 'file' );
+						/* upload banner image */
+						$destinationPath = base_path () . Config::get ( 'constants.DIR_IMAGE.DEFAULT' ).'product/';
+					
+						/* clean old image */
+					
+						$images = $this->mod_store->doUpoad ( $file, $destinationPath, Config::get ( 'constants.DIR_IMAGE.THUMB_WIDTH' ), Config::get ( 'constants.DIR_IMAGE.THUMB_HEIGTH' ) );
+						$data = array (
+								'message' => 'uploadSuccess',
+								'file' => Config::get ( 'app.url' ) . 'upload/product/' . $images ['image']
+						);
+					} else {
+						$data = array (
+								'message' => 'error',
+						);
+					}
+					echo json_encode ( $data );
+				break;
 			}
 		}
 		die ();

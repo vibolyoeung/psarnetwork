@@ -37,6 +37,7 @@ return array (
 				'ALLOW_FILE' => 'mimes:jpeg,png,bmp,gif|image',
 				'THUMB_WIDTH' => 100,
 				'THUMB_HEIGTH' => 100,
+				'DEFAULT' => '/public/upload/',
 				'DIR_DEFAULT' => '/public/upload/images/',
 				'DIR_STORE' => '/public/upload/store/',
 				'USER_BANNER' => '/public/upload/user-banner/' 
