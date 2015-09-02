@@ -1,3 +1,9 @@
+<?php
+$getclasMCategory = new MCategory ();
+$mod_store = new Store ();
+$getUserUrl = $mod_store->getStoreUrl($dataStore->id);
+$menuFooter = $getclasMCategory->menuUserPage ( $dataStore->user_id, 3, $getUserUrl );
+?>
 <div class="container" style="padding-left: 0;padding-right: 0;">
 <footer id="footer">
 	<!--Footer-->
@@ -7,6 +13,9 @@
 				<div class="col-sm-12">
 					<center>
 						<ul>
+							@if($menuFooter)
+							{{$menuFooter}}
+							@else
 							<li><a href="#">Contact</a></li>
 							<li><a href="#">About</a></li>
 							<li><a href="#">Advertisement</a></li>
@@ -14,6 +23,7 @@
 							<li><a href="#">User Agreement</a></li>
 							<li><a href="#">Policy</a></li>
 							<li><a href="#">Sign Up now</a></li>
+							@endif
 						</ul>
 					</center>
 				</div>

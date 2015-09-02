@@ -84,6 +84,8 @@ function rm($article, $char) {
 												==1) selected @endif @endif >Menu 1</option>
 											<option value="2"@if(!empty($dataEdit)) @if($dataEdit[0]->position
 												==2) selected @endif @endif>Menu 2</option>
+											<option value="3"@if(!empty($dataEdit)) @if($dataEdit[0]->position
+												==3) selected @endif @endif>Footer Menu</option>
 										</select>
 									</div>
 								</div>
