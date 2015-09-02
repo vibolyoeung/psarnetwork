@@ -550,59 +550,56 @@ class FeMemberController extends BaseController {
 						$addDataSlideshowConfig = $this->mod_page->addUserPagesConfig ( $userID, $title = 'slideside_status' );
 					}
 				}
-				return View::make ( 'frontend.modules.member.s-slideshow' )->with ( 'maincategories', $listCategories->result )->with ( 'slideshowStatus', $dataSlideshowConfig->result )->with ( 'dataStore', $getUserStore );
+				
+				
+				
+				if (Input::has ( 'btnSlideshow' )) {
+					$this->addBannerData( $getUserStore->id );
+				}
+				$result = array ();
+				if (Input::has ( 'action' )) {
+					if (Input::get ( 'action' ) != 'add' && Input::get ( 'action' ) != 'del') {
+						$where = array (
+								'ban_store_id' => $getUserStore->id,
+								'ban_id' => Input::get ( 'action' )
+						);
+						$result = DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )->select ( '*' )->where ( $where )->orderBy ( 'ban_id', 'desc' )->first ();
+					} else if (Input::get ( 'action' ) == 'del') {
+						$where = array (
+								'ban_store_id' => $getUserStore->id,
+								'ban_id' => Input::get ( 'id' )
+						);
+						DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )->where ( $where )->delete ();
+						return Redirect::to ( '/member/userinfo/slideshow' )->with ( Session::flash ( 'messsage', 'message_del_success' ) );
+						die ();
+					} else {
+						$where = array (
+								'ban_store_id' => $getUserStore->id
+						);
+						$result = DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )->select ( '*' )->where ( $where )->orderBy ( 'ban_id', 'desc' )->get ();
+					}
+				} else {
+					$where = array (
+							'ban_store_id' => $getUserStore->id
+					);
+					$result = DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )
+					->select ( '*' )
+					->where ( $where )
+					->where ( 'ban_position', '=', 'top-c' )
+					->orderBy ( 'ban_id', 'desc' )
+					->get ();
+				}
+				
+				return View::make ( 'frontend.modules.member.s-slideshow' )
+				->with ( 'maincategories', $listCategories->result )
+				->with ( 'slideshowStatus', $dataSlideshowConfig->result )
+				->with ( 'dataBanner', $result )
+				->with ( 'dataStore', $getUserStore );
 				break;
 			
 			case 'banner' :
 				if (Input::has ( 'btnInfo' )) {
-					if (Input::hasfile ( 'file' )) {
-						$destinationPath = base_path () . Config::get ( 'constants.DIR_IMAGE.USER_BANNER' );
-						$file = Input::file ( 'file' );
-						$images = $this->mod_store->doUpoad ( $file, $destinationPath, Config::get ( 'constants.DIR_IMAGE.THUMB_WIDTH' ), Config::get ( 'constants.DIR_IMAGE.THUMB_HEIGTH' ) );
-						if (! empty ( $images ['image'] )) {
-							$image_file = $images ['image'];
-						} else {
-							$image_file = ' ';
-						}
-					} else {
-						$image_file = ' ';
-					}
-					if (Input::has ( 'edit' )) {
-						if (Input::get ( 'oldimage' ) && Input::hasfile ( 'file' )) {
-							$oldName = $destinationPath . '/' . Input::get ( 'oldimage' );
-							$thumb = $destinationPath . '/thumb/' . Input::get ( 'oldimage' );
-							if (File::exists ( $oldName )) {
-								File::delete ( $oldName, $thumb );
-							}
-						} else if (Input::get ( 'oldimage' ) && ! Input::hasfile ( 'file' )) {
-							$image_file = Input::get ( 'oldimage' );
-						}
-						$data = array (
-								'ban_title' => trim ( Input::get ( 'title' ) ),
-								'ban_enddate' => trim ( Input::get ( 'enddate' ) ),
-								'ban_link' => trim ( Input::get ( 'link' ) ),
-								'ban_image' => $image_file,
-								'ban_store_id' => $getUserStore->id,
-								'ban_status' => Input::get ( 'status' ),
-								'ban_position' => Input::get ( 'positions' ) 
-						);
-						$response = DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )->where ( array (
-								'ban_id' => Input::get ( 'edit' ),
-								'ban_store_id' => $getUserStore->id 
-						) )->update ( $data );
-					} else {
-						$data = array (
-								'ban_title' => trim ( Input::get ( 'title' ) ),
-								'ban_cdate' => date ( self::CURRENT_DATE ),
-								'ban_enddate' => trim ( Input::get ( 'enddate' ) ),
-								'ban_link' => trim ( Input::get ( 'link' ) ),
-								'ban_image' => $image_file,
-								'ban_store_id' => $getUserStore->id,
-								'ban_status' => Input::get ( 'status' ),
-								'ban_position' => Input::get ( 'positions' ) 
-						);
-						$response = DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )->insertGetId ( $data );
-					}
+					$this->addBannerData( $getUserStore->id );
 				}
 				$result = array ();
 				if (Input::has ( 'action' )) {
@@ -630,9 +627,17 @@ class FeMemberController extends BaseController {
 					$where = array (
 							'ban_store_id' => $getUserStore->id 
 					);
-					$result = DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )->select ( '*' )->where ( $where )->orderBy ( 'ban_id', 'desc' )->get ();
+					$result = DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )
+					->select ( '*' )
+					->where ( $where )
+					->where ( 'ban_position', '!=', 'top-c' )
+					->orderBy ( 'ban_id', 'desc' )
+					->get ();
 				}
-				return View::make ( 'frontend.modules.member.s-banner' )->with ( 'maincategories', $listCategories->result )->with ( 'dataStore', $getUserStore )->with ( 'dataBanner', $result );
+				return View::make ( 'frontend.modules.member.s-banner' )
+				->with ( 'maincategories', $listCategories->result )
+				->with ( 'dataStore', $getUserStore )
+				->with ( 'dataBanner', $result );
 				break;
 			
 			case 'accountinfo' :
@@ -1308,6 +1313,58 @@ class FeMemberController extends BaseController {
 				}
 				echo json_encode ( $urlData );
 				break;
+		}
+	}
+	
+	/*add banner user data*/
+	public function addBannerData($getUserStoreDd) {
+		if (Input::hasfile ( 'file' )) {
+			$destinationPath = base_path () . Config::get ( 'constants.DIR_IMAGE.USER_BANNER' );
+			$file = Input::file ( 'file' );
+			$images = $this->mod_store->doUpoad ( $file, $destinationPath, Config::get ( 'constants.DIR_IMAGE.THUMB_WIDTH' ), Config::get ( 'constants.DIR_IMAGE.THUMB_HEIGTH' ) );
+			if (! empty ( $images ['image'] )) {
+				$image_file = $images ['image'];
+			} else {
+				$image_file = ' ';
+			}
+		} else {
+			$image_file = ' ';
+		}
+		if (Input::has ( 'edit' )) {
+			if (Input::get ( 'oldimage' ) && Input::hasfile ( 'file' )) {
+				$oldName = $destinationPath . '/' . Input::get ( 'oldimage' );
+				$thumb = $destinationPath . '/thumb/' . Input::get ( 'oldimage' );
+				if (File::exists ( $oldName )) {
+					File::delete ( $oldName, $thumb );
+				}
+			} else if (Input::get ( 'oldimage' ) && ! Input::hasfile ( 'file' )) {
+				$image_file = Input::get ( 'oldimage' );
+			}
+			$data = array (
+					'ban_title' => trim ( Input::get ( 'title' ) ),
+					'ban_enddate' => trim ( Input::get ( 'enddate' ) ),
+					'ban_link' => trim ( Input::get ( 'link' ) ),
+					'ban_image' => $image_file,
+					'ban_store_id' => $getUserStoreDd,
+					'ban_status' => Input::get ( 'status' ),
+					'ban_position' => Input::get ( 'positions' ) 
+			);
+			$response = DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )->where ( array (
+					'ban_id' => Input::get ( 'edit' ),
+					'ban_store_id' => $getUserStoreDd
+			) )->update ( $data );
+		} else {
+			$data = array (
+					'ban_title' => trim ( Input::get ( 'title' ) ),
+					'ban_cdate' => date ( self::CURRENT_DATE ),
+					'ban_enddate' => trim ( Input::get ( 'enddate' ) ),
+					'ban_link' => trim ( Input::get ( 'link' ) ),
+					'ban_image' => $image_file,
+					'ban_store_id' => $getUserStoreDd,
+					'ban_status' => Input::get ( 'status' ),
+					'ban_position' => Input::get ( 'positions' ) 
+			);
+			$response = DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )->insertGetId ( $data );
 		}
 	}
 	

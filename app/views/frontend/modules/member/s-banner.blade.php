@@ -88,7 +88,6 @@
 						<div class="col-sm-9">
 							<select class="form-control" name="positions" id="demo-hor-position" required>
                                 <option value="">Select a position</option>
-                                <option value="top-c" {{@$dataBanner->ban_position == 'top-c' ? 'selected="selected"' : ''}}>{{trans('register.banner_position_top_content')}}</option>
                                 <option value="ls" {{@$dataBanner->ban_position == 'ls' ? 'selected="selected"' : ''}}>{{trans('register.banner_position_left_side')}}</option>
                                 <option value="rs" {{@$dataBanner->ban_position == 'rs' ? 'selected="selected"' : ''}}>{{trans('register.banner_position_right_side')}}</option>
                                 <option value="footer" {{@$dataBanner->ban_position == 'footer' ? 'selected="selected"' : ''}}>{{trans('register.banner_position_footer')}}</option>
