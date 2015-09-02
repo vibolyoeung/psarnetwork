@@ -20,9 +20,9 @@
 			<div class="col-lg-9 pull-right">
 				<div class="col-lg-12">
 					<?php $contactInfo = json_decode($detailProduct->contact_info); ?>
-					<p><label>Contact Name:</label> {{$contactInfo->contactName}}</p>
-					<p><label>Contact Email:</label> {{$contactInfo->contactEmail}}</p>
-					<p><label>Telephone:</label> {{$contactInfo->contactHP}}</p>
+					<p><label>Name:</label> {{$contactInfo->contactName}}</p>
+					<p><label>Tel:</label> {{$contactInfo->contactHP}}</p>
+					<p><label>Email:</label> {{$contactInfo->contactEmail}}</p>
 					<p><label>Location:</label> {{$contactInfo->contactLocation}}</p>
 				</div>
 			</div>
@@ -35,6 +35,22 @@
 		<div class="col-lg-12">
 			<div class="col-lg-12 title-detail">
 				{{$detailProduct->title}}
+			</div>
+			<div class="task-bar">
+				<span>
+					<input
+						class="btn btn-primary" 
+						type="button" 
+						onclick="ProductDetailPrint.print_product_detail('main_area')" 
+						value="Save / Download" 
+					/>
+				</span>
+				<span class="pull-right store-link">
+					Visit Store:
+						<a href="{{Config::get('app.url')}}page/store-{{$detailProduct->store_id;}}" style="font-weight:bold;" target="_blank">
+							{{Config::get('app.url')}}page/store-{{$detailProduct->store_id;}}
+						</a>
+				</span>
 			</div>
 			<div class="clear"></div>
 			<div id="main_area">
@@ -116,12 +132,6 @@
 				</div>
 				<!--/Slider-->
 			</div>
-			<input
-				class="btn btn-primary" 
-				type="button" 
-				onclick="ProductDetailPrint.print_product_detail('main_area')" 
-				value="Print Product" 
-			/>
 			<div class="row col-lg-12">
 				<ul id="TapTitle" class="nav nav-tabs">
 				   <li class="active"><a href="#speification_detail" data-toggle="tab">Specification Detail</a></li>

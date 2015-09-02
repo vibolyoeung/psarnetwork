@@ -3672,4 +3672,8 @@ ul#TapTitle > li.active > a{
  .product-list-item{
  	padding:5px;
  }
+
+ .store-link {
+ 	margin-top: 10px;
+ }
 //=========Detail slile===//
