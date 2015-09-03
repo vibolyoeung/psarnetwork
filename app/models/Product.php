@@ -563,7 +563,11 @@ class Product extends Eloquent {
 	 */
 	public function findProductByCategory($store, $idArr) {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
-		return DB::table ( $product )->whereIn ( 's_category_id', $idArr )->where ( 'store_id', '=', $store )->orderBy ( 'id', 'DESC' )->paginate ( 10 );
+		return DB::table ( $product )
+		->whereIn ( 's_category_id', $idArr )
+		->where ( 'store_id', '=', $store )
+		->orderBy ( 'id', 'DESC' )
+		->paginate ( 10 );
 	}
 	
 	/**

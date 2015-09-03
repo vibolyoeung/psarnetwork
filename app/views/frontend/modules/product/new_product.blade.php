@@ -10,7 +10,7 @@
 	</ol>
 	@endsection
 @section('content')
-	{{HTML::style('frontend/plugin/dropzone/dist/dropzone.css')}}
+	{{HTML::style('frontend/plugin/dropzone/dist/dropzone.cs')}}
 	{{HTML::style('backend/css/jquery-ui.css')}}
 	{{HTML::script('frontend/js/product.js')}}
 	{{HTML::script('frontend/plugin/dropzone/dist/dropzone.js')}}
@@ -198,13 +198,6 @@
 					    </div>
 					    <div role="tabpanel" class="tab-pane" id="pictures">
 					    	<div class="col-md-12">
-					    		 <form action="upload.php" class="dropzone">
-  <div class="fallback">
-    <input name="userfile" type="file" multiple />
-  </div>
-</form>
-
-
 								<div class="well">
 									<div class="row" id="upload-preview">
 										<div class="col-md-12">

@@ -191,11 +191,11 @@ class FeStoreController extends BaseController {
 			$getCategoryByName = $this->mod_category->getCategoryByName ( $label, $dataStore->user_id );
 			$catArr = array ();
 			if (! empty ( $getCategoryByName->data )) {
-				array_push ( $catArr, $getCategoryByName->data->id );
+				array_push ( $catArr, $getCategoryByName->data->m_cat_id );
 				$subCategory = $this->mod_category->getSubUserCategories ( $dataStore->user_id, $getCategoryByName->data->id );
 				if (! empty ( $subCategory )) {
 					foreach ( $subCategory as $subCat ) {
-						array_push ( $catArr, $subCat->id );
+						array_push ( $catArr, $subCat->m_cat_id );
 					}
 				}
 			}
@@ -208,6 +208,7 @@ class FeStoreController extends BaseController {
 			}
 			
 			$dataProduct = $this->mod_product->findProductByCategory ( $dataStore->id, $catArr );
+
 			$dataUserPage = $this->mod_category->menuUserPage ( $dataStore->user_id, 2, $getUserUrl );
 			/* end get user cateory and sub */
 			$whereArr = array (
