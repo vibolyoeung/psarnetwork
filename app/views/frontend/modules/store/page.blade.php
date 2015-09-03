@@ -1,3 +1,16 @@
+<?php
+date_default_timezone_set ( 'Asia/Phnom_Penh' );
+$currentDate = date ( 'Y-m-d' );
+
+$userClass = new User ();
+$userData = $userClass->getUser($dataStore->user_id);
+$currentUserType =$userData->result->account_type;
+if(!empty($dataStore->sto_url)) {
+	$userHome = @Config::get('app.url').'page/'.$dataStore->sto_url;
+} else {
+	$userHome = @Config::get('app.url').'page/store-'.$dataStore->id;
+}
+?>
 @extends('frontend.modules.store.layout.layout')
 @section('title')
 	Home
