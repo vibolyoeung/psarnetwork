@@ -175,6 +175,7 @@ Route::group(array('prefix' => 'products'), function () {
 
 /*===========Product Details==*/
 Route::group(array('prefix' => 'product'), function () {
+    Route::any('/transfter_type/{ID}','FePageController@listProductTransfterType');
 	Route::any('/list/{ID}', 'FePageController@listSuppermarket');
     Route::any('/list/{supermarket_id}/{ID}', 'FePageController@listSuppermarket'); 
     Route::any('/details/{id}', 'FePageController@getProductDetials');

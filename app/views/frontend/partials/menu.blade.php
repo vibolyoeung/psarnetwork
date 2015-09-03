@@ -37,7 +37,7 @@
 					@foreach($pro_transfer_type as $pro_transfer_types)
 						<li>
 							<a 
-								href="{{Config::get('app.url')}}product/list/{{$pro_transfer_types->ptt_id}}/0">
+								href="{{Config::get('app.url')}}product/transfter_type/{{$pro_transfer_types->ptt_id}}">
 								<?php echo $pro_transfer_types->{'name_'.Session::get('lang')};?>
 							</a>
 						</li>

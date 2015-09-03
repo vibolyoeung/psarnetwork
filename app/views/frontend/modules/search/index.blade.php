@@ -19,64 +19,55 @@ Categories
 			<div>
 				<!-- ============Slider end here========= -->
 				@include('frontend.partials.products.search')
-				<div class="col-lg-12">
+				<div class="row">
 					<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
-					<?php
-						if(count($products) > 0){
-						?>
-							@foreach($products as $product)
-								<div class="product_list_container">
-									<div class="media commnets">
-										<a href="{{Config::get('app.url')}}product/details/{{$product->id}}" class="pull-left product_image">
-											<img alt="" src="{{Config::get('app.url')}}upload/product/thumb/{{$product->thumbnail}}" class="media-object">
-										</a>
-										
-										<div class="media-body">
-											<strong class="media-heading">
-												<a href="{{Config::get('app.url')}}product/details/{{$product->id}}">
-												{{substr($product->title,0,14)}}
-												</a>
-												
-											</strong>
-											<p>
-												{{substr($product->description,0,30)}}
-											</p>
-											<div class="blog-socials">
-												<a href="{{Config::get('app.url')}}product/details/{{$product->id}}" class="btn btn-primary">$ {{$product->price}}</a>
-											</div>
+					<?php 
+					if(count($products) > 0){
+					?>
+						@foreach($products as $product)
+							<div class="product_list_container">
+								<div class="media commnets product-list-item">
+									<a href="#" data-toggle="modal" data-target="#myModal"
+									onclick="popupDetails.add_popup_detail(<?php echo $product->id; ?>)" class="pull-left product_image">
+										<img alt="" src="{{Config::get('app.url')}}upload/product/thumb/{{$product->thumbnail}}" class="media-object small">
+										<img alt="" src="{{Config::get('app.url')}}upload/product/{{$product->thumbnail}}" class="media-object big">
+									</a>
+									
+									<div class="media-body">
+										<strong class="media-heading">
+											<a href="{{Config::get('app.url')}}product/details/{{$product->id}}">
+											{{ str_limit($product->title, $limit = 10, $end = '...') }}
+											</a>
+										</strong><br />
+										<small><i>{{$product->publish_date}}</i></small><br />
+										<p>
+											{{ str_limit($product->description, $limit = 90, $end = '...') }}<br />
+										</p>
+										<div class="blog-socials">
+											<a href="{{Config::get('app.url')}}product/details/{{$product->id}}" class="btn btn-primary">$ {{$product->price}}</a>
 										</div>
 									</div>
 								</div>
-							@endforeach
-						<?php 
-							}else{
-								echo '<h3><center style="color:red;">Product not found!</center></h3>';
-							}
-						?>
+							</div>
+						@endforeach
+					<?php 
+						}else{
+							echo '<h3><center style="color:red;">Product not found!</center></h3>';
+						}
+					?>
 					</div>
 				</div>
-				@if (!isset($topSearch))
-				<div class="col-lg-12">
-					<div id="pagination">
-						{{ $products->appends(Input::except('page'))->links(); }}
-					</div>
-				</div>
-				@endif
 			</div>
 		</div>
 	</div>
-
+@include('frontend.partials.products.popup_details')
 @endsection
+
+<script src="{{Config::get('app.url')}}/frontend/js/jquery.js"></script>
+<script src="{{Config::get('app.url')}}/frontend/js/custom.js"></script>
 <script src="{{Config::get('app.url')}}/frontend/js/carouselengine/amazingcarousel.js"></script>
 <link rel="stylesheet" type="text/css" href="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.css">
 <script src="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.js"></script>
-<script src="{{Config::get('app.url')}}/frontend/js/jquery.js"></script>
 
-<script>
-	jQuery(document).ready(function(){
-		jQuery("#menu_toogle").css('cursor','pointer');
-		jQuery("#menu_toogle").click(function(){
-			jQuery(".categories_menu").toggle("slow");
-		});
-	});
-</script>
+
+
