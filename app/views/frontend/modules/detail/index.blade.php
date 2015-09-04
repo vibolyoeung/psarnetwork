@@ -27,8 +27,10 @@ Categories
 						@foreach($productByCategory as $product)
 							<div class="product_list_container">
 								<div class="media commnets product-list-item">
-									<a href="{{Config::get('app.url')}}product/details/{{$product->id}}" class="pull-left product_image">
-										<img alt="" src="{{Config::get('app.url')}}upload/product/thumb/{{$product->thumbnail}}" class="media-object">
+									<a href="#" data-toggle="modal" data-target="#myModal"
+									onclick="popupDetails.add_popup_detail(<?php echo $product->id; ?>)" class="pull-left product_image">
+										<img alt="" src="{{Config::get('app.url')}}upload/product/thumb/{{$product->thumbnail}}" class="media-object small">
+										<img alt="" src="{{Config::get('app.url')}}upload/product/{{$product->thumbnail}}" class="media-object big">
 									</a>
 									
 									<div class="media-body">
@@ -36,10 +38,10 @@ Categories
 											<a href="{{Config::get('app.url')}}product/details/{{$product->id}}">
 											{{ str_limit($product->title, $limit = 10, $end = '...') }}
 											</a>
-											
-										</strong>
+										</strong><br />
+										<small><i>{{$product->publish_date}}</i></small><br />
 										<p>
-											{{ str_limit($product->description, $limit = 45, $end = '...') }}
+											{{ str_limit($product->description, $limit = 90, $end = '...') }}<br />
 										</p>
 										<div class="blog-socials">
 											<a href="{{Config::get('app.url')}}product/details/{{$product->id}}" class="btn btn-primary">$ {{$product->price}}</a>

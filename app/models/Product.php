@@ -820,4 +820,8 @@ class Product extends Eloquent {
 		return $totalView;
 	}
 
+	public function findProductByTransfterType($id){
+		return DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ))->where('pro_transfer_type_id','=',$id)->get ();
+	}
+
 }

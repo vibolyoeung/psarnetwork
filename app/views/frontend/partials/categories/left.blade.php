@@ -5,9 +5,10 @@
 				<img src="{{Config::get('app.url')}}frontend/images/icons/all_category.png" alt="" title="" height="23"/>
 				<strong> &nbsp; 
 					@foreach ($MaindetailCategory as $maincate)
-					<?php 
-						echo $maincate->{'name_'.Session::get('lang')};
-					?>
+					<?php
+	      			$cateName = $maincate->{'name_'.Session::get('lang')};
+	      			?>
+	      			{{ str_limit($cateName, $limit = 20, $end = '...') }}
 					@endforeach
 					&nbsp;&nbsp;&nbsp;<span class="caret" ></span></strong>
 			</div>

@@ -275,4 +275,16 @@ class FePageController extends BaseController {
     		->with('page', $pageForWebsite);
     }
 
+    public function listProductTransfterType($transfterTypeId){
+    	$productByTransfterType = $this->mod_product->findProductByTransfterType($transfterTypeId);
+    	return View::make('frontend.partials.products.product_transfter')
+    	    ->with('client_type',$this->mod_category->getClientType())
+			->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
+			->with('Provinces', $this->mod_setting->listProvinces())
+			->with('seller_type', $this->mod_category->listSellerType())
+			->with('transferTypes', $this->mod_product->listAllTransferType())
+			->with('conditions', $this->mod_product->listAllConditions())
+    		->with('productsByTransfterType', $productByTransfterType);
+    }
+
 }
