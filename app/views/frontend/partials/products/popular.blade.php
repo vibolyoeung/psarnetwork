@@ -25,8 +25,16 @@
 						<div class="single-products">
 							<div class="productinfo">
 								<a href="{{Config::get('app.url')}}page/store-{{$latestStore->id}}" target="_blank">
+								<?php
+									$storeImg = Config::get('app.url').'frontend/images/default_store.png';
+									$image = Config::get('app.url').'upload/store/' . $latestStore->image;
+									// Check if image not in folder store
+									if (@getimagesize($image)) {
+										$storeImg = Config::get('app.url').'upload/store/' . $latestStore->image;
+									}
+								?>
 								 <img
-									src="{{Config::get('app.url')}}upload/store/{{$latestStore->image}}"
+									src="{{$storeImg}}"
 									alt="{{$latestStore->title_en}}"
 									class="img-responsive img-thumbnail"
 								/>
