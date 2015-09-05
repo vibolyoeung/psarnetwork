@@ -42,10 +42,8 @@ if(!empty($dataStore->sto_url)) {
 					    		@foreach($pictures as $picture)
 					    			<?php $active = ($i === 0) ? 'active': ''; ?>
 									<div class="{{$active}} item" data-slide-number="0">
-										<img 
-											alt="{{$dataProductDetail->title}}"
-											src="{{Config::get('app.url')}}upload/product/{{$picture['pic']}}"
-										>
+										<?php $imageSlide = @$picture['pic'];?>
+										{{HTML::image("image/phpthumb/$imageSlide?p=product&amp;h=250&amp;w=550",$dataProductDetail->title)}}
 									</div>
 									<?php $i++; ?>
 								@endforeach
@@ -92,16 +90,11 @@ if(!empty($dataStore->sto_url)) {
 				<!-- Bottom switcher of slider -->
 				@if (!empty($dataProductDetail))
 				    <ul class="hide-bullets">
-				    	<?php 
-				    		$pictures = json_decode($dataProductDetail->pictures, true);
-				    	?>
-				    	@foreach($pictures as $picture)
+				    	@foreach($pictures as $small)
+				    		<?php $thumb = $small['pic']?>
 					        <li class="col-sm-2">
 					            <a class="thumbnail" id="carousel-selector-0">
-					            	<img 
-					            		alt="{{$dataProductDetail->title}}" 
-					            		src="{{Config::get('app.url')}}upload/product/thumb/{{$picture['pic']}}"
-					            	>
+					            	{{HTML::image("image/phpthumb/$thumb?p=product&amp;h=55&amp;w=90",$dataProductDetail->title)}}
 					            </a>
 					        </li>
 					    @endforeach

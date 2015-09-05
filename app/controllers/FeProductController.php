@@ -163,7 +163,7 @@ class FeProductController extends BaseController {
             
             /*remove old image*/
             if(!empty($delimagArr)) {
-                $destinationPath = base_path() . '/public/upload/product/';
+                $destinationPath = base_path() . Config::get ( 'constants.DIR_IMAGE.DEFAULT' ). 'product/';
                 foreach($delimagArr as $delImg) {
                     $oldName = $destinationPath . '/' . $delImg;
                     $thumb = $destinationPath . '/thumb/' . $delImg;
@@ -259,7 +259,7 @@ class FeProductController extends BaseController {
      *@return json  fileNames
      */
     public function doUploadImages($files,$oldFile = null) {
-        $destinationPath = base_path() . '/public/upload/product/';
+        $destinationPath = base_path() . Config::get ( 'constants.DIR_IMAGE.DEFAULT' ). 'product/';
         self::generateFolderUpload($destinationPath);
         $destinationPathThumb = $destinationPath.'thumb/';
         $destinationPathPicSlideshow = $destinationPath.'/picslideshow/';
@@ -308,7 +308,7 @@ class FeProductController extends BaseController {
      */
     private function doUploadQaotation($file)
     {
-        $destinationPath = base_path() . '/public/upload/quotation/';
+        $destinationPath = base_path() . Config::get ( 'constants.DIR_IMAGE.DEFAULT' ). 'quotation/';
         if(!is_dir($destinationPath)){
             mkdir($destinationPath, 0777, true);
         }
