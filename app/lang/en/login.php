@@ -6,6 +6,7 @@ return array(
 	'Username' => 'Username',
 	'Password' => 'Password',
 	'Login' => 'Login',
+	'Register' => 'Register',
 	'by_name_email_phone_number' => 'by name / email / phone number',
 	'Your_Password' => 'Your Password',
 );

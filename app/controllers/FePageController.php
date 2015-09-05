@@ -206,10 +206,13 @@ class FePageController extends BaseController {
 		return View::make('frontend.partials.suppermarket')
 		->with('mainID',$mainSup['0']->id)
 		->with('mainmarket',$mainSup['0'])
+		->with('transferTypes', $this->mod_product->listAllTransferType())
+		->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
 		->with('listMarkets',$this->mod_market->listsupermarketfront($parent_id))
 		->with('listProductSupermarket',$this->mod_market->listproductofsupermarket($parent_id))
 		->with('client_type',$this->mod_category->getClientType())
 		->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
+		->with('Provinces', $this->mod_setting->listProvinces())
 		->with('conditions', $this->mod_product->listAllConditions())
 		->with('advTops', $advTops->result);
 	}
@@ -286,4 +289,17 @@ class FePageController extends BaseController {
 			->with('conditions', $this->mod_product->listAllConditions())
     		->with('productsByTransfterType', $productByTransfterType);
     }
+
+    public function listProductAccountRole($account_role_id){
+    	$productByAccountRole = $this->mod_product->findProductByAccountRole($account_role_id);
+    	return View::make('frontend.partials.products.product_account_role')
+    	    ->with('client_type',$this->mod_category->getClientType())
+			->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
+			->with('Provinces', $this->mod_setting->listProvinces())
+			->with('seller_type', $this->mod_category->listSellerType())
+			->with('transferTypes', $this->mod_product->listAllTransferType())
+			->with('conditions', $this->mod_product->listAllConditions())
+    		->with('productByAccountRole', $productByAccountRole);
+    }
+
 }

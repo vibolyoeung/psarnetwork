@@ -1,4 +1,3 @@
-
 <div class="col-lg-2 left_bar">
 	<div class="left-sidebar">
 		<div class="panel-group category-products" id="accordian">

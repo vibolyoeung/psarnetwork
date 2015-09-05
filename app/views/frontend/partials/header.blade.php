@@ -130,12 +130,12 @@
 				<div class="col-lg-4 member_ship_home pull-right" style="background-color:#ddd;margin:12px 0 0;padding:3px;">
 					@if(!Session::get('currentUserId'))
 						<img src="{{Config::get('app.url')}}frontend/images/icons/login_user.png" title="" alt="" height="20" />
-						<a href ="{{Config::get('app.url')}}member/login">Sign In</a>
+						<a href ="{{Config::get('app.url')}}member/login">{{trans('login.Login')}}</a>
 						&nbsp;/&nbsp;
 						<img src="{{Config::get('app.url')}}frontend/images/icons/register_user.png" title="" alt=""/>
 						&nbsp;
 						<a href="{{Config::get('app.url')}}member/register">
-							Register
+							{{trans('login.Register')}}
 						</a>
 					@else
 						<ul class="nav navbar-nav front-loggedin">

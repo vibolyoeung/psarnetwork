@@ -70,7 +70,7 @@ $(document).ready(function(){
 	jQuery(".product_list_container").addClass(" col-lg-4")
 	jQuery(".product_image").addClass(" col-lg-6");
 	
-	
+	jQuery("#grid_view").css("color","red");
 	jQuery("#grid_view").click(function(){
 		jQuery(this).css("color","red");
 		jQuery("#list_view,#social_view").css("color","black");

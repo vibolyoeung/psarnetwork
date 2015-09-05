@@ -895,6 +895,23 @@ class MCategory extends Eloquent{
 		return $result;
     }
 
+    public function countProductByClientType($client_type_id){
+      	$results = DB::table(Config::get('constants.TABLE_NAME.USER'))
+			->select('*')
+			->where('client_type','=',$client_type_id)
+			->get();
+
+			$client = array();
+			foreach($results as $results){
+				array_push($client,$results->id);
+			}
+			$countpro = DB::table(Config::get('constants.TABLE_NAME.PRODUCT'))
+			->select('*')
+			->whereIn('user_id',$client)
+			->count();
+			echo $countpro;
+    }
+
 
     public function getProductTransfterType(){
     	try {
@@ -931,5 +948,41 @@ class MCategory extends Eloquent{
 			->orderBy('rol_id','ASC')
 			->get();
 		return $result;
+    }
+
+    public function countProductBySellerType($seller_type_id){
+      	$results = DB::table(Config::get('constants.TABLE_NAME.USER'))
+			->select('*')
+			->where('account_role','=',$seller_type_id)
+			->get();
+
+			$client = array();
+			foreach($results as $results){
+				array_push($client,$results->id);
+			}
+
+			$countpro = DB::table(Config::get('constants.TABLE_NAME.PRODUCT'))
+			->select('*')
+			->whereIn('user_id',$client)
+			->count();
+			echo $countpro;
+    }
+
+    public function countProductByProvince($province_id){
+      	$results = DB::table(Config::get('constants.TABLE_NAME.USER'))
+			->select('*')
+			->where('province_id','=',$province_id)
+			->get();
+
+			$user= array();
+			foreach($results as $results){
+				array_push($user,$results->id);
+			}
+
+			$countpro = DB::table(Config::get('constants.TABLE_NAME.PRODUCT'))
+			->select('*')
+			->whereIn('user_id',$user)
+			->count();
+			echo $countpro;
     }
 }

@@ -839,4 +839,27 @@ class Product extends Eloquent {
 		return DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ))->where('pro_transfer_type_id','=',$id)->get ();
 	}
 
+
+	public function findProductByAccountRole($id){
+    	try {
+			$results = DB::table(Config::get('constants.TABLE_NAME.USER'))
+			->select('*')
+			->where('account_role','=',$id)
+			->get();
+
+			$accountrole = array();
+			foreach($results as $results){
+				array_push($accountrole,$results->id);
+			}
+
+			$countpro = DB::table(Config::get('constants.TABLE_NAME.PRODUCT'))
+			->select('*')
+			->whereIn('user_id',$accountrole)
+			->get();
+		}catch (\Exception $e){
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+		return $countpro;
+	}
 }
