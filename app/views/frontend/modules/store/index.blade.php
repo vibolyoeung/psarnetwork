@@ -52,11 +52,13 @@ if(!empty($dataStore->sto_url)) {
 							<div class="productinfo text-center">
 								<a
 									href="{{$userHome}}/my/detail/{{$product->id}}">
-									@if($product->thumbnail) <img
-									src="{{Config::get('app.url')}}upload/product/thumb/{{$product->thumbnail}}"
-									alt="{{$product->title}}" /> @else <img
-									src="{{Config::get('app.url')}}upload/product/thumb/{{$product->thumbnail}}"
-									alt="{{$product->title}}" /> @endif
+									@if($product->thumbnail)
+									{{HTML::image("image/phpthumb/$product->thumbnail?p=product&amp;h=150&amp;w=150",$product->title,array('class'
+						=> 'img-rounded','width'=>'150'))}}
+									@else 
+									{{HTML::image("image/phpthumb/No_image_available.jpg?p=1&amp;h=150&amp;w=150",$product->title,array('class'
+						=> 'img-rounded','width'=>'150'))}}
+						@endif
 								</a>
 								<h2>{{$product->title}}</h2>
 								<p>{{$product->price}} $</p>

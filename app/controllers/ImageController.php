@@ -3,8 +3,10 @@ class ImageController extends BaseController {
 	public function phpThumb($image)
 	{
 		$paths = Input::get('p');
-		if(!$paths) {
+		if(!$paths && $paths!= 1) {
 			die('please set your file paths. ex: ?p=product');
+		} else if($paths ==1) {
+			$paths = '';
 		}
 		//$src = Input::get('src');
 		/* 
