@@ -38,8 +38,13 @@ function rm($article, $char) {
 				@foreach($products as $product)
 				<tr>
 					<td>
-						{{HTML::image("image/phpthumb/$product->thumbnail?p=product&amp;h=100&amp;w=100",$product->title,array('class'
-						=> 'img-rounded','width'=>'100'))}}</td>
+					@if($product->thumbnail)
+									{{HTML::image("image/phpthumb/$product->thumbnail?p=product&amp;h=80&amp;w=80",$product->title,array('class'
+						=> 'img-rounded','width'=>'60'))}}
+									@else 
+									{{HTML::image("image/phpthumb/No_image_available.jpg?p=1&amp;h=80&amp;w=80",$product->title,array('class'
+						=> 'img-rounded','width'=>'80'))}}
+						@endif</td>
 						<?php $readmore = @rm ( $product->title, 50 );?>
 					<td>{{ $readmore }}</td>
 					<td class="visible-lg">
