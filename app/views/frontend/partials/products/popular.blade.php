@@ -26,7 +26,7 @@
 							<div class="productinfo">
 								<a href="{{Config::get('app.url')}}page/store-{{$latestStore->id}}" target="_blank">
 								<?php
-									$storeImg = Config::get('app.url').'frontend/images/default_store.png';
+									$storeImg = Config::get('app.url').'frontend/images/default_store.jpg';
 									$image = Config::get('app.url').'upload/store/' . $latestStore->image;
 									// Check if image not in folder store
 									if (@getimagesize($image)) {
