@@ -29,7 +29,7 @@
 				@foreach($products as $product)
 				<tr>
 					<td>
-						{{HTML::image("upload/product/thumb/$product->thumbnail",$product->title,array('class'
+						{{HTML::image("image/phpthumb/$product->thumbnail?p=product&amp;h=100&amp;w=100",$product->title,array('class'
 						=> 'img-rounded','width'=>'100'))}}</td>
 					<td>{{ $product->title }}</td>
 					<td class="visible-lg">

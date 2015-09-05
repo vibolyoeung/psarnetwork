@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://psarnetwork.local/',
+	'url' => 'http://localhost/psarnetwork/public/',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -123,6 +123,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
         'Mews\Captcha\CaptchaServiceProvider',
+		'Mews\Phpthumb\PhpthumbServiceProvider',
         
 
 	),

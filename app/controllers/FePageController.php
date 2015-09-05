@@ -286,5 +286,4 @@ class FePageController extends BaseController {
 			->with('conditions', $this->mod_product->listAllConditions())
     		->with('productsByTransfterType', $productByTransfterType);
     }
-
 }

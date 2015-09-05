@@ -10,7 +10,7 @@
 	</ol>
 	@endsection
 @section('content')
-	{{HTML::style('frontend/plugin/dropzone/dist/dropzone.cs')}}
+	{{HTML::style('frontend/plugin/dropzone/dist/dropzone.css')}}
 	{{HTML::style('backend/css/jquery-ui.css')}}
 	{{HTML::script('frontend/js/product.js')}}
 	{{HTML::script('frontend/plugin/dropzone/dist/dropzone.js')}}
@@ -197,7 +197,44 @@
 							</div>
 					    </div>
 					    <div role="tabpanel" class="tab-pane" id="pictures">
+					    	<div class="row">
+					    		<div class="col-md-12">
+					    			<table class="table">
+                        			<thead>
+                        				<tr>
+                        					<th width="60px" style="width: 100px;">Picture</th>
+                                            <th>File name</th>
+                        					<th style="width: 80px;">Action</th>
+                        				</tr>
+                        			</thead>
+                        			<tbody id="imgResult">
+                        				<tr id="image-id-1">
+                        					<td>
+                                                <img src="http://localhost/psarnetwork/public/upload/product/thumb/9a9e23bfecfbbdc298f093784ccab55135c8ddb2.jpg" class="img-rounded" width="100" alt="test">
+                        					</td>
+                                            <td>
+                                                9a9e23bfecfbbdc298f093784ccab55135c8ddb2.jpg
+                                                <input id="file-id-1" type="hidden" name="hiddenFiles[]" value="9a9e23bfecfbbdc298f093784ccab55135c8ddb2.jpg">
+                                            </td>
+                        					<td>
+                    							<a onclick="removeImg('1');" href="javascript:;">
+                    								Delete
+                    							</a>
+                        					</td>
+                        				</tr>
+                        			 </tbody>
+                        		</table>
+					    		</div>
+					    		<div class="col-md-12">
+					    		<center>
+									<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="background: none;padding:40px;border:5px dashed #ddd;">
+									  <img alt="" src="{{Config::get('app.url')}}frontend/images/file-transfer-dropshare.png"/>
+									</button>
+								</center>
+					    		</div>
+					    	</div>
 					    	<div class="col-md-12">
+								
 								<div class="well">
 									<div class="row" id="upload-preview">
 										<div class="col-md-12">
@@ -373,14 +410,55 @@
 					</div>
 					<script>
 					  $(function () {
-					    $('#myTab a:last').tab('show')
+						    $('#myTab a:last').tab('show');
+						    
+						    $("#multiUpload").dropzone(
+								 { 
+									 url: "{{Config::get('app.url')}}member/ajaxupload?page=imgproduct",
+									 dataType: "json",
+									 success: function(data){
+										 var x = JSON.parse(data.xhr.responseText);
+										 if(x.message == 'uploadSuccess') {
+											 var imgFile = imgReult(x.file);
+											 $('#imgResult').append(imgFile);
+										 }
+								            //$('#result').html(data.status +':' + data.message);          
+								      },
+								      error:function(){
+								          //$("#result").html('There was an error updating the settings');
+								      },
+								      maxFiles: 2,
+								      maxfilesexceeded: function(file) {
+								    	  alert("No more files please!");
+								          //this.removeAllFiles();
+								          //this.addFile(file);
+								      },
+								      /**/
+								 }
+							);
 					  });
 
 					  function is_active_tab (id) {
 					  	$('.pro-tab li').removeClass('active');
 					  	$('.' + id).addClass('active');
-					  }	
+					  }
 
+					  function imgReult(file) {
+						  console.log(file);
+						  var res = file.split(".");
+						  var bodyImg = '<tr id="image-id-1">'+
+          					'<td>'+
+			                          '<img src="{{Config::get('app.url')}}image/phpthumb/'+file+'?p=product&h=100&w=100" class="img-rounded" width="100" alt="test">'+
+			  					'</td>'+
+			                      '<td>'+file+
+			                          '<input id="file-id-'+res+'" type="hidden" name="hiddenFiles[]" value="'+file+'">'+
+			                      '</td>'+
+			  					'<td>'+
+										'<a onclick="removeImg('+res+');" href="javascript:;">Delete</a>'+
+			  					'</td>'+
+			  				'</tr>';
+			  				return bodyImg;
+					  }
 					</script>
 							
 						</div>
@@ -389,6 +467,32 @@
 			</div>
 		{{Form::close()}}
 	</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+         <form action="{{Config::get('app.url')}}member/ajaxupload?page=imgproduct" class="dropzone" id="multiUpload">
+		  <div class="fallback">
+		    <input name="userfile" type="file" multiple />
+		  </div>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+	.dropzone .dz-processing.dz-complete .dz-success-mark{  opacity: 1!important;}
+  #multiUpload .dz-default.dz-message {background: url({{Config::get('app.url')}}frontend/images/file-transfer-dropshare.png) center center no-repeat;height:100px}
+  #multiUpload .dz-default.dz-message span{padding-top: 100px;display: block;}
+</style>	
 @section('footer')
 	@include('frontend.modules.store.partials.footer');
 @endsection

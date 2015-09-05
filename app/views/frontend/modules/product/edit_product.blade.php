@@ -11,6 +11,8 @@
 	@endsection
 @section('content')
     {{HTML::style('backend/css/jquery-ui.css')}}
+    {{HTML::style('frontend/plugin/dropzone/dist/dropzone.css')}}
+    {{HTML::script('frontend/plugin/dropzone/dist/dropzone.js')}}
     {{HTML::script('frontend/js/product.js')}}
 	<div class="container">
 		{{Form::open(array('url'=>'products/edit/'.$product->id,'enctype'=>'multipart/form-data','file' => true, 'class'=>'form-horizontal'))}}
@@ -62,7 +64,7 @@
                                 <div class="col-sm-11">
                                     {{Form::text(
                                         'productTitle',
-                                        $product->title, 
+                                        @$product->title, 
                                         array(
                                             'required'=> 'required',
                                             'class'=>'form-control'
@@ -78,7 +80,7 @@
                                     {{ Form::select(
                                         'proTransferType',
                                         $proTransferType, 
-                                        $product->pro_transfer_type_id, 
+                                        @$product->pro_transfer_type_id, 
                                         array(
                                             'required'=> 'required', 
                                             'class' => 'form-control'
@@ -94,7 +96,7 @@
                                     {{ Form::select(
                                         'productCondition',
                                         $productCondition, 
-                                        $product->pro_condition_id, 
+                                        @$product->pro_condition_id, 
                                         array(
                                             'required'=> 'required', 
                                             'class' => 'form-control'
@@ -110,7 +112,7 @@
                                     {{ Form::select(
                                         'productStatus',
                                         Product::$PRODUCT_STATUS, 
-                                        $product->pro_status, 
+                                        @$product->pro_status, 
                                         array(
                                             'required'=> 'required', 
                                             'class' => 'form-control'
@@ -125,7 +127,7 @@
                                 <div class="col-sm-11">
                                     {{Form::text(
                                         'productPrice', 
-                                        $product->price, 
+                                        @$product->price, 
                                         array(
                                             'required'=> 'required', 
                                             'class'=>'form-control'
@@ -140,7 +142,7 @@
                                 <div class="col-sm-11">
                                     {{Form::textarea(
                                         'desc', 
-                                        $product->description, 
+                                        @$product->description, 
                                         array(
                                             'required'=> 'required', 
                                             'class'=>'form-control'
@@ -156,7 +158,7 @@
                                     {{ Form::select(
                                         'isPublish',
                                         Product::$PRODUCT_IS_PUBLISH, 
-                                        $product->is_publish, 
+                                        @$product->is_publish, 
                                         array( 
                                             'required'=> 'required', 
                                             'class' => 'form-control'
@@ -171,7 +173,7 @@
                                 <div class="col-sm-11">
                                     {{Form::text(
                                         'date_post', 
-                                        $product->publish_date, 
+                                        @$product->publish_date, 
                                         array(
                                             'class'=>'form-control datepicker'
                                         )
@@ -203,6 +205,17 @@
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="pictures">
+                        	<div class="row">
+					    		<div class="col-md-12">
+					    		<center>
+									<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="background: none;padding:40px;border:5px dashed #ddd;">
+									  <img alt="" src="{{Config::get('app.url')}}frontend/images/file-transfer-dropshare.png"/>
+									  
+									</button>
+								</center>
+					    		</div>
+					    	</div>
+					    	
                             <div class="col-md-12">
                         		<table class="table">
                         			<thead>
@@ -212,16 +225,18 @@
                         					<th style="width: 80px;">Action</th>
                         				</tr>
                         			</thead>
-                        			<tbody>
+                        			<tbody id="imgResult">
                                     <?php $imgArr = @json_decode(@$product->pictures, true);
                                     $i=0;
+                                    $totalImage = count(@$imgArr);
                                     ?>
+                                    @if(!empty($imgArr))
                         			@foreach(@$imgArr as $productImg)
                                         <?php $i++;?>
                         				<tr id="image-id-{{$i}}">
                         					<td>
                                             <?php $img = $productImg['pic'];?>
-                        						{{HTML::image("upload/product/thumb/$img",'test',array('class' => 'img-rounded','width'=>'100'))}}
+                        						{{HTML::image("image/phpthumb/$img?p=product&amp;h=100&amp;w=100",'test',array('class' => 'img-rounded','width'=>'100'))}}
                         					</td>
                                             <td>
                                                 {{@$img}}
@@ -240,6 +255,7 @@
                         					</td>
                         				</tr>
                         			@endforeach
+                        			@endif
                         			</tbody>
                         		</table>
                             </div>
@@ -354,13 +370,22 @@
                                 <div class="well">
                                     <div class="form-group">
                                         <?php 
-                                            $contactInfo = json_decode($product->contact_info, true);
+                                            $contactInfo = @json_decode(@$product->contact_info, true);
+                                            $contactLocation = @$contactInfo['contactLocation'];
+                                            $contactHP = @$contactInfo['contactHP'];
+                                            $contactEmail = @$contactInfo['contactEmail'];
+                                            $contactName = @$contactInfo['contactName'];
                                         ?>
                                         <label>{{trans('product.contact_name')}}</label>
+                                        @if(!$contactName)
+                                        <?php 
+                                        	$contactName = Session::get('currentUserName');
+                                        ?>
+                                        @endif
                                         {{ 
                                             Form::text(
                                                 'contactName', 
-                                                $contactInfo['contactName'], 
+                                                $contactName, 
                                                 array(
                                                     'required'=> 'required', 
                                                     'class' => 'form-control'
@@ -370,10 +395,15 @@
                                     </div>
                                     <div class="form-group">
                                         <label>{{trans('product.email')}}</label>
+                                        @if(!$contactEmail)
+                                         <?php 
+                                        	$contactEmail = Session::get('currentUserEmail');
+                                        ?>
+                                        @endif
                                         {{ 
                                             Form::text(
                                                 'contactEmail', 
-                                                $contactInfo['contactEmail'],
+                                                $contactEmail,
                                                 array(
                                                     'required'=> 'required', 
                                                     'class' => 'form-control'
@@ -383,10 +413,15 @@
                                     </div>
                                     <div class="form-group">
                                         <label>{{trans('product.hp')}}</label>
+                                        @if(!$contactHP)
+                                        <?php 
+                                        	$contactHP = Session::get('currentUserPhone');
+                                        ?>
+                                        @endif
                                         {{ 
                                             Form::text(
                                                 'contactHP', 
-                                                $contactInfo['contactHP'], 
+                                                $contactHP, 
                                                 array(
                                                     'required'=> 'required', 
                                                     'class' => 'form-control'
@@ -396,10 +431,26 @@
                                     </div>
                                     <div class="form-group">
                                         <label>{{trans('product.location')}}</label>
+                                        @if(!$contactLocation)
+                                        <?php 
+											if (Session::has('currentUserAddress')) {
+												$location = json_decode(Session::get('currentUserAddress'), true);
+												$provinceId = $location['province'];
+												if (!empty($provinceId)) {
+													$contactLocation = Product::findProvinceById($provinceId);
+												} else {
+													$contactLocation = '';
+												}
+												
+											} else {
+												$contactLocation = '';
+											}
+										?>
+                                        @endif
                                         {{ 
                                             Form::text(
                                                 'contactLocation', 
-                                                $contactInfo['contactLocation'],
+                                                $contactLocation,
                                                 array(
                                                     'required'=> 'required', 
                                                     'class' => 'form-control'
@@ -424,6 +475,8 @@
                       </div>
                     </div>
                     <script>
+                    var totalImg = {{$totalImage}};
+                    var limitUpload = 8;
                       $(function () {
                         $('#myTab a:last').tab('show')
                       });
@@ -439,6 +492,7 @@
                             if (r == true) {
                                 $("#image-id-" + $id).hide();
                                 $("#file-id-" + $id).attr('name','delimag[]');
+                                totalImg = totalImg - 1;
                             } else {
                                 //txt = "You pressed Cancel!";
                             }
@@ -469,7 +523,74 @@
                         		}
                         		return false;  
                         	});
-                        });                          
+
+
+                        	$("#multiUpload").dropzone(
+   								 { 
+   									 url: "{{Config::get('app.url')}}member/ajaxupload?page=imgproduct&id={{$product->id}}",
+   									 dataType: "json",
+   									 success: function(data){
+   										 var x = JSON.parse(data.xhr.responseText);
+   										 if(x.message == 'uploadSuccess') {
+   											 var imgFile = imgReult(x.file);
+   											 $('#imgResult').append(imgFile);
+   										 }
+   								            //$('#result').html(data.status +':' + data.message);          
+   								      },
+   								      error:function(){
+   								          //$("#result").html('There was an error updating the settings');
+   								      },
+   								      maxFiles: limitUpload,
+   								      maxfilesexceeded: function(file) {
+   								    	  alert("No more files please!");
+   								          //this.removeAllFiles();
+   								          //this.addFile(file);
+   								      },
+   								   init: function() {
+   								      this.on("addedfile", function(file) {
+										if(limitUpload > totalImg) {
+											totalImg = totalImg + 1;
+										} else {
+											alert("Accept only 8 files only, No more files please!");
+	   								        // Create the remove button
+	   								        // Capture the Dropzone instance as closure.
+	   								        var _this = this;
+	
+	   								        // Listen to the click event
+	   								        removeButton.addEventListener("click", function(e) {
+	   								          // Make sure the button click doesn't submit the form:
+	   								          e.preventDefault();
+	   								          e.stopPropagation();
+	   								        });
+										}
+   								      });
+   								    }
+   								      /**/
+   								 }
+   							);
+                        });
+
+                        function is_active_tab (id) {
+    					  	$('.pro-tab li').removeClass('active');
+    					  	$('.' + id).addClass('active');
+    					  }
+
+    					  function imgReult(file) {
+    						  var newImg = file.trim();
+    						  var res = newImg.split(".");
+    						  var bodyImg = '<tr id="image-id-'+res[0]+'">'+
+              					'<td>'+
+    			                          '<img src="{{Config::get('app.url')}}image/phpthumb/'+file+'?p=product&h=100&w=100" class="img-rounded" width="100" alt="test">'+
+    			  					'</td>'+
+    			                      '<td>'+file+
+    			                          '<input id="file-id-'+res+'" type="hidden" name="hiddenFiles[]" value="'+file+'">'+
+    			                      '</td>'+
+    			  					'<td>'+
+    										'<a onclick="removeImg(&#39;'+res[0]+'&#39;);" href="javascript:;">Delete</a>'+
+    			  					'</td>'+
+    			  				'</tr>';
+    			  				return bodyImg;
+    					  }                        
                     </script>
                             
                         </div>
@@ -479,6 +600,32 @@
 	</div>
     {{HTML::script('backend/js/jquery-ui.js')}}
     {{HTML::script('backend/js/custom.js')}}
+    
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+         <form action="{{Config::get('app.url')}}member/ajaxupload?page=imgproduct&id={{$product->id}}" class="dropzone" id="multiUpload">
+		  <div class="fallback">
+		    <input name="userfile" type="file" multiple />
+		  </div>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+	.dropzone .dz-processing.dz-complete .dz-success-mark{  opacity: 1!important;}
+  #multiUpload .dz-default.dz-message {background: url({{Config::get('app.url')}}frontend/images/file-transfer-dropshare.png) center center no-repeat;height:100px}
+  #multiUpload .dz-default.dz-message span{padding-top: 100px;display: block;}
+</style>    
 @endsection
 @section('footer')
 	@include('frontend.modules.store.partials.footer');

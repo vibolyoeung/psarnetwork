@@ -3,6 +3,7 @@ class FeMemberController extends BaseController {
 	private $mod_category;
 	private $mod_setting;
 	private $mod_member;
+	private  $mod_product;
 	protected $mod_market;
 	protected $mod_store;
 	protected $mod_page;
@@ -12,6 +13,7 @@ class FeMemberController extends BaseController {
 		$this->mod_category = new MCategory ();
 		$this->mod_setting = new Setting ();
 		$this->mod_member = new Members ();
+		$this->mod_product = new Product();
 		$this->mod_market = new Market ();
 		$this->mod_store = new Store ();
 		$this->mod_page = new MPage ();
@@ -945,6 +947,7 @@ class FeMemberController extends BaseController {
 					break;
 					
 				case 'imgproduct' :
+					$productId = Input::get ( 'id' );
 					if (Input::hasfile ( 'file' )) {
 						$file = Input::file ( 'file' );
 						/* upload banner image */
@@ -955,8 +958,30 @@ class FeMemberController extends BaseController {
 						$images = $this->mod_store->doUpoad ( $file, $destinationPath, Config::get ( 'constants.DIR_IMAGE.THUMB_WIDTH' ), Config::get ( 'constants.DIR_IMAGE.THUMB_HEIGTH' ) );
 						$data = array (
 								'message' => 'uploadSuccess',
-								'file' => Config::get ( 'app.url' ) . 'upload/product/' . $images ['image']
+								'file' =>  $images ['image']
 						);
+						
+						/*check old image*/
+						$productOldImage = $this->mod_product->findProductById($productId);
+						$imgArr = json_decode($productOldImage->pictures, true);
+						$oldImgArr = array();
+						if(!empty($imgArr)) {
+							$newImgData[] = array(
+									'pic' => $images ['image']
+							);
+							foreach ($imgArr as $oldImage) {
+								$oldImgArr[]['pic'] = $oldImage['pic'];
+							}
+							$imageData = array_merge($newImgData, $oldImgArr);
+						} else {
+							$imageData[] = array(
+									'pic' => $images ['image']
+							);
+						}
+						$jsonNewFileName = json_encode($imageData);
+						$products['pictures'] = $jsonNewFileName;
+						/*end check old image*/
+						$this->mod_product->updateToProduct($products, $productId);
 					} else {
 						$data = array (
 								'message' => 'error',

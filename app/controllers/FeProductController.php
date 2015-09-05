@@ -63,7 +63,31 @@ class FeProductController extends BaseController {
      *@return Response
      */
     public function addProduct() {
+    	/*delete temp product */
+    	$productCondictions = array('pro_status'=>4);
+    	$productTemp = $this->mod_product->findProductByCondition($productCondictions);
+    	if(!empty($productTemp)) {
+    		foreach ($productTemp as $tempPro) {
+    			$this->mod_product->deleteProductById($tempPro->id);
+    		}
+    	}
+    	/*end delete temp product */
     	$userID = Session::get('currentUserId');
+    	$products = array(
+    			'publish_date' => Input::get('date_post'),
+    			'user_id' => Session::get('currentUserId'),
+    			'store_id' => Store::findStoreByUser(Session::get('currentUserId')),
+    			's_category_id' => 0,
+    			'pro_status' => 4,
+    			'pro_transfer_type_id' => trim(Input::get('proTransferType')),
+    	);
+    	$productId = $this->mod_product->persistToProduct(
+    			$products
+    	);
+    	return Redirect::to('products/edit/'.$productId);
+    	die;
+    	
+    	
         if(Input::has('btnAddProduct')) {
             $files = Input::file('file');
             $filesQuotation = Input::file('quotation');

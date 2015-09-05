@@ -271,8 +271,8 @@ class Product extends Eloquent {
 	 */
 	public function deleteProductById($product_id) {
 		try {
-			$destinationPathQuotation = base_path () . '/public/upload/quotation/';
-			$destinationPath = base_path () . '/public/upload/product/';
+			$destinationPathQuotation = base_path ()  . Config::get ( 'constants.DIR_IMAGE.DEFAULT' ).'quotation/';
+			$destinationPath = base_path () . Config::get ( 'constants.DIR_IMAGE.DEFAULT' ). 'product/';
 			$destinationThumb = $destinationPath . 'thumb/';
 			$destinationPathPicSlideshow = $destinationPath.'/picslideshow/';
         	$destinationPathThumbSlideshow = $destinationPath.'/thumbslideshow/';
@@ -284,12 +284,17 @@ class Product extends Eloquent {
 			}
 			
 			$fileName = json_decode ( $result->pictures, true );
+			if (! empty ( $fileName )) {
 			foreach ( $fileName as $file ) {
-				if (! empty ( $file )) {
-					File::delete ( $destinationPath . $file ['pic'] );
-					File::delete ( $destinationThumb . $file ['pic'] );
-					File::delete ( $destinationPathPicSlideshow . $file ['pic'] );
-					File::delete ( $destinationPathThumbSlideshow . $file ['pic'] );
+					if (File::exists ( $destinationPath . $file ['pic'] )) {
+						File::delete ( $destinationPath . $file ['pic'] );
+					}
+					if (File::exists ( $destinationPathPicSlideshow . $file ['pic'] )) {
+						File::delete ( $destinationPathPicSlideshow . $file ['pic'] );
+					}
+					if (File::exists ( $destinationPathThumbSlideshow . $file ['pic'] )) {
+						File::delete ( $destinationPathThumbSlideshow . $file ['pic'] );
+					}
 				}
 			}
 			return DB::table ( $product )->where ( 'id', '=', $product_id )->where ( 'user_id', '=', Session::get ( 'currentUserId' ) )->delete ();
@@ -332,7 +337,17 @@ class Product extends Eloquent {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		return DB::table ( $product )->where ( 'id', '=', $product_id )->where ( 'user_id', '=', Session::get ( 'currentUserId' ) )->first ();
 	}
-	
+	/**
+	 * Update product by id
+	 *
+	 * @param int $product_id
+	 * @return void
+	 * @access public
+	 */
+	public function findProductByCondition($where) {
+		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
+		return DB::table ( $product )->where ( $where )->where ( 'user_id', '=', Session::get ( 'currentUserId' ) )->get ();
+	}	
 	/**
 	 *
 	 * find province by province id

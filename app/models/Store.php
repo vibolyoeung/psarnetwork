@@ -57,7 +57,7 @@ class Store extends Eloquent {
 			$fileName = $file->getClientOriginalName ();
 			$fileName = self::generateFileName ( $destinationPath, $fileName );
 			$file->move ( $destinationPath, $fileName );
-			Image::make ( $destinationPath . $fileName )->resize ( $width, $height )->save ( $destinationPathThumb . $fileName );
+			//Image::make ( $destinationPath . $fileName )->save ( $destinationPathThumb . $fileName );
 		}
 		/* end upload logo image */
 		
@@ -75,15 +75,24 @@ class Store extends Eloquent {
 	 * @method generateFileName
 	 * @throws Exception
 	 */
-	public static function generateFileName($pathName, $fileName = null) {
-		$temp = explode ( ".", $fileName );
-		$fileName = end ( $temp );
-		$fileName = time () . '.' . $fileName;
+	public function generateFileName($pathName, $fileName = null) {
 		if (file_exists ( $pathName . $fileName )) {
-			return generateFileName ( $pathName );
+			$temp = explode ( ".", $fileName );
+			$fileName = end ( $temp );
+			$fileName = $this->random(30) . '.' . $fileName;
 		}
 		
 		return $fileName;
+	}
+	
+	public function random($length = 50) {
+		$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+		$size = strlen($chars);
+		$str = '';
+		for ($i = 0; $i < $length; $i++) {
+			$str .= $chars[rand(0, $size - 1)];
+		}
+		return $str;
 	}
 	
 	/**

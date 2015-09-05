@@ -110,6 +110,27 @@ Route::group(array('before' => 'auth'), function () {
 //=============Routes for front end page==============
 
 Route::any('/', 'FePageController@index');
+Route::any('/image/phpthumb/{image}', 'ImageController@phpThumb');
+Route::get('/media/image/{width}x{height}/{image}', function($width, $height, $image)
+{
+	$file = base_path() . '/' . $image;
+	// for remote file
+	//$file = 'http://i.imgur.com/1YAaAVq.jpg';
+	App::make('phpthumb')
+		->create($file)->make('resize', array($width, $height))->show();
+	//Thumb::create($file)->make('resize', array($width, $height))->show()->save(base_path() . '/', 'aaa.jpg');
+	/*
+	 Thumb::create($file)->make('resize', array($width, $height))->make('crop', array('center', $width, $height))->show();
+	 Thumb::create($file)->make('resize', array($width, $height))->make('crop', array('basic', 100, 100, 300, 200))->show();
+	 Thumb::create($file)->make('resize', array($width, $height))->make('resize', array($width, $height))->show();
+	 Thumb::create($file)->make('resize', array($width, $height))->make('resize', array($width, $height, 'adaptive'))->save(base_path() . '/', 'aaa.jpg')->show();
+	 Thumb::create($file)->make('resize', array($width, $height))->rotate(array('degree', 180))->show();
+	 Thumb::create($file)->make('resize', array($width, $height))->reflection(array(40, 40, 80, true, '#a4a4a4'))->show();
+	 Thumb::create($file)->make('resize', array($width, $height))->save(base_path() . '/', 'aaa.jpg');
+	 Thumb::create($file)->make('resize', array($width, $height))->show();
+	*/
+
+});
 Route::any('/page/{store}', 'FeStoreController@index');
 Route::any('/page/{store}/search/{label}', 'FeStoreController@searchUserPropuctByCategory');
 Route::any('/page/{store}/p/{page_id}', 'FeStoreController@getUserPage');
