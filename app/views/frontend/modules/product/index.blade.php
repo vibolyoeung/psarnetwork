@@ -1,3 +1,12 @@
+<?php
+function rm($article, $char) {
+	$article = preg_replace ( "/<img[^>]+\>/i", "(image) ", $article );
+	if (strlen ( $article ) > $char) {
+		return substr ( $article, 0, $char ) . '...';
+	} else
+		return $article;
+}
+?>
 @extends('frontend.nosidebar') @section('title') Product Management
 @endsection @section('left') @endsection @section('content')
 <div class="col-lg-2 col-md-4">
@@ -31,7 +40,8 @@
 					<td>
 						{{HTML::image("image/phpthumb/$product->thumbnail?p=product&amp;h=100&amp;w=100",$product->title,array('class'
 						=> 'img-rounded','width'=>'100'))}}</td>
-					<td>{{ $product->title }}</td>
+						<?php $readmore = @rm ( $product->title, 50 );?>
+					<td>{{ $readmore }}</td>
 					<td class="visible-lg">
 						<span style="color:red">{{ $product->price }}$</span>, 
 						<span>{{ Session::get('currentUserName') }}</span>, 

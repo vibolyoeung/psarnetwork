@@ -10,6 +10,13 @@ if(!empty($dataStore->sto_url)) {
 } else {
 	$userHome = @Config::get('app.url').'page/store-'.$dataStore->id;
 }
+function rm($article, $char) {
+	$article = preg_replace ( "/<img[^>]+\>/i", "(image) ", $article );
+	if (strlen ( $article ) > $char) {
+		return substr ( $article, 0, $char ) . '...';
+	} else
+		return $article;
+}
 ?>
 @extends('frontend.modules.store.layout.layout')
 @section('title')
@@ -58,7 +65,8 @@ if(!empty($dataStore->sto_url)) {
 						=> 'img-rounded','width'=>'150'))}}
 						@endif
     							</a>
-    							<h2>{{$product->title}}</h2>
+    							<?php $readmore = @rm ( $product->title, 30 );?>
+    							<h2>{{$readmore}}</h2>
     							<p>{{$product->price}} $</p>
     							<a href="{{Config::get('app.url')}}page/{{$product->store_id}}/my/detail/{{$product->id}}">View Details</a>
     						</div>
