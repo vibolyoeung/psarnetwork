@@ -985,4 +985,30 @@ class MCategory extends Eloquent{
 			->count();
 			echo $countpro;
     }
+
+
+    /**
+	* getAllChildCategories() is the function is used to select all child cateogries of parent categories
+	* @param : $parent_id is the main categories id to get all its child categories
+	* @return : array() as id of the categories
+	* @author : kimhim
+	* @
+	*
+	*
+    */
+    public function getAllChildCategories($parent_id){
+    	$results = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
+		->select('id')
+		->where('parent_id','=', $parent_id)
+		->get();
+		$categories = array($parent_id);
+		if(count($results)){
+			foreach($results as $results){
+				array_push($categories,$results->id);
+			}
+		}
+		return $categories;
+    }
+
+
 }
