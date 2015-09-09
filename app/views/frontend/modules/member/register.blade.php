@@ -332,7 +332,43 @@ $(document).ready(function(){
         } else {
             //$("#summit").attr('disabled',true);
         }
-    });   
+    }); 
+
+    /*validate on phone number*/
+    $('#PhoneNumber').blur(function () {
+        var phone = $( this ).val();
+        if(phone) {
+        	$.ajax
+            ({
+                type: "POST",
+                url: "{{Config::get('app.url')}}member/byajax?page=uniqephone&id=" + encodeURIComponent(phone),
+                cache: false,
+                timeout: 3600,
+                success: function(data){ 
+                	var thiss = $('#PhoneNumber');
+                    if(data==0) {
+                    	$(thiss).parent().removeClass('has-error').addClass('has-success');
+                        $(thiss).parent().addClass('has-success').removeClass('has-error');
+                        $('#registerForm').find("span[data=" + thiss.attr('id') + "]").removeClass('glyphicon-remove').addClass('glyphicon-ok');
+                    } else {
+                    	$( thiss ).parent().removeClass('has-success').addClass('has-error has-feedback');
+                        $('#registerForm').find("span[data=" + thiss.attr('id') + "]").removeClass('glyphicon-ok').addClass('glyphicon-remove');
+                        $( thiss ).val('').attr('placeholder',phone);
+                    }
+                  },
+                  error: function(x, t, m){
+                	  if(t==="timeout") {
+                          alert("got timeout");
+                      } else {
+                          alert(t);
+                      }
+                  },
+            });
+        } else {
+            //$("#summit").attr('disabled',true);
+        }
+    }); 
+      
     function getAccountType(id){
         $('#clientType').hide();
         $('#loadingClientType').show();

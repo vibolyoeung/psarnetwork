@@ -84,7 +84,36 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
         return $response;
     }
+    /**
+     * Get user information
+     * @method getUser
+     * @return Array
+     * @author Socheat
+     */
+    public function getUserBy($where = array(), $whereSigle= array()) {
+    	$response = new stdClass();
+    	try {
+    		$query = DB::table(Config::get('constants.TABLE_NAME.USER'));
+    		if(!empty($where)) {
+    			$whereby = $where;
+    		} else if(!empty($whereSigle)) {
+    			$whereby = $whereSigle;
+    		}
+    		$query->where($whereby);
+    		if(!empty($whereSigle)) {
+    			$result = $query->first();
+    		} else if(!empty($where)) {
+    			$result = $query->get();
+    		}
+    		$response->result = $result;
+    	}
+    	catch (\Exception $e) {
+    		$response->result = 0;
+    		$response->errorMsg = $e->getMessage();
+    	}
     
+    	return $response;
+    }    
     /**
      * Update user information
      * @method updateUser

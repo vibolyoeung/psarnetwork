@@ -993,7 +993,21 @@ class FeMemberController extends BaseController {
 		}
 		die ();
 	}
-	
+	/*get by ajax*/
+	public function GetAjax() {
+		$page = Input::get ( 'page' );
+		$id = Input::get ( 'id' );
+		switch ($page) {
+			case 'uniqephone':
+				$userData = $this->user->getUserBy (null, array('telephone'=>$id) );
+				if(!empty($userData->result)) {
+					echo 1;
+				} else {
+					echo 0;
+				}
+				break;
+		}
+	}
 	/**
 	 * get sub menu by ajax
 	 *

@@ -162,6 +162,7 @@ Route::group(array('prefix' => 'member'), function () {
 	Route::any('/geturladress','FeMemberController@checkUrlAddress');
 	Route::any('/getmarkettype/{id}','FeMemberController@getMarketType');
 	Route::any('/agreement/{usertype}','FeMemberController@agreement');
+	Route::any('/byajax','FeMemberController@GetAjax');
 });
 
 Route::group(array('before' => 'auth_member'), function () {
