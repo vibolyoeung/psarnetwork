@@ -563,6 +563,7 @@ class Product extends Eloquent {
 	 * @access public
 	 */
 	public function findPostProductByCategory($category_id) {
+		//var_dump($category_id);die;
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		return DB::table ( $product )->whereIn( 's_category_id', $category_id )->get ();
 	}

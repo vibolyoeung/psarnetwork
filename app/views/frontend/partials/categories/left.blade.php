@@ -8,7 +8,7 @@
 					<?php
 	      			$cateName = $maincate->{'name_'.Session::get('lang')};
 	      			?>
-	      			{{ str_limit($cateName, $limit = 20, $end = '...') }}
+	      			{{ str_limit($cateName, $limit = 20, $end = '') }}
 					@endforeach
 					&nbsp;&nbsp;&nbsp;<span class="caret" ></span></strong>
 			</div>
@@ -19,9 +19,16 @@
 				?>
 					@foreach ($detailCategory as $categoriesList)
 						<li class="dropdown-mainmenu">
-							<a href="<?php echo URL::to('products/productbycategories/'.$categoriesList->parent_id.'/'.$categoriesList->id); ?>">
 								<?php
-									$subcate = $categoriesList->{'name_'.Session::get('lang')};
+								if($finalCategory->countCategory($categoriesList->id) > 0 ){
+						 		?>
+						 			<a href="<?php echo URL::to('products/productbycategories/'.$categoriesList->id.'/'.$categoriesList->id); ?>">
+						 		<?php
+						 		}else{ ?>
+						 			<a href="<?php echo URL::to('products/productbycategories/'.$categoriesList->parent_id.'/'.$categoriesList->id); ?>">
+						 		<?php 
+						 		}
+								$subcate = $categoriesList->{'name_'.Session::get('lang')};
 								?>
 								{{ str_limit($subcate, $limit = 30, $end = '...') }}
 				      		</a>

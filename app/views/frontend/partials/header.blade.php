@@ -71,13 +71,15 @@
 <body>
 	<!-- Call facebook script -->
 	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
+	<script>
+	// (function(d, s, id) {
+	//   var js, fjs = d.getElementsByTagName(s)[0];
+	//   if (d.getElementById(id)) return;
+	//   //js = d.createElement(s); js.id = id;
+	//   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+	//   fjs.parentNode.insertBefore(js, fjs);
+	// }(document, 'script', 'facebook-jssdk'));
+	</script>
 	<!-- End facebook calling -->
 	<header id="header" class="mainHeader">
 		<!--=====Start Header==============-->
@@ -89,7 +91,7 @@
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
 								<li class="facebook-like">
-									<div class="fb-like" data-href="https://www.facebook.com/khmerabba?ref=hl" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+									<!-- <div class="fb-like" data-href="https://www.facebook.com/khmerabba?ref=hl" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div> -->
 								 </li>
 							</ul>
 						</div>
