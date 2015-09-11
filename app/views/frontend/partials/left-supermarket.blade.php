@@ -3,9 +3,9 @@
 		<div class="panel-group category-products" id="accordian">
 			<div class="all_categories_type" id="menu_toogle">
 				<img src="{{Config::get('app.url')}}frontend/images/icons/all_category.png" alt="" title="" height="23"/>
-				<strong> &nbsp;&nbsp;&nbsp; 
+				&nbsp;&nbsp;&nbsp; 
 					<?php echo $mainmarket->{'name_'.Session::get('lang')};?>
-					&nbsp;&nbsp;&nbsp;<span class="caret" ></span></strong>
+					&nbsp;&nbsp;&nbsp;<span class="caret" ></span>
 			</div>
 			<ul class="categories_menu">
 				<?php
@@ -21,7 +21,7 @@
 			</ul>
 		</div>
 		<!--=========Register seller============ -->
-		<div class="panel-group category-products" id="accordian">
+		<div class="panel-group category-products ads_side_bar" id="accordian">
 			<!-- type:homepage, position: left meduim, limit -->
 			{{ App::make('FePageController')->getFeAds(1, 4, 3) }}
 		</div>

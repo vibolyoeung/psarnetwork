@@ -29,7 +29,7 @@
 						<div class="col-lg-6 pull-right" style="margin: 0; padding: 0;">
 							<div class="btn-group col-lg-12" style="padding: 0; margin: 0;">
 								<select name="location">
-									<option value="0">Location</option>
+									<option value="0">{{trans('product.location')}}</option>
 									@foreach($locations as $location)
 										<option value="{{$location->province_id}}">
 											<?php echo $location->{'province_name_'.Session::get('lang')};?>
