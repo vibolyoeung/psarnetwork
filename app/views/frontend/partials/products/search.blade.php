@@ -10,7 +10,7 @@
 	<input type="hidden" value="" name="categoryId" id="categoryId" />
 	<div class="btn-group col-lg-2">
 		<select name="location" class="form-control form-select-khmerabba">
-			<option value="0">Location</option>
+			<option value="0">{{trans('product.location')}}</option>
 			@foreach($Provinces as $location)
 				<option value="{{$location->province_id}}">
 					<?php echo $location->{'province_name_'.Session::get('lang')};?>

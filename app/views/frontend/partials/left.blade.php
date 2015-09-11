@@ -3,7 +3,7 @@
 		<div class="panel-group category-products" id="accordian">
 			<div class="all_categories_type" id="menu_toogle">
 				<img src="{{Config::get('app.url')}}frontend/images/icons/all_category.png" alt="" title="" height="23"/>
-				<strong> &nbsp;All Categocies Type &nbsp;&nbsp;&nbsp;<span class="caret" ></span></strong>
+				&nbsp;{{trans('product.all_categories_type')}}&nbsp;&nbsp;&nbsp;<span class="caret" ></span>
 			</div>
 			<ul class="categories_menu">
 				@foreach ($maincategories as $categoriesList)
@@ -41,7 +41,7 @@
 			</ul>
 		</div>
 		<!--=========Register seller============ -->
-		<div class="panel-group category-products" id="accordian">
+		<div class="panel-group category-products ads_side_bar" id="accordian">
 			<!-- type:homepage, position: left meduim, limit -->
 			{{ App::make('FePageController')->getFeAds(1, 4, 3) }}
 		</div>

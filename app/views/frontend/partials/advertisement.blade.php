@@ -17,20 +17,17 @@ if (strtotime ( date ( "d-m-Y" ) ) <= strtotime ( $exp_date )) {
 <?php
 if ($i === 0) {
 	?>
-	<div class="product-image-wrapper">
+	<div class="product-image-wrapper" style="border:none;">
 		<div class="single-products">
 			<div class="productinfo text-center">
 				<a href="#" > <img
+					class="img-responsive"
 					src="{{Config::get('app.url')}}/frontend/images/default_ad_sidebar.png"
 					alt="" />
 				</a>
 			</div>
 		</div>
 	</div>
-<!--<a href="#"> <img
-	src="{{Config::get('app.url')}}frontend/images/default_adv_115x385.png"
-	class="img-responsive" alt="" />
-</a>-->
 <?php
 }
 ?>

@@ -2,6 +2,8 @@
 // This is the KH one.
 return array(
 	'category' => 'Category',
+	'all_categories_type' => 'គ្រប់ប្រភេទទាំងអស់',
+	'notification' => 'ការ​ជូន​ដំណឹង​',
 	'product_title' => 'Product Title',
 	'transfer_as' => 'Transfer As',
 	'condiction' => 'Condition',
@@ -16,7 +18,9 @@ return array(
 	'contact_name' => 'Your Name',
 	'Email' => 'Email',
 	'HP' => 'HP',
-	'location' => 'Location',
+	'location' => 'ទឺតាំង',
+	'search' => 'ស្មែងរក',
+	'search_here' => 'ស្វែងរកទីនេះ',
 	'save_product_ads' => 'Save Product Ads',
 	'point_to_view' => 'Point to View',
 	'date_post' => 'Post Date'

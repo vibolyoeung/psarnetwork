@@ -16,7 +16,8 @@
 body,html{
 	position: relative;
 	height: 100%;
-	font-size: 12px;
+	font-size: 14px;
+	color:#333;
 	font-family: Hanuman,Arial;
 }
 
@@ -1125,6 +1126,9 @@ h2.title:before {
 	border-radius: 0px;
 	box-shadow: none;
 	margin-bottom: 0px;
+}
+.ads_side_bar{
+	border-top:1px solid #eFeFeF;
 }
 
 .category-products .panel-default .panel-heading {
@@ -3053,7 +3057,7 @@ span.price{
 }
 
 .product-image-wrapper {
-	margin-bottom: 10px;
+	margin-bottom: 0;
 }
 
 .list-store .product-image-wrapper {
@@ -3454,8 +3458,8 @@ a.more_categories {
 	margin-top: -43px;
 }
 .all_categories_type{
-	padding:6px;
-	background-color:#ddd;
+	padding:5px;
+	border-bottom:1px solid #e7e7e7;
 }
 
 a.home_icon {
@@ -3520,14 +3524,20 @@ div.header-middle{
 }
 ul.categories_menu{
 	padding:0;
-	border: 1px solid #f7f7f5;
 	margin: 0 auto;
 }
 ul.categories_menu > li > a{
 	display: block;
 	padding:5px 10px;
 	font-size:14px;
-	color:blue;
+	color:#333;
+}
+ul.categories_menu > li > a:hover,.navbar-default .navbar-nav>li>a:hover,a:hover{
+	color:#337ab7;
+	text-decoration: none;
+}
+.navbar-default .navbar-nav>li>a{
+	color:#333;
 }
 
 li.main_category{
@@ -3606,7 +3616,6 @@ ul.dropdown_main_menu > li > a{
 	/*position: relative;*/
 }
 .categories_menu{
-	border:1px solid #f7f7f5;
 	padding:0;
 }
 span.pro-condition{
@@ -3648,7 +3657,7 @@ ul#TapTitle > li.active > a{
 	padding:5px;
 }
 .left-sidebar{
-	border:1px solid #f7f7f5;
+	border:1px solid #e7e7e7;
 }
 .ui-datepicker {
     background: #fff;
