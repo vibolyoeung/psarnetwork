@@ -1290,7 +1290,16 @@ h2.title {
 	width: 100%;
 	height: 115px;
 }
-
+   
+#Detail-Top-Contact li{
+	float:left;
+	padding-left:5px;
+}   
+   
+ #Detail-Top-Contact li label{
+	color:#03F;
+}   
+     
 .productinfo {
 	position: relative;
 	padding:12px;
@@ -1300,7 +1309,7 @@ h2.title {
 }
 
 #picture_summary .productinfo>img{
-	max-height: 90px;
+	max-height: 800px;
 }
 
 .product-overlay {
@@ -1525,7 +1534,7 @@ h2.title {
 }
 
 .tab-content .navbar {
-	min-height: 0
+	min-height: 0;
 }
 
 .tab-content .navbar-nav>li>a {
@@ -2963,6 +2972,7 @@ span.price{
 .carousel-inner {
 	max-height: 320px;
 	padding: 0;
+	background:#FFF;
 }
 
 #slider .row {
