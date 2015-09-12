@@ -71,13 +71,15 @@
 <body>
 	<!-- Call facebook script -->
 	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
+	<script>
+	(function(d, s, id) {
 	  var js, fjs = d.getElementsByTagName(s)[0];
 	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
+	  //js = d.createElement(s); js.id = id;
 	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
 	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
+	}(document, 'script', 'facebook-jssdk'));
+	</script>
 	<!-- End facebook calling -->
 	<header id="header" class="mainHeader">
 		<!--=====Start Header==============-->
@@ -168,12 +170,7 @@
 						<ul class="nav navbar-nav front-loggedin <?php echo !Session::get('currentUserId')?'pull-right':'';?>">
 							<li role="presentation" class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-									Notifications&nbsp;<span class="label label-danger">
-										<?php 
-											$productNotification = Product::productPosttoday();
-											echo count($productNotification);
-										?>
-									</span>
+									{{trans('product.notification')}}&nbsp;<span class="label label-danger"><?php $productNotification = Product::productPosttoday();echo count($productNotification);?></span>
 								</a>
 								<?php 
 								if(count($productNotification)){
@@ -216,11 +213,11 @@
 								<button type="submit"
 									class="btn btn-warning pull-right col-lg-12"
 									style="border-radius: 0;">
-									<span class="glyphicon glyphicon-search"></span> Search
+									<span class="glyphicon glyphicon-search"></span>&nbsp;{{trans('product.search')}}
 								</button>
 							</div>
 							<div class="col-lg-9" style="padding: 0; margin: 0;">
-								<input type="text" name="q" class="form-control" placeholder="Search here"
+								<input type="text" name="q" class="form-control" placeholder="<?php echo trans('product.search_here');?>"
 									style="border-radius: 0; border: none; border-left: 1px solid #ddd;" />
 							</div>
 						</div>
@@ -228,7 +225,7 @@
 							<div class="col-lg-6 pull-right" style="margin: 0; padding: 0;">
 								<div class="btn-group col-lg-12" style="padding: 0; margin: 0;">
 									<select name="location">
-										<option value="0">Location</option>
+										<option value="0">{{trans('product.location')}}</option>
 										@foreach($locations as $location)
 											<option value="{{$location->province_id}}">
 												<?php echo $location->{'province_name_'.Session::get('lang')}; ?>

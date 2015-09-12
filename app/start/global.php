@@ -20,6 +20,8 @@ ClassLoader::addDirectories(array(
 
 ));
 
+App::setLocale(Session::get('lang', 'km'));
+
 /*
 |--------------------------------------------------------------------------
 | Application Error Logger

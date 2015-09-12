@@ -16,17 +16,19 @@
 		<?php
 		$images = json_decode ( $detailProduct->pictures, true );
 		?>
-		<div class="col-lg-12">
+		<div class="col-lg-12" style="background-color:#FFF; border:1px solid #CCC;">
 			<div class="col-lg-9 pull-right">
-				<div class="col-lg-12">
+				<div class="col-lg-12" style="padding:10px;">
 					<?php $contactInfo = json_decode($detailProduct->contact_info); ?>
-					<p><label>Name:</label> {{$contactInfo->contactName}}</p>
-					<p><label>Tel:</label> {{$contactInfo->contactHP}}</p>
-					<p><label>Email:</label> {{$contactInfo->contactEmail}}</p>
-					<p><label>Location:</label> {{$contactInfo->contactLocation}}</p>
+                   <ul id="Detail-Top-Contact">
+					<li><label>Name :</label> {{$contactInfo->contactName}}</li>
+					<li><label>Tel :</label> {{$contactInfo->contactHP}}</li>
+					<li><label>Email :</label> {{$contactInfo->contactEmail}}</li>
+					<li><label>Location :</label> {{$contactInfo->contactLocation}}</li>
+                    </ul>
 				</div>
 			</div>
-			<div class="col-lg-3 store-name">
+			<div class="col-lg-3 store-name" style="padding:10px 10px 10px 10px;">
 				<img src="{{Config::get('app.url')}}upload/store/{{$detailProduct->image}}" title="" alt="" />
 				<div class="col-lg-10 pull-right" style="margin-top:8px;"><b>{{$detailProduct->{'title_'.Session::get('lang')};}}</b></div>
 			</div>
@@ -133,7 +135,7 @@
 				<!--/Slider-->
 			</div>
 			<div class="row col-lg-12">
-				<ul id="TapTitle" class="nav nav-tabs">
+				<ul id="TapTitle" class="nav nav-tabs" style="background-color:#E0E0E0; margin-top:20px; font-size:12px;">
 				   <li class="active"><a href="#speification_detail" data-toggle="tab">Specification Detail</a></li>
 				   <li><a href="#picture_summary" data-toggle="tab">Picture Summary</a></li>
 				   <li class="dropdown">
@@ -201,6 +203,7 @@
 						</a>
 				   </div>
 				</div>
+                
 				<script>
 				   $(function(){
 				      $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {

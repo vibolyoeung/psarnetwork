@@ -52,7 +52,7 @@ Categories
 						@endforeach
 					<?php 
 						}else{
-							echo '<h3><center style="color:red;">Product not found!</center></h3>';
+							echo '<p><center style="color:red;">Product not found!</center></p>';
 						}
 					?>
 					</div>

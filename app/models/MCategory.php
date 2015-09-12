@@ -996,16 +996,24 @@ class MCategory extends Eloquent{
 	*
 	*
     */
-    public function getAllChildCategories($parent_id){
-    	$results = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
-		->select('id')
-		->where('parent_id','=', $parent_id)
-		->get();
-		$categories = array($parent_id);
-		if(count($results)){
-			foreach($results as $results){
-				array_push($categories,$results->id);
+    public function getAllChildCategories($parent_id,$categories = ''){
+    	try {
+    		if(!is_array($categories)){
+				$categories = array();
 			}
+			$results = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
+						->select('id')
+						->where('parent_id','=', $parent_id)
+						->get();
+			if(count($results) > 0){
+				array_push($categories,(int)$parent_id);
+				foreach($results as $result){
+					$categories[] = array($result->id);
+					$categories = self::getAllChildCategories($result->id,$categories);
+				}
+			}
+		}catch (\Exception $e){
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
 		}
 		return $categories;
     }

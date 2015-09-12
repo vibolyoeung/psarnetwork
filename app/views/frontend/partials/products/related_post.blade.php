@@ -13,8 +13,8 @@
 			//var_dump($relatedPost);
 				if(strtotime($relatedPost->publish_date) >= strtotime("Y-m-d")){
 				?>
-				<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-					<div class="product-image-wrapper">
+				<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+					<div class="product-image-wrapper related-product-image">
 						<div class="single-products">
 							<div class="productinfo text-center">
 								<a href="" data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail(<?php echo $relatedPost->id; ?>)">

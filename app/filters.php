@@ -24,8 +24,8 @@ App::before(function($request)
         }
 
     } else {
-    	if(!Session::has('lang')){
-    		Session::put('lang', Config::get('app.locale'));
+    	if(!Session::get('lang')){
+    		Session::put('lang','km');
     	}
     }
 });

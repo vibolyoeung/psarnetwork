@@ -16,14 +16,17 @@
 body,html{
 	position: relative;
 	height: 100%;
-	font-size: 12px;
+	font-size: 14px;
+	color:#333;
 	font-family: Hanuman,Arial;
 }
 
 ul li {
 	list-style: none;
 }
-
+strong{
+	color:#777;
+}
 .sub-menu {
 	border: 1px solid #f5f5f5;
 	background-color: #F0F0E9;
@@ -1124,6 +1127,9 @@ h2.title:before {
 	box-shadow: none;
 	margin-bottom: 0px;
 }
+.ads_side_bar{
+	border-top:1px solid #eFeFeF;
+}
 
 .category-products .panel-default .panel-heading {
 	background-color: #FFFFFF;
@@ -1288,13 +1294,26 @@ h2.title {
 	width: 100%;
 	height: 115px;
 }
-
+   
+#Detail-Top-Contact li{
+	float:left;
+	padding-left:5px;
+}   
+   
+ #Detail-Top-Contact li label{
+	color:#03F;
+}   
+     
 .productinfo {
 	position: relative;
+	padding:12px;
+}
+.related-product-image{
+	border:none;
 }
 
 #picture_summary .productinfo>img{
-	max-height: 90px;
+	max-height: 800px;
 }
 
 .product-overlay {
@@ -1519,7 +1538,7 @@ h2.title {
 }
 
 .tab-content .navbar {
-	min-height: 0
+	min-height: 0;
 }
 
 .tab-content .navbar-nav>li>a {
@@ -2957,6 +2976,7 @@ span.price{
 .carousel-inner {
 	max-height: 320px;
 	padding: 0;
+	background:#FFF;
 }
 
 #slider .row {
@@ -3037,7 +3057,7 @@ span.price{
 }
 
 .product-image-wrapper {
-	margin-bottom: 10px;
+	margin-bottom: 0;
 }
 
 .list-store .product-image-wrapper {
@@ -3438,8 +3458,8 @@ a.more_categories {
 	margin-top: -43px;
 }
 .all_categories_type{
-	padding:6px;
-	background-color:#ddd;
+	padding:5px;
+	border-bottom:1px solid #e7e7e7;
 }
 
 a.home_icon {
@@ -3504,14 +3524,20 @@ div.header-middle{
 }
 ul.categories_menu{
 	padding:0;
-	border: 1px solid #f7f7f5;
 	margin: 0 auto;
 }
 ul.categories_menu > li > a{
 	display: block;
-	padding:4px 10px;
-	font-size:12px;
-	color:#666;
+	padding:5px 10px;
+	font-size:14px;
+	color:#333;
+}
+ul.categories_menu > li > a:hover,.navbar-default .navbar-nav>li>a:hover,a:hover{
+	color:#337ab7;
+	text-decoration: none;
+}
+.navbar-default .navbar-nav>li>a{
+	color:#333;
 }
 
 li.main_category{
@@ -3590,7 +3616,6 @@ ul.dropdown_main_menu > li > a{
 	/*position: relative;*/
 }
 .categories_menu{
-	border:1px solid #f7f7f5;
 	padding:0;
 }
 span.pro-condition{
@@ -3632,7 +3657,7 @@ ul#TapTitle > li.active > a{
 	padding:5px;
 }
 .left-sidebar{
-	border:1px solid #f7f7f5;
+	border:1px solid #e7e7e7;
 }
 .ui-datepicker {
     background: #fff;
