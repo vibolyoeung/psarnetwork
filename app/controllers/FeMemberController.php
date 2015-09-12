@@ -1006,6 +1006,20 @@ class FeMemberController extends BaseController {
 					echo 0;
 				}
 				break;
+			
+			case 'getcategory':
+				$cat = $this->mod_category->findCategoryBy(Input::get ( 'term' ));
+				$categorie = array();
+				if(!empty($cat->data)) {
+					foreach ($cat->data as $listCate) {
+						$categorie[] = array(
+							'id'=>$listCate->id,
+							'label'=>$listCate->{'name_'.Session::get('lang')},
+						);
+					}
+				}
+				echo json_encode($categorie);
+				break;
 		}
 	}
 	/**

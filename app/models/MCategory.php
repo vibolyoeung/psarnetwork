@@ -113,7 +113,40 @@ class MCategory extends Eloquent{
 		}
 		return $response;
 	}
-
+	/**
+	 *
+	 * getCategoryById: the function using for category by id
+	 * @param integer $id: the id of category
+	 * @return array category
+	 * @access public
+	 */
+	public function findCategoryBy($name=''){
+		$response = new stdClass();
+		try {
+			$query = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'));
+			$query->select('name_en','name_km', 'id');
+			if(!empty($name)) {
+				$query->where('name_en', 'like', "%$name%");
+				$query->orWhere('name_en', 'like', "%$name");
+				$query->orWhere('name_en', 'like', "$name%");
+				$query->orWhere('name_en', '=', $name);
+				$query->orWhere('name_km', 'like', "%$name%");
+				$query->orWhere('name_km', 'like', "%$name");
+				$query->orWhere('name_km', 'like', "$name%");
+				$query->orWhere('name_km', '=', $name);
+			}
+			$query->orderBy('name_en','asc');
+			$result = $query->get();
+			$response->data = $result;
+			$response->result = 1;
+	
+		}catch (\Exception $e){
+			$response->result = 0;
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+		}
+		return $response;
+	}
+	
 	/**
 	 *
 	 * getCategoryById: the function using for category by id

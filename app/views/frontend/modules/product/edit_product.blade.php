@@ -11,6 +11,8 @@
 	@endsection
 @section('content')
     {{HTML::style('backend/css/jquery-ui.css')}}
+    {{HTML::style('frontend/plugin/jQuery-Tags-Input-master/jquery.tagsinput.css')}}
+    {{HTML::script('frontend/plugin/jQuery-Tags-Input-master/jquery.tagsinput.min.js')}}
     {{HTML::style('frontend/plugin/dropzone/dist/dropzone.css')}}
     {{HTML::script('frontend/plugin/dropzone/dist/dropzone.js')}}
     {{HTML::script('frontend/js/product.js')}}
@@ -44,6 +46,7 @@
                                             {{trans('product.category')}}
                                         </label>
                                         <div class="col-sm-11">
+                                        	<input id='tags_3' type='text' class='tags' style="height: 35px"/>
                                             <select required="required" class="form-control" name="s_category">
                                                @if(1 === (int)Session::get('currentUserAccountType'))
                                                     @foreach($categoryTree as $category)
@@ -525,6 +528,14 @@
                         	});
 
 
+                        	$('#tags_3').tagsInput({
+                				width: 'auto',
+
+                				//autocomplete_url:'test/fake_plaintext_endpoint.html' //jquery.autocomplete (not jquery ui)
+                				autocomplete_url:'{{Config::get('app.url')}}member/byajax?page=getcategory' // jquery ui autocomplete requires a json endpoint
+                			});
+
+                			
                         	$("#multiUpload").dropzone(
    								 { 
    									 url: "{{Config::get('app.url')}}member/ajaxupload?page=imgproduct&id={{$product->id}}",
