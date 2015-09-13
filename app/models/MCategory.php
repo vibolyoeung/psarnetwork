@@ -322,6 +322,19 @@ class MCategory extends Eloquent{
 		return $response;
 	}
 
+	public function addProductCategory($data){
+	
+		$response = new stdClass();
+		try {
+			$result = DB::table(Config::get('constants.TABLE_NAME.PRODUCT_IN_CATEGORY'))->insertGetId($data);
+			$response->result = $result;
+		}catch (\Eexception $e){
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+			$response->result = 0;
+		}
+	
+		return $response;
+	}
 	/**
 	 *
 	 * editSaveCategory: this function using for edit saved for category

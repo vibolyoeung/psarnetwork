@@ -6,9 +6,9 @@ $userClass = new User ();
 $userData = $userClass->getUser($dataStore->user_id);
 $currentUserType =$userData->result->account_type;
 if(!empty($dataStore->sto_url)) {
-	$userHome = @Config::get('app.url').'page/'.$dataStore->sto_url;
+	$userHome = @Config::get('app.url').''.$dataStore->sto_url;
 } else {
-	$userHome = @Config::get('app.url').'page/store-'.$dataStore->id;
+	$userHome = @Config::get('app.url').'store-'.$dataStore->id;
 }
 function rm($article, $char) {
 	$article = preg_replace ( "/<img[^>]+\>/i", "(image) ", $article );

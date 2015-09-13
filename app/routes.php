@@ -9,6 +9,13 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+Route::any('/{store}', 'FeStoreController@index');
+Route::any('/{store}/search/{label}', 'FeStoreController@searchUserPropuctByCategory');
+Route::any('/{store}/p/{page_id}', 'FeStoreController@getUserPage');
+Route::any('/{store}/my/detail/{product_id}', 'FeStoreController@myDetail');
+Route::any('/{store}/analytics', 'FeStoreController@getAnalytics');
+Route::any('/analytics', 'FeStoreController@getTracking');
+
 
 Route::get('/admin', 'BeLoginController@showLogin');
 Route::post('/admin/login', 'BeLoginController@doLogin');
@@ -131,12 +138,8 @@ Route::get('/media/image/{width}x{height}/{image}', function($width, $height, $i
 	*/
 
 });
-Route::any('/page/{store}', 'FeStoreController@index');
-Route::any('/page/{store}/search/{label}', 'FeStoreController@searchUserPropuctByCategory');
-Route::any('/page/{store}/p/{page_id}', 'FeStoreController@getUserPage');
-Route::any('/page/{store}/analytics', 'FeStoreController@getAnalytics');
-Route::any('/analytics', 'FeStoreController@getTracking');
-Route::any('/page/{store}/my/detail/{product_id}', 'FeStoreController@myDetail');
+
+
 Route::any('/{lang}/user/signin', 'FeUserController@signIn');
 Route::any('/{lang}/user/signup', 'FeUserController@signUp');
 

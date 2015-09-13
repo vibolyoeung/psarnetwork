@@ -1,8 +1,8 @@
     <?php
     if(!empty($dataStore->sto_url)) {
-    	$userHome = @Config::get('app.url').'page/'.$dataStore->sto_url;
+    	$userHome = @Config::get('app.url').$dataStore->sto_url;
     } else {
-    	$userHome = @Config::get('app.url').'page/store-'.$dataStore->id;
+    	$userHome = @Config::get('app.url').'store-'.$dataStore->id;
     }
     ?>
 

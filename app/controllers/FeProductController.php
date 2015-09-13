@@ -178,7 +178,8 @@ class FeProductController extends BaseController {
             $products = $this->prepareDataBindProducts(
                 $jsonNewFileName,
                 $quotationFile,
-                false
+                false,
+            	$product_id
             );
             
             $this->mod_product->updateToProduct(
@@ -205,18 +206,16 @@ class FeProductController extends BaseController {
         } 
 		/*get category*/
         $categoryName = '';
-        if(!empty($product->s_category_id)) {
+        $getRelateCate = DB::table(Config::get('constants.TABLE_NAME.PRODUCT_IN_CATEGORY'))
+        ->where(array('product_id'=>$product_id, 'user_id'=>$userID))
+        ->get();
+        if(!empty($getRelateCate)) {
         	$categoryNameArr = array();
-        	$cateArr = explode(',',$product->s_category_id);
-        	if(!empty($cateArr)) {
-        		foreach ($cateArr as $cateId) {
-        			if(!empty($cateId)) {
-        				$mCate = $this->mod_category->getCategoryById($cateId);
-        				if(!empty($mCate)) {
-        					$field = 'name_'.Session::get('lang');
-        					$categoryNameArr[] = $mCate->data->{$field};
-        				}
-        			}
+        	foreach ($getRelateCate as $cateId) {
+        		$mCate = $this->mod_category->getCategoryById($cateId->category_id);
+        		if(!empty($mCate)) {
+        			$field = 'name_'.Session::get('lang');
+        			$categoryNameArr[] = $mCate->data->{$field};
         		}
         	}
         	if(!empty($categoryNameArr)) {
@@ -347,8 +346,8 @@ class FeProductController extends BaseController {
      * @access private
      * @return array object
      */
-    private function prepareDataBindProducts($pictures, $quotation, $isAdd=true) {
-        $data = $this->additionalProducts();
+    private function prepareDataBindProducts($pictures, $quotation, $isAdd=true, $product_id) {
+        $data = $this->additionalProducts($product_id);
         if ($isAdd === true) {
             $data['top_up'] = date('Y-m-d H:i:s');
             $data['created_date'] = date('Y-m-d');
@@ -365,8 +364,8 @@ class FeProductController extends BaseController {
         return $data;
     }
 
-    private function additionalProducts(){
-    	$category = $this->generatCategory(Input::get('s_category'));
+    private function additionalProducts($product_id){
+    	$category = $this->generatCategory(Input::get('s_category'), $product_id);
     	$catId = '';
     	if(!empty($category)) {
     		$catId = implode(',',$category);
@@ -385,7 +384,6 @@ class FeProductController extends BaseController {
             'description' => Input::get('desc'),
             'user_id' => Session::get('currentUserId'),
             'store_id' => Store::findStoreByUser(Session::get('currentUserId')),
-            's_category_id' => $catId,
             'pro_status' => trim(Input::get('productStatus')),
             'pro_transfer_type_id' => trim(Input::get('proTransferType')),
             'is_publish' => Input::get('isPublish'),
@@ -395,7 +393,7 @@ class FeProductController extends BaseController {
     }
 
     
-    public function generatCategory($param) {
+    public function generatCategory($param,$pro_id) {
     	$userID = Session::get('currentUserId');
     	$cId = array();
     	if (!empty($param)) {
@@ -424,7 +422,25 @@ class FeProductController extends BaseController {
     			}
     		}
     	}
-    	return array_unique($cId);
+    	$allCateArr = array_unique($cId);
+    	/*add this cate to repated product*/
+    	if(!empty($allCateArr)) {
+    		$delWhere = array(
+    			'product_id' => $pro_id,
+    			'user_id' => $userID
+    		);
+    		DB::table(Config::get('constants.TABLE_NAME.PRODUCT_IN_CATEGORY'))->where($delWhere)->delete();
+    		foreach ($allCateArr as $unigeCate) {
+    			$data = array(
+    				'category_id' => $unigeCate,
+    				'product_id' => $pro_id,
+    				'user_id' => $userID
+    			);
+    			$this->mod_category->addProductCategory($data);
+    		}
+    	}
+    	/*end add this cate to repated product*/
+    	return $allCateArr;
     }
     /**
      * Generation folder when uploading file doesnot exist

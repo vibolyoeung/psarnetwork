@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 class FeStoreController extends BaseController {
 	private $mod_slideshow;
 	private $mod_category;
@@ -17,9 +18,9 @@ class FeStoreController extends BaseController {
 		$this->user = new User ();
 		$this->mod_page = new MPage ();
 	}
-	public function index() {
+	public function index($storeurl) {
 		try {
-			$storeurl = Request::segment ( 2 );
+			//$storeurl = Request::segment ( 1 );
 			$getUlr = preg_match ( '/store-/', $storeurl );
 			if ($getUlr) {
 				$storeArr = explode ( 'store-', $storeurl );
@@ -44,6 +45,11 @@ class FeStoreController extends BaseController {
 				);
 				$dataStore = $this->mod_store->getUserStore ( null, $where );
 			}
+			if(empty($dataStore)) {
+				return Redirect::to('/');
+				exit();
+			}
+			
 			$getUser = $this->user->getUser ( $dataStore->user_id );
 			$getUserUrl = $this->mod_store->getStoreUrl ( $dataStore->id );
 			if ($getUser->result->account_type == 2) {
@@ -192,7 +198,7 @@ class FeStoreController extends BaseController {
 			$catArr = array ();
 			if (! empty ( $getCategoryByName->data )) {
 				array_push ( $catArr, $getCategoryByName->data->m_cat_id );
-				$subCategory = $this->mod_category->getSubUserCategories ( $dataStore->user_id, $getCategoryByName->data->id );
+				$subCategory = $this->mod_category->getSubUserCategories ( $dataStore->user_id, $getCategoryByName->data->m_cat_id );
 				if (! empty ( $subCategory )) {
 					foreach ( $subCategory as $subCat ) {
 						array_push ( $catArr, $subCat->m_cat_id );
@@ -206,7 +212,6 @@ class FeStoreController extends BaseController {
 			} else {
 				$dataCategory = $this->mod_category->menuUserFree ( $dataStore->user_id, $parent = 0 );
 			}
-			
 			$dataProduct = $this->mod_product->findProductByCategory ( $dataStore->id, $catArr );
 
 			$dataUserPage = $this->mod_category->menuUserPage ( $dataStore->user_id, 2, $getUserUrl );

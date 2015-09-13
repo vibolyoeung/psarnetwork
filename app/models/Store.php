@@ -119,9 +119,9 @@ class Store extends Eloquent {
 	public function getStoreUrl($id) {
 		$result = DB::table ( Config::get ( 'constants.TABLE_NAME.STORE' ) )->select ( '*' )->where ( 'id', '=', $id )->first ();
 		if (! empty ( $result->sto_url )) {
-			return Config::get ( 'app.url' ) . 'page/' . $result->sto_url;
+			return Config::get ( 'app.url' ) . '' . $result->sto_url;
 		} else {
-			return Config::get ( 'app.url' ) . 'page/store-' . $id;
+			return Config::get ( 'app.url' ) . 'store-' . $id;
 			// Config::get('app.url').'page/'.$dataStore->id;
 		}
 	}

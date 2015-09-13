@@ -6,9 +6,9 @@ $userClass = new User ();
 $userData = $userClass->getUser($dataStore->user_id);
 $currentUserType =$userData->result->account_type;
 if(!empty($dataStore->sto_url)) {
-	$userHome = @Config::get('app.url').'page/'.$dataStore->sto_url;
+	$userHome = @Config::get('app.url').$dataStore->sto_url;
 } else {
-	$userHome = @Config::get('app.url').'page/store-'.$dataStore->id;
+	$userHome = @Config::get('app.url').'store-'.$dataStore->id;
 }
 function rm($article, $char) {
 	$article = preg_replace ( "/<img[^>]+\>/i", "(image) ", $article );
@@ -56,7 +56,7 @@ function rm($article, $char) {
     				<div class="product-image-wrapper">
     					<div class="single-products">
     						<div class="productinfo text-center">
-    							<a href="{{Config::get('app.url')}}page/{{$product->store_id}}/my/detail/{{$product->id}}">
+    							<a href="{{$userHome}}/my/detail/{{$product->id}}">
                                     @if($product->thumbnail)
 									{{HTML::image("image/phpthumb/$product->thumbnail?p=product&amp;h=150&amp;w=150",$product->title,array('class'
 						=> 'img-rounded','width'=>'150'))}}
@@ -68,7 +68,7 @@ function rm($article, $char) {
     							<?php $readmore = @rm ( $product->title, 30 );?>
     							<h2>{{$readmore}}</h2>
     							<p>{{$product->price}} $</p>
-    							<a href="{{Config::get('app.url')}}page/{{$product->store_id}}/my/detail/{{$product->id}}">View Details</a>
+    							<a href="{{$userHome}}/my/detail/{{$product->id}}">View Details</a>
     						</div>
     						<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
     					</div>

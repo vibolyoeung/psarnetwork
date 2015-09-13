@@ -76,7 +76,8 @@ return array (
 				'USER_BANNER' => 'user_banner',
 				'PERMISSION' => 'permission',
 				'PRODUCT_TRANSFER_TYPE' => 'product_transfer_type',
-				'ACCOUNT_ROLE' => 'account_role' 
+				'ACCOUNT_ROLE' => 'account_role', 
+				'PRODUCT_IN_CATEGORY' => 'product_in_category', 
 		),
 		'LAYOUT' => array (
 				0 => array (
