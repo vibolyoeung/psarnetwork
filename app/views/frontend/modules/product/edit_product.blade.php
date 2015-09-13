@@ -46,18 +46,7 @@
                                             {{trans('product.category')}}
                                         </label>
                                         <div class="col-sm-11">
-                                        	<input id='tags_3' type='text' class='tags' style="height: 35px"/>
-                                            <select required="required" class="form-control" name="s_category">
-                                               @if(1 === (int)Session::get('currentUserAccountType'))
-                                                    @foreach($categoryTree as $category)
-                                                        <option value="{{$category['id']}}">
-                                                            {{$category['name_'.Session::get('lang')]}}
-                                                        </option>
-                                                    @endforeach
-                                                @else 
-                                                    {{$categoryTree}}
-                                                @endif
-                                            </select>
+                                        	<input id='tags_3' type='text' class='tags' style="height: 35px" name="s_category" value="{{@$category}}"/>
                                         </div>
                                     </div>
                                     <div class="form-group">

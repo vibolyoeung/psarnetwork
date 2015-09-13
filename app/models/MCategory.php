@@ -115,6 +115,73 @@ class MCategory extends Eloquent{
 	}
 	/**
 	 *
+	 * findUserCategoryBy: the function using for category by name
+	 * @param string $name: the name of category
+	 * @return array category
+	 * @access public
+	 */
+	public function findUserCategoryBy($name='',$user=''){
+		$status = 1;
+		$response = new stdClass();
+		try {
+			$query = DB::table(Config::get('constants.TABLE_NAME.S_CATEGORY'));
+			$query->select('name_en','name_km', 'm_cat_id');
+			if(!empty($user)) {
+				$query->where('user_id', '=', $user);
+				$query->where(function ($query) use ($name, $status) {
+				    return $query->where('name_en', 'like', "%$name%")
+				    	->where('is_publish','=', $status)
+				    	->orWhere('name_en', 'like', "%$name")
+						->orWhere('name_en', 'like', "$name%")
+						->orWhere('name_en', '=', $name)
+						->orWhere('name_km', 'like', "%$name%")
+						->orWhere('name_km', 'like', "%$name")
+						->orWhere('name_km', 'like', "$name%")
+						->orWhere('name_km', '=', $name);
+					});
+			}
+			$query->orderBy('name_en','asc');
+			$result = $query->get();
+			$response->data = $result;
+			$response->result = 1;
+	
+		}catch (\Exception $e){
+			$response->result = 0;
+			$response->error = 'Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine();
+			//Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+		}
+		return $response;
+	}
+
+	/**
+	 *
+	 * getCategoryById: the function using for category by id
+	 * @param integer $id: the id of category
+	 * @return array category
+	 * @access public
+	 */
+	public function findMainCategoryBy($name=''){
+		$response = new stdClass();
+		try {
+			$query = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'));
+			$query->select('name_en','name_km', 'id');
+			if(!empty($name)) {
+				$field = 'name_'.Session::get('lang');
+				$query->where($field, '=', $name);
+			}
+			$query->orderBy('name_en','asc');
+			$result = $query->first();
+			$response->data = $result;
+			$response->result = 1;
+	
+		}catch (\Exception $e){
+			$response->result = 0;
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+		}
+		return $response;
+	}
+	/**
+	 *
 	 * getCategoryById: the function using for category by id
 	 * @param integer $id: the id of category
 	 * @return array category
@@ -146,7 +213,6 @@ class MCategory extends Eloquent{
 		}
 		return $response;
 	}
-	
 	/**
 	 *
 	 * getCategoryById: the function using for category by id

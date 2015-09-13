@@ -203,13 +203,34 @@ class FeProductController extends BaseController {
                 $product->s_category_id
             );
         } 
-
+		/*get category*/
+        $categoryName = '';
+        if(!empty($product->s_category_id)) {
+        	$categoryNameArr = array();
+        	$cateArr = explode(',',$product->s_category_id);
+        	if(!empty($cateArr)) {
+        		foreach ($cateArr as $cateId) {
+        			if(!empty($cateId)) {
+        				$mCate = $this->mod_category->getCategoryById($cateId);
+        				if(!empty($mCate)) {
+        					$field = 'name_'.Session::get('lang');
+        					$categoryNameArr[] = $mCate->data->{$field};
+        				}
+        			}
+        		}
+        	}
+        	if(!empty($categoryNameArr)) {
+        		$categoryName = implode(',',$categoryNameArr);
+        	}
+        }
+		/*end get category*/
+        //$getCurrentCat = $this->mod_category
         $productTransferTypes = $this->mod_product->findAllTransferType();
         $productCondictions = $this->mod_product->findAllCondition();
         return View::make('frontend.modules.product.edit_product')
             ->with('proTransferType', $productTransferTypes->data)
             ->with('productCondition', $productCondictions->data)
-            ->with('categoryTree', $listCategories)
+            ->with('category', $categoryName)
             ->with('product', $product)
             ->with('dataStore', $getUserStore);
     }
@@ -345,6 +366,11 @@ class FeProductController extends BaseController {
     }
 
     private function additionalProducts(){
+    	$category = $this->generatCategory(Input::get('s_category'));
+    	$catId = '';
+    	if(!empty($category)) {
+    		$catId = implode(',',$category);
+    	}
         $contactInfo = array(
             'contactName' => Input::get('contactName'),
             'contactEmail' => Input::get('contactEmail'),
@@ -359,7 +385,7 @@ class FeProductController extends BaseController {
             'description' => Input::get('desc'),
             'user_id' => Session::get('currentUserId'),
             'store_id' => Store::findStoreByUser(Session::get('currentUserId')),
-            's_category_id' => Input::get('s_category'),
+            's_category_id' => $catId,
             'pro_status' => trim(Input::get('productStatus')),
             'pro_transfer_type_id' => trim(Input::get('proTransferType')),
             'is_publish' => Input::get('isPublish'),
@@ -368,6 +394,38 @@ class FeProductController extends BaseController {
         return $data;
     }
 
+    
+    public function generatCategory($param) {
+    	$userID = Session::get('currentUserId');
+    	$cId = array();
+    	if (!empty($param)) {
+    		$label = explode(',',$param);
+    		if(!empty($label)) {
+    			foreach ($label as $cate) {
+    				$name = trim(str_replace('&#44;', ',', $cate));
+    				if (self::FREE_ACCOUNT === (int)Session::get('currentUserAccountType')) {
+    					$userCatId = $this->mod_category->findMainCategoryBy($cate);
+    					if(!empty($userCatId->data->id)) {
+    						$mainCateID = $userCatId->data->id;
+    					}
+    				} else {
+    					$userCatId = $this->mod_category->getCategoryByName($cate,$userID);
+    					if(!empty($userCatId->data->m_cat_id)) {
+    						$mainCateID = $userCatId->data->m_cat_id;
+    					}
+    				}
+    				
+    				if(!empty($mainCateID)) {
+    					$mCate = $this->mod_category->getCategoryById($mainCateID);
+    					if(!empty($mCate)) {
+    						$cId[] = $mCate->data->id;
+    					}
+    				}
+    			}
+    		}
+    	}
+    	return array_unique($cId);
+    }
     /**
      * Generation folder when uploading file doesnot exist
      * @return boolean

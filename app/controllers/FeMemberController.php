@@ -9,6 +9,7 @@ class FeMemberController extends BaseController {
 	protected $mod_page;
 	protected $user;
 	const CURRENT_DATE = 'Y-m-d';
+	const FREE_ACCOUNT = 1;
 	function __construct() {
 		$this->mod_category = new MCategory ();
 		$this->mod_setting = new Setting ();
@@ -995,6 +996,7 @@ class FeMemberController extends BaseController {
 	}
 	/*get by ajax*/
 	public function GetAjax() {
+		$userID = Session::get('currentUserId');
 		$page = Input::get ( 'page' );
 		$id = Input::get ( 'id' );
 		switch ($page) {
@@ -1008,16 +1010,26 @@ class FeMemberController extends BaseController {
 				break;
 			
 			case 'getcategory':
-				$cat = $this->mod_category->findCategoryBy(Input::get ( 'term' ));
+				if (self::FREE_ACCOUNT === (int)Session::get('currentUserAccountType')) {
+					$cat = $this->mod_category->findCategoryBy(Input::get ( 'term' ));
+				} else {
+					$cat = $this->mod_category->findUserCategoryBy(Input::get ( 'term' ), $userID);
+				}
 				$categorie = array();
 				if(!empty($cat->data)) {
 					foreach ($cat->data as $listCate) {
+						if (self::FREE_ACCOUNT === (int)Session::get('currentUserAccountType')) {
+							$catId = $listCate->id;
+						} else {
+							$catId = $listCate->m_cat_id;
+						}
 						$categorie[] = array(
-							'id'=>$listCate->id,
-							'label'=>$listCate->{'name_'.Session::get('lang')},
+							'id'=>$catId,
+							'label'=>str_replace(',', '&#44;', $listCate->{'name_'.Session::get('lang')}),
 						);
 					}
 				}
+				
 				echo json_encode($categorie);
 				break;
 		}
