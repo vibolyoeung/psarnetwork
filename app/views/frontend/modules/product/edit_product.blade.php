@@ -10,9 +10,8 @@
 	</ol>
 	@endsection
 @section('content')
+<link href='//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' id='font-awesome-css' media='all' rel='stylesheet' type='text/css'/>
     {{HTML::style('backend/css/jquery-ui.css')}}
-    {{HTML::style('frontend/plugin/jQuery-Tags-Input-master/jquery.tagsinput.css')}}
-    {{HTML::script('frontend/plugin/jQuery-Tags-Input-master/jquery.tagsinput.min.js')}}
     {{HTML::style('frontend/plugin/dropzone/dist/dropzone.css')}}
     {{HTML::script('frontend/plugin/dropzone/dist/dropzone.js')}}
     {{HTML::script('frontend/js/product.js')}}
@@ -40,13 +39,58 @@
                       <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="productInfo">
                             <div class="col-md-12">
-                                <div class="well">
                                     <div class="form-group">
                                         <label class="col-sm-1 control-label">
                                             {{trans('product.category')}}
                                         </label>
                                         <div class="col-sm-11">
-                                        	<input id='tags_3' type='text' class='tags' style="height: 35px" name="s_category" value="{{@$category}}"/>
+                                        	<!-- <input id='tags_3' type='text' class='tags' style="height: 35px" name="s_category" value="{{@$category}}"/> -->
+                                        	<div class="row" id="category-list">
+                                        		<div class="well well-sm" style="padding:15px 0">
+                                        			@if($category)
+                                        			<div class="row">
+                                        				{{@$editCategory}}
+                                        				<input id='tags' type='hidden' class='tags' style="height: 35px;width:100%" name="s_category" value="{{@$category}}"/>
+		                                       
+		                                        	</div>
+		                                        	@else
+		                                        	<div class="row">
+		                                        		<input id='tags' type='hidden' class='tags' style="height: 35px;width:100%" name="s_category" value=""/>
+		                                        		<div class="col-lg-2 col-md-4 col-sm-6">
+		                                        			<div class="list-group" id="cat-sub-1">
+															  {{@$chooseCategory}}
+															</div>
+		                                        		</div>
+		                                        		
+		                                        		<div class="col-lg-2 col-md-4 col-sm-6">
+		                                        			<div class="list-group" id="cat-sub-2">
+															</div>
+		                                        		</div>
+		                                        		
+		                                        		<div class="col-lg-2 col-md-4 col-sm-6">
+		                                        			<div class="list-group" id="cat-sub-3">
+															</div>
+		                                        		</div>
+		                                        		
+		                                        		<div class="col-lg-2 col-md-4 col-sm-6">
+		                                        			<div class="list-group" id="cat-sub-4">
+															</div>
+														</div>
+		                                        		
+		                                        		<div class="col-lg-2 col-md-4 col-sm-6">
+		                                        			<div class="list-group" id="cat-sub-5">
+															</div>
+		                                        		</div>
+		                                        		
+		                                        		<div class="col-lg-2 col-md-4 col-sm-6">
+		                                        			<div class="list-group" id="cat-sub-6">
+															</div>
+		                                        		</div>
+	                                        		</div>
+	                                        		@endif
+	                                        		<div class="clear"></div>
+                                        		</div>
+                                        	</div>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -192,7 +236,6 @@
                                         onclick="is_active_tab('picture')" 
                                         data-toggle="tab">Next</a>
                                 </div>
-                            </div>
                             </div>
                             </div>
                         </div>
@@ -467,6 +510,7 @@
                       </div>
                     </div>
                     <script>
+                    var homePage = "{{Config::get('app.url')}}";
                     var totalImg = {{$totalImage}};
                     var limitUpload = 8;
                       $(function () {
@@ -515,14 +559,6 @@
                         		}
                         		return false;  
                         	});
-
-
-                        	$('#tags_3').tagsInput({
-                				width: 'auto',
-
-                				//autocomplete_url:'test/fake_plaintext_endpoint.html' //jquery.autocomplete (not jquery ui)
-                				autocomplete_url:'{{Config::get('app.url')}}member/byajax?page=getcategory' // jquery ui autocomplete requires a json endpoint
-                			});
 
                 			
                         	$("#multiUpload").dropzone(
@@ -590,12 +626,71 @@
     			  					'</td>'+
     			  				'</tr>';
     			  				return bodyImg;
-    					  }                        
+    					  }
+
+    					  function getsub(id,byLevel) {
+        					  var nextLevel = byLevel + 1;
+        					  $("#cat-sub-"+byLevel+" .list-group-item").removeClass('active');
+        					  $("#cat-list-" + id).addClass('active');
+        					  if(id) {
+        						  $.ajax({
+        							    url: homePage + "products/ajax?p=getprocat&id="+id + "&level=" + nextLevel,
+        							    type: "GET",
+        							    dataType: "json",
+        							    timeout: 3600,
+        							    success: function(response) {
+            							    if(response.html != '') {
+            							    	$("#cat-sub-"+byLevel+" .list-group-item").removeClass('has-sub');
+            							    	$("#cat-list-" + id).addClass('has-sub');
+                							    $("#cat-sub-" + response.level).html(response.html);
+
+                							    /*empty low level*/
+                							    if(nextLevel == 2) {
+                							    	$("#cat-sub-3").html('');
+                							    	$("#cat-sub-4").html('');
+                							    	$("#cat-sub-5").html('');
+                							    	$("#cat-sub-6").html('');
+                							    }
+                							    if(nextLevel == 3) {
+                							    	$("#cat-sub-4").html('');
+                							    	$("#cat-sub-5").html('');
+                							    	$("#cat-sub-6").html('');
+                							    }
+                							    if(nextLevel == 4) {
+                							    	$("#cat-sub-5").html('');
+                							    	$("#cat-sub-6").html('');
+                							    }
+                							    if(nextLevel == 5) {
+                							    	$("#cat-sub-6").html('');
+                							    }
+                							    
+            							    }
+
+            							    /*add to tag*/
+            							    var tagHmtl = [];
+            							    $('#category-list .active').each(function (index, element) {
+                							    var num = index + 1;
+                							    var text = $('#category-list #cat-sub-'+num+' .active').text();
+                							    var id = $('#category-list #cat-sub-'+num+' .active').attr('data-id');
+                							    tagHmtl.push(id);
+            							    });
+            							    $("#tags").val(tagHmtl);
+            							    /*End add to tag*/
+            							},
+        							    error: function(x, t, m) {
+        							        if(t==="timeout") {
+        							            alert("got timeout");
+        							        } else {
+        							            alert(t);
+        							        }
+        							    }
+        							});
+        					  }
+    					  }                     
                     </script>
                             
                         </div>
-                    </div>
-                </div>
+
 		{{Form::close()}}
 	</div>
     {{HTML::script('backend/js/jquery-ui.js')}}
@@ -622,9 +717,11 @@
   </div>
 </div>
 <style>
-	.dropzone .dz-processing.dz-complete .dz-success-mark{  opacity: 1!important;}
+  .dropzone .dz-processing.dz-complete .dz-success-mark{  opacity: 1!important;}
   #multiUpload .dz-default.dz-message {background: url({{Config::get('app.url')}}frontend/images/file-transfer-dropshare.png) center center no-repeat;height:100px}
   #multiUpload .dz-default.dz-message span{padding-top: 100px;display: block;}
+  #category-list .list-group {max-height:300px;overflow-y:auto;padding:1px}
+  #category-list .list-group .has-sub::after { content: "»";float:right}
 </style>    
 @endsection
 @section('footer')
