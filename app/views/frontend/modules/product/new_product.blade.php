@@ -259,32 +259,7 @@
 															<th></th>
 														</tr>
 													</thead>
-													<tbody>
-														<tr>
-															<td>1</td>
-															<td>
-																<div class="form-group">
-																	<input 
-																		required = 'required'
-																		type="file" 
-																		name="file[]" 
-																		class="form-control" 
-																	/>
-																</div>
-															</td>
-															<td></td>
-														</tr>
-													</tbody>
 												</table>
-												<div class="form-group">
-													<input 
-														onClick="Upload.append_multiple_upload()"
-														type="button"
-														id="add_more" 
-														class="btn btn-primary" 
-														value="{{trans('product.add_more_files')}}"
-													/>
-												</div>
 												<div class="form-group">
 													<div class="col-sm-12">
 														<a 
