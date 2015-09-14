@@ -17,7 +17,7 @@ Route::any('/{store}/analytics', 'FeStoreController@getAnalytics');
 Route::any('/analytics', 'FeStoreController@getTracking');
 
 
-Route::get('/admin', 'BeLoginController@showLogin');
+Route::get('/admin/login', 'BeLoginController@showLogin');
 Route::post('/admin/login', 'BeLoginController@doLogin');
 Route::get('/admin/send-forget-password', 'BeLoginController@sendResetPassword');
 Route::post('/admin/send-forget-password', 'BeLoginController@sendResetPassword');
