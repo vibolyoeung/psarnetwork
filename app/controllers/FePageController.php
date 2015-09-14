@@ -279,7 +279,9 @@ class FePageController extends BaseController {
 			->first();
 
     	return View::make('frontend.partials.static_page')
-    		->with('page', $pageForWebsite);
+    		->with('page', $pageForWebsite)
+    		->with('client_type',$this->mod_category->getClientType())
+			->with('pro_transfer_type',$this->mod_category->getProductTransfterType());
     }
 
     public function listProductTransfterType($transfterTypeId){

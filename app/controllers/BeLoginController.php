@@ -50,14 +50,14 @@ class BeLoginController extends BaseController {
 					}
 					return Redirect::to('admin/dashboard');
 					}else{
-						return Redirect::to('admin')->with('invalid','User name and Password are not matched!');
+						return Redirect::to('admin/login')->with('invalid','User name and Password are not matched!');
 					}
 				}else {
-					return Redirect::to('admin')->with('invalid','User name and Password are not matched!');
+					return Redirect::to('admin/login')->with('invalid','User name and Password are not matched!');
 				}
 
 			}else{
-				return Redirect::to('admin')->withInput()->withErrors($validator);
+				return Redirect::to('admin/login')->withInput()->withErrors($validator);
 			}
 		}
 	}
@@ -68,7 +68,7 @@ class BeLoginController extends BaseController {
 	 */
 	public function doLogout(){
 		Auth::logout();
-		return Redirect::to('admin');
+		return Redirect::to('admin/login');
 	}
 
 	/**

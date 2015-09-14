@@ -193,14 +193,11 @@ class MCategory extends Eloquent{
 			$query = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'));
 			$query->select('name_en','name_km', 'id');
 			if(!empty($name)) {
-				$query->where('name_en', 'like', "%$name%");
-				$query->orWhere('name_en', 'like', "%$name");
-				$query->orWhere('name_en', 'like', "$name%");
-				$query->orWhere('name_en', '=', $name);
-				$query->orWhere('name_km', 'like', "%$name%");
-				$query->orWhere('name_km', 'like', "%$name");
-				$query->orWhere('name_km', 'like', "$name%");
-				$query->orWhere('name_km', '=', $name);
+				$field = 'name_'.Session::get('lang');
+				$query->where($field, 'like', "%$name%");
+				$query->orWhere($field, 'like', "%$name");
+				$query->orWhere($field, 'like', "$name%");
+				$query->orWhere($field, '=', $name);
 			}
 			$query->orderBy('name_en','asc');
 			$result = $query->get();
@@ -301,6 +298,7 @@ class MCategory extends Eloquent{
 		}
 		return $response;
 	}
+	
 	/**
 	 *
 	 * addSaveCategory: this function using for saving new category
@@ -450,17 +448,24 @@ class MCategory extends Eloquent{
 	 * @access public
 	 */
 
-	public function getSubUserCategories($user, $parent){
+	public function getSubUserCategories($user='', $parent=0){
 		try {
-			$result = DB::table(Config::get('constants.TABLE_NAME.S_CATEGORY'))
-			->select('*')
-			->where('parent_id','=',$parent)
-			->where('is_publish','=',1)
-            ->where('user_id','=',$user)
-			->orderBy('name_en','asc')
-			->get();
+			if(!empty($user)) {
+				$query = DB::table(Config::get('constants.TABLE_NAME.S_CATEGORY'));
+				$query->select('*');
+				$query->where('is_publish','=',1);
+				$query->where('user_id','=',$user);
+			} else {
+				$query = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'));
+				$query->select('*');
+				$query->where('status','=',1);
+			}
+			$query->where('parent_id','=',$parent);
+			$query->orderBy('name_en','asc');
+			$result = $query->get();
 		}catch (\Exception $e){
 		  $result = array();
+		  ECHO 'Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine();
 			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
 		}
 		return $result;
