@@ -51,7 +51,7 @@ class FeMemberController extends BaseController {
 					if (! empty ( $checkStore->sto_url )) {
 						return Redirect::to ( 'page/' . $checkStore->sto_url );
 					} else {
-						return Redirect::to ( 'page/store-' . $checkStore->id );
+						return Redirect::to ( 'store-' . $checkStore->id );
 					}
 				}
 			} else {
@@ -1269,6 +1269,10 @@ class FeMemberController extends BaseController {
 							}
 							echo json_encode ( $urlData );
 							break;
+							
+					case 'getprocat':
+						echo $MainMenu;
+						break;
 			}
 		}
 		

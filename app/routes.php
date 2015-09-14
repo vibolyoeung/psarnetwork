@@ -185,6 +185,7 @@ Route::group(array('before' => 'auth_member'), function () {
         Route::any('/ispublished/{product_id}/{is_publish}', 'FeProductController@isPublishProduct');
         Route::any('/delete/{product_id}', 'FeProductController@deleteProduct');
         Route::any('/edit/{product_id}', 'FeProductController@editProduct');
+        Route::any('/ajax', 'FeProductController@ajax');
         Route::any('/topup/{product_id}', 'FeProductController@topUpProduct');
         }
     );

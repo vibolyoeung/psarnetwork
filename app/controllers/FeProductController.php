@@ -22,6 +22,36 @@ class FeProductController extends BaseController {
         $this->mod_page = new MPage ();
     }
 
+    
+    /*
+     * 
+     */
+    public function ajax() {
+    	$userID = Session::get ( 'currentUserId' );
+		$code = Input::get ( 'id' );
+		$getType = Input::get ( 'p' );
+		if (! empty ( $code ) && ! empty ( $getType )) {
+			switch ($getType) {
+				case 'getprocat':
+					$level = Input::get ( 'level' );
+					if (self::FREE_ACCOUNT === (int)Session::get('currentUserAccountType')) {
+						$category = $this->mod_category->getSubCategories($code);
+	        			$getListHtmlCate = $this->getListCategories($category, $level);
+					} else {
+						$category = $this->mod_category->getSubUserCategories($userID,$code);
+						$getListHtmlCate = $this->getListCategories($category,$level,null,$userID);
+					}
+        			$data = array(
+        				'level'=>$level,
+        				'html'=>$getListHtmlCate,
+        			);
+        			echo json_encode ( $data );
+					break;
+			}
+		} else {
+			echo 'data not enough';
+		}
+    }
     /**
      * List all products
      *
@@ -205,23 +235,56 @@ class FeProductController extends BaseController {
             );
         } 
 		/*get category*/
+        if (self::FREE_ACCOUNT === (int)Session::get('currentUserAccountType')) {
+        	$category = $this->mod_category->getSubCategories();
+        	$getListHtmlCate = $this->getListCategories($category);
+        } else {
+        	$category = $this->mod_category->getSubUserCategories($userID);
+        	$getListHtmlCate = $this->getListCategories($category,1,null,$userID);
+        }
+        
+        
+        
         $categoryName = '';
         $getRelateCate = DB::table(Config::get('constants.TABLE_NAME.PRODUCT_IN_CATEGORY'))
         ->where(array('product_id'=>$product_id, 'user_id'=>$userID))
         ->get();
         if(!empty($getRelateCate)) {
         	$categoryNameArr = array();
+        	$categoryParentArr = array();
+        	$categoryidArr = array();
         	foreach ($getRelateCate as $cateId) {
-        		$mCate = $this->mod_category->getCategoryById($cateId->category_id);
-        		if(!empty($mCate)) {
-        			$field = 'name_'.Session::get('lang');
-        			$categoryNameArr[] = $mCate->data->{$field};
+        		if (self::FREE_ACCOUNT === (int)Session::get('currentUserAccountType')) {
+        			$mCate = $this->mod_category->getCategoryById($cateId->category_id);
+        			if(!empty($mCate)) {
+        				$field = 'name_'.Session::get('lang');
+        				$categoryNameArr[] = $mCate->data->{$field};
+        				$categoryParentArr[] = $mCate->data->parent_id;
+        				$categoryidArr[] = $mCate->data->id;
+        			}
+        		} else {
+        			$mCate = $this->mod_category->getUserCategoryById($cateId->category_id, $userID);
+        			if(!empty($mCate->data)) {
+        				$field = 'name_'.Session::get('lang');
+        				$categoryNameArr[] = $mCate->data->{$field};
+        				$categoryParentArr[] = $mCate->data->parent_id;
+        				$categoryidArr[] = $mCate->data->m_cat_id;
+        			}
         		}
+        		
         	}
         	if(!empty($categoryNameArr)) {
         		$categoryName = implode(',',$categoryNameArr);
         	}
         }
+        $editCurrentCat = null;
+        $categoryID = null;
+        if(!empty($categoryParentArr)) {
+        	$editCurrentCat = $this->getCurrentLabel($categoryParentArr,$categoryidArr);
+        	
+        	$categoryID = implode(',',$categoryidArr);
+        }
+        
 		/*end get category*/
         //$getCurrentCat = $this->mod_category
         $productTransferTypes = $this->mod_product->findAllTransferType();
@@ -229,7 +292,9 @@ class FeProductController extends BaseController {
         return View::make('frontend.modules.product.edit_product')
             ->with('proTransferType', $productTransferTypes->data)
             ->with('productCondition', $productCondictions->data)
-            ->with('category', $categoryName)
+            ->with('chooseCategory', $getListHtmlCate)
+            ->with('editCategory', $editCurrentCat)
+            ->with('category', $categoryID)
             ->with('product', $product)
             ->with('dataStore', $getUserStore);
     }
@@ -247,6 +312,71 @@ class FeProductController extends BaseController {
         return Redirect::to('products/list');
     }
 
+    /*create current label for view*/
+    public function getCurrentLabel($labelArr, $categoryidArr) {
+    	$i=0;
+    	$cutList ='';
+    	$col = 6;
+    	$totalCol = count($labelArr);
+    	$nextCol = $col - $totalCol;
+    	foreach ($labelArr as $columCate) {
+    		$i++;
+    		$cutList .= $this->getCurrentLabelColumb($columCate, $i, $categoryidArr);
+    	}
+    	if($nextCol) {
+	    	for ($x = 0; $x <= $nextCol -1; $x++) {
+	    		$cutList .= $this->getCurrentLabelColumb(null, $x + $totalCol+1, $categoryidArr);
+	    	}
+    	}
+    	return $cutList;
+    }
+    
+    /*create referrent current label for view*/
+    public function getCurrentLabelColumb($columCate, $i,$labelArr) {
+    	$userID = Session::get('currentUserId');
+    	$list = '<div class="col-lg-2 col-md-4 col-sm-6">';
+    	$list .= '<div class="list-group" id="cat-sub-'.$i.'">';
+    	if (self::FREE_ACCOUNT === (int)Session::get('currentUserAccountType')) {
+    		$category = $this->mod_category->getSubCategories($columCate);
+    		$list .= $this->getListCategories($category, $i, $labelArr);
+    	} else {
+    		$category = $this->mod_category->getSubUserCategories($userID, $columCate);
+    		$list .= $this->getListCategories($category, $i, $labelArr, $userID);
+    	}
+    	$list .= '</div>';
+    	$list .= '</div>';
+    	return $list;
+    }
+    
+    public function getListCategories ($catArr,$level=1, $columCate=array(),$user='') {
+    	$label = '';
+    	if(!empty($catArr)) {
+    		$field = 'name_'.Session::get('lang');
+    		$end =  @end($columCate);
+    		foreach ($catArr as $labels) {
+    			if(!empty($user)) {
+    				$byID = $labels->m_cat_id;
+    			} else {
+    				$byID = $labels->id;
+    			}
+
+    			$hasSub = '';
+    			$checkedcat = '';
+    			if(!empty($columCate)) {
+	    			if(in_array($byID,$columCate)) {
+	    				if($end != $byID) {
+		    				$hasSub = ' has-sub';
+	    				}
+		    			$checkedcat = ' active';
+	    			}
+    			}
+    			$label .= '<a onClick="getsub(' . $byID . ','.$level.');" href="javascript:;" data-id="' . $byID . '" id="cat-list-' . $byID . '" class="list-group-item'.$checkedcat.$hasSub.'">' . $labels->{$field} . '</a>';
+    		}
+    	}
+    	return $label;
+    }
+    
+    
     /**
      * Delete a product by product id
      *
@@ -399,48 +529,66 @@ class FeProductController extends BaseController {
     	if (!empty($param)) {
     		$label = explode(',',$param);
     		if(!empty($label)) {
+    			$delWhere = array(
+    					'product_id' => $pro_id,
+    					'user_id' => $userID
+    			);
+    			DB::table(Config::get('constants.TABLE_NAME.PRODUCT_IN_CATEGORY'))->where($delWhere)->delete();
     			foreach ($label as $cate) {
-    				$name = trim(str_replace('&#44;', ',', $cate));
-    				if (self::FREE_ACCOUNT === (int)Session::get('currentUserAccountType')) {
-    					$userCatId = $this->mod_category->findMainCategoryBy($cate);
-    					if(!empty($userCatId->data->id)) {
-    						$mainCateID = $userCatId->data->id;
-    					}
-    				} else {
-    					$userCatId = $this->mod_category->getCategoryByName($cate,$userID);
-    					if(!empty($userCatId->data->m_cat_id)) {
-    						$mainCateID = $userCatId->data->m_cat_id;
-    					}
-    				}
-    				
-    				if(!empty($mainCateID)) {
-    					$mCate = $this->mod_category->getCategoryById($mainCateID);
-    					if(!empty($mCate)) {
-    						$cId[] = $mCate->data->id;
-    					}
-    				}
+    				$data = array(
+    						'category_id' => $cate,
+    						'product_id' => $pro_id,
+    						'user_id' => $userID
+    				);
+    				$this->mod_category->addProductCategory($data);
     			}
     		}
     	}
-    	$allCateArr = array_unique($cId);
-    	/*add this cate to repated product*/
-    	if(!empty($allCateArr)) {
-    		$delWhere = array(
-    			'product_id' => $pro_id,
-    			'user_id' => $userID
-    		);
-    		DB::table(Config::get('constants.TABLE_NAME.PRODUCT_IN_CATEGORY'))->where($delWhere)->delete();
-    		foreach ($allCateArr as $unigeCate) {
-    			$data = array(
-    				'category_id' => $unigeCate,
-    				'product_id' => $pro_id,
-    				'user_id' => $userID
-    			);
-    			$this->mod_category->addProductCategory($data);
-    		}
-    	}
-    	/*end add this cate to repated product*/
-    	return $allCateArr;
+    		
+    		
+//     		if(!empty($label)) {
+//     			foreach ($label as $cate) {
+//     				$name = trim(str_replace('&#44;', ',', $cate));
+//     				if (self::FREE_ACCOUNT === (int)Session::get('currentUserAccountType')) {
+//     					$userCatId = $this->mod_category->findMainCategoryBy($cate);
+//     					if(!empty($userCatId->data->id)) {
+//     						$mainCateID = $userCatId->data->id;
+//     					}
+//     				} else {
+//     					$userCatId = $this->mod_category->getCategoryByName($cate,$userID);
+//     					if(!empty($userCatId->data->m_cat_id)) {
+//     						$mainCateID = $userCatId->data->m_cat_id;
+//     					}
+//     				}
+    				
+//     				if(!empty($mainCateID)) {
+//     					$mCate = $this->mod_category->getCategoryById($mainCateID);
+//     					if(!empty($mCate)) {
+//     						$cId[] = $mCate->data->id;
+//     					}
+//     				}
+//     			}
+//     		}
+//     	}
+//     	$allCateArr = array_unique($cId);
+//     	/*add this cate to repated product*/
+//     	if(!empty($allCateArr)) {
+//     		$delWhere = array(
+//     			'product_id' => $pro_id,
+//     			'user_id' => $userID
+//     		);
+//     		DB::table(Config::get('constants.TABLE_NAME.PRODUCT_IN_CATEGORY'))->where($delWhere)->delete();
+//     		foreach ($allCateArr as $unigeCate) {
+//     			$data = array(
+//     				'category_id' => $unigeCate,
+//     				'product_id' => $pro_id,
+//     				'user_id' => $userID
+//     			);
+//     			$this->mod_category->addProductCategory($data);
+//     		}
+//     	}
+//     	/*end add this cate to repated product*/
+    	//return $allCateArr;
     }
     /**
      * Generation folder when uploading file doesnot exist
