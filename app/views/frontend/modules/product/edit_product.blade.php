@@ -21,25 +21,29 @@
                     <div role="tabpanel">
                         <!-- Nav tabs -->
                          <ul class="nav nav-tabs pro-tab" role="tablist">
-                            <li role="presentation gettab" class="active productInfo">
+                         	<li role="productTag gettab" class="active presentation">
+                                <a href="#productTag" aria-controls="productTag" role="tab" data-toggle="tab">{{trans('product.category')}}</a>
+                            </li>
+                            <li role="productInfo gettab" class="productInfo product-info">
                                 <a href="#productInfo" aria-controls="productInfo" role="tab" data-toggle="tab">Product Info</a>
                             </li>
                             <li class="picture gettab pictures" role="presentation">
                                 <a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab">Picture</a>
                             </li>
-                            <li class="quotation gettab quotation" role="presentation">
+                            <li class="quotation gettab" role="presentation">
                                 <a href="#quotation" aria-controls="quotation" role="tab" data-toggle="tab">Quotation</a>
                             </li>
-                            <li class="contactInfo gettab contactInfo" role="presentation">
+                            <li class="contactInfo gettab" role="presentation">
                                 <a href="#contactInfo" aria-controls="contactInfo" role="tab" data-toggle="tab">Contact Info</a>
                             </li>
                          </ul>
 
                       <!-- Tab panes -->
                       <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="productInfo">
-                            <div class="col-md-12">
-                                    <div class="form-group">
+                      	<div role="tabpanel" class="tab-pane active" id="productTag">
+                      		<div class="col-md-12">
+                      		@if(empty($chooseCategory))
+                      			<div class="form-group">
                                         <label class="col-sm-1 control-label">
                                             {{trans('product.category')}}
                                         </label>
@@ -58,7 +62,8 @@
 		                                        		<input id='tags' type='hidden' class='tags' style="height: 35px;width:100%" name="s_category" value=""/>
 		                                        		<div class="col-lg-2 col-md-4 col-sm-6">
 		                                        			<div class="list-group" id="cat-sub-1">
-															  {{@$chooseCategory}}
+															  {{@$chooseCategory}} 
+															  
 															</div>
 		                                        		</div>
 		                                        		
@@ -92,7 +97,43 @@
                                         		</div>
                                         	</div>
                                         </div>
+                                        
+                                        <div class="clear"></div>
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+										  <strong>Warning!</strong> Cateory require!, please {{ HTML::link('member/userinfo/content', 'add categories')}} first!
+										</div>
+										@endif
                                     </div>
+                                    
+                                    
+                             <div class="form-group">
+                                <div class="col-sm-12">
+                                    {{ 
+                                        Form::submit(
+                                            trans('product.save_product_ads'), 
+                                            array(
+                                                'class' => 'btn btn-primary pull-right', 
+                                                'name'=>'btnAddProduct'
+                                            )
+                                        )
+                                    }}
+                                    <a
+                                        style="margin-right: 10px;" 
+                                        class="btn btn-primary pull-right" 
+                                        href="#productInfo" 
+                                        aria-controls="productInfo" 
+                                        role="tab" 
+                                        onclick="is_active_tab('product-info')" 
+                                        data-toggle="tab">Next</a>
+                                </div>
+                            </div>
+                      		</div>
+                      	</div>
+                      	<!-- end category -->
+                      	
+                        <div role="tabpanel" class="tab-pane" id="productInfo">
+                            <div class="col-md-12">
+                                    
                                     <div class="form-group">
                                 <label class="col-sm-1 control-label">
                                     {{trans('product.product_title')}}
@@ -586,7 +627,7 @@
 
                         function is_active_tab (id) {
     					  	$('.pro-tab li').removeClass('active');
-    					  	$('.' + id).addClass('active');
+    					  	$("." + id).addClass('active');
     					  }
 
     					  function imgReult(file) {
