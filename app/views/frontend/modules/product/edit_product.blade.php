@@ -42,7 +42,7 @@
                       <div class="tab-content">
                       	<div role="tabpanel" class="tab-pane active" id="productTag">
                       		<div class="col-md-12">
-                      		@if(empty($chooseCategory))
+                      		
                       			<div class="form-group">
                                         <label class="col-sm-1 control-label">
                                             {{trans('product.category')}}
@@ -97,8 +97,8 @@
                                         		</div>
                                         	</div>
                                         </div>
-                                        
                                         <div class="clear"></div>
+                                        @if(empty($chooseCategory))
                                         <div class="alert alert-danger alert-dismissible" role="alert">
 										  <strong>Warning!</strong> Cateory require!, please {{ HTML::link('member/userinfo/content', 'add categories')}} first!
 										</div>
