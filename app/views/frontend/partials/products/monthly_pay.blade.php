@@ -9,12 +9,6 @@
 	<ul class="nav nav-tabs">
 		<li><strong>Monthly Pay Products</strong> &nbsp;&nbsp;&nbsp; &frasl;</li>
 		<li>Products : <span class="number-display">25</span></li>
-		<li>Stores :<span class="number-display">25</span></li>
-		<li>Market :<span class="number-display">25</span></li>
-		<li>Companies :<span class="number-display">25</span></li>
-		<li>Home Shop :<span class="number-display">25</span></li>
-		<li>Individual : <span class="number-display">25</span></li>
-		<li>View :<span class="number-display">25</span></li>
 	</ul>
 	<div id="second-hand-item-carousel" class="carousel slide"
 		data-ride="carousel">
@@ -38,7 +32,7 @@
 								</a>
 								<h2>$ {{$monthlyProduct->price}}</h2>
 								<p><?php echo substr($monthlyProduct->title,0,20)?></p>
-								<a data-toggle="modal" data-target="#myModal"
+								<a href="" data-toggle="modal" data-target="#myModal"
 									onclick="popupDetails.add_popup_detail(<?php echo $monthlyProduct->id;?>)">View
 									Details</a>
 							</div>

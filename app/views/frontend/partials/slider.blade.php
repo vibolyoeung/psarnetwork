@@ -7,25 +7,35 @@
 					<!-- Carousel items -->
 					<div class="carousel-inner">
 						<?php
-						$thumbnail_id = 0;
-						?>
-						@foreach($slideshows as $slideshow)
-						<div class="item <?php echo $thumbnail_id == 0?'active':'';?>"
-							data-slide-number="<?= $thumbnail_id; ?>">
-							<a  href='{{$slideshow->link_url}}' target="_blank">
-								<img
-								src="{{Config::get('app.url')}}/upload/advertisement/{{$slideshow->image;}}" class="img-responsive img-thumbnail" alt="image" />
-							</a>
-						</div>
+						if(count($slideshows)){
+							$thumbnail_id = 0;
+							?>
+							@foreach($slideshows as $slideshow)
+							<div class="item <?php echo $thumbnail_id == 0?'active':'';?>"
+								data-slide-number="<?= $thumbnail_id; ?>">
+								<a  href='{{$slideshow->link_url}}' target="_blank">
+									<img
+									src="{{Config::get('app.url')}}/upload/advertisement/{{$slideshow->image;}}" class="img-responsive img-thumbnail" alt="image" />
+								</a>
+							</div>
 							<?php $thumbnail_id++; ?>
-						@endforeach                               
+							@endforeach
+						<?php
+						}else{
+							?>
+							<img src="{{Config::get('app.url')}}upload/no-image.jpg" class="img-responsive img-thumbnail" alt="image" />
+						<?php
+						}
+						?>                              
 					</div>
-					<a class="left carousel-control" href="#slider-home" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>                                       
-                    </a>
-                    <a class="right carousel-control" href="#slider-home" role="button" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>                                       
-                    </a>   
+					@if(count($slideshows)>0)
+						<a class="left carousel-control" href="#slider-home" role="button" data-slide="prev">
+	                    <span class="glyphicon glyphicon-chevron-left"></span>                                       
+	                    </a>
+	                    <a class="right carousel-control" href="#slider-home" role="button" data-slide="next">
+	                        <span class="glyphicon glyphicon-chevron-right"></span>                                       
+	                    </a>   
+					@endif
 					<!-- Carousel nav -->
 				</div>
 			</div>

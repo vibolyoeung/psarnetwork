@@ -423,7 +423,11 @@ class Product extends Eloquent {
 	 */
 	public static function findNewProducts() {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
-		return DB::table ( $product . ' AS p' )->select ( '*' )->where ( 'p.pro_condition_id', '=', self::NEW_PRODUCT )->where ( 'p.is_publish', '=', self::IS_PUBLISH )->orderBy ( 'p.id', 'DESC' )->get ();
+		return DB::table ( $product . ' AS p' )->select ( '*' )
+		->where ( 'p.pro_condition_id', '=', self::NEW_PRODUCT )
+		->where ( 'p.is_publish', '=', self::IS_PUBLISH )
+		->where('p.publish_date','>=',date('Y-m-d'))
+		->orderBy ( 'p.id', 'DESC' )->get ();
 	}
 	
 	/**
@@ -539,7 +543,10 @@ class Product extends Eloquent {
 	 */
 	public static function findRelatedPostProduct($category_id) {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
-		return DB::table ( $product )->where ( 's_category_id', '=', $category_id )->take ( 8 )->get ();
+		return DB::table ( $product )
+		->where ( 's_category_id', '=', $category_id )
+		->where('publish_date','<=',date('Y-m-d'))
+		->take ( 8 )->get ();
 	}
 	
 	/**
@@ -551,7 +558,10 @@ class Product extends Eloquent {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		$user = Config::get ( 'constants.TABLE_NAME.USER' );
 		
-		return DB::table ( $product . ' AS p' )->select ( 'p.*' )->join ( 'user AS u', 'p.user_id', '=', 'u.id' )->where ( 'u.account_type', '=', self::PREMINUM )->orderBy ( 'p.id', 'DESC' )->take ( 12 )->get ();
+		return DB::table ( $product . ' AS p' )->select ( 'p.*' )->join ( 'user AS u', 'p.user_id', '=', 'u.id' )
+		->where ( 'u.account_type', '=', self::PREMINUM )
+		->where( 'p.publish_date','<=',date('Y-m-d'))
+		->orderBy ( 'p.id', 'DESC' )->take ( 12 )->get ();
 	}
 	
 	/**
@@ -563,9 +573,14 @@ class Product extends Eloquent {
 	 * @access public
 	 */
 	public function findPostProductByCategory($category_id) {
-		//var_dump($category_id);die;
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
-		return DB::table ( $product )->whereIn( 's_category_id', $category_id )->get ();
+		$product_in_category = Config::get ( 'constants.TABLE_NAME.PRODUCT_IN_CATEGORY' );
+		
+		return DB::table ( $product . ' AS p' )->select ( '*' )->join ($product_in_category.' AS pro', 'pro.product_id', '=', 'p.id' )
+		->whereIn( 'pro.category_id',$category_id)
+		->where( 'p.publish_date','>=',date('Y-m-d'))
+		->groupby('pro.product_id')
+		->orderBy ( 'p.id', 'DESC' )->get ();
 	}
 	
 	/**
@@ -829,14 +844,17 @@ class Product extends Eloquent {
 	}
 
 	public static function findCountViewOfUserClick($product_id) {
-
-		$oldViewCount = DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ))
+		try{
+			$oldViewCount = DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ))
 			->select('view')
 			->where('id', $product_id)
 			->first ();
 		$totalView = $oldViewCount->view;
-
-		return $totalView;
+		}catch (\Exception $e){
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+		//return $totalView;
 	}
 
 	public function findProductByTransfterType($id){

@@ -29,7 +29,13 @@
 				</div>
 			</div>
 			<div class="col-lg-3 store-name" style="padding:10px 10px 10px 10px;">
-				<img src="{{Config::get('app.url')}}upload/store/{{$detailProduct->image}}" title="" alt="" />
+				<?php
+					if($detailProduct->image){
+						echo '<img src="'.Config::get('app.url').'upload/store/'.$detailProduct->image.'" />';	
+					}else{
+						echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=90&amp;" />';
+					}
+				?>
 				<div class="col-lg-10 pull-right" style="margin-top:8px;"><b>{{$detailProduct->{'title_'.Session::get('lang')};}}</b></div>
 			</div>
 		</div>
@@ -49,8 +55,8 @@
 				</span>
 				<span class="pull-right store-link">
 					Visit Store:
-						<a href="{{Config::get('app.url')}}page/store-{{$detailProduct->store_id;}}" style="font-weight:bold;" target="_blank">
-							{{Config::get('app.url')}}page/store-{{$detailProduct->store_id;}}
+						<a href="{{Config::get('app.url')}}store-{{$detailProduct->store_id;}}" style="font-weight:bold;" target="_blank">
+							{{Config::get('app.url')}}store-{{$detailProduct->store_id;}}
 						</a>
 				</span>
 			</div>
@@ -72,8 +78,13 @@
 										<div class="item"
 											data-slide-number="<?= $thumbnail_id; ?>">
 											<a class="slideshow-group" href="{{Config::get('app.url')}}upload/product/{{$image['pic']}}">
-												<img
-													src="{{Config::get('app.url')}}upload/product/picslideshow/{{$image['pic']}}">
+												<?php
+													if($image['pic']){
+														echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=250&amp;w=550" />';	
+													}else{
+														echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=90&amp;w=" />';
+													}
+												?>
 											</a>
 										</div>
 											<?php $thumbnail_id++; ?>
@@ -95,9 +106,14 @@
 												@foreach($images as $image)
 													<li class="col-sm-3">
 														<a 
-														   id="popup-carousel-selector-<?= $thumbnails_id;?>"> <img
-													       src="{{Config::get('app.url')}}upload/product/thumbslideshow/{{$image['pic']}}">
-														</a>
+														   id="popup-carousel-selector-<?= $thumbnails_id;?>"> 
+														   	<?php
+																if($image['pic']){
+																	echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=55&amp;w=90" />';	
+																}else{
+																	echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=55&amp;w=90" />';
+																}
+															?>
 													</li>
 													<?php $thumbnails_id++; ?>
 												@endforeach
@@ -123,8 +139,8 @@
 									<div>Post by :&nbsp;<span class="pro-condition">{{$detailProduct->name}}</span></div>
 									<div class="clear"></div>
 									<div class="col-lg-12 text-centered" style="background-color:#eea236;padding:5px 10px;text-align:center;">
-										<a href="{{Config::get('app.url')}}page/store-{{$detailProduct->store_id;}}" style="color:white;font-weight:bold;" target="_blank">
-										{{Config::get('app.url')}}page/store-{{$detailProduct->store_id;}}
+										<a href="{{Config::get('app.url')}}store-{{$detailProduct->store_id;}}" style="color:white;font-weight:bold;" target="_blank">
+										{{Config::get('app.url')}}store-{{$detailProduct->store_id;}}
 										</a>
 									</div>
 								</div>
@@ -154,14 +170,17 @@
 				    </div>
 					<div class="tab-pane fade" id="picture_summary">
 						@foreach($images as $image)
-							<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+							<div class="col-lg-12">
 								<div class="product-image-wrapper">
 									<div class="single-products">
-										<div class="productinfo">
-											<img 
-												class="img-thumbnail img-responsive"
-												src="{{Config::get('app.url')}}upload/product/{{$image['pic']}}"
-											>
+										<div class="productinfo center-image">
+											<?php
+												if($image['pic']){
+													echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=250&amp;w=450" />';	
+												}else{
+													echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=250&amp;w=450" />';
+												}
+											?>
 										</div>
 									</div>
 								</div>

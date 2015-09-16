@@ -6,15 +6,9 @@
 	<div class="category-tab feature-ad lastest-post">
 		<div class="col-lg-12 popular_product" style="padding: 0;">
 			<ul class="nav nav-tabs">
-				<li><strong>Feature & Popular Products</strong> &nbsp;&nbsp;&nbsp;
+				<li>Feature & Popular Products&nbsp;&nbsp;&nbsp;
 					&frasl;</li>
 				<li>Products : <span class="number-display">25</span></li>
-				<li>Stores :<span class="number-display">25</span></li>
-				<li>Market :<span class="number-display">25</span></li>
-				<li>Companies :<span class="number-display">25</span></li>
-				<li>Home Shop :<span class="number-display">25</span></li>
-				<li>Individual : <span class="number-display">25</span></li>
-				<li>View :<span class="number-display">25</span></li>
 			</ul>
 		</div>
 		<div class="row list-store">
@@ -24,7 +18,7 @@
 					<div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo">
-								<a href="{{Config::get('app.url')}}page/store-{{$latestStore->id}}" target="_blank">
+								<a href="{{Config::get('app.url')}}store-{{$latestStore->id}}" target="_blank">
 								<?php
 									$storeImg = Config::get('app.url').'frontend/images/default_store.jpg';
 									$image = Config::get('app.url').'upload/store/' . $latestStore->image;
