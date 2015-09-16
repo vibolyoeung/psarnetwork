@@ -49,7 +49,7 @@ class FeMemberController extends BaseController {
 					
 					$checkStore = $this->mod_store->getUserStore ( $result->id );
 					if (! empty ( $checkStore->sto_url )) {
-						return Redirect::to ( 'page/' . $checkStore->sto_url );
+						return Redirect::to ( $checkStore->sto_url );
 					} else {
 						return Redirect::to ( 'store-' . $checkStore->id );
 					}

@@ -1,11 +1,21 @@
     <?php
+    $getStoreUrlID = Request::segment ( 1 );
+    if (preg_match("/store-/i", $getStoreUrlID)) {
+    	$getStoreUrlID = 1;
+    }
     if(!empty($dataStore->sto_url)) {
     	$userHome = @Config::get('app.url').$dataStore->sto_url;
     } else {
     	$userHome = @Config::get('app.url').'store-'.$dataStore->id;
     }
     ?>
-
+	@if(!empty($dataStore->sto_url))
+	@if($getStoreUrlID==1)
+	<script>
+		window.location = '{{@Config::get('app.url').$dataStore->sto_url}}';
+	</script>
+	@endif
+	@endif
 	@include('frontend.modules.store.partials.header')
 	@include('frontend.modules.store.partials.menu')
 
