@@ -593,6 +593,33 @@ class MCategory extends Eloquent{
 	}
 
 	/**
+	 *
+	 * getMainCategories : is a function for getting Main categories to display front page
+	 * @param
+	 * @return true : if it main categories is selected sucessfully
+	 * @access public
+	 * @author kimhim
+	 */	
+	public function getRelatedCategoriesProduct($pro_id = 0, $user_id=null){
+		$response = new stdClass();
+		try {
+			$query = DB::table(Config::get('constants.TABLE_NAME.PRODUCT_IN_CATEGORY'));
+			$query->select('*');
+			$query->where('product_id','=',$pro_id);
+			if($user_id) {
+				$query->where('user_id','=',$user_id);
+			}
+			$response = $query->get();
+		}catch (\Exception $e){
+			$response = array();
+			$response->errorMsg = $e->getMessage();
+		}
+	
+		return $response;
+	}
+	
+	
+	/**
 	* getMainCategoriesForDetail is function for getting menu in detail page of khmerabba
 	*
 	*/

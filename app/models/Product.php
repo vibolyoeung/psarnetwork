@@ -473,7 +473,7 @@ class Product extends Eloquent {
 	 * @return product detail
 	 * @access public
 	 */
-	public function findProductDetailById($product_id) {
+	public function findProductDetailById($product_id, $store_id=null) {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		$productCondition = Config::get ( 'constants.TABLE_NAME.PRODUCT_CONDITION' );
 		$productTransferType = Config::get('constants.TABLE_NAME.PRODUCT_TRANSFER_TYPE');
@@ -481,7 +481,7 @@ class Product extends Eloquent {
 		$clientType = Config::get ( 'constants.TABLE_NAME.CLIENT_TYPE' );
 		$store = Config::get ( 'constants.TABLE_NAME.STORE' );
 		$user = Config::get ( 'constants.TABLE_NAME.USER' );
-		return DB::table ( $product . ' AS p ' )->select (
+		$query = DB::table ( $product . ' AS p ' )->select (
 			'p.title',
 			'p.id',
 			'st.title_en',
@@ -508,7 +508,8 @@ class Product extends Eloquent {
 			'cType.name_en as client_type_name_en',
 			'cType.name_km as client_type_name_km'
 
-		)->join (
+		);
+		$query->join (
 			$store . ' AS st', 
 			'st.id', '=', 'p.store_id'
 		)->join (
@@ -526,7 +527,12 @@ class Product extends Eloquent {
 		)->join (
 			$clientType . ' AS cType',
 			'u.client_type', '=', 'cType.id'
-		)->where ( 'p.id', '=', $product_id )->first ();
+		);
+		$query->where ( 'p.id', '=', $product_id );
+		if(!empty($store_id)) {
+			$query->where ( 'st.id', '=', $store_id );
+		}
+		return $query->first ();
 	}
 
 	public static function getProductStatus($status) {
