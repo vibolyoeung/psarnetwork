@@ -21,8 +21,9 @@
 								@foreach($images as $image)
 								<div class="item<?php echo $thumbnail_id == 1?' active':'';?>"
 									data-slide-number="<?php echo $thumbnail_id; ?>">
-									<img
-										src="{{Config::get('app.url')}}upload/product/picslideshow/{{$image['pic']}}">
+									<?php 
+										echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=250&amp;w=550" />';
+									?>
 								</div>
 									<?php $thumbnail_id++; ?>
 								@endforeach 
@@ -41,8 +42,9 @@
 										@foreach($images as $image)
 											<li class="col-sm-3"><a 
 											id="carousel-selector-<?php echo $thumbnails_id; ?>">
-											<img
-												src="{{Config::get('app.url')}}upload/product/thumbslideshow/{{$image['pic']}}">
+											<?php 
+												echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=55&amp;w=90" />';
+											?>
 										</a></li>
 											<?php $thumbnails_id++; ?>
 										@endforeach
@@ -59,7 +61,7 @@
                         <strong>Condition :&nbsp;<span class="pro-condition">{{ $productDetail->name }}</span></strong><br />
                         <strong>Post Date :&nbsp;<span class="pro-condition"><?php echo date("d/M/Y",strtotime($productDetail->created_date)); ?> </span></strong>
 					    <div class="clear"></div> <div class="clear"></div>
-                        <div class="col-lg-12 text-centered" style="background-color:#eea236;padding:5px 0;text-align:center;"><a href="{{Config::get('app.url')}}page/store-{{$productDetail->store_id;}}" style="color:white;font-weight:bold;" target="_blank">{{Config::get('app.url')}}page/store-{{$productDetail->store_id;}}</a></div>
+                        <div class="col-lg-12 text-centered" style="background-color:#eea236;padding:5px 0;text-align:center;"><a href="{{Config::get('app.url')}}store-{{$productDetail->store_id;}}" style="color:white;font-weight:bold;" target="_blank">{{Config::get('app.url')}}store-{{$productDetail->store_id;}}</a></div>
                         <div class="clear"></div>
                         <div class="col-lg-12 text-centered" style="background-color:#eea236;padding:5px 10px;font-weight:bold;text-align:center;">
                                 <a href="{{Config::get('app.url')}}product/details/{{$productDetail->id}}">See : Page Detail</a></div>

@@ -167,11 +167,33 @@ class FeStoreController extends BaseController {
 		$getWidget = $this->mod_page->getUserPages ( null, $widgetWhereArr );
 		
 		$dataUserPage = $this->mod_category->menuUserPage ( $dataStore->user_id, 2, $getUserUrl );
-		$dataDetailProduct = $this->mod_product->productDetailByOwnStore ( $product_id, $dataStore->user_id );
+		$dataDetailProduct = $this->mod_product->findProductDetailById ( $product_id, $dataStore->id );
+		$this->mod_product->countViewOfUserClickProduct ( $product_id);
 		/*get counter visitor*/
 		$this->getTracking($dataStore->id);
 		/*end get counter visitor*/
-		return View::make ( 'frontend.modules.store.detail' )->with ( 'dataStore', $dataStore )->with ( 'dataUserPage', $dataUserPage )->with ( 'dataCategory', $dataCategory )->with ( 'toolView', $getToolPage->result )->with ( 'widtget', $getWidget->result )->with ( 'dataProductDetail', $dataDetailProduct );
+		
+		
+		/*related product*/
+		$relatedProductCategory = $this->mod_category->getRelatedCategoriesProduct($dataDetailProduct->id, $dataStore->user_id);
+		$cateArr = array();
+		if(!empty($relatedProductCategory)) {
+			foreach ($relatedProductCategory as $valueCate) {
+				$cateArr[] = $valueCate->category_id;
+			}
+		}
+
+		$relatedProduct = $this->mod_product->findProductByCategory ( $dataStore->id, $cateArr );
+
+		/*end related product*/
+		return View::make ( 'frontend.modules.store.detail' )
+		->with ( 'dataStore', $dataStore )
+		->with ( 'dataUserPage', $dataUserPage )
+		->with ( 'dataCategory', $dataCategory )
+		->with ( 'toolView', $getToolPage->result )
+		->with ( 'widtget', $getWidget->result )
+		->with ( 'dataProductDetail', $dataDetailProduct )
+		->with ( 'relatedProduct', $relatedProduct );
 	}
 	
 	

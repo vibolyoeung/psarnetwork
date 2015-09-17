@@ -74,9 +74,6 @@ function rm($article, $char) {
 									href="{{$userHome}}/my/detail/{{$product->id}}">View
 									Details</a>
 							</div>
-							<img
-								src="{{Config::get('app.url')}}/frontend/images/home/sale.png"
-								class="new" alt="" />
 						</div>
 					</div>
 				</div>

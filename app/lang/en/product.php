@@ -20,11 +20,16 @@ return array(
 	'hp' => 'HP',
 	'location' => 'Location',
 	'search' => 'Search',
-	'search_here' => 'Search here',
+	'search_here' => 'What are you looking for...',
 	'save_product_ads' => 'Save Product Ads',
 	'point_to_view' => 'Point to View',
 	'date_post' => 'Post Date',
     
     /*user product*/
     'user_product_not_found' => 'Not found',
+
+    /*======Client Location====*/
+    'summary_in_each_location' => 'Summary in each Location',
+    'summary_in_seller_type' => 'Summary in Seller Type',
+    'summary_in_business_site' => 'Summary in Business Site'
 );

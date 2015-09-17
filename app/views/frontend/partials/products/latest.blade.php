@@ -9,12 +9,6 @@ if(count($latestProducts) > 0){
 				<ul class="nav nav-tabs">
 					<li><strong>The latest products</strong> &nbsp;&nbsp;&nbsp; &frasl;</li>
 					<li>Products : <span class="number-display">25</span></li>
-					<li>Stores :<span class="number-display">25</span></li>
-					<li>Market :<span class="number-display">25</span></li>
-					<li>Companies :<span class="number-display">25</span></li>
-					<li>Home Shop :<span class="number-display">25</span></li>
-					<li>Individual : <span class="number-display">25</span></li>
-					<li>View :<span class="number-display">25</span></li>
 				</ul>
 			</div>
 		</div>
@@ -22,17 +16,18 @@ if(count($latestProducts) > 0){
 	<div class="row">
 		<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 		@foreach($latestProducts as $latestProduct)
-		<?php 
-		if(strtotime($latestProduct->publish_date) >= strtotime("d/m/Y")){
-		?>
 		<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
 						<a href="#" data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail(<?php echo $latestProduct->id; ?>)">
-							<img
-							src="{{Config::get('app.url')}}upload/product/thumb/{{$latestProduct->thumbnail}}"
-							alt="" />
+							<?php 
+							if($latestProduct->thumbnail){
+								echo '<img src="image/phpthumb/'.$latestProduct->thumbnail.'?p=product&amp;h=150&amp;w=150" />';
+							}else{
+								echo '<img src="image/phpthumb/No_image_available.jpg?p=product&amp;h=150&amp;w=150" />';
+							}
+							?>
 						</a>
 						<h2>$ {{$latestProduct->price}}</h2>
 						<a href="{{Config::get('app.url')}}product/details/{{$latestProduct->id}}">
@@ -42,7 +37,6 @@ if(count($latestProducts) > 0){
 				</div>
 			</div>
 		</div>
-		<?php } ?>
 		@endforeach
 	</div>
 	<div class="col-lg-12 center-advertise">

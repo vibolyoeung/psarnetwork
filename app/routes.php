@@ -15,9 +15,9 @@ Route::any('/{store}/p/{page_id}', 'FeStoreController@getUserPage');
 Route::any('/{store}/my/detail/{product_id}', 'FeStoreController@myDetail');
 Route::any('/{store}/analytics', 'FeStoreController@getAnalytics');
 Route::any('/analytics', 'FeStoreController@getTracking');
-
-
 Route::get('/admin/login', 'BeLoginController@showLogin');
+Route::get('/admin', 'BeLoginController@showLogin');
+Route::get('admin', 'BeLoginController@showLogin');
 Route::post('/admin/login', 'BeLoginController@doLogin');
 Route::get('/admin/send-forget-password', 'BeLoginController@sendResetPassword');
 Route::post('/admin/send-forget-password', 'BeLoginController@sendResetPassword');

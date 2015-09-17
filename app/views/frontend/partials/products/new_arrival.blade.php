@@ -5,7 +5,7 @@ if(count($newProducts) > 0){
 <div class="category-tab feature-ad lastest-post" style="padding: 0;">
 	<!--recommended_items-->
 	<ul class="nav nav-tabs new_product">
-		<li><strong>New Products</strong> &nbsp;&nbsp;&nbsp; &frasl;</li>
+		<li>New Products&nbsp;&nbsp;&nbsp; &frasl;</li>
 		<li>Products : <span class="number-display price"><?php echo count($newProducts)?></span></li>
 	</ul>
 	<div id="hotpromotion-item-carousel" class="carousel slide"
@@ -17,20 +17,21 @@ if(count($newProducts) > 0){
 			<div class="item active">
 			<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 				@foreach($newProducts as $newProduct)
-				<?php 
-				if(strtotime($newProduct->publish_date) >= strtotime("d/m/Y")){
-				?>
 					<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 						<div class="product-image-wrapper">
 							<div class="single-products">
 								<div class="productinfo text-center">
 									<a href="#" data-toggle="modal" data-target="#myModal"
 										onclick="popupDetails.add_popup_detail(<?php echo $newProduct->id; ?>)">
-										<img
-										src="{{Config::get('app.url')}}upload/product/thumb/{{$newProduct->thumbnail}}"
-										alt="" />
+										<?php 
+										if($newProduct->thumbnail){
+											echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$newProduct->thumbnail.'?p=product&amp;h=90&amp;w=120" />';
+										}else{
+											echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=90&amp;w=120" />';
+										}
+										?>
 									</a>
-									<h2 class="price">$ {{$newProduct->price}}</h2>
+									<div class="price">$ {{$newProduct->price}}</div>
 									<center>
 										<a href="{{Config::get('app.url')}}product/details/{{$newProduct->id}}">
 											<?php echo substr($newProduct->title,0,20)?>
@@ -41,8 +42,6 @@ if(count($newProducts) > 0){
 						</div>
 					</div>
 				<?php
-				}
-				
 				if ($newPro >= 6 && $newPro % 6 == 0) {
 					echo '</div><div class="item"> ';
 				}

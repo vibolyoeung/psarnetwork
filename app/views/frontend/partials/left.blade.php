@@ -12,7 +12,7 @@
 			      			<?php
 			      			$cateName = $categoriesList->{'name_'.Session::get('lang')};
 			      			?>
-			      			{{ str_limit($cateName, $limit = 28, $end = '...') }}
+			      			{{ str_limit($cateName, $limit = 22, $end = '...') }}
 			      		</a>
 				      	<?php
 							 $subcategoriesobj = new MCategory();

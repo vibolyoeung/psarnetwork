@@ -18,10 +18,16 @@ return array(
 	'contact_name' => 'Your Name',
 	'Email' => 'Email',
 	'HP' => 'HP',
-	'location' => 'ទឺតាំង',
+	'location' => 'ទឺតាំងទាំងអស់',
 	'search' => 'ស្មែងរក',
-	'search_here' => 'ស្វែងរកទីនេះ',
+	'search_here' => 'អ្វីដែល​អ្នក​កុពុង​ស្វែងរកទីនេះ',
 	'save_product_ads' => 'Save Product Ads',
 	'point_to_view' => 'Point to View',
-	'date_post' => 'Post Date'
+	'date_post' => 'Post Date',
+
+
+    /*======Client Location====*/
+    'summary_in_each_location' => 'សង្ខេបប្រចាំទីកន្លែង',
+    'summary_in_seller_type' => 'សង្ខេបប្រចាំប្រភេទអ្នកលក់',
+    'summary_in_business_site' => 'សង្ខេប​ប្រចាំទំព័រជំនួញ'
 );

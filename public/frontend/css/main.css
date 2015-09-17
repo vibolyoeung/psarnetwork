@@ -18,7 +18,8 @@ body,html{
 	height: 100%;
 	font-size: 14px;
 	color:#333;
-	font-family: Hanuman,Arial;
+	font-family:"Hanuman","Arial";
+	/*font-family:"Hanuman","Frutiger Neue W02 Book";*/
 }
 
 ul li {
@@ -94,8 +95,11 @@ h1,h2,h3,h4,h5,h6 {
 	background-color: #000;
 }
 
-.carousel-inner .item .col-sm-6 img {
+.carousel-inner .item .col-sm-6 img{
 	max-height: 200px;
+}
+.carousel-inner>img{
+	max-height: 320px;
 }
 
 a#scrollUp {
@@ -2647,7 +2651,7 @@ h2.title {
 	max-height: 350px;
 	text-align: center;
 }
-span.price{
+span.price,.price{
 	color:red;
 }
 
@@ -3546,7 +3550,7 @@ li.main_category{
     margin-right: auto;
 }
 ul.dropdown_main_menu>li.main_category > a{
-	font-weight: bold;
+	color:#337ab7;
 }
 
 @media(max-width:768px){
@@ -3592,13 +3596,18 @@ ul.dropdown_main_menu > li{
 	min-width: 175px;
 }
 ul.dropdown_main_menu > li > a{
-	font-weight: bold;
-	color:#06C;
-	font-size:12px;
+	font-size:14px;
 	
 }
 .child-menu > li{
 	margin-left: 8px;
+}
+
+.child-menu>li>a{
+	color:#333;
+}
+.child-menu>li>a:hover{
+	color:#337ab7;
 }
 
 .default-image{
@@ -3641,8 +3650,6 @@ ul#TapTitle > li.active > a{
 }
 .store-name img {
 	width:100%;
-	max-width: 150px;
-	max-height:50px;
 }
 .right-ad-detail{
 	left:6px;
@@ -3702,12 +3709,32 @@ ul#TapTitle > li.active > a{
  .store-link {
  	margin-top: 10px;
  }
-
+/*
  img.hide-social,img.big{
  	display: none;
  }
 
 img.show-social{
 	display: block;
+}*/
+div.center-image{
+	text-align: center;
+}
+div.productinfo a img{
+	-webkit-transition: all 400ms ease-in;
+    -webkit-transform: scale(1); 
+    -ms-transition: all 400ms ease-in;
+    -ms-transform: scale(1); 
+    -moz-transition: all 400ms ease-in;
+    -moz-transform: scale(1);
+    transition: all 400ms ease-in;
+    transform: scale(1);
+}
+div.productinfo a img:hover{
+    -webkit-transform: scale(1.2); 
+    -ms-transform: scale(1.2); 
+    -moz-transform: scale(1.2);
+    transform: scale(1.2);
+    border:1px solid #eea236;
 }
 //=========Detail slile===//
