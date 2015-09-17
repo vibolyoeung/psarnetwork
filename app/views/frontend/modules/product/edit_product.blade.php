@@ -100,7 +100,7 @@
                                         <div class="clear"></div>
                                         @if(empty($chooseCategory))
                                         <div class="alert alert-danger alert-dismissible" role="alert">
-										  <strong>Warning!</strong> Cateory require!, please {{ HTML::link('member/userinfo/content', 'add categories')}} first!
+										  <strong>Warning!</strong> Cateory require!, please {{ HTML::link('member/userinfo/menu', 'add categories')}} first!
 										</div>
 										@endif
                                     </div>
