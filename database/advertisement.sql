@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 21, 2015 at 09:15 PM
--- Server version: 5.5.43-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.9
+-- Generation Time: Sep 17, 2015 at 10:35 PM
+-- Server version: 5.5.44-0ubuntu0.14.04.1
+-- PHP Version: 5.5.9-1ubuntu4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -49,37 +49,19 @@ CREATE TABLE IF NOT EXISTS `advertisement` (
   `adv_page_id` int(11) DEFAULT NULL,
   `license_id` int(11) NOT NULL,
   `payment_method` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `advertisement`
 --
 
 INSERT INTO `advertisement` (`id`, `title_en`, `title_km`, `description_en`, `description_km`, `image`, `link_url`, `started_date`, `end_date`, `user_id`, `incharger`, `pro_cat_id`, `size`, `type`, `status`, `apearance`, `to_page`, `adv_position_id`, `adv_cat_page_id`, `adv_page_id`, `license_id`, `payment_method`) VALUES
-(19, 'english title', 'khmer title', 'Phasellus ullamcorper ipsum rutrum nunc. Praesent egestas tristique nibh. Nullam vel sem. Sed augue ipsum, egestas nec, vestibulum et, malesuada adipiscing, dui. Fusce convallis metus id felis luctus adipiscing.', 'Aenean massa. Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi. Nullam quis ante. Maecenas egestas arcu quis ligula mattis placerat. Etiam iaculis nunc ac metus.', '1437487805.jpg', 'http://vibol.host22.com/', '21/07/2015', '31/07/2015', 18, 2, 0, 30, 1, 1, 0, '', 1, 1, 1, 0, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `advertiser_profile`
---
-
-CREATE TABLE IF NOT EXISTS `advertiser_profile` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `phone` varchar(100) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `address` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `advertiser_profile`
---
-
-INSERT INTO `advertiser_profile` (`id`, `name`, `phone`, `email`, `address`) VALUES
-(1, 'Englishss', '097 27 93 573', 'updoc.year4@gmail.com', 'PP'),
-(2, 'Englishss', '097 27 93 573', 'updoc.year4@gmail.com', 'PP'),
-(3, 'KOCH DOEN', '097 27 93 573', 'doeunkoch@gmail.com', 'PHP');
+(19, 'english title', 'khmer title', 'Phasellus ullamcorper ipsum rutrum nunc. Praesent egestas tristique nibh. Nullam vel sem. Sed augue ipsum, egestas nec, vestibulum et, malesuada adipiscing, dui. Fusce convallis metus id felis luctus adipiscing.', 'Aenean massa. Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi. Nullam quis ante. Maecenas egestas arcu quis ligula mattis placerat. Etiam iaculis nunc ac metus.', '1437752751.png', 'http://vibol.host22.com/', '21/07/2015', '31/08/2015', 22, 2, 0, 30, 1, 1, 0, '', 1, 1, 1, 0, 1),
+(21, 'New phone arrival', 'New phone arrival', '', '', '1437753281.jpg', 'http://google.com/', '02/07/2015', '25/08/2015', 0, 0, 0, 0, 1, 1, 0, '', 1, 1, 1, 1, 1),
+(24, 'New phone arrival', 'ថ្មី', 'Description of English lang', 'Description of khmer lang', '1437810363.jpg', 'http://maps.google.com/', '01/07/2015', '31/08/2015', 0, 0, 0, 0, 1, 1, 0, '', 1, 1, 1, 1, 1),
+(25, 'Special Ad', 'ផ្សាយពានិជ្ជកម្មពិសេស', 'Detail', 'ពត៏មានលំអិត', '1437810896.jpg', 'http://maps.google.com/', '01/07/2015', '31/07/2015', 17, 0, 0, 0, 1, 1, 0, '', 8, 1, 1, 1, 1),
+(29, 'Dolore tenetur enim excepteur consequatur magni', 'Khmer title', 'Ad accusamus cupidatat est est cumque corrupti, elit, quis officiis occaecat maxime possimus, enim quae velit.', 'Eum corrupti, ipsa, beatae ut aut similique eius Nam dignissimos est.', '1439992093.jpg', 'http://vibol.host22.com/', '11/08/2015', '31/08/2015', 18, 2, 19, 43, 2, 1, 0, '', 4, 2, 1, 4, 3),
+(30, 'english title', 'ចំណង​ជើង', 'describe in English', 'រៀប​រាប់​ជា​ខ្មែរ', '1440083883.png', 'http://vibol.host22.com/', '17/08/2015', '31/08/2015', 14, 2, 31, 24, 2, 1, 1, '', 3, 2, 1, 0, 3);
 
 -- --------------------------------------------------------
 
@@ -97,13 +79,13 @@ CREATE TABLE IF NOT EXISTS `adv_page` (
 --
 
 INSERT INTO `adv_page` (`id`, `name`) VALUES
-(1, 'Home page'),
+(1, 'Homepage'),
 (2, 'Category Page'),
 (3, 'Page Detail'),
 (4, 'Market Place'),
 (5, 'Market Place Detail'),
-(6, 'Interprise-page'),
-(7, 'Free-user page'),
+(6, 'Interprise Page'),
+(7, 'Free User page'),
 (8, 'Register'),
 (9, 'Login');
 
@@ -136,17 +118,12 @@ INSERT INTO `adv_page_position_mm` (`id`, `adv_page_id`, `adv_position_id`) VALU
 (10, 1, 10),
 (11, 2, 2),
 (12, 2, 3),
-(13, 2, 4),
-(14, 2, 5),
 (15, 2, 6),
 (16, 2, 7),
-(17, 2, 8),
 (18, 2, 9),
-(19, 2, 10),
 (20, 3, 2),
 (21, 3, 3),
-(22, 3, 4),
-(23, 3, 5),
+(23, 3, 13),
 (24, 4, 2),
 (25, 4, 3),
 (26, 4, 5),
@@ -173,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `adv_position` (
   `id` int(11) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `adv_page_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `adv_position`
@@ -181,17 +158,18 @@ CREATE TABLE IF NOT EXISTS `adv_position` (
 
 INSERT INTO `adv_position` (`id`, `name`, `adv_page_id`) VALUES
 (1, 'Slide Show', NULL),
-(2, 'Top', NULL),
-(3, 'Buttom', NULL),
-(4, 'V-Left-Meduim', NULL),
-(5, 'V-Right-Meduim', NULL),
-(6, 'V-Left-Samll', NULL),
-(7, 'V-Right-Samll', NULL),
-(8, 'H-Midlle-top-Large', NULL),
-(9, 'H-Middle-centre-Large', NULL),
-(10, 'H-Middle-Buttom-Large', NULL),
-(11, 'Market-Slide-Show', NULL),
-(12, 'H-Top-Meduim', NULL);
+(2, 'Most Top', NULL),
+(3, 'Most Buttom', NULL),
+(4, 'Conceptial Blog', NULL),
+(5, 'Upon Product Ads', NULL),
+(6, 'Left Side Panel', NULL),
+(7, 'Right Side Panel', NULL),
+(8, 'Upon Enterprise Product', NULL),
+(9, 'Middle View', NULL),
+(10, 'Upon Buyer Rquest Blog', NULL),
+(11, 'Upon New Blog', NULL),
+(12, 'Upon Enterprise Store', NULL),
+(13, 'Upon Related Product', NULL);
 
 -- --------------------------------------------------------
 
@@ -298,12 +276,6 @@ ALTER TABLE `advertisement`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `advertiser_profile`
---
-ALTER TABLE `advertiser_profile`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `adv_page`
 --
 ALTER TABLE `adv_page`
@@ -353,12 +325,7 @@ ALTER TABLE `payment_method`
 -- AUTO_INCREMENT for table `advertisement`
 --
 ALTER TABLE `advertisement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
---
--- AUTO_INCREMENT for table `advertiser_profile`
---
-ALTER TABLE `advertiser_profile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `adv_page`
 --
@@ -373,7 +340,7 @@ ALTER TABLE `adv_page_position_mm`
 -- AUTO_INCREMENT for table `adv_position`
 --
 ALTER TABLE `adv_position`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `category_adv_position`
 --
