@@ -78,11 +78,11 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 										<?php $imageSlide = @$picture['pic'];?>
 										@if(!empty($imageSlide))
 										<a class="slideshow-group" href="{{Config::get('app.url')}}image/phpthumb/{{$imageSlide}}?p=product"  title="{{$title}}">
-											{{HTML::image("image/phpthumb/$imageSlide?p=product&amp;h=250&amp;w=550",$title)}}
+											{{HTML::image("image/phpthumb/$imageSlide?p=product&amp;h=350&amp;w=660",$title)}}
 										</a>
 										@else
 										<a class="slideshow-group" href="{{Config::get('app.url')}}image/phpthumb/{{$imageSlide}}?p=product">
-											{{HTML::image("image/phpthumb/No_image_available.jpg?p=product&amp;h=250",$title)}}
+											{{HTML::image("image/phpthumb/No_image_available.jpg?p=product&amp;h=350",$title)}}
 										</a>
 										@endif
 									</div>
