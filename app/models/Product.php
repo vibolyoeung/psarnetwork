@@ -481,7 +481,12 @@ class Product extends Eloquent {
 		$clientType = Config::get ( 'constants.TABLE_NAME.CLIENT_TYPE' );
 		$store = Config::get ( 'constants.TABLE_NAME.STORE' );
 		$user = Config::get ( 'constants.TABLE_NAME.USER' );
+<<<<<<< Updated upstream
 		$query = DB::table ( $product . ' AS p ' )->select (
+=======
+		$productInCategory = Config::get('constants.TABLE_NAME.PRODUCT_IN_CATEGORY');
+		return DB::table ( $product . ' AS p ' )->select (
+>>>>>>> Stashed changes
 			'p.title',
 			'p.id',
 			'st.title_en',
@@ -506,7 +511,8 @@ class Product extends Eloquent {
 			'role.rol_name_en as role_name_en',
 			'role.rol_name_km as role_name_km',
 			'cType.name_en as client_type_name_en',
-			'cType.name_km as client_type_name_km'
+			'cType.name_km as client_type_name_km',
+			'proIn.category_id as category_id'
 
 		);
 		$query->join (
@@ -527,12 +533,19 @@ class Product extends Eloquent {
 		)->join (
 			$clientType . ' AS cType',
 			'u.client_type', '=', 'cType.id'
+<<<<<<< Updated upstream
 		);
 		$query->where ( 'p.id', '=', $product_id );
 		if(!empty($store_id)) {
 			$query->where ( 'st.id', '=', $store_id );
 		}
 		return $query->first ();
+=======
+		)->join(
+			$productInCategory .' AS proIn',
+			'proIn.product_id','=','p.id'
+		)->where ( 'p.id', '=', $product_id )->first ();
+>>>>>>> Stashed changes
 	}
 
 	public static function getProductStatus($status) {
@@ -547,12 +560,18 @@ class Product extends Eloquent {
 	 * @return product that related post
 	 * @access public
 	 */
-	public static function findRelatedPostProduct($category_id) {
+	public static function findRelatedPostProduct($category_id){
+		if(!array($category_id)){
+			$category_id = array($category_id);
+		}
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
-		return DB::table ( $product )
-		->where ( 's_category_id', '=', $category_id )
-		->where('publish_date','<=',date('Y-m-d'))
-		->take ( 8 )->get ();
+		$product_in_category = Config::get ( 'constants.TABLE_NAME.PRODUCT_IN_CATEGORY' );
+		
+		return DB::table ( $product . ' AS p' )->select ( '*' )->join ($product_in_category.' AS pro', 'pro.product_id', '=', 'p.id' )
+		->whereIn( 'pro.category_id',$category_id)
+		->where( 'p.publish_date','>=',date('Y-m-d'))
+		->groupby('pro.product_id')
+		->orderBy ( 'p.id', 'DESC' )->take(8)->get ();
 	}
 	
 	/**
