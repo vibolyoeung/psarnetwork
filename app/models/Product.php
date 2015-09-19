@@ -481,12 +481,8 @@ class Product extends Eloquent {
 		$clientType = Config::get ( 'constants.TABLE_NAME.CLIENT_TYPE' );
 		$store = Config::get ( 'constants.TABLE_NAME.STORE' );
 		$user = Config::get ( 'constants.TABLE_NAME.USER' );
-<<<<<<< Updated upstream
-		$query = DB::table ( $product . ' AS p ' )->select (
-=======
 		$productInCategory = Config::get('constants.TABLE_NAME.PRODUCT_IN_CATEGORY');
 		return DB::table ( $product . ' AS p ' )->select (
->>>>>>> Stashed changes
 			'p.title',
 			'p.id',
 			'st.title_en',
@@ -533,19 +529,10 @@ class Product extends Eloquent {
 		)->join (
 			$clientType . ' AS cType',
 			'u.client_type', '=', 'cType.id'
-<<<<<<< Updated upstream
-		);
-		$query->where ( 'p.id', '=', $product_id );
-		if(!empty($store_id)) {
-			$query->where ( 'st.id', '=', $store_id );
-		}
-		return $query->first ();
-=======
 		)->join(
 			$productInCategory .' AS proIn',
 			'proIn.product_id','=','p.id'
 		)->where ( 'p.id', '=', $product_id )->first ();
->>>>>>> Stashed changes
 	}
 
 	public static function getProductStatus($status) {
