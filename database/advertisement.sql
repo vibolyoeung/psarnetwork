@@ -1,30 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.3.7
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Sep 17, 2015 at 10:35 PM
--- Server version: 5.5.44-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.11
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Database: `psarnetwork_db`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `advertisement`
---
 
 CREATE TABLE IF NOT EXISTS `advertisement` (
   `id` int(11) NOT NULL,
@@ -51,9 +24,7 @@ CREATE TABLE IF NOT EXISTS `advertisement` (
   `payment_method` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `advertisement`
---
+
 
 INSERT INTO `advertisement` (`id`, `title_en`, `title_km`, `description_en`, `description_km`, `image`, `link_url`, `started_date`, `end_date`, `user_id`, `incharger`, `pro_cat_id`, `size`, `type`, `status`, `apearance`, `to_page`, `adv_position_id`, `adv_cat_page_id`, `adv_page_id`, `license_id`, `payment_method`) VALUES
 (19, 'english title', 'khmer title', 'Phasellus ullamcorper ipsum rutrum nunc. Praesent egestas tristique nibh. Nullam vel sem. Sed augue ipsum, egestas nec, vestibulum et, malesuada adipiscing, dui. Fusce convallis metus id felis luctus adipiscing.', 'Aenean massa. Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi. Nullam quis ante. Maecenas egestas arcu quis ligula mattis placerat. Etiam iaculis nunc ac metus.', '1437752751.png', 'http://vibol.host22.com/', '21/07/2015', '31/08/2015', 22, 2, 0, 30, 1, 1, 0, '', 1, 1, 1, 0, 1),

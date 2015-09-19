@@ -6,10 +6,6 @@
 </ol>
 @endsection @section('content')
 {{ App::make('FePageController')->mainCategory() }}
-
-<?php
-	//var_dump($detailProduct);
-?>
 <div class="col-lg-10">
 	<!-- ============Relative post=============== -->
 	<div class="col-lg-10" style="padding-top:10px;background-color:fcfcfc;">
