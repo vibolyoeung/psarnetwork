@@ -6,10 +6,6 @@
 </ol>
 @endsection @section('content')
 {{ App::make('FePageController')->mainCategory() }}
-
-<?php
-	//var_dump($detailProduct);
-?>
 <div class="col-lg-10">
 	<!-- ============Relative post=============== -->
 	<div class="col-lg-10" style="padding-top:10px;background-color:fcfcfc;">
@@ -239,7 +235,7 @@
 			<div class="clear"></div><div class="clear"></div>
 			<div class="col-lg-3 text-centered" style="border:1px solid #dddddd;background-color:#dddddd;padding:5px 10px;font-weight:bold;text-align:center;">Related Products</div>
 			{{
-			App::make('FePageController')->findRelatedProducts($detailProduct->s_category_id)
+			App::make('FePageController')->findRelatedProducts(array($detailProduct->category_id))
 			}}
 			<br />
 		</div><!--============End detail container hre=====-->

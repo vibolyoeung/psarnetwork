@@ -230,7 +230,6 @@ class FePageController extends BaseController {
 		);
 		
 		Product::countViewOfUserClickProduct($product_id);
-
 		$detailProduct = $this->mod_product->findProductDetailById($product_id);
 		return View::make('frontend.partials.products.detials')
 					->with('advTops', $advTops->result)
