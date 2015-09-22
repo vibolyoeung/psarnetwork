@@ -482,7 +482,7 @@ class Product extends Eloquent {
 		$store = Config::get ( 'constants.TABLE_NAME.STORE' );
 		$user = Config::get ( 'constants.TABLE_NAME.USER' );
 		$productInCategory = Config::get('constants.TABLE_NAME.PRODUCT_IN_CATEGORY');
-		return DB::table ( $product . ' AS p ' )->select (
+		$query = DB::table ( $product . ' AS p ' )->select (
 			'p.title',
 			'p.id',
 			'st.title_en',
@@ -532,7 +532,13 @@ class Product extends Eloquent {
 		)->join(
 			$productInCategory .' AS proIn',
 			'proIn.product_id','=','p.id'
-		)->where ( 'p.id', '=', $product_id )->first ();
+		);
+                $query->where ( 'p.id', '=', $product_id );
+                if(!empty($store_id)) {
+                    $query->where ( 'st.id', '=', $store_id );
+                }
+                $result = $query->first ();
+                return $result;
 	}
 
 	public static function getProductStatus($status) {
