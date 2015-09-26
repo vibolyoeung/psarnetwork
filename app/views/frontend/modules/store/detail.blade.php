@@ -11,7 +11,8 @@ if (! empty ( $dataStore->sto_url )) {
 } else {
 	$userHome = @Config::get ( 'app.url' ) . 'page/store-' . $dataStore->id;
 }
-$title = $dataProductDetail->{'title_' . Session::get ( 'lang' )};
+//$title = $dataProductDetail->{'title_' . Session::get ( 'lang' )};
+$title = $dataProductDetail->title;
 if (empty ( $title )) {
 	$title = $dataProductDetail->title;
 }
@@ -121,7 +122,7 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
                                     echo '<div class="item '.$classA.'">';
                                 }
 						    	$thumb = $small['pic']?>
-								  <a href="javascript:;" data-target="#DetailCarousel" data-slide-to="{{$to}}">{{HTML::image("image/phpthumb/$thumb?p=product&amp;h=60&amp;w=145",$title)}}</a>
+								  <a href="javascript:;" data-target="#DetailCarousel" data-slide-to="{{$to}}">{{HTML::image("image/phpthumb/$thumb?p=product&amp;h=100&amp;w=145",$title)}}</a>
 								<?php
 								if ($num % 3 == 0) {
 									echo "</div>";
@@ -209,7 +210,7 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 .product-detail>li {
 	padding: 5px 8px;
 }
-#similar-product .item-control{top: 13%;}
+#similar-product .item-control{top: 35%;}
 </style>
 	<div class="category-tab shop-details-tab">
 		<!--category-tab-->
@@ -300,7 +301,8 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 		    	@foreach($relatedProduct as $related)
 		    	<?php 
 						    	$numA++;
-						    	$titleR = $related->{'title_' . Session::get ( 'lang' )};
+						    	//$titleR = $related->{'title_' . Session::get ( 'lang' )};
+						    	$titleR = $related->title;
 						    	if (empty ( $titleR )) {
 						    		$titleR = $related->title;
 						    	}
