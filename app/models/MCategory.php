@@ -874,8 +874,9 @@ class MCategory extends Eloquent{
                         $id = 'item-'.$userMenu->m_cat_id;
                     }
     				$userMenus .= "<li>\n";
-                        $menuName = $userMenu->{'name_'.Session::get('lang')};                        
-    					$userMenus .= "<a href='{$homeUrl}/search/{$menuName}'>{$menuName}</a>\n";
+                        $menuName = $userMenu->{'name_'.Session::get('lang')};
+                        $menuEnName = $userMenu->{'name_en'};
+    					$userMenus .= "<a href='{$homeUrl}/search/{$menuEnName}'>{$menuName}</a>\n";
     
     					// Run this function again (it would stop running when the mysql_num_result is 0
     					$userMenus .= $this->menuUserSubList($userID, $userMenu->m_cat_id,$level+1,$userHome);
@@ -972,8 +973,9 @@ class MCategory extends Eloquent{
                     }
                     $id_level = $level+1;
     				$userMenus .= "<li>\n";
-                        $menuName = $userMenu->{'name_'.Session::get('lang')}; 
-    					$userMenus .= "<a href='{$homeUrl}/search/{$menuName}'>{$menuName}</a>\n";
+                        $menuName = $userMenu->{'name_'.Session::get('lang')};
+                        $menuEnName = $userMenu->{'name_en'};
+    					$userMenus .= "<a href='{$homeUrl}/search/{$menuEnName}'>{$menuName}</a>\n";
     
     					// Run this function again (it would stop running when the mysql_num_result is 0
     					$userMenus .= $this->menuUserSubList($userID, $userMenu->m_cat_id,$level+1,$homeUrl);

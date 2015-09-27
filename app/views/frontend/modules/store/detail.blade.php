@@ -99,7 +99,7 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 						class="glyphicon glyphicon-chevron-right"></span>
 					</a>
 				</div>
-				
+
 				<!-- thumb -->
 				<div class="row hidden-xs" id="slider-thumbs">
 					<!-- thumb -->
@@ -111,7 +111,7 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 						    		$to=0;
 						    	?>
 						    	@foreach($pictures as $small)
-						    	<?php 
+						    	<?php
 						    	$num++;
 						    	if($num==1) {
 						    		$classA='active';
@@ -129,9 +129,9 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 								}
 								$to++;
 								?>
-								
+
 								@endforeach
-								
+
 							</div>
 
 							  <!-- Controls -->
@@ -147,7 +147,7 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 				<!-- end thumb -->
 				</div>
 				<!-- end thumb -->
-	
+
 			</div>
 			<div class="col-sm-4" id="carousel-text">
 				<div id="slide-content-0">
@@ -196,10 +196,6 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 				</div>
 			</div>
 		</div>
-	</div>
-
-
-
 
 	<!-- tab -->
 	<style>
@@ -295,11 +291,11 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 		<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner">
 				<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
-				
+
 				<?php $numA = 0;
 		    	?>
 		    	@foreach($relatedProduct as $related)
-		    	<?php 
+		    	<?php
 						    	$numA++;
 						    	//$titleR = $related->{'title_' . Session::get ( 'lang' )};
 						    	$titleR = $related->title;
@@ -334,7 +330,7 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 					echo "</div>";
 				}
 				?>
-				
+
 				@endforeach
 				</div>
 			</div>
@@ -343,12 +339,12 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 			  </a>
 			  <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
 				<i class="fa fa-angle-right"></i>
-			  </a>			
+			  </a>
 		</div>
 	</div>
 	@endif
 	<!-- end recommended items -->
-	
+    </div>
 </div>
 @endsection @section('left') @if (! empty ( $toolView )) @foreach (
 $toolView as $tool ) @if($tool->type == 'tool_memeber_status' &&

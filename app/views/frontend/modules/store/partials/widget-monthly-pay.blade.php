@@ -25,11 +25,13 @@ $PayMonthly = $thisProduct->listAllProductsByOwnStore($wherePayMonthly);
     				<div class="product-image-wrapper">
     					<div class="single-products">
     						<div class="productinfo text-center">
-    							<a href="{{$userHome}}/my/detail/{{$product->id}}">
-                                    @if($productMonthly->thumbnail)
-    								    <img src="{{Config::get('app.url')}}upload/product/thumb/{{$productMonthly->thumbnail}}" alt="{{$productMonthly->title}}" />
+    							<a href="{{$userHome}}/my/detail/{{$productMonthly->id}}">
+                                    @if($product->thumbnail)
+					{{HTML::image("image/phpthumb/$productMonthly->thumbnail?p=product&amp;h=150&amp;w=150",$productMonthly->title,array('class'
+						=> 'img-rounded','width'=>'150'))}}
                                     @else
-                                        <img src="{{Config::get('app.url')}}upload/product/thumb/{{$productMonthly->thumbnail}}" alt="{{$productMonthly->title}}" />
+                                        {{HTML::image("image/phpthumb/No_image_available.jpg?p=1&amp;h=150&amp;w=150",$productMonthly->title,array('class'
+                                        => 'img-rounded','width'=>'150'))}}
                                     @endif
     							</a>
     							<h2>{{$productMonthly->title}}</h2>
