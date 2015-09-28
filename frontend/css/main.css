@@ -1,6 +1,3 @@
-/*************************
-*******Typography******
-**************************/
 @import
 	url(http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,700,100)
 	;
@@ -19,7 +16,6 @@ body,html{
 	font-size: 14px;
 	color:#333;
 	font-family:"Hanuman","Arial";
-	/*font-family:"Hanuman","Frutiger Neue W02 Book";*/
 }
 
 ul li {
@@ -3709,32 +3705,9 @@ ul#TapTitle > li.active > a{
  .store-link {
  	margin-top: 10px;
  }
-/*
- img.hide-social,img.big{
- 	display: none;
- }
 
-img.show-social{
-	display: block;
-}*/
 div.center-image{
 	text-align: center;
 }
-div.productinfo a img{
-	-webkit-transition: all 400ms ease-in;
-    -webkit-transform: scale(1); 
-    -ms-transition: all 400ms ease-in;
-    -ms-transform: scale(1); 
-    -moz-transition: all 400ms ease-in;
-    -moz-transform: scale(1);
-    transition: all 400ms ease-in;
-    transform: scale(1);
-}
-div.productinfo a img:hover{
-    -webkit-transform: scale(1.2); 
-    -ms-transform: scale(1.2); 
-    -moz-transform: scale(1.2);
-    transform: scale(1.2);
-    border:1px solid #eea236;
-}
+
 //=========Detail slile===//

@@ -30,11 +30,12 @@
 									src="{{Config::get('app.url')}}/frontend/images/home/iphone6plus.jpg"
 									alt="" />
 								</a>
-								<h2>$ {{$monthlyProduct->price}}</h2>
-								<p><?php echo substr($monthlyProduct->title,0,20)?></p>
-								<a href="" data-toggle="modal" data-target="#myModal"
-									onclick="popupDetails.add_popup_detail(<?php echo $monthlyProduct->id;?>)">View
-									Details</a>
+								<center>
+									<h5>
+										<a href="{{Config::get('app.url')}}product/details/{{$monthlyProduct->id}}"><?php echo substr($monthlyProduct->title,0,20)?></a>
+									</h5>
+									<strong class="price">$ {{$monthlyProduct->price}}</strong>
+								</center>
 							</div>
 						</div>
 					</div>

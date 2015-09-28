@@ -23,10 +23,12 @@
 										}
 									?>
 									</a>
-									<h2>$ {{$relatedPost->price}}</h2>
-									<a href="{{Config::get('app.url')}}product/details/{{$relatedPost->id}}">
-										<?php echo substr($relatedPost->title,0,20)?>
-									</a>
+									<center>
+										<h5>
+											<a href="{{Config::get('app.url')}}product/details/{{$relatedPost->id}}"><?php echo substr($relatedPost->title,0,20)?></a>
+										</h5>
+										<strong class="price">$ {{$relatedPost->price}}</strong>
+									</center>
 								</div>
 							</div>
 						</div>

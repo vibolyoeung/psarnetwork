@@ -10,6 +10,7 @@
 	<!-- ============Relative post=============== -->
 	<div class="col-lg-10" style="padding-top:10px;background-color:fcfcfc;">
 		<?php
+		var_dump($detailProduct);
 		$images = json_decode ( $detailProduct->pictures, true );
 		?>
 		<div class="col-lg-12" style="background-color:#FFF; border:1px solid #CCC;">

@@ -24,18 +24,20 @@ if(count($newProducts) > 0){
 									<a href="#" data-toggle="modal" data-target="#myModal"
 										onclick="popupDetails.add_popup_detail(<?php echo $newProduct->id; ?>)">
 										<?php 
-											if($newProduct->thumbnail){
-												echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$newProduct->thumbnail.'?p=product&amp;h=90&amp;w=120" />';
-											}else{
-												echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=90&amp;w=120" />';
-											}
+										if($newProduct->thumbnail){
+											echo '<img src="/image/phpthumb/'.$newProduct->thumbnail.'?p=product&amp;h=90&amp;w=120" />';
+										}else{
+											echo '<img src="/image/phpthumb/No_image_available.jpg?p=product&amp;h=90&amp;w=120" />';
+										}
 										?>
 									</a>
-									<div class="price">$ {{$newProduct->price}}</div>
 									<center>
-										<a href="{{Config::get('app.url')}}product/details/{{$newProduct->id}}">
-											<?php echo substr($newProduct->title,0,20)?>
-										</a>
+										<h5>
+											<a href="{{Config::get('app.url')}}product/details/{{$newProduct->id}}">
+												<?php echo substr($newProduct->title,0,20)?>
+											</a>
+										</h5>
+										<strong class="price">$ {{$newProduct->price}}</strong>
 									</center>
 								</div>
 							</div>

@@ -29,10 +29,12 @@ if(count($latestProducts) > 0){
 							}
 							?>
 						</a>
-						<h2>$ {{$latestProduct->price}}</h2>
-						<a href="{{Config::get('app.url')}}product/details/{{$latestProduct->id}}">
-							<?php echo substr($latestProduct->title,0,20)?>
-						</a>
+						<center>
+							<h5>
+								<a href="{{Config::get('app.url')}}product/details/{{$latestProduct->id}}"><?php echo substr($latestProduct->title,0,20)?></a>
+							</h5>
+							<strong class="price">$ {{$latestProduct->price}}</strong>
+						</center>
 					</div>
 				</div>
 			</div>

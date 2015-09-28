@@ -39,11 +39,13 @@ Categories
 												}
 												?>
 											</a>
-											<div class="price">$ {{$product->price}}</div>
 											<center>
-												<a href="{{Config::get('app.url')}}product/details/{{$product->id}}">
-													<?php echo substr($product->title,0,20)?>
-												</a>
+												<h5>
+													<a href="{{Config::get('app.url')}}product/details/{{$product->id}}">
+														<?php echo substr($product->title,0,20)?>
+													</a>
+												</h5>
+												<strong class="price">$ {{$product->price}}</strong>
 											</center>
 										</div>
 									</div>

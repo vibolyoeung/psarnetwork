@@ -37,10 +37,10 @@ return array (
 				'ALLOW_FILE' => 'mimes:jpeg,png,bmp,gif|image',
 				'THUMB_WIDTH' => 100,
 				'THUMB_HEIGTH' => 100,
-				'DEFAULT' => '/upload/',
-				'DIR_DEFAULT' => '/upload/images/',
-				'DIR_STORE' => '/upload/store/',
-				'USER_BANNER' => '/upload/user-banner/' 
+				'DEFAULT' => '/public/upload/',
+				'DIR_DEFAULT' => '/public/upload/images/',
+				'DIR_STORE' => '/public/upload/store/',
+				'USER_BANNER' => '/public/upload/user-banner/' 
 		),
 		'TABLE_NAME' => array (
 				'ACCOUNT_TYPE' => 'account_type',
