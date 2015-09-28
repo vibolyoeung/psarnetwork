@@ -143,8 +143,8 @@ Route::get('/media/image/{width}x{height}/{image}', function($width, $height, $i
 Route::any('/{lang}/user/signin', 'FeUserController@signIn');
 Route::any('/{lang}/user/signup', 'FeUserController@signUp');
 
-Route::get('/{lang}/search', 'FeSearchController@search');
-Route::get('/search', 'FeSearchController@search');
+Route::get('/{lang}/fe/search', 'FeSearchController@search');
+Route::get('/fe/search', 'FeSearchController@search');
 Route::get('/{lang}/search/products', 'FeSearchController@searchProduct');
 Route::get('/search/products', 'FeSearchController@searchProduct');
 
