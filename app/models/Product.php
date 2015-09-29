@@ -10,6 +10,8 @@ class Product extends Eloquent {
 	const SECOND_HAND_PRODUCT = 2;
 	const PREMINUM = 2;
 	const LIST_NUMBER = 20;
+	const LATEST_PRODUCT_SETTING = 2;
+	const BUYER_REQUEST_SETTING = 4;
 	public static $PRODUCT_STATUS = array (
 			1 => 'In Stock',
 			2 => 'Out Of Stock',
@@ -451,7 +453,15 @@ class Product extends Eloquent {
 	 */
 	public static function findBuyerProducts() {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
-		return DB::table ( $product . ' AS p' )->select ( '*' )->where ( 'p.pro_transfer_type_id', '=', self::BUYER_PRODUCT )->where ( 'p.is_publish', '=', self::IS_PUBLISH )->where ( 'p.publish_date', '>=', date ( "d/m/Y" ) )->orderBy ( 'p.id', 'DESC' )->get ();
+		$setting = Store::getSetting(self::BUYER_REQUEST_SETTING);
+		return DB::table ( $product . ' AS p' )
+			->select ( '*' )
+			->where ( 'p.pro_transfer_type_id', '=', self::BUYER_PRODUCT )
+			->where ( 'p.is_publish', '=', self::IS_PUBLISH )
+			->where ( 'p.publish_date', '>=', date ( "d/m/Y" ) )
+			->orderBy ( 'p.id', 'DESC' )
+			->take($setting)
+			->get ();
 	}
 	
 	/**
@@ -574,12 +584,13 @@ class Product extends Eloquent {
 	 */
 	public static function findPreminumLatest() {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
+		$setting = Store::getSetting(self::LATEST_PRODUCT_SETTING);
 		$user = Config::get ( 'constants.TABLE_NAME.USER' );
 		
 		return DB::table ( $product . ' AS p' )->select ( 'p.*' )->join ( 'user AS u', 'p.user_id', '=', 'u.id' )
 		->where ( 'u.account_type', '=', self::PREMINUM )
 		->where( 'p.publish_date','<=',date('Y-m-d'))
-		->orderBy ( 'p.id', 'DESC' )->take ( 12 )->get ();
+		->orderBy ( 'p.id', 'DESC' )->take ( $setting )->get ();
 	}
 	
 	/**
@@ -665,7 +676,7 @@ class Product extends Eloquent {
 		
 		switch (( int ) $businessType) {
 			case 1 :
-				return $this->searchByProduct ( $usersId, $keyword );
+				return $this->searchByProduct ( $usersId, $keyword, $province );
 			
 			case 2 :
 				return $this->searchByBuyer ( $usersId, $keyword );
@@ -780,16 +791,17 @@ class Product extends Eloquent {
 		
 		return $usersId;
 	}
-	public function searchByProduct($usersId, $keyword) {
-		$productTable = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
-		$products = [ ];
-		
+
+	public function searchByProduct($usersId, $keyword, $province) {
+		$products = [];
+		if ($province == 0) {
+			$products = $this->findProduct($keyword);
+
+			return $products;
+		}
+
 		foreach ( $usersId as $userId ) {
-			
-			$data = DB::table ( $productTable . ' AS p' )->select ( '*' )->where ( 'p.user_id', '=', ( int ) $userId )->where ( 'p.is_publish', '=', self::IS_PUBLISH )->where ( function ($query) use($keyword) {
-				$query->orWhere ( 'p.title', 'LIKE', '%' . $keyword . '%' )->orWhere ( 'p.description', 'LIKE', '%' . $keyword . '%' );
-			} )->orderBy ( 'p.id', 'DESC' )->get ();
-			
+			$data = $this->findProduct($keyword, $userId);
 			if (! empty ( $data )) {
 				$products = $data;
 			}
@@ -797,6 +809,24 @@ class Product extends Eloquent {
 		
 		return $products;
 	}
+
+	public function findProduct($keyword, $userId = null) {
+		$productTable = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
+		$query = DB::table($productTable . ' AS p')->select ( '*' );
+		if (!is_null($userId)) {
+			$query->where ( 'p.user_id', '=', ( int ) $userId );
+		}
+		$query->where ( 'p.is_publish', '=', self::IS_PUBLISH );
+		$query->where (function ($query) use($keyword) {
+				$query->orWhere ( 'p.title', 'LIKE', '%' . $keyword . '%' )
+					->orWhere ( 'p.description', 'LIKE', '%' . $keyword . '%' );
+			} 
+		);
+		$query->orderBy ( 'p.id', 'DESC' );
+
+		return $query->get();
+	}
+
 	public function searchByBuyer($usersId, $keyword) {
 		$productTable = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		$products = [ ];
