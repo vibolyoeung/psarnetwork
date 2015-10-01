@@ -6,8 +6,8 @@ class FePageController extends BaseController {
 	const V_RIGHT_MIDIUM = 5;
 	const V_LEFT_SMALL = 6;
 	const V_RIGHT_SMALL = 7;
-	const H_MIDDLE_TOP_LARGE = 8;
-	const H_LARGE_CENTER = 9;
+	const MOST_TOP = 2;
+	const UP_ON_ENTERPRICE_PRODUCT = 8;
 	const PAGE_WEBSITE = 2;
 
 	private $mod_slideshow;
@@ -51,7 +51,7 @@ class FePageController extends BaseController {
 		$advHorizontalLargeCenter = $this->mod_advertisment
 			->getAdvertisementHomePage(
 				self::HOMEPAGE,
-				self::H_LARGE_CENTER,
+				self::UP_ON_ENTERPRICE_PRODUCT,
 				3
 			);
 
@@ -95,7 +95,7 @@ class FePageController extends BaseController {
 		$advHorizontalTopLarges = $this->mod_advertisment
 			->getAdvertisementHomePage(
 				self::HOMEPAGE,
-				self::H_MIDDLE_TOP_LARGE,
+				self::MOST_TOP,
 				1
 			);
 
@@ -123,7 +123,7 @@ class FePageController extends BaseController {
  		$advHorizontalTopLarge = $this->mod_advertisment
  		->getAdvertisementHomePage(
  				self::HOMEPAGE,
- 				self::H_MIDDLE_TOP_LARGE,
+ 				self::MOST_TOP,
  				1
  		);
 
@@ -151,7 +151,7 @@ class FePageController extends BaseController {
  		$advHorizontalLargeCenter = $this->mod_advertisment
  		->getAdvertisementHomePage(
  				self::HOMEPAGE,
-			self::H_LARGE_CENTER,
+			self::UP_ON_ENTERPRICE_PRODUCT,
 				3
 		);
 
