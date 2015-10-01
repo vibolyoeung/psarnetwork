@@ -34,7 +34,7 @@ class BeAdvertisementController extends BaseController {
 			$rules = $this->rules();
 			$validator = Validator::make ( Input::all (), $rules );
 			if ($validator->passes ()) {
-				$destinationPath = base_path () . '/public/upload/advertisement/';
+				$destinationPath = base_path () . '/upload/advertisement/';
 				self::generateFolderUpload ( $destinationPath );
 				$destinationPathThumb = $destinationPath . 'thumb/';
 				$file = Input::file ( 'file' );
@@ -145,7 +145,7 @@ class BeAdvertisementController extends BaseController {
 					$oldFileObject = $this->advertisement->findAdvertisementImageById($id);
 					$this->removeFile($oldFileObject->image);
 
-					$destinationPath = base_path() . '/public/upload/advertisement/';
+					$destinationPath = base_path() . '/upload/advertisement/';
 					self::generateFolderUpload($destinationPath);
 					$destinationPathThumb = $destinationPath.'thumb/';
 					$file = Input::file('file');
@@ -319,9 +319,9 @@ class BeAdvertisementController extends BaseController {
 		$destinationPathThumb = $destinationPath . '/thumb/';
 		if (! file_exists ( $destinationPath )) {
 			mkdir ( $destinationPath, 0777, true );
-			if (! file_exists ( $destinationPathThumb )) {
-				mkdir ( $destinationPathThumb, 0777, true );
-			}
+		}
+		if (! file_exists ( $destinationPathThumb )) {
+			mkdir ( $destinationPathThumb, 0777, true );
 		}
 	}
 
@@ -346,8 +346,8 @@ class BeAdvertisementController extends BaseController {
 
 	public function removeFile($fileName) {
 		if(!empty($fileName)){
-			$destinationPath = base_path() . '/public/upload/advertisement/';
-			$destinationPathThumb = base_path() . '/public/upload/advertisement/thumb/';
+			$destinationPath = base_path() . '/upload/advertisement/';
+			$destinationPathThumb = base_path() . '/upload/advertisement/thumb/';
 			File::delete($destinationPath . $fileName);
 			File::delete($destinationPathThumb . $fileName);
 		}
