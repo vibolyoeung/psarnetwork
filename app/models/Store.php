@@ -2,6 +2,8 @@
 class Store extends Eloquent {
 	protected $table = "store";
 	public $timestamps = false;
+	const STORE_SETTING = 3;
+	const PRODUCT_PER_ROW = 6;
 	
 	/**
 	 * getUserStore : is a function for get user store to display front page
@@ -134,14 +136,30 @@ class Store extends Eloquent {
 	 */
 	public static function getLatestStores() {
 		$response = new stdClass ();
+		$setting = self::getSetting(self::STORE_SETTING);
+
 		try {
-			$result = DB::table ( Config::get ( 'constants.TABLE_NAME.STORE' ) . ' AS st' )->select ( '*' )->orderBy ( 'st.id', 'DESC' )->take ( 12 )->get ();
+			$result = DB::table (
+				Config::get ( 'constants.TABLE_NAME.STORE' ) . ' AS st' 
+			)->select ( '*' )
+			->orderBy ( 'st.id', 'DESC' )
+			->take ( $setting)->get ();
 			
 			return $result;
 		} catch ( \Exception $e ) {
 			$response->result = 0;
 			$response->errorMsg = $e->getMessage ();
 		}
+	}
+
+	public static function getSetting($id) {
+		$setting = DB::table ( Config::get (
+				'constants.TABLE_NAME.SETTING')
+			)->select ( '*' )
+			->where('id', '=', $id)
+			->first();
+
+		return $setting->setting_value * self::PRODUCT_PER_ROW;
 	}
 	
 	/**
