@@ -30,7 +30,6 @@ if(count($hotPromotionProducts) > 0){
 							<a href="#"
 								onclick="popupDetails.add_popup_detail(<?php echo $hotPromotionProduct->id; ?> )"
 								data-toggle="modal" data-target="#myModal">
-<<<<<<< Updated upstream
 								<?php 
 									if($hotPromotionProduct->thumbnail){
 										echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$hotPromotionProduct->thumbnail.'?p=product&amp;h=90&amp;w=120" />';
@@ -38,11 +37,6 @@ if(count($hotPromotionProducts) > 0){
 										echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=90&amp;w=120" />';
 									}
 								?>
-=======
-								<img
-								src="{{Config::get('app.url')}}/upload/product/thumb/{{$hotPromotionProduct->thumbnail}}"
-								alt="" />
->>>>>>> Stashed changes
 							</a>
 							<center>
 								<h5>

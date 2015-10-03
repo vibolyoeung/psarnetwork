@@ -17,7 +17,7 @@ if(count($advHorizontalTopLarges)){ ?>
 	}else{ ?>
 		<a href="#"> 
 			<img
-				src="{{Config::get('app.url')}}upload/advertisement/default_advertisement.jpg"
+				src="upload/advertisement/default_advertisement.jpg"
 				class="img-responsive img-thumbnail" alt="" />
 		</a>
 	<?php

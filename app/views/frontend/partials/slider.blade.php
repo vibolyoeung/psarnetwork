@@ -14,17 +14,16 @@
 							<div class="item <?php echo $thumbnail_id == 0?'active':'';?>"
 								data-slide-number="<?= $thumbnail_id; ?>">
 								<a  href='{{$slideshow->link_url}}' target="_blank">
-									<img
-									src="{{Config::get('app.url')}}/upload/advertisement/{{$slideshow->image;}}" class="img-responsive img-thumbnail" alt="image" />
+									<?php 
+									 echo '<img class="img-responsive img-thumbnail" src="'.Config::get('app.url').'upload/advertisement/'.$slideshow->image.'"/>';
+									?>
 								</a>
 							</div>
 							<?php $thumbnail_id++; ?>
 							@endforeach
 						<?php
 						}else{
-							?>
-							<img src="{{Config::get('app.url')}}upload/no-image.jpg" class="img-responsive img-thumbnail" alt="image" />
-						<?php
+							echo '<img src="upload/no-image.jpg" class="img-responsive img-thumbnail"/>';
 						}
 						?>                              
 					</div>

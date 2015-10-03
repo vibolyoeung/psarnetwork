@@ -173,7 +173,7 @@ class FePageController extends BaseController {
  			$mainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($parent_id);
  			$productByCategory = $this->mod_product->findPostProductByCategory($childCategories);
  		}
- 		
+ 		//var_dump($productByCategory);die;
 		return View::make('frontend.modules.detail.index')
 				->with('Provinces', $this->mod_setting->listProvinces())
 				->with('advHorizontalTopLarges', $advHorizontalTopLarge->result)
@@ -230,12 +230,13 @@ class FePageController extends BaseController {
 		);
 		
 		Product::countViewOfUserClickProduct($product_id);
-		$detailProduct = $this->mod_product->findProductDetailById($product_id);
+		$detailProduct = $this->mod_product->findProductDetailById($product_id,20);
+		//var_dump($detailProduct);die;
 		return View::make('frontend.partials.products.detials')
 					->with('advTops', $advTops->result)
 					->with('client_type',$this->mod_category->getClientType())
 					->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
-					->with('detailProduct', $detailProduct);
+					->with('productdetail', $detailProduct);
 	}
     
     public function getSignOut() {
