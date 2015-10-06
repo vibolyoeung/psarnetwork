@@ -798,9 +798,17 @@ class Product extends Eloquent {
 	 *
 	 * @return array $products
 	 */
-	public function searchProductFromCategory($location, $transferType, $condition, $price, $date, $displayNumber = null) {
+	public function searchProductFromCategory(
+		$location,
+		$transferType,
+		$condition,
+		$price,
+		$date,
+		$displayNumber = null
+	) {
 		$productTable = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
-		
+		// Convert date formate the same db
+		$date = date('d/m/Y', strtotime($date));
 		if (( int ) $location === 0) {
 			$query = DB::table ( $productTable . ' AS p' );
 			$query->select ( '*' );
@@ -827,9 +835,9 @@ class Product extends Eloquent {
 			return $query->paginate ( $limitNumber );
 		}
 		
-		return $products;
+		$products = [];
 		
-		$usersId = $this->findUserByProvince ( $province );
+		$usersId = $this->findUserByProvince ( $location );
 		
 		foreach ( $usersId as $userId ) {
 			$query = DB::table ( $productTable . ' AS p' );
