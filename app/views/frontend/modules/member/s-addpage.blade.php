@@ -14,6 +14,7 @@ function rm($article, $char) {
 	} else
 		return $article;
 }
+$userType = Session::get('currentUserAccountType');
 ?>
 {{HTML::style('frontend/plugin/trumbowyg/dist/ui/trumbowyg.css')}}
 {{HTML::style('frontend/plugin/trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.css')}}
@@ -27,6 +28,7 @@ function rm($article, $char) {
 		<div class="conent">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
+                    @if($userType !=1)
 					<div class="panel-control">
 						@if($addActions) <a class="btn btn-default btn-sm"
 							href="{{Config::get('app.url')}}member/userinfo/addpage"
@@ -35,6 +37,7 @@ function rm($article, $char) {
 							href="{{Config::get('app.url')}}member/userinfo/addpage?add=1"
 							role="button">{{trans('register.banner_add_add')}}</a>
 						@endif
+                    @endif
 					</div>
 					<h3 class="panel-title">
 					@if(!empty($dataEdit))
