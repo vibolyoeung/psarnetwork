@@ -10,12 +10,12 @@
 	<!-- ============Relative post=============== -->
 	<div class="col-lg-10" style="padding-top:10px;background-color:fcfcfc;">
 		<?php
-		$images = json_decode ( $detailProduct->pictures, true );
+		$images = json_decode($productdetail->pictures,true);
 		?>
 		<div class="col-lg-12" style="background-color:#FFF; border:1px solid #CCC;">
 			<div class="col-lg-9 pull-right">
 				<div class="col-lg-12" style="padding:10px;">
-					<?php $contactInfo = json_decode($detailProduct->contact_info); ?>
+					<?php $contactInfo = json_decode($productdetail->contact_info); ?>
                    <ul id="Detail-Top-Contact">
 					<li><label>Name :</label> {{$contactInfo->contactName}}</li>
 					<li><label>Tel :</label> {{$contactInfo->contactHP}}</li>
@@ -27,18 +27,18 @@
 			<div class="col-lg-3 store-name" style="padding:10px 10px 10px 10px;">
 				<?php
 					if($detailProduct->image){
-						echo '<img src="'.Config::get('app.url').'upload/store/'.$detailProduct->image.'" />';	
+						echo '<img src="'.Config::get('app.url').'upload/store/'.$productdetail->image.'" />';	
 					}else{
 						echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=90&amp;" />';
 					}
 				?>
-				<div class="col-lg-10 pull-right" style="margin-top:8px;"><b>{{$detailProduct->{'title_'.Session::get('lang')};}}</b></div>
+				<div class="col-lg-10 pull-right" style="margin-top:8px;"><b>{{$productdetail->{'title_'.Session::get('lang')};}}</b></div>
 			</div>
 		</div>
 		<div class="clear"></div>
 		<div class="col-lg-12">
 			<div class="col-lg-12 title-detail">
-				{{$detailProduct->title}}
+				{{$productdetail->title}}
 			</div>
 			<div class="task-bar">
 				<span>
@@ -52,7 +52,7 @@
 				<span class="pull-right store-link">
 					Visit Store:
 						<a href="{{Config::get('app.url')}}store-{{$detailProduct->store_id;}}" style="font-weight:bold;" target="_blank">
-							{{Config::get('app.url')}}store-{{$detailProduct->store_id;}}
+							{{Config::get('app.url')}}store-{{$productdetail->store_id;}}
 						</a>
 				</span>
 			</div>
@@ -121,22 +121,22 @@
 							<div id="slide-content" style="display: none;">
 								<div id="slide-content-0">
 									
-									<div class="col-lg-12 text-centered" style="border:1px solid #dddddd;background-color:#dddddd;padding:5px 10px;font-weight:bold;font-size:18px;">Current Price : <span class="price">{{$detailProduct->price}}$</span></div>
+									<div class="col-lg-12 text-centered" style="border:1px solid #dddddd;background-color:#dddddd;padding:5px 10px;font-weight:bold;font-size:18px;">Current Price : <span class="price">{{$productdetail->price}}$</span></div>
 									<div class="clear"></div>
-									<div>Product ID:   &nbsp;<span class="pro-condition">{{$detailProduct->id}}</span></div>
-									<div>View: &nbsp;<span class="pro-condition"><?php echo $detailProduct->view;?></span></div>
-									<div>Post Date :&nbsp;<span class="pro-condition"><?php echo date("d/M/Y",strtotime($detailProduct->created_date)); ?> </span></div>
-									<div>Transfer :&nbsp;<span class="pro-condition">{{$detailProduct->{'type_name_'.Session::get('lang')};}}</span></div>
-									<div>Condition :&nbsp;<span class="pro-condition">{{$detailProduct->{'pcon_name_'.Session::get('lang')};}}</span></div>
-									<div>Status :&nbsp;<span class="pro-condition">{{Product::getProductStatus($detailProduct->pro_status)}}</span></div>
+									<div>Product ID:   &nbsp;<span class="pro-condition">{{$productdetail->id}}</span></div>
+									<div>View: &nbsp;<span class="pro-condition"><?php echo $productdetail->view;?></span></div>
+									<div>Post Date :&nbsp;<span class="pro-condition"><?php echo date("d/M/Y",strtotime($productdetail->created_date)); ?> </span></div>
+									<div>Transfer :&nbsp;<span class="pro-condition">{{$productdetail->{'type_name_'.Session::get('lang')};}}</span></div>
+									<div>Condition :&nbsp;<span class="pro-condition">{{$productdetail->{'pcon_name_'.Session::get('lang')};}}</span></div>
+									<div>Status :&nbsp;<span class="pro-condition">{{Product::getProductStatus($productdetail->pro_status)}}</span></div>
 									<hr />
-									<div>Company type :&nbsp;<span class="pro-condition">{{$detailProduct->{'role_name_'.Session::get('lang')};}}</span></div>
-									<div>Bussiness site :&nbsp;<span class="pro-condition">{{$detailProduct->{'client_type_name_'.Session::get('lang')};}}</span></div>
-									<div>Post by :&nbsp;<span class="pro-condition">{{$detailProduct->name}}</span></div>
+									<div>Company type :&nbsp;<span class="pro-condition">{{$productdetail->{'role_name_'.Session::get('lang')};}}</span></div>
+									<div>Bussiness site :&nbsp;<span class="pro-condition">{{$productdetail->{'client_type_name_'.Session::get('lang')};}}</span></div>
+									<div>Post by :&nbsp;<span class="pro-condition">{{$productdetail->name}}</span></div>
 									<div class="clear"></div>
 									<div class="col-lg-12 text-centered" style="background-color:#eea236;padding:5px 10px;text-align:center;">
 										<a href="{{Config::get('app.url')}}store-{{$detailProduct->store_id;}}" style="color:white;font-weight:bold;" target="_blank">
-										{{Config::get('app.url')}}store-{{$detailProduct->store_id;}}
+										{{Config::get('app.url')}}store-{{$productdetail->store_id;}}
 										</a>
 									</div>
 								</div>

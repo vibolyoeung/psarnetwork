@@ -71,37 +71,21 @@ $(document).ready(function(){
 	jQuery(".product_image").addClass(" col-lg-6");
 	
 	jQuery("#grid_view").css("color","red");
+	jQuery(".list_view_product").hide();
 	jQuery("#grid_view").click(function(){
-		jQuery(this).css("color","red");
-		jQuery("#list_view,#social_view").css("color","black");
-		jQuery(".product-list-item > .product_image > img.small").removeClass("hide-social");
-		jQuery(".product-list-item > .product_image > img.big").removeClass("show-social");
-		jQuery(".product_list_container").removeClass().addClass("product_list_container col-lg-4");
-		jQuery(".media-body,.social_desc").removeClass().addClass("media-body");
-		jQuery(".product_image").removeClass().addClass("pull-left product_image col-lg-6");
+		jQuery("#grid_view").css("color","red");
+		jQuery("#list_view").css("color","#285ea0");
+		jQuery(".list_view_product").hide();
+		jQuery(".grid_view_product").show();
 	});
 
 	jQuery("#list_view").click(function(){
+		jQuery("#grid_view").css("color","#285ea0");
 		jQuery(this).css("color","red");
-		jQuery("#grid_view,#social_view").css("color","black");
-		jQuery(".product-list-item > .product_image > img.small").removeClass("hide-social");
-		jQuery(".product-list-item > .product_image > img.big").removeClass("show-social");
-		jQuery(".product_list_container").removeClass().addClass("product_list_container col-lg-12");
-		jQuery(".media-body,.social_desc").removeClass().addClass("media-body col-lg-12");
-		jQuery(".product_image").removeClass().addClass("pull-left product_image col-lg-2");
+		jQuery(".grid_view_product").hide();
+		jQuery(".list_view_product").show();
 	});
 	
-	jQuery("#social_view").click(function(){
-		jQuery(this).css("color","red");
-		jQuery("#list_view,#grid_view").css("color","black");
-		jQuery(".product-list-item > .product_image > img.small").addClass(" hide-social");
-		jQuery(".product-list-item > .product_image > img.big").addClass(" show-social");
-		jQuery(".product_list_container").removeClass().addClass("product_list_container col-lg-8 col-centered");
-		jQuery(".product_image").removeClass().addClass("pull-left product_image col-lg-12");
-		jQuery(".media-body").removeClass().addClass("social_desc col-lg-12");
-		jQuery(".media-heading").css("margin-top","20");
-	});
-
 	jQuery('#disply-number').change(function () {
 		var fullUrl = window.location.href;
 		var lastParam = fullUrl.substring(fullUrl.lastIndexOf('&')) + 1;

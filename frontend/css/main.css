@@ -1,3 +1,4 @@
+
 /*************************
 *******Typography******
 **************************/
@@ -3061,7 +3062,7 @@ span.price,.price{
 }
 
 .product-image-wrapper {
-	margin-bottom: 0;
+	margin-bottom: 16px;
 }
 
 .list-store .product-image-wrapper {
@@ -3720,21 +3721,15 @@ img.show-social{
 div.center-image{
 	text-align: center;
 }
-div.productinfo a img{
-	-webkit-transition: all 400ms ease-in;
-    -webkit-transform: scale(1); 
-    -ms-transition: all 400ms ease-in;
-    -ms-transform: scale(1); 
-    -moz-transition: all 400ms ease-in;
-    -moz-transform: scale(1);
-    transition: all 400ms ease-in;
-    transform: scale(1);
+
+p.product_teaser{
+	font-size: 10px;
 }
-div.productinfo a img:hover{
-    -webkit-transform: scale(1.2); 
-    -ms-transform: scale(1.2); 
-    -moz-transform: scale(1.2);
-    transform: scale(1.2);
-    border:1px solid #eea236;
+ul.list_store_info>li{
+	display: block;
+	width: 100% !important;
+	line-height: 2;
 }
+
 //=========Detail slile===//
+

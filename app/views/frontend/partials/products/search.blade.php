@@ -68,10 +68,9 @@
 		<div style="padding:0;">
 			<ul class="nav nav-tabs" style="background-color:#ddd;">
 				<li>
-					<strong>View As : </strong>
+					<span>View As : </span>
 					<span id="grid_view">Grid View</span> |
-					<span id="list_view">List View</span> |
-					<span id="social_view">Social View</span>
+					<span id="list_view">List View</span>
 				</li>
 				<li class="col-lg-2 pull-right">
 					<select id="disply-number" name="displayNumber" class="form-control form-select-khmerabba">

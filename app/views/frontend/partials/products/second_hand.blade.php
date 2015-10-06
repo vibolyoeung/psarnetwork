@@ -40,8 +40,12 @@
 										}
 									?>
 								</a>
-								<h2>$ {{$secondHandProduct->price}}</h2>
-								<a href="{{Config::get('app.url')}}product/details/{{$secondHandProduct->id}}"><?php echo substr($secondHandProduct->title,0,20)?></a>
+								<center>
+									<h5>
+										<a href="{{Config::get('app.url')}}product/details/{{$secondHandProduct->id}}"><?php echo substr($secondHandProduct->title,0,20)?></a>
+									</h5>
+									<strong class="price">$ {{$secondHandProduct->price}}</strong>
+								</center>
 							</div>
 						</div>
 					</div>

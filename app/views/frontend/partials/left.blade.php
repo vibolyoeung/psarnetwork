@@ -43,7 +43,7 @@
 		<!--=========Register seller============ -->
 		<div class="panel-group category-products ads_side_bar" id="accordian">
 			<!-- type:homepage, position: left meduim, limit -->
-			{{ App::make('FePageController')->getFeAds(1, 6, 3) }}
+			{{ App::make('FePageController')->getFeAds(1, 4, 3) }}
 		</div>
 	</div>
 </div>
