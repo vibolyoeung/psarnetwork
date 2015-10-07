@@ -492,7 +492,7 @@ class Product extends Eloquent {
 		$store = Config::get ( 'constants.TABLE_NAME.STORE' );
 		$user = Config::get ( 'constants.TABLE_NAME.USER' );
 		$productInCategory = Config::get('constants.TABLE_NAME.PRODUCT_IN_CATEGORY');
-		return DB::table ( $product . ' AS p ' )->select (
+		$query = DB::table ( $product . ' AS p ' )->select (
 			'p.title',
 			'p.id',
 			'st.title_en',
@@ -542,7 +542,13 @@ class Product extends Eloquent {
 		)->join(
 			$productInCategory .' AS proIn',
 			'proIn.product_id','=','p.id'
-		)->where ( 'p.id', '=', $product_id )->first ();
+		);
+                $query->where ( 'p.id', '=', $product_id );
+                if(!empty($store_id)) {
+                    $query->where ( 'st.id', '=', $store_id );
+                }
+                $result = $query->first ();
+                return $result;
 	}
 
 	public static function getProductStatus($status) {
@@ -563,11 +569,43 @@ class Product extends Eloquent {
 		}
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		$product_in_category = Config::get ( 'constants.TABLE_NAME.PRODUCT_IN_CATEGORY' );
+		$store = Config::get ( 'constants.TABLE_NAME.STORE' );
+		$productTransferType = Config::get('constants.TABLE_NAME.PRODUCT_TRANSFER_TYPE');
+		$productCondition = Config::get ( 'constants.TABLE_NAME.PRODUCT_CONDITION' );
+		$user = Config::get ( 'constants.TABLE_NAME.USER' );
+		$accountRole = Config::get ( 'constants.TABLE_NAME.ACCOUNT_ROLE' );
+		$clientType = Config::get ( 'constants.TABLE_NAME.CLIENT_TYPE' );
 		
-		return DB::table ( $product . ' AS p' )
-		->select ( '*' )
-		->join ($product_in_category.' AS pro', 'pro.product_id', '=', 'p.id' )
-		->join ()
+		return DB::table ( $product . ' AS p' )->select (
+			'p.view',
+			'p.id',
+			'p.title',
+			'p.description',
+			'p.pictures',
+			'p.contact_info',
+			'p.created_date',
+			'p.price',
+			'p.thumbnail',
+			'st.title_en',
+			'st.title_km',
+			'st.image',
+			'pt.name_en as transfer_type_name_en',
+			'pt.name_km as transfer_type_name_km',
+			'proc.name_en as condition_name_en',
+			'proc.name_km as condition_name_km',
+			'u.name as username',
+			'accr.rol_name_en as account_role_name_en',
+			'accr.rol_name_km as account_role_name_km',
+			'ctype.name_en as client_type_name_en',
+			'ctype.name_km as client_type_name_km'
+			)
+		->join ( $store.' AS st','st.id','=','p.store_id')
+		->join ($product_in_category.' AS pro', 'pro.product_id','=','p.id')
+		->join ($productTransferType.' AS pt','pt.ptt_id','=','p.pro_transfer_type_id')
+		->join ($productCondition.' AS proc','proc.id','=','p.pro_condition_id')
+		->join ($user.' AS u','u.id','=','p.user_id')
+		->join ($accountRole.' AS accr','accr.rol_id','=','u.account_role')
+		->join($clientType.' AS ctype','ctype.id','=','u.client_type')
 		->whereIn( 'pro.category_id',$category_id)
 		->where( 'p.publish_date','<=',date('Y-m-d'))
 		->groupby('pro.product_id')
@@ -734,12 +772,58 @@ class Product extends Eloquent {
 	 *
 	 * @return array $products
 	 */
-	public function searchProductFromCategory($location, $transferType, $condition, $price, $date, $displayNumber = null) {
-		$productTable = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
+	public function searchProductFromCategory(
+		$location,
+		$transferType,
+		$condition,
+		$price,
+		$date,
+		$displayNumber = null
+	) {
+		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
+		$product_in_category = Config::get ( 'constants.TABLE_NAME.PRODUCT_IN_CATEGORY' );
+		$store = Config::get ( 'constants.TABLE_NAME.STORE' );
+		$productTransferType = Config::get('constants.TABLE_NAME.PRODUCT_TRANSFER_TYPE');
+		$productCondition = Config::get ( 'constants.TABLE_NAME.PRODUCT_CONDITION' );
+		$user = Config::get ( 'constants.TABLE_NAME.USER' );
+		$accountRole = Config::get ( 'constants.TABLE_NAME.ACCOUNT_ROLE' );
+		$clientType = Config::get ( 'constants.TABLE_NAME.CLIENT_TYPE' );
 		
+		
+		// Convert date formate the same db
+		$date = date('Y-m-d', strtotime($date));
 		if (( int ) $location === 0) {
-			$query = DB::table ( $productTable . ' AS p' );
-			$query->select ( '*' );
+			$query = DB::table ( $product . ' AS p' );
+			$query->select (
+			'p.view',
+			'p.id',
+			'p.title',
+			'p.description',
+			'p.pictures',
+			'p.contact_info',
+			'p.created_date',
+			'p.price',
+			'p.thumbnail',
+			'st.title_en',
+			'st.title_km',
+			'st.image',
+			'pt.name_en as transfer_type_name_en',
+			'pt.name_km as transfer_type_name_km',
+			'proc.name_en as condition_name_en',
+			'proc.name_km as condition_name_km',
+			'u.name as username',
+			'accr.rol_name_en as account_role_name_en',
+			'accr.rol_name_km as account_role_name_km',
+			'ctype.name_en as client_type_name_en',
+			'ctype.name_km as client_type_name_km'
+			);
+			$query->join ( $store.' AS st','st.id','=','p.store_id');
+			$query->join ($product_in_category.' AS pro', 'pro.product_id','=','p.id');
+			$query->join ($productTransferType.' AS pt','pt.ptt_id','=','p.pro_transfer_type_id');
+			$query->join ($productCondition.' AS proc','proc.id','=','p.pro_condition_id');
+			$query->join ($user.' AS u','u.id','=','p.user_id');
+			$query->join ($accountRole.' AS accr','accr.rol_id','=','u.account_role');
+			$query->join($clientType.' AS ctype','ctype.id','=','u.client_type');
 			$query->where ( 'p.is_publish', '=', self::IS_PUBLISH );
 			if (( int ) $transferType !== 0) {
 				$query->where ( 'p.pro_transfer_type_id', '=', ( int ) $transferType );
@@ -753,6 +837,7 @@ class Product extends Eloquent {
 			if (! empty ( $price )) {
 				$query->where ( 'p.price', '=', $price );
 			}
+			$query->groupBy('pro.product_id');
 			$query->orderBy ( 'p.id', 'DESC' );
 			
 			$limitNumber = self::LIST_NUMBER;
@@ -763,9 +848,9 @@ class Product extends Eloquent {
 			return $query->paginate ( $limitNumber );
 		}
 		
-		return $products;
+		$products = [];
 		
-		$usersId = $this->findUserByProvince ( $province );
+		$usersId = $this->findUserByProvince($location);
 		
 		foreach ( $usersId as $userId ) {
 			$query = DB::table ( $productTable . ' AS p' );

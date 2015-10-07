@@ -40,7 +40,9 @@ if(count($hotPromotionProducts) > 0){
 							</a>
 							<center>
 								<h5>
-									<a href="{{Config::get('app.url')}}product/details/{{$hotPromotionProduct->id}}"><?php echo substr($hotPromotionProduct->title,0,20)?></a>
+									<a href="{{Config::get('app.url')}}product/details/{{$hotPromotionProduct->id}}">
+										<?php echo str_limit($hotPromotionProduct->title,$limit = 20, $end = '...')?>
+									</a>
 								</h5>
 								<strong class="price">$ {{$hotPromotionProduct->price}}</strong>
 							</center>

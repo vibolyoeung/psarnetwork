@@ -34,7 +34,7 @@ if(count($newProducts) > 0){
 									<center>
 										<h5>
 											<a href="{{Config::get('app.url')}}product/details/{{$newProduct->id}}">
-												<?php echo str_limit($newProduct->title,$limit = 20, $end = '...');?>
+												<?php echo str_limit($newProduct->title,$limit = 18, $end = '...');?>
 											</a>
 										</h5>
 										<strong class="price">$ {{$newProduct->price}}</strong>

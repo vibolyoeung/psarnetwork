@@ -230,13 +230,12 @@ class FePageController extends BaseController {
 		);
 		
 		Product::countViewOfUserClickProduct($product_id);
-		$detailProduct = $this->mod_product->findProductDetailById($product_id,20);
-		//var_dump($detailProduct);die;
+		$detailProduct = $this->mod_product->findProductDetailById($product_id);
 		return View::make('frontend.partials.products.detials')
 					->with('advTops', $advTops->result)
 					->with('client_type',$this->mod_category->getClientType())
 					->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
-					->with('productdetail', $detailProduct);
+					->with('productdetails', $detailProduct);
 	}
     
     public function getSignOut() {

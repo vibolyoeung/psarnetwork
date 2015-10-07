@@ -23,9 +23,9 @@ if(count($latestProducts) > 0){
 						<a href="#" data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail(<?php echo $latestProduct->id; ?>)">
 							<?php 
 							if($latestProduct->thumbnail){
-								echo '<img src="image/phpthumb/'.$latestProduct->thumbnail.'?p=product&amp;h=150&amp;w=150" />';
+								echo '<img src="image/phpthumb/'.$latestProduct->thumbnail.'?p=product&amp;h=100&amp;w=135" />';
 							}else{
-								echo '<img src="image/phpthumb/No_image_available.jpg?p=product&amp;h=150&amp;w=150" />';
+								echo '<img src="image/phpthumb/No_image_available.jpg?p=product&amp;h=100&amp;w=135" />';
 							}
 							?>
 						</a>

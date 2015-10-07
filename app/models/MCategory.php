@@ -874,8 +874,9 @@ class MCategory extends Eloquent{
                         $id = 'item-'.$userMenu->m_cat_id;
                     }
     				$userMenus .= "<li>\n";
-                        $menuName = $userMenu->{'name_'.Session::get('lang')};                        
-    					$userMenus .= "<a href='{$homeUrl}/search/{$menuName}'>{$menuName}</a>\n";
+                        $menuName = $userMenu->{'name_'.Session::get('lang')};
+                        $menuEnName = $userMenu->{'name_en'};
+    					$userMenus .= "<a href='{$homeUrl}/search/{$menuEnName}'>{$menuName}</a>\n";
     
     					// Run this function again (it would stop running when the mysql_num_result is 0
     					$userMenus .= $this->menuUserSubList($userID, $userMenu->m_cat_id,$level+1,$userHome);
@@ -903,39 +904,39 @@ class MCategory extends Eloquent{
         $response = new stdClass();
 		try {
 			$userMenus = '';
-//             $where = array(
-//                 'status' => 1,
-//                 'parent_id' => $parent
-//             );
-// 			$result = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
-//            ->select('*')
-// 			->where($where)
-// 			->get();
-//             $userMenus = "";
-// 			$userMenus .= "<ul class='sf-menu' id='menunav'>";
-//             $homeUrl = $getUserUrl;
-//             if($level==0) {
-//                 $userMenus .= "<li><a class='home' href='{$homeUrl}'>Home</a></li>";
-//             }
-//            if(!empty($result)) {
-//    			foreach($result as $userMenu){
-//                    if($level ==0) {
-//                        $id = 'item-'.$userMenu->id.$userMenu->id;
-//                    } else {
-//                        $id = 'item-'.$userMenu->id;
-//                    }
-//    				$userMenus .= "<li>\n";
-//                        $menuName = $userMenu->{'name_'.Session::get('lang')};                        
-//    					$userMenus .= "<a href='#'>{$menuName}</a>\n";
+            $where = array(
+                'status' => 1,
+                'parent_id' => $parent
+            );
+			// $result = DB::table(Config::get('constants.TABLE_NAME.M_CATEGORY'))
+   //         ->select('*')
+			// ->where($where)
+			// ->get();
+            $userMenus = "";
+			$userMenus .= "<ul class='sf-menu' id='menunav'>";
+            $homeUrl = $getUserUrl;
+            if($level==0) {
+                $userMenus .= "<li><a class='home' href='{$homeUrl}'>Home</a></li>";
+            }
+      //      if(!empty($result)) {
+   			// foreach($result as $userMenu){
+      //              if($level ==0) {
+      //                  $id = 'item-'.$userMenu->id.$userMenu->id;
+      //              } else {
+      //                  $id = 'item-'.$userMenu->id;
+      //              }
+   			// 	$userMenus .= "<li>\n";
+      //                  $menuName = $userMenu->{'name_'.Session::get('lang')};                        
+   			// 		$userMenus .= "<a href='#'>{$menuName}</a>\n";
    
-//    					// Run this function again (it would stop running when the mysql_num_result is 0
-//    					$userMenus .= $this->menuUserFree($userID, $userMenu->id,$level+1);
-//    				$userMenus .= "</li>\n";
-//    			} 
-//            }
-//             /*get static page for each user*/
-//             $userMenus .= $this->menuUserPage($userID,1,$getUserUrl);
-//             $userMenus .= "</ul>\n";
+   			// 		// Run this function again (it would stop running when the mysql_num_result is 0
+   			// 		$userMenus .= $this->menuUserFree($userID, $userMenu->id,$level+1);
+   			// 	$userMenus .= "</li>\n";
+   			// } 
+      //      }
+            /*get static page for each user*/
+            $userMenus .= $this->menuUserPage($userID,1,$getUserUrl);
+            $userMenus .= "</ul>\n";
             return $userMenus;
 		}catch (\Exception $e){
 			$response->result = 0;
@@ -972,8 +973,9 @@ class MCategory extends Eloquent{
                     }
                     $id_level = $level+1;
     				$userMenus .= "<li>\n";
-                        $menuName = $userMenu->{'name_'.Session::get('lang')}; 
-    					$userMenus .= "<a href='{$homeUrl}/search/{$menuName}'>{$menuName}</a>\n";
+                        $menuName = $userMenu->{'name_'.Session::get('lang')};
+                        $menuEnName = $userMenu->{'name_en'};
+    					$userMenus .= "<a href='{$homeUrl}/search/{$menuEnName}'>{$menuName}</a>\n";
     
     					// Run this function again (it would stop running when the mysql_num_result is 0
     					$userMenus .= $this->menuUserSubList($userID, $userMenu->m_cat_id,$level+1,$homeUrl);

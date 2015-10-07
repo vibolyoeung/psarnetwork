@@ -195,11 +195,16 @@ class FeMemberController extends BaseController {
 			);
 			$getToolPage = $this->mod_page->getMainPages ( null, $whereArr );
 			
-			if (! empty ( $getToolPage )) {
+			if (! empty ( $getToolPage->result )) {
 				foreach ( $getToolPage->result as $tooPage ) {
 					$addToolPage = $this->mod_page->addUserPages ( $uid, $tooPage->id, 100, $tooPage->type );
 				}
-			}
+			} else {
+                            $toolDefault = array('Vistor Inormation Box'=>'tool_visitor_info','Member Status Box'=>'tool_memeber_status');
+                            foreach ($toolDefault as $key => $value) {
+                                $this->mod_page->addUserPagesConfig ( $uid, $title = $key , 1, $type = $value, $position = 100);
+                            }
+                        }
 			/* end add tool view for user */
 			
 			/* add widget for user */

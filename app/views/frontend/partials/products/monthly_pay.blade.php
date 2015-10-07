@@ -26,9 +26,13 @@
 							<div class="productinfo text-center">
 								<a href="#" data-toggle="modal" data-target="#myModal"
 									onclick="popupDetails.add_popup_detail(<?php echo $monthlyProduct->id; ?>)">
-									<img
-									src="{{Config::get('app.url')}}/frontend/images/home/iphone6plus.jpg"
-									alt="" />
+									<?php 
+									if($monthlyProduct->thumbnail){
+										echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$monthlyProduct->thumbnail.'?p=product&amp;h=90&amp;w=120" />';
+									}else{
+										echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=90&amp;w=120" />';
+									}
+								?>
 								</a>
 								<center>
 									<h5>
