@@ -120,7 +120,7 @@ Categories
 												<div class="col-lg-5 pull-left">
 													<?php
 														if($product->image){
-															echo '<img src="'.Config::get('app.url').'upload/store/'.$product->image.'" height="45" style="border:1px solid #f7f7f5;" />';	
+															echo '<img src="'.Config::get('app.url').'upload/store/'.$product->image.'" width="110" style="border:1px solid #f7f7f5;" />';	
 														}else{
 															echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=90&amp;" />';
 														}

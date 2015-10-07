@@ -31,7 +31,7 @@ if(count($latestProducts) > 0){
 						</a>
 						<center>
 							<h5>
-								<a href="{{Config::get('app.url')}}product/details/{{$latestProduct->id}}"><?php echo substr($latestProduct->title,0,20)?></a>
+								<a href="{{Config::get('app.url')}}product/details/{{$latestProduct->id}}"><?php echo str_limit($latestProduct->title,$limit = 10, $end = '...')?></a>
 							</h5>
 							<strong class="price">$ {{$latestProduct->price}}</strong>
 						</center>

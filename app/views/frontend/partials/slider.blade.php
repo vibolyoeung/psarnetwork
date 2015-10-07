@@ -15,7 +15,7 @@
 								data-slide-number="<?= $thumbnail_id; ?>">
 								<a  href='{{$slideshow->link_url}}' target="_blank">
 									<?php 
-									 echo '<img class="img-responsive img-thumbnail" src="'.Config::get('app.url').'upload/advertisement/'.$slideshow->image.'"/>';
+									echo '<img class="img-responsive img-thumbnail" src="'.Config::get('app.url').'upload/advertisement/'.$slideshow->image.'"/>';
 									?>
 								</a>
 							</div>

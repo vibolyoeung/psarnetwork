@@ -95,7 +95,7 @@ class Setting extends Eloquent{
 		try {
 			$result = DB::table(Config::get('constants.TABLE_NAME.SETTING'))
 			->select('setting_value')
-			->where('setting_type','=','setting_display_number_slideshow')
+			->where('id','=',1)
 			->first();
 			$response->data = $result;
 			$response->result = 1;
