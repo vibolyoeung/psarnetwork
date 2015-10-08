@@ -33,25 +33,26 @@
 	                          </a>
 	                          <a class="right carousel-control" href="#DetailPopupCarousel" role="button" data-slide="next">
 	                            <span class="glyphicon glyphicon-chevron-right"></span>                                       
-	                          </a>    
-							<div class="row col-lg-12">
-								<div class="row hidden-xs" id="slider-thumbs">
-									<!-- Bottom switcher of slider -->
-									<ul class="hide-bullets">
-									<?php $thumbnails_id = 1; ?>
-										@foreach($images as $image)
-											<li class="col-sm-3"><a 
-											id="carousel-selector-<?php echo $thumbnails_id; ?>">
-											<?php 
-												echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=55&amp;w=90" />';
-											?>
-										</a></li>
-											<?php $thumbnails_id++; ?>
-										@endforeach
-									</ul>
-								</div>
-							</div>
+	                          </a>  
 							<!-- Carousel nav -->
+						</div>
+						 
+						<div class="row col-lg-12">
+							<div class="row hidden-xs" id="slider-thumbs">
+								<!-- Bottom switcher of slider -->
+								<ul class="hide-bullets">
+								<?php $thumbnails_id = 1; ?>
+									@foreach($images as $image)
+										<li class="col-sm-3"><a 
+										id="carousel-selector-<?php echo $thumbnails_id; ?>">
+										<?php 
+											echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=55&amp;w=90" />';
+										?>
+									</a></li>
+										<?php $thumbnails_id++; ?>
+									@endforeach
+								</ul>
+							</div>
 						</div>
 					</div>
 					<div class="col-sm-4" id="carousel-text" style="padding:0;">

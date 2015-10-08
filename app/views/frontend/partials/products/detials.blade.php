@@ -101,8 +101,7 @@
 											<?php $thumbnails_id = 0; ?>
 												@foreach($images as $image)
 													<li class="col-sm-3">
-														<a 
-														   id="popup-carousel-selector-<?php echo $thumbnails_id;?>"> 
+														<a id="popup-carousel-selector-<?php echo $thumbnails_id;?>"> 
 														   	<?php
 																if($image['pic']){
 																	echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=55&amp;w=90" />';	
@@ -110,6 +109,7 @@
 																	echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=55&amp;w=90" />';
 																}
 															?>
+														</a>
 													</li>
 													<?php $thumbnails_id++; ?>
 												@endforeach

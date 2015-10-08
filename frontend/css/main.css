@@ -99,9 +99,6 @@ h1,h2,h3,h4,h5,h6 {
 .carousel-inner .item .col-sm-6 img{
 	max-height: 200px;
 }
-.carousel-inner>img{
-	max-height: 320px;
-}
 
 a#scrollUp {
 	bottom: 0px;
@@ -2979,7 +2976,6 @@ span.price,.price{
 }
 
 .carousel-inner {
-	max-height: 320px;
 	padding: 0;
 	background:#FFF;
 }
@@ -3634,8 +3630,12 @@ span.pro-condition{
 ul#TapTitle > li.active > a{
 	border:1px solid #dddddd;
 }
-#DetailCarousel > .carousel-inner{
-	border:1px solid #ddd;
+#DetailCarousel,#DetailPopupCarousel{
+	border:1px solid #dddddd;
+	background-color:white;
+	height: 250px;
+	z-index: 10;
+	overflow: hidden;
 }
 .title-detail{
 	background-color: #ddd;
