@@ -222,27 +222,15 @@
 							</div>
 						</div>
 						<div class="col-lg-4" style="margin: 0; padding: 0;">
-							<div class="col-lg-6 pull-right" style="margin: 0; padding: 0;">
-								<div class="btn-group col-lg-12" style="padding: 0; margin: 0;">
-									<select name="location">
-										<option value="0">{{trans('product.location')}}</option>
-										@foreach($locations as $location)
-											<option value="{{$location->province_id}}">
-												<?php echo $location->{'province_name_'.Session::get('lang')}; ?>
-											</option>
-										@endforeach;
-									</select>
-								</div>
-							</div>
-	
-							<div class="col-lg-6" style="margin: 0; padding: 0;">
-								<div class="btn-group col-lg-12 " style="margin: 0; padding: 0;">
-									<select name="type">
-										<option value="1">{{trans('product.product')}}</option>
-										<option value="2">{{trans('product.buyer')}}</option>
-										<option value="3">{{trans('product.supplier')}}</option>
-									</select>
-								</div>
+							<div class="btn-group col-lg-12" style="padding: 0; margin: 0;">
+								<select name="location">
+									<option value="0">{{trans('product.location')}}</option>
+									@foreach($locations as $location)
+										<option value="{{$location->province_id}}">
+											<?php echo $location->{'province_name_'.Session::get('lang')}; ?>
+										</option>
+									@endforeach;
+								</select>
 							</div>
 						</div>
 					</div>

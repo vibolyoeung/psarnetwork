@@ -63,13 +63,11 @@ class FeSearchController extends BaseController {
 			);
 
 		$province = Request::input('location');
-		$businessType = Request::input('type');
 		$keyword = Request::input('q');
 
 		$products = $this->mod_product->searchProducts(
 			$keyword,
-			$province,
-			$businessType
+			$province
 		);
 
 		$categorId = Request::input('categoryId');
