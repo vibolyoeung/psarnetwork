@@ -8,7 +8,7 @@ if(count($newProducts) > 0){
 		<li>New Products&nbsp;&nbsp;&nbsp; &frasl;</li>
 		<li>Products : <span class="number-display price"><?php echo count($newProducts)?></span></li>
 	</ul>
-	<div id="hotpromotion-item-carousel" class="carousel slide"
+	<div id="related-item-carousel" class="carousel slide"
 		data-ride="carousel">
 		<div class="carousel-inner">
 			<?php

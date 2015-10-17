@@ -79,6 +79,7 @@ Categories
 										</div>
 										<div class="col-lg-5" style="border:1px solid #f7f7f5;line-height:2;">
 											<div class="col-lg-12" style="padding:0;">
+												<div class="pull-right price">{{$product->price}} $</div>
 												<h5>
 													<a href="#">
 														{{str_limit($product->title,$limit = 40, $end = '...')}}
@@ -103,7 +104,7 @@ Categories
 												<h5>
 													<a href="#">
 														<?php 
-															$storename = $product->{'title_'.Session::get('lang')};
+															$storename = $product->{'title_en'};
 														?>
 														{{str_limit($storename,$limit = 20, $end = '...')}}
 													</a>

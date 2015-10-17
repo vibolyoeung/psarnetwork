@@ -30,8 +30,8 @@ class FePageController extends BaseController {
 
 	public function index()
 	{
-		$limit = $this->mod_setting->getSlidshowNumber();
-		$listSlideshows = self::getSlideShowHomePage($limit->data->setting_value);
+		//$limit = $this->mod_setting->getSlidshowNumber();
+		$listSlideshows = self::getSlideShowHomePage(5);
 
 
 		$advVerticalRightSmall = $this->mod_advertisment
