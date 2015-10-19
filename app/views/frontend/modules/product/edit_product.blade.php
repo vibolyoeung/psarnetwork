@@ -16,25 +16,26 @@
     {{HTML::script('frontend/plugin/dropzone/dist/dropzone.js')}}
     {{HTML::script('frontend/js/product.js')}}
 	<div class="container">
-		{{Form::open(array('url'=>'products/edit/'.$product->id,'enctype'=>'multipart/form-data','file' => true, 'class'=>'form-horizontal'))}}
+		{{Form::open(array('url'=>'products/edit/'.$product->id,'enctype'=>'multipart/form-data','file' => true, 'class'=>'form-horizontal', 'id'=>'addNewProduct'))}}
                 <div class="col-md-12 ">
                     <div role="tabpanel">
                         <!-- Nav tabs -->
+                        <div id="errorMessage"></div>
                          <ul class="nav nav-tabs pro-tab" role="tablist">
                          	<li role="productTag gettab" class="active presentation">
                                 <a href="#productTag" aria-controls="productTag" role="tab" data-toggle="tab">{{trans('product.category')}}</a>
                             </li>
                             <li role="productInfo gettab" class="productInfo product-info">
-                                <a href="#productInfo" aria-controls="productInfo" role="tab" data-toggle="tab">Product Info</a>
+                                <a href="#productInfo" aria-controls="productInfo" role="tab" data-toggle="tab">{{trans('product.tabproinfo')}}</a>
                             </li>
                             <li class="picture gettab pictures" role="presentation">
-                                <a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab">Picture</a>
+                                <a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab">{{trans('product.tab_pro_picture')}}</a>
                             </li>
                             <li class="quotation gettab" role="presentation">
-                                <a href="#quotation" aria-controls="quotation" role="tab" data-toggle="tab">Quotation</a>
+                                <a href="#quotation" aria-controls="quotation" role="tab" data-toggle="tab">{{trans('product.tab_pro_quotation')}}</a>
                             </li>
                             <li class="contactInfo gettab" role="presentation">
-                                <a href="#contactInfo" aria-controls="contactInfo" role="tab" data-toggle="tab">Contact Info</a>
+                                <a href="#contactInfo" aria-controls="contactInfo" role="tab" data-toggle="tab">{{trans('product.tab_pro_contact')}}</a>
                             </li>
                          </ul>
 
@@ -54,12 +55,12 @@
                                         			@if($category)
                                         			<div class="row">
                                         				{{@$editCategory}}
-                                        				<input id='tags' type='hidden' class='tags' style="height: 35px;width:100%" name="s_category" value="{{@$category}}"/>
+                                        				<input id='tags' type='hidden' id="categories" class='tags' style="height: 35px;width:100%" name="s_category" value="{{@$category}}"/>
 		                                       
 		                                        	</div>
 		                                        	@else
 		                                        	<div class="row">
-		                                        		<input id='tags' type='hidden' class='tags' style="height: 35px;width:100%" name="s_category" value=""/>
+		                                        		<input id='tags' type='hidden' id="categories" class='tags' style="height: 35px;width:100%" name="s_category" value=""/>
 		                                        		<div class="col-lg-2 col-md-4 col-sm-6">
 		                                        			<div class="list-group" id="cat-sub-1">
 															  {{@$chooseCategory}} 
@@ -112,7 +113,8 @@
                                         Form::submit(
                                             trans('product.save_product_ads'), 
                                             array(
-                                                'class' => 'btn btn-primary pull-right', 
+                                                'class' => 'btn btn-primary pull-right btnAddProduct',
+                                                'id'=>'btnAddProduct',
                                                 'name'=>'btnAddProduct'
                                             )
                                         )
@@ -263,7 +265,7 @@
                                         Form::submit(
                                             trans('product.save_product_ads'), 
                                             array(
-                                                'class' => 'btn btn-primary pull-right', 
+                                                'class' => 'btn btn-primary pull-right btnAddProduct', 
                                                 'name'=>'btnAddProduct'
                                             )
                                         )
@@ -368,7 +370,7 @@
                                                             Form::submit(
                                                                 trans('product.save_product_ads'), 
                                                                 array(
-                                                                    'class' => 'btn btn-primary pull-right', 
+                                                                    'class' => 'btn btn-primary pull-right btnAddProduct', 
                                                                     'name'=>'btnAddProduct'
                                                                 )
                                                             )
@@ -402,7 +404,7 @@
                                                 Form::submit(
                                                     trans('product.save_product_ads'), 
                                                     array(
-                                                        'class' => 'btn btn-primary pull-right', 
+                                                        'class' => 'btn btn-primary pull-right btnAddProduct', 
                                                         'name'=>'btnAddProduct'
                                                     )
                                                 )
@@ -517,7 +519,7 @@
                                             Form::submit(
                                                 trans('product.save_product_ads'), 
                                                 array(
-                                                    'class' => 'btn btn-primary', 
+                                                    'class' => 'btn btn-primary btnAddProduct', 
                                                     'name'=>'btnAddProduct'
                                                 )
                                             )
@@ -529,7 +531,7 @@
                       </div>
                     </div>
                     <script>
-                    var homePage = "{{Config::get('app.url')}}";
+                    var homePage = "{{Config::get('app.url')}}",errorArr =[],errorOnID=[];
                     var totalImg = {{$totalImage}};
                     var limitUpload = 8;
                       $(function () {
@@ -565,8 +567,105 @@
                           } else {
                               // No hash found
                           }
-                          
+                        function unique(list) {
+                            var result = [];
+                            $.each(list, function(i, e) {
+                                if ($.inArray(e, result) == -1) result.push(e);
+                            });
+                            return result;
+                        }                         
                         $(function(){
+                            jQuery(".btnAddProduct").click(function(){
+                                var category = jQuery("#tags").val();
+                                var productTitle = jQuery("input[name='productTitle']").val();
+                                var productPrice = jQuery("input[name='productPrice']").val();
+                                var desc = jQuery("textarea[name='desc']").val();
+                                var contactLocation = jQuery("input[name='contactLocation']").val();
+
+
+                                var mCate = "{{trans('product.category')}}";
+                                var pTitle = "{{trans('product.product_title')}}";
+                                var pPrice = "{{trans('product.price')}}";
+                                var pDescription = "{{trans('product.description')}}";
+                                var pContactLocation = "{{trans('product.location')}}";
+                                var idTag = 'productTag';
+                                var productTag = 'productTag';
+                                var productInfo = 'productInfo';
+                                var contactInfo = 'contactInfo';
+
+                                if(!category) {
+                                    errorArr.push(mCate);
+                                    errorOnID.push(idTag);
+                                } else {
+                                    errorArr = jQuery.grep(errorArr, function(value) {
+                                      return value != mCate;
+                                    });
+                                    errorOnID = jQuery.grep(errorOnID, function(value) {
+                                      return value != productTag;
+                                    });
+                                }
+
+                                if(!productTitle) {
+                                    errorArr.push(pTitle);
+                                    errorOnID.push(productInfo);
+                                } else {
+                                    errorArr = jQuery.grep(errorArr, function(value) {
+                                      return value != pTitle;
+                                    });
+                                    errorOnID = jQuery.grep(errorOnID, function(value) {
+                                      return value != productInfo;
+                                    });
+                                }
+
+                                if(!productPrice) {
+                                    errorArr.push(pPrice);
+                                    errorOnID.push(productInfo);
+                                } else {
+                                    errorArr = jQuery.grep(errorArr, function(value) {
+                                      return value != pPrice;
+                                    });
+                                    errorOnID = jQuery.grep(errorOnID, function(value) {
+                                      return value != productInfo;
+                                    });
+                                }
+
+                                if(!desc) {
+                                    errorArr.push(pDescription);
+                                    errorOnID.push(productInfo);
+                                } else {
+                                    errorArr = jQuery.grep(errorArr, function(value) {
+                                      return value != pDescription;
+                                    });
+                                    errorOnID = jQuery.grep(errorOnID, function(value) {
+                                      return value != productInfo;
+                                    });
+                                }
+
+                                if(!contactLocation) {
+                                    errorArr.push(pContactLocation);
+                                } else {
+                                    errorArr = jQuery.grep(errorArr, function(value) {
+                                      return value != pContactLocation;
+                                    });
+                                    errorOnID = jQuery.grep(errorOnID, function(value) {
+                                      return value != contactInfo;
+                                    });
+                                }
+                                var getTextUnigue = unique(errorArr);
+                                var getUnigue = unique(errorOnID);
+                                if(getTextUnigue.length>0) {
+                                    var errorS = '<ul>';
+                                    for (var i = 0; i < getTextUnigue.length; ++i) {
+                                        errorS += '<li>' + getTextUnigue[i] + '</li>';
+                                    }
+                                    errorS += '</ul>';
+                                    var htmlDiv = '<div class="alert alert-danger"><strong>Oh snap! you got error on:</strong>'+errorS+'</div>';
+                                    jQuery("#errorMessage").html(htmlDiv);
+                                } else {
+                                    jQuery("#errorMessage").html('');
+                                }
+                            });
+
                         	$("a[role='tab']").click(function(e){
                         		pageurl = $(this).attr('href');
                         		$("ul.nav-tabs li").removeClass('active');

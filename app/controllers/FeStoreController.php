@@ -291,13 +291,17 @@ class FeStoreController extends BaseController {
 		/*get counter visitor*/
 		$this->getTracking($dataStore->id);
 		/*end get counter visitor*/
-		
+		if(!empty($getTracking->result)) {
+			$getTrackingUser = $getTracking->result;
+		} else {
+			$getTrackingUser = array();
+		}
 		return View::make ( 'frontend.modules.store.page' )
 		->with ( 'dataStore', $dataStore )
 		->with ( 'dataCategory', $dataCategory )
 		->with ( 'dataUserPage', $dataUserPage )
 		->with ( 'dataUserPageView', $getUserPage->result )
-		->with ( 'getTracking', $getTracking->result )
+		->with ( 'getTracking', $getTrackingUser )
 		->with ( 'toolView', $getToolPage->result );
 	}
 	public function getAnalytics() {
