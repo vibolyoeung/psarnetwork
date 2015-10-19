@@ -1,3 +1,5 @@
+<!-- type:homepage, position: up on buyer request, limit -->
+{{ App::make('FePageController')->getHorizontalAds(1, 10, 3) }}
 <?php
 $buyerProducts = Product::findBuyerProducts ();
 if(count($buyerProducts) > 0){

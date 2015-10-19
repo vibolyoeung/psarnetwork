@@ -82,13 +82,26 @@ class FePageController extends BaseController {
 
 	public function getFeAds($type, $position, $limit) {
 		$advs = $this->mod_advertisment
-		->getAdvertisementHomePage(
+			->getAdvertisementHomePage(
 				$type,
 				$position,
 				$limit
-		);
+			);
+
 		return View::make('frontend.partials.advertisement')
 			->with('advs', $advs->result);
+	}
+
+	public function getHorizontalAds($type, $position, $limit) {
+		$advHorizontalLargeCenters = $this->mod_advertisment
+			->getAdvertisementHomePage(
+				$type,
+				$position,
+				$limit
+			);
+
+		return View::make('frontend.partials.horizontal_center_adv')
+			->with('advHorizontalLargeCenters', $advHorizontalLargeCenters->result);
 	}
 
 	public function getSpecialAds(){

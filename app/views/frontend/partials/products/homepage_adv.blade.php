@@ -1,3 +1,5 @@
+<!-- type:homepage, position: up on product advertisement, limit -->
+{{ App::make('FePageController')->getHorizontalAds(1, 5, 3) }}
 @if(count($productAdvs) > 0)
 <div class="category-tab feature-ad product-adv">
 	<div class="col-lg-12 product-adv" style="padding: 0;">
