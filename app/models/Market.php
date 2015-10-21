@@ -344,34 +344,97 @@ class Market extends Eloquent{
 		return $response;
 	}
 
+	public function getAllChildClientType($parent_id,$client_type_id = ''){
+		try {
+    		if(!is_array($client_type_id)){
+				$client_type_id = array();
+			}
+			$results = DB::table(Config::get('constants.TABLE_NAME.MARKET'))
+						->select('id')
+						->where('market_type','=', $parent_id)
+						->get();
+			if(count($results) > 0){
+				array_push($client_type_id,(int)$parent_id);
+				foreach($results as $result){
+					$client_type_id[] = array($result->id);
+					$client_type_id = self::getAllChildCategories($result->id,$client_type_id);
+				}
+			}
+		}catch (\Exception $e){
+			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
+		}
+		return $client_type_id;
+	}
+
+
 	public function listproductofsupermarket($client_type_id){
+
+		// $productTable = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
+		// $userTable = Config::get ( 'constants.TABLE_NAME.USER' );
+		// $storeTable = Config::get ( 'constants.TABLE_NAME.STORE' );
+
 		// try {
-		// 	$result = DB::table(Config::get('constants.TABLE_NAME.PRODUCT'))
-		// 	->select('*')
-		// 	//->where('id','=', $id)
-		// 	->take(1)
+		// 	$data = DB::table ( $userTable . ' AS user' )
+		// 	->join ( $productTable . ' AS pro', 'user.id', '=', 'pro.user_id' )
+		// 	->where ( 'pro.is_publish', '=', self::IS_PUBLISH )
+		// 	->orderBy ('pro.id', 'DESC' )
+		// 	->select ( '*' )
+		// 	->where('user.client_type','=', $client_type_id)
 		// 	->get();
 		// } catch (\Exception $e) {
 		// 	Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
 		// }
-		// var_dump($result);die;
-		$productTable = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
-		$userTable = Config::get ( 'constants.TABLE_NAME.USER' );
-		$storeTable = Config::get ( 'constants.TABLE_NAME.STORE' );
+		// return $data;
 
-		try {
-			$data = DB::table ( $userTable . ' AS user' )
-			->join ( $productTable . ' AS pro', 'user.id', '=', 'pro.user_id' )
-			->where ( 'pro.is_publish', '=', self::IS_PUBLISH )
-			->orderBy ('pro.id', 'DESC' )
-			->select ( '*' )
-			->where('user.client_type','=', $client_type_id)
-			->get();
-		} catch (\Exception $e) {
-			Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
-		}
-		return $data;
+		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
+		$product_in_category = Config::get ( 'constants.TABLE_NAME.PRODUCT_IN_CATEGORY' );
+		$store = Config::get ( 'constants.TABLE_NAME.STORE' );
+		$productTransferType = Config::get('constants.TABLE_NAME.PRODUCT_TRANSFER_TYPE');
+		$productCondition = Config::get ( 'constants.TABLE_NAME.PRODUCT_CONDITION' );
+		$user = Config::get ( 'constants.TABLE_NAME.USER' );
+		$accountRole = Config::get ( 'constants.TABLE_NAME.ACCOUNT_ROLE' );
+		$clientType = Config::get ( 'constants.TABLE_NAME.CLIENT_TYPE' );
+		
+		return DB::table ( $product . ' AS p' )
+		->select (
+			'p.view',
+			'p.id',
+			'p.title',
+			'p.description',
+			'p.pictures',
+			'p.contact_info',
+			'p.created_date',
+			'p.price',
+			'p.thumbnail',
+			'st.title_en',
+			'st.title_km',
+			'st.image',
+			'pt.name_en as transfer_type_name_en',
+			'pt.name_km as transfer_type_name_km',
+			'proc.name_en as condition_name_en',
+			'proc.name_km as condition_name_km',
+			'u.name as username',
+			'u.client_type',
+			'accr.rol_name_en as account_role_name_en',
+			'accr.rol_name_km as account_role_name_km',
+			'ctype.name_en as client_type_name_en',
+			'ctype.name_km as client_type_name_km'
+			)
+		->join ( $store.' AS st','st.id','=','p.store_id')
+		->join ($product_in_category.' AS pro', 'pro.product_id','=','p.id')
+		->join ($productTransferType.' AS pt','pt.ptt_id','=','p.pro_transfer_type_id')
+		->join ($productCondition.' AS proc','proc.id','=','p.pro_condition_id')
+		->join ($user.' AS u','u.id','=','p.user_id')
+		->join ($accountRole.' AS accr','accr.rol_id','=','u.account_role')
+		->join($clientType.' AS ctype','ctype.id','=','u.client_type')
+		->whereIn('u.client_type',$client_type_id)
+		->where( 'p.publish_date','<=',date('Y-m-d'))
+		->where('p.is_publish', '=', self::IS_PUBLISH)
+		->groupby('pro.product_id')
+		->orderBy ( 'p.id', 'DESC' )->get ();
+
 	}
+
 
 	public static function findMarketTypeById($marketTypeId) {
 		$result = DB::table(Config::get('constants.TABLE_NAME.CLIENT_TYPE'))

@@ -218,7 +218,12 @@ class FePageController extends BaseController {
 				self::HOME_PAGE_TOP,
 				1
 		);
-		
+		$arrayClientTypeId = $this->mod_market->getAllChildClientType($parent_id);
+		$listproductInEachMarket = $this->mod_market->listproductofsupermarket($arrayClientTypeId);
+		if($id){
+			$listproductInEachMarket = $this->mod_market->listproductofsupermarket($parent_id,array($id));
+		}
+		//var_dump($listproductInEachMarket);
 		$mainSup = $this->mod_market->mainMarket($parent_id);
 		return View::make('frontend.partials.suppermarket')
 		->with('mainID',$mainSup['0']->id)
@@ -226,7 +231,7 @@ class FePageController extends BaseController {
 		->with('transferTypes', $this->mod_product->listAllTransferType())
 		->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
 		->with('listMarkets',$this->mod_market->listsupermarketfront($parent_id))
-		->with('listProductSupermarket',$this->mod_market->listproductofsupermarket($parent_id))
+		->with('listProductSupermarket',$listproductInEachMarket)
 		->with('client_type',$this->mod_category->getClientType())
 		->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
 		->with('Provinces', $this->mod_setting->listProvinces())

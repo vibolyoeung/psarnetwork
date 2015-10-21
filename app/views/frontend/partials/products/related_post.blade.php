@@ -35,7 +35,7 @@
 						</div>
 					</div>
 				<?php
-				if ($newPro >= 4 && $newPro % 4 == 0) {
+				if ($newPro == 4 && count($related_post)>4|| $newPro == 8 && count($related_post)>8|| $newPro ==12 && count($related_post)>12 || $newPro == 16 && count($related_post)>16) {
 					echo '</div><div class="item">';
 				}
 				$newPro ++;

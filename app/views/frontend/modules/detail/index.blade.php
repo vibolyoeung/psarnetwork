@@ -81,7 +81,7 @@ Categories
 											<div class="col-lg-12" style="padding:0;">
 												<div class="pull-right price">{{$product->price}} $</div>
 												<h5>
-													<a href="#">
+													<a href="{{Config::get('app.url')}}product/details/{{$product->id}}">
 														{{str_limit($product->title,$limit = 40, $end = '...')}}
 													</a>
 												</h5>

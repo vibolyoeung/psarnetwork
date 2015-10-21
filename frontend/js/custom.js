@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	jQuery('#hotpromotion-item-carousel').carousel({
+	jQuery('#hotpromotion-item-carousel,#similar-product,#DetailCarousel').carousel({
 		 pause: true,
     	 interval: false
 	});

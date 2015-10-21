@@ -94,28 +94,45 @@
                                     </a>   
 									<!-- Carousel nav -->
 								</div>
-								<div class="row col-lg-12">
-									<div class="row hidden-xs" id="slider-thumbs">
-										<!-- Bottom switcher of slider -->
-										<ul class="hide-bullets">
-											<?php $thumbnails_id = 0; ?>
-												@foreach($images as $image)
-													<li class="col-sm-3">
-														<a id="popup-carousel-selector-<?php echo $thumbnails_id;?>"> 
-														   	<?php
-																if($image['pic']){
-																	echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=55&amp;w=90" />';	
-																}else{
-																	echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=55&amp;w=90" />';
-																}
-															?>
-														</a>
-													</li>
-													<?php $thumbnails_id++; ?>
+
+								<div class="row hidden-xs" id="slider-thumbs">
+								<!-- thumb -->
+									@if (!empty($productdetails))
+									<div id="similar-product" class="carousel slide">
+									  <!-- Wrapper for slides -->
+									    <div class="carousel-inner" style="height: 100px">
+									    	<div class="item">
+										    	<?php 
+											    	$num = 0;
+											    	$to=0;
+										    	?>
+										    	@foreach($images as $small)
+										    	<?php
+										    		$thumb = $small['pic'];
+										    	?>
+												  <a href="javascript:;" data-target="#DetailCarousel" data-slide-to="{{$to}}">{{HTML::image("image/phpthumb/$thumb?p=product&amp;h=90&amp;w=120")}}</a>
+												<?php
+												if ($num == 3 || $num == 7) {
+													echo '</div><div class="item">';
+												}
+												$to++;
+												$num++;
+												?>
 												@endforeach
-											</ul>
+											</div>
+										</div>
+
+										  <!-- Controls -->
+										  <a class="left item-control" href="#similar-product" data-slide="prev">
+											<i class="fa fa-angle-left"></i>
+										  </a>
+										  <a class="right item-control" href="#similar-product" data-slide="next">
+											<i class="fa fa-angle-right"></i>
+										  </a>
 									</div>
-								</div>
+									@endif
+									</div>
+							<!-- end thumb -->
 							</div>
 							<div class="col-sm-4" id="carousel-text"></div>
 							<div id="slide-content" style="display: none;">

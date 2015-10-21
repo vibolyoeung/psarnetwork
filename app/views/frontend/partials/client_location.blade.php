@@ -15,7 +15,7 @@
 				@foreach($Provinces as $province)
 				<div class="btn btn-default"
 					style="border-radius: 0; min-width: 160px; border: none; text-align: left;">
-					<a href="{{Config::get('app.url')}}search?q=&location=<?php echo $province->province_id?>&type=1">
+					<a href="{{Config::get('app.url')}}fe/search?q=&location=<?php echo $province->province_id?>&type=1">
 					<?php echo $province->{'province_name_'.Session::get('lang')}; ?> &nbsp;&nbsp;<span
 						class="number-display">{{$Category->countProductByProvince($province->province_id)}}</span>
 					</a>
