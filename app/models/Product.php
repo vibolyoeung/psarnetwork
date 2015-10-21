@@ -660,6 +660,7 @@ class Product extends Eloquent {
 			'st.title_en',
 			'st.title_km',
 			'st.image',
+			'st.id as store_id',
 			'pt.name_en as transfer_type_name_en',
 			'pt.name_km as transfer_type_name_km',
 			'proc.name_en as condition_name_en',
@@ -793,6 +794,7 @@ class Product extends Eloquent {
 			'p.price',
 			'p.thumbnail',
 			'st.title_en',
+			'st.id as store_id',
 			'st.title_km',
 			'st.image',
 			'pt.name_en as transfer_type_name_en',
@@ -939,6 +941,7 @@ class Product extends Eloquent {
 			'p.price',
 			'p.thumbnail',
 			'st.title_en',
+			'st.id as store_id',
 			'st.title_km',
 			'st.image',
 			'pt.name_en as transfer_type_name_en',
@@ -1065,19 +1068,67 @@ class Product extends Eloquent {
 			->where('account_role','=',$id)
 			->get();
 
-			$accountrole = array();
+			$userID = array();
 			foreach($results as $results){
-				array_push($accountrole,$results->id);
+				array_push($userID,$results->id);
 			}
 
-			$countpro = DB::table(Config::get('constants.TABLE_NAME.PRODUCT'))
-			->select('*')
-			->whereIn('user_id',$accountrole)
-			->get();
+			// $countpro = DB::table(Config::get('constants.TABLE_NAME.PRODUCT'))
+			// ->select('*')
+			// ->whereIn('user_id',$accountrole)
+			// ->get();
+			$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
+			$product_in_category = Config::get ( 'constants.TABLE_NAME.PRODUCT_IN_CATEGORY' );
+			$store = Config::get ( 'constants.TABLE_NAME.STORE' );
+			$productTransferType = Config::get('constants.TABLE_NAME.PRODUCT_TRANSFER_TYPE');
+			$productCondition = Config::get ( 'constants.TABLE_NAME.PRODUCT_CONDITION' );
+			$user = Config::get ( 'constants.TABLE_NAME.USER' );
+			$accountRole = Config::get ( 'constants.TABLE_NAME.ACCOUNT_ROLE' );
+			$clientType = Config::get ( 'constants.TABLE_NAME.CLIENT_TYPE' );
+
+			$query = DB::table ( $product . ' AS p' );
+			$query->select (
+				'p.view',
+				'p.id',
+				'p.title',
+				'p.description',
+				'p.pictures',
+				'p.contact_info',
+				'p.created_date',
+				'p.price',
+				'p.user_id as user_id',
+				'p.thumbnail',
+				'st.title_en',
+				'st.id as store_id',
+				'st.title_km',
+				'st.image',
+				'pt.name_en as transfer_type_name_en',
+				'pt.name_km as transfer_type_name_km',
+				'proc.name_en as condition_name_en',
+				'proc.name_km as condition_name_km',
+				'u.name as username',
+				'accr.rol_name_en as account_role_name_en',
+				'accr.rol_name_km as account_role_name_km',
+				'ctype.name_en as client_type_name_en',
+				'ctype.name_km as client_type_name_km'
+			);
+			$query->join ( $store.' AS st','st.id','=','p.store_id');
+			$query->join ($product_in_category.' AS pro', 'pro.product_id','=','p.id');
+			$query->join ($productTransferType.' AS pt','pt.ptt_id','=','p.pro_transfer_type_id');
+			$query->join ($productCondition.' AS proc','proc.id','=','p.pro_condition_id');
+			$query->join ($user.' AS u','u.id','=','p.user_id');
+			$query->join ($accountRole.' AS accr','accr.rol_id','=','u.account_role');
+			$query->join($clientType.' AS ctype','ctype.id','=','u.client_type');
+			$query->where ( 'p.is_publish', '=', self::IS_PUBLISH );
+			$query->where ( 'p.publish_date', '<=',date("Y-m-d"));
+			$query->whereIn('p.user_id',$userID);
+			$query->groupby('pro.product_id');
+			$query->orderby('p.id','DESC');
+
 		}catch (\Exception $e){
 			$response->result = 0;
 			$response->errorMsg = $e->getMessage();
 		}
-		return $countpro;
+		return $query->get();
 	}
 }
