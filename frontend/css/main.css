@@ -21,7 +21,9 @@ body,html{
 	font-family:"Hanuman","Arial";
 	/*font-family:"Hanuman","Frutiger Neue W02 Book";*/
 }
-
+a,p,h1,h2,h3,h4,h5,strong,span,label{
+	font-family:"Hanuman","Arial";
+}
 ul li {
 	list-style: none;
 }
@@ -1285,7 +1287,6 @@ h2.title {
 }
 
 .productinfo p {
-	font-family: 'Roboto', sans-serif;
 	font-size: 12px;
 	font-weight: 400;
 	color: #696763;
@@ -3736,6 +3737,9 @@ ul.list_store_info>li{
 }
 div.carousel a.recommended-item-control i{
 	background-color:#ddd !important;
+}
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
+	margin:0 auto;
 }
 //=========Detail slile===//
 

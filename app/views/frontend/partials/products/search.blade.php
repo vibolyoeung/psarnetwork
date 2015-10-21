@@ -67,11 +67,6 @@
 	<div class="category-tab lastest-post">
 		<div style="padding:0;">
 			<ul class="nav nav-tabs" style="background-color:#ddd;">
-				<li>
-					<span>View As : </span>
-					<span id="grid_view">Grid View</span> |
-					<span id="list_view">List View</span>
-				</li>
 				<li class="col-lg-2 pull-right">
 					<select id="disply-number" name="displayNumber" class="form-control form-select-khmerabba">
 						<option value="0" selected="selected">-Select-</option>
@@ -81,6 +76,12 @@
 						<option value="150">150</option>
 						<option value="200">200</option>
 					</select>
+				</li>
+				<li style="padding-right:0;">
+					<span id="list_view" class="pull-right" style="padding:5px;"><?php echo '<img src="'.Config::get('app.url').'frontend/images/icons/list_view.png"/>';?></span>
+					<span class="pull-left"> View:&nbsp;</span>
+					<span id="grid_view" class="pull-left" style="padding:5px;"><?php echo '<img src="'.Config::get('app.url').'frontend/images/icons/grid_view.png"/>';?></span>
+					
 				</li>
 			</ul>
 		</div>

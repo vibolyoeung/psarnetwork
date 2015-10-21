@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	jQuery('#hotpromotion-item-carousel,#similar-product,#DetailCarousel').carousel({
+	jQuery('#hotpromotion-item-carousel,#similar-product,#DetailCarousel,#DetailPopupCarousel').carousel({
 		 pause: true,
     	 interval: false
 	});
@@ -70,18 +70,18 @@ $(document).ready(function(){
 	jQuery(".product_list_container").addClass(" col-lg-4")
 	jQuery(".product_image").addClass(" col-lg-6");
 	
-	jQuery("#grid_view").css("color","red");
+	jQuery("#grid_view").css("background-color","f0ad4e");
 	jQuery(".list_view_product").hide();
 	jQuery("#grid_view").click(function(){
-		jQuery("#grid_view").css("color","red");
-		jQuery("#list_view").css("color","#285ea0");
+		jQuery("#grid_view").css("background-color","f0ad4e");
+		jQuery("#list_view").css("background-color","");
 		jQuery(".list_view_product").hide();
 		jQuery(".grid_view_product").show();
 	});
 
 	jQuery("#list_view").click(function(){
-		jQuery("#grid_view").css("color","#285ea0");
-		jQuery(this).css("color","red");
+		jQuery("#grid_view").css("background-color","");
+		jQuery(this).css("background-color","f0ad4e");
 		jQuery(".grid_view_product").hide();
 		jQuery(".list_view_product").show();
 	});

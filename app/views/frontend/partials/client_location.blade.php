@@ -1,4 +1,3 @@
-<br />
 	<div class="row">
 		<div class="col-lg-12" style="border: 1px solid #F7F7F5; padding: 0; background:#f9f9f7;">
 			<div class="col-lg-3"

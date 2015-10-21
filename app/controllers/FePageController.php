@@ -221,7 +221,7 @@ class FePageController extends BaseController {
 		$arrayClientTypeId = $this->mod_market->getAllChildClientType($parent_id);
 		$listproductInEachMarket = $this->mod_market->listproductofsupermarket($arrayClientTypeId);
 		if($id){
-			$listproductInEachMarket = $this->mod_market->listproductofsupermarket($parent_id,array($id));
+			$listproductInEachMarket = $this->mod_market->listproductofsupermarket(array($id));
 		}
 		//var_dump($listproductInEachMarket);
 		$mainSup = $this->mod_market->mainMarket($parent_id);

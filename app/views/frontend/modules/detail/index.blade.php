@@ -66,7 +66,7 @@ Categories
 								<div class="single-products">
 									<div class="productinfo">
 										<div class="col-lg-3" style="padding-left:0;">
-											<a href="#" data-toggle="modal" data-target="#myModal"
+											<a href="{{Config::get('app.url')}}product/details/{{$product->id}}" data-toggle="modal" data-target="#myModal"
 												onclick="popupDetails.add_popup_detail(<?php echo $product->id; ?>)">
 												<?php 
 												if($product->thumbnail){
@@ -102,7 +102,7 @@ Categories
 										<div class="col-lg-4 pull-right">
 											<div class="col-lg-12" style="border:1px solid #f7f7f5;text-align:center;">
 												<h5>
-													<a href="#">
+													<a href="{{Config::get('app.url')}}store-{{$product->store_id;}}" target="_blank">
 														<?php 
 															$storename = $product->{'title_en'};
 														?>
@@ -119,13 +119,15 @@ Categories
 														</div>
 													</div>
 													<div class="col-lg-5 pull-left">
-														<?php
-															if($product->image){
-																echo '<img src="'.Config::get('app.url').'upload/store/'.$product->image.'" width="110" style="border:1px solid #f7f7f5;" />';	
-															}else{
-																echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=90&amp;" />';
-															}
-														?>
+														<a href="{{Config::get('app.url')}}store-{{$product->store_id;}}" target="_blank">
+															<?php
+																if($product->image){
+																	echo '<img src="'.Config::get('app.url').'upload/store/'.$product->image.'" width="110" style="border:1px solid #f7f7f5;" />';	
+																}else{
+																	echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=90&amp;" />';
+																}
+															?>
+														</a>
 													</div>
 												</div>
 											</div>

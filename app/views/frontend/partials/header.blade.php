@@ -179,7 +179,7 @@
 									@foreach($productNotification as $noticproduct)
 										<li>
 											<a href="{{Config::get('app.url')}}product/details/{{$noticproduct->id}}">
-												<img src="{{Config::get('app.url')}}upload/product/thumb/{{$noticproduct->thumbnail}}" title="" alt=""/>
+												{{HTML::image("image/phpthumb/$noticproduct->thumbnail?p=product&amp;h=80&amp;w=110",$noticproduct->title)}}
 												&nbsp;<span class="price">$&nbsp;{{$noticproduct->price}}</span>&nbsp;{{substr($noticproduct->title,0,15)}}
 											</a>
 										</li>

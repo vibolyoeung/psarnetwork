@@ -357,7 +357,7 @@ class Market extends Eloquent{
 				array_push($client_type_id,(int)$parent_id);
 				foreach($results as $result){
 					$client_type_id[] = array($result->id);
-					$client_type_id = self::getAllChildCategories($result->id,$client_type_id);
+					$client_type_id = self::getAllChildClientType($result->id,$client_type_id);
 				}
 			}
 		}catch (\Exception $e){

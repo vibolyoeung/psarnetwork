@@ -8,7 +8,7 @@ if(count($newProducts) > 0){
 		<li>New Products&nbsp;&nbsp;&nbsp; &frasl;</li>
 		<li>Products : <span class="number-display price"><?php echo count($newProducts)?></span></li>
 	</ul>
-	<div id="related-item-carousel" class="carousel slide"
+	<div id="new-item-carousel" class="carousel slide"
 		data-ride="carousel">
 		<div class="carousel-inner">
 			<?php
@@ -34,7 +34,7 @@ if(count($newProducts) > 0){
 									<center>
 										<h5>
 											<a href="{{Config::get('app.url')}}product/details/{{$newProduct->id}}">
-												<?php echo str_limit($newProduct->title,$limit = 18, $end = '...');?>
+												<?php echo str_limit($newProduct->title,$limit = 15, $end = '...');?>
 											</a>
 										</h5>
 										<strong class="price">$ {{$newProduct->price}}</strong>
@@ -44,7 +44,7 @@ if(count($newProducts) > 0){
 						</div>
 					</div>
 				<?php
-				if ($newPro > 6 && $newPro % 6 == 0) {
+				if ($newPro >= 6 && $newPro % 6 == 0) {
 					echo '</div><div class="item">';
 				}
 				$newPro ++;
@@ -53,10 +53,10 @@ if(count($newProducts) > 0){
 			</div>
 		</div>
 		<a class="left recommended-item-control"
-			href="#hotpromotion-item-carousel" data-slide="prev"> <i
+			href="#new-item-carousel" data-slide="prev"> <i
 			class="fa fa-angle-left"></i>
 		</a> <a class="right recommended-item-control"
-			href="#hotpromotion-item-carousel" data-slide="next"> <i
+			href="#new-item-carousel" data-slide="next"> <i
 			class="fa fa-angle-right"></i>
 		</a>
 	</div>

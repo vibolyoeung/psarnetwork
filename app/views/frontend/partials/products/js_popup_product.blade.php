@@ -39,20 +39,43 @@
 						 
 						<div class="row col-lg-12">
 							<div class="row hidden-xs" id="slider-thumbs">
-								<!-- Bottom switcher of slider -->
-								<ul class="hide-bullets">
-								<?php $thumbnails_id = 1; ?>
-									@foreach($images as $image)
-										<li class="col-sm-3"><a 
-										id="carousel-selector-<?php echo $thumbnails_id; ?>">
-										<?php 
-											echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=55&amp;w=90" />';
-										?>
-									</a></li>
-										<?php $thumbnails_id++; ?>
-									@endforeach
-								</ul>
-							</div>
+								<!-- thumb -->
+									@if (!empty($images))
+									<div id="similar-product" class="carousel slide">
+									  <!-- Wrapper for slides -->
+									    <div class="carousel-inner" style="height: 100px">
+									    	<?php 
+										    	$num = 0;
+										    	$to=0;
+									    	?>
+									    	<div class="item <?php echo $num==0?' active':'';?>">
+										    	@foreach($images as $small)
+										    	<?php
+										    		$thumb = $small['pic'];
+										    	?>
+												  <a href="javascript:;" data-target="#DetailPopupCarousel" data-slide-to="{{$to}}">{{HTML::image("image/phpthumb/$thumb?p=product&amp;h=80&amp;w=110")}}</a>
+												<?php
+												if ($num == 4 || $num == 8) {
+													echo '</div><div class="item">';
+												}
+												$to++;
+												$num++;
+												?>
+												@endforeach
+											</div>
+										</div>
+
+										  <!-- Controls -->
+										  <a class="left item-control" href="#similar-product" data-slide="prev">
+											<i class="fa fa-angle-left"></i>
+										  </a>
+										  <a class="right item-control" href="#similar-product" data-slide="next">
+											<i class="fa fa-angle-right"></i>
+										  </a>
+									</div>
+									@endif
+								</div>
+							<!-- end thumb -->
 						</div>
 					</div>
 					<div class="col-sm-4" id="carousel-text" style="padding:0;">
