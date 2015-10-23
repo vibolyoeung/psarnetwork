@@ -75,7 +75,7 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 									<div class="{{$active}} item" data-slide-number="{{$i}}">
 										<?php $imageSlide = @$picture['pic'];?>
 										@if(!empty($imageSlide))
-										<a class="slideshow-group" href="{{Config::get('app.url')}}image/phpthumb/{{$imageSlide}}?p=product"  title="{{$title}}">
+										<a class="slideshow-group" href="{{Config::get('app.url')}}image/phpthumb/{{$imageSlide}}?p=product"  title="{{$title}}" rel="slideshow-group">
 											{{HTML::image("image/phpthumb/$imageSlide?p=product&amp;h=350&amp;w=660",$title)}}
 										</a>
 										@else
@@ -369,10 +369,10 @@ $toolView )) @foreach ( $toolView as $tool ) @if($tool->type ==
 {{HTML::style('frontend/css/colorbox.css')}}
 <script>
 	jQuery(document).ready(function(){
-		jQuery(".slideshow-group").colorbox({rel:'slideshow-group', transition:"none", width:"95%", height:"95%"});
+		jQuery(".slideshow-group").colorbox({rel:'slideshow-group', transition:"none", maxWidth:"95%", maxHeight:"95%"});
 
 		$('#similar-product').on('slide.bs.carousel', function () {
-			  console.log(1111);
+			  //console.log(1111);
 			})
 	});
 </script>

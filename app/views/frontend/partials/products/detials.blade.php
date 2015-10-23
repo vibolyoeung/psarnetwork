@@ -73,7 +73,7 @@
 										@foreach($images as $image)
 										<div class="item"
 											data-slide-number="<?= $thumbnail_id; ?>">
-											<a class="slideshow-group" href="{{Config::get('app.url')}}upload/product/{{$image['pic']}}">
+											<a class="slideshow-group" href="{{Config::get('app.url')}}upload/product/{{$image['pic']}}" rel="slideshow-group">
 												<?php
 													if($image['pic']){
 														echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=250&amp;w=550" />';	
@@ -101,25 +101,35 @@
 									<div id="similar-product" class="carousel slide">
 									  <!-- Wrapper for slides -->
 									    <div class="carousel-inner" style="height: 100px">
-									    	<div class="item">
 										    	<?php 
-											    	$num = 0;
+											    	$num = 1;
 											    	$to=0;
 										    	?>
 										    	@foreach($images as $small)
 										    	<?php
+											    	if($num==1) {
+											    		$classA='active';
+											    	} else {
+											    		$classA='';
+											    	}
+													if ($num % 3 == 1) {
+					                                    echo '<div class="item '.$classA.'">';
+					                                }
 										    		$thumb = $small['pic'];
 										    	?>
 												  <a href="javascript:;" data-target="#DetailCarousel" data-slide-to="{{$to}}">{{HTML::image("image/phpthumb/$thumb?p=product&amp;h=90&amp;w=120")}}</a>
 												<?php
-												if ($num == 3 || $num == 7) {
-													echo '</div><div class="item">';
+												if ($num % 3 == 0) {
+													echo "</div>";
 												}
 												$to++;
 												$num++;
 												?>
 												@endforeach
-											</div>
+												<?php
+												if ($num % 3 != 1) {
+													echo "</div>";
+												}?>
 										</div>
 
 										  <!-- Controls -->
@@ -260,7 +270,6 @@
 	<div class="col-lg-2 pull-right right-ad-detail">
 		@include('frontend.partials.categories.right')
 	</div>
-@endsection
 <script
 	src="{{Config::get('app.url')}}frontend/js/product_detail_print.js"></script>
 <script
@@ -277,5 +286,7 @@
 		jQuery("#menu_toogle").click(function(){
 			jQuery(".categories_menu").toggle("slow");
 		});
+		jQuery(".slideshow-group").colorbox({rel:'slideshow-group', transition:"none", maxWidth:"95%", maxHeight:"95%"});
 	});
 </script>
+@endsection
