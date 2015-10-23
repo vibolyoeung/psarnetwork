@@ -103,16 +103,14 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 				<!-- thumb -->
 				<div class="row hidden-xs" id="slider-thumbs">
 					<!-- thumb -->
+					<?php $num = 1;$to=0; $totalImg = count($pictures);?>
 						@if (!empty($dataProductDetail))
 						<div id="similar-product" class="carousel slide">
 						  <!-- Wrapper for slides -->
 						    <div class="carousel-inner" style="height: 100px">
-						    	<?php $num = 0;
-						    		$to=0;
-						    	?>
+						    	
 						    	@foreach($pictures as $small)
 						    	<?php
-						    	$num++;
 						    	if($num==1) {
 						    		$classA='active';
 						    	} else {
@@ -128,10 +126,13 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 									echo "</div>";
 								}
 								$to++;
+								$num++;
 								?>
-
 								@endforeach
-
+								<?php
+								if ($num % 3 != 1) {
+									echo "</div>";
+								}?>
 							</div>
 
 							  <!-- Controls -->
@@ -143,7 +144,6 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 							  </a>
 						</div>
 						@endif
-						</div>
 				<!-- end thumb -->
 				</div>
 				<!-- end thumb -->
@@ -296,6 +296,7 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 		    	?>
 		    	@foreach($relatedProduct as $related)
 		    	<?php
+		    		$proIdRelated = $related->id;
 						    	$numA++;
 						    	//$titleR = $related->{'title_' . Session::get ( 'lang' )};
 						    	$titleR = $related->title;
@@ -316,11 +317,11 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 					  <div class="product-image-wrapper">
 					  	<div class="single-products">
 					  		<div class="productinfo text-center">
-					  		<a href="" data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail({{$related->id}})">
+					  		<a href="javascript:;" data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail({{$proIdRelated}})">
 							  {{HTML::image("image/phpthumb/$thumbB?p=product&amp;h=120&amp;w=145",$titleR)}}
 							  </a>
 							  <h2>${{$related->price}}</h2>
-							  <p><a href="{{Config::get('app.url')}}product/details/{{$related->id}}" style="color:#000">{{$titleR}}</a></p>
+							  <p><a href="{{Config::get('app.url')}}product/details/{{$proIdRelated}}" style="color:#000">{{$titleR}}</a></p>
 					  		</div>
 					  	</div>
 					  </div>

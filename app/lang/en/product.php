@@ -2,6 +2,10 @@
 // This is the EN one.
 return array(
 	'category' => 'Category',
+	'tabproinfo' => 'Product Info',
+	'tab_pro_picture' => 'Picture',
+	'tab_pro_quotation' => 'Quotation',
+	'tab_pro_contact' => 'Contact Info',
 	'all_categories_type' => 'All Categories Type ',
 	'notification' => 'Notifications',
 	'product_title' => 'Product Title',

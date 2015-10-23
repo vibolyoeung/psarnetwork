@@ -146,6 +146,15 @@ class FeStoreController extends BaseController {
 					'sto_url' => $storeID 
 			);
 			$dataStore = $this->mod_store->getUserStore ( null, $where );
+			if(!empty($dataStore)) {
+				if(!empty($dataStore->sto_url)) {
+					$storeUrl = $dataStore->sto_url;
+				} else {
+					$storeUrl = $dataStore->id;
+				}
+			} else {
+				$storeUrl = null;
+			}
 		}
 		$getUser = $this->user->getUser ( $dataStore->user_id );
 		$getUserUrl = $this->mod_store->getStoreUrl ( $dataStore->id );
@@ -168,6 +177,9 @@ class FeStoreController extends BaseController {
 		
 		$dataUserPage = $this->mod_category->menuUserPage ( $dataStore->user_id, 2, $getUserUrl );
 		$dataDetailProduct = $this->mod_product->findProductDetailById ( $product_id, $dataStore->id );
+		if(empty($dataDetailProduct) && !empty($storeUrl)) {
+			return Redirect::to(Config::get('app.url'). $storeUrl);
+		}
 		$this->mod_product->countViewOfUserClickProduct ( $product_id);
 		/*get counter visitor*/
 		$this->getTracking($dataStore->id);
@@ -175,7 +187,7 @@ class FeStoreController extends BaseController {
 		
 		
 		/*related product*/
-		$relatedProductCategory = $this->mod_category->getRelatedCategoriesProduct($dataDetailProduct->id, $dataStore->user_id);
+		$relatedProductCategory = $this->mod_category->getRelatedCategoriesProduct($product_id, $dataStore->user_id);
 		$cateArr = array();
 		if(!empty($relatedProductCategory)) {
 			foreach ($relatedProductCategory as $valueCate) {
@@ -183,7 +195,7 @@ class FeStoreController extends BaseController {
 			}
 		}
 
-		$relatedProduct = $this->mod_product->findProductByCategory ( $dataStore->id, $cateArr );
+		$relatedProduct = $this->mod_product->findProductByCategory ( $dataStore->id, $cateArr ,$product_id);
 
 		/*end related product*/
 		return View::make ( 'frontend.modules.store.detail' )

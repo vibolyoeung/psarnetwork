@@ -307,7 +307,11 @@
                                     <?php $imgArr = @json_decode(@$product->pictures, true);
                                     $i=0;
                                     $totalImage = count(@$imgArr);
+                                    $totalImg = ($totalImage ==0)? '' : $totalImage;
                                     ?>
+                                    <div style="text-align:center">
+                                    <input value="{{@$totalImg}}" id="totalImage" required style="height:0;width:0;border:none;" />
+                                    </div>
                                     @if(!empty($imgArr))
                         			@foreach(@$imgArr as $productImg)
                                         <?php $i++;?>
@@ -550,6 +554,12 @@
                                 $("#image-id-" + $id).hide();
                                 $("#file-id-" + $id).attr('name','delimag[]');
                                 totalImg = totalImg - 1;
+                                if(totalImg==0) {
+                                    setImage = '';
+                                } else {
+                                    setImage = totalImg;
+                                }
+                                $("#totalImage").val(setImage);
                             } else {
                                 //txt = "You pressed Cancel!";
                             }
@@ -581,6 +591,7 @@
                                 var productPrice = jQuery("input[name='productPrice']").val();
                                 var desc = jQuery("textarea[name='desc']").val();
                                 var contactLocation = jQuery("input[name='contactLocation']").val();
+                                var proImage = $("#totalImage").val();
 
 
                                 var mCate = "{{trans('product.category')}}";
@@ -588,10 +599,24 @@
                                 var pPrice = "{{trans('product.price')}}";
                                 var pDescription = "{{trans('product.description')}}";
                                 var pContactLocation = "{{trans('product.location')}}";
+                                var pImage = "{{trans('product.tab_pro_picture')}}";
                                 var idTag = 'productTag';
                                 var productTag = 'productTag';
                                 var productInfo = 'productInfo';
                                 var contactInfo = 'contactInfo';
+                                var proImgDiv = 'pictures';
+
+                                if(!proImage || proImage==0) {
+                                    errorArr.push(pImage);
+                                    errorOnID.push(proImgDiv);
+                                } else {
+                                    errorArr = jQuery.grep(errorArr, function(value) {
+                                      return value != pImage;
+                                    });
+                                    errorOnID = jQuery.grep(errorOnID, function(value) {
+                                      return value != pImage;
+                                    });
+                                }
 
                                 if(!category) {
                                     errorArr.push(mCate);
@@ -688,6 +713,12 @@
    										 if(x.message == 'uploadSuccess') {
    											 var imgFile = imgReult(x.file);
    											 $('#imgResult').append(imgFile);
+                                             if(totalImg==0) {
+                                                setImage = '';
+                                            } else {
+                                                setImage = totalImg;
+                                            }
+                                            $("#totalImage").val(setImage);
    										 }
    								            //$('#result').html(data.status +':' + data.message);          
    								      },

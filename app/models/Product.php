@@ -693,12 +693,13 @@ class Product extends Eloquent {
 	 * @access public
 	 *         @developer Socheat Ngann
 	 */
-	public function findProductByCategory($store, $idArr) {
+	public function findProductByCategory($store, $idArr, $product_id) {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		$productRelated = Config::get ( 'constants.TABLE_NAME.PRODUCT_IN_CATEGORY' );
 		return DB::table ( $product )
 		->leftJoin($productRelated, $product.'.id', '=', $productRelated.'.product_id')
 		->whereIn ( $productRelated.'.category_id', $idArr )
+		->where ( $product.'.id', '!=', $product_id)
 		->where ( 'store_id', '=', $store )
 		->groupBy($product.'.id')
 		->orderBy ( 'id', 'DESC' )
