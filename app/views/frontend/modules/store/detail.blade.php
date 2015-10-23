@@ -7,9 +7,9 @@ $userClass = new User ();
 $userData = $userClass->getUser ( $dataStore->user_id );
 $currentUserType = $userData->result->account_type;
 if (! empty ( $dataStore->sto_url )) {
-	$userHome = @Config::get ( 'app.url' ) . 'page/' . $dataStore->sto_url;
+	$userHome = @Config::get ( 'app.url' )  . $dataStore->sto_url;
 } else {
-	$userHome = @Config::get ( 'app.url' ) . 'page/store-' . $dataStore->id;
+	$userHome = @Config::get ( 'app.url' ) . 'store-' . $dataStore->id;
 }
 //$title = $dataProductDetail->{'title_' . Session::get ( 'lang' )};
 $title = $dataProductDetail->title;
@@ -54,9 +54,6 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 					@else
 					{{HTML::image("image/phpthumb/No_image_available.jpg?p=product&amp;h=90&amp;",$title)}}
 					@endif
-					<div class="col-lg-10 pull-right" style="margin-top: 8px;">
-						<b>{{$title}}</b>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -292,12 +289,11 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 			<div class="carousel-inner">
 				<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 
-				<?php $numA = 0;
+				<?php $numA = 1;
 		    	?>
 		    	@foreach($relatedProduct as $related)
 		    	<?php
 		    		$proIdRelated = $related->id;
-						    	$numA++;
 						    	//$titleR = $related->{'title_' . Session::get ( 'lang' )};
 						    	$titleR = $related->title;
 						    	if (empty ( $titleR )) {
@@ -330,9 +326,15 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 				if ($numA % 3 == 0) {
 					echo "</div>";
 				}
+				$numA++;
 				?>
 
 				@endforeach
+				<?php
+				if ($numA % 3 != 1) {
+					echo "</div>";
+				}
+				?>
 				</div>
 			</div>
 			 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
@@ -342,7 +344,6 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 				<i class="fa fa-angle-right"></i>
 			  </a>
 		</div>
-	</div>
 	@endif
 	<!-- end recommended items -->
     </div>
