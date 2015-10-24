@@ -7,9 +7,9 @@ $userClass = new User ();
 $userData = $userClass->getUser ( $dataStore->user_id );
 $currentUserType = $userData->result->account_type;
 if (! empty ( $dataStore->sto_url )) {
-	$userHome = @Config::get ( 'app.url' ) . 'page/' . $dataStore->sto_url;
+	$userHome = @Config::get ( 'app.url' )  . $dataStore->sto_url;
 } else {
-	$userHome = @Config::get ( 'app.url' ) . 'page/store-' . $dataStore->id;
+	$userHome = @Config::get ( 'app.url' ) . 'store-' . $dataStore->id;
 }
 //$title = $dataProductDetail->{'title_' . Session::get ( 'lang' )};
 $title = $dataProductDetail->title;
@@ -54,9 +54,6 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 					@else
 					{{HTML::image("image/phpthumb/No_image_available.jpg?p=product&amp;h=90&amp;",$title)}}
 					@endif
-					<div class="col-lg-10 pull-right" style="margin-top: 8px;">
-						<b>{{$title}}</b>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -78,7 +75,7 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 									<div class="{{$active}} item" data-slide-number="{{$i}}">
 										<?php $imageSlide = @$picture['pic'];?>
 										@if(!empty($imageSlide))
-										<a class="slideshow-group" href="{{Config::get('app.url')}}image/phpthumb/{{$imageSlide}}?p=product"  title="{{$title}}">
+										<a class="slideshow-group" href="{{Config::get('app.url')}}image/phpthumb/{{$imageSlide}}?p=product"  title="{{$title}}" rel="slideshow-group">
 											{{HTML::image("image/phpthumb/$imageSlide?p=product&amp;h=350&amp;w=660",$title)}}
 										</a>
 										@else
@@ -103,16 +100,14 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 				<!-- thumb -->
 				<div class="row hidden-xs" id="slider-thumbs">
 					<!-- thumb -->
+					<?php $num = 1;$to=0; $totalImg = count($pictures);?>
 						@if (!empty($dataProductDetail))
 						<div id="similar-product" class="carousel slide">
 						  <!-- Wrapper for slides -->
 						    <div class="carousel-inner" style="height: 100px">
-						    	<?php $num = 0;
-						    		$to=0;
-						    	?>
+						    	
 						    	@foreach($pictures as $small)
 						    	<?php
-						    	$num++;
 						    	if($num==1) {
 						    		$classA='active';
 						    	} else {
@@ -128,10 +123,13 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 									echo "</div>";
 								}
 								$to++;
+								$num++;
 								?>
-
 								@endforeach
-
+								<?php
+								if ($num % 3 != 1) {
+									echo "</div>";
+								}?>
 							</div>
 
 							  <!-- Controls -->
@@ -143,7 +141,6 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 							  </a>
 						</div>
 						@endif
-						</div>
 				<!-- end thumb -->
 				</div>
 				<!-- end thumb -->
@@ -292,11 +289,11 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 			<div class="carousel-inner">
 				<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 
-				<?php $numA = 0;
+				<?php $numA = 1;
 		    	?>
 		    	@foreach($relatedProduct as $related)
 		    	<?php
-						    	$numA++;
+		    		$proIdRelated = $related->id;
 						    	//$titleR = $related->{'title_' . Session::get ( 'lang' )};
 						    	$titleR = $related->title;
 						    	if (empty ( $titleR )) {
@@ -316,11 +313,11 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 					  <div class="product-image-wrapper">
 					  	<div class="single-products">
 					  		<div class="productinfo text-center">
-					  		<a href="" data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail({{$related->id}})">
+					  		<a href="javascript:;" data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail({{$proIdRelated}})">
 							  {{HTML::image("image/phpthumb/$thumbB?p=product&amp;h=120&amp;w=145",$titleR)}}
 							  </a>
 							  <h2>${{$related->price}}</h2>
-							  <p><a href="{{Config::get('app.url')}}product/details/{{$related->id}}" style="color:#000">{{$titleR}}</a></p>
+							  <p><a href="{{Config::get('app.url')}}product/details/{{$proIdRelated}}" style="color:#000">{{$titleR}}</a></p>
 					  		</div>
 					  	</div>
 					  </div>
@@ -329,9 +326,15 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 				if ($numA % 3 == 0) {
 					echo "</div>";
 				}
+				$numA++;
 				?>
 
 				@endforeach
+				<?php
+				if ($numA % 3 != 1) {
+					echo "</div>";
+				}
+				?>
 				</div>
 			</div>
 			 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
@@ -341,7 +344,6 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 				<i class="fa fa-angle-right"></i>
 			  </a>
 		</div>
-	</div>
 	@endif
 	<!-- end recommended items -->
     </div>
@@ -367,10 +369,10 @@ $toolView )) @foreach ( $toolView as $tool ) @if($tool->type ==
 {{HTML::style('frontend/css/colorbox.css')}}
 <script>
 	jQuery(document).ready(function(){
-		jQuery(".slideshow-group").colorbox({rel:'slideshow-group', transition:"none", width:"95%", height:"95%"});
+		jQuery(".slideshow-group").colorbox({rel:'slideshow-group', transition:"none", maxWidth:"95%", maxHeight:"95%"});
 
 		$('#similar-product').on('slide.bs.carousel', function () {
-			  console.log(1111);
+			  //console.log(1111);
 			})
 	});
 </script>

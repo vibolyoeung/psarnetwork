@@ -693,16 +693,25 @@ class Product extends Eloquent {
 	 * @access public
 	 *         @developer Socheat Ngann
 	 */
-	public function findProductByCategory($store, $idArr) {
+	public function findProductByCategory($store, $idArr, $product_id = null) {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		$productRelated = Config::get ( 'constants.TABLE_NAME.PRODUCT_IN_CATEGORY' );
-		return DB::table ( $product )
-		->leftJoin($productRelated, $product.'.id', '=', $productRelated.'.product_id')
-		->whereIn ( $productRelated.'.category_id', $idArr )
-		->where ( 'store_id', '=', $store )
-		->groupBy($product.'.id')
-		->orderBy ( 'id', 'DESC' )
-		->paginate ( 10 );
+		$query = DB::table ( $product );
+		$query->leftJoin($productRelated, $product.'.id', '=', $productRelated.'.product_id');
+		$query->whereIn ( $productRelated.'.category_id', $idArr );
+		if(!empty($product_id)) {
+			$query->where ( $product.'.id', '!=', $product_id);
+		}
+		$query->where ( 'store_id', '=', $store );
+		$query->groupBy($product.'.id');
+		$query->orderBy ( 'id', 'DESC' );
+		if(!empty($product_id)) {
+			$query->take ( 10 );
+			$product = $query->get ();
+		} else {
+			$product = $query->paginate ( 10 );
+		}
+		return $product;
 	}
 	
 	/**
