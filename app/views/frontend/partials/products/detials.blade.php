@@ -17,10 +17,10 @@
 				<div class="col-lg-12" style="padding:10px;">
 					<?php $contactInfo = json_decode($productdetails->contact_info); ?>
                    <ul id="Detail-Top-Contact">
-					<li><label>Name :</label> {{$contactInfo->contactName}}</li>
-					<li><label>Tel :</label> {{$contactInfo->contactHP}}</li>
-					<li><label>Email :</label> {{$contactInfo->contactEmail}}</li>
-					<li><label>Location :</label> {{$contactInfo->contactLocation}}</li>
+						<li><label>Name :</label> {{$contactInfo->contactName}}</li>
+						<li><label>Tel :</label> {{$contactInfo->contactHP}}</li>
+						<li><label>Email :</label> {{$contactInfo->contactEmail}}</li>
+						<li><label>Location :</label> {{$contactInfo->contactLocation}}</li>
                     </ul>
 				</div>
 			</div>
@@ -73,7 +73,7 @@
 										@foreach($images as $image)
 										<div class="item"
 											data-slide-number="<?= $thumbnail_id; ?>">
-											<a class="slideshow-group" href="{{Config::get('app.url')}}upload/product/{{$image['pic']}}">
+											<a class="slideshow-group" href="{{Config::get('app.url')}}upload/product/{{$image['pic']}}" width="560">
 												<?php
 													if($image['pic']){
 														echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=250&amp;w=550" />';	
@@ -131,13 +131,12 @@
 										  </a>
 									</div>
 									@endif
-									</div>
+								</div>
 							<!-- end thumb -->
 							</div>
 							<div class="col-sm-4" id="carousel-text"></div>
 							<div id="slide-content" style="display: none;">
 								<div id="slide-content-0">
-									
 									<div class="col-lg-12 text-centered" style="border:1px solid #dddddd;background-color:#dddddd;padding:5px 10px;font-weight:bold;font-size:18px;">Current Price : <span class="price">{{$productdetails->price}}$</span></div>
 									<div class="clear"></div>
 									<div>Product ID:   &nbsp;<span class="pro-condition">{{$productdetails->id}}</span></div>

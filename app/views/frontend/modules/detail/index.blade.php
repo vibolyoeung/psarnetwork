@@ -20,7 +20,6 @@ Categories
 			<div class="row">
 				<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 				<?php
-				//var_dump($productByCategory);die;
 				if(count($productByCategory) > 0){
 				?>
 					@foreach($productByCategory as $product)

@@ -55,7 +55,7 @@
 										    	?>
 												  <a href="javascript:;" data-target="#DetailPopupCarousel" data-slide-to="{{$to}}">{{HTML::image("image/phpthumb/$thumb?p=product&amp;h=80&amp;w=110")}}</a>
 												<?php
-												if ($num == 4 || $num == 8) {
+												if ($num == 3 || $num == 7) {
 													echo '</div><div class="item">';
 												}
 												$to++;
