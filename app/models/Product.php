@@ -15,13 +15,13 @@ class Product extends Eloquent {
 	public static $PRODUCT_STATUS = array (
 			1 => 'In Stock',
 			2 => 'Out Of Stock',
-			3 => 'In Development' 
+			3 => 'In Development'
 	);
 	public static $PRODUCT_IS_PUBLISH = array (
 			1 => 'Publish',
-			0 => 'Unpublish' 
+			0 => 'Unpublish'
 	);
-	
+
 	/**
 	 *
 	 * listing all product transfer types
@@ -43,7 +43,7 @@ class Product extends Eloquent {
 		}
 		return $response;
 	}
-	
+
 	/**
 	 * listing all transer type
 	 *
@@ -53,7 +53,7 @@ class Product extends Eloquent {
 	public function listAllTransferType() {
 		return $result = DB::table ( Config::get ( self::TRANSFER_TYPE ) )->select ( '*' )->get ();
 	}
-	
+
 	/**
 	 * list product condition
 	 *
@@ -63,7 +63,7 @@ class Product extends Eloquent {
 	public function listAllConditions() {
 		return $result = DB::table ( Config::get ( self::CONDITION ) )->select ( '*' )->get ();
 	}
-	
+
 	/**
 	 *
 	 * listing all product conditions
@@ -86,7 +86,7 @@ class Product extends Eloquent {
 		}
 		return $response;
 	}
-	
+
 	/**
 	 *
 	 * fetchCategoryTree: this function using for list dropdown
@@ -105,7 +105,7 @@ class Product extends Eloquent {
 			if (! is_array ( $treeArray )) {
 				$treeArray = array ();
 			}
-			
+
 			$result = DB::table ( Config::get ( 'constants.TABLE_NAME.S_CATEGORY' ) )->select ( '*' )->where ( 'parent_id', '=', $parent )->where ( 'user_id', '=', Session::get ( 'currentUserId' ) )->where ( 'is_publish', '=', self::IS_PUBLISH )->orderBy ( 'id', 'asc' )->get ();
 			if (count ( $result ) > 0) {
 				foreach ( $result as $row ) {
@@ -113,7 +113,7 @@ class Product extends Eloquent {
 							'id' => $row->id,
 							'parent_id' => $row->parent_id,
 							'name_en' => $spacing . $row->name_en,
-							'name_km' => $spacing . $row->name_km 
+							'name_km' => $spacing . $row->name_km
 					);
 					$treeArray = self::fetchCategoryTree ( $row->id, $spacing . '&nbsp;&nbsp;', $treeArray );
 				}
@@ -123,7 +123,7 @@ class Product extends Eloquent {
 		}
 		return $treeArray;
 	}
-	
+
 	/**
 	 *
 	 * fetchCategoryTree: this function using for list dropdown
@@ -143,7 +143,7 @@ class Product extends Eloquent {
 			$where = array (
 					'is_publish' => 1,
 					'user_id' => $userID,
-					'parent_id' => $parent 
+					'parent_id' => $parent
 			);
 			$result = DB::table ( Config::get ( 'constants.TABLE_NAME.S_CATEGORY' ) )->select ( '*' )->where ( $where )->get ();
 			if (! empty ( $result )) {
@@ -155,13 +155,13 @@ class Product extends Eloquent {
 					}
 					$userMenus .= "<option value='{$userMenu->m_cat_id}' {$select}>";
 					$userMenus .= $userMenu->{'name_' . Session::get ( 'lang' )};
-					
+
 					// Run this function again (it would stop running when the mysql_num_result is 0
 					$userMenus .= $this->menuShowNestedList ($userID, $userMenu->m_cat_id, $level + 1 , $selected);
 					$userMenus .= "</option>\n";
 				}
 			}
-			
+
 			//$userMenus .= "</ol>\n";
 		} catch ( \Exception $e ) {
 			Log::error ( 'Message: ' . $e->getMessage () . ' File:' . $e->getFile () . ' Line' . $e->getLine () );
@@ -169,7 +169,7 @@ class Product extends Eloquent {
 		return $userMenus;
 	}
 
-	
+
 	/**
 	 * Get sub User category
 	 * @method menuShowNestedList
@@ -199,7 +199,7 @@ class Product extends Eloquent {
 					}
 					$userMenus .= "<option value='{$userMenu->m_cat_id}' {$select}>";
 					$userMenus .= str_repeat('&#8212;&nbsp;', $level) . $userMenu->{'name_'.Session::get('lang')};
-	
+
 					// Run this function again (it would stop running when the mysql_num_result is 0
 					$userMenus .= $this->menuShowNestedList($userID, $userMenu->m_cat_id,$level+1,$selected);
 					$userMenus .= "</option>\n";
@@ -213,11 +213,11 @@ class Product extends Eloquent {
 		}
 		return $response;
 	}
-	
+
 	/**
 	 * Persist product informations
 	 *
-	 * @param array $products        	
+	 * @param array $products
 	 * @return int last id
 	 * @access public
 	 */
@@ -225,22 +225,22 @@ class Product extends Eloquent {
 		$lastId = $result = DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ) )->insertGetId ( $products );
 		return $lastId;
 	}
-	
+
 	/**
 	 * Update product informations
 	 *
-	 * @param array $products        	
+	 * @param array $products
 	 * @access public
 	 */
 	public function updateToProduct($products, $productId) {
 		$lastId = $result = DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ) )->where ( 'id', '=', $productId )->where ( 'user_id', '=', Session::get ( 'currentUserId' ) )->update ( $products );
 		return $lastId;
 	}
-	
+
 	/**
 	 * List all products by current user
 	 *
-	 * @param array $productInStore        	
+	 * @param array $productInStore
 	 * @return array products
 	 * @access public
 	 */
@@ -248,26 +248,26 @@ class Product extends Eloquent {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		return DB::table ( $product . ' AS p' )->select ( '*' )->where ( 'p.user_id', '=', Session::get ( 'currentUserId' ) )->where ( 'p.store_id', '=', Store::findStoreByUser ( Session::get ( 'currentUserId' ) ) )->orderBy ( 'p.id', 'DESC' )->paginate ( 10 );
 	}
-	
+
 	/**
 	 * renewProduct by product id
 	 *
-	 * @param integer $product_id        	
+	 * @param integer $product_id
 	 * @return void
 	 * @access public
 	 */
 	public function renewProduct($product_id) {
 		$data = array (
-			'top_up' => date( 'Y-m-d H:i:s' ) 
+			'top_up' => date( 'Y-m-d H:i:s' )
 		);
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		return DB::table ( $product . ' AS p' )->where ( 'p.id', '=', $product_id )->update ( $data );
 	}
-	
+
 	/**
 	 * Delete product by id
 	 *
-	 * @param int $product_id        	
+	 * @param int $product_id
 	 * @return void
 	 * @access public
 	 */
@@ -284,7 +284,7 @@ class Product extends Eloquent {
 			if (! empty ( $result->file_quotation )) {
 				File::delete ( $destinationPathQuotation . $result->file_quotation );
 			}
-			
+
 			$fileName = json_decode ( $result->pictures, true );
 			if (! empty ( $fileName )) {
 			foreach ( $fileName as $file ) {
@@ -304,34 +304,34 @@ class Product extends Eloquent {
 			throw $e;
 		}
 	}
-	
+
 	/**
 	 * Disable or Enable product by id
 	 *
-	 * @param int $product_id        	
-	 * @param boolean $is_publish        	
+	 * @param int $product_id
+	 * @param boolean $is_publish
 	 * @return void
 	 * @access public
 	 */
 	public function isPublishProduct($product_id, $is_publish) {
 		if ($is_publish == 1) {
 			$status = array (
-					'is_publish' => 0 
+					'is_publish' => 0
 			);
 		} else {
 			$status = array (
-					'is_publish' => 1 
+					'is_publish' => 1
 			);
 		}
-		
+
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		return DB::table ( $product )->where ( 'id', '=', $product_id )->where ( 'user_id', '=', Session::get ( 'currentUserId' ) )->update ( $status );
 	}
-	
+
 	/**
 	 * Update product by id
 	 *
-	 * @param int $product_id        	
+	 * @param int $product_id
 	 * @return void
 	 * @access public
 	 */
@@ -349,12 +349,12 @@ class Product extends Eloquent {
 	public function findProductByCondition($where) {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		return DB::table ( $product )->where ( $where )->where ( 'user_id', '=', Session::get ( 'currentUserId' ) )->get ();
-	}	
+	}
 	/**
 	 *
 	 * find province by province id
 	 *
-	 * @param integer $provinceId        	
+	 * @param integer $provinceId
 	 * @return array provinces
 	 * @access public
 	 */
@@ -362,10 +362,10 @@ class Product extends Eloquent {
 		$result = DB::table (Config::get ( 'constants.TABLE_NAME.PROVINCE' ) )
 		->select ( 'province_id', 'province_name_en', 'province_name_km' )
 		->where ( 'province_id', '=', $provinceId )->first ();
-		
+
 		return $result->{'province_name_'.Session::get('lang')};
 	}
-	
+
 	/**
 	 *
 	 * find reservation products
@@ -377,7 +377,7 @@ class Product extends Eloquent {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		return DB::table ( $product . ' AS p' )->select ( '*' )->where ( 'p.user_id', '=', Session::get ( 'currentUserId' ) )->where ( 'p.store_id', '=', Store::findStoreByUser ( Session::get ( 'currentUserId' ) ) )->where ( 'p.publish_date', '>', date ( 'd/m/Y' ) )->orderBy ( 'p.id', 'DESC' )->paginate ( 10 );
 	}
-	
+
 	/**
 	 *
 	 * find unpublic products
@@ -389,7 +389,7 @@ class Product extends Eloquent {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		return DB::table ( $product . ' AS p' )->select ( '*' )->where ( 'p.user_id', '=', Session::get ( 'currentUserId' ) )->where ( 'p.store_id', '=', Store::findStoreByUser ( Session::get ( 'currentUserId' ) ) )->where ( 'p.is_publish', '=', 0 )->orderBy ( 'p.id', 'DESC' )->paginate ( 10 );
 	}
-	
+
 	/**
 	 *
 	 * find license products
@@ -401,9 +401,9 @@ class Product extends Eloquent {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		return DB::table ( $product . ' AS p' )->select ( '*' )->where ( 'p.user_id', '=', Session::get ( 'currentUserId' ) )->where ( 'p.store_id', '=', Store::findStoreByUser ( Session::get ( 'currentUserId' ) ) )->where ( 'p.point_to_view', '=', 1 )->orderBy ( 'p.id', 'DESC' )->paginate ( 10 );
 	}
-	
+
 	/* This place for frontend */
-	
+
 	/**
 	 *
 	 * find hot-promotion products
@@ -415,7 +415,7 @@ class Product extends Eloquent {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		return DB::table ( $product . ' AS p' )->select ( '*' )->where ( 'p.pro_transfer_type_id', '=', self::HOT_PROMOTION_PRODUCT )->where ( 'p.is_publish', '=', self::IS_PUBLISH )->orderBy ( 'p.id', 'DESC' )->get ();
 	}
-	
+
 	/**
 	 *
 	 * find new products
@@ -431,7 +431,7 @@ class Product extends Eloquent {
 		->where('p.publish_date','<=',date('Y-m-d'))
 		->orderBy ( 'p.id', 'DESC' )->get ();
 	}
-	
+
 	/**
 	 *
 	 * find monthly products
@@ -443,7 +443,7 @@ class Product extends Eloquent {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		return DB::table ( $product . ' AS p' )->select ( '*' )->where ( 'p.pro_transfer_type_id', '=', self::MONTHLY_PRODUCT )->where ( 'p.is_publish', '=', self::IS_PUBLISH )->where ( 'p.publish_date', '>=', date ( "d/m/Y" ) )->orderBy ( 'p.id', 'DESC' )->get ();
 	}
-	
+
 	/**
 	 *
 	 * find buyer products
@@ -463,7 +463,7 @@ class Product extends Eloquent {
 			->take($setting)
 			->get ();
 	}
-	
+
 	/**
 	 *
 	 * find Second Hand products
@@ -475,11 +475,11 @@ class Product extends Eloquent {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		return DB::table ( $product . ' AS p' )->select ( '*' )->where ( 'p.pro_condition_id', '=', self::SECOND_HAND_PRODUCT )->where ( 'p.is_publish', '=', self::IS_PUBLISH )->where ( 'p.publish_date', '>=', date ( "d/m/Y" ) )->orderBy ( 'p.id', 'DESC' )->get ();
 	}
-	
+
 	/**
 	 * findProductDetail by id
 	 *
-	 * @param int $product_id        	
+	 * @param int $product_id
 	 * @return product detail
 	 * @access public
 	 */
@@ -522,10 +522,10 @@ class Product extends Eloquent {
 
 		);
 		$query->join (
-			$store . ' AS st', 
+			$store . ' AS st',
 			'st.id', '=', 'p.store_id'
 		)->join (
-			$productCondition . ' AS pcon', 
+			$productCondition . ' AS pcon',
 			'pcon.id', '=', 'p.pro_condition_id'
 		)->join(
 			$productTransferType . ' AS proType',
@@ -575,7 +575,7 @@ class Product extends Eloquent {
 		$user = Config::get ( 'constants.TABLE_NAME.USER' );
 		$accountRole = Config::get ( 'constants.TABLE_NAME.ACCOUNT_ROLE' );
 		$clientType = Config::get ( 'constants.TABLE_NAME.CLIENT_TYPE' );
-		
+
 		return DB::table ( $product . ' AS p' )->select (
 			'p.view',
 			'p.id',
@@ -611,7 +611,7 @@ class Product extends Eloquent {
 		->groupby('pro.product_id')
 		->orderBy ( 'p.id', 'DESC' )->take(8)->get ();
 	}
-	
+
 	/**
 	 * Find preminum latest product
 	 *
@@ -621,13 +621,13 @@ class Product extends Eloquent {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		$setting = Store::getSetting(self::LATEST_PRODUCT_SETTING);
 		$user = Config::get ( 'constants.TABLE_NAME.USER' );
-		
+
 		return DB::table ( $product . ' AS p' )->select ( 'p.*' )->join ( 'user AS u', 'p.user_id', '=', 'u.id' )
 		->where ( 'u.account_type', '=', self::PREMINUM )
 		->where( 'p.publish_date','<=',date('Y-m-d'))
 		->orderBy ( 'p.id', 'DESC' )->take ( $setting )->get ();
 	}
-	
+
 	/**
 	 * findPostProductByCategory
 	 *
@@ -645,7 +645,7 @@ class Product extends Eloquent {
 		$user = Config::get ( 'constants.TABLE_NAME.USER' );
 		$accountRole = Config::get ( 'constants.TABLE_NAME.ACCOUNT_ROLE' );
 		$clientType = Config::get ( 'constants.TABLE_NAME.CLIENT_TYPE' );
-		
+
 		return DB::table ( $product . ' AS p' )
 		->select (
 			'p.view',
@@ -683,7 +683,7 @@ class Product extends Eloquent {
 		->groupby('pro.product_id')
 		->orderBy ( 'p.id', 'DESC' )->get ();
 	}
-	
+
 	/**
 	 * findPostProductByCategory
 	 *
@@ -713,7 +713,7 @@ class Product extends Eloquent {
 		}
 		return $product;
 	}
-	
+
 	/**
 	 * listAllProductsByOwnStore
 	 *
@@ -725,13 +725,13 @@ class Product extends Eloquent {
 			$where = $where;
 		} else {
 			$where = array (
-					'user_id' => Session::get ( 'currentUserId' ) 
+					'user_id' => Session::get ( 'currentUserId' )
 			);
 		}
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		return DB::table ( $product )->select ( '*' )->where ( $where )->orderBy ( 'id', 'DESC' )->paginate ( 10 );
 	}
-	
+
 	/**
 	 * productDetailByOwnStore
 	 *
@@ -742,31 +742,31 @@ class Product extends Eloquent {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		return DB::table ( $product . ' AS p' )->select ( '*' )->where ( 'p.user_id', '=', $userID )->where ( 'p.id', '=', $productId )->first ();
 	}
-	
+
 	/**
 	 * Find product by location, type and keyword
 	 *
-	 * @param string $keyword        	
-	 * @param int $province        	
-	 * @param int $businessType        	
+	 * @param string $keyword
+	 * @param int $province
+	 * @param int $businessType
 	 *
 	 * @return array $products
 	 */
 	public function searchProducts($keyword = '', $province) {
 		$usersId = $this->findUserByProvince ( $province );
-		
+
 		return $this->searchByProduct ( $usersId, $keyword, $province );
 	}
-	
+
 	/**
 	 * Find product by location, type and keyword
 	 *
-	 * @param int $province        	
-	 * @param int $transferType        	
-	 * @param int $condition        	
-	 * @param int $price        	
-	 * @param string $date        	
-	 * @param int $displayNumber        	
+	 * @param int $province
+	 * @param int $transferType
+	 * @param int $condition
+	 * @param int $price
+	 * @param string $date
+	 * @param int $displayNumber
 	 *
 	 * @return array $products
 	 */
@@ -778,6 +778,66 @@ class Product extends Eloquent {
 		$date,
 		$displayNumber = null
 	) {
+		$limitNumber = self::LIST_NUMBER;
+		if ($displayNumber !== null) {
+			$limitNumber = $displayNumber;
+		}
+
+		$products = [];
+		if (( int ) $location === 0) {
+			$query = $this->searchProductInEachCategory(
+				$location,
+				$transferType,
+				$condition,
+				$price,
+				$date
+			);
+
+			$products[] = $query->paginate ( $limitNumber );
+
+			return $products;
+		}
+
+
+		$usersId = $this->findUserByProvince($location);
+
+		foreach ( $usersId as $userId ) {
+			$query = $this->searchProductInEachCategory(
+				$location,
+				$transferType,
+				$condition,
+				$price,
+				$date
+			);
+			$query->where ( 'p.user_id', '=', ( int ) $userId );
+			$data = $query->paginate ( $limitNumber );
+
+			if (! empty ( $data )) {
+				$products[] = $data;
+			}
+		}
+
+		return $products;
+	}
+
+	/**
+	 * Find product by location, type and keyword
+	 *
+	 * @param int $province
+	 * @param int $transferType
+	 * @param int $condition
+	 * @param int $price
+	 * @param string $date
+	 *
+	 * @return Query
+	 */
+	private function searchProductInEachCategory(
+		$location,
+		$transferType,
+		$condition,
+		$price,
+		$date
+	) {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		$product_in_category = Config::get ( 'constants.TABLE_NAME.PRODUCT_IN_CATEGORY' );
 		$store = Config::get ( 'constants.TABLE_NAME.STORE' );
@@ -786,13 +846,11 @@ class Product extends Eloquent {
 		$user = Config::get ( 'constants.TABLE_NAME.USER' );
 		$accountRole = Config::get ( 'constants.TABLE_NAME.ACCOUNT_ROLE' );
 		$clientType = Config::get ( 'constants.TABLE_NAME.CLIENT_TYPE' );
-		
-		
-		// Convert date formate the same db
+
+		// Convert date format the same db
 		$date = date('Y-m-d', strtotime($date));
-		if (( int ) $location === 0) {
-			$query = DB::table ( $product . ' AS p' );
-			$query->select (
+		$query = DB::table ( $product . ' AS p' );
+		$query->select (
 			'p.view',
 			'p.id',
 			'p.title',
@@ -815,88 +873,50 @@ class Product extends Eloquent {
 			'accr.rol_name_km as account_role_name_km',
 			'ctype.name_en as client_type_name_en',
 			'ctype.name_km as client_type_name_km'
-			);
-			$query->join ( $store.' AS st','st.id','=','p.store_id');
-			$query->join ($product_in_category.' AS pro', 'pro.product_id','=','p.id');
-			$query->join ($productTransferType.' AS pt','pt.ptt_id','=','p.pro_transfer_type_id');
-			$query->join ($productCondition.' AS proc','proc.id','=','p.pro_condition_id');
-			$query->join ($user.' AS u','u.id','=','p.user_id');
-			$query->join ($accountRole.' AS accr','accr.rol_id','=','u.account_role');
-			$query->join($clientType.' AS ctype','ctype.id','=','u.client_type');
-			$query->where ( 'p.is_publish', '=', self::IS_PUBLISH );
-			if (( int ) $transferType !== 0) {
-				$query->where ( 'p.pro_transfer_type_id', '=', ( int ) $transferType );
-			}
-			if (( int ) $condition !== 0) {
-				$query->where ( 'p.pro_condition_id', '=', ( int ) $condition );
-			}
-			if (! empty ( $date )) {
-				$query->where ( 'p.publish_date', '=', $date );
-			}
-			if (! empty ( $price )) {
-				$query->where ( 'p.price', '=', $price );
-			}
-			$query->groupBy('pro.product_id');
-			$query->orderBy ( 'p.id', 'DESC' );
-			
-			$limitNumber = self::LIST_NUMBER;
-			if ($displayNumber !== null) {
-				$limitNumber = $displayNumber;
-			}
-			
-			return $query->paginate ( $limitNumber );
+		);
+		$query->join ( $store.' AS st','st.id','=','p.store_id');
+		$query->join ($product_in_category.' AS pro', 'pro.product_id','=','p.id');
+		$query->join ($productTransferType.' AS pt','pt.ptt_id','=','p.pro_transfer_type_id');
+		$query->join ($productCondition.' AS proc','proc.id','=','p.pro_condition_id');
+		$query->join ($user.' AS u','u.id','=','p.user_id');
+		$query->join ($accountRole.' AS accr','accr.rol_id','=','u.account_role');
+		$query->join($clientType.' AS ctype','ctype.id','=','u.client_type');
+		$query->where ( 'p.is_publish', '=', self::IS_PUBLISH );
+		if (( int ) $transferType !== 0) {
+			$query->where ( 'p.pro_transfer_type_id', '=', ( int ) $transferType );
 		}
-		
-		$products = [];
-		
-		$usersId = $this->findUserByProvince($location);
-		
-		foreach ( $usersId as $userId ) {
-			$query = DB::table ( $productTable . ' AS p' );
-			$query->select ( '*' );
-			$query->where ( 'p.user_id', '=', ( int ) $userId );
-			$query->where ( 'p.is_publish', '=', self::IS_PUBLISH );
-			if (( int ) $transferType !== 0) {
-				$query->where ( 'p.pro_transfer_type_id', '=', ( int ) $transferType );
-			}
-			if (( int ) $condition !== 0) {
-				$query->where ( 'p.pro_condition_id', '=', ( int ) $condition );
-			}
-			if (! empty ( $date )) {
-				$query->where ( 'p.publish_date', '=', $date );
-			}
-			if (! empty ( $price )) {
-				$query->where ( 'p.price', '=', $price );
-			}
-			$query->orderBy ( 'p.id', 'DESC' );
-			
-			$data = $query->get ();
-			
-			if (! empty ( $data )) {
-				$products = $data;
-			}
+		if (( int ) $condition !== 0) {
+			$query->where ( 'p.pro_condition_id', '=', ( int ) $condition );
 		}
-		
-		return $products;
+		if (! empty ( $date )) {
+			$query->where ( 'p.publish_date', '=', $date );
+		}
+		if (! empty ( $price )) {
+			$query->where ( 'p.price', '=', $price );
+		}
+		$query->groupBy('pro.product_id');
+		$query->orderBy ( 'p.id', 'DESC' );
+
+		return $query;
 	}
-	
+
 	/**
 	 * Get user by province and bussiness type
 	 *
-	 * @param int $province        	
+	 * @param int $province
 	 *
 	 * @return array $usersId
 	 */
 	private function findUserByProvince($province) {
 		$userTable = Config::get ( 'constants.TABLE_NAME.USER' );
-		
+
 		$usersExcludeProvince = DB::table ( $userTable . ' AS u' )->select ( '*' )->get ();
-		
+
 		$usersId = [ ];
-		
+
 		foreach ( $usersExcludeProvince as $userExcludeProvince ) {
 			$arrayProvinces = json_decode ( $userExcludeProvince->address, true );
-			
+
 			if (( int ) $province === 0) {
 				$userId [] = $userExcludeProvince->id;
 			} else {
@@ -905,7 +925,7 @@ class Product extends Eloquent {
 				}
 			}
 		}
-		
+
 		return $usersId;
 	}
 
@@ -923,7 +943,7 @@ class Product extends Eloquent {
 				$products = $data;
 			}
 		}
-		
+
 		return $products;
 	}
 
@@ -987,54 +1007,6 @@ class Product extends Eloquent {
 		return $query->get();
 	}
 
-	public function searchByBuyer($usersId, $keyword) {
-		$productTable = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
-		$products = [ ];
-		
-		if ($keyword === '' && empty ( $usersId )) {
-			$data = DB::table ( $productTable . ' AS p' )->select ( '*' )->where ( 'p.is_publish', '=', self::IS_PUBLISH )->where ( 'p.pro_transfer_type_id', '=', self::BUYER_PRODUCT )->orderBy ( 'p.id', 'DESC' )->get ();
-			
-			return $data;
-		}
-		
-		foreach ( $usersId as $userId ) {
-			
-			$data = DB::table ( $productTable . ' AS p' )->select ( '*' )->where ( 'p.user_id', '=', ( int ) $userId )->where ( 'p.is_publish', '=', self::IS_PUBLISH )->where ( 'p.pro_transfer_type_id', '=', self::BUYER_PRODUCT )->where ( function ($query) use($keyword) {
-				$query->orWhere ( 'p.title', 'LIKE', '%' . $keyword . '%' )->orWhere ( 'p.description', 'LIKE', '%' . $keyword . '%' );
-			} )->orderBy ( 'p.id', 'DESC' )->get ();
-			
-			if (! empty ( $data )) {
-				$products = $data;
-			}
-		}
-		
-		return $products;
-	}
-	public function searchBySuppliers($usersId, $keyword) {
-		$productTable = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
-		$userTable = Config::get ( 'constants.TABLE_NAME.USER' );
-		$accountRoleTable = Config::get ( 'constants.TABLE_NAME.ACCOUNT_ROLE' );
-		$products = [ ];
-		
-		if ($keyword === '' && empty ( $usersId )) {
-			$data = DB::table ( $productTable . ' AS p' )->join ( $userTable . ' AS u', 'u.id', '=', 'p.user_id' )->join ( $accountRoleTable . ' AS ar', 'ar.rol_id', '=', 'u.account_role' )->select ( '*' )->where ( 'p.is_publish', '=', self::IS_PUBLISH )->where ( 'p.pro_transfer_type_id', '=', self::BUYER_PRODUCT )->orderBy ( 'p.id', 'DESC' )->get ();
-			
-			return $data;
-		}
-		
-
-
-		foreach ( $usersId as $userId ) {
-			$data = DB::table ( $productTable . ' AS p' )->join ( $userTable . ' AS u', 'u.id', '=', 'p.user_id' )->join ( $accountRoleTable . ' AS ar', 'ar.rol_id', '=', 'u.account_role' )->select ( '*' )->where ( 'p.user_id', '=', ( int ) $userId )->where ( 'p.is_publish', '=', self::IS_PUBLISH )->where ( 'p.pro_transfer_type_id', '=', self::BUYER_PRODUCT )->where ( function ($query) use($keyword) {
-				$query->orWhere ( 'p.title', 'LIKE', '%' . $keyword . '%' )->orWhere ( 'p.description', 'LIKE', '%' . $keyword . '%' );
-			} )->orderBy ( 'p.id', 'DESC' )->get ();
-			
-			if (! empty ( $data )) {
-				$products = $data;
-			}
-		}
-	}
-
 	public static function productPosttoday(){
 		return DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ))->where('publish_date','=',date('Y-m-d'))->get ();
 	}
@@ -1043,7 +1015,7 @@ class Product extends Eloquent {
 		$oldViewCount = self::findCountViewOfUserClick($product_id);
 		$totalView = 1 + $oldViewCount;
 		$data = array(
-			'view' => $totalView 
+			'view' => $totalView
 		);
 
 		return DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ))
