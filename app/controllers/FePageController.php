@@ -48,13 +48,6 @@ class FePageController extends BaseController {
 				3
 			);
 
-		$advHorizontalLargeCenter = $this->mod_advertisment
-			->getAdvertisementHomePage(
-				self::HOMEPAGE,
-				self::UP_ON_ENTERPRICE_PRODUCT,
-				3
-			);
-
 
 		$advTops = $this->mod_advertisment
 			->getAdvertisementHomePage(
@@ -68,7 +61,6 @@ class FePageController extends BaseController {
 			->with('slideshows', $listSlideshows->result)
 			->with('advVerticalRightSmalls', $advVerticalRightSmall->result)
 			->with('advVerticalLeftSmalls', $advVerticalLeftSmall->result)
-			->with('advHorizontalLargeCenters', $advHorizontalLargeCenter->result)
 			->with('productAdvs', $productAdvs->result)
 			->with('advTops', $advTops->result)
 			->with('client_type',$this->mod_category->getClientType())
@@ -238,7 +230,7 @@ class FePageController extends BaseController {
 		->with('conditions', $this->mod_product->listAllConditions())
 		->with('advTops', $advTops->result);
 	}
-	
+
 	public function getProductDetials($product_id){
 		$advTops = $this->mod_advertisment
 		->getAdvertisementHomePage(
@@ -246,7 +238,7 @@ class FePageController extends BaseController {
 				self::HOME_PAGE_TOP,
 				1
 		);
-		
+
 		Product::countViewOfUserClickProduct($product_id);
 		$detailProduct = $this->mod_product->findProductDetailById($product_id);
 		return View::make('frontend.partials.products.detials')
@@ -255,7 +247,7 @@ class FePageController extends BaseController {
 					->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
 					->with('productdetails', $detailProduct);
 	}
-    
+
     public function getSignOut() {
         Session::flush();
         return Redirect::route('/');
@@ -265,7 +257,7 @@ class FePageController extends BaseController {
     	$productDetail =  $this->mod_product->findProductDetailById($product_id);
     	return View::make('frontend.partials.products.js_popup_product')
     		->with('productDetail', $productDetail);
-    } 
+    }
 
     public function findRelatedProducts($category_id) {
     	$relatedPost = $this->mod_product->findRelatedPostProduct($category_id);

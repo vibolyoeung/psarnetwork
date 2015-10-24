@@ -21,7 +21,7 @@ if(count($latestProducts) > 0){
 				<div class="single-products">
 					<div class="productinfo text-center">
 						<a href="#" data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail(<?php echo $latestProduct->id; ?>)">
-							<?php 
+							<?php
 							if($latestProduct->thumbnail){
 								echo '<img src="image/phpthumb/'.$latestProduct->thumbnail.'?p=product&amp;h=100&amp;w=135" />';
 							}else{
@@ -42,7 +42,8 @@ if(count($latestProducts) > 0){
 		@endforeach
 	</div>
 	<div class="col-lg-12 center-advertise">
-		@include('frontend.partials.horizontal_center_adv')
+		<!-- type:homepage, position: up on enterprice product, limit -->
+		{{ App::make('FePageController')->getHorizontalAds(1, 8, 3) }}
 	</div>
 </div>
 <?php } ?>
