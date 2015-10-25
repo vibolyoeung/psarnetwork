@@ -5,7 +5,7 @@ if(count($newProducts) > 0){
 <div class="category-tab feature-ad lastest-post" style="padding: 0;">
 	<!--recommended_items-->
 	<ul class="nav nav-tabs new_product">
-		<li>New Products&nbsp;&nbsp;&nbsp; &frasl;</li>
+		<li>{{trans('product.new_product')}}&nbsp;&frasl;</li>
 		<li>Products : <span class="number-display price"><?php echo count($newProducts)?></span></li>
 	</ul>
 	<div id="new-item-carousel" class="carousel slide"

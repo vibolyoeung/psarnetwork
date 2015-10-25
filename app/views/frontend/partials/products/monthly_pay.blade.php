@@ -7,8 +7,8 @@
 <div class="category-tab feature-ad lastest-post" style="padding: 0;">
 	<!--recommended_items-->
 	<ul class="nav nav-tabs">
-		<li><strong>Monthly Pay Products</strong> &nbsp;&nbsp;&nbsp; &frasl;</li>
-		<li>Products : <span class="number-display">25</span></li>
+		<li>{{trans('product.monthly_pay_product')}}&nbsp;&frasl;</li>
+		<li>Products : <span class="number-display"><?php echo count($monthlyProducts)?></span></li>
 	</ul>
 	<div id="second-hand-item-carousel" class="carousel slide"
 		data-ride="carousel">

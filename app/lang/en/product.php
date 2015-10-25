@@ -38,5 +38,13 @@ return array(
     /*======Client Location====*/
     'summary_in_each_location' => 'Summary in each Location',
     'summary_in_seller_type' => 'Summary in Seller Type',
-    'summary_in_business_site' => 'Summary in Business Site'
+    'summary_in_business_site' => 'Summary in Business Site',
+    'advertise_product' => 'Advertisement Products',
+    'latest_product' => 'Latest Products',
+    'company_page' => 'Company pages',
+    'hot_promotion' => 'Hot Promotion',
+    'new_product' => 'New Products',
+    'secondhand_product' => 'Secondhand Products',
+    'monthly_pay_product' => 'Monthly Pay Products',
+    'buyer_request_product' => 'Buyer Request Products',
 );

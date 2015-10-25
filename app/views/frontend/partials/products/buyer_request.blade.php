@@ -8,9 +8,8 @@ if(count($buyerProducts) > 0){
 <div class="category-tab feature-ad lastest-post" style="padding: 0;">
 	<!--recommended_items-->
 	<ul class="nav nav-tabs">
-		<li><strong>Buyer Requested Products</strong> &nbsp;&nbsp;&nbsp;
-			&frasl;</li>
-		<li>Products : <span class="number-display">25</span></li>
+		<li>{{trans('product.buyer_request_product')}}&nbsp;&frasl;</li>
+		<li>Products : <span class="number-display"><?php echo count($buyerProducts)?></span></li>
 	</ul>
 	<div id="monthly-pay-item-carousel" class="carousel slide"
 		data-ride="carousel">

@@ -5,14 +5,8 @@ $hotPromotionProducts = Product::findHotPromotionProducts ();
 if(count($hotPromotionProducts) > 0){
 ?>
 <ul class="nav nav-tabs" style="padding: 0;">
-	<li><strong>Hot Promotion</strong>&nbsp;&frasl;</li>
-	<li>Products : <span class="number-display">25</span></li>
-	<li>Stores :<span class="number-display">25</span></li>
-	<li>Market :<span class="number-display">25</span></li>
-	<li>Companies :<span class="number-display">25</span></li>
-	<li>Home Shop :<span class="number-display">25</span></li>
-	<li>Individual : <span class="number-display">25</span></li>
-	<li>View :<span class="number-display">25</span></li>
+	<li>{{trans('product.hot_promotion')}}&nbsp;&frasl;</li>
+	<li>Products : <span class="number-display"><?php echo count($hotPromotionProducts)?></span></li>
 </ul>
 <div id="recommended-item-carousel" class="carousel slide"
 	data-ride="carousel">

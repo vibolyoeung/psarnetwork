@@ -441,7 +441,7 @@ class Product extends Eloquent {
 	 */
 	public static function findMonthlyProducts() {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
-		return DB::table ( $product . ' AS p' )->select ( '*' )->where ( 'p.pro_transfer_type_id', '=', self::MONTHLY_PRODUCT )->where ( 'p.is_publish', '=', self::IS_PUBLISH )->where ( 'p.publish_date', '>=', date ( "d/m/Y" ) )->orderBy ( 'p.id', 'DESC' )->get ();
+		return DB::table ( $product . ' AS p' )->select ( '*' )->where ( 'p.pro_transfer_type_id', '=', self::MONTHLY_PRODUCT )->where ( 'p.is_publish', '=', self::IS_PUBLISH )->where ( 'p.publish_date', '<=', date ( "Y-m-d" ) )->orderBy ( 'p.id', 'DESC' )->get ();
 	}
 
 	/**
@@ -473,7 +473,7 @@ class Product extends Eloquent {
 	 */
 	public static function findSecondHandProducts() {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
-		return DB::table ( $product . ' AS p' )->select ( '*' )->where ( 'p.pro_condition_id', '=', self::SECOND_HAND_PRODUCT )->where ( 'p.is_publish', '=', self::IS_PUBLISH )->where ( 'p.publish_date', '>=', date ( "d/m/Y" ) )->orderBy ( 'p.id', 'DESC' )->get ();
+		return DB::table ( $product . ' AS p' )->select ( '*' )->where ( 'p.pro_condition_id', '=', self::SECOND_HAND_PRODUCT )->where ( 'p.is_publish', '=', self::IS_PUBLISH )->where ( 'p.publish_date', '<=', date ( "Y-m-d" ) )->orderBy ( 'p.id', 'DESC' )->get ();
 	}
 
 	/**
@@ -755,7 +755,7 @@ class Product extends Eloquent {
 	public function searchProducts($keyword = '', $province) {
 		$usersId = $this->findUserByProvince ( $province );
 
-		return $this->searchByProduct ( $usersId, $keyword, $province );
+		return $this->searchByProduct ( $usersId, $keyword, $province);
 	}
 
 	/**
@@ -990,17 +990,17 @@ class Product extends Eloquent {
 		$query->join ($user.' AS u','u.id','=','p.user_id');
 		$query->join ($accountRole.' AS accr','accr.rol_id','=','u.account_role');
 		$query->join($clientType.' AS ctype','ctype.id','=','u.client_type');
-		$query->where ( 'p.is_publish', '=', self::IS_PUBLISH );
+		//$query->where ( 'p.is_publish', '=', self::IS_PUBLISH );
 
-		if (!is_null($userId)) {
-			$query->where ( 'p.user_id', '=', ( int ) $userId );
-		}
-		$query->where ( 'p.is_publish', '=', self::IS_PUBLISH );
-		$query->where (function ($query) use($keyword) {
-				$query->orWhere ( 'p.title', 'LIKE', '%' . $keyword . '%' )
-					->orWhere ( 'p.description', 'LIKE', '%' . $keyword . '%' );
-			}
-		);
+		// if (!is_null($userId)) {
+		// 	$query->where ( 'p.user_id', '=', ( int ) $userId );
+		// }
+		// $query->where ( 'p.is_publish', '=', self::IS_PUBLISH );
+		// $query->where (function ($query) use($keyword) {
+		// 		$query->orWhere ( 'p.title', 'LIKE', '%' . $keyword . '%' )
+		// 			->orWhere ( 'p.description', 'LIKE', '%' . $keyword . '%' );
+		// 	}
+		// );
 		$query->groupBy('pro.product_id');
 		$query->orderBy ( 'p.id', 'DESC' );
 

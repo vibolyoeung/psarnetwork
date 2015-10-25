@@ -4,17 +4,12 @@
 <div class="category-tab feature-ad product-adv">
 	<div class="col-lg-12 product-adv" style="padding: 0;">
 		<ul class="nav nav-tabs">
-			<li><strong>Product advertisement</strong> &nbsp;&nbsp;&nbsp;
-				&frasl;</li>
+			<li>{{trans('product.advertise_product')}}&nbsp;&frasl;</li>
+			<li>Products : <span class="number-display"><?php echo count($productAdvs)?></span></li>
 		</ul>
 	</div>
 	<div class="row list-store">
 			@foreach($productAdvs as $adv)
-				<?php
-					$exp_date = $adv->end_date;
-					$exp_date = str_replace ( '/', '-', $exp_date );
-				?>
-				@if (strtotime ( date ( "d-m-Y" ) ) <= strtotime ( $exp_date ))
 				<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 					<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 					<div class="product-l-wrapper">
@@ -32,7 +27,6 @@
 						</div>
 					</div>
 				</div>
-				@endif
 			@endforeach
 	</div>
 </div>

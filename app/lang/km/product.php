@@ -32,5 +32,13 @@ return array(
     /*======Client Location====*/
     'summary_in_each_location' => 'សង្ខេបប្រចាំទីកន្លែង',
     'summary_in_seller_type' => 'សង្ខេបប្រចាំប្រភេទអ្នកលក់',
-    'summary_in_business_site' => 'សង្ខេប​ប្រចាំទំព័រជំនួញ'
+    'summary_in_business_site' => 'សង្ខេប​ប្រចាំទំព័រជំនួញ',
+    'advertise_product' => 'ផលិតផលផ្សាយពាណិជ្ជកម្ម',
+    'latest_product' => 'ផលិតផលថ្នីៗបំផុត',
+    'company_page' => 'ទំព័រក្រុមហ៊ុនអាជីវកម្មទូទៅ',
+    'hot_promotion' => 'ផលិតផលមាន ​​ការរផ្តល់ជូនពិសេស',
+    'new_product' => 'ផលិតផលថ្មី​',
+    'secondhand_product' => 'ផលិតផលជជុះទូទៅ​',
+    'monthly_pay_product' => 'ផលិតផលផ្លល់លារបង់រំលោះ',
+    'buyer_request_product' => 'ផលិតផលស្នើទិញរបស់អតិថិជន'
 );

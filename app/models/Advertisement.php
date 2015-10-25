@@ -412,6 +412,7 @@ class Advertisement extends Eloquent {
 			->where('status', 1)
 			->where('adv_page_id', $page)
 			->where('type', self::PRODUCT_ADV)
+			->where('end_date','>=',date("Y-m-d"))
 			->orderBy('adv.id','desc')
 			->take('limit', 6)->get();
 			$response->result = $result;

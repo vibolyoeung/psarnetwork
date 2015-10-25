@@ -5,14 +5,8 @@
 <div class="category-tab feature-ad lastest-post" style="padding: 0;">
 	<!--recommended_items-->
 	<ul class="nav nav-tabs">
-		<li><strong>Second Hand Products</strong> &nbsp;&nbsp;&nbsp; &frasl;</li>
-		<li>Products : <span class="number-display">25</span></li>
-		<li>Stores :<span class="number-display">25</span></li>
-		<li>Market :<span class="number-display">25</span></li>
-		<li>Companies :<span class="number-display">25</span></li>
-		<li>Home Shop :<span class="number-display">25</span></li>
-		<li>Individual : <span class="number-display">25</span></li>
-		<li>View :<span class="number-display">25</span></li>
+		<li>{{trans('product.secondhand_product')}}&nbsp;&frasl;</li>
+		<li>Products : <span class="number-display"><?php echo count($secondHandProducts)?></span></li>
 	</ul>
 	<div id="second-carousel" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
@@ -42,7 +36,7 @@
 								</a>
 								<center>
 									<h5>
-										<a href="{{Config::get('app.url')}}product/details/{{$secondHandProduct->id}}"><?php echo substr($secondHandProduct->title,0,20)?></a>
+										<a href="{{Config::get('app.url')}}product/details/{{$secondHandProduct->id}}"><?php echo str_limit($secondHandProduct->title,$limit = 15, $end = '...');?></a>
 									</h5>
 									<strong class="price">$ {{$secondHandProduct->price}}</strong>
 								</center>

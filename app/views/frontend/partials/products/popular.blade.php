@@ -6,9 +6,8 @@
 	<div class="category-tab feature-ad lastest-post">
 		<div class="col-lg-12 popular_product" style="padding: 0;">
 			<ul class="nav nav-tabs">
-				<li>Feature & Popular Products&nbsp;&nbsp;&nbsp;
-					&frasl;</li>
-				<li>Products : <span class="number-display">25</span></li>
+				<li>{{trans('product.company_page')}}&nbsp;&frasl;</li>
+				<li>Page : <span class="number-display price"><?php echo count($latestStores)?></span></li>
 			</ul>
 		</div>
 		<div class="row list-store">
