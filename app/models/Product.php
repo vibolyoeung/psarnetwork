@@ -838,50 +838,11 @@ class Product extends Eloquent {
 		$price,
 		$date
 	) {
-		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
-		$product_in_category = Config::get ( 'constants.TABLE_NAME.PRODUCT_IN_CATEGORY' );
-		$store = Config::get ( 'constants.TABLE_NAME.STORE' );
-		$productTransferType = Config::get('constants.TABLE_NAME.PRODUCT_TRANSFER_TYPE');
-		$productCondition = Config::get ( 'constants.TABLE_NAME.PRODUCT_CONDITION' );
-		$user = Config::get ( 'constants.TABLE_NAME.USER' );
-		$accountRole = Config::get ( 'constants.TABLE_NAME.ACCOUNT_ROLE' );
-		$clientType = Config::get ( 'constants.TABLE_NAME.CLIENT_TYPE' );
-
 		// Convert date format the same db
 		$date = date('Y-m-d', strtotime($date));
-		$query = DB::table ( $product . ' AS p' );
-		$query->select (
-			'p.view',
-			'p.id',
-			'p.title',
-			'p.description',
-			'p.pictures',
-			'p.contact_info',
-			'p.created_date',
-			'p.price',
-			'p.thumbnail',
-			'st.title_en',
-			'st.id as store_id',
-			'st.title_km',
-			'st.image',
-			'pt.name_en as transfer_type_name_en',
-			'pt.name_km as transfer_type_name_km',
-			'proc.name_en as condition_name_en',
-			'proc.name_km as condition_name_km',
-			'u.name as username',
-			'accr.rol_name_en as account_role_name_en',
-			'accr.rol_name_km as account_role_name_km',
-			'ctype.name_en as client_type_name_en',
-			'ctype.name_km as client_type_name_km'
-		);
-		$query->join ( $store.' AS st','st.id','=','p.store_id');
-		$query->join ($product_in_category.' AS pro', 'pro.product_id','=','p.id');
-		$query->join ($productTransferType.' AS pt','pt.ptt_id','=','p.pro_transfer_type_id');
-		$query->join ($productCondition.' AS proc','proc.id','=','p.pro_condition_id');
-		$query->join ($user.' AS u','u.id','=','p.user_id');
-		$query->join ($accountRole.' AS accr','accr.rol_id','=','u.account_role');
-		$query->join($clientType.' AS ctype','ctype.id','=','u.client_type');
-		$query->where ( 'p.is_publish', '=', self::IS_PUBLISH );
+
+		$query = $this->commomSearch();
+
 		if (( int ) $transferType !== 0) {
 			$query->where ( 'p.pro_transfer_type_id', '=', ( int ) $transferType );
 		}
@@ -949,6 +910,33 @@ class Product extends Eloquent {
 
 	public function findProduct($keyword, $userId = null) {
 
+		$query = $this->commomSearch();
+
+		if (!is_null($userId)) {
+			$query->where ( 'p.user_id', '=', ( int ) $userId );
+		}
+		$query->where (function ($query) use($keyword) {
+				$query->orWhere ( 'p.title', 'LIKE', '%' . $keyword . '%' )
+					->orWhere ( 'p.description', 'LIKE', '%' . $keyword . '%' );
+			}
+		);
+		$query->groupBy('pro.product_id');
+		$query->orderBy ( 'p.id', 'DESC' );
+
+		// Declare as array to make format the same other search
+		// Because we use the same view with sort
+		$products = [];
+		$products[] = $query->get();
+
+		return $products;
+	}
+
+	/**
+	 * This function for search that use both top search and sort
+	 *
+	 * @return Query
+	 */
+	private function commomSearch() {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		$product_in_category = Config::get ( 'constants.TABLE_NAME.PRODUCT_IN_CATEGORY' );
 		$store = Config::get ( 'constants.TABLE_NAME.STORE' );
@@ -990,21 +978,9 @@ class Product extends Eloquent {
 		$query->join ($user.' AS u','u.id','=','p.user_id');
 		$query->join ($accountRole.' AS accr','accr.rol_id','=','u.account_role');
 		$query->join($clientType.' AS ctype','ctype.id','=','u.client_type');
-		//$query->where ( 'p.is_publish', '=', self::IS_PUBLISH );
+		$query->where ( 'p.is_publish', '=', self::IS_PUBLISH );
 
-		// if (!is_null($userId)) {
-		// 	$query->where ( 'p.user_id', '=', ( int ) $userId );
-		// }
-		// $query->where ( 'p.is_publish', '=', self::IS_PUBLISH );
-		// $query->where (function ($query) use($keyword) {
-		// 		$query->orWhere ( 'p.title', 'LIKE', '%' . $keyword . '%' )
-		// 			->orWhere ( 'p.description', 'LIKE', '%' . $keyword . '%' );
-		// 	}
-		// );
-		$query->groupBy('pro.product_id');
-		$query->orderBy ( 'p.id', 'DESC' );
-
-		return $query->get();
+		return $query;
 	}
 
 	public static function productPosttoday(){
