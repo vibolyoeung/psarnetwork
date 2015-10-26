@@ -91,6 +91,7 @@ class FeMemberController extends BaseController {
 		Session::push ( 'user.status', 1 );
 		Session::push ( 'user.password', md5 ( sha1 ( Input::get ( 'password' ) ) ) );
 		Session::push ( 'user.create_at', date ( self::CURRENT_DATE ) );
+		Session::put('marketType', Input::get ( 'marketType' ));
 		return Session::get ( 'user' );
 	}
 	
@@ -109,8 +110,16 @@ class FeMemberController extends BaseController {
 					'g_latitude_longitude' => Input::get ( 'gLatitudeLongitude' ) 
 			);
 			$dataUserSession = Session::get ( 'user' );
-			$userArr = array ();
+			$marketType = Session::get ( 'marketType' );
 			foreach ( $dataUserSession as $key => $value ) {
+				if($key == 'address') {
+					if(Session::get ( 'marketType' )) {
+						$getMaketById = $this->mod_market->listingEditData($marketType);
+						$userArr ['province_id'] = $getMaketById->data->province_id;
+					} else {
+						$userArr ['province_id'] = json_decode($value[0])->province;
+					}
+				}
 				$userArr [$key] = $value [0];
 			}
 			$uid = $this->user->insertGetId ( $userArr );
@@ -160,7 +169,7 @@ class FeMemberController extends BaseController {
 						'sto_banner' => $fileBanner,
 						'image' => trim ( $fileName ),
 						'user_id' => $uid,
-						'sup_id' => trim ( Input::get ( 'marketType' ) ),
+						'sup_id' => $marketType,
 						'sto_value' => json_encode ( array (
 								'layout' => Config::get ( 'constants.LAYOUT.layout1' ) 
 						) ) 
@@ -170,7 +179,7 @@ class FeMemberController extends BaseController {
 			} else {
 				$storeData = array (
 						'user_id' => $uid,
-						'sup_id' => trim ( Input::get ( 'marketType' ) ),
+						'sup_id' => $marketType,
 						'sto_value' => json_encode ( array (
 								'layout' => Config::get ( 'constants.LAYOUT.layout1' ) 
 						) ) 
