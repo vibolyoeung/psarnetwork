@@ -23,7 +23,6 @@ if(!empty($dataStore->sto_url)) {
 	</ol>
 @endsection
 @section('content')
-<div class="col-sm-8">
 	<div class="features_items">
 		<div class="col-lg-12" style="padding:0;">
             @if(count($dataUserPageView)>0)
@@ -38,7 +37,6 @@ if(!empty($dataStore->sto_url)) {
             @endif
 		</div>
 	</div>
-</div>
 @endsection
 @section('left')
 	@if (! empty ( $toolView ))

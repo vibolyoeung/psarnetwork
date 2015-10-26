@@ -27,7 +27,11 @@
 						@yield('left')
 					</div>
 				</div>
-				@yield('content')
+				<div class="col-lg-8">
+					<div class="entry-content">
+						@yield('content')
+					</div>
+				</div>
 				<div class="col-lg-2"  style="padding:0;">
 					<div class="left-sidebar">
 						@yield('right')

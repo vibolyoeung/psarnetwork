@@ -31,7 +31,6 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 	<li class="active">Data</li>
 </ol>
 @endsection @section('content')
-<div class="col-lg-8">
 	<div class="col-xs-12">
 		<div class="row">
 			<div class="col-lg-12"
@@ -347,7 +346,6 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 	@endif
 	<!-- end recommended items -->
     </div>
-</div>
 @endsection @section('left') @if (! empty ( $toolView )) @foreach (
 $toolView as $tool ) @if($tool->type == 'tool_memeber_status' &&
 $tool->status == 1)

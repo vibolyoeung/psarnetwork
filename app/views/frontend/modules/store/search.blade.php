@@ -30,7 +30,6 @@ function rm($article, $char) {
 	</ol>
 @endsection
 @section('content')
-<div class="col-sm-8">
 	<div class="features_items">
 		<!-- ============Slider end here========= -->
 		<div class="features_items">
@@ -90,7 +89,6 @@ function rm($article, $char) {
 		</div>
 	</div>
     {{$dataProduct->links()}}
-</div>
 @endsection
 @section('left')
 	@if (! empty ( $toolView ))

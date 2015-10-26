@@ -29,7 +29,6 @@ function rm($article, $char) {
 </ol>
 @endsection
 @section('content')
-<div class="col-sm-8">
 	<div class="category-tab lastest-post">
 	@if($currentUserType == 2)
 		<!-- ============Slider end here========= -->
@@ -109,8 +108,8 @@ function rm($article, $char) {
 	@elseif($showWidtget->title == 'Urgent Sale') @endif @endif @endforeach
 	@endif
 @endif
-</div>
-@endsection 
+@endsection
+
 @section('left')
 @if (! empty ( $toolView ))
 	@foreach ( $toolView as $tool )

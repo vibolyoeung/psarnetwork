@@ -55,12 +55,12 @@
                                         			@if($category)
                                         			<div class="row">
                                         				{{@$editCategory}}
-                                        				<input id='tags' type='hidden' id="categories" class='tags' style="height: 35px;width:100%" name="s_category" value="{{@$category}}"/>
+                                        				<input id='tags' type='text' id="categories" class='tags' style="height: 0;width:100%;border:none;" name="s_category" value="{{@$category}}" required/>
 		                                       
 		                                        	</div>
 		                                        	@else
 		                                        	<div class="row">
-		                                        		<input id='tags' type='hidden' id="categories" class='tags' style="height: 35px;width:100%" name="s_category" value=""/>
+		                                        		<input id='tags' type='text' id="categories" class='tags' style="height: 0;width:100%;border:none;" name="s_category" value="" required/>
 		                                        		<div class="col-lg-2 col-md-4 col-sm-6">
 		                                        			<div class="list-group" id="cat-sub-1">
 															  {{@$chooseCategory}} 
