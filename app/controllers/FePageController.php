@@ -211,11 +211,10 @@ class FePageController extends BaseController {
 				1
 		);
 		$arrayClientTypeId = $this->mod_market->getAllChildClientType($parent_id);
-		$listproductInEachMarket = $this->mod_market->listproductofsupermarket($arrayClientTypeId);
+		$listproductInEachMarket = $this->mod_market->listproductofsupermarket($parent_id,$arrayClientTypeId);		
 		if($id){
-			$listproductInEachMarket = $this->mod_market->listproductofsupermarket(array($id));
+			$listproductInEachMarket = $this->mod_market->listproductofsupermarket($parent_id,array($id));
 		}
-		//var_dump($listproductInEachMarket);
 		$mainSup = $this->mod_market->mainMarket($parent_id);
 		return View::make('frontend.partials.suppermarket')
 		->with('mainID',$mainSup['0']->id)

@@ -1029,11 +1029,6 @@ class Product extends Eloquent {
 			foreach($results as $results){
 				array_push($userID,$results->id);
 			}
-
-			// $countpro = DB::table(Config::get('constants.TABLE_NAME.PRODUCT'))
-			// ->select('*')
-			// ->whereIn('user_id',$accountrole)
-			// ->get();
 			$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 			$product_in_category = Config::get ( 'constants.TABLE_NAME.PRODUCT_IN_CATEGORY' );
 			$store = Config::get ( 'constants.TABLE_NAME.STORE' );

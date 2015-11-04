@@ -59,13 +59,16 @@
 			</div>
 			<div class="col-lg-9"
 				style="padding: 10px; border-left: 1px solid #F7F7F5;">
+				<?php 
+				$Market = new Market();
+				?>
 				@foreach($client_type as $clienttype)
 				<div class="btn btn-default"
 					style="border-radius: 0; min-width: 160px;border: none; text-align: left;">
 					<a href="{{Config::get('app.url')}}product/list/<?php echo $clienttype->id ?>/0" >
 					  <?php 
 					  	echo $clienttype->{'name_'.Session::get('lang')}; ?>
-					  	<span class="number-display">{{$Category->countProductByClientType($clienttype->id)}}</span>
+					  	<span class="number-display"><?php echo count($Market->listproductofsupermarket($clienttype->id,array(0)));?></span>
 					</a>
 				</div>
 				@endforeach

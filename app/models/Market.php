@@ -354,7 +354,7 @@ class Market extends Eloquent{
 						->where('market_type','=', $parent_id)
 						->get();
 			if(count($results) > 0){
-				array_push($client_type_id,(int)$parent_id);
+				//array_push($client_type_id,(int)$parent_id);
 				foreach($results as $result){
 					$client_type_id[] = array($result->id);
 					$client_type_id = self::getAllChildClientType($result->id,$client_type_id);
@@ -367,7 +367,7 @@ class Market extends Eloquent{
 	}
 
 
-	public function listproductofsupermarket($client_type_id){
+	public function listproductofsupermarket($client_type_id,$market_id = null){
 
 		// $productTable = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		// $userTable = Config::get ( 'constants.TABLE_NAME.USER' );
@@ -394,9 +394,10 @@ class Market extends Eloquent{
 		$user = Config::get ( 'constants.TABLE_NAME.USER' );
 		$accountRole = Config::get ( 'constants.TABLE_NAME.ACCOUNT_ROLE' );
 		$clientType = Config::get ( 'constants.TABLE_NAME.CLIENT_TYPE' );
+		$market = Config::get ( 'constants.TABLE_NAME.MARKET' );
 		
-		return DB::table ( $product . ' AS p' )
-		->select (
+		$query =  DB::table ( $product . ' AS p' );
+		$query->select (
 			'p.view',
 			'p.id',
 			'p.title',
@@ -419,20 +420,24 @@ class Market extends Eloquent{
 			'accr.rol_name_km as account_role_name_km',
 			'ctype.name_en as client_type_name_en',
 			'ctype.name_km as client_type_name_km'
-			)
-		->join ( $store.' AS st','st.id','=','p.store_id')
-		->join ($product_in_category.' AS pro', 'pro.product_id','=','p.id')
-		->join ($productTransferType.' AS pt','pt.ptt_id','=','p.pro_transfer_type_id')
-		->join ($productCondition.' AS proc','proc.id','=','p.pro_condition_id')
-		->join ($user.' AS u','u.id','=','p.user_id')
-		->join ($accountRole.' AS accr','accr.rol_id','=','u.account_role')
-		->join($clientType.' AS ctype','ctype.id','=','u.client_type')
-		->whereIn('u.client_type',$client_type_id)
-		->where( 'p.publish_date','<=',date('Y-m-d'))
-		->where('p.is_publish', '=', self::IS_PUBLISH)
-		->groupby('pro.product_id')
-		->orderBy ( 'p.id', 'DESC' )->get ();
-
+			);
+		$query->join ( $store.' AS st','st.id','=','p.store_id');
+		$query->join ($product_in_category.' AS pro', 'pro.product_id','=','p.id');
+		$query->join ($productTransferType.' AS pt','pt.ptt_id','=','p.pro_transfer_type_id');
+		$query->join ($productCondition.' AS proc','proc.id','=','p.pro_condition_id');
+		$query->join ($user.' AS u','u.id','=','p.user_id');
+		$query->join ($accountRole.' AS accr','accr.rol_id','=','u.account_role');
+		$query->join($clientType.' AS ctype','ctype.id','=','u.client_type');
+		$query->join($market.' AS market','market.market_type','=','ctype.id');
+		$query->where('u.client_type','=',$client_type_id);
+		if($market_id !=NULL){
+			$query->whereIn('st.sup_id',$market_id);
+		}
+		$query->where( 'p.publish_date','<=',date('Y-m-d'));
+		$query->where('p.is_publish', '=', self::IS_PUBLISH);
+		$query->groupby('pro.product_id');
+		$query->orderBy ( 'p.id', 'DESC' );
+		return $query->get();
 	}
 
 

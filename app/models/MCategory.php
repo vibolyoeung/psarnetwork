@@ -1,7 +1,8 @@
 <?php
 
 class MCategory extends Eloquent{
-
+	const IS_PUBLISH = 1;
+	
 	/**
 	 *
 	 * fetchCategoryTreeList: this function using for listing sub category
@@ -1056,6 +1057,29 @@ class MCategory extends Eloquent{
 			->whereIn('user_id',$client)
 			->count();
 			echo $countpro;
+			// $product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
+			// $product_in_category = Config::get ( 'constants.TABLE_NAME.PRODUCT_IN_CATEGORY' );
+			// $store = Config::get ( 'constants.TABLE_NAME.STORE' );
+			// $productTransferType = Config::get('constants.TABLE_NAME.PRODUCT_TRANSFER_TYPE');
+			// $productCondition = Config::get ( 'constants.TABLE_NAME.PRODUCT_CONDITION' );
+			// $user = Config::get ( 'constants.TABLE_NAME.USER' );
+			// $accountRole = Config::get ( 'constants.TABLE_NAME.ACCOUNT_ROLE' );
+			// $clientType = Config::get ( 'constants.TABLE_NAME.CLIENT_TYPE' );
+			
+			// $query =  DB::table ( $product . ' AS p' );
+			// $query->join ( $store.' AS st','st.id','=','p.store_id');
+			// $query->join ($product_in_category.' AS pro', 'pro.product_id','=','p.id');
+			// $query->join ($productTransferType.' AS pt','pt.ptt_id','=','p.pro_transfer_type_id');
+			// $query->join ($productCondition.' AS proc','proc.id','=','p.pro_condition_id');
+			// $query->join ($user.' AS u','u.id','=','p.user_id');
+			// $query->join ($accountRole.' AS accr','accr.rol_id','=','u.account_role');
+			// $query->join($clientType.' AS ctype','ctype.id','=','u.client_type');
+			// $query->where('u.client_type','=',$client_type_id);
+			// $query->whereIn('u.id',$client);
+			// $query->where( 'p.publish_date','<=',date('Y-m-d'));
+			// $query->where('p.is_publish', '=', self::IS_PUBLISH);
+			// $query->groupby('pro.product_id');
+			// echo $query->count();
     }
 
 
