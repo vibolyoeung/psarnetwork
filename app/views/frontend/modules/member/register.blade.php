@@ -24,7 +24,7 @@
 				</span>
 				<a class="btn btn-default no-border" href="#" role="button">
 				    <img src="{{Config::get('app.url')}}/frontend/images/icons/icon-cart.png" style="width:25px;" class="r-menu-thumb" />
-                </a>..... 
+                </a>.....
 				<a class="btn btn-default no-border" href="#" role="button">
                     <img src="{{Config::get('app.url')}}/frontend/images/icons/Tracking-Store.png" alt="" style="width: 25px;" class="r-menu-thumb" /> {{trans('register.Tracking_The_Store')}}
                 </a>
@@ -37,11 +37,8 @@
                     {{trans('register.Checking_Compare_Products')}}
                 </a>
 			</div>
-			<div class="constug">
-				<center>
-					<img src="{{Config::get('app.url')}}/frontend/images/member/strug.png" style="width: 100%"/>
-				</center>
-			</div>
+			<!-- Call register advertisement by put parameter true -->
+			{{ App::make('FeMemberController')->getResgisterAndLoginAdv(true) }}
 			<div class="clear">
 			</div>
 			<div class="row r-user-type">
@@ -152,8 +149,8 @@
                                         }
                                         ?>
                                         {{Form::select('marketType', $mkArr, 'S',array('class' => 'form-control','id'=>'marketTypes'))}}
-                                        <div 
-                                        id="loadingmarketType" 
+                                        <div
+                                        id="loadingmarketType"
                                         style="display: none;background:#fff;width:100%;text-align:center;padding:2px;border:1px solid #eee;">
                                         <img style="width: 30px;" src="{{Config::get('app.url')}}frontend/images/upload_progress.gif"/>
                                         </div>
@@ -282,7 +279,7 @@
 							</span>
 						</div>
                         <div id="mapWrapper" style="">
-                            
+
                         </div>
 						<div class="form-group">
 							<label for="TypeText">
@@ -308,7 +305,7 @@
 </div>
 {{HTML::script('frontend/js/jquery.validate.js')}}
 <script type='text/javascript'>
-		
+
 $(document).ready(function(){
     $('#agreement').click(function () {
         if($(this).is(":checked")) {
@@ -332,7 +329,7 @@ $(document).ready(function(){
         } else {
             //$("#summit").attr('disabled',true);
         }
-    }); 
+    });
 
     /*validate on phone number*/
     $('#PhoneNumber').blur(function () {
@@ -344,7 +341,7 @@ $(document).ready(function(){
                 url: "{{Config::get('app.url')}}member/byajax?page=uniqephone&id=" + encodeURIComponent(phone),
                 cache: false,
                 timeout: 3600,
-                success: function(data){ 
+                success: function(data){
                 	var thiss = $('#PhoneNumber');
                     if(data==0) {
                     	$(thiss).parent().removeClass('has-error').addClass('has-success');
@@ -367,8 +364,8 @@ $(document).ready(function(){
         } else {
             //$("#summit").attr('disabled',true);
         }
-    }); 
-      
+    });
+
     function getAccountType(id){
         $('#clientType').hide();
         $('#loadingClientType').show();
@@ -385,7 +382,7 @@ $(document).ready(function(){
             }
         });
     }
-    
+
     $("#clientType").change(function()
         {
             var id = $(this).val();
@@ -417,7 +414,7 @@ $(document).ready(function(){
                                 $('#marketTypes').show();
                             }
                         });
-                   } 
+                   }
                 }
             }
             //var dataString = 'pro_id=' + id;
@@ -425,7 +422,7 @@ $(document).ready(function(){
             //$('#loading').show();
             //$('#District').hide();
     });
-        
+
     $("#Location").change(function()
         {
             var id = $(this).val();
@@ -458,7 +455,7 @@ $(document).ready(function(){
             $("#latbox").val(gid);
             showAddress(gid);
     });
-                   
+
     $("#registerForm").validate({
           rules: {
               name:"required",

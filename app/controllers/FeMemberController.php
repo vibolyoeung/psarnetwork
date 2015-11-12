@@ -8,8 +8,13 @@ class FeMemberController extends BaseController {
 	protected $mod_store;
 	protected $mod_page;
 	protected $user;
+	private $mod_advertisment;
 	const CURRENT_DATE = 'Y-m-d';
 	const FREE_ACCOUNT = 1;
+	const REGISTER_PAGE = 8;
+	const LOGIN_PAGE = 9;
+	const LOGIN_REGISTER_ADV_POSITION = 4;
+
 	function __construct() {
 		$this->mod_category = new MCategory ();
 		$this->mod_setting = new Setting ();
@@ -19,6 +24,7 @@ class FeMemberController extends BaseController {
 		$this->mod_store = new Store ();
 		$this->mod_page = new MPage ();
 		$this->user = new User ();
+		$this->mod_advertisment = new Advertisement();
 	}
 	/**
 	 * Login operation
@@ -46,7 +52,7 @@ class FeMemberController extends BaseController {
 				if (Input::has ( 'page' ) && Input::has ( 'page' ) == 'register') {
 					return Redirect::to ( 'member/userinfo/' . $result->account_type . '/menu' );
 				} else {
-					
+
 					$checkStore = $this->mod_store->getUserStore ( $result->id );
 					if (! empty ( $checkStore->sto_url )) {
 						return Redirect::to ( $checkStore->sto_url );
@@ -62,10 +68,10 @@ class FeMemberController extends BaseController {
 		return View::make ( 'frontend.modules.member.index' )
 		->with ( 'maincategories', $listCategories->result )
 		->with ( 'loginwrapper', 1 )
-		
+
 		;
 	}
-	
+
 	/**
 	 * store a client session
 	 *
@@ -77,7 +83,7 @@ class FeMemberController extends BaseController {
 		$addressArr = array (
 				'province' => Input::get ( 'province' ),
 				'disctict' => Input::get ( 'district' ),
-				'g_latitude_longitude' => Input::get ( 'gLatitudeLongitude' ) 
+				'g_latitude_longitude' => Input::get ( 'gLatitudeLongitude' )
 		);
 		Session::forget ( 'user' );
 		Session::push ( 'user.email', trim ( Input::get ( 'email' ) ) );
@@ -94,7 +100,7 @@ class FeMemberController extends BaseController {
 		Session::put('marketType', Input::get ( 'marketType' ));
 		return Session::get ( 'user' );
 	}
-	
+
 	/**
 	 * Create a client user(e.g: Freee user or Enterprise user)
 	 *
@@ -107,7 +113,7 @@ class FeMemberController extends BaseController {
 			$addressArr = array (
 					'province' => Input::get ( 'province' ),
 					'disctict' => Input::get ( 'district' ),
-					'g_latitude_longitude' => Input::get ( 'gLatitudeLongitude' ) 
+					'g_latitude_longitude' => Input::get ( 'gLatitudeLongitude' )
 			);
 			$dataUserSession = Session::get ( 'user' );
 			$marketType = Session::get ( 'marketType' );
@@ -125,7 +131,7 @@ class FeMemberController extends BaseController {
 			$uid = $this->user->insertGetId ( $userArr );
 			/* add data for store */
 			if (! Input::has ( 'skipDetail' )) {
-				
+
 				/* upload logo */
 				$fileName = '';
 				if (Input::hasfile ( 'file' )) {
@@ -141,7 +147,7 @@ class FeMemberController extends BaseController {
 					/* end upload image */
 				}
 				/* end upload logo */
-				
+
 				/* upload logo */
 				$fileBanner = '';
 				if (Input::hasfile ( 'PageBanner' )) {
@@ -157,10 +163,10 @@ class FeMemberController extends BaseController {
 					/* end upload image */
 				}
 				/* end upload logo */
-				
+
 				$whereData = array (
 						'user_id' => ( int ) Input::get ( 'uid' ),
-						'id' => ( int ) Input::get ( 'sid' ) 
+						'id' => ( int ) Input::get ( 'sid' )
 				);
 				$getUrl = $this->mod_store->normalize_str ( Input::get ( 'sto_url' ) );
 				$storeData = array (
@@ -171,22 +177,22 @@ class FeMemberController extends BaseController {
 						'user_id' => $uid,
 						'sup_id' => $marketType,
 						'sto_value' => json_encode ( array (
-								'layout' => Config::get ( 'constants.LAYOUT.layout1' ) 
-						) ) 
+								'layout' => Config::get ( 'constants.LAYOUT.layout1' )
+						) )
 				);
-				
+
 				// $sid = $this->mod_store->where($whereData)->update($storeData);
 			} else {
 				$storeData = array (
 						'user_id' => $uid,
 						'sup_id' => $marketType,
 						'sto_value' => json_encode ( array (
-								'layout' => Config::get ( 'constants.LAYOUT.layout1' ) 
-						) ) 
+								'layout' => Config::get ( 'constants.LAYOUT.layout1' )
+						) )
 				);
 			}
 			$sid = $this->mod_store->insertGetId ( $storeData );
-			
+
 			/* add Defualt Page for user */
 			$getMainPage = $this->mod_page->getMainPages ();
 			if (! empty ( $getMainPage )) {
@@ -195,15 +201,15 @@ class FeMemberController extends BaseController {
 				}
 			}
 			/* end add Defualt Page for user */
-			
+
 			/* add tool view for user */
 			$toolType = 'tool';
 			$whereArr = array (
 					'status' => 1,
-					'title_km' => $toolType 
+					'title_km' => $toolType
 			);
 			$getToolPage = $this->mod_page->getMainPages ( null, $whereArr );
-			
+
 			if (! empty ( $getToolPage->result )) {
 				foreach ( $getToolPage->result as $tooPage ) {
 					$addToolPage = $this->mod_page->addUserPages ( $uid, $tooPage->id, 100, $tooPage->type );
@@ -215,12 +221,12 @@ class FeMemberController extends BaseController {
                             }
                         }
 			/* end add tool view for user */
-			
+
 			/* add widget for user */
 			$widgetType = 'widget';
 			$whereArrWdidget = array (
 					'status' => 1,
-					'type' => $widgetType 
+					'type' => $widgetType
 			);
 			$getWidgetPage = $this->mod_page->getMainPages ( null, $whereArrWdidget );
 			if (! empty ( $getWidgetPage )) {
@@ -229,22 +235,22 @@ class FeMemberController extends BaseController {
 				}
 			}
 			/* end add widget for user */
-			
+
 			/*slideshow config*/
 			$addDataSlideshowConfig = $this->mod_page->addUserPagesConfig ( $uid, $title = 'slideside_status' );
 			//$userID, $title = 'config', $status = 1, $type = 'config', $position = 0
 			$addDataLikeConfig = $this->mod_page->addUserPagesConfig ( $uid, $title = 'fb_like' , 0, $type = 'config', $position = 100);
 			/*end slideshow config*/
-			
+
 			/* clear session user */
 			Session::flush ();
 		}
 		return $data = array (
 				'user_id' => $uid,
-				'store_id' => $sid 
+				'store_id' => $sid
 		);
 	}
-	
+
 	/**
 	 * Registeration operation
 	 *
@@ -254,18 +260,18 @@ class FeMemberController extends BaseController {
 	 */
 	public function register($usertype = '', $step = '') {
 		if (Input::has ( 'btnSubmit' )) {
-			
+
 			$rules = array (
 					'email' => 'required|email|unique:user',
 					'password' => 'required|min:8',
 					'password_confirm' => 'required|same:password',
 					'captcha' => array (
 							'required',
-							'captcha' 
-					) 
+							'captcha'
+					)
 			);
 			$validator = Validator::make ( Input::all (), $rules );
-			
+
 			if ($validator->passes ()) {
 				$checkEmail = $this->user->checkEmail ( trim ( Input::get ( 'email' ) ) );
 				$data_user = $this->tempUser ();
@@ -276,7 +282,7 @@ class FeMemberController extends BaseController {
 				return Redirect::to ( '/member/register' )->withInput ()->withErrors ( $validator );
 			}
 		}
-		
+
 		$limit = $this->mod_setting->getSlidshowNumber ();
 		$listCategories = self::getCategoriesHomePage ();
 		$limit = $this->mod_setting->getSlidshowNumber ();
@@ -286,7 +292,7 @@ class FeMemberController extends BaseController {
 		$provinces = $this->mod_setting->listProvinces ();
 		$accountRole = $this->user->accountRole ();
 		$clientType = $this->user->getClientType ();
-		
+
 		return View::make ( 'frontend.modules.member.register' )
 		->with ( 'maincategories', $listCategories->result )
 		->with ( 'marketType', $marketType->data )
@@ -311,8 +317,8 @@ class FeMemberController extends BaseController {
 			$rules = array (
 					'captcha' => array (
 							'required',
-							'captcha' 
-					) 
+							'captcha'
+					)
 			);
 			$validator = Validator::make ( Input::all (), $rules );
 			if ($validator->passes ()) {
@@ -327,7 +333,7 @@ class FeMemberController extends BaseController {
 		if (Input::has ( 'btnSubmit' )) {
 			if (Input::has ( 'skipDetail' )) {
 				$rules = array (
-						'sto_url' => 'required|unique:store' 
+						'sto_url' => 'required|unique:store'
 				);
 				if (Input::hasfile ( 'file' )) {
 					// $rules['file'] = Config::get ( 'constants.DIR_IMAGE.ALLOW_FILE' );
@@ -361,7 +367,7 @@ class FeMemberController extends BaseController {
 			return View::make ( 'frontend.modules.member.login' );
 		}
 	}
-	
+
 	/**
 	 * Get step user information by step
 	 *
@@ -398,7 +404,7 @@ class FeMemberController extends BaseController {
 				}
 				return View::make ( 'frontend.modules.member.' . $usertypes . '-' . $step )->with ( 'maincategories', $listCategories->result )->with ( 'userCategory', $userCategory )->with ( 'getMainPage', $getMainPage->result )->with ( 'getUserPages', $getUserPages->result )->with ( 'dataStore', $getUserStore );
 				break;
-			
+
 			/* user page content */
 			case 'content' :
 				if (! empty ( $getUserStore )) {
@@ -408,24 +414,24 @@ class FeMemberController extends BaseController {
 				}
 				$whereData = array (
 						'user_id' => $userID,
-						'id' => $storeID 
+						'id' => $storeID
 				);
 				$dataStore = $this->mod_store->getUserStore ( null, $whereData );
 				$getUserPages = DB::table ( Config::get ( 'constants.TABLE_NAME.S_PAGE' ) )->select ( '*' )->where ( array (
 						'user_id' => $userID,
-						'type' => 'widget' 
+						'type' => 'widget'
 				) )->get ();
 				$dataPageWidget = $this->mod_page->addUserWidgetPages ( $userID );
 				return View::make ( 'frontend.modules.member.' . $step )->with ( 'maincategories', $listCategories->result )->with ( 'dataStore', $dataStore )->with ( 'dataPageWidget', $dataPageWidget->result );
 				break;
-			
+
 			case 'infomation' :
 				$userData = $this->user->getUser ( $userID );
 				if (Input::has ( 'btnInfo' )) {
-					
+
 					$userValueArr = json_decode ( $userData->result->address, true );
 					$ValueArr = array (
-							'g_latitude_longitude' => Input::get ( 'gLatitudeLongitude' ) 
+							'g_latitude_longitude' => Input::get ( 'gLatitudeLongitude' )
 					);
 					$dataArr = array_merge ( $userValueArr, $ValueArr );
 					$messages = '';
@@ -441,7 +447,7 @@ class FeMemberController extends BaseController {
 									'telephone' => Input::get ( 'telephone' ),
 									'address' => json_encode ( $dataArr ),
 									'password' => md5 ( sha1 ( $nPass ) ),
-									'update_at' => date ( self::CURRENT_DATE ) 
+									'update_at' => date ( self::CURRENT_DATE )
 							);
 							$messages = 'message_save_with_pass';
 						} else {
@@ -450,7 +456,7 @@ class FeMemberController extends BaseController {
 									'name' => trim ( Input::get ( 'name' ) ),
 									'telephone' => Input::get ( 'telephone' ),
 									'address' => json_encode ( $dataArr ),
-									'update_at' => date ( self::CURRENT_DATE ) 
+									'update_at' => date ( self::CURRENT_DATE )
 							);
 							$messages = 'message_save_no_pass_but_data';
 						}
@@ -460,42 +466,42 @@ class FeMemberController extends BaseController {
 								'name' => trim ( Input::get ( 'name' ) ),
 								'telephone' => Input::get ( 'telephone' ),
 								'address' => json_encode ( $dataArr ),
-								'update_at' => date ( self::CURRENT_DATE ) 
+								'update_at' => date ( self::CURRENT_DATE )
 						);
 						$messages = 'message_save_no_pass_but_data';
 					}
-					
+
 					/* add data for store */
 					$whereUser = array (
-							'id' => $userID 
+							'id' => $userID
 					);
 					$uid = $this->user->updateUser ( $whereUser, $data );
 					return Redirect::to ( '/member/userinfo/infomation' )->with ( 'messsage', $messages );
 				}
 				return View::make ( 'frontend.modules.member.' . $step )->with ( 'maincategories', $listCategories->result )->with ( 'userData', $userData->result )->with ( 'dataStore', $getUserStore );
 				break;
-			
+
 			case 'pageinfo' :
 				return View::make ( 'frontend.modules.member.' . $usertypes . '-' . $step )->with ( 'maincategories', $listCategories->result )->with ( 'dataStore', $getUserStore );
 				break;
-			
+
 			case 'toolview' :
 				if (Input::has ( 'btnInfo' )) {
 					$ToolViewId = Input::get ( 'tooview' );
 					if (! empty ( $ToolViewId )) {
 						DB::table ( Config::get ( 'constants.TABLE_NAME.S_PAGE' ) )->where ( array (
 								'user_id' => $userID,
-								'position' => 100 
+								'position' => 100
 						) )->update ( array (
-								'status' => 0 
+								'status' => 0
 						) );
 						foreach ( $ToolViewId as $toolId ) {
 							DB::table ( Config::get ( 'constants.TABLE_NAME.S_PAGE' ) )->where ( array (
 									'user_id' => $userID,
 									'position' => 100,
-									'id' => $toolId 
+									'id' => $toolId
 							) )->update ( array (
-									'status' => 1 
+									'status' => 1
 							) );
 						}
 					}
@@ -503,7 +509,7 @@ class FeMemberController extends BaseController {
 				}
 				$whereArr = array (
 						'position' => 100,
-						'user_id' => $userID 
+						'user_id' => $userID
 				);
 				$getToolPage = $this->mod_page->getUserPages ( null, $whereArr );
 				if(empty($getToolPage->result)) {
@@ -526,7 +532,7 @@ class FeMemberController extends BaseController {
 				}
 				return View::make ( 'frontend.modules.member.s-toolview' )->with ( 'maincategories', $listCategories->result )->with ( 'toolView', $getToolPage->result )->with ( 'dataStore', $getUserStore );
 				break;
-			
+
 			case 'summary' :
 				$accountRole = $this->user->accountRole ();
 				$userData = $this->user->getUser ( $userID );
@@ -536,12 +542,12 @@ class FeMemberController extends BaseController {
 				$provinces = $this->mod_setting->listProvinces ();
 				return View::make ( 'frontend.modules.member.summary' )->with ( 'maincategories', $listCategories->result )->with ( 'userData', $userData->result )->with ( 'accountRole', $accountRole->data )->with ( 'clientType', $clientType->data )->with ( 'userCategory', $userCategory->data )->with ( 'ProductsCount', $userProductsCount )->with ( 'provinces', $provinces )->with ( 'dataStore', $getUserStore );
 				break;
-			
+
 			case 'slideshow' :
 				$wherePage = array (
 						'user_id' => $userID,
 						'type' => 'config',
-						'title' => 'slideside_status' 
+						'title' => 'slideside_status'
 				);
 				$dataSlideshowConfig = $this->mod_page->getUserPages ( null, $wherePage );
 				if (Input::has ( 'btnInfo' )) {
@@ -551,10 +557,10 @@ class FeMemberController extends BaseController {
 								'id' => $dataSlideshowConfig->result [0]->id,
 								'user_id' => $userID,
 								'type' => 'config',
-								'title' => 'slideside_status' 
+								'title' => 'slideside_status'
 						);
 						$dataPage = array (
-								'status' => Input::get ( 'display' ) 
+								'status' => Input::get ( 'display' )
 						);
 						$updateSlideshow = $this->mod_page->updateUserPages ( $dataPage, $whereUpdatePage );
 						if ($updateSlideshow) {
@@ -562,14 +568,14 @@ class FeMemberController extends BaseController {
 						}
 						/* if exist slideshow in config page and update */
 					} else {
-						
+
 						/* if not exist slideshow in config page and then add */
 						$addDataSlideshowConfig = $this->mod_page->addUserPagesConfig ( $userID, $title = 'slideside_status' );
 					}
 				}
-				
-				
-				
+
+
+
 				if (Input::has ( 'btnSlideshow' )) {
 					$this->addBannerData( $getUserStore->id );
 				}
@@ -606,14 +612,14 @@ class FeMemberController extends BaseController {
 					->orderBy ( 'ban_id', 'desc' )
 					->get ();
 				}
-				
+
 				return View::make ( 'frontend.modules.member.s-slideshow' )
 				->with ( 'maincategories', $listCategories->result )
 				->with ( 'slideshowStatus', $dataSlideshowConfig->result )
 				->with ( 'dataBanner', $result )
 				->with ( 'dataStore', $getUserStore );
 				break;
-			
+
 			case 'banner' :
 				if (Input::has ( 'btnInfo' )) {
 					$this->addBannerData( $getUserStore->id );
@@ -623,26 +629,26 @@ class FeMemberController extends BaseController {
 					if (Input::get ( 'action' ) != 'add' && Input::get ( 'action' ) != 'del') {
 						$where = array (
 								'ban_store_id' => $getUserStore->id,
-								'ban_id' => Input::get ( 'action' ) 
+								'ban_id' => Input::get ( 'action' )
 						);
 						$result = DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )->select ( '*' )->where ( $where )->orderBy ( 'ban_id', 'desc' )->first ();
 					} else if (Input::get ( 'action' ) == 'del') {
 						$where = array (
 								'ban_store_id' => $getUserStore->id,
-								'ban_id' => Input::get ( 'id' ) 
+								'ban_id' => Input::get ( 'id' )
 						);
 						DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )->where ( $where )->delete ();
 						return Redirect::to ( '/member/userinfo/banner' )->with ( Session::flash ( 'messsage', 'message_del_success' ) );
 						die ();
 					} else {
 						$where = array (
-								'ban_store_id' => $getUserStore->id 
+								'ban_store_id' => $getUserStore->id
 						);
 						$result = DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )->select ( '*' )->where ( $where )->orderBy ( 'ban_id', 'desc' )->get ();
 					}
 				} else {
 					$where = array (
-							'ban_store_id' => $getUserStore->id 
+							'ban_store_id' => $getUserStore->id
 					);
 					$result = DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )
 					->select ( '*' )
@@ -656,43 +662,43 @@ class FeMemberController extends BaseController {
 				->with ( 'dataStore', $getUserStore )
 				->with ( 'dataBanner', $result );
 				break;
-			
+
 			case 'accountinfo' :
 				$accountRole = $this->user->accountRole ();
 				$clientType = $this->user->getClientType ();
 				$getUser = $this->user->getUser ( $userID );
 				$result = $this->mod_market->listingMarkets ();
-				
+
 				/* update */
 				if (Input::has ( 'btnInfo' )) {
 					$dataEdits = array (
 							'account_role' => Input::get ( 'accountRole' ),
-							'client_type' => Input::get ( 'client_type' ) 
+							'client_type' => Input::get ( 'client_type' )
 					);
 					$response = DB::table ( Config::get ( 'constants.TABLE_NAME.USER' ) )->where ( array (
-							'id' => $userID 
+							'id' => $userID
 					) )->update ( $dataEdits );
 					if (Input::has ( 'marketType' )) {
 						$response = DB::table ( Config::get ( 'constants.TABLE_NAME.STORE' ) )->where ( array (
-								'user_id' => $userID 
+								'user_id' => $userID
 						) )->update ( array (
-								'sup_id' => Input::get ( 'marketType' ) 
+								'sup_id' => Input::get ( 'marketType' )
 						) );
 					} else {
 						$response = DB::table ( Config::get ( 'constants.TABLE_NAME.STORE' ) )->where ( array (
-								'user_id' => $userID 
+								'user_id' => $userID
 						) )->update ( array (
-								'sup_id' => 0 
+								'sup_id' => 0
 						) );
 					}
 					return Redirect::to ( '/member/userinfo/accountinfo' )->with ( Session::flash ( 'messageSuccess', 'message_save_success' ) );
 				}
-				
+
 				/* end update */
-				
+
 				return View::make ( 'frontend.modules.member.acountinfo' )->with ( 'maincategories', $listCategories->result )->with ( 'accountRole', $accountRole->data )->with ( 'clientType', $clientType->data )->with ( 'markets', $result->data )->with ( 'userData', $getUser->result )->with ( 'dataStore', $getUserStore );
 				break;
-			
+
 			case 'addpage' :
 				$editId = Input::get ( 'id' );
 				$addAction = Input::get ( 'add' );
@@ -704,7 +710,7 @@ class FeMemberController extends BaseController {
 					$whereEdit = array (
 							'user_id' => $userID,
 							'type' => 'static',
-							'id' => Input::get ( 'id' ) 
+							'id' => Input::get ( 'id' )
 					);
 					$dataEditArr = $this->mod_page->getUserPages ( null, $whereEdit );
 					$dataEdit = $dataEditArr->result;
@@ -717,10 +723,10 @@ class FeMemberController extends BaseController {
 								'title' => trim ( Input::get ( 'name' ) ),
 								'description' => trim ( Input::get ( 'body' ) ),
 								'status' => trim ( Input::get ( 'status' ) ),
-								'position' => Input::get ( 'menuPosition' ) 
+								'position' => Input::get ( 'menuPosition' )
 						);
 						$response = DB::table ( Config::get ( 'constants.TABLE_NAME.S_PAGE' ) )->where ( array (
-								'id' => Input::get ( 'editPage' ) 
+								'id' => Input::get ( 'editPage' )
 						) )->update ( $dataEdits );
 					} else {
 						/* add data for user page */
@@ -730,12 +736,12 @@ class FeMemberController extends BaseController {
 								'type' => 'static',
 								'user_id' => $userID,
 								'status' => trim ( Input::get ( 'status' ) ),
-								'position' => Input::get ( 'menuPosition' ) 
+								'position' => Input::get ( 'menuPosition' )
 						);
 						$where = array (
 								'user_id' => $userID,
 								'type' => 'static',
-								'title' => trim ( Input::get ( 'name' ) ) 
+								'title' => trim ( Input::get ( 'name' ) )
 						);
 						$checkUserPage = $this->mod_page->getUserPages ( null, $where );
 						if (empty ( $checkUserPage->result )) {
@@ -744,12 +750,12 @@ class FeMemberController extends BaseController {
 					}
 					return Redirect::to ( 'member/userinfo/addpage' );
 				}
-				
+
 				/* Delete user static page */
 				if (Input::has ( 'del' )) {
 					$response = DB::table ( Config::get ( 'constants.TABLE_NAME.S_PAGE' ) )->where ( array (
 							'id' => Input::get ( 'del' ),
-							'user_id' => $userID 
+							'user_id' => $userID
 					) )->delete ();
 				}
 				/* end Delete user static page */
@@ -763,7 +769,7 @@ class FeMemberController extends BaseController {
 				break;
 		}
 	}
-	
+
 	/**
 	 * Adding user information by step
 	 *
@@ -780,11 +786,11 @@ class FeMemberController extends BaseController {
 				$getMainPage = $this->mod_page->getMainPages ();
 				$getUserPages = $this->mod_page->getUserPages ( $userID );
 				if (Input::has ( 'btnStepNext' )) {
-					
+
 					$jsonCategory = Input::get ( 'jsonCategory' );
 					$decodeCategory = json_decode ( $jsonCategory, true, 64 );
 					$readbleArray = $this->mod_category->userCategory ( $decodeCategory );
-					
+
 					/* Add or Update category */
 					$addOrUpdateCategory = $this->mod_category->addUserCategory ( $readbleArray, $userID );
 				}
@@ -796,7 +802,7 @@ class FeMemberController extends BaseController {
 				break;
 		}
 	}
-	
+
 	/**
 	 * Adding menu by ajax
 	 *
@@ -808,16 +814,16 @@ class FeMemberController extends BaseController {
 		$Category = Input::get ( 'Category' );
 		$SubCategory = Input::get ( 'SubCategory' );
 		$MainMenu = Input::get ( 'MainMenu' );
-		
+
 		if (! empty ( $MainMenu ) || ! empty ( $SubCategory ) || ! empty ( $Category )) {
 			echo json_encode ( array (
 					'MainMenu' => $Category,
 					'Category' => $Category,
-					'SubCategory' => $SubCategory 
+					'SubCategory' => $SubCategory
 			) );
 		}
 	}
-	
+
 	/**
 	 * Upload image by ajax
 	 *
@@ -837,11 +843,11 @@ class FeMemberController extends BaseController {
 						/* upload logo image */
 						$destinationPath = base_path () . Config::get ( 'constants.DIR_IMAGE.DIR_STORE' );
 						$file = Input::file ( 'file' );
-						
+
 						/* clean old image */
 						$whereData = array (
 								'user_id' => $userID,
-								'id' => $storeID 
+								'id' => $storeID
 						);
 						$checkStoreImage = $this->mod_store->getUserStore ( null, $whereData );
 						if (! empty ( $checkStoreImage )) {
@@ -853,21 +859,21 @@ class FeMemberController extends BaseController {
 						}
 						/* add or update new image */
 						$images = $this->mod_store->doUpoad ( $file, $destinationPath, Config::get ( 'constants.DIR_IMAGE.THUMB_WIDTH' ), Config::get ( 'constants.DIR_IMAGE.THUMB_HEIGTH' ) );
-						
+
 						/* update to store table DB */
 						$storeData = array (
-								'image' => $images ['image'] 
+								'image' => $images ['image']
 						);
 						$this->mod_store->where ( $whereData )->update ( $storeData );
 						/* end update to store table DB */
 					} else {
 						$images = array (
-								"error" => "Sorry, Upload get an error" 
+								"error" => "Sorry, Upload get an error"
 						);
 					}
 					echo json_encode ( $images );
 					break;
-				
+
 				case 'bannerupload' :
 					if (Input::hasfile ( 'file' )) {
 						/* upload banner image */
@@ -875,16 +881,16 @@ class FeMemberController extends BaseController {
 						/* clean old image */
 						$whereData = array (
 								'ban_position' => 'right_header',
-								'ban_store_id' => $storeID 
+								'ban_store_id' => $storeID
 						);
 						$checkStoreImage = $response = DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )
 						->select ( '*' )
 						->where ( $whereData )
 						->first();
-						
+
 						$file = Input::file ( 'file' );
 						$images = $this->mod_store->doUpoad ( $file, $destinationPath, Config::get ( 'constants.DIR_IMAGE.THUMB_WIDTH' ), Config::get ( 'constants.DIR_IMAGE.THUMB_HEIGTH' ) );
-						
+
 						if (! empty ( $checkStoreImage )) {
 							$oldName = $destinationPath . '/' . $checkStoreImage->ban_image;
 							$thumb = $destinationPath . '/thumb/' . $checkStoreImage->ban_image;
@@ -928,54 +934,54 @@ class FeMemberController extends BaseController {
 								);
 							} else {
 								$images = array (
-									"error" => "Sorry, Upload get an error" 
+									"error" => "Sorry, Upload get an error"
 								);
 							}
 						}
 					} else {
 						$images = array (
-								"error" => "Sorry, Upload get an error" 
+								"error" => "Sorry, Upload get an error"
 						);
 					}
 					echo json_encode ( $images );
 					break;
-				
+
 				case 'pageupload' :
 					$file = array_shift ( $_FILES );
 					if (! empty ( $file )) {
 						/* upload banner image */
 						$destinationPath = base_path () . Config::get ( 'constants.DIR_IMAGE.DIR_DEFAULT' );
-						
+
 						/* clean old image */
-						
+
 						$images = $this->mod_store->doUpoad ( $file, $destinationPath, Config::get ( 'constants.DIR_IMAGE.THUMB_WIDTH' ), Config::get ( 'constants.DIR_IMAGE.THUMB_HEIGTH' ) );
 					} else {
 						$images = array (
-								"error" => "Sorry, Upload get an error" 
+								"error" => "Sorry, Upload get an error"
 						);
 					}
 					$data = array (
 							'message' => 'uploadSuccess',
-							'file' => Config::get ( 'app.url' ) . 'upload/images/' . $images ['image'] 
+							'file' => Config::get ( 'app.url' ) . 'upload/images/' . $images ['image']
 					);
 					echo json_encode ( $data );
 					break;
-					
+
 				case 'imgproduct' :
 					$productId = Input::get ( 'id' );
 					if (Input::hasfile ( 'file' )) {
 						$file = Input::file ( 'file' );
 						/* upload banner image */
 						$destinationPath = base_path () . Config::get ( 'constants.DIR_IMAGE.DEFAULT' ).'product/';
-					
+
 						/* clean old image */
-					
+
 						$images = $this->mod_store->doUpoad ( $file, $destinationPath, Config::get ( 'constants.DIR_IMAGE.THUMB_WIDTH' ), Config::get ( 'constants.DIR_IMAGE.THUMB_HEIGTH' ) );
 						$data = array (
 								'message' => 'uploadSuccess',
 								'file' =>  $images ['image']
 						);
-						
+
 						/*check old image*/
 						$productOldImage = $this->mod_product->findProductById($productId);
 						$imgArr = json_decode($productOldImage->pictures, true);
@@ -1022,7 +1028,7 @@ class FeMemberController extends BaseController {
 					echo 0;
 				}
 				break;
-			
+
 			case 'getcategory':
 				if (self::FREE_ACCOUNT === (int)Session::get('currentUserAccountType')) {
 					$cat = $this->mod_category->findCategoryBy(Input::get ( 'term' ));
@@ -1043,7 +1049,7 @@ class FeMemberController extends BaseController {
 						);
 					}
 				}
-				
+
 				echo json_encode($categorie);
 				break;
 		}
@@ -1072,7 +1078,7 @@ class FeMemberController extends BaseController {
 			}
 			echo $subMmenu;
 		} else if (! empty ( $MainMenu ) && ! empty ( $getType )) {
-			
+
 			switch ($getType) {
 				case 'name' :
 					$Category = $this->mod_category->getCategoryById ( $MainMenu );
@@ -1084,11 +1090,11 @@ class FeMemberController extends BaseController {
 					}
 					echo json_encode ( $subMmenu );
 					break;
-				
+
 				case 'updateMenu' :
 					$jsonstring = Input::get ( 'jsonstring' );
 					$deleteAll = Input::get ( 'del' );
-					
+
 					// Decode it into an array
 					$jsonDecoded = json_decode ( $jsonstring, true, 64 );
 					$readbleArray = $this->mod_category->userCategory ( $jsonDecoded );
@@ -1098,66 +1104,66 @@ class FeMemberController extends BaseController {
 					}
 					$addOrUpdateCategory = $this->mod_category->addUserCategory ( $readbleArray, $userID );
 					break;
-				
+
 				case 'addUserPage' :
 					$position = Input::get ( 'pos' );
 					$getMainPage = $this->mod_page->addUserPages ( $userID, $MainMenu, $position );
 					echo json_encode ( $getMainPage->result );
 					break;
-				
+
 				case 'removeUserPage' :
 					$getMainPage = $this->mod_page->removeUserPages ( $userID, $MainMenu );
 					break;
-				
+
 				case 'userPage' :
 					$order = Input::get ( 'order' );
 					$getMainPage = $this->mod_page->addUserWidgetPage ( $userID, $MainMenu, $order );
 					break;
-				
+
 				case 'userPageStatus' :
 					$status = Input::get ( 'st' );
 					$response = DB::table ( Config::get ( 'constants.TABLE_NAME.S_PAGE' ) )->where ( array (
-							'id' => $MainMenu 
+							'id' => $MainMenu
 					) )->update ( array (
-							'status' => $status 
+							'status' => $status
 					) );
 					break;
-				
+
 				case 'userLayout' :
 					$getUserStore = $this->mod_store->getUserStore ( $userID );
 					if (! empty ( $getUserStore )) {
 						$userStoreID = $getUserStore->id;
 						$where = array (
 								'user_id' => $userID,
-								'id' => $userStoreID 
+								'id' => $userStoreID
 						);
-						
+
 						$userStoresValue = $getUserStore->sto_value;
 						if (is_null ( $userStoresValue )) {
 							$dataSet = array (
-									'layout' => $MainMenu 
+									'layout' => $MainMenu
 							);
 						} else {
 							$userStoresValueArr = json_decode ( $userStoresValue, true );
 							var_dump ( $userStoresValueArr );
 							if (array_key_exists ( 'layout', $userStoresValueArr )) {
 								$ValueArr = array (
-										'layout' => $MainMenu 
+										'layout' => $MainMenu
 								);
 								$dataSet = array_merge ( $userStoresValueArr, $ValueArr );
 							} else {
 								$dataSet = array (
 										'layout' => $MainMenu,
-										'footer_text' => $userStoresValueArr ['footer_text'] 
+										'footer_text' => $userStoresValueArr ['footer_text']
 								);
 							}
 						}
 						$response = DB::table ( Config::get ( 'constants.TABLE_NAME.STORE' ) )->where ( $where )->update ( array (
-								'sto_value' => json_encode ( $dataSet ) 
+								'sto_value' => json_encode ( $dataSet )
 						) );
 					}
 					break;
-				
+
 				case 'userLayoutFooter' :
 					$getUserStore = $this->mod_store->getUserStore ( $userID );
 					if (! empty ( $getUserStore )) {
@@ -1165,82 +1171,82 @@ class FeMemberController extends BaseController {
 						$userStoresValue = $getUserStore->sto_value;
 						if (is_null ( $userStoresValue )) {
 							$dataArr = array (
-									'footer_text' => $MainMenu 
+									'footer_text' => $MainMenu
 							);
 						} else {
 							$userStoresValueArr = json_decode ( $userStoresValue, true );
 							if (array_key_exists ( 'footer_text', $userStoresValueArr )) {
 								$ValueArr = array (
-										'footer_text' => $MainMenu 
+										'footer_text' => $MainMenu
 								);
 								$dataArr = array_merge ( $userStoresValueArr, $ValueArr );
 							} else {
 								$dataArr = array (
 										'footer_text' => $MainMenu,
-										'layout' => $userStoresValueArr ['layout'] 
+										'layout' => $userStoresValueArr ['layout']
 								);
 							}
 						}
 						$where = array (
 								'user_id' => $userID,
-								'id' => $userStoreID 
+								'id' => $userStoreID
 						);
 						$response = DB::table ( Config::get ( 'constants.TABLE_NAME.STORE' ) )->where ( $where )->update ( array (
-								'sto_value' => json_encode ( $dataArr ) 
+								'sto_value' => json_encode ( $dataArr )
 						) );
 					}
 					break;
-				
+
 				case 'userHeaderTitle' :
 					if ($userID && ! empty ( $MainMenu )) {
 						$response = DB::table ( Config::get ( 'constants.TABLE_NAME.STORE' ) )->where ( array (
-								'user_id' => $userID 
+								'user_id' => $userID
 						) )->update ( array (
-								'title_en' => $MainMenu 
+								'title_en' => $MainMenu
 						) );
 					}
 					break;
 				case 'checkaddURL' :
 					if ($userID && ! empty ( $MainMenu )) {
 						$getUserStore = $this->mod_store->getUserStore ( $userID );
-						
+
 						$whereUrl = array (
-								'sto_url' => $MainMenu 
+								'sto_url' => $MainMenu
 						);
 						$getURL = DB::table ( Config::get ( 'constants.TABLE_NAME.STORE' ) )->select ( '*' )->where ( 'sto_url', '=', $MainMenu )->where ( 'id', '!=', $getUserStore->id )->first ();
 						if (! empty ( $getURL )) {
 							$urlData = array (
-									'result' => 1 
+									'result' => 1
 							);
 						} else {
 							$urlData = array (
-									'result' => 0 
+									'result' => 0
 							);
 						}
 					}
 					echo json_encode ( $urlData );
 					break;
-				
+
 				case 'addURL' :
 					if ($userID && ! empty ( $MainMenu )) {
 						$response = DB::table ( Config::get ( 'constants.TABLE_NAME.STORE' ) )->where ( array (
-								'user_id' => $userID 
+								'user_id' => $userID
 						) )->update ( array (
-								'sto_url' => $MainMenu 
+								'sto_url' => $MainMenu
 						) );
 						if ($response) {
 							$urlData = array (
-									'result' => 0 
+									'result' => 0
 							);
 						} else {
 							$urlData = array (
-									'result' => 1 
+									'result' => 1
 							);
 						}
 					}
 					echo json_encode ( $urlData );
 					break;
-					
+
 				case 'bannerlink' :
 					$getUserStore = $this->mod_store->getUserStore ( $userID );
 						if ($userID && ! empty ( $MainMenu )) {
@@ -1261,7 +1267,7 @@ class FeMemberController extends BaseController {
 						}
 						echo json_encode ( $urlData );
 						break;
-						
+
 					case 'fblike' :
 							if ($userID && ! empty ( $MainMenu )) {
 								$response = DB::table ( Config::get ( 'constants.TABLE_NAME.S_PAGE' ) )->where ( array (
@@ -1283,27 +1289,27 @@ class FeMemberController extends BaseController {
 							}
 							echo json_encode ( $urlData );
 							break;
-							
+
 					case 'getprocat':
 						echo $MainMenu;
 						break;
 			}
 		}
-		
+
 		die ();
 	}
 	/**
 	 * List all slideshows
 	 *
 	 * @method getSlideshowToHomePage
-	 * @param int $limit        	
+	 * @param int $limit
 	 * @return array that contains slideshows
 	 */
 	public function getSlideshowToHomePage($limit) {
 		$slideshow = $this->mod_slideshow->getSlideshowToFrontEnd ( $limit );
 		return $slideshow;
 	}
-	
+
 	/**
 	 * List all categories for home page
 	 *
@@ -1314,7 +1320,7 @@ class FeMemberController extends BaseController {
 		$Category = $this->mod_category->getMainCategories ();
 		return $Category;
 	}
-	
+
 	/**
 	 * List all districts
 	 *
@@ -1334,12 +1340,12 @@ class FeMemberController extends BaseController {
 		}
 		die ();
 	}
-	
+
 	/**
 	 * List all ClientTypes
 	 *
 	 * @method getClientType
-	 * @param int $id        	
+	 * @param int $id
 	 * @return array that contains client types
 	 */
 	public function getClientType($id) {
@@ -1351,12 +1357,12 @@ class FeMemberController extends BaseController {
 		}
 		echo $Client_val;
 	}
-	
+
 	/**
 	 * List all MarketTypes
 	 *
 	 * @method getMarketType
-	 * @param int $id        	
+	 * @param int $id
 	 * @return array that contains MarketTypes
 	 */
 	public function getMarketType($id) {
@@ -1368,7 +1374,7 @@ class FeMemberController extends BaseController {
 		}
 		echo $Market_val;
 	}
-	
+
 	/**
 	 * Generation fileName when uploading file
 	 *
@@ -1384,10 +1390,10 @@ class FeMemberController extends BaseController {
 		if (file_exists ( $pathName . $fileName )) {
 			return generateFileName ( $pathName );
 		}
-		
+
 		return $fileName;
 	}
-	
+
 	/**
 	 * checkUrlAddress check for url address
 	 *
@@ -1402,16 +1408,16 @@ class FeMemberController extends BaseController {
 			case 'checkaddURL' :
 				if (! empty ( $MainMenu )) {
 					$whereUrl = array (
-							'sto_url' => $MainMenu 
+							'sto_url' => $MainMenu
 					);
 					$getURL = DB::table ( Config::get ( 'constants.TABLE_NAME.STORE' ) )->select ( '*' )->where ( 'sto_url', '=', $MainMenu )->first ();
 					if (! empty ( $getURL )) {
 						$urlData = array (
-								'result' => 1 
+								'result' => 1
 						);
 					} else {
 						$urlData = array (
-								'result' => 0 
+								'result' => 0
 						);
 					}
 				}
@@ -1419,7 +1425,7 @@ class FeMemberController extends BaseController {
 				break;
 		}
 	}
-	
+
 	/*add banner user data*/
 	public function addBannerData($getUserStoreDd) {
 		if (Input::hasfile ( 'file' )) {
@@ -1451,7 +1457,7 @@ class FeMemberController extends BaseController {
 					'ban_image' => $image_file,
 					'ban_store_id' => $getUserStoreDd,
 					'ban_status' => Input::get ( 'status' ),
-					'ban_position' => Input::get ( 'positions' ) 
+					'ban_position' => Input::get ( 'positions' )
 			);
 			$response = DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )->where ( array (
 					'ban_id' => Input::get ( 'edit' ),
@@ -1466,12 +1472,12 @@ class FeMemberController extends BaseController {
 					'ban_image' => $image_file,
 					'ban_store_id' => $getUserStoreDd,
 					'ban_status' => Input::get ( 'status' ),
-					'ban_position' => Input::get ( 'positions' ) 
+					'ban_position' => Input::get ( 'positions' )
 			);
 			$response = DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )->insertGetId ( $data );
 		}
 	}
-	
+
 	/**
 	 * Generation folder when uploading file doesnot exist
 	 *
@@ -1493,12 +1499,28 @@ class FeMemberController extends BaseController {
 		$query = DB::table ( Config::get ( 'constants.TABLE_NAME.USER' ) );
 		$query->where ( array (
 				'password' => md5 ( sha1 ( $password ) ),
-				'id' => Session::get ( 'currentUserId' ) 
+				'id' => Session::get ( 'currentUserId' )
 		) );
 		return $query->first ();
 	}
 	public function getSignOut() {
 		Session::flush ();
 		return Redirect::to ( Config::get ( 'app.url' ) );
+	}
+
+	public function getResgisterAndLoginAdv($isRegister = false) {
+		$type = self::LOGIN_PAGE;
+		if ($isRegister) {
+			$type = self::REGISTER_PAGE;
+		}
+		$advRegisterAndLogin = $this->mod_advertisment
+			->getAdvertisementHomePage(
+				$type,
+				self::LOGIN_REGISTER_ADV_POSITION,
+				1
+			);
+
+		return View::make('frontend.partials.login_register_adv')
+			->with('advRegisterAndLogin', $advRegisterAndLogin->result);
 	}
 }

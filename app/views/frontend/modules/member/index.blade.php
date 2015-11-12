@@ -21,12 +21,8 @@
             <a class="btn btn-default no-border" href="#" role="button"><img src="{{Config::get('app.url')}}/frontend/images/icons/icon-connect.png" alt="" style="width: 40px;" class="r-menu-thumb" /> Seller connect with  buyer</a>
             <a class="btn btn-default no-border" href="#" role="button"><img src="{{Config::get('app.url')}}/frontend/images/icons/icon-cart1.png" alt="" style="width: 40px;" class="r-menu-thumb" /> Checking & Compare Products</a>
         </div>
-
-
-		<div class="constug">
-			<center>
-				<img src="{{Config::get('app.url')}}/frontend/images/member/strug.png" style="width: 100%"/>
-			</center>
+    <!-- call login register page -->
+		{{ App::make('FeMemberController')->getResgisterAndLoginAdv() }}
 		</div>
 		<div class="clear">
 		</div>
