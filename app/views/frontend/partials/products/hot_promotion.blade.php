@@ -4,7 +4,7 @@ $hotPromotionProducts = Product::findHotPromotionProducts ();
 <?php 
 if(count($hotPromotionProducts) > 0){
 ?>
-<ul class="nav nav-tabs" style="padding: 0;">
+<ul class="nav nav-tabs hot_promotion" style="padding: 0;">
 	<li>{{trans('product.hot_promotion')}}&nbsp;&frasl;</li>
 	<li>Products : <span class="number-display"><?php echo count($hotPromotionProducts)?></span></li>
 </ul>

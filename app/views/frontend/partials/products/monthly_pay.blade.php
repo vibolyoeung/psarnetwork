@@ -6,7 +6,7 @@
 			<br />
 <div class="category-tab feature-ad lastest-post" style="padding: 0;">
 	<!--recommended_items-->
-	<ul class="nav nav-tabs">
+	<ul class="nav nav-tabs monthly_pay">
 		<li>{{trans('product.monthly_pay_product')}}&nbsp;&frasl;</li>
 		<li>Products : <span class="number-display"><?php echo count($monthlyProducts)?></span></li>
 	</ul>

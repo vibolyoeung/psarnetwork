@@ -7,7 +7,7 @@ if(count($buyerProducts) > 0){
 			<br />
 <div class="category-tab feature-ad lastest-post" style="padding: 0;">
 	<!--recommended_items-->
-	<ul class="nav nav-tabs">
+	<ul class="nav nav-tabs buyer_request">
 		<li>{{trans('product.buyer_request_product')}}&nbsp;&frasl;</li>
 		<li>Products : <span class="number-display"><?php echo count($buyerProducts)?></span></li>
 	</ul>

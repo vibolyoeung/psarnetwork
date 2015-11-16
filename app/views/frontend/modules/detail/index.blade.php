@@ -76,15 +76,15 @@ Categories
 												?>
 											</a>
 										</div>
-										<div class="col-lg-5" style="border:1px solid #f7f7f5;line-height:2;">
+										<div class="col-lg-5 product_teaser" style="border:1px solid #f7f7f5;line-height:2;">
 											<div class="col-lg-12" style="padding:0;">
 												<div class="pull-right price">{{$product->price}} $</div>
 												<h5>
 													<a href="{{Config::get('app.url')}}product/details/{{$product->id}}">
-														{{str_limit($product->title,$limit = 40, $end = '...')}}
+														{{str_limit($product->title,$limit = 20, $end = '...')}}
 													</a>
 												</h5>
-												<p>{{str_limit($product->description,$limit = 200, $end = '...')}}</p>
+												<p>{{str_limit($product->description,$limit = 50, $end = '...')}}</p>
 												<p class="product_teaser">
 													<span style="color:blue;">{{$product->created_date}}</span>
 												&nbsp;
@@ -99,7 +99,7 @@ Categories
 											</div>
 										</div>
 										<div class="col-lg-4 pull-right">
-											<div class="col-lg-12" style="border:1px solid #f7f7f5;text-align:center;">
+											<div class="col-lg-12 product_page" style="border:1px solid #f7f7f5;text-align:center;">
 												<h5>
 													<a href="{{Config::get('app.url')}}store-{{$product->store_id;}}" target="_blank">
 														<?php 

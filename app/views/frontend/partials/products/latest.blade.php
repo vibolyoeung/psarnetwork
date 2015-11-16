@@ -6,7 +6,7 @@ if(count($latestProducts) > 0){
 	<div class="features_items">
 		<div class="category-tab lastest-post">
 			<div class="col-sm-12" style="padding: 0;">
-				<ul class="nav nav-tabs">
+				<ul class="nav nav-tabs lastest_product">
 					<li>{{trans('product.latest_product')}}&nbsp;&frasl;</li>
 					<li>Products : <span class="number-display"><?php echo count($latestProducts)?></span></li>
 				</ul>

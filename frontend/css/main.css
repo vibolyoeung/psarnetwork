@@ -1219,6 +1219,9 @@ h2.title {
 	border: 1px solid #F7F7F5;
 	margin-bottom: 30px;
 }
+.product-image-wrapper:hover{
+	border: 1px solid #f0ad4e;
+}
 
 .single-products {
 	position: relative;
@@ -3413,7 +3416,7 @@ a.more_categories {
 
 .left_bar {
 	padding-right: 0;
-	margin-top: -43px;
+	margin-top: -52px;
 }
 .all_categories_type{
 	padding:5px;
@@ -3698,5 +3701,22 @@ div.carousel a.recommended-item-control i{
 .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
 	margin:0 auto;
 }
+div.product_page{
+	min-height: 100px;
+}
+div.product_teaser{
+	min-height: 116px;
+}
+.lastest_product li,
+.new_product li,
+.buyer_request li,
+.homepage_ads li,
+.hot_promotion li,
+.monthly_pay li,
+.popular_product li{
+	/*font-size: 15px;*/
+}
+center>h5>a{
+	font-size:12px;
+}
 //=========Detail slile===//
-
