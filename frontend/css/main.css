@@ -563,7 +563,7 @@ a#scrollUp i {
 }
 
 .mainmenu ul li:first-child {
-	
+
 }
 
 .mainmenu ul li a {
@@ -615,7 +615,7 @@ input.search-box {
 	border-radius: 4px;
 }
 /*  Dropdown menu*/
-.navbar-header 
+.navbar-header
 .navbar-toggle .icon-bar {
 	background-color: #fff;
 }
@@ -1257,16 +1257,16 @@ h2.title {
 	width: 100%;
 	height: 115px;
 }
-   
+
 #Detail-Top-Contact li{
 	float:left;
 	padding-left:5px;
-}   
-   
+}
+
  #Detail-Top-Contact li label{
 	color:#03F;
-}   
-     
+}
+
 .productinfo {
 	position: relative;
 	padding:6px;
@@ -1442,7 +1442,7 @@ h2.title {
 }
 
 .recommended_items  h2 {
-	
+
 }
 
 .our_partners {
@@ -1851,11 +1851,11 @@ h2.title {
 }
 
 .login-form {
-	
+
 }
 
 .signup-form {
-	
+
 }
 
 .register-form  h2,.login-form h2,.signup-form h2 {
@@ -1911,7 +1911,7 @@ h2.title {
 }
 
 .login-form label {
-	
+
 }
 
 .login-form label input {
@@ -1970,7 +1970,7 @@ h2.title {
 *********** REGISTER *****
 *************************/
 .register-form {
-	
+
 }
 
 .register-form .conent {
@@ -2212,7 +2212,7 @@ h2.title {
 }
 
 .user_info>li>span {
-	
+
 }
 
 .user_info input,select,textarea {
@@ -2401,27 +2401,27 @@ h2.title {
 	margin-right: 30px;
 }
 
-#cart_items .cart_info 
+#cart_items .cart_info
 .table.table-condensed.total-result {
 	margin-bottom: 10px;
 	margin-top: 35px;
 	color: #696763
 }
 
-#cart_items .cart_info 
+#cart_items .cart_info
 .table.table-condensed.total-result tr {
 	border-bottom: 0
 }
 
-#cart_items .cart_info 
+#cart_items .cart_info
 .table.table-condensed.total-result span {
 	color: #428bca;
 	font-weight: 700;
 	font-size: 16px
 }
 
-#cart_items .cart_info 
-.table.table-condensed.total-result 
+#cart_items .cart_info
+.table.table-condensed.total-result
 .shipping-cost {
 	border-bottom: 1px solid #F7F7F0;
 }
@@ -2429,7 +2429,7 @@ h2.title {
 /*************************
 *******Blog CSS******
 **************************/
-.blog-post-area 
+.blog-post-area
 .single-blog-post h3 {
 	color: #696763;
 	font-size: 16px;
@@ -2440,35 +2440,35 @@ h2.title {
 }
 
 .single-blog-post>a {
-	
+
 }
 
-.blog-post-area 
+.blog-post-area
 .single-blog-post a img {
 	border: 1px solid #F7F7F0;
 	width: 100%;
 	margin-bottom: 30px
 }
 
-.blog-post-area  
+.blog-post-area
 .single-blog-post p {
 	color: #363432
 }
 
-.blog-post-area 
+.blog-post-area
 .post-meta {
 	display: block;
 	margin-bottom: 25px;
 	overflow: hidden;
 }
 
-.blog-post-area 
+.blog-post-area
 .post-meta ul {
 	padding: 0;
 	display: inline;
 }
 
-.blog-post-area 
+.blog-post-area
 .post-meta ul li {
 	background: #F0F0E9;
 	float: left;
@@ -2479,7 +2479,7 @@ h2.title {
 	position: relative;
 }
 
-.blog-post-area 
+.blog-post-area
 .post-meta ul li i {
 	background: #FE980F;
 	color: #FFFFFF;
@@ -2488,7 +2488,7 @@ h2.title {
 	padding: 4px 7px;
 }
 
-.sinlge-post-meta li i:after,.blog-post-area 
+.sinlge-post-meta li i:after,.blog-post-area
 .post-meta ul li i:after {
 	content: "";
 	position: absolute;
@@ -2501,7 +2501,7 @@ h2.title {
 	left: 24px
 }
 
-.blog-post-area 
+.blog-post-area
 .post-meta ul span {
 	float: right;
 	color: #428bca
@@ -2515,8 +2515,8 @@ h2.title {
 	color: #428bca
 }
 
-.blog-post-area  
-.single-blog-post 
+.blog-post-area
+.single-blog-post
 .btn-primary {
 	background: #FE980F;
 	border: medium none;
@@ -2544,7 +2544,7 @@ h2.title {
 	width: 57px;
 }
 
-.pager-area 
+.pager-area
 .pager li a:hover {
 	background: #428bca;
 	color: #fff
@@ -2568,7 +2568,7 @@ h2.title {
 	margin-bottom: 0
 }
 
-.rating-area 
+.rating-area
 .ratings li i {
 	color: #CCCCCC
 }
@@ -2580,7 +2580,7 @@ h2.title {
 	text-transform: uppercase;
 }
 
-.rating-area 
+.rating-area
 .ratings .color,.rating-area .color {
 	color: #428bca
 }
@@ -2834,7 +2834,7 @@ span.price,.price{
 	margin-bottom: 20px;
 }
 
-#contact-page 
+#contact-page
 .form-control::-moz-placeholder {
 	color: #8D8D8D;
 }
@@ -3207,7 +3207,7 @@ fieldset legend {
 }
 
 .home .rigister .r-user-type {
-	
+
 }
 
 .home .rigister .r-user-type .r-menu-thumb {
@@ -3255,7 +3255,7 @@ fieldset legend {
 .titleFxt:hover,.foottxt:hover {border:1px solid #eee}
 /*costomLayout*/
 #costomLayout {
-	
+
 }
 
 #costomLayout .ui-sortable {
@@ -3441,7 +3441,7 @@ a.home_icon {
 	top: 0 !important;
 	text-align: center !important;
 	font-size: 120%;
-    
+
     -webkit-box-shadow: 0px 3px 9px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 3px 9px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 3px 9px 0px rgba(0,0,0,0.75);
@@ -3554,7 +3554,7 @@ ul.dropdown_main_menu > li{
 }
 ul.dropdown_main_menu > li > a{
 	font-size:14px;
-	
+
 }
 .child-menu > li{
 	margin-left: 8px;
@@ -3612,7 +3612,7 @@ ul#TapTitle > li.active > a{
 .store-name{
 	padding:0;
 	text-align: center;
-	
+
 }
 .store-name img {
 	width:100%;
@@ -3638,7 +3638,7 @@ ul#TapTitle > li.active > a{
     color: #000;
 }
 .panel-group{
-	margin-bottom: 0; 
+	margin-bottom: 0;
 }
 .form-select-khmerabba{
 	height: 28px;
@@ -3695,28 +3695,32 @@ ul.list_store_info>li{
 	width: 100% !important;
 	line-height: 2;
 }
+
 div.carousel a.recommended-item-control i{
 	background-color:#ddd !important;
 }
-.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
+
+.carousel-inner > .item > a > img,
+.carousel-inner > .item > img,
+.img-responsive,
+.thumbnail a > img,
+.thumbnail > img{
 	margin:0 auto;
 }
+
 div.product_page{
 	min-height: 100px;
 }
 div.product_teaser{
 	min-height: 116px;
 }
-.lastest_product li,
-.new_product li,
-.buyer_request li,
-.homepage_ads li,
-.hot_promotion li,
-.monthly_pay li,
-.popular_product li{
-	/*font-size: 15px;*/
-}
+
 center>h5>a{
 	font-size:12px;
 }
-//=========Detail slile===//
+
+/*=========Detail slile===*/
+.center-advertise a img {
+	margin-bottom: 15px;
+}
+

@@ -798,7 +798,6 @@ class Product extends Eloquent {
 			return $products;
 		}
 
-
 		$usersId = $this->findUserByProvince($location);
 
 		foreach ( $usersId as $userId ) {
