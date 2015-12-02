@@ -64,16 +64,18 @@ class FeSearchController extends BaseController {
 
 		$province = Request::input('location');
 		$keyword = Request::input('q');
+		$displayNumber = Request::input('displayNumber');
 
 		$products = $this->mod_product->searchProducts(
 			$keyword,
-			$province
+			$province,
+			$displayNumber
 		);
 
 		$categorId = Request::input('categoryId');
 		$category = $this->mod_category->getMainCategories($categorId);
  		$mainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($categorId);
-		
+
 		return View::make('frontend.modules.search.index')
 			->with('slideshows', $listSlideshows->result)
 			->with('advVerticalRightSmalls', $advVerticalRightSmall->result)

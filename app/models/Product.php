@@ -752,10 +752,13 @@ class Product extends Eloquent {
 	 *
 	 * @return array $products
 	 */
-	public function searchProducts($keyword = '', $province) {
-		$usersId = $this->findUserByProvince ( $province );
+	public function searchProducts(
+		$keyword = '',
+		$province,
+		$displayNumber = null
+	) {
 
-		return $this->searchByProduct ( $usersId, $keyword, $province);
+		return $this->searchByProduct ($keyword, $province, $displayNumber);
 	}
 
 	/**
@@ -783,7 +786,6 @@ class Product extends Eloquent {
 			$limitNumber = $displayNumber;
 		}
 
-		$products = [];
 		if (( int ) $location === 0) {
 			$query = $this->searchProductInEachCategory(
 				$location,
@@ -793,30 +795,21 @@ class Product extends Eloquent {
 				$date
 			);
 
-			$products[] = $query->paginate ( $limitNumber );
+			return $query->paginate ( $limitNumber );
 
-			return $products;
 		}
 
-		$usersId = $this->findUserByProvince($location);
-
-		foreach ( $usersId as $userId ) {
-			$query = $this->searchProductInEachCategory(
+		$query = $this->searchProductInEachCategory(
 				$location,
 				$transferType,
 				$condition,
 				$price,
 				$date
 			);
-			$query->where ( 'p.user_id', '=', ( int ) $userId );
-			$data = $query->paginate ( $limitNumber );
+			$query->where ( 'u.province_id', '=', ( int ) $location );
 
-			if (! empty ( $data )) {
-				$products[] = $data;
-			}
-		}
 
-		return $products;
+			return $query->paginate ( $limitNumber );
 	}
 
 	/**
@@ -861,58 +854,41 @@ class Product extends Eloquent {
 	}
 
 	/**
-	 * Get user by province and bussiness type
+	 * Top search product
 	 *
-	 * @param int $province
+	 * @param string $keyword
+	 * @param int    $displayNumber
+	 * @param int 	 $province
 	 *
-	 * @return array $usersId
+	 * @return Query
 	 */
-	private function findUserByProvince($province) {
-		$userTable = Config::get ( 'constants.TABLE_NAME.USER' );
-
-		$usersExcludeProvince = DB::table ( $userTable . ' AS u' )->select ( '*' )->get ();
-
-		$usersId = [ ];
-
-		foreach ( $usersExcludeProvince as $userExcludeProvince ) {
-			$arrayProvinces = json_decode ( $userExcludeProvince->address, true );
-
-			if (( int ) $province === 0) {
-				$userId [] = $userExcludeProvince->id;
-			} else {
-				if (( int ) $arrayProvinces ['province'] === ( int ) $province) {
-					$usersId [] = $userExcludeProvince->id;
-				}
-			}
-		}
-
-		return $usersId;
-	}
-
-	public function searchByProduct($usersId, $keyword, $province) {
-		$products = [];
+	public function searchByProduct($keyword, $province, $displayNumber) {
 		if ($province == 0) {
-			$products = $this->findProduct($keyword);
-
-			return $products;
+			return $this->findProduct($keyword, $displayNumber);
 		}
 
-		foreach ( $usersId as $userId ) {
-			$data = $this->findProduct($keyword, $userId);
-			if (! empty ( $data )) {
-				$products = $data;
-			}
-		}
-
-		return $products;
+		return $this->findProduct($keyword, $displayNumber, $province);
 	}
 
-	public function findProduct($keyword, $userId = null) {
+	/**
+	 * Top search product with condtion
+	 *
+	 * @param string $keyword
+	 * @param int 	 $displayNumber
+	 * @param int 	 $province
+	 *
+	 * @return Query
+	 */
+	public function findProduct(
+		$keyword,
+		$displayNumber,
+		$province = null
+	) {
 
 		$query = $this->commomSearch();
 
-		if (!is_null($userId)) {
-			$query->where ( 'p.user_id', '=', ( int ) $userId );
+		if (!is_null($province)) {
+			$query->where ( 'u.province_id', '=', ( int ) $province );
 		}
 		$query->where (function ($query) use($keyword) {
 				$query->orWhere ( 'p.title', 'LIKE', '%' . $keyword . '%' )
@@ -922,12 +898,13 @@ class Product extends Eloquent {
 		$query->groupBy('pro.product_id');
 		$query->orderBy ( 'p.id', 'DESC' );
 
-		// Declare as array to make format the same other search
-		// Because we use the same view with sort
-		$products = [];
-		$products[] = $query->get();
+		$limitNumber = self::LIST_NUMBER;
+		if ($displayNumber !== null) {
+			$limitNumber = $displayNumber;
+		}
 
-		return $products;
+		return $query->paginate($limitNumber);
+
 	}
 
 	/**
