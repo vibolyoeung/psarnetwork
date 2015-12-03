@@ -34,8 +34,6 @@
 								</a>
 								<div class="col-lg-12">
 									<h5> {{$latestStore->{'title_'.Session::get('lang')};}}</h5>
-
-									<strong> View: <span class="price">{{$latestStore->view}}</span></strong>
 								</div>
 							</div>
 						</div>
