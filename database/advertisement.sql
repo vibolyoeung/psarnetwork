@@ -53,8 +53,6 @@ INSERT INTO `adv_page` (`id`, `name`) VALUES
 (1, 'Homepage'),
 (2, 'Category Page'),
 (3, 'Page Detail'),
-(4, 'Market Place'),
-(5, 'Market Place Detail'),
 (6, 'Interprise Page'),
 (7, 'Free User page'),
 (8, 'Register'),
@@ -102,10 +100,12 @@ INSERT INTO `adv_page_position_mm` (`id`, `adv_page_id`, `adv_position_id`) VALU
 (32, 5, 5),
 (33, 5, 6),
 (34, 5, 7),
-(35, 6, 4),
-(36, 7, 4),
-(37, 8, 4),
-(38, 9, 4);
+(35, 6, 6),
+(36, 6, 7),
+(37, 7, 6),
+(38, 7, 7),
+(39, 8, 4),
+(40, 9, 4);
 
 -- --------------------------------------------------------
 
