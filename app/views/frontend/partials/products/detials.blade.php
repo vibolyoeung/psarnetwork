@@ -5,7 +5,8 @@
 	<li class="active">Supper Market</li>
 </ol>
 @endsection @section('content')
-{{ App::make('FePageController')->mainCategory() }}
+<!-- Put true is detials page for get advertisement for left side -->
+{{ App::make('FePageController')->mainCategory(true) }}
 <div class="col-lg-10">
 	<!-- ============Relative post=============== -->
 	<div class="col-lg-10" style="padding-top:10px;background-color:fcfcfc;">
@@ -27,7 +28,7 @@
 			<div class="col-lg-3 store-name" style="padding:10px 10px 10px 10px;">
 				<?php
 					if($productdetails->image){
-						echo '<img src="'.Config::get('app.url').'upload/store/'.$productdetails->image.'" />';	
+						echo '<img src="'.Config::get('app.url').'upload/store/'.$productdetails->image.'" />';
 					}else{
 						echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=90&amp;" />';
 					}
@@ -43,10 +44,10 @@
 			<div class="task-bar">
 				<span>
 					<input
-						class="btn btn-primary" 
-						type="button" 
-						onclick="ProductDetailPrint.print_product_detail('main_area')" 
-						value="Save / Download" 
+						class="btn btn-primary"
+						type="button"
+						onclick="ProductDetailPrint.print_product_detail('main_area')"
+						value="Save / Download"
 					/>
 				</span>
 				<span class="pull-right store-link">
@@ -76,7 +77,7 @@
 											<a class="slideshow-group" href="{{Config::get('app.url')}}upload/product/{{$image['pic']}}" rel="slideshow-group">
 												<?php
 													if($image['pic']){
-														echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=250&amp;w=550" />';	
+														echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=250&amp;w=550" />';
 													}else{
 														echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=90&amp;w=" />';
 													}
@@ -84,14 +85,14 @@
 											</a>
 										</div>
 											<?php $thumbnail_id++; ?>
-										@endforeach                               
+										@endforeach
 									</div>
 									<a class="left carousel-control" href="#DetailCarousel" role="button" data-slide="prev">
-                                    <span class="glyphicon glyphicon-chevron-left"></span>                                       
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
                                     </a>
                                     <a class="right carousel-control" href="#DetailCarousel" role="button" data-slide="next">
-                                        <span class="glyphicon glyphicon-chevron-right"></span>                                       
-                                    </a>   
+                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                    </a>
 									<!-- Carousel nav -->
 								</div>
 
@@ -101,7 +102,7 @@
 									<div id="similar-product" class="carousel slide">
 									  <!-- Wrapper for slides -->
 									    <div class="carousel-inner" style="height: 100px">
-										    	<?php 
+										    	<?php
 											    	$num = 1;
 											    	$to=0;
 										    	?>
@@ -198,7 +199,7 @@
 										<div class="productinfo center-image">
 											<?php
 												if($image['pic']){
-													echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=250&amp;w=450" />';	
+													echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=250&amp;w=450" />';
 												}else{
 													echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=250&amp;w=450" />';
 												}
@@ -216,7 +217,7 @@
 				   			value="{{$locationArr->g_latitude_longitude}}"
 				   			name="gLatitudeLongitude"
 				   			class="hide"
-				   			id="latbox" 
+				   			id="latbox"
 				   			aria-describedby="MappingAddressHereStatus"
 				   		/>
 				   		<span
@@ -244,14 +245,14 @@
 						</a>
 				   </div>
 				</div>
-                
+
 				<script>
 				   $(function(){
 				      $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 				      // Get the name of active tab
-				      var activeTab = $(e.target).text(); 
+				      var activeTab = $(e.target).text();
 				      // Get the name of previous tab
-				      var previousTab = $(e.relatedTarget).text(); 
+				      var previousTab = $(e.relatedTarget).text();
 				      $(".active-tab span").html(activeTab);
 				      $(".previous-tab span").html(previousTab);
 				   });
@@ -259,6 +260,8 @@
 				</script>
 			</div>
 			<div class="clear"></div><div class="clear"></div>
+			<!-- type:detials, position: up on related product, limit -->
+			{{ App::make('FePageController')->getHorizontalAds(3, 13, 3) }}
 			<div class="col-lg-3 text-centered" style="border:1px solid #dddddd;background-color:#dddddd;padding:5px 10px;font-weight:bold;text-align:center;">Related Products</div>
 			{{
 			App::make('FePageController')->findRelatedProducts(array($productdetails->category_id))
@@ -267,7 +270,7 @@
 		</div><!--============End detail container hre=====-->
 	</div>
 	<div class="col-lg-2 pull-right right-ad-detail">
-		@include('frontend.partials.categories.right')
+		@include('frontend.partials.details.right')
 	</div>
 <script
 	src="{{Config::get('app.url')}}frontend/js/product_detail_print.js"></script>

@@ -108,9 +108,10 @@ class FePageController extends BaseController {
 			->with('advHorizontalTopLarges', $advHorizontalTopLarges->result);
 	}
 
-	public function mainCategory(){
+	public function mainCategory($isDetails = false){
 		$listCategories = self::getCategoriesHomePage();
 		return View::make('frontend.partials.left')
+			->with('isDetails', $isDetails)
 			->with('maincategories', $listCategories->result);
 	}
 
@@ -211,7 +212,7 @@ class FePageController extends BaseController {
 				1
 		);
 		$arrayClientTypeId = $this->mod_market->getAllChildClientType($parent_id);
-		$listproductInEachMarket = $this->mod_market->listproductofsupermarket($parent_id,$arrayClientTypeId);		
+		$listproductInEachMarket = $this->mod_market->listproductofsupermarket($parent_id,$arrayClientTypeId);
 		if($id){
 			$listproductInEachMarket = $this->mod_market->listproductofsupermarket($parent_id,array($id));
 		}
