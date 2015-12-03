@@ -14,7 +14,6 @@ if(count($buyerProducts) > 0){
 	<div id="monthly-pay-item-carousel" class="carousel slide"
 		data-ride="carousel">
 		<div class="carousel-inner">
-			<div class="item active">
 			<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 				@foreach($buyerProducts as $buyerProduct)
 				<div class="col-sm-2">
@@ -31,16 +30,16 @@ if(count($buyerProducts) > 0){
 										}
 									?>
 								</a>
-								<a href="{{Config::get('app.url')}}product/details/{{$buyerProduct->id}}"><?php echo substr($buyerProduct->title,0,20)?></a>
+								<a href="{{Config::get('app.url')}}product/details/{{$buyerProduct->id}}"><?php echo str_limit($buyerProduct->title,$limit = 15, $end = '...');?></a>
 								<h2>$ {{$buyerProduct->price}}</h2>
 							</div>
 						</div>
-					@endforeach
+					</div>
 				</div>
+				@endforeach
 			</div>
 		</div>
 	</div>
-</div>
 <?php 
 }
 ?>

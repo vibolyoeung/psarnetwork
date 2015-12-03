@@ -3,7 +3,7 @@
 @if(count($productAdvs) > 0)
 <div class="category-tab feature-ad product-adv">
 	<div class="col-lg-12 product-adv" style="padding: 0;">
-		<ul class="nav nav-tabs">
+		<ul class="nav nav-tabs homepage_ads">
 			<li>{{trans('product.advertise_product')}}&nbsp;&frasl;</li>
 			<li>Products : <span class="number-display"><?php echo count($productAdvs)?></span></li>
 		</ul>
