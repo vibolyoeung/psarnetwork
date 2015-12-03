@@ -387,7 +387,7 @@ $(document).ready(function(){
         {
             var id = $(this).val();
             var cName = $('option:selected', this).text();
-            if(id == {{Config::get('constants.CLIENT_TYPE_ID.INDIVIDUAL')}} || id == {{Config::get('constants.CLIENT_TYPE_ID.HOMESHOP')}}) {
+            if(id != {{Config::get('constants.CLIENT_TYPE_ID.SUPERMARKET')}}) {
                 $('#marketType').hide();
                 $('.ghide').show();
                 //$('#Location').hide();
@@ -397,7 +397,7 @@ $(document).ready(function(){
                 $('#mapWrapper').html('');
                 $('.ghide').hide();
                 if(id) {
-                   if(id != {{Config::get('constants.CLIENT_TYPE_ID.INDIVIDUAL')}} || id != {{Config::get('constants.CLIENT_TYPE_ID.HOMESHOP')}}) {
+                   if(id == {{Config::get('constants.CLIENT_TYPE_ID.SUPERMARKET')}}) {
                         $('#loadingmarketType').show();
                         $('#marketTypes').hide();
                         $.ajax
