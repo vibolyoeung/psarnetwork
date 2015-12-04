@@ -168,8 +168,13 @@ class FePageController extends BaseController {
  				1
  		);
 
+ 		$displayNumber = Request::get('displayNumber');
+
  		$childCategories = $this->mod_category->getAllChildCategories($parent_id);
- 		$productByCategory = $this->mod_product->findPostProductByCategory(array($category_id));
+ 		$productByCategory = $this->mod_product->findPostProductByCategory(
+			array($category_id),
+			$displayNumber
+		);
  		$category = $this->mod_category->getMainCategories($parent_id);
  		$mainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($parent_id);
 
@@ -177,9 +182,8 @@ class FePageController extends BaseController {
  		if($this->mod_category->countCategory($category_id) > 0 ){
  			$category = $this->mod_category->getMainCategories($category_id);
  			$mainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($parent_id);
- 			$productByCategory = $this->mod_product->findPostProductByCategory($childCategories);
+ 			$productByCategory = $this->mod_product->findPostProductByCategory($childCategories, $displayNumber);
  		}
- 		//var_dump($productByCategory);die;
 		return View::make('frontend.modules.detail.index')
 				->with('Provinces', $this->mod_setting->listProvinces())
 				->with('advHorizontalTopLarges', $advHorizontalTopLarge->result)

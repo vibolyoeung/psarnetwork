@@ -632,11 +632,12 @@ class Product extends Eloquent {
 	 * findPostProductByCategory
 	 *
 	 * @param int $category
-	 *        	id
+	 * @param int $displayNumber
+	 *
 	 * @return products by category
 	 * @access public
 	 */
-	public function findPostProductByCategory($category_id) {
+	public function findPostProductByCategory($category_id, $displayNumber = null) {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		$product_in_category = Config::get ( 'constants.TABLE_NAME.PRODUCT_IN_CATEGORY' );
 		$store = Config::get ( 'constants.TABLE_NAME.STORE' );
@@ -645,6 +646,10 @@ class Product extends Eloquent {
 		$user = Config::get ( 'constants.TABLE_NAME.USER' );
 		$accountRole = Config::get ( 'constants.TABLE_NAME.ACCOUNT_ROLE' );
 		$clientType = Config::get ( 'constants.TABLE_NAME.CLIENT_TYPE' );
+
+		if ($displayNumber === null) {
+			$displayNumber = self::LIST_NUMBER;
+		}
 
 		return DB::table ( $product . ' AS p' )
 		->select (
@@ -681,7 +686,8 @@ class Product extends Eloquent {
 		->whereIn( 'pro.category_id',$category_id)
 		->where( 'p.publish_date','<=',date('Y-m-d'))
 		->groupby('pro.product_id')
-		->orderBy ( 'p.id', 'DESC' )->get ();
+		->orderBy ( 'p.id', 'DESC' )
+		->paginate($displayNumber);
 	}
 
 	/**

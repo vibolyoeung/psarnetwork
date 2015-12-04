@@ -66,7 +66,7 @@ class Advertisement extends Eloquent {
 			$response->result = 0;
 			$response->errorMsg = $e->getMessage ();
 		}
-		
+
 		return $response;
 	}
 
@@ -387,7 +387,7 @@ class Advertisement extends Eloquent {
 			->where('status', 1)
 			->where('adv_page_id', $type)
 			->where('adv_position_id', $position)
-			->orderBy('adv.id','desc')
+			->orderBy('adv.id','asc')
 			->take('limit', $limit)->get();
 			$response->result = $result;
 		} catch (\Exception $e) {
@@ -434,7 +434,7 @@ class Advertisement extends Eloquent {
 			$response->result = 0;
 			$response->errorMsg = $e->getMessage();
 		}
-		
+
 		return $response;
 	}
 }
