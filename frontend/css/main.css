@@ -3720,7 +3720,9 @@ center>h5>a{
 }
 
 /*=========Detail slile===*/
-.center-advertise a img {
-	margin-bottom: 15px;
+.center-advertise a img,
+.ads_side_bar a img {
+	margin-bottom: 5px;
+	margin-top: 5px;
 }
 
