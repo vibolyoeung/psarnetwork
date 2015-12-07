@@ -41,36 +41,39 @@
 							</tr>
 						</thead>
 						<tbody>
-                  		<?php $i=1;?>
-                  		@foreach($advertisements->data as $advertisement)
-                  			<tr>
-								<td>{{$i}}</td>
-								<td width="9%">{{HTML::image("upload/advertisement/thumb/".$advertisement->image,
-								$advertisement->title_en,array())}}</td>
-								<td>{{$advertisement->title_en}}</td>
-								<td>{{$advertisement->title_km}}</td>
-								<td>{{$advertisement->description_en}}</td>
-								<td>{{$advertisement->description_km}}</td>
-								<td>{{$advertisement->link_url}}</td>
-								<td>{{$advertisement->pageName}}</td>
-								<td>{{$advertisement->positionName}}</td>
-								<td align="center"><a
-									href='{{URL::to("admin/status-advertisement")}}/{{$advertisement->status}}/{{$advertisement->id}}'>
-										@if($advertisement->status == 1) <span class="icon-ok success"></span>
-										@else <span class="icon-remove danger"></span> @endif
+	                  		<?php $i=1;?>
+	                  		@foreach($advertisements->data as $advertisement)
+	                  			<tr>
+									<td>{{$i}}</td>
+									<td width="9%">{{HTML::image("upload/advertisement/thumb/".$advertisement->image,
+									$advertisement->title_en,array())}}</td>
+									<td>{{$advertisement->title_en}}</td>
+									<td>{{$advertisement->title_km}}</td>
+									<td>{{$advertisement->description_en}}</td>
+									<td>{{$advertisement->description_km}}</td>
+									<td>{{$advertisement->link_url}}</td>
+									<td>{{$advertisement->pageName}}</td>
+									<td>{{$advertisement->positionName}}</td>
+									<td align="center"><a
+										href='{{URL::to("admin/status-advertisement")}}/{{$advertisement->status}}/{{$advertisement->id}}'>
+											@if($advertisement->status == 1) <span class="icon-ok success"></span>
+											@else <span class="icon-remove danger"></span> @endif
 
-								</a></td>
-								<td align="center"><a title="Edit"
-									href="{{URL::to('admin/edit-advertisement')}}/{{$advertisement->id}}"><i
-										class="icon-edit primary"></i></a> <a title="Delete"
-									href="{{URL::to('admin/delete-advertisement')}}/{{$advertisement->id}}"
-									onclick="return confirm('Are you sure you want to delete this item?');"><i
-										class='icon-trash danger'></i></a></td>
-							</tr>
-                  			<?php $i++;?>
-                  		@endforeach
-                  </tbody>
+									</a></td>
+									<td align="center"><a title="Edit"
+										href="{{URL::to('admin/edit-advertisement')}}/{{$advertisement->id}}"><i
+											class="icon-edit primary"></i></a> <a title="Delete"
+										href="{{URL::to('admin/delete-advertisement')}}/{{$advertisement->id}}"
+										onclick="return confirm('Are you sure you want to delete this item?');"><i
+											class='icon-trash danger'></i></a></td>
+								</tr>
+	                  			<?php $i++;?>
+	                  		@endforeach
+	                  	</tbody>
 					</table>
+				</div>
+				<div id="pagination">
+					{{ $advertisements->data->appends(Input::except('page'))->links(); }}
 				</div>
 			</div>
 		</div>

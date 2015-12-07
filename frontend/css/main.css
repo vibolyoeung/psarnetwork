@@ -3719,7 +3719,10 @@ center>h5>a{
 	font-size:12px;
 }
 
-/*=========Detail slile===*/
+.ads_side_bar {
+	text-align: center;
+}
+
 .center-advertise a img,
 .ads_side_bar a img {
 	margin-bottom: 5px;
