@@ -1,3 +1,7 @@
+<div class="col-lg-12 center-advertise">
+	<!-- type:homepage, position: up on monthly product, limit -->
+	{{ App::make('FePageController')->getHorizontalAds(1, 15, 3) }}
+</div>
 <!-- =============End of Monthly -->
 <?php
 	$monthlyProducts = Product::findMonthlyProducts ();
@@ -13,7 +17,7 @@
 	<div id="second-hand-item-carousel" class="carousel slide"
 		data-ride="carousel">
 		<div class="carousel-inner">
-			
+
 			<?php
 			$monthlyPro = 1;
 			?>
@@ -26,7 +30,7 @@
 							<div class="productinfo text-center">
 								<a href="#" data-toggle="modal" data-target="#myModal"
 									onclick="popupDetails.add_popup_detail(<?php echo $monthlyProduct->id; ?>)">
-									<?php 
+									<?php
 									if($monthlyProduct->thumbnail){
 										echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$monthlyProduct->thumbnail.'?p=product&amp;h=90&amp;w=120" />';
 									}else{

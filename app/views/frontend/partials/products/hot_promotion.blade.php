@@ -1,7 +1,11 @@
+<div class="col-lg-12 center-advertise">
+	<!-- type:homepage, position: up on hot promotion, limit -->
+	{{ App::make('FePageController')->getHorizontalAds(1, 16, 3) }}
+</div>
 <?php
 $hotPromotionProducts = Product::findHotPromotionProducts ();
 ?>
-<?php 
+<?php
 if(count($hotPromotionProducts) > 0){
 ?>
 <ul class="nav nav-tabs hot_promotion" style="padding: 0;">
@@ -24,7 +28,7 @@ if(count($hotPromotionProducts) > 0){
 							<a href="#"
 								onclick="popupDetails.add_popup_detail(<?php echo $hotPromotionProduct->id; ?> )"
 								data-toggle="modal" data-target="#myModal">
-								<?php 
+								<?php
 									if($hotPromotionProduct->thumbnail){
 										echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$hotPromotionProduct->thumbnail.'?p=product&amp;h=90&amp;w=120" />';
 									}else{
@@ -62,7 +66,7 @@ if(count($hotPromotionProducts) > 0){
 		class="fa fa-angle-right"></i>
 	</a>
 </div>
-<?php 
+<?php
 }
 ?>
 <br />

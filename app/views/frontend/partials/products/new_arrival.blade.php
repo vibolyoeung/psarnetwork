@@ -1,3 +1,7 @@
+<div class="col-lg-12 center-advertise">
+	<!-- type:homepage, position: up on new product, limit -->
+	{{ App::make('FePageController')->getHorizontalAds(1, 11, 3) }}
+</div>
 <?php
 $newProducts = Product::findNewProducts ();
 if(count($newProducts) > 0){
@@ -23,7 +27,7 @@ if(count($newProducts) > 0){
 								<div class="productinfo text-center">
 									<a href="#" data-toggle="modal" data-target="#myModal"
 										onclick="popupDetails.add_popup_detail(<?php echo $newProduct->id; ?>)">
-										<?php 
+										<?php
 										if($newProduct->thumbnail){
 											echo '<img src="/image/phpthumb/'.$newProduct->thumbnail.'?p=product&amp;h=90&amp;w=120" />';
 										}else{
@@ -61,6 +65,6 @@ if(count($newProducts) > 0){
 		</a>
 	</div>
 </div>
-<?php 
+<?php
 }
 ?>

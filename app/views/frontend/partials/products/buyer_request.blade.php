@@ -22,7 +22,7 @@ if(count($buyerProducts) > 0){
 							<div class="productinfo text-center">
 								<a href="#" data-toggle="modal" data-target="#myModal"
 									onclick="popupDetails.add_popup_detail(<?php echo $buyerProduct->id; ?>)">
-									<?php 
+									<?php
 										if($buyerProduct->thumbnail){
 											echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$buyerProduct->thumbnail.'?p=product&amp;h=90&amp;w=120" />';
 										}else{
@@ -40,6 +40,8 @@ if(count($buyerProducts) > 0){
 			</div>
 		</div>
 	</div>
-<?php 
+	<!-- type:homepage, position: up on buyer request, limit -->
+	{{ App::make('FePageController')->getHorizontalAds(1, 3, 3) }}
+<?php
 }
 ?>

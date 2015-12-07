@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `adv_page_position_mm` (
   `id` int(11) NOT NULL,
   `adv_page_id` int(11) NOT NULL,
   `adv_position_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `adv_page_position_mm`
@@ -78,12 +78,16 @@ INSERT INTO `adv_page_position_mm` (`id`, `adv_page_id`, `adv_position_id`) VALU
 (1, 1, 1),
 (2, 1, 2),
 (3, 1, 3),
-(4, 1, 4),
 (5, 1, 5),
 (6, 1, 6),
 (8, 1, 8),
 (9, 1, 9),
 (10, 1, 10),
+(11, 1, 14),
+(12, 1, 16),
+(13, 1, 17),
+(41, 1, 15),
+(42, 1, 11),
 (15, 2, 6),
 (16, 2, 7),
 (20, 3, 6),
@@ -117,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `adv_position` (
   `id` int(11) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `adv_page_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `adv_position`
@@ -125,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `adv_position` (
 
 INSERT INTO `adv_position` (`id`, `name`, `adv_page_id`) VALUES
 (1, 'Slide Show', NULL),
-(2, 'Most Top', NULL),
+(2, 'Special Box', NULL),
 (3, 'Most Buttom', NULL),
 (4, 'Conceptial Blog', NULL),
 (5, 'Upon Product Ads', NULL),
@@ -133,10 +137,14 @@ INSERT INTO `adv_position` (`id`, `name`, `adv_page_id`) VALUES
 (7, 'Right Side Panel', NULL),
 (8, 'Upon Enterprise Product', NULL),
 (9, 'Middle View', NULL),
-(10, 'Upon Buyer Rquest Blog', NULL),
+(10, 'Upon Buyer Request Blog', NULL),
 (11, 'Upon New Blog', NULL),
 (12, 'Upon Enterprise Store', NULL),
-(13, 'Upon Related Product', NULL);
+(13, 'Upon Related Product', NULL),
+(14, 'Most Top', NULL),
+(15, 'Upon Monthly Pay Blog', NULL),
+(16, 'Upon Hot Promotion Blog', NULL),
+(17, 'Upon Second Hand Blog', NULL);
 
 -- --------------------------------------------------------
 
