@@ -132,7 +132,7 @@ class Product extends Eloquent {
 	 *        	the parent id
 	 * @param string $spacing:The
 	 *        	space for indent child
-	 * @param array $treeArray:
+	 * @param array $treeArray:de
 	 *        	the array tree for category
 	 * @return array
 	 * @access public
@@ -622,7 +622,8 @@ class Product extends Eloquent {
 		$setting = Store::getSetting(self::LATEST_PRODUCT_SETTING);
 		$user = Config::get ( 'constants.TABLE_NAME.USER' );
 
-		return DB::table ( $product . ' AS p' )->select ( 'p.*' )->join ( 'user AS u', 'p.user_id', '=', 'u.id' )
+		return DB::table ( $product . ' AS p' )->select ( 'p.*')
+		->join ( 'user AS u', 'p.user_id', '=', 'u.id' )
 		->where ( 'u.account_type', '=', self::PREMINUM )
 		->where( 'p.publish_date','<=',date('Y-m-d'))
 		->orderBy ( 'p.id', 'DESC' )->take ( $setting )->get ();
