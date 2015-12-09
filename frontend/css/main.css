@@ -3719,10 +3719,12 @@ center>h5>a{
 	font-size:12px;
 }
 
-.ads_side_bar {
+.ads_side_bar,
+.center-advertise {
 	text-align: center;
 }
 
+.center-advertise img,
 .center-advertise a img,
 .ads_side_bar a img {
 	margin-bottom: 5px;
@@ -3733,4 +3735,8 @@ center>h5>a{
 }
 #slider-thumbs>.carousel{
 	border:1px solid #ddd;
+}
+.navbar-default .center-advertise img,
+.navbar-default .center-advertise a img {
+	margin-bottom: 15px;
 }
