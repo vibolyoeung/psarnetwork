@@ -9,6 +9,7 @@ Categories
     <li class="active">Data</li>
 </ol>
 @endsection
+@include('frontend.partials.menu', array('page' => 'category'))
 @section('content')
 @include('frontend.partials.categories.left')
 	<div class="col-lg-10">
@@ -149,6 +150,8 @@ Categories
 			</div>
 		</div>
 	</div>
+	<!-- type:category, position: most buttom , limit -->
+	{{ App::make('FePageController')->getHorizontalAds(2, 3, 3) }}
 	<br />
 @include('frontend.partials.products.popup_details')
 @endsection

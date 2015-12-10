@@ -5,6 +5,7 @@
 	<li class="active">Supper Market</li>
 </ol>
 @endsection @section('content')
+@include('frontend.partials.menu', array('page' => 'detial'))
 <!-- Put true is detials page for get advertisement for left side -->
 {{ App::make('FePageController')->mainCategory(true) }}
 <div class="col-lg-10">
@@ -268,6 +269,8 @@
 			}}
 			<br />
 		</div><!--============End detail container hre=====-->
+		<!-- type:detial, position: most buttom, limit -->
+		{{ App::make('FePageController')->getHorizontalAds(3, 3, 3) }}
 	</div>
 	<div class="col-lg-2 pull-right right-ad-detail">
 		@include('frontend.partials.details.right')

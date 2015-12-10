@@ -2,8 +2,14 @@
 <div class="container-fluid header-bottom hide_responsive" style="padding:0 9px 8px 12px;">
 
 	<nav class="navbar navbar-default menu_header_default" role="navigation">
-		<!-- type:homepage, position: most top, limit -->
-		{{ App::make('FePageController')->getHorizontalAds(1, 14, 3) }}
+		<!-- type:, position: most top, limit -->
+		@if ($page == 'detial')
+			{{ App::make('FePageController')->getHorizontalAds(3, 14, 3) }}
+		@elseif ($page == 'category')
+			{{ App::make('FePageController')->getHorizontalAds(2, 14, 3) }}
+		@else
+			{{ App::make('FePageController')->getHorizontalAds(1, 14, 3) }}
+		@endif
 
 		<div class="col-lg-10 col-xs-12 pull-right">
 			<!-- Brand and toggle get grouped for better mobile display -->
