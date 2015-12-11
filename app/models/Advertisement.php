@@ -401,16 +401,13 @@ class Advertisement extends Eloquent {
 	/*
 	 * Get product advertisement for home page
 	 *
-	 * @param integer $page
-	 *
 	 * @return stdClass
 	 */
-	public function getProductAdvertisement($page) {
+	public function getProductAdvertisement() {
 		$response = new stdClass();
 		try {
 			$result = DB::table(Config::get('constants.TABLE_NAME.ADVERTISEMENT').' AS adv')
 			->where('status', 1)
-			->where('adv_page_id', $page)
 			->where('type', self::PRODUCT_ADV)
 			->where('end_date','>=',date("Y-m-d"))
 			->orderBy('adv.id','desc')
