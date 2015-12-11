@@ -56,7 +56,7 @@ class FePageController extends BaseController {
 				1
 			);
 
-		$productAdvs = $this->mod_advertisment->getProductAdvertisement(self::HOMEPAGE);
+		$productAdvs = $this->mod_advertisment->getProductAdvertisement();
 		return View::make('frontend.partials.home')
 			->with('slideshows', $listSlideshows->result)
 			->with('advVerticalRightSmalls', $advVerticalRightSmall->result)
