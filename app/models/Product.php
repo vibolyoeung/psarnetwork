@@ -258,7 +258,7 @@ class Product extends Eloquent {
 	 */
 	public function renewProduct($product_id) {
 		$data = array (
-			'top_up' => date( 'Y-m-d H:i:s' )
+			'publish_date' => date( 'Y-m-d H:i:s' )
 		);
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		return DB::table ( $product . ' AS p' )->where ( 'p.id', '=', $product_id )->update ( $data );

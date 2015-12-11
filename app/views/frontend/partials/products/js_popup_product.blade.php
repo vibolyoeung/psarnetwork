@@ -36,47 +36,6 @@
 	                          </a>  
 							<!-- Carousel nav -->
 						</div>
-						 
-						<div class="row col-lg-12">
-							<div class="row hidden-xs" id="slider-thumbs">
-								<!-- thumb -->
-									@if (!empty($images))
-									<div id="similar-product" class="carousel slide">
-									  <!-- Wrapper for slides -->
-									    <div class="carousel-inner" style="height: 100px">
-									    	<?php 
-										    	$num = 0;
-										    	$to=0;
-									    	?>
-									    	<div class="item <?php echo $num==0?' active':'';?>">
-										    	@foreach($images as $small)
-										    	<?php
-										    		$thumb = $small['pic'];
-										    	?>
-												  <a href="javascript:;" data-target="#DetailPopupCarousel" data-slide-to="{{$to}}">{{HTML::image("image/phpthumb/$thumb?p=product&amp;h=80&amp;w=110")}}</a>
-												<?php
-												if ($num == 3 || $num == 7) {
-													echo '</div><div class="item">';
-												}
-												$to++;
-												$num++;
-												?>
-												@endforeach
-											</div>
-										</div>
-
-										  <!-- Controls -->
-										  <a class="left item-control" href="#similar-product" data-slide="prev">
-											<i class="fa fa-angle-left"></i>
-										  </a>
-										  <a class="right item-control" href="#similar-product" data-slide="next">
-											<i class="fa fa-angle-right"></i>
-										  </a>
-									</div>
-									@endif
-								</div>
-							<!-- end thumb -->
-						</div>
 					</div>
 					<div class="col-sm-4" id="carousel-text" style="padding:0;">
                         <div class="col-lg-12 text-centered" style="border:1px solid #dddddd;background-color:#dddddd;padding:5px 10px;font-weight:bold;text-align:center;"> Summary Detail</div>

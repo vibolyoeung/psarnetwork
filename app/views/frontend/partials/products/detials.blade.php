@@ -102,36 +102,35 @@
 									@if (!empty($productdetails))
 									<div id="similar-product" class="carousel slide">
 									  <!-- Wrapper for slides -->
-									    <div class="carousel-inner" style="height: 100px">
+									    <div class="carousel-inner">
 										    	<?php
 											    	$num = 1;
 											    	$to=0;
 										    	?>
 										    	@foreach($images as $small)
-										    	<?php
-											    	if($num==1) {
-											    		$classA='active';
-											    	} else {
-											    		$classA='';
-											    	}
-													if ($num % 3 == 1) {
-					                                    echo '<div class="item '.$classA.'">';
-					                                }
-										    		$thumb = $small['pic'];
-										    	?>
-												  <a href="javascript:;" data-target="#DetailCarousel" data-slide-to="{{$to}}">{{HTML::image("image/phpthumb/$thumb?p=product&amp;h=90&amp;w=120")}}</a>
-												<?php
-												if ($num % 3 == 0) {
-													echo "</div>";
-												}
-												$to++;
-												$num++;
-												?>
-												@endforeach
-												<?php
-												if ($num % 3 != 1) {
-													echo "</div>";
-												}?>
+												    	<?php
+												    	if($num==1) {
+												    		$classA='active';
+												    	} else {
+												    		$classA='';
+												    	}
+														if ($num % 4 == 1) {
+						                                    echo '<div class="item '.$classA.'">';
+						                                }
+												    	$thumb = $small['pic']?>
+														  <a href="javascript:;" data-target="#DetailCarousel" data-slide-to="{{$to}}">{{HTML::image("image/phpthumb/$thumb?p=product&amp;h=94&amp;w=114")}}</a>
+														<?php
+														if ($num % 4 == 0) {
+															echo "</div>";
+														}
+														$to++;
+														$num++;
+														?>
+														@endforeach
+														<?php
+														if ($num % 4 != 1) {
+															echo "</div>";
+														}?>
 										</div>
 
 										  <!-- Controls -->

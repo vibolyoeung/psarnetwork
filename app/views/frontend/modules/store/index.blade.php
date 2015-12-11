@@ -37,7 +37,7 @@ function rm($article, $char) {
     @endif
         <div class="features_items">
             <ul class="nav nav-tabs">
-                <li><strong>The latest products</strong> &nbsp;&nbsp;&nbsp; &frasl;</li>
+                <li><strong>{{trans('product.latest_product')}}</strong> &nbsp;&nbsp;&nbsp; &frasl;</li>
                 <li>Products : <span class="number-display">{{($dataProduct)?count($dataProduct):''}}</span></li>
             </ul>
         </div>
@@ -45,33 +45,33 @@ function rm($article, $char) {
         <div class="col-lg-12" style="padding: 0;">
             @if(!empty($dataProduct))
                 <?php
-                                                                // var_dump($dataProduct);
-                                                                $i = 1;
-                                                                ?>
+                // var_dump($dataProduct);
+                $i = 1;
+                ?>
                 @foreach($dataProduct as $product)
                 @if ($i % 4 == 1)
                     <div class="row">
                 @endif
-                <div class="col-sm-3">
+
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
-                                <a
-                                    href="{{$userHome}}/my/detail/{{$product->id}}">
-                                    @if($product->thumbnail)
-                                    {{HTML::image("image/phpthumb/$product->thumbnail?p=product&amp;h=150&amp;w=150",$product->title,array('class'
-                        => 'img-rounded','width'=>'150'))}}
-                                    @else
-                                    {{HTML::image("image/phpthumb/No_image_available.jpg?p=1&amp;h=150&amp;w=150",$product->title,array('class'
-                        => 'img-rounded','width'=>'150'))}}
-                        @endif
+                                <a href="{{$userHome}}/my/detail/{{$product->id}}">
+                                    <?php
+                                    if($product->thumbnail){
+                                        echo '<img src="image/phpthumb/'.$product->thumbnail.'?p=product&amp;h=100&amp;w=135" />';
+                                    }else{
+                                        echo '<img src="image/phpthumb/No_image_available.jpg?p=product&amp;h=100&amp;w=135" />';
+                                    }
+                                    ?>
                                 </a>
-                                <?php $readmore = @rm ( $product->title, 30 );?>
-                                <h2>{{$readmore}}</h2>
-                                <p>{{$product->price}} $</p>
-                                <a
-                                    href="{{$userHome}}/my/detail/{{$product->id}}">View
-                                    Details</a>
+                                <center>
+                                    <h5>
+                                        <a href="{{$userHome}}/my/detail/{{$product->id}}"><?php echo str_limit($product->title,$limit = 10, $end = '...')?></a>
+                                    </h5>
+                                    <strong class="price" style='color:red;'>$ {{$product->price}}</strong>
+                                </center>
                             </div>
                         </div>
                     </div>
