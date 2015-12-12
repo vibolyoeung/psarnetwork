@@ -6,7 +6,7 @@
 			$newPro = 1;
 			?>
 			<div class="item active">
-			<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
+				<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 				@foreach($related_post as $relatedPost)
 					<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 						<div class="product-image-wrapper">

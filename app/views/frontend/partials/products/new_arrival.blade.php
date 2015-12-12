@@ -48,8 +48,8 @@ if(count($newProducts) > 0){
 						</div>
 					</div>
 				<?php
-				if ($newPro >= 6 && $newPro % 6 == 0) {
-					echo '</div><div class="item">';
+				if($newPro == 6 && count($newProducts)>6|| $newPro == 12 && count($newProducts)>12|| $newPro ==18 && count($newProducts)>18|| $newPro == 24 && count($newProducts)>24){
+					echo '</div><div class="item"> ';
 				}
 				$newPro ++;
 				?>

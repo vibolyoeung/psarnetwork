@@ -14,10 +14,9 @@
 	</ul>
 	<div id="second-carousel" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
+			<div class="item active">
 			<div id="detail_product"
 				data-get-detail-product-url="{{Config::get('app.url')}}"></div>
-			<div class="item active">
-
 			<?php
 			$secondPro = 1;
 			?>
@@ -49,7 +48,7 @@
 					</div>
 				</div>
 				<?php
-				if ($secondPro >= 6&& $secondPro % 6 == 0) {
+				if($secondPro == 6 && count($secondHandProducts)>6|| $secondPro == 12 && count($secondHandProducts)>12|| $secondPro ==18 && count($secondHandProducts)>18|| $secondPro == 24 && count($secondHandProducts)>24){
 					echo '</div><div class="item"> ';
 				}
 				$secondPro ++;
