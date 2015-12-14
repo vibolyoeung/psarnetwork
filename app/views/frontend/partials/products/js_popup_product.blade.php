@@ -57,7 +57,7 @@
 				                                    echo '<div class="item '.$classA.'">';
 				                                }
 										    	$thumb = $small['pic']?>
-												  <a href="javascript:;" data-target="#DetailPopupCarousel" data-slide-to="{{$to}}">{{HTML::image("image/phpthumb/$thumb?p=product&amp;h=90&amp;w=110")}}</a>
+												  <a href="javascript:;" data-target="#DetailPopupCarousel" data-slide-to="{{$to}}">{{HTML::image("image/phpthumb/$thumb?p=product&amp;h=90&amp;w=90")}}</a>
 												<?php
 												if ($num % 4 == 0) {
 													echo "</div>";
