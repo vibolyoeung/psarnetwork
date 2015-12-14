@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	jQuery('.datepicker' ).datepicker({ 
+	jQuery('.datepicker' ).datepicker({
 		dateFormat: "yy-mm-dd",
 		changeMonth: true,
     	changeYear: true,
@@ -8,19 +8,19 @@ $(document).ready(function() {
         todayHighlight: true,
 	});
 	$(".datepicker").datepicker("setDate", new Date());
-	
+
 	// call list advertisement pages
 	var advType = $('[name="advertiseType"]').prop("checked", true).val();
 	listAdvPage(advType);
 	hideAndShowCategory(advType);
-	
+
 	$('#proCategory').hide();
 	$('[name="advertiseType"]').click(function() {
 		var id = $(this).prop("checked", true).val();
 		listAdvPage(id);
 		hideAndShowCategory(id);
 	});
-	
+
 	// call list position
 	$advPageId = $('#ads-page').val();
 	if(!$advPageId) {
@@ -39,17 +39,17 @@ $(document).ready(function() {
 			listAllPositions(id);
 		}
 	});
-	
+
 	$('#provinces').change(function(){
 		var id = $(this).val();
 		listAllDistrictsByProvinceId(id);
 	});
-	
+
 	// show search by name is checked
 	if($('input:radio[name="membership"]:checked').val() == '1') {
 		$('#search_by_name').show();
 	}
-	
+
 	$('input:radio[name="membership"]').on('change', function(){
 		if ($(this).is(':checked') && $(this).val() == '1') {
 			$('#search_by_name').show();
@@ -62,17 +62,17 @@ $(document).ready(function() {
 			clearUserInfo();
 		}
 	});
-	
+
 	$('#search_by_name').on('blur', function getUserName() {
 		var username = $(this).val();
 		getClientByName(username);
 	});
-	
+
 	$('#incharger').on('blur', function getUserName() {
 		var username = $(this).val();
 		getAdminUserByName(username);
 	});
-	
+
 	messageDropdown();
 	alertDropdown();
 	dashboardCollapse();
@@ -85,8 +85,12 @@ $(document).ready(function() {
 function hideAndShowCategory(id) {
 	if (1 == id) {
 		$('#proCategory').hide();
+		$('#ads-position').parent().show();
+		$('#ads-page').parent().show();
 	} else {
-		$('#proCategory').show();
+		// $('#proCategory').show();
+		$('#ads-position').parent().hide();
+		$('#ads-page').parent().hide();
 	}
 }
 
@@ -225,7 +229,7 @@ function dashboardCollapse(){
 		$('#personal_page_register').slideToggle();
 		$('#new_product_post,#business_page_register,#product_ads,#point_to,#banners_ads').slideUp();
 	});
-	
+
 	$('#product_ads_title').click(function(){
 		$('#product_ads').slideToggle();
 		$('#business_page_register,#personal_page_register,#new_product_post,#point_to,#banners_ads').slideUp();
@@ -238,7 +242,7 @@ function dashboardCollapse(){
 		$('#point_to').slideToggle();
 		$('#new_product_post,#personal_page_register,#product_ads,#new_product_post,#banners_ads').slideUp();
 	});
-	
+
 }
 
 function AccessPermissionSelectAll() {
@@ -248,7 +252,7 @@ function AccessPermissionSelectAll() {
 	$('#accessdeselectall').click(function(){
 		$(".permission_access").prop("checked", false);
 	});
-	
+
 }
 
 function ModifyPermissionSelectAll() {
@@ -269,7 +273,7 @@ function getPointToPageValue() {
 		});
 
 		var stringPagesId = arrayPageIds.join(',');
-				
+
 		setValuePointToPageValue(stringPagesId);
 	});
 }

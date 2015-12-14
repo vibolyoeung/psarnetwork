@@ -6,11 +6,12 @@
 	<li class="active">Data</li>
 </ol>
 @endsection
+@include('frontend.partials.menu', array('page' => 'home'))
 @section('content')
 {{ App::make('FePageController')->mainCategory() }}
 <div class="col-lg-10">@include('frontend.partials.slider')</div>
 <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 pull-right">
-	
+
 	<!--/category-tab-->
 	<div class="category-tab feature-ad lastest-post  product_wrapper">
 		<!--recommended_items-->

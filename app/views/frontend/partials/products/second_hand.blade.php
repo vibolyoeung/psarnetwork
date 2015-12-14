@@ -1,3 +1,7 @@
+<div class="col-lg-12 center-advertise">
+	<!-- type:homepage, position: up on second hand, limit -->
+	{{ App::make('FePageController')->getHorizontalAds(1, 17, 3) }}
+</div>
 <?php
 	$secondHandProducts = Product::findSecondHandProducts ();
 	if(count($secondHandProducts) > 0){
@@ -10,10 +14,9 @@
 	</ul>
 	<div id="second-carousel" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
+			<div class="item active">
 			<div id="detail_product"
 				data-get-detail-product-url="{{Config::get('app.url')}}"></div>
-			<div class="item active">
-				
 			<?php
 			$secondPro = 1;
 			?>
@@ -26,7 +29,7 @@
 								<a href="#"
 									onclick="popupDetails.add_popup_detail(<?php echo $secondHandProduct->id; ?>)"
 									data-toggle="modal" data-target="#myModal">
-									<?php 
+									<?php
 										if($secondHandProduct->thumbnail){
 											echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$secondHandProduct->thumbnail.'?p=product&amp;h=90&amp;w=120" />';
 										}else{
@@ -45,7 +48,7 @@
 					</div>
 				</div>
 				<?php
-				if ($secondPro >= 6&& $secondPro % 6 == 0) {
+				if($secondPro == 6 && count($secondHandProducts)>6|| $secondPro == 12 && count($secondHandProducts)>12|| $secondPro ==18 && count($secondHandProducts)>18|| $secondPro == 24 && count($secondHandProducts)>24){
 					echo '</div><div class="item"> ';
 				}
 				$secondPro ++;
@@ -59,6 +62,6 @@
 			data-slide="next"> <i class="fa fa-angle-right"></i>
 		</a>
 	</div>
-<?php 
+<?php
 	}
 ?>

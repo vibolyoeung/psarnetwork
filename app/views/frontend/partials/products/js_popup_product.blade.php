@@ -16,72 +16,78 @@
 							<!-- Carousel items -->
 							<div class="carousel-inner detail-popup">
 								<?php 
-								$thumbnail_id = 1;
+								$thumbnail_id = 0;
 								?>
 								@foreach($images as $image)
 								<div class="item<?php echo $thumbnail_id == 1?' active':'';?>"
 									data-slide-number="<?php echo $thumbnail_id; ?>">
 									<?php 
-										echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=250&amp;w=550" />';
+									echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=250&amp;w=550" />';
 									?>
 								</div>
-									<?php $thumbnail_id++; ?>
+								<?php $thumbnail_id++; ?>
 								@endforeach 
 							</div>
 							<a class="left carousel-control" href="#DetailPopupCarousel" role="button" data-slide="prev">
-	                        	<span class="glyphicon glyphicon-chevron-left"></span>                                       
-	                          </a>
-	                          <a class="right carousel-control" href="#DetailPopupCarousel" role="button" data-slide="next">
-	                            <span class="glyphicon glyphicon-chevron-right"></span>                                       
-	                          </a>  
+								<span class="glyphicon glyphicon-chevron-left"></span>                                       
+							</a>
+							<a class="right carousel-control" href="#DetailPopupCarousel" role="button" data-slide="next">
+								<span class="glyphicon glyphicon-chevron-right"></span>                                       
+							</a> 
 							<!-- Carousel nav -->
 						</div>
-						 
-						<div class="row col-lg-12">
-							<div class="row hidden-xs" id="slider-thumbs">
-								<!-- thumb -->
-									@if (!empty($images))
-									<div id="similar-product" class="carousel slide">
-									  <!-- Wrapper for slides -->
-									    <div class="carousel-inner" style="height: 100px">
-									    	<?php 
-										    	$num = 0;
-										    	$to=0;
-									    	?>
-									    	<div class="item <?php echo $num==0?' active':'';?>">
-										    	@foreach($images as $small)
+						<div class="row hidden-xs" id="slider-thumbs">
+						<!-- thumb -->
+							@if (!empty($productDetail))
+							<div id="similar-product" class="carousel slide">
+							  <!-- Wrapper for slides -->
+							    <div class="carousel-inner">
+								    	<?php
+									    	$num = 1;
+									    	$to=0;
+								    	?>
+								    	@foreach($images as $small)
 										    	<?php
-										    		$thumb = $small['pic'];
-										    	?>
-												  <a href="javascript:;" data-target="#DetailPopupCarousel" data-slide-to="{{$to}}">{{HTML::image("image/phpthumb/$thumb?p=product&amp;h=80&amp;w=110")}}</a>
+										    	if($num==1) {
+										    		$classA='active';
+										    	} else {
+										    		$classA='';
+										    	}
+												if ($num % 4 == 1) {
+				                                    echo '<div class="item '.$classA.'">';
+				                                }
+										    	$thumb = $small['pic']?>
+												  <a href="javascript:;" data-target="#DetailPopupCarousel" data-slide-to="{{$to}}">{{HTML::image("image/phpthumb/$thumb?p=product&amp;h=90&amp;w=110")}}</a>
 												<?php
-												if ($num == 3 || $num == 7) {
-													echo '</div><div class="item">';
+												if ($num % 4 == 0) {
+													echo "</div>";
 												}
 												$to++;
 												$num++;
 												?>
 												@endforeach
-											</div>
-										</div>
-
-										  <!-- Controls -->
-										  <a class="left item-control" href="#similar-product" data-slide="prev">
-											<i class="fa fa-angle-left"></i>
-										  </a>
-										  <a class="right item-control" href="#similar-product" data-slide="next">
-											<i class="fa fa-angle-right"></i>
-										  </a>
-									</div>
-									@endif
+												<?php
+												if ($num % 4 != 1) {
+													echo "</div>";
+												}?>
 								</div>
-							<!-- end thumb -->
+
+								  <!-- Controls -->
+								  <a class="left item-control" href="#similar-product" data-slide="prev">
+									<i class="fa fa-angle-left"></i>
+								  </a>
+								  <a class="right item-control" href="#similar-product" data-slide="next">
+									<i class="fa fa-angle-right"></i>
+								  </a>
+							</div>
+							@endif
 						</div>
+					<!-- end thumb -->
 					</div>
 					<div class="col-sm-4" id="carousel-text" style="padding:0;">
                         <div class="col-lg-12 text-centered" style="border:1px solid #dddddd;background-color:#dddddd;padding:5px 10px;font-weight:bold;text-align:center;"> Summary Detail</div>
 						<hr>
-                        <h4>Price : <span class="price">{{ $productDetail->price }} $</span></h4>
+                        <h4>Price ss : <span class="price">{{ $productDetail->price }} $</span></h4>
                         <strong>Condition :&nbsp;<span class="pro-condition">{{$productDetail->{'pcon_name_'.Session::get('lang')};}}</span></strong><br />
                         <strong>Post Date :&nbsp;<span class="pro-condition"><?php echo date("d/M/Y",strtotime($productDetail->created_date)); ?> </span></strong>
 					    <div class="clear"></div> <div class="clear"></div>

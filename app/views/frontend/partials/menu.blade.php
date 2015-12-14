@@ -1,6 +1,18 @@
 <!--=============Menu==========-->
 <div class="container-fluid header-bottom hide_responsive" style="padding:0 9px 8px 12px;">
+
 	<nav class="navbar navbar-default menu_header_default" role="navigation">
+		<!-- type:, position: most top, limit -->
+		@if (! empty($page))
+			@if ($page == 'detial')
+				{{ App::make('FePageController')->getHorizontalAds(3, 14, 3) }}
+			@elseif ($page == 'category')
+				{{ App::make('FePageController')->getHorizontalAds(2, 14, 3) }}
+			@else
+				{{ App::make('FePageController')->getHorizontalAds(1, 14, 3) }}
+			@endif
+		@endif
+
 		<div class="col-lg-10 col-xs-12 pull-right">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -18,7 +30,7 @@
 					<li><a href="#"><img src="{{Config::get('app.url')}}frontend/images/icons/basket.png" alt="" title="" height="23"/></a></li>
 					@foreach($client_type as $client_type)
 						<li>
-							<a 
+							<a
 								href="{{Config::get('app.url')}}product/list/{{$client_type->id}}/0"
 							>
 								<?php echo $client_type->{'name_'.Session::get('lang')}; ?>
@@ -29,14 +41,14 @@
 				<ul class="nav navbar-nav menu_right_section pull-right">
 					<li style="border-left:1px solid #ddd;">
 						<a href="#">
-							<img 
-								src="{{Config::get('app.url')}}frontend/images/icons/money.png" height="23" 
+							<img
+								src="{{Config::get('app.url')}}frontend/images/icons/money.png" height="23"
 							/>
 						</a>
 					</li>
 					@foreach($pro_transfer_type as $pro_transfer_types)
 						<li>
-							<a 
+							<a
 								href="{{Config::get('app.url')}}product/transfter_type/{{$pro_transfer_types->ptt_id}}">
 								<?php echo $pro_transfer_types->{'name_'.Session::get('lang')};?>
 							</a>

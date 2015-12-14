@@ -1,5 +1,5 @@
 {{ App::make('FePageController')->getSearchTypeAndLocations() }}
-@include('frontend.partials.menu')
+
 <section>
 	<div class="container home_wrapper">
 		<div class="row">

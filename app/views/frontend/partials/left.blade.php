@@ -42,8 +42,13 @@
 		</div>
 		<!--=========Register seller============ -->
 		<div class="panel-group category-products ads_side_bar" id="accordian">
-			<!-- type:homepage, position: left meduim, limit -->
-			{{ App::make('FePageController')->getFeAds(1, 6, 3) }}
+			@if($isDetails)
+				<!-- type:homepage, position: left meduim, limit -->
+				{{ App::make('FePageController')->getFeAds(3, 6, 3) }}
+			@else
+				<!-- type:homepage, position: left meduim, limit -->
+				{{ App::make('FePageController')->getFeAds(1, 6, 3) }}
+			@endif
 		</div>
 	</div>
 </div>

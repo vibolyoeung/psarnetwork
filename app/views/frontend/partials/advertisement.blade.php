@@ -7,7 +7,7 @@ if (strtotime ( date ( "d-m-Y" ) ) <= strtotime ( $exp_date )) {
 	?>
 <a href="{{$adv->link_url}}"> <img
 	src="{{Config::get('app.url')}}/upload/advertisement/{{$adv->image;}}"
-	class="img-responsive" alt="" />
+	class="img-responsive img-thumbnail" alt="" />
 </a>
 <?php
 	$i ++;
@@ -21,7 +21,7 @@ if ($i === 0) {
 		<div class="single-products">
 			<div class="productinfo text-center">
 				<a href="#" > <img
-					class="img-responsive"
+					class="img-responsive img-thumbnail"
 					src="{{Config::get('app.url')}}/frontend/images/default_ad_sidebar.png"
 					alt="" />
 				</a>

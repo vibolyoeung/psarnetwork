@@ -75,11 +75,11 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 										<?php $imageSlide = @$picture['pic'];?>
 										@if(!empty($imageSlide))
 										<a class="slideshow-group" href="{{Config::get('app.url')}}image/phpthumb/{{$imageSlide}}?p=product"  title="{{$title}}" rel="slideshow-group">
-											{{HTML::image("image/phpthumb/$imageSlide?p=product&amp;h=350&amp;w=660",$title)}}
+											{{HTML::image("image/phpthumb/$imageSlide?p=product&amp;h=250&amp;w=550",$title)}}
 										</a>
 										@else
 										<a class="slideshow-group" href="{{Config::get('app.url')}}image/phpthumb/{{$imageSlide}}?p=product">
-											{{HTML::image("image/phpthumb/No_image_available.jpg?p=product&amp;h=350",$title)}}
+											{{HTML::image("image/phpthumb/No_image_available.jpg?p=product&amp;h=250&amp;w=550",$title)}}
 										</a>
 										@endif
 									</div>
@@ -104,21 +104,26 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 						<div id="similar-product" class="carousel slide">
 						  <!-- Wrapper for slides -->
 						    <div class="carousel-inner" style="height: 100px">
-						    	
-						    	@foreach($pictures as $small)
-						    	<?php
+						    	@if (!empty($dataProductDetail))
+								<?php
+								$num = 1;
+								$to = 0;
+								?>
+					    		@foreach($pictures as $picture)
+
+					    		<?php
 						    	if($num==1) {
 						    		$classA='active';
 						    	} else {
 						    		$classA='';
 						    	}
-								if ($num % 3 == 1) {
+								if ($num % 4 == 1) {
                                     echo '<div class="item '.$classA.'">';
                                 }
-						    	$thumb = $small['pic']?>
-								  <a href="javascript:;" data-target="#DetailCarousel" data-slide-to="{{$to}}">{{HTML::image("image/phpthumb/$thumb?p=product&amp;h=100&amp;w=145",$title)}}</a>
+						    	$thumb = $picture['pic']?>
+								  <a href="javascript:void(0);" data-target="#DetailCarousel" data-slide-to="{{$to}}">{{HTML::image("image/phpthumb/$thumb?p=product&amp;h=90&amp;w=100")}}</a>
 								<?php
-								if ($num % 3 == 0) {
+								if ($num % 4 == 0) {
 									echo "</div>";
 								}
 								$to++;
@@ -126,9 +131,10 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 								?>
 								@endforeach
 								<?php
-								if ($num % 3 != 1) {
+								if ($num % 4 != 1) {
 									echo "</div>";
 								}?>
+							@endif
 							</div>
 
 							  <!-- Controls -->
@@ -303,7 +309,7 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 						    	} else {
 						    		$classB='';
 						    	}
-								if ($numA % 3 == 1) {
+								if ($numA % 4 == 1) {
                                     echo '<div class="item '.$classB.'">';
                                 }
                                 $picturesR = @json_decode ( $related->pictures, true );
@@ -322,7 +328,7 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 					  </div>
 				  </div>
 				<?php
-				if ($numA % 3 == 0) {
+				if ($numA % 4 == 0) {
 					echo "</div>";
 				}
 				$numA++;
@@ -330,18 +336,12 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 
 				@endforeach
 				<?php
-				if ($numA % 3 != 1) {
+				if ($numA % 4 != 1) {
 					echo "</div>";
 				}
 				?>
 				</div>
 			</div>
-			 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-				<i class="fa fa-angle-left"></i>
-			  </a>
-			  <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-				<i class="fa fa-angle-right"></i>
-			  </a>
 		</div>
 	@endif
 	<!-- end recommended items -->

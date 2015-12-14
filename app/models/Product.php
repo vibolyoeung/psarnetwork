@@ -132,7 +132,7 @@ class Product extends Eloquent {
 	 *        	the parent id
 	 * @param string $spacing:The
 	 *        	space for indent child
-	 * @param array $treeArray:
+	 * @param array $treeArray:de
 	 *        	the array tree for category
 	 * @return array
 	 * @access public
@@ -258,7 +258,7 @@ class Product extends Eloquent {
 	 */
 	public function renewProduct($product_id) {
 		$data = array (
-			'top_up' => date( 'Y-m-d H:i:s' )
+			'publish_date' => date( 'Y-m-d H:i:s' )
 		);
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		return DB::table ( $product . ' AS p' )->where ( 'p.id', '=', $product_id )->update ( $data );
@@ -413,7 +413,11 @@ class Product extends Eloquent {
 	 */
 	public static function findHotPromotionProducts() {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
-		return DB::table ( $product . ' AS p' )->select ( '*' )->where ( 'p.pro_transfer_type_id', '=', self::HOT_PROMOTION_PRODUCT )->where ( 'p.is_publish', '=', self::IS_PUBLISH )->orderBy ( 'p.id', 'DESC' )->get ();
+		return DB::table ( $product . ' AS p' )->select ( '*' )
+		->where ( 'p.pro_transfer_type_id', '=', self::HOT_PROMOTION_PRODUCT )
+		->where ( 'p.is_publish', '=', self::IS_PUBLISH )
+		->where('p.publish_date','<=',date('Y-m-d'))
+		->orderBy ( 'p.publish_date', 'DESC' )->get ();
 	}
 
 	/**
@@ -428,8 +432,8 @@ class Product extends Eloquent {
 		return DB::table ( $product . ' AS p' )->select ( '*' )
 		->where ( 'p.pro_condition_id', '=', self::NEW_PRODUCT )
 		->where ( 'p.is_publish', '=', self::IS_PUBLISH )
-		->where('p.publish_date','<=',date('Y-m-d'))
-		->orderBy ( 'p.id', 'DESC' )->get ();
+		->where('p.publish_date','<=',date('Y-m-d H:i:s'))
+		->orderBy( 'p.publish_date', 'DESC' )->get ();
 	}
 
 	/**
@@ -441,7 +445,11 @@ class Product extends Eloquent {
 	 */
 	public static function findMonthlyProducts() {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
-		return DB::table ( $product . ' AS p' )->select ( '*' )->where ( 'p.pro_transfer_type_id', '=', self::MONTHLY_PRODUCT )->where ( 'p.is_publish', '=', self::IS_PUBLISH )->where ( 'p.publish_date', '<=', date ( "Y-m-d" ) )->orderBy ( 'p.id', 'DESC' )->get ();
+		return DB::table ( $product . ' AS p' )->select ( '*' )
+		->where ( 'p.pro_transfer_type_id', '=', self::MONTHLY_PRODUCT )
+		->where ( 'p.is_publish', '=', self::IS_PUBLISH )
+		->where('p.publish_date','<=',date('Y-m-d'))
+		->orderBy( 'p.publish_date', 'DESC' )->get ();
 	}
 
 	/**
@@ -459,7 +467,7 @@ class Product extends Eloquent {
 			->where ( 'p.pro_transfer_type_id', '=', self::BUYER_PRODUCT )
 			->where ( 'p.is_publish', '=', self::IS_PUBLISH )
 			->where ( 'p.publish_date', '<=', date ( "Y-m-d" ) )
-			->orderBy ( 'p.id', 'DESC' )
+			->orderBy ( 'p.publish_date', 'DESC' )
 			->take($setting)
 			->get ();
 	}
@@ -473,7 +481,11 @@ class Product extends Eloquent {
 	 */
 	public static function findSecondHandProducts() {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
-		return DB::table ( $product . ' AS p' )->select ( '*' )->where ( 'p.pro_condition_id', '=', self::SECOND_HAND_PRODUCT )->where ( 'p.is_publish', '=', self::IS_PUBLISH )->where ( 'p.publish_date', '<=', date ( "Y-m-d" ) )->orderBy ( 'p.id', 'DESC' )->get ();
+		return DB::table ( $product . ' AS p' )->select ( '*' )
+		->where ( 'p.pro_condition_id', '=', self::SECOND_HAND_PRODUCT )
+		->where ( 'p.is_publish', '=', self::IS_PUBLISH )
+		->where('p.publish_date','<=',date('Y-m-d'))
+		->orderBy( 'p.publish_date', 'DESC' )->get ();
 	}
 
 	/**
@@ -622,7 +634,8 @@ class Product extends Eloquent {
 		$setting = Store::getSetting(self::LATEST_PRODUCT_SETTING);
 		$user = Config::get ( 'constants.TABLE_NAME.USER' );
 
-		return DB::table ( $product . ' AS p' )->select ( 'p.*' )->join ( 'user AS u', 'p.user_id', '=', 'u.id' )
+		return DB::table ( $product . ' AS p' )->select ( 'p.*')
+		->join ( 'user AS u', 'p.user_id', '=', 'u.id' )
 		->where ( 'u.account_type', '=', self::PREMINUM )
 		->where( 'p.publish_date','<=',date('Y-m-d'))
 		->orderBy ( 'p.id', 'DESC' )->take ( $setting )->get ();
@@ -632,11 +645,12 @@ class Product extends Eloquent {
 	 * findPostProductByCategory
 	 *
 	 * @param int $category
-	 *        	id
+	 * @param int $displayNumber
+	 *
 	 * @return products by category
 	 * @access public
 	 */
-	public function findPostProductByCategory($category_id) {
+	public function findPostProductByCategory($category_id, $displayNumber = null) {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		$product_in_category = Config::get ( 'constants.TABLE_NAME.PRODUCT_IN_CATEGORY' );
 		$store = Config::get ( 'constants.TABLE_NAME.STORE' );
@@ -645,6 +659,10 @@ class Product extends Eloquent {
 		$user = Config::get ( 'constants.TABLE_NAME.USER' );
 		$accountRole = Config::get ( 'constants.TABLE_NAME.ACCOUNT_ROLE' );
 		$clientType = Config::get ( 'constants.TABLE_NAME.CLIENT_TYPE' );
+
+		if ($displayNumber === null) {
+			$displayNumber = self::LIST_NUMBER;
+		}
 
 		return DB::table ( $product . ' AS p' )
 		->select (
@@ -681,7 +699,8 @@ class Product extends Eloquent {
 		->whereIn( 'pro.category_id',$category_id)
 		->where( 'p.publish_date','<=',date('Y-m-d'))
 		->groupby('pro.product_id')
-		->orderBy ( 'p.id', 'DESC' )->get ();
+		->orderBy ( 'p.id', 'DESC' )
+		->paginate($displayNumber);
 	}
 
 	/**

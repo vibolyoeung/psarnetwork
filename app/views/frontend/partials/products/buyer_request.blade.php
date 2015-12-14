@@ -14,7 +14,6 @@ if(count($buyerProducts) > 0){
 	<div id="monthly-pay-item-carousel" class="carousel slide"
 		data-ride="carousel">
 		<div class="carousel-inner">
-			<div class="item active">
 			<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 				@foreach($buyerProducts as $buyerProduct)
 				<div class="col-sm-2">
@@ -23,7 +22,7 @@ if(count($buyerProducts) > 0){
 							<div class="productinfo text-center">
 								<a href="#" data-toggle="modal" data-target="#myModal"
 									onclick="popupDetails.add_popup_detail(<?php echo $buyerProduct->id; ?>)">
-									<?php 
+									<?php
 										if($buyerProduct->thumbnail){
 											echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$buyerProduct->thumbnail.'?p=product&amp;h=90&amp;w=120" />';
 										}else{
@@ -31,16 +30,18 @@ if(count($buyerProducts) > 0){
 										}
 									?>
 								</a>
-								<a href="{{Config::get('app.url')}}product/details/{{$buyerProduct->id}}"><?php echo substr($buyerProduct->title,0,20)?></a>
+								<a href="{{Config::get('app.url')}}product/details/{{$buyerProduct->id}}"><?php echo str_limit($buyerProduct->title,$limit = 15, $end = '...');?></a>
 								<h2>$ {{$buyerProduct->price}}</h2>
 							</div>
 						</div>
-					@endforeach
+					</div>
 				</div>
+				@endforeach
 			</div>
 		</div>
 	</div>
-</div>
-<?php 
+	<!-- type:homepage, position: up on buyer request, limit -->
+	{{ App::make('FePageController')->getHorizontalAds(1, 3, 3) }}
+<?php
 }
 ?>

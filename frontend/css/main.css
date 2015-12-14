@@ -16,7 +16,7 @@
 body,html{
 	position: relative;
 	height: 100%;
-	font-size: 14px;
+	font-size: 11px;
 	color:#333;
 	font-family:"Hanuman","Arial";
 	/*font-family:"Hanuman","Frutiger Neue W02 Book";*/
@@ -1529,7 +1529,7 @@ h2.title {
 }
 
 #similar-product {
-	margin-top: 40px;
+	margin-top: 10px;
 }
 
 #reviews {
@@ -3536,12 +3536,12 @@ ul.dropdown_main_menu{
 	position:absolute;
 	z-index:1;
 	float: left;
-	left: 220px;
+	left:99%;
 	padding:10px 18px;
 	min-height: 340px;
 	min-width: 500px;
-	margin:0;
-	top:7.5%;
+	margin:0; 
+	top:2.4%; 
 	display: none;
 }
 ul.categories_menu > li:hover ul.dropdown_main_menu{
@@ -3719,8 +3719,24 @@ center>h5>a{
 	font-size:12px;
 }
 
-/*=========Detail slile===*/
-.center-advertise a img {
-	margin-bottom: 15px;
+.ads_side_bar,
+.center-advertise {
+	text-align: center;
 }
 
+.center-advertise img,
+.center-advertise a img,
+.ads_side_bar a img {
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+#carousel-bounding-box #slider-thumbs{
+	padding: 2px 14px;
+}
+#slider-thumbs>.carousel{
+	border:1px solid #ddd;
+}
+.navbar-default .center-advertise img,
+.navbar-default .center-advertise a img {
+	margin-bottom: 15px;
+}

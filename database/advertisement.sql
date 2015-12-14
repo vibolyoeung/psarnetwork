@@ -53,8 +53,6 @@ INSERT INTO `adv_page` (`id`, `name`) VALUES
 (1, 'Homepage'),
 (2, 'Category Page'),
 (3, 'Page Detail'),
-(4, 'Market Place'),
-(5, 'Market Place Detail'),
 (6, 'Interprise Page'),
 (7, 'Free User page'),
 (8, 'Register'),
@@ -70,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `adv_page_position_mm` (
   `id` int(11) NOT NULL,
   `adv_page_id` int(11) NOT NULL,
   `adv_position_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `adv_page_position_mm`
@@ -80,17 +78,26 @@ INSERT INTO `adv_page_position_mm` (`id`, `adv_page_id`, `adv_position_id`) VALU
 (1, 1, 1),
 (2, 1, 2),
 (3, 1, 3),
-(4, 1, 4),
 (5, 1, 5),
 (6, 1, 6),
 (8, 1, 8),
 (9, 1, 9),
 (10, 1, 10),
+(11, 1, 14),
+(12, 1, 16),
+(13, 1, 17),
+(41, 1, 15),
+(42, 1, 11),
+(43, 1, 14),
 (15, 2, 6),
 (16, 2, 7),
-(20, 3, 2),
-(21, 3, 3),
+(44, 2, 14),
+(45, 2, 3),
+(20, 3, 6),
+(21, 3, 7),
 (23, 3, 13),
+(46, 3, 14),
+(47, 3, 3),
 (24, 4, 2),
 (25, 4, 3),
 (26, 4, 5),
@@ -102,10 +109,12 @@ INSERT INTO `adv_page_position_mm` (`id`, `adv_page_id`, `adv_position_id`) VALU
 (32, 5, 5),
 (33, 5, 6),
 (34, 5, 7),
-(35, 6, 4),
-(36, 7, 4),
-(37, 8, 4),
-(38, 9, 4);
+(35, 6, 6),
+(36, 6, 7),
+(37, 7, 6),
+(38, 7, 7),
+(39, 8, 4),
+(40, 9, 4);
 
 -- --------------------------------------------------------
 
@@ -117,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `adv_position` (
   `id` int(11) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `adv_page_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `adv_position`
@@ -125,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `adv_position` (
 
 INSERT INTO `adv_position` (`id`, `name`, `adv_page_id`) VALUES
 (1, 'Slide Show', NULL),
-(2, 'Most Top', NULL),
+(2, 'Special Box', NULL),
 (3, 'Most Buttom', NULL),
 (4, 'Conceptial Blog', NULL),
 (5, 'Upon Product Ads', NULL),
@@ -133,10 +142,14 @@ INSERT INTO `adv_position` (`id`, `name`, `adv_page_id`) VALUES
 (7, 'Right Side Panel', NULL),
 (8, 'Upon Enterprise Product', NULL),
 (9, 'Middle View', NULL),
-(10, 'Upon Buyer Rquest Blog', NULL),
+(10, 'Upon Buyer Request Blog', NULL),
 (11, 'Upon New Blog', NULL),
 (12, 'Upon Enterprise Store', NULL),
-(13, 'Upon Related Product', NULL);
+(13, 'Upon Related Product', NULL),
+(14, 'Most Top', NULL),
+(15, 'Upon Monthly Pay Blog', NULL),
+(16, 'Upon Hot Promotion Blog', NULL),
+(17, 'Upon Second Hand Blog', NULL);
 
 -- --------------------------------------------------------
 
@@ -182,13 +195,7 @@ INSERT INTO `cat_page_position_mm` (`id`, `adv_page_id`, `cat_adv_position_id`) 
 (6, 6, 1),
 (7, 7, 1),
 (8, 8, 1),
-(9, 9, 1),
-(10, 1, 2),
-(11, 3, 2),
-(12, 4, 2),
-(13, 5, 2),
-(14, 6, 2),
-(15, 7, 2);
+(9, 9, 1);
 
 -- --------------------------------------------------------
 

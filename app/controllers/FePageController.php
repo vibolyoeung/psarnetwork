@@ -56,7 +56,7 @@ class FePageController extends BaseController {
 				1
 			);
 
-		$productAdvs = $this->mod_advertisment->getProductAdvertisement(self::HOMEPAGE);
+		$productAdvs = $this->mod_advertisment->getProductAdvertisement();
 		return View::make('frontend.partials.home')
 			->with('slideshows', $listSlideshows->result)
 			->with('advVerticalRightSmalls', $advVerticalRightSmall->result)
@@ -108,9 +108,10 @@ class FePageController extends BaseController {
 			->with('advHorizontalTopLarges', $advHorizontalTopLarges->result);
 	}
 
-	public function mainCategory(){
+	public function mainCategory($isDetails = false){
 		$listCategories = self::getCategoriesHomePage();
 		return View::make('frontend.partials.left')
+			->with('isDetails', $isDetails)
 			->with('maincategories', $listCategories->result);
 	}
 
@@ -167,8 +168,13 @@ class FePageController extends BaseController {
  				1
  		);
 
+ 		$displayNumber = Request::get('displayNumber');
+
  		$childCategories = $this->mod_category->getAllChildCategories($parent_id);
- 		$productByCategory = $this->mod_product->findPostProductByCategory(array($category_id));
+ 		$productByCategory = $this->mod_product->findPostProductByCategory(
+			array($category_id),
+			$displayNumber
+		);
  		$category = $this->mod_category->getMainCategories($parent_id);
  		$mainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($parent_id);
 
@@ -176,9 +182,8 @@ class FePageController extends BaseController {
  		if($this->mod_category->countCategory($category_id) > 0 ){
  			$category = $this->mod_category->getMainCategories($category_id);
  			$mainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($parent_id);
- 			$productByCategory = $this->mod_product->findPostProductByCategory($childCategories);
+ 			$productByCategory = $this->mod_product->findPostProductByCategory($childCategories, $displayNumber);
  		}
- 		//var_dump($productByCategory);die;
 		return View::make('frontend.modules.detail.index')
 				->with('Provinces', $this->mod_setting->listProvinces())
 				->with('advHorizontalTopLarges', $advHorizontalTopLarge->result)
@@ -211,7 +216,7 @@ class FePageController extends BaseController {
 				1
 		);
 		$arrayClientTypeId = $this->mod_market->getAllChildClientType($parent_id);
-		$listproductInEachMarket = $this->mod_market->listproductofsupermarket($parent_id,$arrayClientTypeId);		
+		$listproductInEachMarket = $this->mod_market->listproductofsupermarket($parent_id,$arrayClientTypeId);
 		if($id){
 			$listproductInEachMarket = $this->mod_market->listproductofsupermarket($parent_id,array($id));
 		}
