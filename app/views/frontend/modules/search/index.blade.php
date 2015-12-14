@@ -9,7 +9,7 @@ Categories
     <li class="active">Data</li>
 </ol>
 @endsection
-@include('frontend.partials.menu'))
+@include('frontend.partials.menu')
 @section('content')
 {{ App::make('FePageController')->mainCategory() }}
 	<div class="col-lg-10" style="padding-right:%;">

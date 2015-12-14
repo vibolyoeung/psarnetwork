@@ -3,7 +3,7 @@
 
 	<nav class="navbar navbar-default menu_header_default" role="navigation">
 		<!-- type:, position: most top, limit -->
-		@if (! empty($page ))
+		@if (! empty($page))
 			@if ($page == 'detial')
 				{{ App::make('FePageController')->getHorizontalAds(3, 14, 3) }}
 			@elseif ($page == 'category')
