@@ -31,7 +31,10 @@ return array (
 		'CLIENT_USER' => 4,
 		'CLIENT_TYPE_ID' => array (
 				'INDIVIDUAL' => 1,
-				'HOMESHOP' => 2 
+				'HOMESHOP' => 2,
+				'PRIVATE_COMPANY' => 3,
+				'TRADITIONAL_MARKET' => 4,
+				'SUPERMARKET' => 5,
 		),
 		'DIR_IMAGE' => array (
 				'ALLOW_FILE' => 'mimes:jpeg,png,bmp,gif|image',

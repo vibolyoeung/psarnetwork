@@ -3,12 +3,14 @@
 
 	<nav class="navbar navbar-default menu_header_default" role="navigation">
 		<!-- type:, position: most top, limit -->
-		@if ($page == 'detial')
-			{{ App::make('FePageController')->getHorizontalAds(3, 14, 3) }}
-		@elseif ($page == 'category')
-			{{ App::make('FePageController')->getHorizontalAds(2, 14, 3) }}
-		@else
-			{{ App::make('FePageController')->getHorizontalAds(1, 14, 3) }}
+		@if (! empty($page))
+			@if ($page == 'detial')
+				{{ App::make('FePageController')->getHorizontalAds(3, 14, 3) }}
+			@elseif ($page == 'category')
+				{{ App::make('FePageController')->getHorizontalAds(2, 14, 3) }}
+			@else
+				{{ App::make('FePageController')->getHorizontalAds(1, 14, 3) }}
+			@endif
 		@endif
 
 		<div class="col-lg-10 col-xs-12 pull-right">
