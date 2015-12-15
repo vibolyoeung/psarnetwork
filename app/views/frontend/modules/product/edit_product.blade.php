@@ -127,6 +127,10 @@
                                         role="tab" 
                                         onclick="is_active_tab('product-info')" 
                                         data-toggle="tab">Next</a>
+                                    <a
+                                        style="margin-right: 10px;background:#333" 
+                                        class="btn btn-primary pull-right" 
+                                        href="{{URL::to('products/list')}}">{{trans('product.btn_back')}}</a>
                                 </div>
                             </div>
                       		</div>
@@ -278,6 +282,10 @@
                                         role="tab" 
                                         onclick="is_active_tab('picture')" 
                                         data-toggle="tab">Next</a>
+                                    <a
+                                        style="margin-right: 10px;background:#333" 
+                                        class="btn btn-primary pull-right" 
+                                        href="{{URL::to('products/list')}}">{{trans('product.btn_back')}}</a>
                                 </div>
                             </div>
                             </div>
@@ -386,6 +394,10 @@
                                                             aria-controls="quotation" 
                                                             onclick="is_active_tab('quotation')"
                                                             role="tab" data-toggle="tab">Next</a>
+                                                        <a
+                                        style="margin-right: 10px;background:#333" 
+                                        class="btn btn-primary pull-right" 
+                                        href="{{URL::to('products/list')}}">{{trans('product.btn_back')}}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -420,6 +432,10 @@
                                                 aria-controls="contactInfo"
                                                 onclick="is_active_tab('contactInfo')" 
                                                 role="tab" data-toggle="tab">Next</a>
+                                            <a
+                                        style="margin-right: 10px;background:#333" 
+                                        class="btn btn-primary pull-right" 
+                                        href="{{URL::to('products/list')}}">{{trans('product.btn_back')}}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -519,6 +535,10 @@
                                         }}
                                     </div>
                                     <div class="form-group">
+                                        <a
+                                        style="margin-right: 10px;background:#333" 
+                                        class="btn btn-primary" 
+                                        href="{{URL::to('products/list')}}">{{trans('product.btn_back')}}</a>
                                         {{ 
                                             Form::submit(
                                                 trans('product.save_product_ads'), 
@@ -528,6 +548,7 @@
                                                 )
                                             )
                                         }}
+                                        
                                     </div>
                                 </div>
                             </div>

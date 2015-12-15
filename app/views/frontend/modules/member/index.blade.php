@@ -23,7 +23,6 @@
         </div>
     <!-- call login register page -->
 		{{ App::make('FeMemberController')->getResgisterAndLoginAdv() }}
-		</div>
 		<div class="clear">
 		</div>
         <div class="row r-user-type">

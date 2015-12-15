@@ -1,6 +1,6 @@
-@extends('frontend.layout') 
-@section('title') 
-Categories 
+@extends('frontend.layout')
+@section('title')
+Categories
 @endsection
 @section('breadcrumb')
 <ol class="breadcrumb">
@@ -9,6 +9,7 @@ Categories
     <li class="active">Data</li>
 </ol>
 @endsection
+@include('frontend.partials.menu')
 @section('content')
 @include('frontend.partials.left-supermarket')
 	<div class="col-lg-10" style="">
@@ -31,7 +32,7 @@ Categories
 										<div class="productinfo text-center">
 											<a href="#" data-toggle="modal" data-target="#myModal"
 												onclick="popupDetails.add_popup_detail(<?php echo $product->id; ?>)">
-												<?php 
+												<?php
 												if($product->thumbnail){
 													echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$product->thumbnail.'?p=product&amp;h=130&amp;w=170" />';
 												}else{
@@ -47,7 +48,7 @@ Categories
 											<h5>
 												<div class="price">$ {{$product->price}}</div>
 											</h5>
-											<?php 
+											<?php
 												$contactInfo = json_decode($product->contact_info);
 											?>
 											<p class="product_teaser">
@@ -69,7 +70,7 @@ Categories
 											<div class="col-lg-3" style="padding-left:0;">
 												<a href="#" data-toggle="modal" data-target="#myModal"
 													onclick="popupDetails.add_popup_detail(<?php echo $product->id; ?>)">
-													<?php 
+													<?php
 													if($product->thumbnail){
 														echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$product->thumbnail.'?p=product&amp;h=125&amp;w=170" />';
 													}else{
@@ -104,7 +105,7 @@ Categories
 												<div class="col-lg-12" style="border:1px solid #f7f7f5;text-align:center;">
 													<h5>
 														<a href="#">
-															<?php 
+															<?php
 																$storename = $product->{'title_en'};
 															?>
 															{{str_limit($storename,$limit = 20, $end = '...')}}
@@ -122,7 +123,7 @@ Categories
 														<div class="col-lg-5 pull-left">
 															<?php
 																if($product->image){
-																	echo '<img src="'.Config::get('app.url').'upload/store/'.$product->image.'" width="110" style="border:1px solid #f7f7f5;" />';	
+																	echo '<img src="'.Config::get('app.url').'upload/store/'.$product->image.'" width="110" style="border:1px solid #f7f7f5;" />';
 																}else{
 																	echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=90&amp;" />';
 																}
@@ -136,7 +137,7 @@ Categories
 								</div>
 							</div>
 						@endforeach
-					<?php 
+					<?php
 						}else{
 							echo '<p><center style="color:red;">Product not found!</center></p>';
 						}

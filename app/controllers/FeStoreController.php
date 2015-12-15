@@ -74,7 +74,8 @@ class FeStoreController extends BaseController {
 			$getBanner = $this->mod_store->getStoreBanner ( $dataStore->id );
 			$dataUserPage = $this->mod_category->menuUserPage ( $dataStore->user_id, 2, $getUserUrl );
 			$whereProduct = array (
-					'user_id' => $dataStore->user_id 
+					'user_id' => $dataStore->user_id,
+					'pro_status' => 1
 			);
 			
 			/* slideshow */

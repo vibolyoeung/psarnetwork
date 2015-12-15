@@ -47,4 +47,7 @@ return array(
     'secondhand_product' => 'Secondhand Products',
     'monthly_pay_product' => 'Monthly Pay Products',
     'buyer_request_product' => 'Buyer Request Products',
+
+    /*add product*/
+    'btn_back' => 'Back',
 );
