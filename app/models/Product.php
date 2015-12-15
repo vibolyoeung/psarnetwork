@@ -744,7 +744,8 @@ class Product extends Eloquent {
 			$where = $where;
 		} else {
 			$where = array (
-					'user_id' => Session::get ( 'currentUserId' )
+					'user_id' => Session::get ( 'currentUserId' ),
+					'pro_status' => 1
 			);
 		}
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
