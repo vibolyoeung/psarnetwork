@@ -130,6 +130,7 @@ class FeStoreController extends BaseController {
 	public function getProductbyCategory() {
 		return View::make ( 'frontend.modules.detail.index' )->with ( 'Provinces', $this->mod_setting->listProvinces () );
 	}
+
 	public function myDetail($store, $product_id) {
 		$getUlr = preg_match ( '/store-/', $store );
 		if ($getUlr) {
@@ -185,7 +186,7 @@ class FeStoreController extends BaseController {
 		$this->getTracking($dataStore->id);
 		/*end get counter visitor*/
 		
-		
+		$getBanner = $this->mod_store->getStoreBanner ( $dataStore->id );
 		/*related product*/
 		$relatedProductCategory = $this->mod_category->getRelatedCategoriesProduct($product_id, $dataStore->user_id);
 		$cateArr = array();
@@ -203,6 +204,7 @@ class FeStoreController extends BaseController {
 		->with ( 'dataUserPage', $dataUserPage )
 		->with ( 'dataCategory', $dataCategory )
 		->with ( 'toolView', $getToolPage->result )
+		->with ( 'banner', $getBanner )
 		->with ( 'widtget', $getWidget->result )
 		->with ( 'dataProductDetail', $dataDetailProduct )
 		->with ( 'relatedProduct', $relatedProduct );
@@ -249,6 +251,7 @@ class FeStoreController extends BaseController {
 			$dataProduct = $this->mod_product->findProductByCategory ( $dataStore->id, $catArr );
 
 			$dataUserPage = $this->mod_category->menuUserPage ( $dataStore->user_id, 2, $getUserUrl );
+			$getBanner = $this->mod_store->getStoreBanner ( $dataStore->id );
 			/* end get user cateory and sub */
 			$whereArr = array (
 					'position' => 100,
@@ -258,7 +261,13 @@ class FeStoreController extends BaseController {
 			$this->getTracking($dataStore->id);
 			/*end get counter visitor*/
 			$getToolPage = $this->mod_page->getUserPages ( null, $whereArr );
-			return View::make ( 'frontend.modules.store.search' )->with ( 'dataStore', $dataStore )->with ( 'dataUserPage', $dataUserPage )->with ( 'dataCategory', $dataCategory )->with ( 'toolView', $getToolPage->result )->with ( 'dataProduct', $dataProduct );
+			return View::make ( 'frontend.modules.store.search' )
+			->with ( 'dataStore', $dataStore )
+			->with ( 'dataUserPage', $dataUserPage )
+			->with ( 'dataCategory', $dataCategory )
+			->with ( 'banner', $getBanner )
+			->with ( 'toolView', $getToolPage->result )
+			->with ( 'dataProduct', $dataProduct );
 		}
 	}
 	public function getUserPage($store, $page_id) {

@@ -36,10 +36,7 @@ function rm($article, $char) {
 			<div class="category-tab lastest-post">
 				<div class="col-sm-12">
 					<ul class="nav nav-tabs">
-						<li><strong>The latest products</strong>  &nbsp;&nbsp;&nbsp; &frasl;</li>
-						<li>Products : <span class="number-display">25</span></li>
-						<li>Stores :<span class="number-display">25</span></li>
-						<li>Market :<span class="number-display">25</span></li>
+						<li>Product Found : <span class="number-display"><?php echo count($dataProduct);?></span></li>
 					</ul>
 				</div>
 			</div>
@@ -48,35 +45,37 @@ function rm($article, $char) {
             @if(count($dataProduct)>0)
                 <?php $i=1;?>
                 @foreach($dataProduct as $product)
-                @if ($i % 4 == 1)
+
+                	@if ($i % 4 == 1)
                     <div class="row">
-                @endif
-     			<div class="col-sm-3">
-    				<div class="product-image-wrapper">
-    					<div class="single-products">
-    						<div class="productinfo text-center">
-    							<a href="{{$userHome}}/my/detail/{{$product->id}}">
-                                    @if($product->thumbnail)
-									{{HTML::image("image/phpthumb/$product->thumbnail?p=product&amp;h=150&amp;w=150",$product->title,array('class'
-						=> 'img-rounded','width'=>'150'))}}
-									@else 
-									{{HTML::image("image/phpthumb/No_image_available.jpg?p=1&amp;h=150&amp;w=150",$product->title,array('class'
-						=> 'img-rounded','width'=>'150'))}}
-						@endif
-    							</a>
-    							<?php $readmore = @rm ( $product->title, 30 );?>
-    							<h2>{{$readmore}}</h2>
-    							<p>{{$product->price}} $</p>
-    							<a href="{{$userHome}}/my/detail/{{$product->id}}">View Details</a>
-    						</div>
-    						<img src="{{Config::get('app.url')}}/frontend/images/home/sale.png" class="new" alt="" />
-    					</div>
-    				</div>
-    			</div>
-                @if ($i % 4 == 0)
+                    @endif
+     		         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class=" text-center page-product-list">
+                                    <a href="{{$userHome}}/my/detail/{{$product->id}}">
+                                        <?php
+                                        if($product->thumbnail){
+                                            echo '<img src="/image/phpthumb/'.$product->thumbnail.'?p=product&amp;h=120&amp;w=160" />';
+                                        }else{
+                                            echo '<img src="/image/phpthumb/No_image_available.jpg?p=product&amp;h=120&amp;w=160" />';
+                                        }
+                                        ?>
+                                    </a>
+                                    <center>
+                                        <h5>
+                                            <a href="{{$userHome}}/my/detail/{{$product->id}}"><?php echo str_limit($product->title,$limit = 10, $end = '...')?></a>
+                                        </h5>
+                                        <strong class="price" style='color:red;'>$ {{$product->price}}</strong>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                @endif
-                <?php $i++;?>             
+                    @if ($i % 4 == 0)
+                        </div>
+                    @endif
+                    <?php $i++;?>           
                 @endforeach
                 @if ($i % 4 != 1)
                     </div>
@@ -90,31 +89,63 @@ function rm($article, $char) {
 	</div>
     {{$dataProduct->links()}}
 @endsection
+
 @section('left')
-	@if (! empty ( $toolView ))
-		@foreach ( $toolView as $tool )
-			@if($tool->type == 'tool_memeber_status' && $tool->status == 1)
-				@include('frontend.modules.store.partials.slidebar.memeber_status')
-			@endif
-		@endforeach
-	@endif
+<?php
+	if (!empty($toolView )){
+		foreach ($toolView as $tool ){
+			if($tool->type == 'tool_memeber_status' && $tool->status == 1){
+				include('frontend.modules.store.partials.slidebar.memeber_status');
+			}
+		}
+	}
+?>
+	@if(!empty($banner)) 
+		@foreach($banner as $ban) 
+			@if($ban->ban_position == 'ls') 
+				@if($ban->ban_enddate >= $currentDate)
+    				<a class="banner-link" href="{{@$ban->ban_link}}" target="_blank"><img
+        				src="{{Config::get('app.url')}}upload/user-banner/{{$ban->ban_image}}"
+        				style="width: 100%;" />
+        			</a>
+    			@endif
+            @endif
+        @endforeach
+    @endif
+    <!-- In case interprice user -->
+    @if($currentUserType == 2)
+        {{ App::make('FePageController')->getFeAds(6, 6, 3) }}
+    @else
+        {{ App::make('FePageController')->getFeAds(7, 6, 3) }}
+    @endif
 @endsection
+
 @section('right')
+    @include('frontend.modules.store.partials.slidebar.fb_like')
+    <?php $memberTool = array ();?>
+    @if (! empty ( $toolView ))
+        @foreach ( $toolView as $tool )
+            @if($tool->type == 'tool_visitor_info' && $tool->status == 1)
+            @include('frontend.modules.store.partials.slidebar.tool_visitor')
+            @endif
+        @endforeach
+    @endif
 
-@if (! empty ( $toolView ))
-	@foreach ( $toolView as $tool )
-		@if($tool->type == 'tool_visitor_info' && $tool->status == 1)
-		@include('frontend.modules.store.partials.slidebar.tool_visitor')
-		@endif
-	@endforeach
-@endif
-
-
-@if(!empty($banner))
-    @foreach($banner as $ban)
-        @if($ban->ban_position == 'rs')
-            @if($ban->ban_enddate >= $currentDate)
-<a class="banner-link" href="{{@$ban->ban_link}}" target="_blank"><img
-	src="{{Config::get('app.url')}}upload/user-banner/{{$ban->ban_image}}"
-	style="width: 100%;" /></a>
-@endif @endif @endforeach @endif @endsection
+    @if(!empty($banner))
+        @foreach($banner as $ban)
+            @if($ban->ban_position == 'rs')
+                @if($ban->ban_enddate >= $currentDate)
+                <a class="banner-link" href="{{@$ban->ban_link}}" target="_blank"><img
+                    src="{{Config::get('app.url')}}upload/user-banner/{{$ban->ban_image}}"
+                    style="width: 100%;" /></a>
+                @endif
+            @endif
+        @endforeach
+    @endif
+    <!-- In case interprice user -->
+    @if($currentUserType == 2)
+        {{ App::make('FePageController')->getFeAds(6, 7, 3) }}
+    @else
+        {{ App::make('FePageController')->getFeAds(7, 7, 3) }}
+    @endif
+@endsection

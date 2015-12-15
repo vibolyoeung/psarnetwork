@@ -299,7 +299,6 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 		    	@foreach($relatedProduct as $related)
 		    	<?php
 		    		$proIdRelated = $related->id;
-						    	//$titleR = $related->{'title_' . Session::get ( 'lang' )};
 						    	$titleR = $related->title;
 						    	if (empty ( $titleR )) {
 						    		$titleR = $related->title;
@@ -314,19 +313,19 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
                                 }
                                 $picturesR = @json_decode ( $related->pictures, true );
 						    	$thumbB = @$picturesR[0]['pic']?>
-				  <div class="col-sm-4">
-					  <div class="product-image-wrapper">
-					  	<div class="single-products">
-					  		<div class="productinfo text-center">
-					  		<a href="javascript:;" data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail({{$proIdRelated}})">
-							  {{HTML::image("image/phpthumb/$thumbB?p=product&amp;h=120&amp;w=145",$titleR)}}
-							  </a>
-							  <h2>${{$related->price}}</h2>
-							  <p><a href="{{Config::get('app.url')}}product/details/{{$proIdRelated}}" style="color:#000">{{$titleR}}</a></p>
-					  		</div>
-					  	</div>
-					  </div>
-				  </div>
+							  <div class="col-lg-3 col-sm-4 col-xs-4 hidden-md hidden-xs hidden-sm">
+								  <div class="product-image-wrapper">
+								  	<div class="single-products">
+								  		<div class="productinfo text-center page-product-list">
+									  		<a href="{{$userHome}}/my/detail/{{$related->id}}">
+											  {{HTML::image("image/phpthumb/$thumbB?p=product&amp;h=120&amp;w=145",$titleR)}}
+											</a>
+											<h2>${{$related->price}}</h2>
+											<p><a href="{{Config::get('app.url')}}product/details/{{$proIdRelated}}"><?php echo str_limit($titleR,$limit = 10, $end = '...')?></a></p>
+								  		</div>
+								  	</div>
+								  </div>
+							  </div>
 				<?php
 				if ($numA % 4 == 0) {
 					echo "</div>";
@@ -346,49 +345,63 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 	@endif
 	<!-- end recommended items -->
     </div>
-@endsection @section('left') @if (! empty ( $toolView )) @foreach (
-$toolView as $tool ) @if($tool->type == 'tool_memeber_status' &&
-$tool->status == 1)
-@include('frontend.modules.store.partials.slidebar.memeber_status')
-@endif @endforeach @endif @endsection @section('right') @if (! empty (
-$toolView )) @foreach ( $toolView as $tool ) @if($tool->type ==
-'tool_visitor_info' && $tool->status == 1)
-@include('frontend.modules.store.partials.slidebar.tool_visitor') @endif
-@endforeach @endif @if(!empty($banner)) @foreach($banner as $ban)
-@if($ban->ban_position == 'rs') @if($ban->ban_enddate >= $currentDate)
-<a class="banner-link" href="{{@$ban->ban_link}}" target="_blank"><img
-	src="{{Config::get('app.url')}}upload/user-banner/{{$ban->ban_image}}"
-	style="width: 100%;" /></a>
-@endif @endif @endforeach @endif
+@endsection
+@section('left')
+<?php
+	if (!empty($toolView )){
+		foreach ($toolView as $tool ){
+			if($tool->type == 'tool_memeber_status' && $tool->status == 1){
+				include('frontend.modules.store.partials.slidebar.memeber_status');
+			}
+		}
+	}
+?>
+	@if(!empty($banner)) 
+		@foreach($banner as $ban) 
+			@if($ban->ban_position == 'ls') 
+				@if($ban->ban_enddate >= $currentDate)
+    				<a class="banner-link" href="{{@$ban->ban_link}}" target="_blank"><img
+        				src="{{Config::get('app.url')}}upload/user-banner/{{$ban->ban_image}}"
+        				style="width: 100%;" />
+        			</a>
+    			@endif
+            @endif
+        @endforeach
+    @endif
+    <!-- In case interprice user -->
+    @if($currentUserType == 2)
+        {{ App::make('FePageController')->getFeAds(6, 6, 3) }}
+    @else
+        {{ App::make('FePageController')->getFeAds(7, 6, 3) }}
+    @endif
+@endsection
 
-{{HTML::script('frontend/js/product_detail_print.js')}}
-{{HTML::script('frontend/js/jquery.colorbox-min.js')}}
-{{HTML::script('frontend/js/popupdetails.js')}}
-{{HTML::style('frontend/css/colorbox.css')}}
-<script>
-	jQuery(document).ready(function(){
-		jQuery(".slideshow-group").colorbox({rel:'slideshow-group', transition:"none", maxWidth:"95%", maxHeight:"95%"});
+@section('right')
+    @include('frontend.modules.store.partials.slidebar.fb_like')
+    <?php $memberTool = array ();?>
+    @if (! empty ( $toolView ))
+        @foreach ( $toolView as $tool )
+            @if($tool->type == 'tool_visitor_info' && $tool->status == 1)
+            @include('frontend.modules.store.partials.slidebar.tool_visitor')
+            @endif
+        @endforeach
+    @endif
 
-		$('#similar-product').on('slide.bs.carousel', function () {
-			  //console.log(1111);
-			})
-	});
-</script>
-
-<div class="modal fade" id="myModal" tabindex="-1"
-	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">
-					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-				</button>
-			</div>
-			<div class="modal-body modal_container">
-				<div class="col-lg-12" id="details_view"></div>
-			</div>
-		</div>
-	</div>
-</div>
-
+    @if(!empty($banner))
+        @foreach($banner as $ban)
+            @if($ban->ban_position == 'rs')
+                @if($ban->ban_enddate >= $currentDate)
+                <a class="banner-link" href="{{@$ban->ban_link}}" target="_blank"><img
+                    src="{{Config::get('app.url')}}upload/user-banner/{{$ban->ban_image}}"
+                    style="width: 100%;" /></a>
+                @endif
+            @endif
+        @endforeach
+    @endif
+    <!-- In case interprice user -->
+    @if($currentUserType == 2)
+        {{ App::make('FePageController')->getFeAds(6, 7, 3) }}
+    @else
+        {{ App::make('FePageController')->getFeAds(7, 7, 3) }}
+    @endif
 @endsection

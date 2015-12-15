@@ -10,7 +10,7 @@
 {{ App::make('FePageController')->mainCategory(true) }}
 <div class="col-lg-10">
 	<!-- ============Relative post=============== -->
-	<div class="col-lg-10" style="padding-top:10px;background-color:fcfcfc;">
+	<div class="col-lg-10" style="padding-top:10px;background-color:#fcfcfc;">
 		<?php
 		$images = json_decode($productdetails->pictures,true);
 		?>
@@ -118,7 +118,7 @@
 						                                    echo '<div class="item '.$classA.'">';
 						                                }
 												    	$thumb = $small['pic']?>
-														  <a href="javascript:;" data-target="#DetailCarousel" data-slide-to="{{$to}}">{{HTML::image("image/phpthumb/$thumb?p=product&amp;h=94&amp;w=114")}}</a>
+														  <a href="javascript:;" data-target="#DetailCarousel" data-slide-to="{{$to}}">{{HTML::image("image/phpthumb/$thumb?p=product&amp;h=90&amp;w=100")}}</a>
 														<?php
 														if ($num % 4 == 0) {
 															echo "</div>";

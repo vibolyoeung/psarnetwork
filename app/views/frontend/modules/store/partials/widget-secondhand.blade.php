@@ -25,7 +25,7 @@ $PayMonthly = $thisProduct->listAllProductsByOwnStore($whereSecondHand);
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                     <div class="product-image-wrapper">
                         <div class="single-products">
-                            <div class="productinfo text-center">
+                            <div class="productinfo text-center page-product-list">
                                 <a href="{{$userHome}}/my/detail/{{$productSecondHand->id}}">
                                     <?php
                                     if($productSecondHand->thumbnail){

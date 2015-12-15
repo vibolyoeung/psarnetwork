@@ -725,10 +725,10 @@ class Product extends Eloquent {
 		$query->groupBy($product.'.id');
 		$query->orderBy ( 'id', 'DESC' );
 		if(!empty($product_id)) {
-			$query->take ( 10 );
+			$query->take (4);
 			$product = $query->get ();
 		} else {
-			$product = $query->paginate ( 10 );
+			$product = $query->paginate (4);
 		}
 		return $product;
 	}
