@@ -11,7 +11,6 @@ Categories
 @endsection
 @include('frontend.partials.menu')
 @section('content')
-<div class="clear"></div><div class="clear"></div><div class="clear"></div>
 {{ App::make('FePageController')->mainCategory() }}
 	<div class="col-lg-10" style="padding-right:%;">
 		<div class="col-lg-2 pull-right" style="padding:0;">
