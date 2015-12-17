@@ -807,3 +807,19 @@ cursor:pointer;
 border:none !important;
 outline:none;
 }
+#DetailCarousel{
+	border: 1px solid #dddddd;
+    background-color: #ffff;
+    height: 320px;
+    z-index: 2;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.slideshow-group img{
+	margin:0 auto;
+	float: none;
+	display: block;
+}
+.navbar-nav li a{font-size:12px;}

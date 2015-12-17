@@ -17,62 +17,62 @@
 						@if(Session::get('currentUserId'))
 							<li>
 								<a href="{{URL::to('products/create')}}">
-									Add New Products
+									{{trans('member.add_new_product')}}
 								</a>
 							</li>
 							<li>
 								<a href="{{URL::to('products/list')}}">
-									Product Management
+									{{trans('member.product_management')}}
 								</a>
 							</li>
                             @if(Session::get('currentUserAccountType') == 2)
 								<li>
-									<a href="{{URL::to('member/userinfo/menu')}}">Enterprise Tool</a>
+									<a href="{{URL::to('member/userinfo/menu')}}">{{trans('member.enterprise_tool')}}</a>
 								</li>
                             @endif
 						<li>
-							<a href="{{URL::to('member/userinfo/infomation')}}">Setting</a>
+							<a href="{{URL::to('member/userinfo/infomation')}}">{{trans('member.setting')}}</a>
 						</li>
 						<li role="presentation" class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-							My Account <span class="caret"></span>
+							{{trans('member.myaccount')}}<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu" role="menu">
 								<li>
-									<a href="{{URL::to('member/userinfo/infomation')}}">View Profile info</a>
+									<a href="{{URL::to('member/userinfo/infomation')}}">{{trans('member.view_profile_info')}}/a>
 								</li>
 								<li>
-									<a href="{{URL::to('member/userinfo/summary')}}">Your Status</a>
+									<a href="{{URL::to('member/userinfo/summary')}}">{{trans('member.your_status')}}</a>
 								</li>
 								<li>
-									<a href="{{URL::to('member/userinfo/infomation?pw=1#password')}}">Chage Password</a>
+									<a href="{{URL::to('member/userinfo/infomation?pw=1#password')}}">{{trans('member.change_password')}}</a>
 								</li>
 								<li>
-									<a href="{{URL::to('member/logout')}}"><i class="glyphicon glyphicon-off"></i> Log out</a>
+									<a href="{{URL::to('member/logout')}}"><i class="glyphicon glyphicon-off"></i>{{trans('member.log_out')}}</a>
 								</li>
 							</ul>
 						</li>
 						@else
 						<li>
-							<a href="#">Contact us</a>
+							<a href="#">{{trans('member.contact_us')}}</a>
 						</li>
 						<li>
-							<a href="#">About us</a>
+							<a href="#">{{trans('member.about_us')}}	</a>
 						</li>
 						<li>
-							<a href="#">User Agreement</a>
+							<a href="#">{{trans('member.user_agreement')}}</a>
 						</li>
 						<li>
-							<a href="#">Policy</a>
+							<a href="#">{{trans('member.policy')}}</a>
 						</li>
 						<li>
-							<a href="#">Usage</a>
+							<a href="#">{{trans('member.usage')}}</a>
 						</li>
 						<li>
-							<a href="{{Config::get('app.url')}}/member/login">Sign in / </a>
+							<a href="{{Config::get('app.url')}}/member/login">{{trans('member.sign_in')}}/ </a>
 						</li>
 						<li>
-							<a href="{{Config::get('app.url')}}/member/register">Free Register</a>
+							<a href="{{Config::get('app.url')}}/member/register">{{trans('member.free_register')}}</a>
 						</li>
 						@endif
 					</ul>

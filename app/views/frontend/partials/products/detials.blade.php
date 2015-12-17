@@ -73,7 +73,13 @@
 										$thumbnail_id = 0;
 										?>
 										@foreach($images as $image)
-										<div class="item"
+										<?php
+										$classB='';
+										if($thumbnail_id==0) {
+								    		$classB='active';
+								    	}
+										?>
+										<div class="item <?php echo $classB; ?>"
 											data-slide-number="<?= $thumbnail_id; ?>">
 											<a class="slideshow-group" href="{{Config::get('app.url')}}upload/product/{{$image['pic']}}" rel="slideshow-group">
 												<?php
@@ -118,7 +124,7 @@
 						                                    echo '<div class="item '.$classA.'">';
 						                                }
 												    	$thumb = $small['pic']?>
-														  <a href="javascript:;" data-target="#DetailCarousel" data-slide-to="{{$to}}">{{HTML::image("image/phpthumb/$thumb?p=product&amp;h=90&amp;w=100")}}</a>
+														  <a href="javascript:;" data-target="#DetailCarousel" data-slide-to="{{$to}}">{{HTML::image("image/phpthumb/$thumb?p=product&amp;h=90&amp;w=105")}}</a>
 														<?php
 														if ($num % 4 == 0) {
 															echo "</div>";

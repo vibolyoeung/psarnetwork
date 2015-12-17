@@ -67,7 +67,7 @@
 									</li>
 									<li role="presentation" class="dropdown">
 										<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-										My Account <span class="caret"></span>
+										{{trans('member.myaccount')}}<span class="caret"></span>
 										</a>
 										<ul class="dropdown-menu" role="menu">
 											<li>

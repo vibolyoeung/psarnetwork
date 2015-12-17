@@ -214,11 +214,9 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 		<!--category-tab-->
 		<div class="col-sm-12">
 			<ul class="nav nav-tabs product-detail" style="background: #999">
-				<li class="active"><a href="#speification_detail" data-toggle="tab">Specification
-						Detail</a></li>
+				<li class="active"><a href="#speification_detail" data-toggle="tab">Specification Detail</a></li>
 				<li><a href="#picture_summary" data-toggle="tab">Picture Summary</a></li>
-				<li class="dropdown"><a href="#location_map" data-toggle="tab">Location
-						Map </a></li>
+				<li class="dropdown"><a href="#location_map" data-toggle="tab">Location Map </a></li>
 				<li class="dropdown"><a href="#contact" data-toggle="tab">Contact</a>
 				</li>
 				<li class="dropdown"><a href="#quotation" data-toggle="tab">Quotation</a>
@@ -345,6 +343,25 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 	@endif
 	<!-- end recommended items -->
     </div>
+    <script
+	src="{{Config::get('app.url')}}frontend/js/jquery.js"></script>
+	<script
+		src="{{Config::get('app.url')}}frontend/js/carouselengine/amazingcarousel.js"></script>
+	<link rel="stylesheet" type="text/css"
+		href="{{Config::get('app.url')}}frontend/js/carouselengine/initcarousel-1.css">
+	<script
+		src="{{Config::get('app.url')}}frontend/js/carouselengine/initcarousel-1.js"></script>
+
+	<script>
+		jQuery(document).ready(function(){
+			jQuery(".categories_menu").hide();
+			jQuery("#menu_toogle").css('cursor','pointer');
+			jQuery("#menu_toogle").click(function(){
+				jQuery(".categories_menu").toggle("slow");
+			});
+			jQuery(".slideshow-group").colorbox({rel:'slideshow-group', transition:"none", maxWidth:"95%", maxHeight:"95%"});
+		});
+	</script>
 @endsection
 @section('left')
 <?php
