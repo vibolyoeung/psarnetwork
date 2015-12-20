@@ -134,7 +134,7 @@
                                         aria-controls="productInfo" 
                                         role="tab" 
                                         onclick="is_active_tab('product-info')" 
-                                        data-toggle="tab">Next</a>
+                                        data-toggle="tab">{{trans('product.next')}}</a>
                                     <a
                                         style="margin-right: 10px;background:#333" 
                                         class="btn btn-primary pull-right" 
@@ -290,7 +290,7 @@
                                         aria-controls="pictures" 
                                         role="tab" 
                                         onclick="is_active_tab('picture')" 
-                                        data-toggle="tab">Next</a>
+                                        data-toggle="tab">{{trans('product.next')}}</a>
                                     <a
                                         style="margin-right: 10px;background:#333" 
                                         class="btn btn-primary pull-right" 
@@ -402,7 +402,7 @@
                                                             href="#quotation" 
                                                             aria-controls="quotation" 
                                                             onclick="is_active_tab('quotation')"
-                                                            role="tab" data-toggle="tab">Next</a>
+                                                            role="tab" data-toggle="tab">{{trans('product.next')}}</a>
                                                         <a
                                         style="margin-right: 10px;background:#333" 
                                         class="btn btn-primary pull-right" 
@@ -440,7 +440,9 @@
                                                 href="#contactInfo" 
                                                 aria-controls="contactInfo"
                                                 onclick="is_active_tab('contactInfo')" 
-                                                role="tab" data-toggle="tab">Next</a>
+                                                role="tab" data-toggle="tab">
+                                                {{trans('product.next')}}
+                                                </a>
                                             <a
                                         style="margin-right: 10px;background:#333" 
                                         class="btn btn-primary pull-right" 

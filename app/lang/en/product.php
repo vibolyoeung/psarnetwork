@@ -50,4 +50,5 @@ return array(
 
     /*add product*/
     'btn_back' => 'Back',
+    'next' => 'Next'
 );
