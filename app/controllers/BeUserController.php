@@ -326,10 +326,59 @@ class BeUserController extends BaseController {
 	 */
 	public function deleteClientUser($id=null){
 		$id = (integer)$id;
+		$this->deleteStoreByUser($id);
 		$this->user->where('id','=', $id)
 			->where('id','!=', Session::get('SESSION_USER_ID'))
 			->delete();
 		return Redirect::to('admin/users/clients')
 			->with('SECCESS_MESSAGE','User has been deleted successfully');
+	}
+
+	private function deleteStoreByUser($userId) {
+		$tblStore = Config::get ('constants.TABLE_NAME.STORE');
+		$store = DB::table($tblStore.' AS store')
+			->where('user_id', '=', $userId)
+			->select(DB::raw('store.image as pic, store.id as store_id'))
+			->first();
+
+		if (!empty($store)) {
+			$destinationPath = base_path() . '/upload/store/';
+			File::delete($destinationPath . $store->pic);
+			$this->deleteProductByStore($store->store_id);
+		}
+		
+		DB::table($tblStore)
+			->where('user_id', '=', $userId)
+			->delete();
+	}
+
+	private function deleteProductByStore($storeId) {
+
+		$tblProduct = Config::get ('constants.TABLE_NAME.PRODUCT');
+		$products = DB::table($tblProduct.' AS pro')
+			->where('store_id', '=', $storeId)
+			->select(DB::raw('pro.id as pro_id, pro.*'))
+			->get();
+
+		$this->deletePictures($products);
+
+		$products = DB::table($tblProduct)
+			->where('store_id', '=', $storeId)
+			->delete();
+	}
+
+	private function deletePictures($products)
+	{
+		foreach ($products as  $product) {
+			$pictures = json_decode($product->pictures, true);
+			if (!empty($pictures)) {
+				$destinationPath = base_path() . '/upload/product/';
+				foreach ($pictures as $file) {
+					if (!empty($file)) {
+						File::delete($destinationPath . $file['pic']);
+					}
+				}
+			}
+		}
 	}
 }

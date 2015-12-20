@@ -123,13 +123,13 @@
                                 </td>
                                 <td>
                                     <a href="{{URL::to('admin/stores/status')}}/premium/{{$store->user_id}}/2">Disabled</a> |
-                                    <a href="{{URL::to('admin/stores/status')}}/premium/{{$store->user_id}}/1">Enable</a> | 
-                                    <a 
+                                    <a href="{{URL::to('admin/stores/status')}}/premium/{{$store->user_id}}/1">Enable</a> 
+                                    <!-- <a 
                                         href="{{URL::to('admin/stores/delete')}}/premium/{{$store->user_id}}/{{$store->store_id}}"
                                         onclick="return confirm('Are you sure you want to delete this item?');"
                                     >
                                         Delete
-                                    </a>
+                                    </a> -->
                                 </td>
                             </tr>
                         @endforeach

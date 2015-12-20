@@ -996,17 +996,14 @@ class Product extends Eloquent {
 	}
 
 	public static function findCountViewOfUserClick($product_id) {
-		try{
-			$oldViewCount = DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ))
+		$oldViewCount = DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ))
 			->select('view')
 			->where('id', $product_id)
 			->first ();
-		$totalView = $oldViewCount->view;
-		}catch (\Exception $e){
-			$response->result = 0;
-			$response->errorMsg = $e->getMessage();
-		}
-		//return $totalView;
+
+		$totalView = !empty($oldViewCount->view) ? $oldViewCount->view : 0;
+
+		return $totalView;
 	}
 
 	public function findProductByTransfterType($id){

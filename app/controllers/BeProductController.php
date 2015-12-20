@@ -106,12 +106,10 @@ class BeProductController extends BaseController {
 	private function deletePictures($pictures)
 	{
 		if (!empty($pictures)) {
-			$destinationPath = base_path() . '/public/upload/product/';
-	        $destinationThumb = $destinationPath.'thumb/';
+			$destinationPath = base_path() . '/upload/product/';
 			foreach ($pictures as $file) {
 				if (!empty($file)) {
 					File::delete($destinationPath . $file['pic']);
-					File::delete($destinationThumb . $file['pic']);
 				}
 			}
 		}

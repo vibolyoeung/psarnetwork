@@ -113,7 +113,7 @@
                     <tr>
                         <td>{{$key + 1 }}</td>
                         <td>
-                        {{HTML::image("upload/product/thumb/$product->thumbnail",$product->title,array('class' => 'img-rounded','width'=>'100'))}}
+                        {{HTML::image("upload/product/$product->thumbnail",$product->title,array('class' => 'img-rounded','width'=>'100'))}}
                         </td>
                         <td>{{$product->title}}</td>
                         <td>
@@ -129,13 +129,13 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{URL::to('admin/products/status')}}/premium/{{$product->pro_id}}/2">Disabled</a> |
-                            <a href="{{URL::to('admin/products/status')}}/premium/{{$product->pro_id}}/1">Enable</a> | 
+                            <a href="{{URL::to('admin/products/status')}}/premium/{{$product->pro_id}}/2"><i class="icon-check-empty"></i> Disabled</a> |
+                            <a href="{{URL::to('admin/products/status')}}/premium/{{$product->pro_id}}/1"><i class="icon-check"></i> Enable</a> | 
                             <a 
                                 href="{{URL::to('admin/products/delete')}}/premium/{{$product->pro_id}}"
                                 onclick="return confirm('Are you sure you want to delete this item?');"
                             >
-                                Delete
+                                <i class="icon-trash danger"></i> Delete
                             </a>
                         </td>
                     </tr>
