@@ -38,30 +38,61 @@ if(!empty($dataStore->sto_url)) {
 		</div>
 	</div>
 @endsection
+
+
 @section('left')
-	@if (! empty ( $toolView ))
-		@foreach ( $toolView as $tool )
-			@if($tool->type == 'tool_memeber_status' && $tool->status == 1)
-				@include('frontend.modules.store.partials.slidebar.memeber_status')
-			@endif
-		@endforeach
-	@endif
+    @if (! empty ( $toolView ))
+        @foreach ( $toolView as $tool )
+            @if($tool->type == 'tool_memeber_status' && $tool->status == 1)
+                @include('frontend.modules.store.partials.slidebar.memeber_status')
+            @endif
+        @endforeach
+    @endif
+
+
+    @if(!empty($banner)) @foreach($banner as $ban) @if($ban->ban_position ==
+    'ls') @if($ban->ban_enddate >= $currentDate)
+    <a class="banner-link" href="{{@$ban->ban_link}}" target="_blank"><img
+        src="{{Config::get('app.url')}}upload/user-banner/{{$ban->ban_image}}"
+        style="width: 100%;" /></a>
+    @endif
+                @endif
+            @endforeach
+        @endif
+    <!-- In case interprice user -->
+    @if($currentUserType == 2)
+        {{ App::make('FePageController')->getFeAds(6, 6, 3) }}
+    @else
+        {{ App::make('FePageController')->getFeAds(7, 6, 3) }}
+    @endif
 @endsection
+
 @section('right')
+    @include('frontend.modules.store.partials.slidebar.fb_like')
+    <?php $memberTool = array ();?>
+    @if (! empty ( $toolView ))
+        @foreach ( $toolView as $tool )
+            @if($tool->type == 'tool_visitor_info' && $tool->status == 1)
+            @include('frontend.modules.store.partials.slidebar.tool_visitor')
+            @endif
+        @endforeach
+    @endif
 
-@if (! empty ( $toolView ))
-	@foreach ( $toolView as $tool )
-		@if($tool->type == 'tool_visitor_info' && $tool->status == 1)
-		@include('frontend.modules.store.partials.slidebar.tool_visitor')
-		@endif
-	@endforeach
-@endif
-
-@if(!empty($banner))
-    @foreach($banner as $ban)
-        @if($ban->ban_position == 'rs')
-            @if($ban->ban_enddate >= $currentDate)
-<a class="banner-link" href="{{@$ban->ban_link}}" target="_blank"><img
-	src="{{Config::get('app.url')}}upload/user-banner/{{$ban->ban_image}}"
-	style="width: 100%;" /></a>
-@endif @endif @endforeach @endif @endsection
+    @if(!empty($banner))
+        @foreach($banner as $ban)
+            @if($ban->ban_position == 'rs')
+                @if($ban->ban_enddate >= $currentDate)
+                <a class="banner-link" href="{{@$ban->ban_link}}" target="_blank"><img
+                    src="{{Config::get('app.url')}}upload/user-banner/{{$ban->ban_image}}"
+                    style="width: 100%;" /></a>
+                @endif
+            @endif
+        @endforeach
+    @endif
+    <!-- In case interprice user -->
+    @if($currentUserType == 2)
+        {{ App::make('FePageController')->getFeAds(6, 7, 3) }}
+    @else
+        {{ App::make('FePageController')->getFeAds(7, 7, 3) }}
+    @endif
+@endsection
