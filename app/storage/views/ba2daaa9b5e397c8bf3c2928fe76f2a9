@@ -1,0 +1,62 @@
+<div class="col-lg-2 left_bar">
+	<div class="left-sidebar">
+		<div class="panel-group category-products" id="accordian">
+			<div class="all_categories_type" id="menu_toogle">
+				<img src="<?php echo Config::get('app.url'); ?>frontend/images/icons/all_category.png" alt="" title="" height="23"/>
+				&nbsp;
+					<?php foreach($MaindetailCategory as $maincate): ?>
+					<?php
+	      			$cateName = $maincate->{'name_'.Session::get('lang')};
+	      			?>
+	      			<?php echo str_limit($cateName, $limit = 20, $end = ''); ?>
+
+					<?php endforeach; ?>
+					&nbsp;&nbsp;&nbsp;<span class="caret" ></span>
+			</div>
+			<ul class="categories_menu">
+				<?php
+				$finalCategory = new MCategory();
+				if(count($detailCategory)){
+				?>
+					<?php foreach($detailCategory as $categoriesList): ?>
+						<li class="dropdown-mainmenu">
+								<?php
+								if($finalCategory->countCategory($categoriesList->id) > 0 ){
+						 		?>
+						 			<a href="<?php echo URL::to('products/productbycategories/'.$categoriesList->id.'/'.$categoriesList->id); ?>">
+						 		<?php
+						 		}else{ ?>
+						 			<a href="<?php echo URL::to('products/productbycategories/'.$categoriesList->parent_id.'/'.$categoriesList->id); ?>">
+						 		<?php
+						 		}
+								$subcate = $categoriesList->{'name_'.Session::get('lang')};
+								?>
+								<?php echo str_limit($subcate, $limit = 30, $end = '...'); ?>
+
+				      		</a>
+						</li>
+					<?php endforeach; ?>
+				<?php
+				}else{
+					echo '<span class="price"><center>No Category</center></span>';
+				}
+				?>
+			</ul>
+		</div>
+		<!--=========Register seller============ -->
+		<div class="panel-group category-products ads_side_bar" id="accordian">
+			<!-- type:cetegory, position: left meduim, limit -->
+			<?php echo App::make('FePageController')->getFeAds(2, 6, 3); ?>
+
+		</div>
+	</div>
+</div>
+
+<script>
+	jQuery(document).ready(function(){
+		jQuery("#menu_toogle").css('cursor','pointer');
+		jQuery("#menu_toogle").click(function(){
+			jQuery(".categories_menu").toggle("slow");
+		});
+	});
+</script>

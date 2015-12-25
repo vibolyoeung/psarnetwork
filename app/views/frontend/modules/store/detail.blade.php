@@ -106,11 +106,10 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 						    <div class="carousel-inner" style="height: 100px">
 						    	@if (!empty($dataProductDetail))
 								<?php
-								$num = 1;
-								$to = 0;
+									$num = 1;
+									$to = 0;
 								?>
 					    		@foreach($pictures as $picture)
-
 					    		<?php
 						    	if($num==1) {
 						    		$classA='active';
@@ -136,7 +135,6 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 								}?>
 							@endif
 							</div>
-
 							  <!-- Controls -->
 							  <a class="left item-control" href="#similar-product" data-slide="prev">
 								<i class="fa fa-angle-left"></i>
@@ -343,25 +341,32 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 	@endif
 	<!-- end recommended items -->
     </div>
-    <script
-	src="{{Config::get('app.url')}}frontend/js/jquery.js"></script>
-	<script
-		src="{{Config::get('app.url')}}frontend/js/carouselengine/amazingcarousel.js"></script>
-	<link rel="stylesheet" type="text/css"
-		href="{{Config::get('app.url')}}frontend/js/carouselengine/initcarousel-1.css">
-	<script
-		src="{{Config::get('app.url')}}frontend/js/carouselengine/initcarousel-1.js"></script>
+  
+  {{HTML::script('frontend/js/product_detail_print.js')}}
+{{HTML::script('frontend/js/jquery.colorbox-min.js')}}
+{{HTML::script('frontend/js/popupdetails.js')}}
+{{HTML::style('frontend/css/colorbox.css')}}
+<script>
+	jQuery(document).ready(function(){
+		jQuery(".slideshow-group").colorbox({rel:'slideshow-group', transition:"none", width:"95%", height:"95%"});
+	});
+</script>
 
-	<script>
-		jQuery(document).ready(function(){
-			jQuery(".categories_menu").hide();
-			jQuery("#menu_toogle").css('cursor','pointer');
-			jQuery("#menu_toogle").click(function(){
-				jQuery(".categories_menu").toggle("slow");
-			});
-			jQuery(".slideshow-group").colorbox({rel:'slideshow-group', transition:"none", maxWidth:"95%", maxHeight:"95%"});
-		});
-	</script>
+<div class="modal fade" id="myModal" tabindex="-1"
+	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+			</div>
+			<div class="modal-body modal_container">
+				<div class="col-lg-12" id="details_view"></div>
+			</div>
+		</div>
+	</div>
+</div>
 @endsection
 @section('left')
 <?php
@@ -410,7 +415,8 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
                 @if($ban->ban_enddate >= $currentDate)
                 <a class="banner-link" href="{{@$ban->ban_link}}" target="_blank"><img
                     src="{{Config::get('app.url')}}upload/user-banner/{{$ban->ban_image}}"
-                    style="width: 100%;" /></a>
+                    style="width: 100%;" />
+                </a>
                 @endif
             @endif
         @endforeach

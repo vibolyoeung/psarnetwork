@@ -1,0 +1,14 @@
+<?php echo App::make('FePageController')->getSearchTypeAndLocations(); ?>
+
+
+<section>
+	<div class="container home_wrapper">
+		<div class="row">
+			<?php echo $__env->yieldContent('content'); ?>
+		</div>
+	</div>
+	<div class="container client_location">
+		<?php echo $__env->yieldContent('client_location'); ?>
+	</div>
+</section>
+<?php echo $__env->make('frontend.partials.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

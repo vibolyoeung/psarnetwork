@@ -1,0 +1,20 @@
+<ul class="nav nav-pills nav-stacked">
+	<li class="tool-header">
+		<a href="javascript:;"><i class="fa fa-cog"></i> <?php echo trans('register.MENU_setting'); ?></a>
+	</li>
+    <li class="<?php echo (Request::segment(3)=='summary' ? 'active':''); ?>">
+		<a href="<?php echo URL::to('member/userinfo/summary'); ?>"><?php echo trans('register.MENU_summary'); ?></a>
+	</li>
+	<li class="<?php echo (Request::segment(3)=='infomation' ? 'active':''); ?>">
+		<a href="<?php echo URL::to('member/userinfo/infomation'); ?>"><?php echo trans('register.MENU_Your_info'); ?></a>
+	</li>
+	<li class="<?php echo (Request::segment(3)=='accountinfo' ? 'active':''); ?>">
+		<a href="<?php echo URL::to('member/userinfo/accountinfo'); ?>"><?php echo trans('register.MENU_Account_Information'); ?></a>
+	</li>
+	<li class="<?php echo (Request::segment(3)=='content' ? 'active':''); ?>">
+		<a href="<?php echo URL::to('member/userinfo/content'); ?>"><?php echo trans('register.MENU_Content_Page'); ?></a>
+	</li>
+	<li class="<?php echo (Request::segment(3)=='toolview' ? 'active':''); ?>">
+		<a href="<?php echo URL::to('member/userinfo/toolview'); ?>"><?php echo trans('register.MENU_toolview'); ?></a>
+	</li>   
+</ul>

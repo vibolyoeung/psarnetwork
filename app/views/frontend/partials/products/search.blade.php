@@ -11,8 +11,14 @@
 	<div class="btn-group col-lg-2">
 		<select name="location" class="form-control form-select-khmerabba">
 			<option value="0">{{trans('product.location')}}</option>
+			<?php 
+				$province_search = isset($_GET['location'])?$_GET['location']:'';
+				echo $province_search;
+			?>
 			@foreach($Provinces as $location)
-				<option value="{{$location->province_id}}">
+				<option value="{{$location->province_id}}"
+					<?php echo ($location->province_id==$province_search)?'selected':''; ?>
+					>
 					<?php echo $location->{'province_name_'.Session::get('lang')};?>
 				</option>
 			@endforeach
@@ -21,8 +27,13 @@
 	<div class="btn-group col-lg-2">
 		<select name="transferType" class="form-control form-select-khmerabba">
 			<option value="0">Transfer</option>
+			<?php 
+				$transferType_search = isset($_GET['transferType'])?$_GET['transferType']:'';
+			?>
 			@foreach($transferTypes as $transferType)
-				<option value="{{$transferType->ptt_id}}">
+				<option value="{{$transferType->ptt_id}}"
+					<?php echo ($transferType->ptt_id==$transferType_search)?'selected':''; ?>
+					>
 					<?php echo $transferType->{'name_'.Session::get('lang')};?>
 				</option>
 			@endforeach
@@ -31,21 +42,35 @@
 	<div class="btn-group col-lg-2">
 		<select name="condition" class="form-control form-select-khmerabba">
 			<option value="0">Condition</option>
+				<?php 
+					$condition_search = isset($_GET['condition'])?$_GET['condition']:'';
+				?>
 			@foreach($conditions as $condition)
-				<option value="{{$condition->id}}">
+				<option value="{{$condition->id}}"
+					<?php echo ($condition->id==$condition_search)?'selected':''; ?>
+					>
 					<?php echo $condition->{'name_'.Session::get('lang')};?>
 				</option>
 			@endforeach
 		</select>
 	</div>
 	<div class="col-lg-2">
+		<?php 
+			$price_search = isset($_GET['price'])?$_GET['price']:'0';
+		?>
 		<div class="form-group">
-			<input type="text" name="price" placeholder="price" class="form-control form-select-khmerabba" />
+			<input type="text" name="price" placeholder="price" class="form-control form-select-khmerabba" 
+			value="<?php echo $price_search; ?>"
+			/>
 		</div>
 	</div>
 	<div class="col-lg-2">
+		<?php 
+			$date_search = isset($_GET['date'])?$_GET['date']:date("Y-m-d");
+		?>
 		<div class="form-group">
-			<input
+			<input 
+				value="<?php echo $date_search; ?>"
 				type="text"
 				name="date"
 				placeholder="yyyy-mm-dd"
@@ -68,13 +93,16 @@
 		<div style="padding:0;">
 			<ul class="nav nav-tabs" style="background-color:#ddd;">
 				<li class="col-lg-2 pull-right">
+					<?php 
+						$displayNumber = isset($_GET['displayNumber'])?$_GET['displayNumber']:'';
+					?>
 					<select id="disply-number" name="displayNumber" class="form-control form-select-khmerabba">
 						<option value="0" selected="selected">-Select-</option>
-						<option value="20">20</option>
-						<option value="50">50</option>
-						<option value="100">100</option>
-						<option value="150">150</option>
-						<option value="200">200</option>
+						<option value="20" <?php echo $displayNumber==20?'selected':''; ?> >20</option>
+						<option value="50" <?php echo $displayNumber==50?'selected':''; ?>>50</option>
+						<option value="100" <?php echo $displayNumber==100?'selected':''; ?>>100</option>
+						<option value="150" <?php echo $displayNumber==150?'selected':''; ?>>150</option>
+						<option value="200" <?php echo $displayNumber==200?'selected':''; ?>>200</option>
 					</select>
 				</li>
 				<li style="padding-right:0;">

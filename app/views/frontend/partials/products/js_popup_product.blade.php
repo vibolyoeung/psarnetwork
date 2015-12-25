@@ -47,7 +47,7 @@
 									    	$to=0;
 								    	?>
 								    	@foreach($images as $small)
-										    	<?php
+										    <?php
 										    	if($num==1) {
 										    		$classA='active';
 										    	} else {
@@ -65,13 +65,13 @@
 												$to++;
 												$num++;
 												?>
-												@endforeach
-												<?php
-												if ($num % 4 != 1) {
-													echo "</div>";
-												}?>
+											@endforeach
+											<?php
+											if ($num % 4 != 1) {
+												echo "</div>";
+											}
+										?>
 								</div>
-
 								  <!-- Controls -->
 								  <a class="left item-control" href="#similar-product" data-slide="prev">
 									<i class="fa fa-angle-left"></i>
