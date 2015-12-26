@@ -6,7 +6,7 @@
 				<div class="contactinfo">
 					<ul class="nav nav-pills">
 						<li class="user-home">
-							<a href="{{Config::get('app.url')}}" taget="_blank">www.psarkhmer.com</a>
+							<a href="{{Config::get('app.url')}}" taget="_blank">www.khmerabba.com</a>
 						</li>
 					</ul>
 				</div>

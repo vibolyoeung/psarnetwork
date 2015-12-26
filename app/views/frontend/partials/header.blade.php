@@ -118,7 +118,7 @@
 									title="" /> English
 								</a> <a href="{{URL::current()}}?lang=km"> <img
 									src="{{Config::get('app.url')}}/frontend/images/km.png" alt=""
-									title="" /> Khmer
+									title="" /> ខ្មែរ
 								</a>
 							</div>
 						</div>

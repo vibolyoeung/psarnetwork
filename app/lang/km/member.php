@@ -8,7 +8,7 @@ return array(
     'view_profile_info' => 'មើលប្រវត្តិលំអិត',
     'view_your_site' => 'មើលទំព័រលោកអ្នក',
     'your_status' => 'ស្ថានភាពរបស់អ្នក',
-    'chage_password' => 'ដូរលេខសំងាត់',
+    'change_password' => 'ដូរលេខសំងាត់',
     'log_out' => 'ចាកចេញ',
     'contact_us' => 'ទំនាក់ទំនងយើង',
     'about_us' => 'អំពីយើង',
@@ -16,5 +16,6 @@ return array(
     'free_register' => 'ចុះឈ្មោះដោយឥតគិតថ្លៃ',
     'sign_in' => 'ចូល',
     'policy' => 'បែបបទ',
-    'usage' => 'ការប្រើប្រាស់'
+    'usage' => 'ការប្រើប្រាស់',
+    'myaccount' => 'គណនីរបស់ខ្ងុំ'
 );

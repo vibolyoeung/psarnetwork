@@ -8,7 +8,7 @@ return array(
     'view_profile_info' => 'View Profile info',
     'view_your_site' => 'View your site',
     'your_status' => 'Your Status',
-    'chage_password' => 'Chage Password',
+    'change_password' => 'Change Password',
     'log_out' => 'Log out',
     'contact_us' => 'Contact Us',
     'about_us' => 'About Us',
@@ -17,5 +17,6 @@ return array(
     'free_register' => 'Free Register',
     'sign_in' => 'Sign In',
     'policy' => 'Policy',
-    'usage' => 'Usage'
+    'usage' => 'Usage',
+    'myaccount' => 'My Account'
 );

@@ -33,7 +33,7 @@
 							<div class="contactinfo">
 								<ul class="nav nav-pills">
 									<li class="user-home">
-										<a href="{{Config::get('app.url')}}" taget="_blank">www.psarkhmer.com</a>
+										<a href="{{Config::get('app.url')}}" taget="_blank">www.khmerabba.com</a>
 									</li>
 								</ul>
 							</div>
@@ -147,7 +147,7 @@
 									</a>
 									<a href="{{URL::current()}}?lang=km">
 									<img src="{{Config::get('app.url')}}/frontend/images/km.png" alt="" title="" />
-									Khmer
+									ខ្មែរ
 									</a>
 								</div>
 							</div>
