@@ -15,8 +15,8 @@
     {{HTML::style('frontend/plugin/dropzone/dist/dropzone.css')}}
     {{HTML::script('frontend/plugin/dropzone/dist/dropzone.js')}}
     {{HTML::script('frontend/js/product.js')}}
+
     {{HTML::style('ce_editor/jquery.cleditor.css')}}
-    {{HTML::script('ce_editor/jquery.js')}}
     {{HTML::script('ce_editor/jquery.cleditor.js')}}
     <script type="text/javascript">
     $(document).ready(function () {

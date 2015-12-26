@@ -105,9 +105,6 @@ $(document).ready(function(){
 		}
 		window.location.href = fullUrl + appenUrl + '=' + displayNumber;
 	});
-
-	$(".slideshow-group").colorbox({rel:'slideshow-group'});
-
 });
 
 function user_register(cos,vals){
