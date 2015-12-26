@@ -1,0 +1,4 @@
+/vendor/
+/upload/
+/app/config/database.php
+/app/storage/
