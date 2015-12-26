@@ -1,6 +1,6 @@
-@extends('frontend.layout') 
-@section('title') 
-Categories 
+@extends('frontend.layout')
+@section('title')
+Categories
 @endsection
 @section('breadcrumb')
 <ol class="breadcrumb">
@@ -9,6 +9,7 @@ Categories
     <li class="active">Data</li>
 </ol>
 @endsection
+@include('frontend.partials.menu')
 @section('content')
 {{ App::make('FePageController')->mainCategory() }}
 	<div class="col-lg-10" style="padding-right:%;">
@@ -20,7 +21,7 @@ Categories
 				@include('frontend.partials.products.search')
 				<div class="row">
 					<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
-					<?php 
+					<?php
 					if(count($productsByTransfterType) > 0){
 					?>
 						@foreach($productsByTransfterType as $product)
@@ -30,7 +31,7 @@ Categories
 										<div class="productinfo text-center">
 											<a href="#" data-toggle="modal" data-target="#myModal"
 												onclick="popupDetails.add_popup_detail(<?php echo $product->id; ?>)">
-												<?php 
+												<?php
 												if($product->thumbnail){
 													echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$product->thumbnail.'?p=product&amp;h=130&amp;w=160" />';
 												}else{
@@ -49,7 +50,7 @@ Categories
 								</div>
 							</div>
 						@endforeach
-					<?php 
+					<?php
 						}else{
 							echo '<h3><center style="color:red;">Product not found!</center></h3>';
 						}
