@@ -1,0 +1,36 @@
+<?php 
+$getUser = new User ();
+$getUserData = $getUser->getUser($dataStore->user_id);
+?>
+<div class="panel-group category-products" id="accordian">
+	<label class="btn-default get popular-links">
+		<?php echo trans('store.memeberStatus'); ?>
+
+	</label>
+	<!--category-products-->
+	<div class="panel panel-default popular-links" style="color:#000;padding:5px">
+		<p>
+		<b><?php echo trans('store.memeberContactPerson'); ?></b>: <?php echo @$getUserData->result->name; ?> <br />
+		<b><?php echo trans('store.Tel'); ?></b>: <?php echo @$getUserData->result->telephone; ?><br />
+		<b><?php echo trans('store.Email'); ?></b>: <?php echo @$getUserData->result->email; ?><br />
+		<?php 
+			$location = json_decode($getUserData->result->address, true);
+		?>
+		<b><?php echo trans('register.Input_Location'); ?></b>: <?php echo @$location['province']; ?> 
+		
+		</p>
+		<b><?php echo trans('store.memeberSince'); ?></b><span style="color: red;"> <?php echo @$getUserData->result->create_at; ?></span><br />
+		<b><?php echo trans('register.gen_Account_Type'); ?></b>: <span style="color: red;">
+		<?php if($getUserData->result->account_type == 1): ?>
+			<?php echo trans('register.Free_Account'); ?>
+
+		<?php endif; ?>
+		<?php if($getUserData->result->account_type == 2): ?>
+			<?php echo trans('register.Interprise_Account'); ?>
+
+		<?php endif; ?></span><br/>
+		<b><?php echo trans('store.Webpage'); ?></b>: <?php echo Config::get('app.url'); ?>/page/<?php echo @$dataStore->sto_url; ?>
+
+		
+	</div>
+</div>

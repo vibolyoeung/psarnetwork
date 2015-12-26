@@ -1,0 +1,82 @@
+<?php
+function rm($article, $char) {
+	$article = preg_replace ( "/<img[^>]+\>/i", "(image) ", $article );
+	if (strlen ( $article ) > $char) {
+		return substr ( $article, 0, $char ) . '...';
+	} else
+		return $article;
+}
+?>
+ <?php $__env->startSection('title'); ?> Product Management
+<?php $__env->stopSection(); ?> <?php $__env->startSection('left'); ?> <?php $__env->stopSection(); ?> <?php $__env->startSection('content'); ?>
+<div class="col-lg-2 col-md-4">
+	<?php echo $__env->make('frontend.modules.product.partials.left_product_link', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?></div>
+<div class="col-lg-10 col-md-8">
+	<div class="features_items">
+		<!-- ============Slider end here========= -->
+		<div class="features_items">
+			<div class="category-tab lastest-post">
+				<div class="col-sm-12">
+					<ul class="nav nav-tabs">
+						<li><strong>All Products View</strong></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-12">
+		<table class="table product-list">
+			<thead>
+				<tr>
+					<th style="width:100px">Picture</th>
+					<th>Title</th>
+					<th style="width:300px" class="visible-lg">Others</th>
+					<th style="width:90px">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach($products as $product): ?>
+				<tr>
+					<td>
+					<?php if($product->thumbnail): ?>
+									<?php echo HTML::image("image/phpthumb/$product->thumbnail?p=product&amp;h=80&amp;w=80",$product->title,array('class'
+						=> 'img-rounded','width'=>'60')); ?>
+
+									<?php else: ?> 
+									<?php echo HTML::image("image/phpthumb/No_image_available.jpg?p=1&amp;h=80&amp;w=80",$product->title,array('class'
+						=> 'img-rounded','width'=>'80')); ?>
+
+						<?php endif; ?></td>
+						<?php $readmore = @rm ( $product->title, 50 );?>
+					<td><?php echo $readmore; ?></td>
+					<td class="visible-lg">
+						<span style="color:red"><?php echo $product->price; ?>$</span>, 
+						<span><?php echo Session::get('currentUserName'); ?></span>, 
+						<span><?php echo $product->created_date; ?></span>, 
+						<span><b>View</b>: <?php echo $product->view; ?></span>
+					</td>
+					<td>
+						<div class="dropdown">
+							<button id="dLabel" type="button" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">
+								Action <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dLabel">
+								<li><a href="<?php echo URL::to('products/topup'); ?>/<?php echo $product->id; ?>"> Top Up</a></li>
+								<li><a href="<?php echo URL::to('products/edit'); ?>/<?php echo $product->id; ?>"> Edit </a></li>
+								<li><a onclick="return confirm('Are you sure to delete?')" href="<?php echo URL::to('products/delete'); ?>/<?php echo $product->id; ?>"> Delete </a></li>
+								<li><a href="<?php echo URL::to('products/ispublished'); ?>/<?php echo $product->id; ?>/<?php echo $product->is_publish; ?>"><?php if($product->is_publish === 0): ?> Enable <?php else: ?> Disable <?php endif; ?> </a></li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+		<?php echo $products->links(); ?>
+
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('frontend.nosidebar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
