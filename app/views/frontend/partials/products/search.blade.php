@@ -13,7 +13,6 @@
 			<option value="0">{{trans('product.location')}}</option>
 			<?php 
 				$province_search = isset($_GET['location'])?$_GET['location']:'';
-				echo $province_search;
 			?>
 			@foreach($Provinces as $location)
 				<option value="{{$location->province_id}}"

@@ -89,7 +89,7 @@
 						<hr>
                         <h4>Price ss : <span class="price">{{ $productDetail->price }} $</span></h4>
                         <strong>Condition :&nbsp;<span class="pro-condition">{{$productDetail->{'pcon_name_'.Session::get('lang')};}}</span></strong><br />
-                        <strong>Post Date :&nbsp;<span class="pro-condition"><?php echo date("d/M/Y",strtotime($productDetail->created_date)); ?> </span></strong>
+                        <strong>Post Date :&nbsp;<span class="pro-condition"><?php echo ($productDetail->created_date!=null)?date("d/M/Y",strtotime($productDetail->created_date)):''?> </span></strong>
 					    <div class="clear"></div> <div class="clear"></div>
                         <div class="col-lg-12 text-centered" style="background-color:#eea236;padding:5px 0;text-align:center;"><a href="{{Config::get('app.url')}}store-{{$productDetail->store_id;}}" style="color:white;font-weight:bold;" target="_blank">{{Config::get('app.url')}}store-{{$productDetail->store_id;}}</a></div>
                         <div class="clear"></div>

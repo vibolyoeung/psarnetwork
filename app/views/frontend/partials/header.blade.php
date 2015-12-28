@@ -218,7 +218,9 @@
 							</div>
 							<div class="col-lg-9" style="padding: 0; margin: 0;">
 								<input type="text" name="q" class="form-control" placeholder="<?php echo trans('product.search_here');?>"
-									style="border-radius: 0; border: none; border-left: 1px solid #ddd;" />
+									style="border-radius: 0; border: none; border-left: 1px solid #ddd;color:#000;" 
+									value="<?php $searched_word = Request::get('q');echo $searched_word;?>"
+									/>
 							</div>
 						</div>
 						<div class="col-lg-4" style="margin: 0; padding: 0;">
@@ -226,7 +228,10 @@
 								<select name="location">
 									<option value="0">{{trans('product.location')}}</option>
 									@foreach($locations as $location)
-										<option value="{{$location->province_id}}">
+									<?php $searched_province_id = Request::get('location');?>
+										<option value="{{$location->province_id}}"
+											<?php echo ($searched_province_id == $location->province_id)?'selected':''?>
+											>
 											<?php echo $location->{'province_name_'.Session::get('lang')}; ?>
 										</option>
 									@endforeach;
