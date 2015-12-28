@@ -50,6 +50,10 @@ Categories
 								</div>
 							</div>
 						@endforeach
+						<div style="clear: both;"></div>
+						<div id="pagination" class="col-lg-12">
+							{{ $productsByTransfterType->appends(Input::except('page'))->links(); }}
+						</div>
 					<?php
 						}else{
 							echo '<h3><center style="color:red;">Product not found!</center></h3>';

@@ -90,7 +90,7 @@ $(document).ready(function(){
 		var displayNumParam = '';
 		var concateParam = '&';
 		// check if category page
-		if (fullUrl.split('/')[4] === 'productbycategories') {
+		if (fullUrl.split('/')[4] === 'productbycategories'||fullUrl.split('/')[4] === 'list'||fullUrl.split('/')[4] === 'transfter_type') {
 			concateParam = '?';
 		}
 
