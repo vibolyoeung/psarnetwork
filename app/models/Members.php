@@ -21,9 +21,6 @@ class Members extends Eloquent{
 			case is_numeric($loginName):
 				$query->where('telephone','=', $loginName);
 				break;
-			default:
-				$query->where('name','=', $loginName);
-				break;
 		}
 		$query->where('password', '=', md5(sha1($password)));
 		$query->where('user_type', '=', Config::get('constants.CLIENT_USER'));

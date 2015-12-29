@@ -54,8 +54,8 @@ class BeCategoryController extends BaseController {
 				->with('ERROR_MODIFY_MESSAGE','You do not have permission to modify!');
 			}
 			$rules = array(
-					'name_en' => 'required|unique:m_category',
-					'name_km'=>'required|unique:m_category'
+					'name_en' => 'required',
+					'name_km'=>'required'
 					);
 
 					$validator = Validator::make(Input::all(), $rules);
