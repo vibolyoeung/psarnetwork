@@ -4,11 +4,11 @@ class Store extends Eloquent {
 	public $timestamps = false;
 	const STORE_SETTING = 3;
 	const PRODUCT_PER_ROW = 6;
-	
+
 	/**
 	 * getUserStore : is a function for get user store to display front page
-	 * 
-	 * @param        	
+	 *
+	 * @param
 	 *
 	 * @return true : if it user store is get sucessfully
 	 * @access public
@@ -21,7 +21,7 @@ class Store extends Eloquent {
 				$where = $where;
 			} else {
 				$where = array (
-						'user_id' => $userID 
+						'user_id' => $userID
 				);
 			}
 			$result = DB::table ( Config::get ( 'constants.TABLE_NAME.STORE' ) )->select ( '*' )->where ( $where )->first ();
@@ -31,11 +31,11 @@ class Store extends Eloquent {
 			$response->errorMsg = $e->getMessage ();
 		}
 	}
-	
+
 	/**
 	 * getUserStore : is a function for get user store to display front page
-	 * 
-	 * @param        	
+	 *
+	 * @param
 	 *
 	 * @return true : if it user store is get sucessfully
 	 * @access public
@@ -52,7 +52,7 @@ class Store extends Eloquent {
 			} else {
 				$error = true;
 				$fileName = array (
-						'message' => 'uploadError' 
+						'message' => 'uploadError'
 				);
 			}
 		} else {
@@ -62,16 +62,16 @@ class Store extends Eloquent {
 			//Image::make ( $destinationPath . $fileName )->save ( $destinationPathThumb . $fileName );
 		}
 		/* end upload logo image */
-		
+
 		$images = array (
-				'image' => $fileName 
+				'image' => $fileName
 		);
 		return $images;
 	}
-	
+
 	/**
 	 * Generation fileName when uploading file
-	 * 
+	 *
 	 * @return filename by generation
 	 * @access public
 	 * @method generateFileName
@@ -83,10 +83,10 @@ class Store extends Eloquent {
 			$fileName = end ( $temp );
 			$fileName = $this->random(30) . '.' . $fileName;
 		}
-		
+
 		return $fileName;
 	}
-	
+
 	public function random($length = 50) {
 		$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 		$size = strlen($chars);
@@ -96,7 +96,7 @@ class Store extends Eloquent {
 		}
 		return $str;
 	}
-	
+
 	/**
 	 * Generation folder when uploading file doesnot exist
 	 *
@@ -127,7 +127,7 @@ class Store extends Eloquent {
 			// Config::get('app.url').'page/'.$dataStore->id;
 		}
 	}
-	
+
 	/**
 	 * Get latest store
 	 *
@@ -137,14 +137,22 @@ class Store extends Eloquent {
 	public static function getLatestStores() {
 		$response = new stdClass ();
 		$setting = self::getSetting(self::STORE_SETTING);
+		$user = Config::get ('constants.TABLE_NAME.USER');
 
 		try {
 			$result = DB::table (
-				Config::get ( 'constants.TABLE_NAME.STORE' ) . ' AS st' 
-			)->select ( '*' )
+				Config::get ( 'constants.TABLE_NAME.STORE' ) . ' AS st'
+			)->select (
+				'st.id'
+				,'st.title_en'
+				,'st.title_km'
+				,'st.image'
+			)
+			->leftJoin($user . ' AS u', 'st.user_id', '=','u.id')
+			->where('u.status', 1)
 			->orderBy ( 'st.id', 'DESC' )
 			->take ( $setting)->get ();
-			
+
 			return $result;
 		} catch ( \Exception $e ) {
 			$response->result = 0;
@@ -161,7 +169,7 @@ class Store extends Eloquent {
 
 		return $setting->setting_value * self::PRODUCT_PER_ROW;
 	}
-	
+
 	/**
 	 * Get store banner
 	 *
@@ -176,18 +184,18 @@ class Store extends Eloquent {
 			} else {
 				$where = array (
 						'ban_store_id' => $id,
-						'ban_status' => 1 
+						'ban_status' => 1
 				);
 			}
 			$result = DB::table ( Config::get ( 'constants.TABLE_NAME.USER_BANNER' ) )->select ( '*' )->where ( $where )->orderBy ( 'ban_id', 'DESC' )->get ();
-			
+
 			return $result;
 		} catch ( \Exception $e ) {
 			$response->result = 0;
 			$response->errorMsg = $e->getMessage ();
 		}
 	}
-	
+
 	/**
 	 * Get store by condition
 	 *
@@ -202,7 +210,7 @@ class Store extends Eloquent {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Get counter by condition
 	 */
@@ -244,12 +252,12 @@ class Store extends Eloquent {
 		$lastWeek = date('d',$previous_week);
 		$lastWeekM = date('m',$previous_week);
 		$lastWeekY = date('Y',$previous_week);
-		
+
 		$yesterday = strtotime("-1 day");
 		$yesterdayD = date('d',$yesterday);
 		$yesterdayM = date('m',$yesterday);
 		$lastMountY = date('Y',$yesterday);
-		
+
 		$previous_mounth = strtotime("-1 month");
 		$lastMounth = date('d',$previous_mounth);
 		$lastMounthM = date('m',$previous_mounth);
@@ -264,7 +272,7 @@ class Store extends Eloquent {
 				->where ($where)
 				->first ();
 				$response->today = $getDay->user_count;
-				
+
 				$getYesterday = DB::table ( Config::get ( 'constants.TABLE_NAME.COUNTER' ) )
 				->select(DB::raw('count(*) as user_count'))
 				->where ( 'cnt_day', '=', $yesterdayD )
@@ -273,7 +281,7 @@ class Store extends Eloquent {
 				->where ($where)
 				->first ();
 				$response->yesterday = $getYesterday->user_count;
-				
+
 				$getWeek = DB::table ( Config::get ( 'constants.TABLE_NAME.COUNTER' ) )
 				->select(DB::raw('count(*) as user_count'))
 				->where ( 'cnt_day', '=', $lastWeek )
@@ -281,9 +289,9 @@ class Store extends Eloquent {
 				->where ( 'cnt_year', '=', $lastWeekY )
 				->where ($where)
 				->first ();
-				
+
 				$response->lastweek = $getWeek->user_count;
-				
+
 				$getMounth = DB::table ( Config::get ( 'constants.TABLE_NAME.COUNTER' ) )
 				->select(DB::raw('count(*) as user_count'))
 				->where ( 'cnt_day', '=', $lastMounth )
@@ -291,14 +299,14 @@ class Store extends Eloquent {
 				->where ( 'cnt_year', '=', $lastMounthY )
 				->where ($where)
 				->first ();
-				
+
 				$response->lastMounth = $getMounth->user_count;
 			} else {
 				$response->today = 0;
 				$response->yesterday = 0;
 				$response->lastweek = 0;
 				$response->lastMounth = 0;
-				
+
 			}
 		} catch ( \Exception $e ) {
 			$response->today = 0;
@@ -309,7 +317,7 @@ class Store extends Eloquent {
 		}
 		return $response;
 	}
-	
+
 	function normalize_str($str) {
 		$invalid = array (
 				'Š' => '&Scaron;',
@@ -394,11 +402,11 @@ class Store extends Eloquent {
 				"’" => "-",
 				"°" => "-",
 				"º" => "-",
-				" " => "" 
+				" " => ""
 		);
-		
+
 		$str = str_replace ( array_keys ( $invalid ), array_values ( $invalid ), $str );
-		
+
 		return $str;
 	}
 }
