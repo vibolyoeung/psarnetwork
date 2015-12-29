@@ -150,6 +150,8 @@ class Store extends Eloquent {
 			)
 			->leftJoin($user . ' AS u', 'st.user_id', '=','u.id')
 			->where('u.status', 1)
+			// get only enterprice page
+			->where('u.account_type', 2)
 			->orderBy ( 'st.id', 'DESC' )
 			->take ( $setting)->get ();
 
