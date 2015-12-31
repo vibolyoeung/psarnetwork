@@ -68,6 +68,10 @@
             computepos(event.latLng);
         });
 
+        // Tab show, laod google map
+        $('#TapTitle').on('shown.bs.tab', function () {
+            google.maps.event.trigger(map, 'resize');
+        });
     }
 
     function computepos(point)
