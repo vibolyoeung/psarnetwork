@@ -75,7 +75,7 @@
 	(function(d, s, id) {
 	  var js, fjs = d.getElementsByTagName(s)[0];
 	  if (d.getElementById(id)) return;
-	  //js = d.createElement(s); js.id = id;
+	  js = d.createElement(s); js.id = id;
 	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
@@ -104,7 +104,7 @@
 									<li>
 										<a href="{{URL::to('page.html')}}/{{$mPage->id}}">
 											<i class="fa">
-												<?php 
+												<?php
                                                    echo $mPage->{'title_'.Session::get('lang')}
 												?>
 											</i>
@@ -126,7 +126,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="container-fluid top-menu">
 			<div class="col-lg-12 top_promotion">
 				<div class="col-lg-4 member_ship_home pull-right" style="background-color:#ddd;margin:12px 0 0;padding:3px;">
@@ -172,7 +172,7 @@
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
 									{{trans('product.notification')}}&nbsp;<span class="label label-danger"><?php $productNotification = Product::productPosttoday();echo count($productNotification);?></span>
 								</a>
-								<?php 
+								<?php
 								if(count($productNotification)){
 								?>
 								<ul class="dropdown-menu notification-product" role="menu">
@@ -218,7 +218,7 @@
 							</div>
 							<div class="col-lg-9" style="padding: 0; margin: 0;">
 								<input type="text" name="q" class="form-control" placeholder="<?php echo trans('product.search_here');?>"
-									style="border-radius: 0; border: none; border-left: 1px solid #ddd;color:#000;" 
+									style="border-radius: 0; border: none; border-left: 1px solid #ddd;color:#000;"
 									value="<?php $searched_word = Request::get('q');echo $searched_word;?>"
 									/>
 							</div>
