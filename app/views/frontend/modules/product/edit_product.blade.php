@@ -1,4 +1,4 @@
-@extends('frontend.nosidebar') 
+@extends('frontend.nosidebar')
 @section('title')
 	Product Management
 @endsection
@@ -16,11 +16,10 @@
     {{HTML::script('frontend/plugin/dropzone/dist/dropzone.js')}}
     {{HTML::script('frontend/js/product.js')}}
 
-    {{HTML::style('ce_editor/jquery.cleditor.css')}}
-    {{HTML::script('ce_editor/jquery.cleditor.js')}}
+    {{HTML::script('frontend/plugin/ckeditor/ckeditor.js')}}
     <script type="text/javascript">
     $(document).ready(function () {
-        $(".ce_editor").cleditor();
+        CKEDITOR.replace( 'ckeditor' );
     });
     </script>
 	<div class="container">
@@ -51,7 +50,7 @@
                       <div class="tab-content">
                       	<div role="tabpanel" class="tab-pane active" id="productTag">
                       		<div class="col-md-12">
-                      		
+
                       			<div class="form-group">
                                         <label class="col-sm-1 control-label">
                                             {{trans('product.category')}}
@@ -64,38 +63,38 @@
                                         			<div class="row">
                                         				{{@$editCategory}}
                                         				<input id='tags' type='text' id="categories" class='tags' style="height: 0;width:100%;border:none;" name="s_category" value="{{@$category}}" required/>
-		                                       
+
 		                                        	</div>
 		                                        	@else
 		                                        	<div class="row">
 		                                        		<input id='tags' type='text' id="categories" class='tags' style="height: 0;width:100%;border:none;" name="s_category" value="" required/>
 		                                        		<div class="col-lg-2 col-md-4 col-sm-6">
 		                                        			<div class="list-group" id="cat-sub-1">
-															  {{@$chooseCategory}} 
-															  
+															  {{@$chooseCategory}}
+
 															</div>
 		                                        		</div>
-		                                        		
+
 		                                        		<div class="col-lg-2 col-md-4 col-sm-6">
 		                                        			<div class="list-group" id="cat-sub-2">
 															</div>
 		                                        		</div>
-		                                        		
+
 		                                        		<div class="col-lg-2 col-md-4 col-sm-6">
 		                                        			<div class="list-group" id="cat-sub-3">
 															</div>
 		                                        		</div>
-		                                        		
+
 		                                        		<div class="col-lg-2 col-md-4 col-sm-6">
 		                                        			<div class="list-group" id="cat-sub-4">
 															</div>
 														</div>
-		                                        		
+
 		                                        		<div class="col-lg-2 col-md-4 col-sm-6">
 		                                        			<div class="list-group" id="cat-sub-5">
 															</div>
 		                                        		</div>
-		                                        		
+
 		                                        		<div class="col-lg-2 col-md-4 col-sm-6">
 		                                        			<div class="list-group" id="cat-sub-6">
 															</div>
@@ -113,13 +112,13 @@
 										</div>
 										@endif
                                     </div>
-                                    
-                                    
+
+
                              <div class="form-group">
                                 <div class="col-sm-12">
-                                    {{ 
+                                    {{
                                         Form::submit(
-                                            trans('product.save_product_ads'), 
+                                            trans('product.save_product_ads'),
                                             array(
                                                 'class' => 'btn btn-primary pull-right btnAddProduct',
                                                 'id'=>'btnAddProduct',
@@ -128,26 +127,26 @@
                                         )
                                     }}
                                     <a
-                                        style="margin-right: 10px;" 
-                                        class="btn btn-primary pull-right" 
-                                        href="#productInfo" 
-                                        aria-controls="productInfo" 
-                                        role="tab" 
-                                        onclick="is_active_tab('product-info')" 
+                                        style="margin-right: 10px;"
+                                        class="btn btn-primary pull-right"
+                                        href="#productInfo"
+                                        aria-controls="productInfo"
+                                        role="tab"
+                                        onclick="is_active_tab('product-info')"
                                         data-toggle="tab">{{trans('product.next')}}</a>
                                     <a
-                                        style="margin-right: 10px;background:#333" 
-                                        class="btn btn-primary pull-right" 
+                                        style="margin-right: 10px;background:#333"
+                                        class="btn btn-primary pull-right"
                                         href="{{URL::to('products/list')}}">{{trans('product.btn_back')}}</a>
                                 </div>
                             </div>
                       		</div>
                       	</div>
                       	<!-- end category -->
-                      	
+
                         <div role="tabpanel" class="tab-pane" id="productInfo">
                             <div class="col-md-12">
-                                    
+
                                     <div class="form-group">
                                 <label class="col-sm-1 control-label">
                                     {{trans('product.product_title')}}
@@ -155,7 +154,7 @@
                                 <div class="col-sm-11">
                                     {{Form::text(
                                         'productTitle',
-                                        @$product->title, 
+                                        @$product->title,
                                         array(
                                             'required'=> 'required',
                                             'class'=>'form-control'
@@ -170,10 +169,10 @@
                                 <div class="col-sm-11">
                                     {{ Form::select(
                                         'proTransferType',
-                                        $proTransferType, 
-                                        @$product->pro_transfer_type_id, 
+                                        $proTransferType,
+                                        @$product->pro_transfer_type_id,
                                         array(
-                                            'required'=> 'required', 
+                                            'required'=> 'required',
                                             'class' => 'form-control'
                                         )
                                     )}}
@@ -186,10 +185,10 @@
                                 <div class="col-sm-11">
                                     {{ Form::select(
                                         'productCondition',
-                                        $productCondition, 
-                                        @$product->pro_condition_id, 
+                                        $productCondition,
+                                        @$product->pro_condition_id,
                                         array(
-                                            'required'=> 'required', 
+                                            'required'=> 'required',
                                             'class' => 'form-control'
                                         )
                                     )}}
@@ -202,10 +201,10 @@
                                 <div class="col-sm-11">
                                     {{ Form::select(
                                         'productStatus',
-                                        Product::$PRODUCT_STATUS, 
-                                        @$product->pro_status, 
+                                        Product::$PRODUCT_STATUS,
+                                        @$product->pro_status,
                                         array(
-                                            'required'=> 'required', 
+                                            'required'=> 'required',
                                             'class' => 'form-control'
                                         )
                                     )}}
@@ -217,10 +216,10 @@
                                 </label>
                                 <div class="col-sm-11">
                                     {{Form::text(
-                                        'productPrice', 
-                                        @$product->price, 
+                                        'productPrice',
+                                        @$product->price,
                                         array(
-                                            'required'=> 'required', 
+                                            'required'=> 'required',
                                             'class'=>'form-control'
                                         )
                                     )}}
@@ -232,11 +231,12 @@
                                 </label>
                                 <div class="col-sm-11">
                                     {{Form::textarea(
-                                        'desc', 
-                                        @$product->description, 
+                                        'desc',
+                                        @$product->description,
                                         array(
-                                            'required'=> 'required', 
-                                            'class'=>'form-control ce_editor',
+                                            'required'=> 'required',
+                                            'class'=>'form-control',
+                                            'id' => 'ckeditor',
                                             'placeholder'=>'Enter description'
                                         )
                                     )}}
@@ -249,10 +249,10 @@
                                 <div class="col-sm-11">
                                     {{ Form::select(
                                         'isPublish',
-                                        Product::$PRODUCT_IS_PUBLISH, 
-                                        @$product->is_publish, 
-                                        array( 
-                                            'required'=> 'required', 
+                                        Product::$PRODUCT_IS_PUBLISH,
+                                        @$product->is_publish,
+                                        array(
+                                            'required'=> 'required',
                                             'class' => 'form-control'
                                         )
                                     )}}
@@ -264,8 +264,8 @@
                                 </label>
                                 <div class="col-sm-11">
                                     {{Form::text(
-                                        'date_post', 
-                                        @$product->publish_date, 
+                                        'date_post',
+                                        @$product->publish_date,
                                         array(
                                             'class'=>'form-control datepicker'
                                         )
@@ -274,26 +274,26 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    {{ 
+                                    {{
                                         Form::submit(
-                                            trans('product.save_product_ads'), 
+                                            trans('product.save_product_ads'),
                                             array(
-                                                'class' => 'btn btn-primary pull-right btnAddProduct', 
+                                                'class' => 'btn btn-primary pull-right btnAddProduct',
                                                 'name'=>'btnAddProduct'
                                             )
                                         )
                                     }}
                                     <a
-                                        style="margin-right: 10px;" 
-                                        class="btn btn-primary pull-right" 
-                                        href="#pictures" 
-                                        aria-controls="pictures" 
-                                        role="tab" 
-                                        onclick="is_active_tab('picture')" 
+                                        style="margin-right: 10px;"
+                                        class="btn btn-primary pull-right"
+                                        href="#pictures"
+                                        aria-controls="pictures"
+                                        role="tab"
+                                        onclick="is_active_tab('picture')"
                                         data-toggle="tab">{{trans('product.next')}}</a>
                                     <a
-                                        style="margin-right: 10px;background:#333" 
-                                        class="btn btn-primary pull-right" 
+                                        style="margin-right: 10px;background:#333"
+                                        class="btn btn-primary pull-right"
                                         href="{{URL::to('products/list')}}">{{trans('product.btn_back')}}</a>
                                 </div>
                             </div>
@@ -305,12 +305,12 @@
 					    		<center>
 									<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="background: none;padding:40px;border:5px dashed #ddd;">
 									  <img alt="" src="{{Config::get('app.url')}}frontend/images/file-transfer-dropshare.png"/>
-									  
+
 									</button>
 								</center>
 					    		</div>
 					    	</div>
-					    	
+
                             <div class="col-md-12">
                         		<table class="table">
                         			<thead>
@@ -339,15 +339,15 @@
                         					</td>
                                             <td>
                                                 {{@$img}}
-                                                <input id="file-id-{{$i}}" 
+                                                <input id="file-id-{{$i}}"
                                                     type="hidden"
                                                     name="hiddenFiles[]"
-                                                    value='{{$img}}' 
+                                                    value='{{$img}}'
                                                 />
                                             </td>
                         					<td>
-                    							<a 
-                    								onclick="removeImg('{{$i}}');" 
+                    							<a
+                    								onclick="removeImg('{{$i}}');"
                     								href="javascript:;">
                     								Delete
                     							</a>
@@ -359,7 +359,7 @@
                         		</table>
                             </div>
                             <!-- end image list -->
-                            
+
                             <div class="col-md-12">
                                     <div class="row" id="upload-preview">
                                         <div class="col-md-12">
@@ -382,30 +382,30 @@
                                                             <th></th>
                                                         </tr>
                                                     </thead>
-                    
+
                                                 </table>
-                                            
+
                                                 <div class="form-group">
                                                     <div class="col-sm-12">
-                                                        {{ 
+                                                        {{
                                                             Form::submit(
-                                                                trans('product.save_product_ads'), 
+                                                                trans('product.save_product_ads'),
                                                                 array(
-                                                                    'class' => 'btn btn-primary pull-right btnAddProduct', 
+                                                                    'class' => 'btn btn-primary pull-right btnAddProduct',
                                                                     'name'=>'btnAddProduct'
                                                                 )
                                                             )
                                                         }}
                                                         <a
-                                                            style="margin-right: 10px;" 
-                                                            class="btn btn-primary pull-right" 
-                                                            href="#quotation" 
-                                                            aria-controls="quotation" 
+                                                            style="margin-right: 10px;"
+                                                            class="btn btn-primary pull-right"
+                                                            href="#quotation"
+                                                            aria-controls="quotation"
                                                             onclick="is_active_tab('quotation')"
                                                             role="tab" data-toggle="tab">{{trans('product.next')}}</a>
                                                         <a
-                                        style="margin-right: 10px;background:#333" 
-                                        class="btn btn-primary pull-right" 
+                                        style="margin-right: 10px;background:#333"
+                                        class="btn btn-primary pull-right"
                                         href="{{URL::to('products/list')}}">{{trans('product.btn_back')}}</a>
                                                     </div>
                                                 </div>
@@ -425,27 +425,27 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            {{ 
+                                            {{
                                                 Form::submit(
-                                                    trans('product.save_product_ads'), 
+                                                    trans('product.save_product_ads'),
                                                     array(
-                                                        'class' => 'btn btn-primary pull-right btnAddProduct', 
+                                                        'class' => 'btn btn-primary pull-right btnAddProduct',
                                                         'name'=>'btnAddProduct'
                                                     )
                                                 )
                                             }}
                                             <a
-                                                style="margin-right: 10px;" 
-                                                class="btn btn-primary pull-right" 
-                                                href="#contactInfo" 
+                                                style="margin-right: 10px;"
+                                                class="btn btn-primary pull-right"
+                                                href="#contactInfo"
                                                 aria-controls="contactInfo"
-                                                onclick="is_active_tab('contactInfo')" 
+                                                onclick="is_active_tab('contactInfo')"
                                                 role="tab" data-toggle="tab">
                                                 {{trans('product.next')}}
                                                 </a>
                                             <a
-                                        style="margin-right: 10px;background:#333" 
-                                        class="btn btn-primary pull-right" 
+                                        style="margin-right: 10px;background:#333"
+                                        class="btn btn-primary pull-right"
                                         href="{{URL::to('products/list')}}">{{trans('product.btn_back')}}</a>
                                         </div>
                                     </div>
@@ -456,7 +456,7 @@
                             <div class="col-md-12">
                                 <div class="well">
                                     <div class="form-group">
-                                        <?php 
+                                        <?php
                                             $contactInfo = @json_decode(@$product->contact_info, true);
                                             $contactLocation = @$contactInfo['contactLocation'];
                                             $contactHP = @$contactInfo['contactHP'];
@@ -465,16 +465,16 @@
                                         ?>
                                         <label>{{trans('product.contact_name')}}</label>
                                         @if(!$contactName)
-                                        <?php 
+                                        <?php
                                         	$contactName = Session::get('currentUserName');
                                         ?>
                                         @endif
-                                        {{ 
+                                        {{
                                             Form::text(
-                                                'contactName', 
-                                                $contactName, 
+                                                'contactName',
+                                                $contactName,
                                                 array(
-                                                    'required'=> 'required', 
+                                                    'required'=> 'required',
                                                     'class' => 'form-control'
                                                 )
                                             )
@@ -483,16 +483,16 @@
                                     <div class="form-group">
                                         <label>{{trans('product.email')}}</label>
                                         @if(!$contactEmail)
-                                         <?php 
+                                         <?php
                                         	$contactEmail = Session::get('currentUserEmail');
                                         ?>
                                         @endif
-                                        {{ 
+                                        {{
                                             Form::text(
-                                                'contactEmail', 
+                                                'contactEmail',
                                                 $contactEmail,
                                                 array(
-                                                    'required'=> 'required', 
+                                                    'required'=> 'required',
                                                     'class' => 'form-control'
                                                 )
                                             )
@@ -501,16 +501,16 @@
                                     <div class="form-group">
                                         <label>{{trans('product.hp')}}</label>
                                         @if(!$contactHP)
-                                        <?php 
+                                        <?php
                                         	$contactHP = Session::get('currentUserPhone');
                                         ?>
                                         @endif
-                                        {{ 
+                                        {{
                                             Form::text(
-                                                'contactHP', 
-                                                $contactHP, 
+                                                'contactHP',
+                                                $contactHP,
                                                 array(
-                                                    'required'=> 'required', 
+                                                    'required'=> 'required',
                                                     'class' => 'form-control'
                                                 )
                                             )
@@ -519,7 +519,7 @@
                                     <div class="form-group">
                                         <label>{{trans('product.location')}}</label>
                                         @if(!$contactLocation)
-                                        <?php 
+                                        <?php
 											if (Session::has('currentUserAddress')) {
 												$location = json_decode(Session::get('currentUserAddress'), true);
 												$provinceId = $location['province'];
@@ -528,18 +528,18 @@
 												} else {
 													$contactLocation = '';
 												}
-												
+
 											} else {
 												$contactLocation = '';
 											}
 										?>
                                         @endif
-                                        {{ 
+                                        {{
                                             Form::text(
-                                                'contactLocation', 
+                                                'contactLocation',
                                                 $contactLocation,
                                                 array(
-                                                    'required'=> 'required', 
+                                                    'required'=> 'required',
                                                     'class' => 'form-control'
                                                 )
                                             )
@@ -547,19 +547,19 @@
                                     </div>
                                     <div class="form-group">
                                         <a
-                                        style="margin-right: 10px;background:#333" 
-                                        class="btn btn-primary" 
+                                        style="margin-right: 10px;background:#333"
+                                        class="btn btn-primary"
                                         href="{{URL::to('products/list')}}">{{trans('product.btn_back')}}</a>
-                                        {{ 
+                                        {{
                                             Form::submit(
-                                                trans('product.save_product_ads'), 
+                                                trans('product.save_product_ads'),
                                                 array(
-                                                    'class' => 'btn btn-primary btnAddProduct', 
+                                                    'class' => 'btn btn-primary btnAddProduct',
                                                     'name'=>'btnAddProduct'
                                                 )
                                             )
                                         }}
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -577,8 +577,8 @@
                       function is_active_tab (id) {
                         $('.pro-tab li').removeClass('active');
                         $('.' + id).addClass('active');
-                      } 
-                      
+                      }
+
                       function removeImg($id) {
                             var txt;
                             var r = confirm("are you sure to delete this image?");
@@ -597,13 +597,13 @@
                             }
                             //document.getElementById("demo").innerHTML = txt;
                         }
-                        
+
                         /*set current active page*/
                         if(window.location.hash) {
                               var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
                               $("ul.nav-tabs li").removeClass('active');
                               $("ul.nav-tabs li." + hash).addClass('active');
-                              
+
                               $(".tab-content .tab-pane").removeClass('active');
                               $(".tab-content #" + hash).addClass('active');
                           } else {
@@ -615,7 +615,7 @@
                                 if ($.inArray(e, result) == -1) result.push(e);
                             });
                             return result;
-                        }                         
+                        }
                         $(function(){
                             jQuery(".btnAddProduct").click(function(){
                                 var category = jQuery("#tags").val();
@@ -730,14 +730,14 @@
                                 $(".tab-content .tab-pane").removeClass('active');
                                 $(".tab-content " + pageurl).addClass('active');
                         		if(pageurl!=window.location){
-                        			window.history.pushState({path:pageurl},'',pageurl);	
+                        			window.history.pushState({path:pageurl},'',pageurl);
                         		}
-                        		return false;  
+                        		return false;
                         	});
 
-                			
+
                         	$("#multiUpload").dropzone(
-   								 { 
+   								 {
    									 url: "{{Config::get('app.url')}}member/ajaxupload?page=imgproduct&id={{$product->id}}",
    									 dataType: "json",
    									 success: function(data){
@@ -752,7 +752,7 @@
                                             }
                                             $("#totalImage").val(setImage);
    										 }
-   								            //$('#result').html(data.status +':' + data.message);          
+   								            //$('#result').html(data.status +':' + data.message);
    								      },
    								      error:function(){
    								          //$("#result").html('There was an error updating the settings');
@@ -772,7 +772,7 @@
 	   								        // Create the remove button
 	   								        // Capture the Dropzone instance as closure.
 	   								        var _this = this;
-	
+
 	   								        // Listen to the click event
 	   								        removeButton.addEventListener("click", function(e) {
 	   								          // Make sure the button click doesn't submit the form:
@@ -844,7 +844,7 @@
                 							    if(nextLevel == 5) {
                 							    	$("#cat-sub-6").html('');
                 							    }
-                							    
+
             							    }
 
             							    /*add to tag*/
@@ -867,16 +867,16 @@
         							    }
         							});
         					  }
-    					  }                     
+    					  }
                     </script>
-                            
+
                         </div>
 
 		{{Form::close()}}
 	</div>
     {{HTML::script('backend/js/jquery-ui.js')}}
     {{HTML::script('backend/js/custom.js')}}
-    
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -903,7 +903,7 @@
   #multiUpload .dz-default.dz-message span{padding-top: 100px;display: block;}
   #category-list .list-group {max-height:300px;overflow-y:auto;padding:1px}
   #category-list .list-group .has-sub::after { content: "»";float:right}
-</style>    
+</style>
 @endsection
 @section('footer')
 	@include('frontend.modules.store.partials.footer');
