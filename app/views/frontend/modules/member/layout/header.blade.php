@@ -33,7 +33,7 @@
 							<div class="contactinfo">
 								<ul class="nav nav-pills">
 									<li class="user-home">
-										<a href="{{Config::get('app.url')}}" taget="_blank">www.khmerabba.com</a>
+										<a href="{{Config::get('app.url')}}" taget="_blank">www.psarkhmer.com</a>
 									</li>
 								</ul>
 							</div>
@@ -67,7 +67,7 @@
 									</li>
 									<li role="presentation" class="dropdown">
 										<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-										{{trans('member.myaccount')}}<span class="caret"></span>
+										My Account <span class="caret"></span>
 										</a>
 										<ul class="dropdown-menu" role="menu">
 											<li>
@@ -147,7 +147,7 @@
 									</a>
 									<a href="{{URL::current()}}?lang=km">
 									<img src="{{Config::get('app.url')}}/frontend/images/km.png" alt="" title="" />
-									ខ្មែរ
+									Khmer
 									</a>
 								</div>
 							</div>

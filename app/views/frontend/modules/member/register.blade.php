@@ -279,7 +279,7 @@
 							</span>
 						</div>
                         <div id="mapWrapper" style="">
-
+                        <div id="gmap" style="width: 100%; height: 375px"></div>
                         </div>
 						<div class="form-group">
 							<label for="TypeText">
@@ -307,6 +307,7 @@
 <script type='text/javascript'>
 
 $(document).ready(function(){
+	$('.ghide').show();
     $('#agreement').click(function () {
         if($(this).is(":checked")) {
             $("#summit").removeAttr("disabled");
@@ -385,37 +386,34 @@ $(document).ready(function(){
 
     $("#clientType").change(function()
         {
+        	$('#marketType').show();
+            $('#gmap').css("height", "0");
             var id = $(this).val();
-            var cName = $('option:selected', this).text();
-            if(id != {{Config::get('constants.CLIENT_TYPE_ID.SUPERMARKET')}}) {
-                $('#marketType').hide();
+            $('.ghide').hide();
+            var cName = $('option:selected', this).text();           
+            if(id == {{Config::get('constants.CLIENT_TYPE_ID.INDIVIDUAL')}} || id == {{Config::get('constants.CLIENT_TYPE_ID.HOMESHOP')}} || id == {{Config::get('constants.CLIENT_TYPE_ID.PRIVATE_COMPANY')}}) {
+                //$('#marketType').hide();
                 $('.ghide').show();
+                $('#gmap').css("height", "375");
                 //$('#Location').hide();
                 loadMap();
-            } else {
-                $('#marketType').show();
-                $('#mapWrapper').html('');
-                $('.ghide').hide();
-                if(id) {
-                   if(id == {{Config::get('constants.CLIENT_TYPE_ID.SUPERMARKET')}}) {
-                        $('#loadingmarketType').show();
-                        $('#marketTypes').hide();
-                        $.ajax
-                        ({
-                            type: "get",
-                            url: "{{Config::get('app.url')}}member/getmarkettype/"+id,
-                            cache: false,
-                            success: function(html)
-                            {
-                                console.log(html);
-                                var selects = '<option value="">{{trans('register.Market_Type')}}</option>';
-                                $("#marketTypes").html(selects + html).removeAttr("disabled");
-                                $('#loadingmarketType').hide();
-                                $('#marketTypes').show();
-                            }
-                        });
-                   }
-                }
+            }
+            if(id) {
+                $('#loadingmarketType').show();
+                $('#marketTypes').hide();
+                $.ajax
+                ({
+                    type: "get",
+                    url: "{{Config::get('app.url')}}member/getmarkettype/"+id,
+                    cache: false,
+                    success: function(html)
+                    {
+                        var selects = '<option value="">{{trans('register.Market_Type')}}</option>';
+                        $("#marketTypes").html(selects + html).removeAttr("disabled");
+                        $('#loadingmarketType').hide();
+                        $('#marketTypes').show();
+                    }
+                });
             }
             //var dataString = 'pro_id=' + id;
             //var gid = $('option:selected', this).attr('data-lat');
