@@ -117,17 +117,30 @@ class FeMemberController extends BaseController {
 			);
 			$dataUserSession = Session::get ( 'user' );
 			$marketType = Session::get ( 'marketType' );
+			$updateAddress = array();
 			foreach ( $dataUserSession as $key => $value ) {
 				if($key == 'address') {
-					if(Session::get ( 'marketType' )) {
-						$getMaketById = $this->mod_market->listingEditData($marketType);
-						$userArr ['province_id'] = $getMaketById->data->province_id;
-					} else {
+					if(!empty(json_decode($value[0])->province)) {
 						$userArr ['province_id'] = json_decode($value[0])->province;
+					} else {
+						array_push($updateAddress, 1);
+						$getMaketById = $this->mod_market->listingEditData($marketType);
+						$provinceID = $getMaketById->data->province_id;
+						$longitude = $getMaketById->data->address;
+						$userArr ['province_id'] = $getMaketById->data->province_id;
 					}
 				}
 				$userArr [$key] = $value [0];
 			}
+			if(!empty($updateAddress)) {
+				$addressArr = array (
+					'province' => $provinceID,
+					'disctict' => '',
+					'g_latitude_longitude' => $longitude
+				);
+				$userArr ['address'] = json_encode($addressArr);
+			}
+			
 			$uid = $this->user->insertGetId ( $userArr );
 			/* add data for store */
 			if (! Input::has ( 'skipDetail' )) {

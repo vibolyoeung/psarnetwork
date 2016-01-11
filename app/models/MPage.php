@@ -27,7 +27,7 @@ class MPage extends Eloquent {
 			} else {
 				$where = array (
 						'status' => 1,
-						'page_belong_to' => 2
+						'page_belong_to' => 1
 				);
 			}
 			if (! empty ( $whereArr )) {
