@@ -20,6 +20,7 @@
     <script type="text/javascript">
     $(document).ready(function () {
         CKEDITOR.replace( 'ckeditor' );
+        CKEDITOR.replace('ckeditor-address');
     });
     </script>
 	<div class="container">
@@ -545,6 +546,21 @@
                                             )
                                         }}
                                     </div>
+
+                                    <div class="form-group">
+                                        <label >{{trans('product.contact-address')}}</label>
+                                           {{Form::textarea(
+                                                'contact_address',
+                                                @$product->contact_address,
+                                                array(
+                                                    'required'=> 'required',
+                                                    'class'=>'form-control',
+                                                    'id' => 'ckeditor-address',
+                                                    'placeholder'=>'Enter Your full address here!'
+                                                )
+                                            )}}
+                                    </div>
+
                                     <div class="form-group">
                                         <a
                                         style="margin-right: 10px;background:#333"

@@ -9,7 +9,7 @@
 @include('frontend.partials.menu', array('page' => 'home'))
 @section('content')
 {{ App::make('FePageController')->mainCategory() }}
-<div class="col-lg-10">@include('frontend.partials.slider')</div>
+<div class="col-lg-10 hidden-sm hidden-xs">@include('frontend.partials.slider')</div>
 <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 pull-right">
 
 	<!--/category-tab-->

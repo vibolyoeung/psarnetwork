@@ -204,7 +204,14 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 }
 
 .product-detail>li {
-	padding: 5px 8px;
+	padding: 5px;
+}
+.nav>li>a{
+	padding:5px;
+}
+.tab-content{
+	border:1px solid #ddd;
+	padding:0 10px;
 }
 #similar-product .item-control{top: 35%;}
 </style>
@@ -216,6 +223,8 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 				<li><a href="#picture_summary" data-toggle="tab">Picture Summary</a></li>
 				<li class="dropdown"><a href="#location_map" data-toggle="tab">Location Map </a></li>
 				<li class="dropdown"><a href="#contact" data-toggle="tab">Contact</a>
+				</li>
+				<li class="dropdown"><a href="#contact-address" data-toggle="tab">Full address</a>
 				</li>
 				<li class="dropdown"><a href="#quotation" data-toggle="tab">Quotation</a>
 				</li>
@@ -274,10 +283,14 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 				</p>
 			</div>
 
+			<div class="tab-pane fade" id="contact-address">
+				 {{$dataProductDetail->contact_address}}
+			</div>
+
 			<div class="tab-pane fade" id="quotation">
 				<a
 					href="{{Config::get('app.url')}}upload/quotation/{{$dataProductDetail->file_quotation;}}">
-					{{$dataProductDetail->file_quotation;}} </a>
+					{{$dataProductDetail->file_quotation}} </a>
 			</div>
 
 		</div>
@@ -373,7 +386,7 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 	if (!empty($toolView )){
 		foreach ($toolView as $tool ){
 			if($tool->type == 'tool_memeber_status' && $tool->status == 1){
-				include('frontend.modules.store.partials.slidebar.memeber_status');
+				//include('/frontend.modules.store.partials.slidebar.memeber_status');
 			}
 		}
 	}

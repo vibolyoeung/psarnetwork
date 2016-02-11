@@ -9,15 +9,7 @@
 					src="{{Config::get('app.url')}}/upload/advertisement/{{$adv->image;}}"
 					class="img-responsive img-thumbnail" alt="" />
 				</a>
-			<?php } else { ?>
-				<img
-					src="{{Config::get('app.url')}}frontend/images/horizontal_default_advertise.png"
-					class="img-responsive img-thumbnail" alt="image" />
 			<?php } ?>
 		@endforeach
-	@else
-		<img
-			src="{{Config::get('app.url')}}frontend/images/horizontal_default_advertise.png"
-			class="img-responsive img-thumbnail" alt="image" />
 	@endif
 </div>

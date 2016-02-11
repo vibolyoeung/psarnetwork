@@ -30,7 +30,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-3">
-							<div class="contactinfo">
+							<div class="contactinfo hidden-sm hidden-xs">
 								<ul class="nav nav-pills">
 									<li class="user-home">
 										<a href="{{Config::get('app.url')}}" taget="_blank">www.psarkhmer.com</a>
@@ -40,7 +40,7 @@
 						</div>
 						<div class="col-sm-9">
 							<div class="social-icons pull-right ">
-								<ul class="nav navbar-nav">
+								<ul class="nav navbar-nav  hidden-sm hidden-xs">
 									@if(Session::get('currentUserId'))
 									<li>
 										<a href="{{URL::to('products/create')}}">
@@ -143,11 +143,11 @@
 								<div class="language-bar">
 									<a href="{{URL::current()}}?lang=en">
 									<img src="{{Config::get('app.url')}}/frontend/images/en.png" alt="" title="" />
-									English 
+									&nbsp;{{trans('product.english')}}
 									</a>
 									<a href="{{URL::current()}}?lang=km">
 									<img src="{{Config::get('app.url')}}/frontend/images/km.png" alt="" title="" />
-									Khmer
+									&nbsp;{{trans('product.khmer')}}
 									</a>
 								</div>
 							</div>

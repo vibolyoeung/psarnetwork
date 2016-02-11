@@ -12,14 +12,6 @@
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
-.row .language-bar {
-    left: 10%;
-    margin-bottom: 10px;
-    overflow: hidden;
-    position: absolute;
-    top: 8px;
-    width:39%;
-}
 .usa{
 	margin-right: 0;
 } 
@@ -47,9 +39,7 @@
 
 }
 @media (min-width: 920px) and (max-width: 1199px) {
-    .row .language-bar{left: inherit;right: 20px;width: 100px;top: -1px}
-    .row .language-bar ul li{background: #f0f0e9;width:90px;margin-left:10%;padding:3px 5px 3px 3px;border-bottom: 1px solid #ffffff;
-}
+
 }
 
 /* sm */
@@ -563,4 +553,3 @@ ul.sub-menu{
 	float: none;
 }
 
-}

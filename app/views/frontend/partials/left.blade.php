@@ -1,4 +1,4 @@
-<div class="col-lg-2 left_bar">
+<div class="col-lg-2 col-md-4 left_bar hidden-sm hidden-xs">
 	<div class="left-sidebar">
 		<div class="panel-group category-products" id="accordian">
 			<div class="all_categories_type" id="menu_toogle">

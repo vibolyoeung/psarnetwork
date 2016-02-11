@@ -16,7 +16,7 @@
 					<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 					<div class="product-image-wrapper">
 						<div class="single-products">
-							<div class="productinfo">
+							<div class="productinfo text-center">
 								<a href="{{Config::get('app.url')}}store-{{$latestStore->id}}" target="_blank">
 								<?php
 									$storeImg = Config::get('app.url').'frontend/images/default_store.jpg';
