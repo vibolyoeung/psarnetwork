@@ -34,7 +34,7 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 	<div class="col-xs-12">
 		<div class="row">
 			<div class="col-lg-12"
-				style="background-color: #FFF; border: 1px solid #CCC; margin: 2px 0 10px 0">
+				style="background-color: #FFF; border: 1px solid #CCC; margin: 2px 0 10px 0;display:none">
 				<div class="col-lg-9 pull-right">
 					<div class="col-lg-12" style="padding: 10px;">
 								<?php $contactInfo = json_decode($dataProductDetail->contact_info); ?>
@@ -204,7 +204,14 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 }
 
 .product-detail>li {
-	padding: 5px 8px;
+	padding: 5px;
+}
+.nav>li>a{
+	padding:5px;
+}
+.tab-content{
+	border:1px solid #ddd;
+	padding:0 10px;
 }
 #similar-product .item-control{top: 35%;}
 </style>
@@ -216,6 +223,8 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 				<li><a href="#picture_summary" data-toggle="tab">Picture Summary</a></li>
 				<li class="dropdown"><a href="#location_map" data-toggle="tab">Location Map </a></li>
 				<li class="dropdown"><a href="#contact" data-toggle="tab">Contact</a>
+				</li>
+				<li class="dropdown"><a href="#contact-address" data-toggle="tab">Full address</a>
 				</li>
 				<li class="dropdown"><a href="#quotation" data-toggle="tab">Quotation</a>
 				</li>
@@ -253,6 +262,9 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 					class="glyphicon glyphicon-remove form-control-feedback"
 					aria-hidden="true"></span> <span id="MappingAddressHereStatus"
 					class="sr-only"> (error) </span>
+					@if($locationArr->g_latitude_longitude)
+					<img style="width:100%" src="http://maps.google.com/maps/api/staticmap?center={{$locationArr->g_latitude_longitude}}&zoom=15&size=650x300&maptype=roadmap&&markers=color:red|label:A|{{$locationArr->g_latitude_longitude}}&sensor=false"/>
+					@endif
 				<div id="mapWrapper" style="">
 					<div id="gmap" style="width: 100%; height: 375px"></div>
 				</div>
@@ -274,10 +286,14 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 				</p>
 			</div>
 
+			<div class="tab-pane fade" id="contact-address">
+				 {{@$dataProductDetail->contact_address}}
+			</div>
+
 			<div class="tab-pane fade" id="quotation">
 				<a
 					href="{{Config::get('app.url')}}upload/quotation/{{$dataProductDetail->file_quotation;}}">
-					{{$dataProductDetail->file_quotation;}} </a>
+					{{$dataProductDetail->file_quotation}} </a>
 			</div>
 
 		</div>
@@ -373,7 +389,7 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 	if (!empty($toolView )){
 		foreach ($toolView as $tool ){
 			if($tool->type == 'tool_memeber_status' && $tool->status == 1){
-				include('frontend.modules.store.partials.slidebar.memeber_status');
+				//include('/frontend.modules.store.partials.slidebar.memeber_status');
 			}
 		}
 	}

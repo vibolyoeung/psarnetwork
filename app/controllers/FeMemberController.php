@@ -125,9 +125,13 @@ class FeMemberController extends BaseController {
 					} else {
 						array_push($updateAddress, 1);
 						$getMaketById = $this->mod_market->listingEditData($marketType);
-						$provinceID = $getMaketById->data->province_id;
-						$longitude = $getMaketById->data->address;
+						$provinceID = '';
+						$longitude = '';
+						if(!empty($getMaketById->data)) {
+							$provinceID = $getMaketById->data->province_id;
+							$longitude = $getMaketById->data->address;
 						$userArr ['province_id'] = $getMaketById->data->province_id;
+						} 
 					}
 				}
 				$userArr [$key] = $value [0];
