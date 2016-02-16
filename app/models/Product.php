@@ -753,6 +753,24 @@ class Product extends Eloquent {
 	}
 
 	/**
+	 * listAllProductsByOwnStore counter
+	 *
+	 * @return products by Own store
+	 * @access public
+	 */
+	public function listAllProductsByOwnStoreCounter($where = array()) {
+		if (! empty ( $where )) {
+			$where = $where;
+		} else {
+			$where = array (
+					'user_id' => Session::get ( 'currentUserId' ),
+					'pro_status' => 1
+			);
+		}
+		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
+		return DB::table ( $product )->select ( '*' )->where ( $where )->count();
+	}
+	/**
 	 * productDetailByOwnStore
 	 *
 	 * @return products by Own store

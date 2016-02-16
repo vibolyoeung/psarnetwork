@@ -5,12 +5,13 @@ $whereNewArr = array(
 	'pro_condition_id'=> 1
 );
 $PayMonthly = $thisProduct->listAllProductsByOwnStore($whereNewArr);
+$count = $thisProduct->listAllProductsByOwnStoreCounter($whereNewArr);
 ?>
 <div class="category-tab Hot-Promotion">
 	<div class="features_items">
 		<ul class="nav nav-tabs">
 			<li><strong>{{trans('product.new_product')}}</strong>&nbsp;&frasl;</li>
-			<li>Products : <span class="number-display">25</span></li>
+			<li>Products : <span class="number-display">{{@$count}}</span></li>
 		</ul>
 		<div class="col-lg-12" style="padding:0;">
 		@if(count($PayMonthly)>1)
