@@ -1,4 +1,4 @@
-@extends('frontend.nosidebar') @section('title') Register Page @endsection @section('breadcrumb')
+@extends('frontend.nosidebar') @section('title') Register Form @endsection @section('breadcrumb')
 <ol class="breadcrumb">
 	<li>
 		<a href="#">Home</a>
@@ -17,7 +17,7 @@
 {{HTML::script('frontend/js/map.js')}}
 <div class="home" id="loadmaps">
 	<div class="rigister">
-		<div class="col-sm-8">
+		<div class="col-sm-8 hidden-sm hidden-xs">
 			<div class="r-menu">
 				<span class="r-menu-text">
 					{{trans('register.Try_It_Today')}}

@@ -4,15 +4,16 @@ $(document).ready(function(){
 		 pause: true,
     	 interval: false
 	});
+    if(jQuery("*").hasClass("datepicker")){
+         jQuery('.datepicker' ).datepicker({
+			dateFormat: "yy-mm-dd",
+			changeMonth: true,
+	    	changeYear: true,
+	        autoclose: true,
+	        todayHighlight: true,
+		});
 
-	jQuery('.datepicker' ).datepicker({
-		dateFormat: "yy-mm-dd",
-		changeMonth: true,
-    	changeYear: true,
-        autoclose: true,
-        todayHighlight: true,
-	});
-	//jQuery(".datepicker").datepicker("setDate", new Date());
+    }
 	jQuery('.item:first-child').addClass(' active');
 	jQuery('.bullet:first-child').addClass('active');
 	jQuery('.tab-content .submenu-bar:first-child').addClass(' active');

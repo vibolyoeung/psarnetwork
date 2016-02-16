@@ -1,4 +1,4 @@
-<section id="slider" class="hide_responsive">
+<section id="slider" class="hidden-sm hidden-xs">
 	<!--slider-->
 	<div class="row">
 		<div class="col-lg-12 pull-right" style="padding:0;">
@@ -22,8 +22,6 @@
 							<?php $thumbnail_id++; ?>
 							@endforeach
 						<?php
-						}else{
-							echo '<img src="upload/no-image.jpg" class="img-responsive img-thumbnail"/>';
 						}
 						?>                              
 					</div>

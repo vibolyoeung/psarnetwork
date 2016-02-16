@@ -61,20 +61,6 @@
 			{{Form::select('advertisementPosition',
 			array(), $advertisement->adv_position_id , array('class' => 'form-control', 'id' =>
 			'ads-position'))}}
-			<!-- <div class="col-md-3 col-xs-3">
-				<a
-					id="select-to-view"
-					href="#"
-					data-toggle="modal"
-					data-target="#myModal"
-					@if ($advertisement->account_type == 2)
-						style="display:block"
-					@endif
-				>
-						Select to view(Incase, It selected as Free or enterprise page)
-					</a>
-				</div> -->
-
 			{{ Form::hidden('pointToPage', $advertisement->to_page, array('id' => 'hid-poin-to-page')) }}
 
 		</div>

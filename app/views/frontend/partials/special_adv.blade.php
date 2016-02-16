@@ -14,23 +14,9 @@ if(count($advHorizontalTopLarges)){ ?>
 		</a>
 		<?php
 		$i ++;
-	}else{ ?>
-		<a href="#"> 
-			<img
-				src="upload/advertisement/default_advertisement.jpg"
-				class="img-responsive img-thumbnail" alt="" />
-		</a>
-	<?php
 	}
 	?>
 	@endforeach
-<?php
-}else{ ?>
-   <a href="#"> 
-    <img
-		src="{{Config::get('app.url')}}upload/advertisement/default_advertisement.jpg"
-		class="img-responsive img-thumbnail" alt="" />
-    </a>
-<?php
-}
+<?php 
+	}
 ?>

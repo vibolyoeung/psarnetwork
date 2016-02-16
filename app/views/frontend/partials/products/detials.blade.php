@@ -190,6 +190,9 @@
 				      <a href="#contact" data-toggle="tab">Contact</a>
 				   </li>
 				   <li class="dropdown">
+				      <a href="#full-address" data-toggle="tab">Full Address</a>
+				   </li>
+				   <li class="dropdown">
 				      <a href="#quotation" data-toggle="tab">Quotation</a>
 				   </li>
 				</ul>
@@ -234,7 +237,9 @@
 						<span id="MappingAddressHereStatus" class="sr-only">
 							(error)
 						</span>
-				      <div id="mapWrapper" style=""><div id="gmap" style="width: 100%; height: 375px"></div></div>
+				      <div id="mapWrapper" style="">
+				      	<div id="gmap" style="width: 100%; height: 375px"></div>
+				      </div>
 				   </div>
 
 				   <div class="tab-pane fade" id="contact">
@@ -250,6 +255,12 @@
 							{{$productdetails->file_quotation;}}
 						</a>
 				   </div>
+				    <div class="tab-pane fade" id="full-address">
+				      	<a href="{{Config::get('app.url')}}upload/quotation/{{$productdetails->file_quotation;}}">
+							{{$productdetails->contact_address;}}
+						</a>
+				   </div>
+
 				</div>
 
 				<script>
@@ -291,7 +302,6 @@
 
 <script>
 	jQuery(document).ready(function(){
-		jQuery(".categories_menu").hide();
 		jQuery("#menu_toogle").css('cursor','pointer');
 		jQuery("#menu_toogle").click(function(){
 			jQuery(".categories_menu").toggle("slow");

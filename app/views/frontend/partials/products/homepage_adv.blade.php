@@ -14,7 +14,7 @@
 					<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 					<div class="product-l-wrapper">
 						<div class="single-products">
-							<div class="productinfo">
+							<div class="productinfo text-center">
 								<a href="{{$adv->link_url}}">
 								 <img
 									src="{{Config::get('app.url')}}upload/advertisement/{{$adv->image;}}"

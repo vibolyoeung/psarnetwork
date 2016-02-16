@@ -1,6 +1,5 @@
 <!--=============Menu==========-->
-<div class="container-fluid header-bottom hide_responsive" style="padding:0 9px 8px 12px;">
-
+<div class="container-fluid header-bottom  hidden-sm hidden-xs" style="padding:0 9px 8px 12px;">
 	<nav class="navbar navbar-default menu_header_default" role="navigation">
 		<!-- type:, position: most top, limit -->
 		@if (! empty($page))
@@ -13,7 +12,7 @@
 			@endif
 		@endif
 
-		<div class="col-lg-10 col-xs-12 pull-right">
+		<div class="col-lg-10 col-xs-12 pull-right  hidden-sm hidden-xs">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"

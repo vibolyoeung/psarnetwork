@@ -19,7 +19,6 @@ Categories
 		<div class="col-lg-10"  style="padding-left:0;">
 			<div>
 				<!-- ============Slider end here========= -->
-				@include('frontend.partials.products.search')
 				<div class="row">
 					<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 					<?php
@@ -137,6 +136,10 @@ Categories
 								</div>
 							</div>
 						@endforeach
+						<div style="clear: both;"></div>
+						<div id="pagination" class="col-lg-12">
+							{{ $listProductSupermarket->appends(Input::except('page'))->links(); }}
+						</div>
 					<?php
 						}else{
 							echo '<p><center style="color:red;">Product not found!</center></p>';
