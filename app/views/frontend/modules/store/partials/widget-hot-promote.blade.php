@@ -5,12 +5,13 @@ $whereHotPromote = array(
     'pro_transfer_type_id'=> 5
 );
 $PayMonthly = $thisProduct->listAllProductsByOwnStore($whereHotPromote);
+$count = $thisProduct->listAllProductsByOwnStoreCounter($whereHotPromote);
 ?>
 <div class="category-tab Hot-Promotion">
 	<div class="features_items">
 		<ul class="nav nav-tabs">
 			<li><strong>{{trans('product.hot_promotion')}}</strong>&nbsp;&frasl;</li>
-			<li>Products : <span class="number-display">25</span></li>
+			<li>Products : <span class="number-display">{{@$count}}</span></li>
 		</ul>
 		<div class="col-lg-12" style="padding:0;">
 		@if(count($PayMonthly)>1)

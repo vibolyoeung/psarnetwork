@@ -725,10 +725,10 @@ class Product extends Eloquent {
 		$query->groupBy($product.'.id');
 		$query->orderBy ( 'id', 'DESC' );
 		if(!empty($product_id)) {
-			$query->take (4);
+			$query->take (24);
 			$product = $query->get ();
 		} else {
-			$product = $query->paginate (4);
+			$product = $query->paginate (24);
 		}
 		return $product;
 	}
@@ -752,6 +752,24 @@ class Product extends Eloquent {
 		return DB::table ( $product )->select ( '*' )->where ( $where )->orderBy ( 'id', 'DESC' )->paginate ( 10 );
 	}
 
+	/**
+	 * listAllProductsByOwnStore counter
+	 *
+	 * @return products by Own store
+	 * @access public
+	 */
+	public function listAllProductsByOwnStoreCounter($where = array()) {
+		if (! empty ( $where )) {
+			$where = $where;
+		} else {
+			$where = array (
+					'user_id' => Session::get ( 'currentUserId' ),
+					'pro_status' => 1
+			);
+		}
+		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
+		return DB::table ( $product )->select ( '*' )->where ( $where )->count();
+	}
 	/**
 	 * productDetailByOwnStore
 	 *

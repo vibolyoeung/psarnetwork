@@ -34,7 +34,7 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 	<div class="col-xs-12">
 		<div class="row">
 			<div class="col-lg-12"
-				style="background-color: #FFF; border: 1px solid #CCC; margin: 2px 0 10px 0">
+				style="background-color: #FFF; border: 1px solid #CCC; margin: 2px 0 10px 0;display:none">
 				<div class="col-lg-9 pull-right">
 					<div class="col-lg-12" style="padding: 10px;">
 								<?php $contactInfo = json_decode($dataProductDetail->contact_info); ?>
@@ -262,6 +262,9 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 					class="glyphicon glyphicon-remove form-control-feedback"
 					aria-hidden="true"></span> <span id="MappingAddressHereStatus"
 					class="sr-only"> (error) </span>
+					@if($locationArr->g_latitude_longitude)
+					<img style="width:100%" src="http://maps.google.com/maps/api/staticmap?center={{$locationArr->g_latitude_longitude}}&zoom=15&size=650x300&maptype=roadmap&&markers=color:red|label:A|{{$locationArr->g_latitude_longitude}}&sensor=false"/>
+					@endif
 				<div id="mapWrapper" style="">
 					<div id="gmap" style="width: 100%; height: 375px"></div>
 				</div>
@@ -284,7 +287,7 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 			</div>
 
 			<div class="tab-pane fade" id="contact-address">
-				 {{$dataProductDetail->contact_address}}
+				 {{@$dataProductDetail->contact_address}}
 			</div>
 
 			<div class="tab-pane fade" id="quotation">
