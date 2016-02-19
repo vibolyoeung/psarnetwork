@@ -1,4 +1,4 @@
-<div class="col-lg-2 col-md-4 left_bar hidden-sm hidden-xs">
+<div class="col-lg-2 col-md-4 left_bar hidden-sm">
 	<div class="left-sidebar">
 		<div class="panel-group category-products" id="accordian">
 			<div class="all_categories_type" id="menu_toogle">
@@ -17,7 +17,7 @@
 				      	<?php
 							 $subcategoriesobj = new MCategory();
 							 $sub = $subcategoriesobj->getSubCategories($categoriesList->id);
-								echo '<ul class="dropdown_main_menu">';
+								echo '<ul class="dropdown_main_menu hidden-xs">';
 									foreach ($sub as $row){
 										echo '<li class="main_category"><a href='.URL::to('products/productbycategories/'.$row->id.'/'.$row->id).'>';
 											$subCateName = $row->{'name_'.Session::get('lang')};
@@ -41,7 +41,7 @@
 			</ul>
 		</div>
 		<!--=========Register seller============ -->
-		<div class="panel-group category-products ads_side_bar" id="accordian">
+		<div class="panel-group category-products ads_side_bar hidden-xs" id="accordian">
 			@if($isDetails)
 				<!-- type:homepage, position: left meduim, limit -->
 				{{ App::make('FePageController')->getFeAds(3, 6, 3) }}

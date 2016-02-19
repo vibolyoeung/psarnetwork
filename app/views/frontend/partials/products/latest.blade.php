@@ -41,7 +41,7 @@ if(count($latestProducts) > 0){
 		</div>
 		@endforeach
 	</div>
-	<div class="col-lg-12 center-advertise">
+	<div class="col-lg-12 center-advertise hidden-xs">
 		<!-- type:homepage, position: up on enterprice product, limit -->
 		{{ App::make('FePageController')->getHorizontalAds(1, 8, 3) }}
 	</div>

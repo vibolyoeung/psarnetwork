@@ -53,7 +53,7 @@
 	jQuery(document).ready(function(){
 		jQuery("#menu_toogle").css('cursor','pointer');
 		jQuery("#menu_toogle").click(function(){
-			jQuery(".categories_menu").toggle("slow");
+			jQuery(".categories_menu").toggle("fast");
 		});
 	});
 </script>

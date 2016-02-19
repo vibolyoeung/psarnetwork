@@ -87,16 +87,33 @@
             			<!--header_top-->
             			<div class="container">
             				<div class="row">
-            					<div class="col-sm-3 hidden-sm hidden-xs">
-            						<div class="contactinfo">
+            					<div class="col-xs-6 col-sm-3">
+                                                <div class="hidden-lg hidden-md hidden-sm">
+                                                      <a href="{{Config::get('app.url')}}">
+                                                            <img
+                                                            src="{{Config::get('app.url')}}frontend/images/Responsive-logo.png"
+                                                            class="img-responsive" />
+                                                      </a>
+                                                </div>
+            						<div class="contactinfo hidden-xs">
             							<ul class="nav nav-pills">
-            								<li class="facebook-like">
+            								<li class="facebook-like hidden-xs">
             									<div class="fb-like" data-href="https://www.facebook.com/khmerabba?ref=hl" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
             								</li>
             							</ul>
             						</div>
             					</div>
-            					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                          <div class="language-bar col-xs-6 col-sm-3 hidden-lg hidden-md hidden-sm">
+                                                <a href="{{URL::current()}}?lang=en"> <img
+                                                      src="{{Config::get('app.url')}}/frontend/images/en.png" alt=""
+                                                      title="" />&nbsp;{{trans('product.english')}}
+                                                </a>
+                                                <a href="{{URL::current()}}?lang=km"> <img
+                                                      src="{{Config::get('app.url')}}/frontend/images/km.png" alt=""
+                                                      title="" />&nbsp;{{trans('product.khmer')}}
+                                                </a>
+                                          </div>
+            					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-6 hidden-xs">
             						<div class="social-icons pull-right ">
             							<ul class="nav navbar-nav">
             								<?php $mPages = MPage::getPagesToPutOnTop();?>

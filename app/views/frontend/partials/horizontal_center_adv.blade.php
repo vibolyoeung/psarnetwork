@@ -1,4 +1,4 @@
-<div class="col-lg-12 center-advertise">
+<div class="col-lg-12 center-advertise hidden-xs">
 	@if(count($advHorizontalLargeCenters))
 		@foreach($advHorizontalLargeCenters as $adv)
 			<?php

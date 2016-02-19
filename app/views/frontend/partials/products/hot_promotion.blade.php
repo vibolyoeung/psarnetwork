@@ -1,4 +1,4 @@
-<div class="col-lg-12 center-advertise">
+<div class="col-lg-12 center-advertise hidden-xs">
 	<!-- type:homepage, position: up on hot promotion, limit -->
 	{{ App::make('FePageController')->getHorizontalAds(1, 16, 3) }}
 </div>

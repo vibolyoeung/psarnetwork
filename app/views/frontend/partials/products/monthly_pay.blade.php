@@ -1,4 +1,4 @@
-<div class="col-lg-12 center-advertise">
+<div class="col-lg-12 center-advertise hidden-xs">
 	<!-- type:homepage, position: up on monthly product, limit -->
 	{{ App::make('FePageController')->getHorizontalAds(1, 15, 3) }}
 </div>
