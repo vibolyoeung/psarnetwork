@@ -3378,6 +3378,7 @@ fieldset legend {
 	padding-left: 0;
 	padding-right: 0;
 	border: 0px solid #ddd;
+	margin-top:15px;
 }
 
 .dropdown_main_menu>.active>a {
@@ -3727,8 +3728,9 @@ div.social-icons{
 	padding:0;
 	margin:0;
 }
+
 @media(max-width:770px){
-	body,html,div.top_promotion{
+	body,html,div.top_promotion,.btn,.form-control{
 		font-size: 12px;
 	}
 	section div.home_wrapper{
@@ -3780,6 +3782,7 @@ div.social-icons{
 	    top:auto;
 	    width:auto;
 	}
+
 	.row .language-bar{
 		position: unset;
 		margin-bottom: 0;
@@ -3788,6 +3791,17 @@ div.social-icons{
 	.panel-primary.registerform .well{
 		padding:35px;
 	}
+
+	section div.home_wrapper {
+	    margin-top: 140px;
+	}
+	div.language-bar a{
+		padding:0 5px;
+		margin:0;
+	}
+	.header_top .col-sm-3{width:auto;}
+
+	.header_top{padding:4px 0;line-height: 20px;}
 }
 
 
