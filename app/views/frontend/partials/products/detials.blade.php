@@ -257,7 +257,7 @@
 				   </div>
 				    <div class="tab-pane fade" id="full-address">
 				      	<a href="{{Config::get('app.url')}}upload/quotation/{{$productdetails->file_quotation;}}">
-							{{$productdetails->contact_address;}}
+							{{@$productdetails->contact_address;}}
 						</a>
 				   </div>
 
