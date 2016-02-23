@@ -9,11 +9,12 @@ Categories
     <li class="active">Data</li>
 </ol>
 @endsection
+<div class="clear"></div>
 @include('frontend.partials.menu', array('page' => 'category'))
 @section('content')
 @include('frontend.partials.categories.left')
 	<div class="col-lg-10">
-		<div class="col-lg-2 pull-right" style="padding:0;">
+		<div class="col-lg-2 pull-right hidden-xs" style="padding:0;">
 			@include('frontend.partials.categories.right')
 		</div>
 		<div class="col-lg-10"  style="padding-left:0;"><!-- ============Slider end here========= -->
@@ -159,5 +160,25 @@ Categories
 <script src="{{Config::get('app.url')}}/frontend/js/carouselengine/amazingcarousel.js"></script>
 <link rel="stylesheet" type="text/css" href="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.css">
 <script src="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.js"></script>
+
+
+<script>
+	jQuery(document).ready(function(){
+		jQuery("#menu_toogle").css('cursor','pointer');
+		jQuery("#menu_toogle").click(function(){
+			jQuery(".categories_menu").slideToggle("fast");
+		});
+	});
+
+	$(window).on('load resize', function(){
+		var windowsize = $(window).width();
+		if (windowsize > 768) {
+		    //if the window is greater than 768, then show menu as default
+		    jQuery(".categories_menu").show();
+		  }else{
+		  	jQuery(".categories_menu").hide();
+		  }
+	});
+</script>
 
 

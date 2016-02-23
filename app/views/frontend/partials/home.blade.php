@@ -42,31 +42,4 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-<script>
-	//detect the width on page load
-  jQuery(document).ready(function(){
-    var current_width = $(window).width();
-     //do something with the width value here!
-    jQuery("#menu_toogle").css('cursor','pointer');
-    jQuery(".categories_menu").show();
-    if(current_width < 770){	
-      	jQuery(".categories_menu").hide();
-    }else{
-    	jQuery(".categories_menu").show();
-    }
-    jQuery("#menu_toogle").click(function(){
-		jQuery(".categories_menu").toggle("fast");
-	});
-  });
-
-  $(window).resize(function(){
-    var current_width = $(window).width();
-   //do something with the width value here!
-    if(current_width < 770){
-     jQuery(".categories_menu").hide();
-    }else{
-    	jQuery(".categories_menu").show();
-    }
-  });
-</script>
 

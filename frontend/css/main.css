@@ -3604,6 +3604,7 @@ ul#TapTitle > li.active > a{
 }
 .left-sidebar{
 	border:1px solid #e7e7e7;
+	min-height: 200px;
 }
 .ui-datepicker {
     background: #fff;
@@ -3802,6 +3803,9 @@ div.social-icons{
 	.header_top .col-sm-3{width:auto;}
 
 	.header_top{padding:4px 0;line-height: 20px;}
+	.left-sidebar{
+		min-height: 0;
+	}
 }
 
 

@@ -9,6 +9,7 @@ Categories
     <li class="active">Data</li>
 </ol>
 @endsection
+<div class="clear"></div>
 @include('frontend.partials.menu')
 @section('content')
 @include('frontend.partials.left-supermarket')
@@ -137,7 +138,7 @@ Categories
 							</div>
 						@endforeach
 						<div style="clear: both;"></div>
-						<div id="pagination" class="col-lg-12">
+						<div id="pagination" class="col-lg-12 text-center">
 							{{ $listProductSupermarket->appends(Input::except('page'))->links(); }}
 						</div>
 					<?php

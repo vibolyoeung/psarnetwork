@@ -303,9 +303,12 @@
 <script>
 	jQuery(document).ready(function(){
 		jQuery("#menu_toogle").css('cursor','pointer');
+		
+		jQuery(".categories_menu").slideToggle("hide");
 		jQuery("#menu_toogle").click(function(){
-			jQuery(".categories_menu").toggle("slow");
+			jQuery(".categories_menu").slideToggle("slow");
 		});
+
 		jQuery(".slideshow-group").colorbox({rel:'slideshow-group', transition:"none", maxWidth:"95%", maxHeight:"95%"});
 	});
 </script>

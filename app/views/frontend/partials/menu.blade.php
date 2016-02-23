@@ -59,21 +59,4 @@
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
-
-	<!--=========Test-->
 </div>
-<script>
-	jQuery(document).ready(function(){
-		var fullurl = window.location.href;
-		var explodedurl = fullurl.split("/");
-		$('.thumb-dropdown').each(function() {
-		   var ID = ( this.id );
-		   //alert(jQuery.inArray(ID,explodedurl));
-		   if(jQuery.inArray(ID,explodedurl) == -1){
-				//jQuery(".menu_nav_category li:first-child").addClass(" active");
-			}else{
-				//jQuery(this).addClass(" active");
-			}
-		});
-	});
-</script>

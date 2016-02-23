@@ -9,6 +9,7 @@ Categories
     <li class="active">Data</li>
 </ol>
 @endsection
+<div class="clear"></div>
 @include('frontend.partials.menu')
 @section('content')
 {{ App::make('FePageController')->mainCategory() }}
@@ -18,7 +19,6 @@ Categories
 		</div>
 		<div class="col-lg-10"  style="padding-left:0;">
 			<div>
-				@include('frontend.partials.products.search')
 				<div class="row">
 					<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 					<?php
@@ -51,7 +51,7 @@ Categories
 							</div>
 						@endforeach
 						<div style="clear: both;"></div>
-						<div id="pagination" class="col-lg-12">
+						<div id="pagination" class="col-lg-12 text-center">
 							{{ $productsByTransfterType->appends(Input::except('page'))->links(); }}
 						</div>
 					<?php
@@ -70,5 +70,3 @@ Categories
 <script src="{{Config::get('app.url')}}/frontend/js/carouselengine/amazingcarousel.js"></script>
 <link rel="stylesheet" type="text/css" href="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.css">
 <script src="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.js"></script>
-
-
