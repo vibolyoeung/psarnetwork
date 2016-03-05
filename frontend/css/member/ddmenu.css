@@ -309,11 +309,11 @@ color: #E6E6E6;
 font-size: 18px;
 }
 #topmobilenav:before, #mobilenav:before {
-content: "\f0c9";
-top: 3px;
-text-indent: 0;
-left: 5px;
-font-size: 29px;
+	content: "\f0c9";
+	top: 3px;
+	text-indent: 0;
+	left: 5px;
+	font-size: 29px;
 }
 #topmobilenav:before {
 font-size: 21px;
