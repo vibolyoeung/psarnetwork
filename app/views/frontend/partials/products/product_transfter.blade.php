@@ -17,7 +17,7 @@ Categories
 		<div class="col-lg-2 pull-right" style="padding:0;">
 			@include('frontend.partials.categories.right')
 		</div>
-		<div class="col-lg-10"  style="padding-left:0;">
+		<div class="col-lg-10"  style="padding:0;">
 			<div>
 				<div class="row">
 					<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
@@ -51,8 +51,10 @@ Categories
 							</div>
 						@endforeach
 						<div style="clear: both;"></div>
-						<div id="pagination" class="col-lg-12 text-center">
-							{{ $productsByTransfterType->appends(Input::except('page'))->links(); }}
+						<div class="col-lg-12">
+								<div id="pagination" class="col-lg-12 text-center">
+									{{ $productsByTransfterType->appends(Input::except('page'))->links(); }}
+								</div>
 						</div>
 					<?php
 						}else{

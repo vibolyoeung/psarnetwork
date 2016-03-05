@@ -104,13 +104,25 @@ if($userLayout) {
               href="{{Config::get('app.url')}}/frontend/images/ico/apple-touch-icon-72-precomposed.png">
     </head>
     <body>
+    	<!-- Call facebook script -->
+            	<div id="fb-root"></div>
+            	<script>
+            	(function(d, s, id) {
+            		var js, fjs = d.getElementsByTagName(s)[0];
+            		if (d.getElementById(id)) return;
+            		js = d.createElement(s); js.id = id;
+            		js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+            		fjs.parentNode.insertBefore(js, fjs);
+            	}(document, 'script', 'facebook-jssdk'));
+            	</script>
+            	<!-- End facebook calling -->
 		<header id="header">
         <!--=====Start Header]==============-->
         @include('frontend.modules.store.partials.top-menu')
         <!-- ============End header top here============== -->
         <div class="container" style="padding-left: 0;padding-right: 0;">
-            <div class="container-fluid top-menu">
-                	<div class="col-lg-3 col-md-4 col-sm-12">
+            <div class="container-fluid top-menu" style="padding:0; margin:0;height:auto;min-height:0;">
+                	<div class="col-lg-3 col-md-4 col-sm-12 hidden-xs">
                 		<div id="store-logo">
                             @if($dataStore->image)
                                 <a class="store-logo" href="{{$userHome}}">
@@ -128,7 +140,7 @@ if($userLayout) {
                             @endif
                     	</div>
     				</div>
-    				<div class="col-lg-9 col-md-8 col-sm-12">
+    				<div class="col-lg-9 col-md-8 col-sm-12 hidden-xs">
     					<div id="store-banner-header">
 	    					<?php 
 	    					$getBanner = new Store ();

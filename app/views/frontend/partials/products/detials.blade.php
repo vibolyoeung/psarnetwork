@@ -279,16 +279,16 @@
 			<div class="clear"></div><div class="clear"></div>
 			<!-- type:detials, position: up on related product, limit -->
 			{{ App::make('FePageController')->getHorizontalAds(3, 13, 3) }}
-			<div class="col-lg-3 text-centered" style="border:1px solid #dddddd;background-color:#dddddd;padding:5px 10px;font-weight:bold;text-align:center;">Related Products</div>
+			<div class="col-lg-3 text-centered hidden-xs" style="border:1px solid #dddddd;background-color:#dddddd;padding:5px 10px;font-weight:bold;text-align:center;">Related Products</div>
 			{{
-			App::make('FePageController')->findRelatedProducts(array($productdetails->category_id))
+				App::make('FePageController')->findRelatedProducts(array($productdetails->category_id))
 			}}
 			<br />
 		</div><!--============End detail container hre=====-->
 		<!-- type:detial, position: most buttom, limit -->
 		{{ App::make('FePageController')->getHorizontalAds(3, 3, 3) }}
 	</div>
-	<div class="col-lg-2 pull-right right-ad-detail">
+	<div class="col-lg-2 pull-right right-ad-detail hidden-xs">
 		@include('frontend.partials.details.right')
 	</div>
 <script
@@ -302,13 +302,6 @@
 
 <script>
 	jQuery(document).ready(function(){
-		jQuery("#menu_toogle").css('cursor','pointer');
-		
-		jQuery(".categories_menu").slideToggle("hide");
-		jQuery("#menu_toogle").click(function(){
-			jQuery(".categories_menu").slideToggle("slow");
-		});
-
 		jQuery(".slideshow-group").colorbox({rel:'slideshow-group', transition:"none", maxWidth:"95%", maxHeight:"95%"});
 	});
 </script>

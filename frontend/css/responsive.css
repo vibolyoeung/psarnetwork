@@ -1,6 +1,6 @@
 /* lg */ 
 @media (max-width: 1200px) {
-	 .col-sm-9 .social-icons ul.navbar-nav{display:none;}
+	
 }
 
 /* md */
@@ -132,12 +132,12 @@
 @media (max-width: 767px) {
 
 .row .language-bar{
-	z-index: 99999;
+	/*z-index: 99999;
 	margin-bottom:10px;
 	overflow:hidden;
 	left:0;
 	position: absolute;
-	top:-32px;
+	top:-32px;*/
 }
 
 .header_top .col-sm-6:first-child{
@@ -149,8 +149,8 @@
 	display: inline-block;
 	float: right;
 }
-.header_top .col-sm-3{float: left;width: 270px}
-.header_top .col-sm-9{float: right;width: 193px;top: 30px}
+.header_top .col-sm-3{float: left;}
+.header_top .col-sm-9{}
 .header-bottom .container .row{height: inherit}
 
 
@@ -299,7 +299,6 @@ ul.sub-menu{
 
 /* XS Portrait */
 @media (max-width: 480px) {
-.col-sm-9 .social-icons ul.navbar-nav{display:none;}
 .footer-bottom .col-sm-12 ul{width:100%;padding:0;}
 .footer-bottom .col-sm-12 ul li{
 	text-align:center;
@@ -551,5 +550,35 @@ ul.sub-menu{
 
 .product-information span span{
 	float: none;
+}
+
+
+@media(max-width:770px){
+	body,html,div.top_promotion,.btn,.form-control,.container,.home_wrapper{
+		font-size: 12px;
+		font-family: "Hanuman";
+	}
+	.navbar-nav .open .dropdown-menu{
+	    background-color: #285ea0 !important;
+	    border: 0 none !important;
+	    box-shadow: none !important; 
+	    float: none !important;
+	    margin-top: 0 !important;
+	    position: absolute !important;
+	    width: 100% !important;
+	    z-index: 20 !important;
+	}
+	.nav .open > a, .nav .open > a:focus, .nav .open > a:hover{
+		 background-color: #285ea0 !important;
+	}
+	#outer-wrapper, #nav{
+		z-index: 16 !important;
+	}
+	#menunav, #topmenunav{
+		left:0 !important;
+		right: 0 !important;
+		position: absolute !important;
+		width:100% !important;
+	}
 }
 

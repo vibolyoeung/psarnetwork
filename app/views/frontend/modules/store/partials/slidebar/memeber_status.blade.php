@@ -2,7 +2,7 @@
 $getUser = new User ();
 $getUserData = $getUser->getUser($dataStore->user_id);
 ?>
-<div class="panel-group category-products" id="accordian">
+<div class="panel-group category-products hidden-xs" id="accordian">
 	<label class="btn-default get popular-links">
 		{{trans('store.memeberStatus')}}
 	</label>

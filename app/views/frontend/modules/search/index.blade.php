@@ -9,6 +9,7 @@ Categories
     <li class="active">Data</li>
 </ol>
 @endsection
+<div class="clear"></div>
 @include('frontend.partials.menu')
 @section('content')
 {{ App::make('FePageController')->mainCategory() }}

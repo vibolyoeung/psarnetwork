@@ -17,7 +17,7 @@ Categories
 		<div class="col-lg-2 pull-right hidden-xs" style="padding:0;">
 			@include('frontend.partials.categories.right')
 		</div>
-		<div class="col-lg-10"  style="padding-left:0;"><!-- ============Slider end here========= -->
+		<div class="col-lg-10"  style="padding:0;"><!-- ============Slider end here========= -->
 			@include('frontend.partials.products.search')
 			<div class="row">
 				<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
@@ -139,7 +139,7 @@ Categories
 						</div>
 					@endforeach
 					<div style="clear: both;"></div>
-					<div id="pagination" class="col-lg-12">
+					<div id="pagination" class="col-lg-12 text-center">
 						{{ $productByCategory->appends(Input::except('page'))->links(); }}
 					</div>
 				<?php

@@ -3,14 +3,13 @@
 		<div class="panel-group category-products" id="accordian">
 			<div class="all_categories_type" id="menu_toogle">
 				<img src="{{Config::get('app.url')}}frontend/images/icons/all_category.png" alt="" title="" height="23"/>
-				&nbsp;
-					@foreach ($MaindetailCategory as $maincate)
+				  @foreach ($MaindetailCategory as $maincate)
 					<?php
 	      			$cateName = $maincate->{'name_'.Session::get('lang')};
 	      			?>
-	      			{{ str_limit($cateName, $limit = 20, $end = '') }}
+	      			 {{ str_limit($cateName, $limit = 20, $end = '') }}
 					@endforeach
-					&nbsp;&nbsp;&nbsp;<span class="caret" ></span>
+					&nbsp;&nbsp;<span class="caret" ></span>
 			</div>
 			<ul class="categories_menu">
 				<?php

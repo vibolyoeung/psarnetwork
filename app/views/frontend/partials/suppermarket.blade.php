@@ -14,10 +14,7 @@ Categories
 @section('content')
 @include('frontend.partials.left-supermarket')
 	<div class="col-lg-10" style="">
-		<div class="col-lg-2 pull-right" style="padding:0;">
-			@include('frontend.partials.categories.right')
-		</div>
-		<div class="col-lg-10"  style="padding-left:0;">
+		<div class="col-lg-10"  style="padding:0;">
 			<div>
 				<!-- ============Slider end here========= -->
 				<div class="row">
@@ -148,6 +145,9 @@ Categories
 					?>
 					</div>
 				</div>
+			</div>
+			<div class="col-lg-2 pull-right" style="padding:0;">
+				@include('frontend.partials.categories.right')
 			</div>
 		</div>
 	</div>

@@ -6,7 +6,7 @@
 			@yield('content')
 		</div>
 	</div>
-	<div class="container client_location">
+	<div class="container client_location hidden-sm hidden-xs">
 		@yield('client_location')
 	</div>
 </section>

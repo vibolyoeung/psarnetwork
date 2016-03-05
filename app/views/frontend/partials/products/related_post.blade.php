@@ -1,5 +1,5 @@
 <div class="clear"></div>
-<div id="related-item-carousel" class="carousel slide"
+<div id="related-item-carousel" class="carousel slide hidden-xs"
 		data-ride="carousel" style="border:1px solid #ddd;">
 		<div class="carousel-inner">
 			<?php

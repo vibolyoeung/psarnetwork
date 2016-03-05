@@ -87,7 +87,7 @@
 	</div>
 	{{Form::close()}}
 </div>
-<div class="features_items">
+<div class="features_items hidden-xs hidden-sm">
 	<div class="category-tab lastest-post">
 		<div style="padding:0;">
 			<ul class="nav nav-tabs" style="background-color:#ddd;">

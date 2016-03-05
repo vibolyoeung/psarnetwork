@@ -12,12 +12,12 @@
 
 @import url(http://fonts.googleapis.com/css?family=Hanuman);
 
-body,html{
+body,html,div.top_promotion,.btn,.form-control,.container,.home_wrapper{
 	position: relative;
 	height: 100%;
 	font-size: 11px;
 	color:#333;
-	font-family:"Hanuman","Arial";
+	font-family:"Hanuman","Arial" !important;
 	/*font-family:"Hanuman","Frutiger Neue W02 Book";*/
 }
 a,p,h1,h2,h3,h4,h5,strong,span,label{
@@ -3717,7 +3717,6 @@ center>h5>a{
 	margin-bottom: 15px;
 }
 div.top_promotion{
-	overflow: hidden;
 	margin:0;
 	padding:10px;
 }
@@ -3731,8 +3730,9 @@ div.social-icons{
 }
 
 @media(max-width:770px){
-	body,html,div.top_promotion,.btn,.form-control{
+	body,html,div.top_promotion,.btn,.form-control,.container,.home_wrapper{
 		font-size: 12px;
+		font-family: "Hanuman";
 	}
 	section div.home_wrapper{
 		margin-top:30%;
@@ -3805,6 +3805,21 @@ div.social-icons{
 	.header_top{padding:4px 0;line-height: 20px;}
 	.left-sidebar{
 		min-height: 0;
+	}
+
+	#DetailCarousel, #DetailPopupCarousel{
+		height: auto;
+	}
+
+	div.dropdown-menu,div.navbar-nav{
+	    background-color: blue;
+	    border: 0 none;
+	    box-shadow: none;
+	    float: none;
+	    margin-top: 0;
+	    position: absolute;
+	    width: 100%;
+	    z-index: 20;
 	}
 }
 

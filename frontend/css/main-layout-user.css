@@ -14,7 +14,7 @@
 @import url(http://fonts.googleapis.com/css?family=Hanuman);
 
 body,html{
-	position: relative;
+	position: relative; 	
 	height: 100%;
 	font-size: 14px;
 	color:#333;
@@ -131,8 +131,7 @@ a#scrollUp i {
 .header_top .language-bar {
     z-index: 99999;
     overflow: hidden;
-    padding:3px 0 0;
-    padding-left: 15px;
+    padding:0;
     float:right;
 }
 
@@ -3413,7 +3412,7 @@ div.header-middle{
 	margin-top: 100px;
 }
 @media(max-width:768px){
-    header#header, .header-middle, .left_bar, .top_special_ads, div.features_items > .features_items,.center-advertise, .popular_product,.new_product, .new_product_left, .new_product_right{
+   .header-middle, .top_special_ads, div.features_items > .features_items,.center-advertise, .popular_product,.new_product, .new_product_left, .new_product_right{
        display: none !important;
     }
     .navbar-header{

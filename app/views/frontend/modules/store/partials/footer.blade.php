@@ -56,26 +56,24 @@ $menuFooter = $getclasMCategory->menuUserPage ( $dataStore->user_id, 3, $getUser
 		 {{HTML::script('frontend/js/prettyPhoto.js')}}
 		 {{HTML::script('frontend/js/main.js')}}
 		 {{HTML::script('frontend/js/custom.js')}}
-		<link rel="apple-touch-icon-precomposed"
-			href="frontend/images/ico/apple-touch-icon-57-precomposed.png"/>
+		<link rel="apple-touch-icon-precomposed" href="frontend/images/ico/apple-touch-icon-57-precomposed.png"/>
  <!-- Modal -->
-<div class="modal fade" id="dynamicModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body" id="overrideContent">
-        <div id="ModalLoading" style="display: none;text-align: center;">
-					<img src="{{Config::get('app.url')}}/frontend/images/upload_progress.gif" border="0" />
-				</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>           
-	</body>
+	<div class="modal fade" id="dynamicModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+	      </div>
+	      <div class="modal-body" id="overrideContent">
+	        <div id="ModalLoading" style="display: none;text-align: center;">
+						<img src="{{Config::get('app.url')}}/frontend/images/upload_progress.gif" border="0" />
+					</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 </html>
