@@ -17,8 +17,8 @@ CREATE TABLE IF NOT EXISTS `advertisement` (
   `status` int(11) DEFAULT NULL,
   `apearance` int(11) NOT NULL,
   `to_page` varchar(255) DEFAULT NULL,
-  `adv_position_id` int(11) NOT NULL,
-  `adv_cat_page_id` int(11) NOT NULL,
+  `adv_position_id` int(11) DEFAULT NULL,
+  `adv_cat_page_id` int(11) DEFAULT NULL,
   `adv_page_id` int(11) DEFAULT NULL,
   `license_id` int(11) NOT NULL,
   `payment_method` int(11) NOT NULL
