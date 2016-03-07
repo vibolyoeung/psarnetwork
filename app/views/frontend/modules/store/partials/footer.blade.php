@@ -16,13 +16,7 @@ $menuFooter = $getclasMCategory->menuUserPage ( $dataStore->user_id, 3, $getUser
 							@if($menuFooter)
 							{{$menuFooter}}
 							@else
-							<li><a href="#">Contact</a></li>
-							<li><a href="#">About</a></li>
-							<li><a href="#">Advertisement</a></li>
-							<li><a href="#">Usage</a></li>
-							<li><a href="#">User Agreement</a></li>
-							<li><a href="#">Policy</a></li>
-							<li><a href="#">Sign Up now</a></li>
+							<li><a href="{{@Config::get('app.url')}}member/register">Sign Up now</a></li>
 							@endif
 						</ul>
 					</center>

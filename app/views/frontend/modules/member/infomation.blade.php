@@ -11,7 +11,6 @@
 	</li>
 </ol>
 @endsection @section('frontend.partials.left') @endsection @section('content')
-
 <div class="memberlogin">
 	<div class="col-sm-3">
 		@include('frontend.modules.member.layout.sidebar-setting')

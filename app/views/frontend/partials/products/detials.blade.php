@@ -172,7 +172,24 @@
 										{{Config::get('app.url')}}store-{{$productdetails->store_id;}}
 										</a>
 									</div>
-								</div>
+									<?php
+										$currentUrl = trim("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+										$image = trim(Config::get('app.url') . 'image/phpthumb/' . $images[0]['pic'] . '?p=product&amp;h=250&amp;w=450"');
+									?>
+									<div id="facebook-meta">
+										<meta property="og:url" content="{{$currentUrl}}" />
+										<meta property="og:type" content="article" />
+										<meta property="og:title" content="{{$productdetails->title}}" />
+										<meta property="og:description" content="{{strip_tags($productdetails->description)}}" />
+										<meta property="og:image" content="{{$image}}" />
+									</div>
+									<div
+										class="fb-share-button"
+										data-href="{{$currentUrl}}"
+										data-layout="button"
+										style="margin-top: 15px"
+									>
+									</div>
 							</div>
 						</div>
 					</div>
@@ -273,6 +290,8 @@
 				      $(".active-tab span").html(activeTab);
 				      $(".previous-tab span").html(previousTab);
 				   });
+
+				   $('#facebook-meta').children().appendTo('head');
 				});
 				</script>
 			</div>

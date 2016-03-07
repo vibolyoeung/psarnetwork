@@ -14,6 +14,15 @@
 <script type='text/javascript'>
 var homePage = "{{Config::get('app.url')}}";
 </script>
+<?php
+$userID = Session::get ( 'currentUserId' );
+$thisProduct = new Product();
+$whereHotPromote = array(
+    'user_id'=> $userID,
+    'is_publish' =>1
+);
+$productCount = $thisProduct->listAllProductsByOwnStoreCounter($whereHotPromote);
+?>
 <div class="memberlogin">
 	<div class="col-sm-3">
 		@include('frontend.modules.member.layout.sidebar-setting')
@@ -163,10 +172,10 @@ var homePage = "{{Config::get('app.url')}}";
                     								{{trans('register.gen_Total_Products')}}
                     							</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" id="email" class="form-control" value="{{$ProductsCount}}" readonly/>
+                                                    <input type="text" id="email" class="form-control" value="{{@$productCount}}" readonly/>
             									</div>
                     						</div>
-                                            <div class="form-group">
+                                            <!--<div class="form-group">
                     							<label for="email" class="col-sm-4 control-label">
                     								{{trans('register.gen_Total_Banner')}}
                     							</label>
@@ -205,7 +214,7 @@ var homePage = "{{Config::get('app.url')}}";
                                                 <div class="col-sm-8">
                                                     <input type="text" id="email" class="form-control" value="19-5-2015" readonly/>
             									</div>
-                    						</div>
+                    						</div>-->
 										</div>
 
 						</div>
