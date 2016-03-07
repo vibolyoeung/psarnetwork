@@ -26,7 +26,9 @@ body,html{
 	font-family:"Hanuman","Arial";
 	/*font-family:"Hanuman","Frutiger Neue W02 Book";*/
 }
-
+a:link{
+	color:none;
+}
 #topnav {
 background:#1A1A1A;
 padding:0;

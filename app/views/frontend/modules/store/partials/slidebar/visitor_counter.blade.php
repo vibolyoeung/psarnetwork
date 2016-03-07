@@ -1,4 +1,4 @@
-<div class="panel-group category-products" id="accordian">
+<div class="panel-group category-products hidden-xs" id="accordian">
 	<label class="btn-default get popular-links">
 		Vistor Counter
 	</label>

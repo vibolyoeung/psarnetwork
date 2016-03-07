@@ -122,7 +122,7 @@ if($userLayout) {
         <!-- ============End header top here============== -->
         <div class="container" style="padding-left: 0;padding-right: 0;">
             <div class="container-fluid top-menu" style="padding:0; margin:0;height:auto;min-height:0;">
-                	<div class="col-lg-3 col-md-4 col-sm-12 hidden-xs">
+                	<div class="col-xs-4 col-lg-3 col-md-4 col-sm-12" style="padding:0;">
                 		<div id="store-logo">
                             @if($dataStore->image)
                                 <a class="store-logo" href="{{$userHome}}">
@@ -140,7 +140,7 @@ if($userLayout) {
                             @endif
                     	</div>
     				</div>
-    				<div class="col-lg-9 col-md-8 col-sm-12 hidden-xs">
+    				<div class="col-xs-8 col-lg-9 col-md-8 col-sm-12">
     					<div id="store-banner-header">
 	    					<?php 
 	    					$getBanner = new Store ();
