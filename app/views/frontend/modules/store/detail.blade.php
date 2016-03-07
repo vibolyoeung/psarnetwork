@@ -263,7 +263,7 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 					aria-hidden="true"></span> <span id="MappingAddressHereStatus"
 					class="sr-only"> (error) </span>
 					@if($locationArr->g_latitude_longitude)
-					<img style="width:100%" src="http://maps.google.com/maps/api/staticmap?center={{$locationArr->g_latitude_longitude}}&zoom=15&size=650x300&maptype=roadmap&&markers=color:red|label:A|{{$locationArr->g_latitude_longitude}}&sensor=false"/>
+					<a target="_blank" href="https://www.google.com.kh/maps/place/{{$locationArr->g_latitude_longitude}}"><img style="width:100%" src="http://maps.google.com/maps/api/staticmap?center={{$locationArr->g_latitude_longitude}}&zoom=15&size=650x300&maptype=roadmap&&markers=color:red|label:A|{{$locationArr->g_latitude_longitude}}&sensor=false"/></a>
 					@endif
 				<div id="mapWrapper" style="">
 					<div id="gmap" style="width: 100%; height: 375px"></div>
