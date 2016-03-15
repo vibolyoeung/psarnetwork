@@ -14,7 +14,7 @@
     var drag = false;
 
     function xz() {
-        ll = new google.maps.LatLng(11.578925,104.920006);
+        ll = new google.maps.LatLng(11.578925, 104.920006);
         zoom = 15;
         var mO = {
             scaleControl: true,

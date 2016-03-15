@@ -95,7 +95,10 @@ function rm($article, $char) {
 	if (!empty($toolView )){
 		foreach ($toolView as $tool ){
 			if($tool->type == 'tool_memeber_status' && $tool->status == 1){
-				include('frontend.modules.store.partials.slidebar.memeber_status');
+				//include_once('frontend.modules.store.partials.slidebar.memeber_status');
+                ?>
+                @extends('frontend.modules.store.partials.slidebar.memeber_status');
+                <?php
 			}
 		}
 	}
