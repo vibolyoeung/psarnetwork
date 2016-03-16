@@ -29,6 +29,13 @@
 	</div>
 @endsection
 <style>
+	body,html{
+		position: relative;
+		height: 100%;
+		font-size: 11px;
+		color:#333;
+		font-family:"Hanuman","Arial" !important;
+	}
     p.MsoNormal span{
     	font-family: "Hanuman",Arial !important;
     	line-height: 1 !important; 

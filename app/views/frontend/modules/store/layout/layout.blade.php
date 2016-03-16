@@ -23,17 +23,17 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-2" style="padding:0;">
-					<div class="left-sidebar">
+					<div class="left-sidebar hidden-xs">
 						@yield('left')
 					</div>
 				</div>
-				<div class="col-lg-8">
+				<div class="col-xs-12 col-lg-8">
 					<div class="entry-content">
 						@yield('content')
 					</div>
 				</div>
 				<div class="col-lg-2"  style="padding:0;">
-					<div class="left-sidebar">
+					<div class="left-sidebar hidden-xs">
 						@yield('right')
 					</div>
 				</div>

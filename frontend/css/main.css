@@ -18,9 +18,8 @@ body,html,div.top_promotion,.btn,.form-control,.container,.home_wrapper{
 	font-size: 11px;
 	color:#333;
 	font-family:"Hanuman","Arial" !important;
-	/*font-family:"Hanuman","Frutiger Neue W02 Book";*/
 }
-a,p,h1,h2,h3,h4,h5,strong,span,label{
+a,p,h1,h2,h3,h4,h5,strong,span,label,.all_categories_type{
 	font-family:"Hanuman","Arial";
 }
 ul li {
@@ -346,6 +345,9 @@ a#scrollUp i {
 	}
 	.navbar {
 		border-radius: 0;
+	}
+	.top_promotion div:nth-child(2),.top_promotion div:nth-child(3){
+		margin-top:1%;
 	}
 }
 @media ( max-width : 990px) {

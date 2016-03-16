@@ -1,6 +1,6 @@
 @if($SlideshowConfig)
 		<!-- slideshow -->
-		<div id="carousel-home" class="carousel slide" data-ride="carousel"
+		<div id="carousel-home" class="carousel slide hidden-xs" data-ride="carousel"
 			style="margin-top: 2px;">
 			<!-- Indicators -->
 			<ol class="carousel-indicators">

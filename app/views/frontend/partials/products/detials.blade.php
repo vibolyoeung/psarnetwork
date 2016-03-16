@@ -207,9 +207,6 @@
 				      <a href="#contact" data-toggle="tab">Contact</a>
 				   </li>
 				   <li class="dropdown">
-				      <a href="#full-address" data-toggle="tab">Full Address</a>
-				   </li>
-				   <li class="dropdown">
 				      <a href="#quotation" data-toggle="tab">Quotation</a>
 				   </li>
 				</ul>
@@ -238,26 +235,18 @@
 				   </div>
 				   <div class="tab-pane fade" id="location_map">
 				   		<?php $locationArr = json_decode($productdetails->address); ?>
-				   		<input
-				   			type="text"
-				   			value="{{$locationArr->g_latitude_longitude}}"
-				   			name="gLatitudeLongitude"
-				   			class="hide"
-				   			id="latbox"
-				   			aria-describedby="MappingAddressHereStatus"
-				   		/>
-				   		<span
-				   			data="MappingAddressHere"
-				   			class="glyphicon glyphicon-remove form-control-feedback"
-				   			aria-hidden="true"
-				   		></span>
-						<span id="MappingAddressHereStatus" class="sr-only">
-							(error)
-						</span>
-				      <div id="mapWrapper" style="">
-				      	<div id="gmap" style="width: 100%; height: 375px"></div>
-				      </div>
-				   </div>
+				   		<input type="text"
+							value="{{$locationArr->g_latitude_longitude}}"
+							name="gLatitudeLongitude" class="hide" id="latbox"
+							aria-describedby="MappingAddressHereStatus" /> <span
+							data="MappingAddressHere"
+							class="glyphicon glyphicon-remove form-control-feedback"
+							aria-hidden="true"></span> <span id="MappingAddressHereStatus"
+							class="sr-only"> (error) </span>
+							@if($locationArr->g_latitude_longitude)
+							<a target="_blank" href="https://www.google.com.kh/maps/place/{{$locationArr->g_latitude_longitude}}"><img style="width:100%" src="http://maps.google.com/maps/api/staticmap?center={{$locationArr->g_latitude_longitude}}&zoom=15&size=650x300&maptype=roadmap&&markers=color:red|label:A|{{$locationArr->g_latitude_longitude}}&sensor=false"/></a>
+							@endif
+					</div>
 
 				   <div class="tab-pane fade" id="contact">
 				   		<?php $contactInfo = json_decode($productdetails->contact_info); ?>
@@ -265,6 +254,8 @@
 						<p><label>Contact Email:</label> {{$contactInfo->contactEmail}}</p>
 						<p><label>Telephone:</label> {{$contactInfo->contactHP}}</p>
 						<p><label>Location:</label> {{$contactInfo->contactLocation}}</p>
+						<hr>
+						{{@$productdetails->contact_address;}}
 				   </div>
 
 				   <div class="tab-pane fade" id="quotation">
@@ -272,12 +263,6 @@
 							{{$productdetails->file_quotation;}}
 						</a>
 				   </div>
-				    <div class="tab-pane fade" id="full-address">
-				      	<a href="{{Config::get('app.url')}}upload/quotation/{{$productdetails->file_quotation;}}">
-							{{@$productdetails->contact_address;}}
-						</a>
-				   </div>
-
 				</div>
 
 				<script>
@@ -325,3 +310,13 @@
 	});
 </script>
 @endsection
+
+
+<style>
+	body,html{
+		height: 100%;
+		font-size: 11px;
+		color:#333;
+		font-family:"Hanuman","Arial" !important;
+	}
+</style>
