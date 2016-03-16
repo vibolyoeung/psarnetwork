@@ -80,9 +80,6 @@ a{
 	-o-transition: 50ms;
 	transition: 50ms;
 }
-h1,h2,h3,h4,h5,h6 {
-	font-family: 'Roboto', sans-serif;
-}
 
 .btn:hover,.btn:focus {
 	outline: none;
