@@ -310,13 +310,3 @@
 	});
 </script>
 @endsection
-
-
-<style>
-	body,html{
-		height: 100%;
-		font-size: 11px;
-		color:#333;
-		font-family:"Hanuman","Arial" !important;
-	}
-</style>
