@@ -70,14 +70,14 @@
 		</div>
 
 		<div class="form-group col-md-6 col-sm-12 col-xs-6">
-			{{Form::text('startDate',null, array('class' => 'form-control
-			datepicker','placeholder'=>'Start Date: dd/mm/yyyy'))}}
+			{{Form::text('startDate',date("Y-m-d"), array('class' => 'form-control
+			datepicker'))}}
 			<span class="class-error">{{$errors->first('startDate')}}</span>
 		</div>
 
 		<div class="form-group date col-md-6 col-sm-12 col-xs-6">
-			{{ Form::text('expirationDate',null, array('class' => 'form-control
-			datepicker','placeholder'=>'Expiration date: dd/mm/yyyy'))}}
+			{{ Form::text('expirationDate',date("Y-m-d"), array('class' => 'form-control
+			datepicker'))}}
 			<span class="class-error">{{$errors->first('expirationDate')}}</span>
 		</div>
 
