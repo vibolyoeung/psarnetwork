@@ -7,7 +7,7 @@ $(document).ready(function() {
         autoclose: true,
         todayHighlight: true,
 	});
-	$(".datepicker").datepicker("setDate", new Date());
+	$(".datepicker").datepicker();
 
 	// call list advertisement pages
 	var advType = $('[name="advertiseType"]').prop("checked", true).val();

@@ -8,9 +8,7 @@
 #header .edit-logo:hover, #header .edit-banner:hover{;background:rgba(0, 0, 0, 0.7);}
 .user-member {margin-top:0px}
 .changepassword label {color:green}
-.storeLogo {height: 90px;max-width: 100%;}
-.user-menu .dropdown-menu.open {display:block!important}
-.storeBanner{height: 90px;max-width: 100%;}
+.storeLogo,.storeBanner {max-height: 90px;max-width: 100%;}
 .user-member .panel,
 .user-member .panel-heading ,
 .user-member .btn-group->.btn,

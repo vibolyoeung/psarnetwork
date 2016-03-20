@@ -1821,3 +1821,6 @@ ul.roman-list {
     opacity: 1; }
 
 @media (max-width: 768px) {.gallery .visual {margin-bottom: 10px; } }
+#ui-datepicker-div{
+  background-color:#fff;
+}

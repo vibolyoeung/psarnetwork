@@ -11,7 +11,6 @@
 				)
 			}}
 		</div>
-
 		<div class="form-group col-md-3 col-sm-12 col-xs-3">
 			{{Form::text('seller_name',null, array('class' =>
 			'form-control', 'id' => 'incharger','placeholder'=>'Incharge By seller:'))}}
