@@ -1,11 +1,4 @@
 @extends('frontend.layout') @section('title') Home @endsection
-@section('breadcrumb')
-<ol class="breadcrumb">
-	<li><a href="{{Config::get('app.url')}}">Home</a></li>
-	<li><a href="#">Library</a></li>
-	<li class="active">Data</li>
-</ol>
-@endsection
 @include('frontend.partials.menu', array('page' => 'home'))
 @section('content')
 {{ App::make('FePageController')->mainCategory() }}

@@ -91,7 +91,11 @@ $(document).ready(function(){
 		var displayNumParam = '';
 		var concateParam = '&';
 		// check if category page
-		if (fullUrl.split('/')[4] === 'productbycategories'||fullUrl.split('/')[4] === 'list'||fullUrl.split('/')[4] === 'transfter_type') {
+		if (
+			fullUrl.split('/')[4] === 'productbycategories'
+			||fullUrl.split('/')[4] === 'list'
+			||fullUrl.split('/')[4] === 'transfter_type'
+		) {
 			concateParam = '?';
 		}
 
@@ -99,7 +103,7 @@ $(document).ready(function(){
 
 		lastParam = fullUrl.substring(fullUrl.lastIndexOf(concateParam)) + 1;
 		displayNumParam = lastParam.split('=')[0];
-		// check condition for avoid adding duplicate param
+		// check to avoid adding duplicate param
 		var appenUrl = concateParam + 'displayNumber';
 		if (displayNumParam === appenUrl) {
 			fullUrl = fullUrl.split(appenUrl)[0];

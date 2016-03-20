@@ -269,7 +269,7 @@ class FePageController extends BaseController {
     		->with('related_post', $relatedPost);
     }
 
-    public function getSearchTypeAndLocations() {
+    public function getSearchTypeAndLocations($product = null) {
     	$locations = $this->mod_market->findAllProvinces();
     	$advTops = $this->mod_advertisment
 		->getAdvertisementHomePage(
@@ -279,6 +279,7 @@ class FePageController extends BaseController {
 		);
     	return View::make('frontend.partials.header')
     		->with('locations', $locations->data)
+    		->with('productdetails', $product)
     		->with('advTops', $advTops->result);
     }
 

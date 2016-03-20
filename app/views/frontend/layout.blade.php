@@ -1,5 +1,10 @@
-{{ App::make('FePageController')->getSearchTypeAndLocations() }}
-
+@if(!empty($page))
+	@if ($page == 'detail')
+		{{ App::make('FePageController')->getSearchTypeAndLocations($product) }}
+	@endif
+@else
+	{{ App::make('FePageController')->getSearchTypeAndLocations() }}
+@endif
 <section>
 	<div class="container home_wrapper">
 		<div class="row">

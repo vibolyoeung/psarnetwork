@@ -1,10 +1,11 @@
-@extends('frontend.layout') @section('title') Product Details
-@endsection @section('breadcrumb')
-<ol class="breadcrumb">
-	<li><a href="#">Home</a></li>
-	<li class="active">Supper Market</li>
-</ol>
-@endsection @section('content')
+@extends(
+	'frontend.layout',
+	array('page' => 'detail', 'product' => $productdetails)
+)
+	@section('title')
+		{{$productdetails->title}}
+	@endsection
+@section('content')
 @include('frontend.partials.menu', array('page' => 'detial'))
 <!-- Put true is detials page for get advertisement for left side -->
 {{ App::make('FePageController')->mainCategory(true) }}
@@ -174,15 +175,7 @@
 									</div>
 									<?php
 										$currentUrl = trim("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
-										$image = trim(Config::get('app.url') . 'image/phpthumb/' . $images[0]['pic'] . '?p=product&amp;h=250&amp;w=450"');
 									?>
-									<div id="facebook-meta">
-										<meta property="og:url" content="{{$currentUrl}}" />
-										<meta property="og:type" content="article" />
-										<meta property="og:title" content="{{$productdetails->title}}" />
-										<meta property="og:description" content="{{strip_tags($productdetails->description)}}" />
-										<meta property="og:image" content="{{$image}}" />
-									</div>
 									<div
 										class="fb-share-button"
 										data-href="{{$currentUrl}}"
@@ -275,8 +268,6 @@
 				      $(".active-tab span").html(activeTab);
 				      $(".previous-tab span").html(previousTab);
 				   });
-
-				   $('#facebook-meta').children().appendTo('head');
 				});
 				</script>
 			</div>
