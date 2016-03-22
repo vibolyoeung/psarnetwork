@@ -1,5 +1,5 @@
-@if(!empty($page))
-	@if ($page == 'detail')
+@if(!empty($layout))
+	@if ($layout == 'detail')
 		{{ App::make('FePageController')->getSearchTypeAndLocations($product) }}
 	@endif
 @else

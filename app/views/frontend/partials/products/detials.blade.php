@@ -1,6 +1,6 @@
 @extends(
 	'frontend.layout',
-	array('page' => 'detail', 'product' => $productdetails)
+	array('layout' => 'detail', 'product' => $productdetails)
 )
 	@section('title')
 		{{$productdetails->title}}
