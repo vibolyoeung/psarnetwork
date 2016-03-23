@@ -2215,7 +2215,8 @@ h2.title {
 
 }
 
-.user_info input,select,textarea {
+.user_info input,select,textarea,.form-control{
+	font-family: "Hanuman",Arial;
 	background: #F0F0E9;
 	border: 0;
 	color: #696763;
