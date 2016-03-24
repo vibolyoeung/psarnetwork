@@ -68,7 +68,7 @@
 					<a href="{{Config::get('app.url')}}product/list/<?php echo $clienttype->id ?>/0" >
 					  <?php 
 					  	echo $clienttype->{'name_'.Session::get('lang')}; ?>
-					  	<span class="number-display"><?php echo count($Market->listproductofsupermarket($clienttype->id,array(0)));?></span>
+					  	<span class="number-display">{{$Market->countProductbyClienttype($clienttype->id)}}</span>
 					</a>
 				</div>
 				@endforeach

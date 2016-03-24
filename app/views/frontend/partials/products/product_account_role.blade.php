@@ -18,7 +18,6 @@ Categories
 			@include('frontend.partials.categories.right')
 		</div>
 		<div class="col-lg-10"  style="padding-left:0;">
-			@include('frontend.partials.products.search')
 			<div class="row">
 				<div id="detail_product" data-get-detail-product-url="{{Config::get('app.url')}}"></div>
 				<?php
@@ -138,10 +137,6 @@ Categories
 							</div>
 						</div>
 					@endforeach
-					<div style="clear: both;"></div>
-					<div id="pagination" class="col-lg-12 text-center">
-						{{ $productsByTransfterType->appends(Input::except('page'))->links(); }}
-					</div>
 					<?php
 					}else{
 						echo '<p><center style="color:red;">Product not found!</center></p>';
