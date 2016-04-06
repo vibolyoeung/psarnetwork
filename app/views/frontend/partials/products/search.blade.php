@@ -9,8 +9,8 @@
 	}}
 	<input type="hidden" value="" name="categoryId" id="categoryId" />
 	<div class="btn-group col-lg-2">
-		<select name="location" class="form-control form-select-khmerabba">
-			<option value="0">{{trans('product.location')}}</option>
+		<select name="location" class="form-control form-select-khmerabba" required>
+			<option value="">{{trans('product.location')}}</option>
 			<?php 
 				$province_search = isset($_GET['location'])?$_GET['location']:'';
 			?>
