@@ -216,9 +216,10 @@ class FePageController extends BaseController {
 				1
 		);
 		$arrayClientTypeId = $this->mod_market->getAllChildClientType($parent_id);
-		$listproductInEachMarket = $this->mod_market->listproductofsupermarket($parent_id,$arrayClientTypeId);
-		if($id){
+		if($id>0){
 			$listproductInEachMarket = $this->mod_market->listproductofsupermarket($parent_id,array($id));
+		}else{
+			$listproductInEachMarket = $this->mod_market->listproductofsupermarket($parent_id,$arrayClientTypeId);
 		}
 		$mainSup = $this->mod_market->mainMarket($parent_id);
 		return View::make('frontend.partials.suppermarket')
@@ -233,6 +234,19 @@ class FePageController extends BaseController {
 		->with('Provinces', $this->mod_setting->listProvinces())
 		->with('conditions', $this->mod_product->listAllConditions())
 		->with('advTops', $advTops->result);
+	}
+
+	public function countProductByclientType($parent_id,$id){
+
+		$arrayClientTypeId = $this->mod_market->getAllChildClientType($parent_id);
+
+		if($id>0){
+			$listproductInEachMarket = $this->mod_market->listproductofsupermarket($parent_id,array($id));
+		}else{
+			$listproductInEachMarket = $this->mod_market->listproductofsupermarket($parent_id,$arrayClientTypeId);
+		}
+
+		return $listproductInEachMarket;
 	}
 
 	public function getProductDetials($product_id){
@@ -299,7 +313,8 @@ class FePageController extends BaseController {
     }
 
     public function listProductTransfterType($transfterTypeId){
-    	$productByTransfterType = $this->mod_product->findProductByTransfterType($transfterTypeId);
+    	$displayNumber = Request::get('displayNumber');
+    	$productByTransfterType = $this->mod_product->findProductByTransfterType($transfterTypeId,$displayNumber);
     	return View::make('frontend.partials.products.product_transfter')
     	    ->with('client_type',$this->mod_category->getClientType())
 			->with('pro_transfer_type',$this->mod_category->getProductTransfterType())

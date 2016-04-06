@@ -68,7 +68,12 @@
 					<a href="{{Config::get('app.url')}}product/list/<?php echo $clienttype->id ?>/0" >
 					  <?php 
 					  	echo $clienttype->{'name_'.Session::get('lang')}; ?>
-					  	<span class="number-display">{{$Market->countProductbyClienttype($clienttype->id)}}</span>
+					  	<span class="number-display">
+					  		<?php
+					  		$countProduct = App::make("FePageController")->countProductByclientType($clienttype->id,0);
+					  		echo count($countProduct);
+					  		?>
+					  	</span>
 					</a>
 				</div>
 				@endforeach
