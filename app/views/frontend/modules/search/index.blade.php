@@ -55,7 +55,7 @@ Categories
 											&nbsp;
 											{{$contactInfo->contactLocation}}
 											&nbsp;
-											View : <span class="price">12</span>
+											View : <span class="price">{{$product->view}}</span>
 										</p>
 									</div>
 								</div>
@@ -86,7 +86,7 @@ Categories
 														{{str_limit($product->title,$limit = 40, $end = '...')}}
 													</a>
 												</h5>
-												<p>{{str_limit($product->description,$limit = 200, $end = '...')}}</p>
+												<p>{{str_limit($product->description,$limit = 50, $end = '...')}}</p>
 												<p class="product_teaser">
 													<span style="color:blue;">{{$product->created_date}}</span>
 												&nbsp;
