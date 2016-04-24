@@ -9,9 +9,9 @@
 	}}
 	<input type="hidden" value="" name="categoryId" id="categoryId" />
 	<div class="btn-group col-lg-2">
-		<select name="location" class="form-control form-select-khmerabba" required>
+		<select name="location" class="form-control form-select-khmerabba">
 			<option value="">{{trans('product.location')}}</option>
-			<?php 
+			<?php
 				$province_search = isset($_GET['location'])?$_GET['location']:'';
 			?>
 			@foreach($Provinces as $location)
@@ -26,7 +26,7 @@
 	<div class="btn-group col-lg-2">
 		<select name="transferType" class="form-control form-select-khmerabba">
 			<option value="0">Transfer</option>
-			<?php 
+			<?php
 				$transferType_search = isset($_GET['transferType'])?$_GET['transferType']:'';
 			?>
 			@foreach($transferTypes as $transferType)
@@ -41,7 +41,7 @@
 	<div class="btn-group col-lg-2">
 		<select name="condition" class="form-control form-select-khmerabba">
 			<option value="0">Condition</option>
-				<?php 
+				<?php
 					$condition_search = isset($_GET['condition'])?$_GET['condition']:'';
 				?>
 			@foreach($conditions as $condition)
@@ -54,21 +54,21 @@
 		</select>
 	</div>
 	<div class="col-lg-2">
-		<?php 
+		<?php
 			$price_search = isset($_GET['price'])?$_GET['price']:'0';
 		?>
 		<div class="form-group">
-			<input type="text" name="price" placeholder="price" class="form-control form-select-khmerabba" 
+			<input type="text" name="price" placeholder="price" class="form-control form-select-khmerabba"
 			value="<?php echo $price_search; ?>"
 			/>
 		</div>
 	</div>
 	<div class="col-lg-2">
-		<?php 
-			$date_search = isset($_GET['date'])?$_GET['date']:date("Y-m-d");
+		<?php
+			$date_search = isset($_GET['date'])?$_GET['date']:'';
 		?>
 		<div class="form-group">
-			<input 
+			<input
 				value="<?php echo $date_search; ?>"
 				type="text"
 				name="date"
@@ -92,7 +92,7 @@
 		<div style="padding:0;">
 			<ul class="nav nav-tabs" style="background-color:#ddd;">
 				<li class="col-lg-2 pull-right">
-					<?php 
+					<?php
 						$displayNumber = isset($_GET['displayNumber'])?$_GET['displayNumber']:'';
 					?>
 					<select id="disply-number" name="displayNumber" class="form-control form-select-khmerabba">
@@ -108,7 +108,7 @@
 					<span id="list_view" class="pull-right" style="padding:5px;"><?php echo '<img src="'.Config::get('app.url').'frontend/images/icons/list_view.png"/>';?></span>
 					<span class="pull-left"> View:&nbsp;</span>
 					<span id="grid_view" class="pull-left" style="padding:5px;"><?php echo '<img src="'.Config::get('app.url').'frontend/images/icons/grid_view.png"/>';?></span>
-					
+
 				</li>
 			</ul>
 		</div>
@@ -116,15 +116,21 @@
 </div>
 <script language="javascript">
 	$(document).ready(function(){
-		var url  = window.location.href; 
+		var url  = window.location.href;
 		 url = url.split("/");
+		 console.log(url);
 		 var finalurl = url[5];
-		 if(url[5] == undefined){
-		 	 url = url[4].split("?");
-			 url = url[1].split("=");
-			 url = url[1].split("&");
-			 finalurl = url[0];
+		 if (url[3] !== undefined && url[3] === 'fe') {
+		 	finalurl = 0;
+		 } else {
+		 	if(url[5] == undefined){
+				url = url[4].split("?");
+				url = url[1].split("=");
+				url = url[1].split("&");
+				finalurl = url[0];
+		 	}
 		 }
+
 		 $("#categoryId").val(finalurl);
 	});
 </script>

@@ -72,9 +72,9 @@ class FeSearchController extends BaseController {
 			$displayNumber
 		);
 
-		$categorId = Request::input('categoryId');
-		$category = $this->mod_category->getMainCategories($categorId);
- 		$mainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($categorId);
+		$categoryId = Request::input('categoryId');
+		$category = $this->mod_category->getMainCategories($categoryId);
+ 		$mainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($categoryId);
 
 		return View::make('frontend.modules.search.index')
 			->with('slideshows', $listSlideshows->result)
@@ -143,9 +143,15 @@ class FeSearchController extends BaseController {
 		$price = Request::input('price');
 		$date = Request::input('date');
 		$displayNumber = Request::input('displayNumber');
-		$categorId = Request::input('categoryId');
+		$categoryId = Request::input('categoryId');
+		if ($categoryId > 0) {
+			$childCategories = $this->mod_category->getAllChildCategories($categoryId);
+		} else {
+			$childCategories = $categoryId;
+		}
 
 		$products = $this->mod_product->searchProductFromCategory(
+			$childCategories,
 			$province,
 			$transferType,
 			$condition,
@@ -153,8 +159,8 @@ class FeSearchController extends BaseController {
 			$date,
 			$displayNumber
 		);
-		$category = $this->mod_category->getMainCategories($categorId);
- 		$mainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($categorId);
+		$category = $this->mod_category->getMainCategories($categoryId);
+ 		$mainCategoryDetail = $this->mod_category->getMainCategoriesForDetail($categoryId);
 		return View::make('frontend.modules.search.index')
 			->with('slideshows', $listSlideshows->result)
 			->with('advVerticalRightSmalls', $advVerticalRightSmall->result)

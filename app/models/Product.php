@@ -802,6 +802,7 @@ class Product extends Eloquent {
 	/**
 	 * Find product by location, type and keyword
 	 *
+	 * @param int|array $chilidCategories
 	 * @param int $province
 	 * @param int $transferType
 	 * @param int $condition
@@ -812,6 +813,7 @@ class Product extends Eloquent {
 	 * @return array $products
 	 */
 	public function searchProductFromCategory(
+		$chilidCategories,
 		$location,
 		$transferType,
 		$condition,
@@ -824,35 +826,26 @@ class Product extends Eloquent {
 			$limitNumber = $displayNumber;
 		}
 
-		if (( int ) $location === 0) {
-			$query = $this->searchProductInEachCategory(
+		$query = $this->searchProductInEachCategory(
+				$chilidCategories,
 				$location,
 				$transferType,
 				$condition,
 				$price,
 				$date
 			);
-
-			return $query->paginate ( $limitNumber );
-
+		if (( int ) $location > 0) {
+			$query->where ( 'u.province_id', '=', ( int ) $location );
 		}
 
-		$query = $this->searchProductInEachCategory(
-				$location,
-				$transferType,
-				$condition,
-				$price,
-				$date
-			);
-			$query->where ( 'u.province_id', '=', ( int ) $location );
 
-
-			return $query->paginate ( $limitNumber );
+		return $query->paginate ( $limitNumber );
 	}
 
 	/**
 	 * Find product by location, type and keyword
 	 *
+	 * @param int|array $chilidCategories
 	 * @param int $province
 	 * @param int $transferType
 	 * @param int $condition
@@ -862,15 +855,13 @@ class Product extends Eloquent {
 	 * @return Query
 	 */
 	private function searchProductInEachCategory(
+		$chilidCategories,
 		$location,
 		$transferType,
 		$condition,
 		$price,
 		$date
 	) {
-		// Convert date format the same db
-		$date = date('Y-m-d', strtotime($date));
-
 		$query = $this->commomSearch();
 
 		if (( int ) $transferType !== 0) {
@@ -882,9 +873,13 @@ class Product extends Eloquent {
 		if (! empty ( $date )) {
 			$query->where ( 'p.publish_date', '=', $date );
 		}
-		if (! empty ( $price )) {
+		if ((int) $price !== 0) {
 			$query->where ( 'p.price', '=', $price );
 		}
+		if ($chilidCategories !== 0) {
+			$query->whereIn( 'pro.category_id', $chilidCategories);
+		}
+
 		$query->groupBy('pro.product_id');
 		$query->orderBy ( 'p.id', 'DESC' );
 
