@@ -876,7 +876,7 @@ class Product extends Eloquent {
 		if ((int) $price !== 0) {
 			$query->where ( 'p.price', '=', $price );
 		}
-		if ($chilidCategories !== 0) {
+		if ((int) $chilidCategories !== 0) {
 			$query->whereIn( 'pro.category_id', $chilidCategories);
 		}
 
