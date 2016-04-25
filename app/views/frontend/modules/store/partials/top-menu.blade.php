@@ -59,22 +59,7 @@
 								</li>
 							</ul>
 						</li>
-						@else
-						<li>
-							<a href="#">{{trans('member.contact_us')}}</a>
-						</li>
-						<li>
-							<a href="#">{{trans('member.about_us')}}	</a>
-						</li>
-						<li>
-							<a href="#">{{trans('member.user_agreement')}}</a>
-						</li>
-						<li>
-							<a href="#">{{trans('member.policy')}}</a>
-						</li>
-						<li>
-							<a href="#">{{trans('member.usage')}}</a>
-						</li>
+						@else						
 						<li>
 							<a href="{{Config::get('app.url')}}/member/login">{{trans('member.sign_in')}}/ </a>
 						</li>

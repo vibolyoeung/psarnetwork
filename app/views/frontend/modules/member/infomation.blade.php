@@ -1,4 +1,5 @@
 @extends('frontend.nosidebar') @section('title') Register for Enterprise Seller Page @endsection @section('breadcrumb')
+
 <ol class="breadcrumb">
 	<li>
 		<a href="#">Home</a>
@@ -11,6 +12,8 @@
 	</li>
 </ol>
 @endsection @section('frontend.partials.left') @endsection @section('content')
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+{{HTML::script('frontend/js/mapCurr.js')}}
 <div class="memberlogin">
 	<div class="col-sm-3">
 		@include('frontend.modules.member.layout.sidebar-setting')
@@ -147,6 +150,7 @@
 </div>
 {{HTML::script('frontend/js/jquery.validate.js')}}
 <script type='text/javascript'>	
+
 $(document).ready(function(){
     $('#agreement').click(function () {
         if($(this).is(":checked")) {
@@ -262,9 +266,73 @@ $(document).ready(function(){
   } else {
       // No hash found
   }
+  
 });
-var idLat = '{{$locationArr->g_latitude_longitude}}';
-showAddress(idLat);
+$(document).ready(function(){
+  //byAdress('{{$locationArr->g_latitude_longitude}}');
+  });
+
+function byAdress() {
+        ll = new google.maps.LatLng({{$locationArr->g_latitude_longitude}});
+        zoom = 14;
+        var mO = {
+            scaleControl: true,
+            zoom: zoom,
+            zoomControl: true,
+            zoomControlOptions: {style: google.maps.ZoomControlStyle.LARGE},
+            center: ll,
+            disableDoubleClickZoom: true,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("gmap"), mO);
+        map.setTilt(0);
+        map.panTo(ll);
+        marker = new google.maps.Marker({position: ll, map: map, draggable: true, title: 'Marker is Draggable'});
+
+        google.maps.event.addListener(marker, 'click', function(mll) {
+            gC(mll.latLng);
+            var html = "<div style='color:#000;background-color:#fff;padding:5px;width:150px;'><p>Latitude - Longitude:<br />" + String(mll.latLng.toUrlValue()) + "<br /><br />Lat: " + ls + "&#176; " + lm + "&#39; " + ld + "&#34;<br />Long: " + lgs + "&#176; " + lgm + "&#39; " + lgd + "&#34;</p></div>";
+            iw = new google.maps.InfoWindow({content: html});
+            iw.open(map, marker);
+        });
+        google.maps.event.addListener(marker, 'dragstart', function() {
+            if (iw) {
+                iw.close();
+            }
+        });
+
+        google.maps.event.addListener(marker, 'dragend', function(event) {
+            posset = 1;
+            if (map.getZoom() < 10) {
+                map.setZoom(10);
+            }
+            map.setCenter(event.latLng);
+            computepos(event.latLng);
+            drag = true;
+            setTimeout(function() {
+                drag = false;
+            }, 250);
+        });
+
+        google.maps.event.addListener(map, 'click', function(event) {
+            if (drag) {
+                return;
+            }
+            posset = 1;
+            fc(event.latLng);
+            if (map.getZoom() < 10) {
+                map.setZoom(10);
+            }
+            map.panTo(event.latLng);
+            computepos(event.latLng);
+        });
+
+        // Tab show, laod google map
+        $('#TapTitle').on('shown.bs.tab', function () {
+            google.maps.event.trigger(map, 'resize');
+        });
+    }
+    google.maps.event.addDomListener(window, 'load', byAdress);
 </script>
 <div class="clear"></div>
 @endsection
