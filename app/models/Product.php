@@ -1019,8 +1019,57 @@ class Product extends Eloquent {
 		return $totalView;
 	}
 
-	public function findProductByTransfterType($id){
-		return DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ))->where('pro_transfer_type_id','=',$id)->get ();
+	public function findProductByTransfterType($id,$displayNumber){
+		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
+		$product_in_category = Config::get ( 'constants.TABLE_NAME.PRODUCT_IN_CATEGORY' );
+		$store = Config::get ( 'constants.TABLE_NAME.STORE' );
+		$productTransferType = Config::get('constants.TABLE_NAME.PRODUCT_TRANSFER_TYPE');
+		$productCondition = Config::get ( 'constants.TABLE_NAME.PRODUCT_CONDITION' );
+		$user = Config::get ( 'constants.TABLE_NAME.USER' );
+		$accountRole = Config::get ( 'constants.TABLE_NAME.ACCOUNT_ROLE' );
+		$clientType = Config::get ( 'constants.TABLE_NAME.CLIENT_TYPE' );
+
+		if ($displayNumber === null) {
+			$displayNumber = self::LIST_NUMBER;
+		}
+
+		return DB::table ( $product . ' AS p' )
+		->select (
+			'p.view',
+			'p.id',
+			'p.title',
+			'p.description',
+			'p.pictures',
+			'p.contact_info',
+			'p.created_date',
+			'p.price',
+			'p.thumbnail',
+			'st.title_en',
+			'st.title_km',
+			'st.image',
+			'st.id as store_id',
+			'pt.name_en as transfer_type_name_en',
+			'pt.name_km as transfer_type_name_km',
+			'proc.name_en as condition_name_en',
+			'proc.name_km as condition_name_km',
+			'u.name as username',
+			'accr.rol_name_en as account_role_name_en',
+			'accr.rol_name_km as account_role_name_km',
+			'ctype.name_en as client_type_name_en',
+			'ctype.name_km as client_type_name_km'
+			)
+		->join ( $store.' AS st','st.id','=','p.store_id')
+		->join ($product_in_category.' AS pro', 'pro.product_id','=','p.id')
+		->join ($productTransferType.' AS pt','pt.ptt_id','=','p.pro_transfer_type_id')
+		->join ($productCondition.' AS proc','proc.id','=','p.pro_condition_id')
+		->join ($user.' AS u','u.id','=','p.user_id')
+		->join ($accountRole.' AS accr','accr.rol_id','=','u.account_role')
+		->join($clientType.' AS ctype','ctype.id','=','u.client_type')
+		->where( 'p.pro_transfer_type_id',$id)
+		->where( 'p.publish_date','<=',date('Y-m-d'))
+		->groupby('pro.product_id')
+		->orderBy ( 'p.id', 'DESC' )
+		->paginate($displayNumber);
 	}
 
 

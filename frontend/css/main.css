@@ -1266,6 +1266,7 @@ h2.title {
 .productinfo {
 	position: relative;
 	padding:6px;
+	min-height: 200px;
 }
 .related-product-image{
 	border:none;
