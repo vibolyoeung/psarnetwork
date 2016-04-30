@@ -12,8 +12,9 @@ $(document).ready(function(){
 	        autoclose: true,
 	        todayHighlight: true,
 		});
+}
 
-    }
+    
 	jQuery('.item:first-child').addClass(' active');
 	jQuery('.bullet:first-child').addClass('active');
 	jQuery('.tab-content .submenu-bar:first-child').addClass(' active');

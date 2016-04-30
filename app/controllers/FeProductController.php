@@ -517,6 +517,7 @@ class FeProductController extends BaseController {
             'pro_status' => trim(Input::get('productStatus')),
             'pro_transfer_type_id' => trim(Input::get('proTransferType')),
             'is_publish' => Input::get('isPublish'),
+            'contact_address' => Input::get('contact_address'),
             'contact_info' => json_encode($contactInfo)
         );
         return $data;

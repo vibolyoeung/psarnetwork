@@ -13,6 +13,12 @@
 <link href='//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' id='font-awesome-css' media='all' rel='stylesheet' type='text/css'/>
     {{HTML::style('backend/css/jquery-ui.css')}}
     {{HTML::style('frontend/plugin/dropzone/dist/dropzone.css')}}
+
+    {{HTML::style('frontend/css/bootstrap-datepicker.min.css')}}
+
+    {{HTML::style('frontend/css/bootstrap-toggle.css')}}
+
+
     {{HTML::script('frontend/plugin/dropzone/dist/dropzone.js')}}
     {{HTML::script('frontend/js/product.js')}}
 
@@ -33,8 +39,8 @@
                          	<li role="productTag gettab" class="active presentation">
                                 <a href="#productTag" aria-controls="productTag" role="tab" data-toggle="tab">{{trans('product.category')}}</a>
                             </li>
-                            <li role="productInfo gettab" class="productInfo product-info">
-                                <a href="#productInfo" aria-controls="productInfo" role="tab" data-toggle="tab">{{trans('product.tabproinfo')}}</a>
+                            <li role="productInfor gettab" class="productInfor product-info">
+                                <a href="#productInfor" aria-controls="productInfor" role="tab" data-toggle="tab">{{trans('product.tabproinfo')}}</a>
                             </li>
                             <li class="picture gettab pictures" role="presentation">
                                 <a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab">{{trans('product.tab_pro_picture')}}</a>
@@ -130,8 +136,8 @@
                                     <a
                                         style="margin-right: 10px;"
                                         class="btn btn-primary pull-right"
-                                        href="#productInfo"
-                                        aria-controls="productInfo"
+                                        href="#productInfor"
+                                        aria-controls="productInfor"
                                         role="tab"
                                         onclick="is_active_tab('product-info')"
                                         data-toggle="tab">{{trans('product.next')}}</a>
@@ -145,7 +151,7 @@
                       	</div>
                       	<!-- end category -->
 
-                        <div role="tabpanel" class="tab-pane" id="productInfo">
+                        <div role="tabpanel" class="tab-pane" id="productInfor">
                             <div class="col-md-12">
 
                                     <div class="form-group">
@@ -264,13 +270,21 @@
                                     {{trans('product.date_post')}}
                                 </label>
                                 <div class="col-sm-11">
-                                    {{Form::text(
-                                        'date_post',
-                                        @$product->publish_date,
-                                        array(
-                                            'class'=>'form-control datepicker'
-                                        )
-                                    )}}
+                                    <?php 
+                                    if(is_null($product->publish_date)){
+                                        echo '<input type="text" name="date_post" class="form-control product_datepicker" value="'.date('Y-m-d').'"/>';
+                                    }else{
+                                    ?>
+                                        {{Form::text(
+                                            'date_post',
+                                            @$product->publish_date,
+                                            array(
+                                                'class'=>'form-control product_datepicker'
+                                            )
+                                        )}}
+                                    <?php 
+                                    } 
+                                    ?>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -650,7 +664,7 @@
                                 var pImage = "{{trans('product.tab_pro_picture')}}";
                                 var idTag = 'productTag';
                                 var productTag = 'productTag';
-                                var productInfo = 'productInfo';
+                                var productInfor = 'productInfor';
                                 var contactInfo = 'contactInfo';
                                 var proImgDiv = 'pictures';
 
@@ -680,37 +694,37 @@
 
                                 if(!productTitle) {
                                     errorArr.push(pTitle);
-                                    errorOnID.push(productInfo);
+                                    errorOnID.push(productInfor);
                                 } else {
                                     errorArr = jQuery.grep(errorArr, function(value) {
                                       return value != pTitle;
                                     });
                                     errorOnID = jQuery.grep(errorOnID, function(value) {
-                                      return value != productInfo;
+                                      return value != productInfor;
                                     });
                                 }
 
                                 if(!productPrice) {
                                     errorArr.push(pPrice);
-                                    errorOnID.push(productInfo);
+                                    errorOnID.push(productInfor);
                                 } else {
                                     errorArr = jQuery.grep(errorArr, function(value) {
                                       return value != pPrice;
                                     });
                                     errorOnID = jQuery.grep(errorOnID, function(value) {
-                                      return value != productInfo;
+                                      return value != productInfor;
                                     });
                                 }
 
                                 if(!desc) {
                                     errorArr.push(pDescription);
-                                    errorOnID.push(productInfo);
+                                    errorOnID.push(productInfor);
                                 } else {
                                     errorArr = jQuery.grep(errorArr, function(value) {
                                       return value != pDescription;
                                     });
                                     errorOnID = jQuery.grep(errorOnID, function(value) {
-                                      return value != productInfo;
+                                      return value != productInfor;
                                     });
                                 }
 
@@ -891,7 +905,24 @@
 		{{Form::close()}}
 	</div>
     {{HTML::script('backend/js/jquery-ui.js')}}
+    {{HTML::script('frontend/js/bootstrap-datepicker.min.js')}}
+    {{HTML::script('frontend/js/bootstrap-toggle.js')}}
     {{HTML::script('backend/js/custom.js')}}
+    <script>
+     if(jQuery("*").hasClass("product_datepicker")){
+         jQuery('.product_datepicker').datepicker({
+           format: "yyyy-mm-dd",
+            todayBtn: true,
+            clearBtn: true,
+            orientation: "top auto",
+            calendarWeeks: true,
+            autoclose: true,
+            todayHighlight: true,
+            toggleActive: true
+        });
+
+    }
+    </script>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">

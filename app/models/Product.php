@@ -518,6 +518,7 @@ class Product extends Eloquent {
 			'u.name as name',
 			'u.address as address',
 			'p.store_id as store_id',
+			'p.contact_address',
 			'p.description as description',
 			'p.contact_info as contact_info',
 			'p.file_quotation as file_quotation',

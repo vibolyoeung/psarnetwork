@@ -1266,7 +1266,6 @@ h2.title {
 .productinfo {
 	position: relative;
 	padding:6px;
-	min-height: 200px;
 }
 .related-product-image{
 	border:none;
@@ -1502,6 +1501,7 @@ h2.title {
 .tab-content{
 	border:1px solid #ccc;
 	padding:10px;
+	overflow: hidden;
 }
 
 .tab-content .navbar-nav>li>a {

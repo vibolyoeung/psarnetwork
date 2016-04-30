@@ -248,7 +248,7 @@
 						<p><label>Telephone:</label> {{$contactInfo->contactHP}}</p>
 						<p><label>Location:</label> {{$contactInfo->contactLocation}}</p>
 						<hr>
-						{{@$productdetails->contact_address;}}
+						{{$productdetails->contact_address}}
 				   </div>
 
 				   <div class="tab-pane fade" id="quotation">

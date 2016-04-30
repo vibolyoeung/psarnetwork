@@ -9,7 +9,6 @@ Categories
     <li class="active">Data</li>
 </ol>
 @endsection
-<div class="clear"></div>
 @include('frontend.partials.menu', array('page' => 'category'))
 @section('content')
 @include('frontend.partials.categories.left')
