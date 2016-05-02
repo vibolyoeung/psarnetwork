@@ -22,9 +22,9 @@ class FeProductController extends BaseController {
         $this->mod_page = new MPage ();
     }
 
-    
+
     /*
-     * 
+     *
      */
     public function ajax() {
     	$userID = Session::get ( 'currentUserId' );
@@ -83,7 +83,7 @@ class FeProductController extends BaseController {
 
     public function showPreminumProduct()
     {
-        
+
     }
 
     /**
@@ -116,15 +116,15 @@ class FeProductController extends BaseController {
     	);
     	return Redirect::to('products/edit/'.$productId);
     	die;
-    	
-    	
+
+
         if(Input::has('btnAddProduct')) {
             $files = Input::file('file');
             $filesQuotation = Input::file('quotation');
             $quotationFile = '';
             if(!empty($filesQuotation)){
                 $quotationFile = $this->doUploadQaotation($filesQuotation);
-            }   
+            }
             if (!empty($files)){
                 $jsonNewFileName = $this->doUploadImages($files);
             }
@@ -176,7 +176,7 @@ class FeProductController extends BaseController {
             $jsonNewFileName = '';
             if(!empty($filesQuotation)){
                 $quotationFile = $this->doUploadQaotation($filesQuotation);
-            }   
+            }
             if (!empty($files[0])){
                 $jsonNewFileName = $this->doUploadImages($files,$hiddenFilesArr);
             } else {
@@ -190,7 +190,7 @@ class FeProductController extends BaseController {
                 /*end get old image*/
                 $jsonNewFileName = json_encode($newImg);
             }
-            
+
             /*remove old image*/
             if(!empty($delimagArr)) {
                 $destinationPath = base_path() . Config::get ( 'constants.DIR_IMAGE.DEFAULT' ). 'product/';
@@ -203,7 +203,7 @@ class FeProductController extends BaseController {
                 }
             }
             /*end remove old image*/
-            
+
 
             $products = $this->prepareDataBindProducts(
                 $jsonNewFileName,
@@ -211,7 +211,7 @@ class FeProductController extends BaseController {
                 false,
             	$product_id
             );
-            
+
             $this->mod_product->updateToProduct(
                 $products,
                 $product_id
@@ -230,10 +230,10 @@ class FeProductController extends BaseController {
             $listCategories = $this->mod_product->getCategoryTree(
                 $userID,
                 $parent=0,
-                $level=0, 
+                $level=0,
                 $product->s_category_id
             );
-        } 
+        }
 		/*get category*/
         if (self::FREE_ACCOUNT === (int)Session::get('currentUserAccountType')) {
         	$category = $this->mod_category->getSubCategories();
@@ -242,9 +242,9 @@ class FeProductController extends BaseController {
         	$category = $this->mod_category->getSubUserCategories($userID);
         	$getListHtmlCate = $this->getListCategories($category,1,null,$userID);
         }
-        
-        
-        
+
+
+
         $categoryName = '';
         $getRelateCate = DB::table(Config::get('constants.TABLE_NAME.PRODUCT_IN_CATEGORY'))
         ->where(array('product_id'=>$product_id, 'user_id'=>$userID))
@@ -271,7 +271,7 @@ class FeProductController extends BaseController {
         				$categoryidArr[] = $mCate->data->m_cat_id;
         			}
         		}
-        		
+
         	}
         	if(!empty($categoryNameArr)) {
         		$categoryName = implode(',',$categoryNameArr);
@@ -281,10 +281,10 @@ class FeProductController extends BaseController {
         $categoryID = null;
         if(!empty($categoryParentArr)) {
         	$editCurrentCat = $this->getCurrentLabel($categoryParentArr,$categoryidArr);
-        	
+
         	$categoryID = implode(',',$categoryidArr);
         }
-        
+
 		/*end get category*/
         //$getCurrentCat = $this->mod_category
         $productTransferTypes = $this->mod_product->findAllTransferType();
@@ -330,7 +330,7 @@ class FeProductController extends BaseController {
     	}
     	return $cutList;
     }
-    
+
     /*create referrent current label for view*/
     public function getCurrentLabelColumb($columCate, $i,$labelArr) {
     	$userID = Session::get('currentUserId');
@@ -347,7 +347,7 @@ class FeProductController extends BaseController {
     	$list .= '</div>';
     	return $list;
     }
-    
+
     public function getListCategories ($catArr,$level=1, $columCate=array(),$user='') {
     	$label = '';
     	if(!empty($catArr)) {
@@ -375,8 +375,8 @@ class FeProductController extends BaseController {
     	}
     	return $label;
     }
-    
-    
+
+
     /**
      * Delete a product by product id
      *
@@ -449,7 +449,7 @@ class FeProductController extends BaseController {
 
     /**
      * Do upload quotation file operation
-     * 
+     *
      * @param $file
      * @return void
      * @access private
@@ -481,16 +481,16 @@ class FeProductController extends BaseController {
         if ($isAdd === true) {
             $data['top_up'] = date('Y-m-d H:i:s');
             $data['created_date'] = date('Y-m-d');
-        } 
+        }
         if (!empty($pictures)) {
             $thumbnail = json_decode($pictures, true);
             $data['thumbnail'] = $thumbnail[0]['pic'];
             $data['pictures'] = $pictures;
         }
         if (!empty($quotation)) {
-          $data['file_quotation'] = $quotation;  
+          $data['file_quotation'] = $quotation;
         }
-        
+
         return $data;
     }
 
@@ -523,7 +523,7 @@ class FeProductController extends BaseController {
         return $data;
     }
 
-    
+
     public function generatCategory($param,$pro_id) {
     	$userID = Session::get('currentUserId');
     	$cId = array();
@@ -545,8 +545,8 @@ class FeProductController extends BaseController {
     			}
     		}
     	}
-    		
-    		
+
+
 //     		if(!empty($label)) {
 //     			foreach ($label as $cate) {
 //     				$name = trim(str_replace('&#44;', ',', $cate));
@@ -561,7 +561,7 @@ class FeProductController extends BaseController {
 //     						$mainCateID = $userCatId->data->m_cat_id;
 //     					}
 //     				}
-    				
+
 //     				if(!empty($mainCateID)) {
 //     					$mCate = $this->mod_category->getCategoryById($mainCateID);
 //     					if(!empty($mCate)) {
@@ -603,7 +603,7 @@ class FeProductController extends BaseController {
         $destinationPathThumb = $destinationPath.'/thumb/';
         $destinationPathPicSlideshow = $destinationPath.'/picslideshow/';
         $destinationPathThumbSlideshow = $destinationPath.'/thumbslideshow/';
-        
+
         if (!file_exists($destinationPath)) {
             mkdir($destinationPath, 0777, true);
         }

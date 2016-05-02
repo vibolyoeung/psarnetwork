@@ -2,7 +2,7 @@
 	<!-- Slider -->
 	<div class="row">
 	<?php
-	
+
 	$images = json_decode ($productDetail->pictures, true );
     //var_dump($productDetail);die;
 	?>
@@ -15,25 +15,25 @@
 						<div class="carousel slide" id="DetailPopupCarousel">
 							<!-- Carousel items -->
 							<div class="carousel-inner detail-popup">
-								<?php 
+								<?php
 								$thumbnail_id = 0;
 								?>
 								@foreach($images as $image)
 								<div class="item<?php echo $thumbnail_id == 0?' active':'';?>"
 									data-slide-number="<?php echo $thumbnail_id; ?>">
-									<?php 
+									<?php
 									echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=250&amp;w=550" />';
 									?>
 								</div>
 								<?php $thumbnail_id++; ?>
-								@endforeach 
+								@endforeach
 							</div>
 							<a class="left carousel-control" href="#DetailPopupCarousel" role="button" data-slide="prev">
-								<span class="glyphicon glyphicon-chevron-left"></span>                                       
+								<span class="glyphicon glyphicon-chevron-left"></span>
 							</a>
 							<a class="right carousel-control" href="#DetailPopupCarousel" role="button" data-slide="next">
-								<span class="glyphicon glyphicon-chevron-right"></span>                                       
-							</a> 
+								<span class="glyphicon glyphicon-chevron-right"></span>
+							</a>
 							<!-- Carousel nav -->
 						</div>
 						<div class="row hidden-xs" id="slider-thumbs">
@@ -89,7 +89,9 @@
 						<hr>
                         <h4>Price ss : <span class="price">{{ $productDetail->price }} $</span></h4>
                         <strong>Condition :&nbsp;<span class="pro-condition">{{$productDetail->{'pcon_name_'.Session::get('lang')};}}</span></strong><br />
-                        <strong>Post Date :&nbsp;<span class="pro-condition"><?php echo ($productDetail->created_date!=null)?date("d/M/Y",strtotime($productDetail->created_date)):''?> </span></strong>
+                        <strong>Post Date :&nbsp;<span class="pro-condition">
+                        	<?php echo ($productDetail->publish_date!=null)?date("d/M/Y",strtotime($productDetail->publish_date)):''?>
+                        </span></strong>
 					    <div class="clear"></div> <div class="clear"></div>
                         <div class="col-lg-12 text-centered" style="background-color:#eea236;padding:5px 0;text-align:center;"><a href="{{Config::get('app.url')}}store-{{$productDetail->store_id;}}" style="color:white;font-weight:bold;" target="_blank">{{Config::get('app.url')}}store-{{$productDetail->store_id;}}</a></div>
                         <div class="clear"></div>
@@ -101,5 +103,5 @@
 		</div>
 	</div>
 	<!--/Slider-->
-</div> 
+</div>
 

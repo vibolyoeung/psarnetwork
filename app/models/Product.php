@@ -515,6 +515,7 @@ class Product extends Eloquent {
 			'p.price',
 			'p.view',
 			'p.created_date',
+			'p.publish_date',
 			'u.name as name',
 			'u.address as address',
 			'p.store_id as store_id',

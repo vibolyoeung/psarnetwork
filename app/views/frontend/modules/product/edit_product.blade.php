@@ -270,7 +270,7 @@
                                     {{trans('product.date_post')}}
                                 </label>
                                 <div class="col-sm-11">
-                                    <?php 
+                                    <?php
                                     if(is_null($product->publish_date)){
                                         echo '<input type="text" name="date_post" class="form-control product_datepicker" value="'.date('Y-m-d').'"/>';
                                     }else{
@@ -282,8 +282,8 @@
                                                 'class'=>'form-control product_datepicker'
                                             )
                                         )}}
-                                    <?php 
-                                    } 
+                                    <?php
+                                    }
                                     ?>
                                 </div>
                             </div>

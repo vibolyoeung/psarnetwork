@@ -159,7 +159,15 @@
 									<div class="clear"></div>
 									<div>Product ID:   &nbsp;<span class="pro-condition">{{$productdetails->id}}</span></div>
 									<div>View: &nbsp;<span class="pro-condition"><?php echo $productdetails->view;?></span></div>
-									<div>Post Date :&nbsp;<span class="pro-condition"><?php echo date("d/M/Y",strtotime($productdetails->created_date)); ?> </span></div>
+									<div>Post Date :&nbsp;
+										<span class="pro-condition">
+											<?php
+												if ($productdetails->publish_date !== null) {
+													echo date("d/M/Y",strtotime($productdetails->publish_date));
+												}
+											?>
+										</span>
+									</div>
 									<div>Transfer :&nbsp;<span class="pro-condition">{{$productdetails->{'type_name_'.Session::get('lang')};}}</span></div>
 									<div>Condition :&nbsp;<span class="pro-condition">{{$productdetails->{'pcon_name_'.Session::get('lang')};}}</span></div>
 									<div>Status :&nbsp;<span class="pro-condition">{{Product::getProductStatus($productdetails->pro_status)}}</span></div>

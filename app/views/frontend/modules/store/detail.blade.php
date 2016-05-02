@@ -163,7 +163,13 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 						View: &nbsp;<span class="pro-condition"><?php echo $dataProductDetail->view;?></span>
 					</div>
 					<div>
-						Post Date :&nbsp;<span class="pro-condition"><?php echo date("d/M/Y",strtotime($dataProductDetail->created_date)); ?> </span>
+						Post Date :&nbsp;<span class="pro-condition">
+							<?php
+								if($dataProductDetail->publish_date !== null) {
+									echo date("d/M/Y",strtotime($dataProductDetail->publish_date));
+								}
+							?>
+						</span>
 					</div>
 					<div>
 						Transfer :&nbsp;<span class="pro-condition">{{$dataProductDetail->{'type_name_'.Session::get('lang')};}}</span>
@@ -357,7 +363,7 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 	@endif
 	<!-- end recommended items -->
     </div>
-  
+
   {{HTML::script('frontend/js/product_detail_print.js')}}
 {{HTML::script('frontend/js/jquery.colorbox-min.js')}}
 {{HTML::script('frontend/js/popupdetails.js')}}
@@ -394,9 +400,9 @@ $pictures = @json_decode ( $dataProductDetail->pictures, true );
 		}
 	}
 ?>
-	@if(!empty($banner)) 
-		@foreach($banner as $ban) 
-			@if($ban->ban_position == 'ls') 
+	@if(!empty($banner))
+		@foreach($banner as $ban)
+			@if($ban->ban_position == 'ls')
 				@if($ban->ban_enddate >= $currentDate)
     				<a class="banner-link" href="{{@$ban->ban_link}}" target="_blank"><img
         				src="{{Config::get('app.url')}}upload/user-banner/{{$ban->ban_image}}"
