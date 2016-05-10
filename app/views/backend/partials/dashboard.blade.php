@@ -176,50 +176,48 @@
 						<li role="presentation" class="active">
 							<a href="#user" aria-controls="user" role="tab" data-toggle="tab"><b>User</b></a>
 						</li>
-						<li role="presentation">
-							<a href="#product" aria-controls="product" role="tab" data-toggle="tab"><b>Product</b></a>
-						</li>
-						<li role="presentation">
-							<a href="#banner" aria-controls="banner" role="tab" data-toggle="tab"><b>Banner</b></a>
-						</li>
-						<li role="presentation">
-							<a href="#bs-page" aria-controls="bs-page" role="tab" data-toggle="tab"><b>BS-Page</b></a>
-						</li>
-						<li role="presentation">
-							<a href="#ps-page" aria-controls="ps-page" role="tab" data-toggle="tab"><b>PS-Page</b></a>
-						</li>
-						<li role="presentation">
-							<a href="#point-to" aria-controls="point-to" role="tab" data-toggle="tab"><b>POINT TO</b></a>
-						</li>
 					</ul>
 					<!-- Tab panes -->
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane active" id="user">
 							<br/>
 							<p class="custom-border">
-								<b>Total All Users Register : </b><b class="class-red">55300 Registers</b>
+								<b>Total All Users Register : </b>
+								<b class="class-red">
+								<?php 
+									$totalUsersRegister = DB::table('user')
+										->where('account_type', '=', 2)
+										->count(); 
+									echo $totalUsersRegister;
+								?> Users
+								</b>
 							</p>
 							<p class="custom-border">
-								<b>Active-User : </b><b class="class-red">5,5000  users </b>
+								<b>Active-User : </b>
+								<b class="class-red">
+								<?php 
+									$totalActiveUsers = DB::table('user')
+										->where('account_type', '=', 2)
+										->where('status', '=', 1)
+										->count(); 
+									echo $totalActiveUsers;
+								?> Users
+								</b>
 							</p>
 							<p class="custom-border">
-								<b>User Expired : </b><b class="class-red">1000  users </b>
-							</p>
-							<p class="custom-border">
-								<b>Deleted User : </b><b class="class-red">2000 users </b>
-							</p>
-							<p class="custom-border">
-								<b>Active Phnom Penh : </b><b class="class-red">3,5000  users </b>
-							</p>
-							<p class="custom-border">
-								<b>Active Other User : </b><b class="class-red">20000  users </b>
+								<b>Active Phnom Penh : </b>
+								<b class="class-red">
+								<?php 
+									$totalActivePhnomPenhUsers = DB::table('user')
+										->where('account_type', '=', 2)
+										->where('status', '=', 1)
+										->where('province_id', '=', 1)
+										->count(); 
+									echo $totalActivePhnomPenhUsers;
+								?> Users 
+								</b>
 							</p>
 						</div>
-						<div role="tabpanel" class="tab-pane" id="product"><b>Product</b></div>
-						<div role="tabpanel" class="tab-pane" id="banner">Banner</div>
-						<div role="tabpanel" class="tab-pane" id="bs-page">BS-Page</div>
-						<div role="tabpanel" class="tab-pane" id="ps-page">PS-Page</div>
-						<div role="tabpanel" class="tab-pane" id="point-to">POINT TO</div>
 					</div>
 				</div>
 
@@ -229,169 +227,48 @@
 			<h4 class="color-h4">New Register Message</h4>
 			<div class="mg-container">
 				<table class="table table-bordered title-border">
-					<tr id="new_product_post_title">
-						<th>New Product Post Today <span class="class-red">8</span> <b class="caret"></b></th>
-					</tr>
-				</table>
-				<table class="table table-bordered table-container" id="new_product_post">
-					<tr>
-						<td>Title</td>
-						<td>Price</td>
-						<td>Page</td>
-						<td>Page-url</td>
-						<td>From User Name</td>
-						<td>Location</td>
-						<td>Phone</td>
-						<td>Date</td>
-					</tr>
-					<tr>
-						<td>Title</td>
-						<td>Price</td>
-						<td>Page</td>
-						<td>Page-url</td>
-						<td>From User Name</td>
-						<td>Location</td>
-						<td>Phone</td>
-						<td>Date</td>
-					</tr>
-				</table>
-				<table class="table table-bordered title-border">
 					<tr id="business_page_register_title">
-						<th>Busines Page Register   <span class="class-red">8</span> <b class="caret"></b></th>
-					</tr>
-				</table>
-				<table class="table table-bordered table-container" id="business_page_register">
-					<tr>
-						<td>Title</td>
-						<td>Price</td>
-						<td>Page</td>
-						<td>Page-url</td>
-						<td>From User Name</td>
-						<td>Location</td>
-						<td>Phone</td>
-						<td>Date</td>
-					</tr>
-					<tr>
-						<td>Title</td>
-						<td>Price</td>
-						<td>Page</td>
-						<td>Page-url</td>
-						<td>From User Name</td>
-						<td>Location</td>
-						<td>Phone</td>
-						<td>Date</td>
+						<th>
+							Busines Page Register:
+							<span class="class-red">
+								<?php
+									$businessPage = DB::table('store AS s')
+								        ->join('user AS u', 'u.id','=', 's.user_id')
+								        ->select(DB::raw('s.id as store_id, s.*, u.id as user_id, u.*'))
+								        ->where('u.account_type', 2)
+								        ->count();
+								    echo $businessPage;
+								?>
+							</span>
+						</th>
 					</tr>
 				</table>
 
 				<table class="table table-bordered title-border">
 					<tr id="personal_page_register_title">
-						<th>Personal Page Register  <span class="class-red">8</span> <b class="caret"></b></th>
-					</tr>
-				</table>
-				<table class="table table-bordered table-container" id="personal_page_register">
-					<tr>
-						<td>Title</td>
-						<td>Price</td>
-						<td>Page</td>
-						<td>Page-url</td>
-						<td>From User Name</td>
-						<td>Location</td>
-						<td>Phone</td>
-						<td>Date</td>
-					</tr>
-					<tr>
-						<td>Title</td>
-						<td>Price</td>
-						<td>Page</td>
-						<td>Page-url</td>
-						<td>From User Name</td>
-						<td>Location</td>
-						<td>Phone</td>
-						<td>Date</td>
-					</tr>
-				</table>
-
-				<table class="table table-bordered title-border">
-					<tr id="product_ads_title">
-						<th>Product Ads   <span class="class-red">8</span> <b class="caret"></b></th>
-					</tr>
-				</table>
-				<table class="table table-bordered table-container" id="product_ads">
-					<tr>
-						<td>Title</td>
-						<td>Price</td>
-						<td>Page</td>
-						<td>Page-url</td>
-						<td>From User Name</td>
-						<td>Location</td>
-						<td>Phone</td>
-						<td>Date</td>
-					</tr>
-					<tr>
-						<td>Title</td>
-						<td>Price</td>
-						<td>Page</td>
-						<td>Page-url</td>
-						<td>From User Name</td>
-						<td>Location</td>
-						<td>Phone</td>
-						<td>Date</td>
+						<th>
+							Personal Page Register:  
+							<span class="class-red">
+								<?php
+									$personalPage = DB::table('store AS s')
+								        ->join('user AS u', 'u.id','=', 's.user_id')
+								        ->select(DB::raw('s.id as store_id, s.*, u.id as user_id, u.*'))
+								        ->where('u.account_type', 1)
+								        ->count();
+								    echo $personalPage;
+								?>
+							</span>
+						</th>
 					</tr>
 				</table>
 
 				<table class="table table-bordered title-border">
 					<tr id="banners_ads_title">
-						<th>Banners Ads  <span class="class-red">8</span> <b class="caret"></b></th>
-					</tr>
-				</table>
-				<table class="table table-bordered table-container" id="banners_ads">
-					<tr>
-						<td>Title</td>
-						<td>Price</td>
-						<td>Page</td>
-						<td>Page-url</td>
-						<td>From User Name</td>
-						<td>Location</td>
-						<td>Phone</td>
-						<td>Date</td>
-					</tr>
-					<tr>
-						<td>Title</td>
-						<td>Price</td>
-						<td>Page</td>
-						<td>Page-url</td>
-						<td>From User Name</td>
-						<td>Location</td>
-						<td>Phone</td>
-						<td>Date</td>
-					</tr>
-				</table>
-
-				<table class="table table-bordered title-border">
-					<tr id="point_to_title">
-						<th>POINT TO Function  <span class="class-red">8</span> <b class="caret"></b></th>
-					</tr>
-				</table>
-				<table class="table table-bordered table-container" id="point_to">
-					<tr>
-						<td>Title</td>
-						<td>Price</td>
-						<td>Page</td>
-						<td>Page-url</td>
-						<td>From User Name</td>
-						<td>Location</td>
-						<td>Phone</td>
-						<td>Date</td>
-					</tr>
-					<tr>
-						<td>Title</td>
-						<td>Price</td>
-						<td>Page</td>
-						<td>Page-url</td>
-						<td>From User Name</td>
-						<td>Location</td>
-						<td>Phone</td>
-						<td>Date</td>
+						<th>
+							Banners Ads: <span class="class-red">
+								{{$totalBannerAds}}
+							</span> 
+						</th>
 					</tr>
 				</table>
 			</div>
@@ -401,61 +278,45 @@
 <h4 class="col-md-12 color-h4">Total User Register Today</h4>
 <div class="col-md-12">
 	<div class="row well well-radius">
-		<table class="table table-bordered">
-			<tr>
-				<th width="10">{{HTML::image("backend/images/icons/user.png",'user',array('class'=>'img-circle','width'=>'70'))}}</th>
-				<th>KOCH DOEUN</th>
-				<th>doeunkoch@gmail.com</th>
-				<th>0972793573</th>
-				<th>Phnom Penh</th>
-				<th>21 hours ago</th>
-				<th><a href="">Detail</a></th>
-			</tr>
-		</table>
-		<table class="table table-bordered">
-			<tr>
-				<th width="10">{{HTML::image("backend/images/icons/user.png",'user',array('class'=>'img-circle','width'=>'70'))}}</th>
-				<th>KOCH DOEUN</th>
-				<th>doeunkoch@gmail.com</th>
-				<th>0972793573</th>
-				<th>Phnom Penh</th>
-				<th>21 hours ago</th>
-				<th><a href="">Detail</a></th>
-			</tr>
-		</table>
-		<table class="table table-bordered">
-			<tr>
-				<th width="10">{{HTML::image("backend/images/icons/user.png",'user',array('class'=>'img-circle','width'=>'70'))}}</th>
-				<th>KOCH DOEUN</th>
-				<th>doeunkoch@gmail.com</th>
-				<th>0972793573</th>
-				<th>Phnom Penh</th>
-				<th>21 hours ago</th>
-				<th><a href="">Detail</a></th>
-			</tr>
-		</table>
-		<table class="table table-bordered">
-			<tr>
-				<th width="10">{{HTML::image("backend/images/icons/user.png",'user',array('class'=>'img-circle','width'=>'70'))}}</th>
-				<th>KOCH DOEUN</th>
-				<th>doeunkoch@gmail.com</th>
-				<th>0972793573</th>
-				<th>Phnom Penh</th>
-				<th>21 hours ago</th>
-				<th><a href="">Detail</a></th>
-			</tr>
-		</table>
-		<table class="table table-bordered">
-			<tr>
-				<th width="10">{{HTML::image("backend/images/icons/user.png",'user',array('class'=>'img-circle','width'=>'70'))}}</th>
-				<th>KOCH DOEUN</th>
-				<th>doeunkoch@gmail.com</th>
-				<th>0972793573</th>
-				<th>Phnom Penh</th>
-				<th>21 hours ago</th>
-				<th><a href="">Detail</a></th>
-			</tr>
-		</table>
+		<?php 
+			$today = date("Y-m-d"); 
+			$usersToday = DB::table('user')
+				->where('account_type', '=', 2)
+				->where('create_at', '=', $today)
+				->take(5)
+				->orderBy('id', 'desc')
+				->get(); 
+		?>
+		@foreach($usersToday as $userToday)
+			<table class="table table-bordered">
+				<tr>
+					<th width="10%">
+						{{HTML::image("backend/images/icons/user.png",'user',array('class'=>'img-circle','width'=>'70'))}}
+					</th>
+					<th width="20%">{{$userToday->name}}</th>
+					<th width="20%">{{$userToday->email}}</th>
+					<th width="15%">{{$userToday->telephone}}</th>
+					<th width="15%">
+						<?php 
+							$provinceName = DB::table('province')
+								->where('province_id', '=', $userToday->province_id)
+								->first();
+							if(!empty($provinceName)) {
+								echo $provinceName->province_name_en;
+							}
+						?>
+					</th>
+					<th width="10%">{{$userToday->create_at}}</th>
+					<th width="10%">
+						<a 
+							href="{{URL::to('admin/users/clients')}}"
+						>
+							Detail
+						</a>
+					</th>
+				</tr>
+			</table>
+		@endforeach
 	</div>
 </div>
 @endsection

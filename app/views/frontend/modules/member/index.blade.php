@@ -51,6 +51,8 @@
               </div>
           </div>
 	      </div>
+
+
   	<div class="col-sm-4">
   		<div class="panel panel-primary LoginForm">
   			<div class="panel-heading">
@@ -126,6 +128,9 @@
   							</div>
   						</div>
   					</div>
+            <a href="{{URL::to('member/help/forget')}}">
+              Need help?
+            </a>
   					<input
   						type="submit"
   						id="summit"
@@ -137,6 +142,7 @@
   			</div>
   		</div>
   		<!--/login form-->
+
   	</div>
   </div>
 </div>

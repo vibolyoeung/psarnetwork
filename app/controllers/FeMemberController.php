@@ -1540,4 +1540,71 @@ class FeMemberController extends BaseController {
 		return View::make('frontend.partials.login_register_adv')
 			->with('advRegisterAndLogin', $advRegisterAndLogin->result);
 	}
+
+	public function forgetPasswordEnterEmail() {
+		if(Input::has( 'btnSubmitEmail' )) {
+			$email = Input::get('forgetEmail');
+			$user = DB::table('user')
+				->where('email', '=', $email)
+				->where('account_type', '!=', '')
+				->first();
+
+			if(empty($user)) {
+				return Redirect::to('member/help/forget')->with('hasError', true);
+			}
+
+			$randomNumber = mt_rand();
+			$EmailSubject = 'Reset Password Code '; 
+			$mailheader = "From: ".$email."\r\n"; 
+			$mailheader .= "Reply-To: ".$email."\r\n"; 
+			$mailheader .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
+			$MESSAGE_BODY = "Your reset password code: ".$randomNumber."<br>";  
+			if(mail($email, $EmailSubject, $MESSAGE_BODY, $mailheader))
+			{
+				$userUpdated = DB::table('user')
+					->where('email', '=', $email)
+					->update(array('activated_code' => $randomNumber));
+				if($userUpdated) {
+					return Redirect::to('member/help/reset')
+						->with('hasErrorSendMail', true);
+				}
+			}
+
+			return Redirect::to('member/help/forget');
+		}
+
+		return View::make('frontend.modules.member.helps.email_form');
+	}
+
+	public function resetPassword() {
+		if(Input::has( 'btnSubmitReset' )) {
+			$user = DB::table('user')
+				->where('activated_code', '=', Input::get( 'code' ))
+				->where('account_type', '!=', '')
+				->first();
+
+			if(empty($user)) {
+				return Redirect::to('member/help/reset')
+					->with('hasError', 'Please enter the correct code!');
+			}
+
+			if(Input::get( 'newPassword' ) != Input::get( 'confirmPassword' )) {
+				return Redirect::to('member/help/reset')
+					->with('hasError', 'New Password and Confirm Password are not matched!');
+			}
+
+			$userUpdated = DB::table('user')
+				->where('email', '=', $user->email)
+				->update(array('password' => md5(sha1(Input::get( 'newPassword' )))));
+			if($userUpdated) {
+				DB::table('user')
+					->where('email', '=', $user->email)
+					->update(array('activated_code' => ''));
+
+				return Redirect::to('member/login');
+			}
+		}
+
+		return View::make('frontend.modules.member.helps.reset_password_form');
+	}
 }

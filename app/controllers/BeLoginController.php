@@ -3,9 +3,11 @@
 class BeLoginController extends BaseController {
 
  	protected  $user;
+ 	public $advertisement;
 
 	public function __construct() {
 		$this->user = new User();
+		$this->advertisement = new Advertisement ();
 	}
 
 	/**
@@ -76,7 +78,9 @@ class BeLoginController extends BaseController {
 	 *
 	 */
 	public function dashboard(){
-		return View::make('backend.partials.dashboard');
+		$totalBannerAds = $this->advertisement->getCountBannerAds();
+		return View::make('backend.partials.dashboard')
+			->with('totalBannerAds', $totalBannerAds);
 	}
 
 	/**

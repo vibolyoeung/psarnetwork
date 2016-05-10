@@ -165,7 +165,9 @@ Route::group(array('prefix' => 'member'), function () {
 	Route::any('/geturladress','FeMemberController@checkUrlAddress');
 	Route::any('/getmarkettype/{id}','FeMemberController@getMarketType');
 	Route::any('/agreement/{usertype}','FeMemberController@agreement');
-	Route::any('/byajax','FeMemberController@GetAjax');
+    Route::any('/byajax','FeMemberController@GetAjax');
+    Route::any('/help/forget','FeMemberController@forgetPasswordEnterEmail');
+	Route::any('/help/reset','FeMemberController@resetPassword');
 });
 
 Route::group(array('before' => 'auth_member'), function () {

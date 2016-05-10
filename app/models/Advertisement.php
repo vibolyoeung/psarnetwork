@@ -434,4 +434,28 @@ class Advertisement extends Eloquent {
 
 		return $response;
 	}
+
+	public function getCountBannerAds() {
+		$adv = Config::get ('constants.TABLE_NAME.ADVERTISEMENT');
+		$advPage = Config::get ('constants.TABLE_NAME.ADV_PAGE' );
+		$advPostion = Config::get ('constants.TABLE_NAME.ADV_POSITION');
+		return $result = DB::table($adv .' AS adv')
+			->select(
+				'adv.id'
+				, 'adv.title_en'
+				, 'adv.title_km'
+				, 'adv.description_en'
+				, 'adv.description_km'
+				, 'adv.link_url'
+				, 'adv.started_date'
+				, 'adv.end_date'
+				, 'adv.image'
+				, 'adv.status'
+				, 'advp.name AS pageName'
+				, 'ps.name AS positionName'
+			)
+			->leftJoin($advPage .' AS advp', 'adv.adv_page_id','=', 'advp.id')
+			->leftJoin($advPostion . ' AS ps', 'adv.adv_position_id', '=', 'ps.id')
+			->count();
+	}
 }
