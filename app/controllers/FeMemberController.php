@@ -1556,7 +1556,7 @@ class FeMemberController extends BaseController {
 			$randomNumber = mt_rand();
 			$EmailSubject = 'Reset Password Code'; 
 			$mailheader = "From: ".$email."\r\n";  
-			$MESSAGE_BODY = "Your reset password code: ".$randomNumber."<br>";  
+			$MESSAGE_BODY = "Your reset password code: ". $randomNumber;  
 			if(mail($email, $EmailSubject, $MESSAGE_BODY, $mailheader))
 			{
 				$userUpdated = DB::table('user')
