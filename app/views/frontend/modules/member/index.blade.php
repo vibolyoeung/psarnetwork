@@ -129,7 +129,7 @@
   						</div>
   					</div>
             <a href="{{URL::to('member/help/forget')}}">
-              Need help?
+              Forget Password ?
             </a>
   					<input
   						type="submit"

@@ -1554,10 +1554,8 @@ class FeMemberController extends BaseController {
 			}
 
 			$randomNumber = mt_rand();
-			$EmailSubject = 'Reset Password Code '; 
-			$mailheader = "From: ".$email."\r\n"; 
-			$mailheader .= "Reply-To: ".$email."\r\n"; 
-			$mailheader .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
+			$EmailSubject = 'Reset Password Code'; 
+			$mailheader = "From: ".$email."\r\n";  
 			$MESSAGE_BODY = "Your reset password code: ".$randomNumber."<br>";  
 			if(mail($email, $EmailSubject, $MESSAGE_BODY, $mailheader))
 			{
