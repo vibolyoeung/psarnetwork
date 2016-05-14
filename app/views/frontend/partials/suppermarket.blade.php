@@ -1,6 +1,6 @@
 @extends('frontend.layout')
 @section('title')
-Categories
+Product By Client Type
 @endsection
 @section('breadcrumb')
 <ol class="breadcrumb">
@@ -53,7 +53,7 @@ Categories
 												&nbsp;
 												{{$contactInfo->contactLocation}}
 												&nbsp;
-												View : <span class="price">12</span>
+												View : <span class="price">{{$product->view}}</span>
 											</p>
 										</div>
 									</div>
@@ -134,6 +134,10 @@ Categories
 								</div>
 							</div>
 						@endforeach
+						<div style="clear: both;"></div>
+						<div id="pagination" class="col-lg-12 text-center">
+							{{$listProductSupermarket->appends(Input::except('page'))->links(); }}
+						</div>
 					<?php
 						}else{
 							echo '<p><center style="color:red;">Product not found!</center></p>';

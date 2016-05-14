@@ -1117,7 +1117,7 @@ class MCategory extends Eloquent{
 
     public function countProductBySellerType($seller_type_id){
       	$results = DB::table(Config::get('constants.TABLE_NAME.USER'))
-			->select('*')
+			->select('id')
 			->where('account_role','=',$seller_type_id)
 			->get();
 
@@ -1128,6 +1128,8 @@ class MCategory extends Eloquent{
 
 			$countpro = DB::table(Config::get('constants.TABLE_NAME.PRODUCT'))
 			->select('*')
+			->where ('is_publish', '=', self::IS_PUBLISH )
+			->where ('publish_date', '<=',date("Y-m-d"))
 			->whereIn('user_id',$client)
 			->count();
 			echo $countpro;

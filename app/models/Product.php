@@ -1075,7 +1075,11 @@ class Product extends Eloquent {
 	}
 
 
-	public function findProductByAccountRole($id){
+	public function findProductByAccountRole($id,$displayNumber){
+		if ($displayNumber === null) {
+			$displayNumber = self::LIST_NUMBER;
+		}
+
     	try {
 			$results = DB::table(Config::get('constants.TABLE_NAME.USER'))
 			->select('*')
@@ -1138,6 +1142,6 @@ class Product extends Eloquent {
 			$response->result = 0;
 			$response->errorMsg = $e->getMessage();
 		}
-		return $query->get();
+		return $query->paginate($displayNumber);
 	}
 }

@@ -2,6 +2,7 @@
 use Illuminate\Redis\Database;
 class Market extends Eloquent{
 	const IS_PUBLISH = 1;
+	const LIST_NUMBER = 20;
 	
 	/**
 	 *
@@ -367,25 +368,10 @@ class Market extends Eloquent{
 	}
 
 
-	public function listproductofsupermarket($client_type_id,$market_id = null){
-
-		// $productTable = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
-		// $userTable = Config::get ( 'constants.TABLE_NAME.USER' );
-		// $storeTable = Config::get ( 'constants.TABLE_NAME.STORE' );
-
-		// try {
-		// 	$data = DB::table ( $userTable . ' AS user' )
-		// 	->join ( $productTable . ' AS pro', 'user.id', '=', 'pro.user_id' )
-		// 	->where ( 'pro.is_publish', '=', self::IS_PUBLISH )
-		// 	->orderBy ('pro.id', 'DESC' )
-		// 	->select ( '*' )
-		// 	->where('user.client_type','=', $client_type_id)
-		// 	->get();
-		// } catch (\Exception $e) {
-		// 	Log::error('Message: '.$e->getMessage().' File:'.$e->getFile().' Line'.$e->getLine());
-		// }
-		// return $data;
-
+	public function listproductofsupermarket($client_type_id,$market_id = null,$displayNumber=null){
+		if ($displayNumber === null) {
+			$displayNumber = self::LIST_NUMBER;
+		}
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		$product_in_category = Config::get ( 'constants.TABLE_NAME.PRODUCT_IN_CATEGORY' );
 		$store = Config::get ( 'constants.TABLE_NAME.STORE' );
@@ -437,7 +423,7 @@ class Market extends Eloquent{
 		$query->where('p.is_publish', '=', self::IS_PUBLISH);
 		$query->groupby('pro.product_id');
 		$query->orderBy ( 'p.id', 'DESC' );
-		return $query->get();
+		return $query->paginate($displayNumber);
 	}
 
 

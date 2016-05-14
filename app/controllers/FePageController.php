@@ -215,11 +215,12 @@ class FePageController extends BaseController {
 				self::HOME_PAGE_TOP,
 				1
 		);
+		$displayNumber = Request::get('displayNumber');
 		$arrayClientTypeId = $this->mod_market->getAllChildClientType($parent_id);
 		if($id>0){
-			$listproductInEachMarket = $this->mod_market->listproductofsupermarket($parent_id,array($id));
+			$listproductInEachMarket = $this->mod_market->listproductofsupermarket($parent_id,array($id),$displayNumber);
 		}else{
-			$listproductInEachMarket = $this->mod_market->listproductofsupermarket($parent_id,$arrayClientTypeId);
+			$listproductInEachMarket = $this->mod_market->listproductofsupermarket($parent_id,$arrayClientTypeId,$displayNumber);
 		}
 		$mainSup = $this->mod_market->mainMarket($parent_id);
 		return View::make('frontend.partials.suppermarket')
@@ -326,7 +327,8 @@ class FePageController extends BaseController {
     }
 
     public function listProductAccountRole($account_role_id){
-    	$productByAccountRole = $this->mod_product->findProductByAccountRole($account_role_id);
+    	$displayNumber = Request::get('displayNumber');
+    	$productByAccountRole = $this->mod_product->findProductByAccountRole($account_role_id,$displayNumber);
     	return View::make('frontend.partials.products.product_account_role')
     	    ->with('client_type',$this->mod_category->getClientType())
 			->with('pro_transfer_type',$this->mod_category->getProductTransfterType())

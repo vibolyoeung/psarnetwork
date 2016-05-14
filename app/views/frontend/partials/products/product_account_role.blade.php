@@ -1,6 +1,6 @@
 @extends('frontend.layout')
 @section('title')
-Categories
+Product By Account Role
 @endsection
 @section('breadcrumb')
 <ol class="breadcrumb">
@@ -137,6 +137,10 @@ Categories
 							</div>
 						</div>
 					@endforeach
+					<div style="clear: both;"></div>
+					<div id="pagination" class="col-lg-12 text-center">
+						{{$productByAccountRole->appends(Input::except('page'))->links(); }}
+					</div>
 					<?php
 					}else{
 						echo '<p><center style="color:red;">Product not found!</center></p>';
