@@ -54,7 +54,7 @@ Categories
 											&nbsp;
 											{{$contactInfo->contactLocation}}
 											&nbsp;
-											View : <span class="price">12</span>
+											View : <span class="price">{{$product->view}}</span>
 										</p>
 									</div>
 								</div>
