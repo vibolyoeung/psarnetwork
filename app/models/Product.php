@@ -416,7 +416,7 @@ class Product extends Eloquent {
 		return DB::table ( $product . ' AS p' )->select ( '*' )
 		->where ( 'p.pro_transfer_type_id', '=', self::HOT_PROMOTION_PRODUCT )
 		->where ( 'p.is_publish', '=', self::IS_PUBLISH )
-		->where('p.publish_date','<=',date('Y-m-d'))
+		->where('p.publish_date','<=',date('Y-m-d H:i:s'))
 		->orderBy ( 'p.publish_date', 'DESC' )->get ();
 	}
 
@@ -448,7 +448,7 @@ class Product extends Eloquent {
 		return DB::table ( $product . ' AS p' )->select ( '*' )
 		->where ( 'p.pro_transfer_type_id', '=', self::MONTHLY_PRODUCT )
 		->where ( 'p.is_publish', '=', self::IS_PUBLISH )
-		->where('p.publish_date','<=',date('Y-m-d'))
+		->where('p.publish_date','<=',date('Y-m-d H:i:s'))
 		->orderBy( 'p.publish_date', 'DESC' )->get ();
 	}
 
@@ -466,7 +466,7 @@ class Product extends Eloquent {
 			->select ( '*' )
 			->where ( 'p.pro_transfer_type_id', '=', self::BUYER_PRODUCT )
 			->where ( 'p.is_publish', '=', self::IS_PUBLISH )
-			->where ( 'p.publish_date', '<=', date ( "Y-m-d" ) )
+			->where ( 'p.publish_date', '<=', date ( "Y-m-d H:i:s" ) )
 			->orderBy ( 'p.publish_date', 'DESC' )
 			->take($setting)
 			->get ();
@@ -484,7 +484,7 @@ class Product extends Eloquent {
 		return DB::table ( $product . ' AS p' )->select ( '*' )
 		->where ( 'p.pro_condition_id', '=', self::SECOND_HAND_PRODUCT )
 		->where ( 'p.is_publish', '=', self::IS_PUBLISH )
-		->where('p.publish_date','<=',date('Y-m-d'))
+		->where('p.publish_date','<=',date('Y-m-d H:i:s'))
 		->orderBy( 'p.publish_date', 'DESC' )->get ();
 	}
 
@@ -621,7 +621,7 @@ class Product extends Eloquent {
 		->join ($accountRole.' AS accr','accr.rol_id','=','u.account_role')
 		->join($clientType.' AS ctype','ctype.id','=','u.client_type')
 		->whereIn( 'pro.category_id',$category_id)
-		->where( 'p.publish_date','<=',date('Y-m-d'))
+		->where( 'p.publish_date','<=',date('Y-m-d H:i:s'))
 		->groupby('pro.product_id')
 		->orderBy ( 'p.id', 'DESC' )->take(8)->get ();
 	}
@@ -639,7 +639,7 @@ class Product extends Eloquent {
 		return DB::table ( $product . ' AS p' )->select ( 'p.*')
 		->join ( 'user AS u', 'p.user_id', '=', 'u.id' )
 		->where ( 'u.account_type', '=', self::PREMINUM )
-		->where( 'p.publish_date','<=',date('Y-m-d'))
+		->where( 'p.publish_date','<=',date('Y-m-d H:i:s'))
 		->orderBy ( 'p.id', 'DESC' )->take ( $setting )->get ();
 	}
 
@@ -699,7 +699,7 @@ class Product extends Eloquent {
 		->join ($accountRole.' AS accr','accr.rol_id','=','u.account_role')
 		->join($clientType.' AS ctype','ctype.id','=','u.client_type')
 		->whereIn( 'pro.category_id',$category_id)
-		->where( 'p.publish_date','<=',date('Y-m-d'))
+		->where( 'p.publish_date','<=',date('Y-m-d H:i:s'))
 		->groupby('pro.product_id')
 		->orderBy ( 'p.id', 'DESC' )
 		->paginate($displayNumber);
@@ -1068,7 +1068,7 @@ class Product extends Eloquent {
 		->join ($accountRole.' AS accr','accr.rol_id','=','u.account_role')
 		->join($clientType.' AS ctype','ctype.id','=','u.client_type')
 		->where( 'p.pro_transfer_type_id',$id)
-		->where( 'p.publish_date','<=',date('Y-m-d'))
+		->where( 'p.publish_date','<=',date('Y-m-d H:i:s'))
 		->groupby('pro.product_id')
 		->orderBy ( 'p.id', 'DESC' )
 		->paginate($displayNumber);
@@ -1133,7 +1133,7 @@ class Product extends Eloquent {
 			$query->join ($accountRole.' AS accr','accr.rol_id','=','u.account_role');
 			$query->join($clientType.' AS ctype','ctype.id','=','u.client_type');
 			$query->where ( 'p.is_publish', '=', self::IS_PUBLISH );
-			$query->where ( 'p.publish_date', '<=',date("Y-m-d"));
+			$query->where ( 'p.publish_date', '<=',date("Y-m-d H:i:s"));
 			$query->whereIn('p.user_id',$userID);
 			$query->groupby('pro.product_id');
 			$query->orderby('p.id','DESC');
