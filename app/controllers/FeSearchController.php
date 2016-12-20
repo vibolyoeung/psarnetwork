@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Response;
 class FeSearchController extends BaseController {
 
 	const HOMEPAGE = 1;
@@ -26,6 +27,21 @@ class FeSearchController extends BaseController {
 		$this->mod_market = new Market();
 		$this->mod_product = new Product();
 	}
+	
+	public function autocomplete(){
+		$results = DB::select(DB::raw("select title from product where title IS NOT NULL order by title ASC"));
+		$data = array();
+		foreach ($results as $values){
+			$data[] = $values->title;
+		}
+		return $data;
+	}
+	
+	public function returndata(){
+		$result_search = $this->mod_product->searchProductTitle();
+		return $result_search;
+	}
+		
 
 	public function search()
 	{

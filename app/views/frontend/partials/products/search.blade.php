@@ -114,23 +114,3 @@
 		</div>
 	</div>
 </div>
-<script language="javascript">
-	$(document).ready(function(){
-		var url  = window.location.href;
-		 url = url.split("/");
-		 console.log(url);
-		 var finalurl = url[5];
-		 if (url[3] !== undefined && url[3] === 'fe') {
-		 	finalurl = 0;
-		 } else {
-		 	if(url[5] == undefined){
-				url = url[4].split("?");
-				url = url[1].split("=");
-				url = url[1].split("&");
-				finalurl = url[0];
-		 	}
-		 }
-
-		 $("#categoryId").val(finalurl);
-	});
-</script>

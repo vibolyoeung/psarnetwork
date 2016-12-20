@@ -75,14 +75,15 @@ class FeStoreController extends BaseController {
 			$dataUserPage = $this->mod_category->menuUserPage ( $dataStore->user_id, 2, $getUserUrl );
 			$whereProduct = array (
 					'user_id' => $dataStore->user_id,
-					'pro_status' => 1
+					'pro_status' => 1,
+					'is_publish'=>1
 			);
 			
 			/* slideshow */
 			$wherePage = array (
 					'user_id' => $dataStore->user_id,
 					'type' => 'config',
-					'title' => 'slideside_status' 
+					'title' => 'slideside_status'
 			);
 			$dataSlideshowConfig = $this->mod_page->getUserPages ( null, $wherePage );
 			if (! empty ( $dataSlideshowConfig->result )) {

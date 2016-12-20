@@ -28,8 +28,7 @@ Categories
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
-										<a href="#" data-toggle="modal" data-target="#myModal"
-											onclick="popupDetails.add_popup_detail(<?php echo $product->id; ?>)">
+										<a href="{{Config::get('app.url')}}product/details/{{$product->id}}">
 											<?php
 											if($product->thumbnail){
 												echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$product->thumbnail.'?p=product&amp;h=130&amp;w=170" />';
@@ -50,7 +49,7 @@ Categories
 											$contactInfo = json_decode($product->contact_info);
 										?>
 										<p class="product_teaser">
-											{{$product->created_date}}
+											{{date("Y-m-d",strtotime($product->created_date))}}
 											&nbsp;
 											{{$contactInfo->contactLocation}}
 											&nbsp;
@@ -66,8 +65,7 @@ Categories
 								<div class="single-products">
 									<div class="productinfo">
 										<div class="col-lg-3" style="padding-left:0;">
-											<a href="{{Config::get('app.url')}}product/details/{{$product->id}}" data-toggle="modal" data-target="#myModal"
-												onclick="popupDetails.add_popup_detail(<?php echo $product->id; ?>)">
+											<a href="{{Config::get('app.url')}}product/details/{{$product->id}}" >
 												<?php
 												if($product->thumbnail){
 													echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$product->thumbnail.'?p=product&amp;h=125&amp;w=170" />';
@@ -87,7 +85,7 @@ Categories
 												</h5>
 												<p>{{str_limit($product->description,$limit = 50, $end = '...')}}</p>
 												<p class="product_teaser">
-													<span style="color:blue;">{{$product->created_date}}</span>
+													<span style="color:blue;">{{date("Y-m-d",strtotime($product->created_date))}}</span>
 												&nbsp;
 												{{$contactInfo->contactLocation}}
 												&nbsp;
@@ -155,29 +153,4 @@ Categories
 	<br />
 @include('frontend.partials.products.popup_details')
 @endsection
-<script src="{{Config::get('app.url')}}/frontend/js/jquery.js"></script>
-<script src="{{Config::get('app.url')}}/frontend/js/carouselengine/amazingcarousel.js"></script>
-<link rel="stylesheet" type="text/css" href="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.css">
-<script src="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.js"></script>
-
-
-<script>
-	jQuery(document).ready(function(){
-		jQuery("#menu_toogle").css('cursor','pointer');
-		jQuery("#menu_toogle").click(function(){
-			jQuery(".categories_menu").slideToggle("fast");
-		});
-	});
-
-	$(window).on('load resize', function(){
-		var windowsize = $(window).width();
-		if (windowsize > 768) {
-		    //if the window is greater than 768, then show menu as default
-		    jQuery(".categories_menu").show();
-		  }else{
-		  	jQuery(".categories_menu").hide();
-		  }
-	});
-</script>
-
 

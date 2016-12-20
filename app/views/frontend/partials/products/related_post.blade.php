@@ -12,8 +12,7 @@
 						<div class="product-image-wrapper">
 							<div class="single-products">
 								<div class="productinfo text-center">
-									<a href="#" data-toggle="modal" data-target="#myModal"
-										onclick="popupDetails.add_popup_detail(<?php echo $relatedPost->id; ?>)">
+									<a href="{{Config::get('app.url')}}product/details/{{$relatedPost->id}}" >
 										<?php 
 										if($relatedPost->thumbnail){
 											echo '<img src="/image/phpthumb/'.$relatedPost->thumbnail.'?p=product&amp;h=90&amp;w=120" />';

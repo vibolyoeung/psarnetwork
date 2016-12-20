@@ -52,21 +52,3 @@
 		</div>
 	</div>
 </div>
-<script>
-	jQuery(document).ready(function(){
-		jQuery("#menu_toogle").css('cursor','pointer');
-		jQuery("#menu_toogle").click(function(){
-			jQuery(".categories_menu").slideToggle("fast");
-		});
-	});
-
-	$(window).on('load resize', function(){
-		var windowsize = $(window).width();
-		if (windowsize > 768) {
-		    //if the window is greater than 768, then show menu as default
-		    jQuery(".categories_menu").show();
-		  }else{
-		  	jQuery(".categories_menu").hide();
-		  }
-	});
-</script>

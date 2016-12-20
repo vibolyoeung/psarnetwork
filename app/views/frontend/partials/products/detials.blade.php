@@ -85,9 +85,9 @@
 											<a class="slideshow-group" href="{{Config::get('app.url')}}upload/product/{{$image['pic']}}" rel="slideshow-group">
 												<?php
 													if($image['pic']){
-														echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=250&amp;w=550" />';
+														echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=350&amp;w=550" />';
 													}else{
-														echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=90&amp;w=" />';
+														echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=350&amp;w=550" />';
 													}
 												?>
 											</a>
@@ -223,9 +223,9 @@
 										<div class="productinfo center-image">
 											<?php
 												if($image['pic']){
-													echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=250&amp;w=450" />';
+													echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$image['pic'].'?p=product&amp;h=350&amp;w=450" />';
 												}else{
-													echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=250&amp;w=450" />';
+													echo '<img src="'.Config::get('app.url').'image/phpthumb/No_image_available.jpg?p=product&amp;h=350&amp;w=450" />';
 												}
 											?>
 										</div>
@@ -265,19 +265,6 @@
 						</a>
 				   </div>
 				</div>
-
-				<script>
-				   $(function(){
-				      $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-				      // Get the name of active tab
-				      var activeTab = $(e.target).text();
-				      // Get the name of previous tab
-				      var previousTab = $(e.relatedTarget).text();
-				      $(".active-tab span").html(activeTab);
-				      $(".previous-tab span").html(previousTab);
-				   });
-				});
-				</script>
 			</div>
 			<div class="clear"></div><div class="clear"></div>
 			<!-- type:detials, position: up on related product, limit -->
@@ -294,18 +281,4 @@
 	<div class="col-lg-2 pull-right right-ad-detail hidden-xs">
 		@include('frontend.partials.details.right')
 	</div>
-<script
-	src="{{Config::get('app.url')}}frontend/js/product_detail_print.js"></script>
-<script
-	src="{{Config::get('app.url')}}frontend/js/carouselengine/amazingcarousel.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="{{Config::get('app.url')}}frontend/js/carouselengine/initcarousel-1.css">
-<script
-	src="{{Config::get('app.url')}}frontend/js/carouselengine/initcarousel-1.js"></script>
-
-<script>
-	jQuery(document).ready(function(){
-		jQuery(".slideshow-group").colorbox({rel:'slideshow-group', transition:"none", maxWidth:"95%", maxHeight:"95%"});
-	});
-</script>
 @endsection

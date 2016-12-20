@@ -31,25 +31,18 @@ $menuFooter = $getclasMCategory->menuUserPage ( $dataStore->user_id, 3, $getUser
                     {{$userFooter}}
                     @else
                     <script type='text/javascript'>
-              copyright=new Date();
-              update=copyright.getFullYear();
-              document.write("Copyright &#169; 2015-"+ update + " | All Rights Reserved | ");</script> www.phsarkhmer.com.kh  &nbsp;All Right Reserve
+		              copyright=new Date();
+		              update=copyright.getFullYear();
+		              document.write("Copyright &#169; 2015-"+ update + " | All Rights Reserved | ");</script> www.phsarkhmer.com.kh  &nbsp;All Right Reserve
                     @endif
                 </center>
-				
-				
 				</p>
 				</div>
 			</div>
 		</div>
-</footer><!--/Footer-->
+</footer>
+ <!--/Footer-->
 </div>
-		 {{HTML::script('frontend/js/bootstrap.min.js')}}
-		 {{HTML::script('frontend/js/jquery.scrollUp.min.js')}}
-		 {{HTML::script('frontend/js/price-range.js')}}
-		 {{HTML::script('frontend/js/prettyPhoto.js')}}
-		 {{HTML::script('frontend/js/main.js')}}
-		 {{HTML::script('frontend/js/custom.js')}}
 		<link rel="apple-touch-icon-precomposed" href="frontend/images/ico/apple-touch-icon-57-precomposed.png"/>
  <!-- Modal -->
 	<div class="modal fade" id="dynamicModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

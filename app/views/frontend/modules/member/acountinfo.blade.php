@@ -114,8 +114,8 @@ var homePage = "{{Config::get('app.url')}}";
                 									<div class="col-sm-8">
                                                         
                                                         {{Form::select('marketType', $mkArr, $marketTypeSelected,array('class' => 'form-control','id'=>'marketTypes'))}}
-                                                        <div 
-                                                        id="loadingmarketType" 
+                                                        <div
+                                                        id="loadingmarketType"
                                                         style="display: none;background:#fff;width:100%;text-align:center;padding:2px;border:1px solid #eee;">
                                                         <img style="width: 30px;" src="{{Config::get('app.url')}}frontend/images/upload_progress.gif"/>
                                                         </div>
@@ -138,8 +138,7 @@ var homePage = "{{Config::get('app.url')}}";
 		<!--/login form-->
 	</div>
 </div>
-{{HTML::script('frontend/js/jquery.validate.js')}}
-<script type='text/javascript'>	
+<script type='text/javascript'>
 $(document).ready(function(){
     @if(Session::has('messageSuccess'))
     $(".alert-success").show();
@@ -176,7 +175,7 @@ $(document).ready(function(){
                                 $('#marketTypes').show();
                             }
                         });
-                   } 
+                   }
                 }
             }
             //var dataString = 'pro_id=' + id;

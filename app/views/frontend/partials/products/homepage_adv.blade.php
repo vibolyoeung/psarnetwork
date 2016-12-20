@@ -4,8 +4,7 @@
 <div class="category-tab feature-ad product-adv">
 	<div class="col-lg-12 product-adv" style="padding: 0;">
 		<ul class="nav nav-tabs homepage_ads">
-			<li>{{trans('product.advertise_product')}}&nbsp;&frasl;</li>
-			<li>Products : <span class="number-display"><?php echo count($productAdvs)?></span></li>
+			<li>{{trans('product.advertise_product')}}(<strong class="price" style="font-size:12px;"><?php echo count($productAdvs)?></strong>)</li>
 		</ul>
 	</div>
 	<div class="row list-store">

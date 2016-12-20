@@ -246,7 +246,11 @@ class Product extends Eloquent {
 	 */
 	public function findAll() {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
-		return DB::table ( $product . ' AS p' )->select ( '*' )->where ( 'p.user_id', '=', Session::get ( 'currentUserId' ) )->where ( 'p.store_id', '=', Store::findStoreByUser ( Session::get ( 'currentUserId' ) ) )->orderBy ( 'p.id', 'DESC' )->paginate ( 10 );
+		return DB::table ( $product . ' AS p' )->select ( '*' )
+		->where ( 'p.user_id', '=', Session::get ( 'currentUserId' ) )
+		->where ( 'p.store_id', '=', Store::findStoreByUser ( Session::get ( 'currentUserId' ) ) )
+		->orderBy ( 'p.publish_date', 'DESC' )
+		->paginate ( 10 );
 	}
 
 	/**
@@ -415,7 +419,6 @@ class Product extends Eloquent {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		return DB::table ( $product . ' AS p' )->select ( '*' )
 		->where ( 'p.pro_transfer_type_id', '=', self::HOT_PROMOTION_PRODUCT )
-		->where ( 'p.is_publish', '=', self::IS_PUBLISH )
 		->where('p.publish_date','<=',date('Y-m-d H:i:s'))
 		->orderBy ( 'p.publish_date', 'DESC' )->get ();
 	}
@@ -431,9 +434,9 @@ class Product extends Eloquent {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		return DB::table ( $product . ' AS p' )->select ( '*' )
 		->where ( 'p.pro_condition_id', '=', self::NEW_PRODUCT )
-		->where ( 'p.is_publish', '=', self::IS_PUBLISH )
 		->where('p.publish_date','<=',date('Y-m-d H:i:s'))
-		->orderBy( 'p.publish_date', 'DESC' )->get ();
+		->where ( 'p.is_publish', '=', self::IS_PUBLISH )
+		->orderBy( 'p.publish_date', 'DESC' )->take(50)->get ();
 	}
 
 	/**
@@ -447,8 +450,8 @@ class Product extends Eloquent {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		return DB::table ( $product . ' AS p' )->select ( '*' )
 		->where ( 'p.pro_transfer_type_id', '=', self::MONTHLY_PRODUCT )
-		->where ( 'p.is_publish', '=', self::IS_PUBLISH )
 		->where('p.publish_date','<=',date('Y-m-d H:i:s'))
+		->where ( 'p.is_publish', '=', self::IS_PUBLISH )
 		->orderBy( 'p.publish_date', 'DESC' )->get ();
 	}
 
@@ -465,8 +468,8 @@ class Product extends Eloquent {
 		return DB::table ( $product . ' AS p' )
 			->select ( '*' )
 			->where ( 'p.pro_transfer_type_id', '=', self::BUYER_PRODUCT )
-			->where ( 'p.is_publish', '=', self::IS_PUBLISH )
 			->where ( 'p.publish_date', '<=', date ( "Y-m-d H:i:s" ) )
+			->where ( 'p.is_publish', '=', self::IS_PUBLISH )
 			->orderBy ( 'p.publish_date', 'DESC' )
 			->take($setting)
 			->get ();
@@ -483,9 +486,9 @@ class Product extends Eloquent {
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
 		return DB::table ( $product . ' AS p' )->select ( '*' )
 		->where ( 'p.pro_condition_id', '=', self::SECOND_HAND_PRODUCT )
-		->where ( 'p.is_publish', '=', self::IS_PUBLISH )
 		->where('p.publish_date','<=',date('Y-m-d H:i:s'))
-		->orderBy( 'p.publish_date', 'DESC' )->get ();
+		->where ( 'p.is_publish', '=', self::IS_PUBLISH )
+		->orderBy( 'p.publish_date', 'DESC' )->take(50)->get ();
 	}
 
 	/**
@@ -622,8 +625,9 @@ class Product extends Eloquent {
 		->join($clientType.' AS ctype','ctype.id','=','u.client_type')
 		->whereIn( 'pro.category_id',$category_id)
 		->where( 'p.publish_date','<=',date('Y-m-d H:i:s'))
+		->where ( 'p.is_publish', '=', self::IS_PUBLISH )
 		->groupby('pro.product_id')
-		->orderBy ( 'p.id', 'DESC' )->take(8)->get ();
+		->orderBy ( 'p.publish_date', 'DESC' )->take(8)->get ();
 	}
 
 	/**
@@ -640,7 +644,8 @@ class Product extends Eloquent {
 		->join ( 'user AS u', 'p.user_id', '=', 'u.id' )
 		->where ( 'u.account_type', '=', self::PREMINUM )
 		->where( 'p.publish_date','<=',date('Y-m-d H:i:s'))
-		->orderBy ( 'p.id', 'DESC' )->take ( $setting )->get ();
+		->where ( 'p.is_publish', '=', self::IS_PUBLISH )
+		->orderBy ( 'p.publish_date', 'DESC' )->take ( $setting )->get ();
 	}
 
 	/**
@@ -700,8 +705,9 @@ class Product extends Eloquent {
 		->join($clientType.' AS ctype','ctype.id','=','u.client_type')
 		->whereIn( 'pro.category_id',$category_id)
 		->where( 'p.publish_date','<=',date('Y-m-d H:i:s'))
+		->where ( 'p.is_publish', '=', self::IS_PUBLISH )
 		->groupby('pro.product_id')
-		->orderBy ( 'p.id', 'DESC' )
+		->orderBy ( 'p.publish_date', 'DESC' )
 		->paginate($displayNumber);
 	}
 
@@ -724,8 +730,9 @@ class Product extends Eloquent {
 			$query->where ( $product.'.id', '!=', $product_id);
 		}
 		$query->where ( 'store_id', '=', $store );
+		$query->where($product.'.is_publish','=',self::IS_PUBLISH);
 		$query->groupBy($product.'.id');
-		$query->orderBy ( 'id', 'DESC' );
+		$query->orderBy ( 'publish_date', 'DESC' );
 		if(!empty($product_id)) {
 			$query->take (24);
 			$product = $query->get ();
@@ -751,7 +758,10 @@ class Product extends Eloquent {
 			);
 		}
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
-		return DB::table ( $product )->select ( '*' )->where ( $where )->orderBy ( 'id', 'DESC' )->paginate ( 10 );
+		return DB::table ( $product )->select ( '*' )
+		->where ( $where )
+		->orderBy ( 'publish_date', 'DESC' )
+		->paginate ( 10 );
 	}
 
 	/**
@@ -766,7 +776,7 @@ class Product extends Eloquent {
 		} else {
 			$where = array (
 					'user_id' => Session::get ( 'currentUserId' ),
-					'pro_status' => 1
+					'is_publish' => 1
 			);
 		}
 		$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
@@ -883,7 +893,7 @@ class Product extends Eloquent {
 		}
 
 		$query->groupBy('pro.product_id');
-		$query->orderBy ( 'p.id', 'DESC' );
+		$query->orderBy ( 'p.publish_date', 'DESC' );
 
 		return $query;
 	}
@@ -931,7 +941,7 @@ class Product extends Eloquent {
 			}
 		);
 		$query->groupBy('pro.product_id');
-		$query->orderBy ( 'p.id', 'DESC' );
+		$query->orderBy ( 'p.publish_date', 'DESC' );
 
 		$limitNumber = self::LIST_NUMBER;
 		if ($displayNumber !== null) {
@@ -995,7 +1005,11 @@ class Product extends Eloquent {
 	}
 
 	public static function productPosttoday(){
-		return DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ))->where('publish_date','=',date('Y-m-d'))->get ();
+		return DB::table ( Config::get ( 'constants.TABLE_NAME.PRODUCT' ))
+		->where('created_date','=',date('Y-m-d'))
+		->where ( 'is_publish', '=', self::IS_PUBLISH )
+		->orderBy('publish_date','DESC')
+		->get();
 	}
 
 	public static function countViewOfUserClickProduct($product_id) {
@@ -1069,8 +1083,9 @@ class Product extends Eloquent {
 		->join($clientType.' AS ctype','ctype.id','=','u.client_type')
 		->where( 'p.pro_transfer_type_id',$id)
 		->where( 'p.publish_date','<=',date('Y-m-d H:i:s'))
+		->where ( 'p.is_publish', '=', self::IS_PUBLISH )
 		->groupby('pro.product_id')
-		->orderBy ( 'p.id', 'DESC' )
+		->orderBy('p.publish_date','DESC')
 		->paginate($displayNumber);
 	}
 
@@ -1132,16 +1147,42 @@ class Product extends Eloquent {
 			$query->join ($user.' AS u','u.id','=','p.user_id');
 			$query->join ($accountRole.' AS accr','accr.rol_id','=','u.account_role');
 			$query->join($clientType.' AS ctype','ctype.id','=','u.client_type');
-			$query->where ( 'p.is_publish', '=', self::IS_PUBLISH );
 			$query->where ( 'p.publish_date', '<=',date("Y-m-d H:i:s"));
+			$query->where ( 'p.is_publish', '=', self::IS_PUBLISH );
 			$query->whereIn('p.user_id',$userID);
 			$query->groupby('pro.product_id');
-			$query->orderby('p.id','DESC');
+			$query->orderBy('p.publish_date','DESC');
 
 		}catch (\Exception $e){
 			$response->result = 0;
 			$response->errorMsg = $e->getMessage();
 		}
 		return $query->paginate($displayNumber);
+	}
+	
+	public function searchProductTitle(){
+		try {
+			$product = Config::get ( 'constants.TABLE_NAME.PRODUCT' );
+			$query = DB::table ( $product . ' AS p' );
+			$query->select (
+					'created_date',
+					'title'
+			);
+			$query->where ( 'p.publish_date', '<=',date("Y-m-d H:i:s"));
+			$query->where ( 'p.is_publish', '=', self::IS_PUBLISH );
+			$query->orderby('p.publish_date','DESC');
+			$result = $query->get();
+			$data = array();
+			$i = 0;
+			foreach ($result as $value) {
+				$data[date("Y-m-d",strtotime($value->created_date))] = $value->title;
+				//$data[$value->id] = $value->title;
+				$i++;
+			}
+		}catch (\Exception $e){
+			$response->result = 0;
+			$response->errorMsg = $e->getMessage();
+		}
+		return $data;
 	}
 }

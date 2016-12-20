@@ -7,12 +7,6 @@ Seller Page @endsection @section('breadcrumb')
 </ol>
 @endsection @section('frontend.partials.left') @endsection
 @section('content')
-<link rel="stylesheet"
-	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
-{{HTML::script('frontend/js/jquery-upload/jquery.form.js')}}
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-</script>
 <script type='text/javascript'>
 		
 var homePage = "{{Config::get('app.url')}}";
@@ -68,7 +62,7 @@ var homePage = "{{Config::get('app.url')}}";
 														</div>
 													</div>
 													<div class="col-sm-8">
-													<?php 
+													<?php
 													$getBanner = new Store ();
 													$getBannerImage = $getBanner->getStoreBanner(null,array('ban_store_id'=>$dataStore->id,'ban_position'=>'right_header','ban_status' => 1));
 													$bannerLink = !empty($getBannerImage[0]->ban_link)? $getBannerImage[0]->ban_link : '';
@@ -117,7 +111,7 @@ var homePage = "{{Config::get('app.url')}}";
 														<div
 															style="border: 1px solid #ccc; display: block; margin: 10px 0 0 0"
 															id="costomLayout">
-															<ul id="sortable">
+															<ul id="sortable" class="ui-sortable">
 																@if($dataPageWidget) @foreach ($dataPageWidget as
 																$pageWidget)
 																<li class="ui-state-default" id="{{$pageWidget->id}}">
@@ -314,14 +308,11 @@ ul.skin-colors {
 		<!--/login form-->
 	</div>
 </div>
-@endif {{HTML::script('frontend/js/jquery.validate.js')}}
-<script type='text/javascript'>
-	
-	
-	
-var is_modal_opened = 0;		
+@endif
+<script>
+var is_modal_opened = 0;
 $(document).ready(function(){
-	$('[data-toggle="tooltip"]').tooltip();  
+	$('[data-toggle="tooltip"]').tooltip();
     /*logo upload*/
     $('#logoFile').change(function(){
         $("#logo-preview").html('<img src="{{Config::get('app.url')}}frontend/images/upload_progress.gif" alt="Uploading...."/>');
@@ -350,7 +341,7 @@ $(document).ready(function(){
                 }
             }
         }).submit();
-   	});  
+   	});
 
     $('#addBannerLink').blur(function () {
         var link = $( this ).val();
@@ -384,7 +375,7 @@ $(document).ready(function(){
         } else {
             $("#summit").attr('disabled',true);
         }
-    }); 
+    });
  
     $('#btnsaveFoot').click(function () {
         var text = $('#textFooter').val();
@@ -505,42 +496,42 @@ $('#btnSaveTitle').click(function () {
           }
       }
     });
-    
-    $( "#sortable" ).sortable({
-        revert: true,
-        update: function (event, ui) {
-            var stringDiv = "";
-            $('.message-success').show();
-            $( this ).children().each(function(i) {
-                var num = i + 1;
-                var id = $(this).attr("id");
-                $.ajax({
-            		url: homePage + "member/getsubmenu?type=userPage&id="+id+"&order="+num,
-            		type: "get",
-            		dataType: "json",
-            		async: false,
-            		success: function(data) {}
-                });
-                //stringDiv += " "+li + '=' + i + '&';
-            });
-            //console.log(stringDiv);
-        }
-    });
-    $( "#draggable" ).draggable({
-      connectToSortable: "#sortable",
-      helper: "clone",
-      revert: "invalid"
-    });
-    $( "ul, li" ).disableSelection();
-
-    
 });
+
+
+$( "#sortable" ).sortable({
+    revert: true,
+    update: function (event, ui) {
+        var stringDiv = "";
+        $('.message-success').show();
+        $( this ).children().each(function(i) {
+            var num = i + 1;
+            var id = $(this).attr("id");
+            $.ajax({
+        		url: homePage + "member/getsubmenu?type=userPage&id="+id+"&order="+num,
+        		type: "get",
+        		dataType: "json",
+        		async: false,
+        		success: function(data) {}
+            });
+            //stringDiv += " "+li + '=' + i + '&';
+        });
+        //console.log(stringDiv);
+    }
+});
+$( "#draggable" ).draggable({
+  connectToSortable: "#sortable",
+  helper: "clone",
+  revert: "invalid"
+});
+$( "ul, li" ).disableSelection();
+
 function costomizeLayout(){
     dynamicModal('loading');
     modalClose();
     
     $('#costomizeLayout').modal('show');
-} 
+}
 function enableBox(id){
     var checks = $('.page-' + id).is(':checked');
     if (checks) {
@@ -570,18 +561,18 @@ function costomizeFooter(){
     modalClose();
     
     $('#costomizeFooter').modal('show');
-} 
+}
 function edit_foot_txt () {
 	if ($('#foottxt').is(':visible')){
 		$('#foottxt').hide();
 		$('#editfootertxt').show();
-	} 
+	}
 }
 function edit_title_txt () {
 	if ($('#titleFxt').is(':visible')){
 		$('#titleFxt').hide();
 		$('#editTileTxt').show();
-	} 
+	}
 }
 </script>
 <div class="clear"></div>

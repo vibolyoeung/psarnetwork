@@ -41,7 +41,7 @@ Categories
 											</a>
 											<center>
 												<h5>
-													<a href="{{Config::get('app.url')}}product/details/{{$product->id}}"><?php echo substr($product->title,0,20)?></a>
+													<a href="{{Config::get('app.url')}}product/details/{{$product->id}}"><?php echo  str_limit($product->title,$limit = 20, $end = '...');?></a>
 												</h5>
 												<strong class="price">$ {{$product->price}}</strong>
 											</center>

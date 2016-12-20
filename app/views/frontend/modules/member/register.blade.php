@@ -1,20 +1,21 @@
-@extends('frontend.nosidebar') @section('title') Register Form @endsection @section('breadcrumb')
-<ol class="breadcrumb">
-	<li>
-		<a href="#">Home</a>
-	</li>
-	<li>
-		<a href="#">Library</a>
-	</li>
-	<li class="active">
-		Data
-	</li>
-</ol>
-@endsection @section('frontend.partials.left') @endsection @section('content')
+@extends('frontend.nosidebar')
+@section('title')
+Register Form
+@endsection
+@section('frontend.partials.left') @endsection @section('content')
+{{HTML::script('/frontend/js/jquery.js')}}
 {{HTML::script("frontend/js/postscribe-master/postscribe.js")}}
 {{HTML::script("frontend/js/postscribe-master/htmlParser/htmlParser.js")}}
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 {{HTML::script('frontend/js/map.js')}}
+<style>
+.control-label,.form-control,.form-group label,a,body,html,a.btn{
+	font-size:12px;
+}
+.form-horizontal .control-label{
+	 padding: 10px 6px;
+}
+</style>
 <div class="home" id="loadmaps">
 	<div class="rigister">
 		<div class="col-sm-8 hidden-sm hidden-xs">
@@ -111,7 +112,7 @@
 							<div class="form-horizontal">
 								<div class="form-group">
 									<label for="WhoAreYou" class="col-sm-4 control-label">
-										{{trans('register.Who_Are_You')}}
+										{{trans('register.Who_Are_You')}}<span style="color:red;">&nbsp;*</span>
 									</label>
 									<div class="col-sm-8">
                                         <?php
@@ -125,7 +126,7 @@
 								</div>
                                 <div class="form-group">
 									<label for="WhoAreYou" class="col-sm-4 control-label">
-										{{trans('register.Your_Business_Site')}}
+										{{trans('register.Your_Business_Site')}}<span style="color:red;">&nbsp;*</span>
 									</label>
 									<div class="col-sm-8">
                                         <?php
@@ -139,7 +140,7 @@
 								</div>
 								<div class="form-group" id="marketType">
 									<label for="Market_Type" class="col-sm-4 control-label">
-										{{trans('register.Market_Type')}}
+										{{trans('register.Market_Type')}}<span style="color:red;">&nbsp;*</span>
 									</label>
 									<div class="col-sm-8">
                                         <?php
@@ -148,7 +149,7 @@
                                             $mkArr[$mk->id] = $mk->title_en;
                                         }
                                         ?>
-                                        {{Form::select('marketType', $mkArr, 'S',array('class' => 'form-control','id'=>'marketTypes'))}}
+                                        {{Form::select('marketType', $mkArr, 'S',array('class' => 'form-control','id'=>'marketTypes','required','required'))}}
                                         <div
                                         id="loadingmarketType"
                                         style="display: none;background:#fff;width:100%;text-align:center;padding:2px;border:1px solid #eee;">
@@ -161,7 +162,7 @@
 						<!-- end well -->
 						<div class="form-group">
 							<label for="YourName">
-								{{trans('register.Input_Your_Name_Label')}}
+								{{trans('register.Input_Your_Name_Label')}}<span style="color:red;">&nbsp;*</span>
 							</label>
                             {{Form::text('name', '',array('class'=>'form-control','id'=>'YourName','placeholder'=>trans('register.Input_Your_Name_Placeholder'),'aria-describedby'=>'YourNameStatus','required'=>'required'))}}
 							<span data="YourName" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">
@@ -172,7 +173,7 @@
 						</div>
 						<div class="form-group">
 							<label for="eMail">
-								{{trans('register.Input_Email')}}
+								{{trans('register.Input_Email')}}<span style="color:red;">&nbsp;*</span>
 							</label>
                             {{Form::email('email', '',array('class'=>'form-control','id'=>'eMail','placeholder'=>trans('register.Input_Email_Placeholder'),'aria-describedby'=>'eMailStatus','required'=>'required'))}}
 							<span data="eMail" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">
@@ -186,7 +187,7 @@
 						</div>
 						<div class="form-group">
 							<label for="Password">
-								{{trans('register.Input_Password')}}
+								{{trans('register.Input_Password')}}<span style="color:red;">&nbsp;*</span>
 							</label>
                             {{Form::password('password',array('class'=>'form-control','id'=>'Password','placeholder'=>trans('register.Input_Password_Placeholder'),'aria-describedby'=>'PasswordStatus','required'=>'required'))}}
 							<span class="error">
@@ -200,7 +201,7 @@
 						</div>
 						<div class="form-group">
 							<label for="ComfirmPassword">
-								{{trans('register.Input_Comfirm_Password')}}
+								{{trans('register.Input_Comfirm_Password')}}<span style="color:red;">&nbsp;*</span>
 							</label>
                             {{Form::password('password_confirm',array('class'=>'form-control','id'=>'ComfirmPassword','placeholder'=>trans('register.Input_Comfirm_Password_Placeholder'),'aria-describedby'=>'ComfirmPasswordStatus','required'=>'required'))}}
 							<span data="ComfirmPassword" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true">
@@ -211,7 +212,7 @@
 						</div>
 						<div class="form-group">
 							<label for="PhoneNumber">
-								{{trans('register.Input_Phone_Number')}}
+								{{trans('register.Input_Phone_Number')}}<span style="color:red;">&nbsp;*</span>
 							</label>
                             {{Form::text('telephone', '',array('class'=>'form-control','id'=>'PhoneNumber','placeholder'=>trans('register.Input_Phone_Number_Placeholder'),'aria-describedby'=>'PhoneNumberStatus','required'=>'required'))}}
 							<span class="error">
@@ -225,11 +226,11 @@
 						</div>
 						<div class="form-group ghide" style="display: none;">
 							<label for="Location">
-								{{trans('register.Input_Location')}}
+								{{trans('register.Input_Location')}}<span style="color:red;">&nbsp;*</span>
 							</label>
 							<select class="form-control" id="Location" name="province" required>
 								<option value="">
-									{{trans('register.Input_Select_Location')}}
+									{{trans('register.Input_Select_Location')}}<span style="color:red;">&nbsp;*</span>
 								</option>
 								<?php $i=1;?>
 									@foreach($provinces as $locat)
@@ -278,7 +279,7 @@
 								(error)
 							</span>
 						</div>
-                        <div id="mapWrapper" style="">
+                        <div id="mapWrapper">
                         <div id="gmap" style="width: 100%; height: 375px"></div>
                         </div>
 						<div class="form-group">
@@ -295,6 +296,7 @@
 								</div>
 							</div>
 						</div>
+						<div class="alert alert-warning" style="padding:5px;">Field with (<span style="color:red;">*</span>) are required!</div>
 						<input type="submit" id="summit" class="btn btn-primary pull-right" name="btnSubmit" value="{{trans('register.Input_Start')}}"/>
 					{{ Form::close() }}
 				</div>
@@ -303,7 +305,6 @@
 		</div>
 	</div>
 </div>
-{{HTML::script('frontend/js/jquery.validate.js')}}
 <script type='text/javascript'>
 
 $(document).ready(function(){
@@ -358,7 +359,7 @@ $(document).ready(function(){
                 	  if(t==="timeout") {
                           alert("got timeout");
                       } else {
-                          alert(t);
+                          //alert(t);
                       }
                   },
             });
@@ -377,7 +378,7 @@ $(document).ready(function(){
             cache: false,
             success: function(html)
             {
-                var selects = '<option value="">{{trans('register.Manufaturure_select')}}</option>';
+                var selects = '<option value="" selected="selected">{{trans('register.Manufaturure_select')}}</option>';
                 $("#clientType").html(selects + html).show();
                 $('#loadingClientType').hide();
             }
@@ -390,7 +391,7 @@ $(document).ready(function(){
             $('#gmap').css("height", "0");
             var id = $(this).val();
             $('.ghide').hide();
-            var cName = $('option:selected', this).text();           
+            var cName = $('option:selected', this).text();
             if(id == {{Config::get('constants.CLIENT_TYPE_ID.INDIVIDUAL')}} || id == {{Config::get('constants.CLIENT_TYPE_ID.HOMESHOP')}} || id == {{Config::get('constants.CLIENT_TYPE_ID.PRIVATE_COMPANY')}}) {
                 //$('#marketType').hide();
                 $('.ghide').show();
@@ -412,6 +413,13 @@ $(document).ready(function(){
                         $("#marketTypes").html(selects + html).removeAttr("disabled");
                         $('#loadingmarketType').hide();
                         $('#marketTypes').show();
+                        if($("#marketTypes option").length==1){
+                			$("#marketTypes").removeAttr('required');
+                			$("#marketType").hide();
+                		}else{
+                			$("#marketTypes").attr('required', 'required');
+                			$("#marketType").show();
+                		}
                     }
                 });
             }
@@ -429,6 +437,7 @@ $(document).ready(function(){
             showAddress(gid);
             $('#loading').show();
             $('#District').hide();
+            //loadMap();
             $.ajax
                 ({
                     type: "POST",
@@ -457,6 +466,12 @@ $(document).ready(function(){
     $("#registerForm").validate({
           rules: {
               name:"required",
+              accountRole:{
+				required:true
+              },
+              client_type:{
+				required:true
+              },
               eMail: {
                  required : true,
                  email: true
@@ -485,14 +500,27 @@ $(document).ready(function(){
           },
           messages:{
               name: {
-                required : "This Full Name is required."
+                required : "Name is required."
+              },
+              eMail:{
+				required:"Email is required.",
+				email:"Please check your email format."
+              },
+              accountRole: {
+                  required : "Account Role is required."
+              },
+              client_type: {
+                  required : "Client Type is required."
+              },
+              marketType: {
+                  required : "Market Type is required."
               },
               password: {
-                required : "Please provide a password",
+                required : "Password is required.",
                 minlength : "At least 8 characters required"
               },
               password_confirm: {
-                required : "Please provide a password",
+                required : "Please provide a confirm password",
                 minlength : "At least 8 characters required",
                 equalTo: "Password do not macth, please try again"
               },
@@ -522,7 +550,7 @@ $(document).ready(function(){
         $(element.form).find("span[data=" + element.id + "]").removeClass('glyphicon-remove').addClass('glyphicon-ok');
       }
     });
-
+	
 });
 function loadMap() {
     $(function () {

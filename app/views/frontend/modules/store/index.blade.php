@@ -43,11 +43,11 @@ function rm($article, $char) {
         </div>
 
         <div class="col-lg-12" style="padding: 0;">
-            @if(!empty($dataProduct))
                 <?php
-                // var_dump($dataProduct);
+                if(count($dataProduct)){
+                //echo count($dataProduct);
                 $i = 1;
-                ?>
+            	?>
                 @foreach($dataProduct as $product)
                 @if ($i % 4 == 1)
                     <div class="row">
@@ -83,7 +83,13 @@ function rm($article, $char) {
                 @endforeach
                 @if ($i % 4 != 1)
                     </div>
-        @endif @endif @if(!empty($banner))
+        	@endif 
+       <?php 
+		}else{
+			echo 'No product found!';
+		}
+	   ?>
+       @if(!empty($banner))
         <div class="col-lg-12" style="padding: 0;">
             @foreach($banner as $ban) @if($ban->ban_position == 'footer')
             @if($ban->ban_enddate >= $currentDate) <a class="banner-link"

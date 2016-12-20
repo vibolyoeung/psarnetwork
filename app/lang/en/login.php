@@ -9,4 +9,9 @@ return array(
 	'Register' => 'Register',
 	'by_name_email_phone_number' => 'by email / phone number',
 	'Your_Password' => 'Your Password',
+	'Forget_Password'=> 'Enter your email to get default new password!',
+	'Email_Here' =>'Enter your email here!',
+	'Send' =>'Send',
+	'Incorrect_Email' =>'Please provide your correct email!',
+	'Email_Not_Send'=>'Email can not send!'
 );

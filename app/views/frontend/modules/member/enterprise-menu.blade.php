@@ -378,7 +378,6 @@ var homePage = "{{Config::get('app.url')}}";
     </div>
 </div>
 @endif
-{{HTML::script('frontend/js/jquery.validate.js')}} {{HTML::script('frontend/js/Nestable-master/jquery.nestable.js')}} {{HTML::style('frontend/css/nestble.css')}} {{HTML::script('frontend/js/member/functions.js')}}
 <div class="clear">
 </div>
 @endsection

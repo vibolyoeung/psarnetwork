@@ -7,8 +7,7 @@ if(count($latestProducts) > 0){
 		<div class="category-tab lastest-post">
 			<div class="col-sm-12" style="padding: 0;">
 				<ul class="nav nav-tabs lastest_product">
-					<li>{{trans('product.latest_product')}}&nbsp;&frasl;<b><?php echo date('Y-m-d H:i:s',strtotime(date('Y-m-d H:i:s')));?></b></li>
-					<li>Products : <span class="number-display"><?php echo count($latestProducts)?></span></li>
+					<li>{{trans('product.latest_product')}}(<strong class="price" style="font-size:12px;"><?php echo count($latestProducts)?></strong>)</li>
 				</ul>
 			</div>
 		</div>
@@ -20,7 +19,7 @@ if(count($latestProducts) > 0){
 			<div class="product-image-wrapper">
 				<div class="single-products">
 					<div class="productinfo text-center">
-						<a href="#" data-toggle="modal" data-target="#myModal" onclick="popupDetails.add_popup_detail(<?php echo $latestProduct->id; ?>)">
+						<a href="{{Config::get('app.url')}}product/details/{{$latestProduct->id}}">
 							<?php
 							if($latestProduct->thumbnail){
 								echo '<img src="image/phpthumb/'.$latestProduct->thumbnail.'?p=product&amp;h=100&amp;w=135" />';

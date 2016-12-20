@@ -9,8 +9,7 @@
 <div class="category-tab feature-ad lastest-post" style="padding: 0;">
 	<!--recommended_items-->
 	<ul class="nav nav-tabs">
-		<li>{{trans('product.secondhand_product')}}&nbsp;&frasl;</li>
-		<li>Products : <span class="number-display"><?php echo count($secondHandProducts)?></span></li>
+		<li>{{trans('product.secondhand_product')}}(<strong class="price" style="font-size:12px;"><?php echo count($secondHandProducts)?></strong>)</li>
 	</ul>
 	<div id="second-carousel" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
@@ -48,7 +47,7 @@
 					</div>
 				</div>
 				<?php
-				if($secondPro == 6 && count($secondHandProducts)>6|| $secondPro == 12 && count($secondHandProducts)>12|| $secondPro ==18 && count($secondHandProducts)>18|| $secondPro == 24 && count($secondHandProducts)>24){
+				if($secondPro == 6 || $secondPro==12 || $secondPro == 18 || $secondPro == 24 || $secondPro == 30 || $secondPro == 36 || $secondPro == 42 || $secondPro == 48 || $secondPro == 54){
 					echo '</div><div class="item"> ';
 				}
 				$secondPro ++;

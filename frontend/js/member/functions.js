@@ -172,8 +172,7 @@ function buildMenu(data) {
 	$("#Dmenu_results").html(home_link + str);
 }
 
-$(document)
-		.ready(
+$(document).ready(
 				function() { /* create menu by get */
 					var returnValue = getDataSelect('Main-Menu', 19);
 					if (returnValue) {

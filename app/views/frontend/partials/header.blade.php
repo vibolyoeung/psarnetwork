@@ -20,24 +20,24 @@
         <meta property="og:description" content="{{strip_tags($productdetails->description)}}" />
         <meta property="og:image" content="{{$image}}" />
     @endif
-	{{HTML::style('frontend/css/font-awesome.min.css')}}
-	{{HTML::style('frontend/css/prettyPhoto.css')}}
-	{{HTML::style('frontend/css/colorbox.css')}}
-	{{HTML::style('frontend/css/animate.css')}}
-	{{HTML::style('frontend/css/bootstrap.min.css')}}
-	{{HTML::style('backend/css/jquery-ui.css')}}
-	{{HTML::style('frontend/css/responsive.css')}}
-	{{HTML::style('frontend/css/layout.css')}}
-	{{HTML::style('frontend/css/main.css')}}
-	{{HTML::script('frontend/js/jquery.js')}}
-	{{HTML::script('frontend/js/jquery.colorbox-min.js')}}
-	{{HTML::script('backend/js/jquery-ui.js')}}
-	{{HTML::script('frontend/js/popupdetails.js')}}
+    {{HTML::style('/frontend/js/carouselengine/initcarousel-1.css')}}
+	{{HTML::style('/frontend/autocomplete/css/styles.css')}}
+	{{HTML::style('/frontend/css/font-awesome.min.css')}}
+	{{HTML::style('/frontend/css/bootstrap-datepicker.min.css')}}
+	{{HTML::style('/frontend/css/prettyPhoto.css')}}
+	{{HTML::style('/frontend/css/colorbox.css')}}
+	{{HTML::style('/frontend/css/animate.css')}}
+	{{HTML::style('/frontend/css/bootstrap.min.css')}}
+	{{HTML::style('/backend/css/jquery-ui.css')}}
+	{{HTML::style('/frontend/css/responsive.css')}}
+	{{HTML::style('/frontend/css/layout.css')}}
+	{{HTML::style('/frontend/css/main.css')}}
+	
 <!--[if lt IE 9]>
                 {{HTML::script('frontend/js/html5shiv.js')}}
                 {{HTML::script('frontend/js/respond.min.js')}}
                 <![endif]-->
-                <link rel="shortcut icon"
+                <link type="image/x-icon" rel="icon"
                 href="{{Config::get('app.url')}}frontend/images/icons/favicon.png">
                 <link rel="apple-touch-icon-precomposed" sizes="144x144"
                 href="{{Config::get('app.url')}}frontend/images/icons/apple-touch-icon-144-precomposed.png">
@@ -161,7 +161,7 @@
             						</div>
             						<div class="col-lg-8 col-md-9 col-sm-9 col-xs-9" style="padding: 0; margin: 0;">
             							<div class="col-lg-9 col-md-9 col-sm-9 col-xs-8" style="padding: 0; margin: 0;">
-            								<input type="text" name="q" class="form-control" placeholder="<?php echo trans('product.search_here');?>"
+            								<input type="text" name="q" class="form-control" id="autocomplete-dynamic" placeholder="<?php echo trans('product.search_here');?>"
             								style="border-radius: 0; border: none; border-left: 1px solid #ddd;color:#000;"
             								value="<?php $searched_word = Request::get('q');echo $searched_word;?>"
             								/>

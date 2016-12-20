@@ -12,7 +12,7 @@ $(document).ready(function(){
 	        autoclose: true,
 	        todayHighlight: true,
 		});
-}
+    }
 
     
 	jQuery('.item:first-child').addClass(' active');
@@ -111,6 +111,52 @@ $(document).ready(function(){
 		}
 		window.location.href = fullUrl + appenUrl + '=' + displayNumber;
 	});
+	//Menu google
+	jQuery("#menu_toogle").css('cursor','pointer');
+	jQuery("#menu_toogle").click(function(){
+		jQuery(".categories_menu").slideToggle("fast");
+	});
+	
+	//Product search
+	var url  = window.location.href;
+	 url = url.split("/");
+	 if(url.length>4){
+		 var finalurl = url[5];
+		 if (url[3] !== undefined && url[3] === 'fe') {
+		 	finalurl = 0;
+		 } else {
+		 	if(url[5] == undefined){
+				url = url[4].split("?");
+				url = url[1].split("=");
+				url = url[1].split("&");
+				finalurl = url[0];
+		 	}
+		 }
+		 $("#categoryId").val(finalurl);
+	 }
+	 //Detail popup
+	 jQuery(".slideshow-group").colorbox({rel:'slideshow-group', transition:"none", maxWidth:"95%", maxHeight:"95%"});
+	 
+	 $(function(){
+	      $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+	      // Get the name of active tab
+	      var activeTab = $(e.target).text();
+	      // Get the name of previous tab
+	      var previousTab = $(e.relatedTarget).text();
+	      $(".active-tab span").html(activeTab);
+	      $(".previous-tab span").html(previousTab);
+	   });
+	});
+});
+
+$(window).on('load resize', function(){
+	var windowsize = $(window).width();
+	if (windowsize > 768) {
+	    //if the window is greater than 768, then show menu as default
+	    jQuery(".categories_menu").show();
+	  }else{
+	  	jQuery(".categories_menu").hide();
+	  }
 });
 
 function user_register(cos,vals){

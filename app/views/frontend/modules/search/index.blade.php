@@ -29,8 +29,7 @@ Categories
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
-										<a href="#" data-toggle="modal" data-target="#myModal"
-											onclick="popupDetails.add_popup_detail(<?php echo $product->id; ?>)">
+										<a href="{{Config::get('app.url')}}product/details/{{$product->id}}">
 											<?php
 											if($product->thumbnail){
 												echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$product->thumbnail.'?p=product&amp;h=130&amp;w=170" />';
@@ -51,7 +50,7 @@ Categories
 											$contactInfo = json_decode($product->contact_info);
 										?>
 										<p class="product_teaser">
-											{{$product->created_date}}
+											{{date("Y-m-d",strtotime($product->created_date))}}
 											&nbsp;
 											{{$contactInfo->contactLocation}}
 											&nbsp;
@@ -67,8 +66,7 @@ Categories
 								<div class="single-products">
 									<div class="productinfo">
 										<div class="col-lg-3" style="padding-left:0;">
-											<a href="{{Config::get('app.url')}}product/details/{{$product->id}}" data-toggle="modal" data-target="#myModal"
-												onclick="popupDetails.add_popup_detail(<?php echo $product->id; ?>)">
+											<a href="{{Config::get('app.url')}}product/details/{{$product->id}}">
 												<?php
 												if($product->thumbnail){
 													echo '<img src="'.Config::get('app.url').'image/phpthumb/'.$product->thumbnail.'?p=product&amp;h=125&amp;w=170" />';
@@ -83,12 +81,12 @@ Categories
 												<div class="pull-right price">{{$product->price}} $</div>
 												<h5>
 													<a href="{{Config::get('app.url')}}product/details/{{$product->id}}">
-														{{str_limit($product->title,$limit = 40, $end = '...')}}
+														<?php echo str_limit($product->{'title_'.Session::get('lang')},$limit = 40, $end = '...') ?>
 													</a>
 												</h5>
 												<p>{{str_limit($product->description,$limit = 50, $end = '...')}}</p>
 												<p class="product_teaser">
-													<span style="color:blue;">{{$product->created_date}}</span>
+													<span style="color:blue;">{{date("Y-m-d",strtotime($product->created_date))}}</span>
 												&nbsp;
 												{{$contactInfo->contactLocation}}
 												&nbsp;
@@ -154,11 +152,6 @@ Categories
 @include('frontend.partials.products.popup_details')
 @endsection
 
-<script src="{{Config::get('app.url')}}/frontend/js/jquery.js"></script>
-<script src="{{Config::get('app.url')}}/frontend/js/custom.js"></script>
-<script src="{{Config::get('app.url')}}/frontend/js/carouselengine/amazingcarousel.js"></script>
-<link rel="stylesheet" type="text/css" href="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.css">
-<script src="{{Config::get('app.url')}}/frontend/js/carouselengine/initcarousel-1.js"></script>
 
 
 

@@ -8,9 +8,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	{{HTML::style('frontend/css/font-awesome.min.css')}} {{HTML::style('frontend/css/prettyPhoto.css')}} {{HTML::style('frontend/css/price-range.css')}} {{HTML::style('frontend/css/animate.css')}} {{HTML::style('frontend/css/bootstrap.min.css')}}
-	{{HTML::style('frontend/css/responsive.css')}} {{HTML::style('frontend/css/main.css', array('class' => 'main-stylesheet'))}} {{HTML::style('frontend/css/member/member.css')}} {{HTML::style('frontend/css/layout.css')}}
-	{{HTML::script('frontend/js/jquery.js')}}
+		{{HTML::style('/frontend/css/font-awesome.min.css')}}
+		{{HTML::style('/frontend/css/prettyPhoto.css')}}
+		{{HTML::style('/frontend/css/price-range.css')}}
+		{{HTML::style('/frontend/css/animate.css')}}
+		{{HTML::style('/frontend/css/bootstrap.min.css')}}
+		{{HTML::style('/backend/css/jquery-ui.css')}}
+		{{HTML::style('/frontend/css/bootstrap-datepicker.min.css')}}
+		{{HTML::style('/frontend/css/responsive.css')}}
+		{{HTML::style('/frontend/plugin/dropzone/dist/dropzone.css')}}
+		{{HTML::style('frontend/css/nestble.css')}}
+		{{HTML::style('/frontend/css/bootstrap-toggle.css')}}
+		{{HTML::style('/frontend/css/main.css')}}
+		{{HTML::style('/frontend/css/member/member.css')}}
+		{{HTML::style('/frontend/css/layout.css')}}
 		<!--[if lt IE 9]>
 			{{HTML::script('frontend/js/html5shiv.js')}} {{HTML::script('frontend/js/respond.min.js')}}
 			<![endif]-->
@@ -79,7 +90,7 @@
 										@endif
 										<li>
 											<a href="{{URL::to('member/userinfo/infomation')}}">
-												{{trans('member.setting')}} 
+												{{trans('member.setting')}}
 											</a>
 										</li>
 										<li role="presentation" class="dropdown">
@@ -128,7 +139,7 @@
 									<li>
 										<a href="#">
 											<i class="fa">
-												{{trans('member.about_us')}}	
+												{{trans('member.about_us')}}
 											</i>
 										</a>
 									</li>
@@ -192,7 +203,7 @@
 										@endif
 										<li>
 											<a href="{{URL::to('member/userinfo/infomation')}}">
-												{{trans('member.setting')}} 
+												{{trans('member.setting')}}
 											</a>
 										</li>
 										<li role="presentation" class="dropdown">
@@ -241,7 +252,7 @@
 									<li>
 										<a href="#">
 											<i class="fa">
-												{{trans('member.about_us')}}	
+												{{trans('member.about_us')}}
 											</i>
 										</a>
 									</li>

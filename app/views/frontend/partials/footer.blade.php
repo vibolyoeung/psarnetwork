@@ -1,4 +1,3 @@
-
 <footer id="footer">
 	<!--Footer-->
 	<div class="footer-bottom">
@@ -19,14 +18,14 @@
 										</a>
 									</li>
 								@endforeach
-							<li><a href="#">Sign Up now</a></li>
+							<li><a href="{{URL::to('member/register')}}">Sign Up now</a></li>
 						</ul>
 					</center>
 				</div>
 				<p>
 				
 				
-				<center>Copy Right @ 2014 www.phsarkhmer.com.kh &nbsp;All Right
+				<center>Copy Right @ <?php echo date("Y")?> www.khmerabba.com &nbsp;All Right
 					Reserve</center>
 
 
@@ -36,12 +35,6 @@
 	</div>
 </footer>
 <!--/Footer-->
-{{HTML::script('frontend/js/bootstrap.min.js')}}
-
-{{HTML::script('frontend/js/jquery.scrollUp.min.js')}}
-{{HTML::script('frontend/js/price-range.js')}}
-{{HTML::script('frontend/js/main.js')}}
-{{HTML::script('frontend/js/custom.js')}}
 <script type='text/javascript'>
 	var homePage = "{{Config::get('app.url')}}";
 </script>

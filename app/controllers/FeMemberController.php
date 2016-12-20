@@ -131,7 +131,7 @@ class FeMemberController extends BaseController {
 							$provinceID = $getMaketById->data->province_id;
 							$longitude = $getMaketById->data->address;
 						$userArr ['province_id'] = $getMaketById->data->province_id;
-						} 
+						}
 					}
 				}
 				$userArr [$key] = $value [0];
@@ -1554,9 +1554,9 @@ class FeMemberController extends BaseController {
 			}
 
 			$randomNumber = mt_rand();
-			$EmailSubject = 'Reset Password Code'; 
-			$mailheader = "From: ".$email."\r\n";  
-			$MESSAGE_BODY = "Your reset password code: ". $randomNumber;  
+			$EmailSubject = 'Reset Password Code';
+			$mailheader = "From: ".$email."\r\n";
+			$MESSAGE_BODY = "Your reset password code: ". $randomNumber;
 			if(mail($email, $EmailSubject, $MESSAGE_BODY, $mailheader))
 			{
 				$userUpdated = DB::table('user')

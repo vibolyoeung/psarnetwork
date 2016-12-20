@@ -46,7 +46,7 @@ class FeProductController extends BaseController {
         				'html'=>$getListHtmlCate,
         			);
         			echo json_encode ( $data );
-					break;
+					break; 
 			}
 		} else {
 			echo 'data not enough';
@@ -104,6 +104,7 @@ class FeProductController extends BaseController {
     	/*end delete temp product */
     	$userID = Session::get('currentUserId');
     	$products = array(
+    			'created_date' => date('Y-m-d'),
     			'publish_date' => Input::get('date_post'),
     			'user_id' => Session::get('currentUserId'),
     			'store_id' => Store::findStoreByUser(Session::get('currentUserId')),
@@ -167,7 +168,6 @@ class FeProductController extends BaseController {
      */
     public function editProduct($product_id) {
         if (Input::has('btnAddProduct')) {
-
             $files = Input::file('file');
             $hiddenFilesArr = Input::get('hiddenFiles');
             $delimagArr = Input::get('delimag');

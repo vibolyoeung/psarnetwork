@@ -224,17 +224,17 @@ class FePageController extends BaseController {
 		}
 		$mainSup = $this->mod_market->mainMarket($parent_id);
 		return View::make('frontend.partials.suppermarket')
-		->with('mainID',$mainSup['0']->id)
-		->with('mainmarket',$mainSup['0'])
-		->with('transferTypes', $this->mod_product->listAllTransferType())
-		->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
-		->with('listMarkets',$this->mod_market->listsupermarketfront($parent_id))
-		->with('listProductSupermarket',$listproductInEachMarket)
-		->with('client_type',$this->mod_category->getClientType())
-		->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
-		->with('Provinces', $this->mod_setting->listProvinces())
-		->with('conditions', $this->mod_product->listAllConditions())
-		->with('advTops', $advTops->result);
+			->with('mainID',$mainSup['0']->id)
+			->with('mainmarket',$mainSup['0'])
+			->with('transferTypes', $this->mod_product->listAllTransferType())
+			->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
+			->with('listMarkets',$this->mod_market->listsupermarketfront($parent_id))
+			->with('listProductSupermarket',$listproductInEachMarket)
+			->with('client_type',$this->mod_category->getClientType())
+			->with('pro_transfer_type',$this->mod_category->getProductTransfterType())
+			->with('Provinces', $this->mod_setting->listProvinces())
+			->with('conditions', $this->mod_product->listAllConditions())
+			->with('advTops', $advTops->result);
 	}
 
 	public function countProductByclientType($parent_id,$id){

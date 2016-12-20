@@ -9,8 +9,7 @@ if(count($newProducts) > 0){
 <div class="category-tab feature-ad lastest-post" style="padding: 0;">
 	<!--recommended_items-->
 	<ul class="nav nav-tabs new_product">
-		<li>{{trans('product.new_product')}}&nbsp;&frasl;</li>
-		<li>Products : <span class="number-display price"><?php echo count($newProducts)?></span></li>
+		<li>{{trans('product.new_product')}}(<strong class="price" style="font-size:12px;"><?php echo count($newProducts)?></strong>)</li>
 	</ul>
 	<div id="new-item-carousel" class="carousel slide"
 		data-ride="carousel">
@@ -25,8 +24,7 @@ if(count($newProducts) > 0){
 						<div class="product-image-wrapper">
 							<div class="single-products">
 								<div class="productinfo text-center">
-									<a href="#" data-toggle="modal" data-target="#myModal"
-										onclick="popupDetails.add_popup_detail(<?php echo $newProduct->id; ?>)">
+									<a href="{{Config::get('app.url')}}product/details/{{$newProduct->id}}">
 										<?php
 										if($newProduct->thumbnail){
 											echo '<img src="/image/phpthumb/'.$newProduct->thumbnail.'?p=product&amp;h=90&amp;w=120" />';
@@ -48,10 +46,10 @@ if(count($newProducts) > 0){
 						</div>
 					</div>
 				<?php
-				if($newPro == 6 && count($newProducts)>6|| $newPro == 12 && count($newProducts)>12|| $newPro ==18 && count($newProducts)>18|| $newPro == 24 && count($newProducts)>24){
+				if($newPro == 6 || $newPro==12 || $newPro == 18 || $newPro == 24 || $newPro == 30 || $newPro == 36 || $newPro == 42 || $newPro == 48 || $newPro == 54){
 					echo '</div><div class="item"> ';
 				}
-				$newPro ++;
+				$newPro++;
 				?>
 				@endforeach
 			</div>

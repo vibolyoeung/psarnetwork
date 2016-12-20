@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Http\Response;
 /*
 |-------------------------------------------------------------
 | Application Routes
@@ -145,6 +146,26 @@ Route::any('/{lang}/user/signup', 'FeUserController@signUp');
 
 Route::get('/{lang}/fe/search', 'FeSearchController@search');
 Route::get('/fe/search', 'FeSearchController@search');
+Route::get('search/autocomplete',function(){
+	return View::make('frontend.autocomplete');
+});
+Route::get('search/autocomplete_result', 'FeSearchController@autocomplete');
+// Route::get('search/autocomplete_result', function(){
+// 	$value = array('KIMHIM HOM','Kompheakneary Keo','Hun Ariya');
+// 	return $value;
+// });
+
+
+// Route::get('search/autocomplete', function(){
+// 	$ss = '{"1020101005" : "1020101005,Banteay Meanchey,Mongkol Borei,Banteay Neang,O Thom,O Thom,Primary",';
+// 	$ss .= '"1020101571" : "1020101571,Banteay Meanchey,Mongkol Borei,Banteay Neang,O Thom,O Thom,Pre-school",';
+// 	$ss .='"1020103001" : "1020103001,Banteay Meanchey,Mongkol Borei,Banteay Neang,Banteay Neang,Banteay Neang,Primary",';
+// 	$ss .='"1020103506" : "1020103506,Banteay Meanchey,Mongkol Borei,Banteay Neang,Banteay Neang,Banteay Neang,Pre-school",';
+// 	$ss .='"1020105008" : "1020105008,Banteay Meanchey,Mongkol Borei,Banteay Neang,Trang,Trang,Primary",';
+// 	$ss .='"1020106006" : "1020106006,Banteay Meanchey,Mongkol Borei,Banteay Neang,Pongror,Pongror,Primary",';
+// 	$ss .='"1020106557" : "1020106557,Banteay Meanchey,Mongkol Borei,Banteay Neang,Pongror,Pongror,Pre-school"}';
+// 	print_r($ss);
+// });
 Route::get('/{lang}/search/products', 'FeSearchController@searchProduct');
 Route::get('/search/products', 'FeSearchController@searchProduct');
 

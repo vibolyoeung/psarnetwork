@@ -1,6 +1,8 @@
 <?php
 // This is the KH one.
 return array(
+	'english' => 'អង់គ្លេស',
+	'khmer'=>'ខ្មែរ',
 	'category' => 'ប្រភេទ',
 	'all_categories_type' => 'គ្រប់ប្រភេទទាំងអស់',
 	'notification' => 'ការ​ជូន​ដំណឹង​',
@@ -47,5 +49,6 @@ return array(
     'tab_pro_picture' => 'រូបភាព',
 	'tab_pro_quotation' => 'សម្រង់',
 	'tab_pro_contact' => 'ព័តមានទំនាក់ទំនង',
-	'next' => 'បន្ទាប់'
+	'next' => 'បន្ទាប់',
+	'contact-address' => 'អាស័យដ្ឋាន​ទំនាក់​ទំនង'
 );

@@ -1,7 +1,6 @@
 <!--=============Menu==========-->
 <div class="container-fluid header-bottom  hidden-sm hidden-xs" style="padding:0 9px 8px 12px;">
 	<nav class="navbar navbar-default menu_header_default" role="navigation">
-		<!-- type:, position: most top, limit -->
 		@if (! empty($page))
 			@if ($page == 'detial')
 				{{ App::make('FePageController')->getHorizontalAds(3, 14, 3) }}

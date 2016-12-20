@@ -50,5 +50,8 @@ return array(
 
     /*add product*/
     'btn_back' => 'Back',
-    'next' => 'Next'
+    'next' => 'Next',
+    'contact-address' => 'Contact Address',
+	'english' => 'English',
+	'khmer'=>'Khmer',
 );

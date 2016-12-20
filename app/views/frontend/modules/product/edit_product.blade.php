@@ -10,28 +10,9 @@
 	</ol>
 	@endsection
 @section('content')
-<link href='//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' id='font-awesome-css' media='all' rel='stylesheet' type='text/css'/>
-    {{HTML::style('backend/css/jquery-ui.css')}}
-    {{HTML::style('frontend/plugin/dropzone/dist/dropzone.css')}}
-
-    {{HTML::style('frontend/css/bootstrap-datepicker.min.css')}}
-
-    {{HTML::style('frontend/css/bootstrap-toggle.css')}}
-
-
-    {{HTML::script('frontend/plugin/dropzone/dist/dropzone.js')}}
-    {{HTML::script('frontend/js/product.js')}}
-
-    {{HTML::script('frontend/plugin/ckeditor/ckeditor.js')}}
-    <script type="text/javascript">
-    $(document).ready(function () {
-        CKEDITOR.replace( 'ckeditor' );
-        CKEDITOR.replace('ckeditor-address');
-    });
-    </script>
 	<div class="container">
 		{{Form::open(array('url'=>'products/edit/'.$product->id,'enctype'=>'multipart/form-data','file' => true, 'class'=>'form-horizontal', 'id'=>'addNewProduct'))}}
-                <div class="col-md-12 ">
+                <div class="col-md-12">
                     <div role="tabpanel">
                         <!-- Nav tabs -->
                         <div id="errorMessage"></div>
@@ -78,7 +59,6 @@
 		                                        		<div class="col-lg-2 col-md-4 col-sm-6">
 		                                        			<div class="list-group" id="cat-sub-1">
 															  {{@$chooseCategory}}
-
 															</div>
 		                                        		</div>
 
@@ -596,334 +576,187 @@
                         </div>
                       </div>
                     </div>
-                    <script>
-                    var homePage = "{{Config::get('app.url')}}",errorArr =[],errorOnID=[];
-                    var totalImg = {{$totalImage}};
-                    var limitUpload = 8;
-                      $(function () {
-                        $('#myTab a:last').tab('show')
-                      });
-
-                      function is_active_tab (id) {
-                        $('.pro-tab li').removeClass('active');
-                        $('.' + id).addClass('active');
-                      }
-
-                      function removeImg($id) {
-                            var txt;
-                            var r = confirm("are you sure to delete this image?");
-                            if (r == true) {
-                                $("#image-id-" + $id).hide();
-                                $("#file-id-" + $id).attr('name','delimag[]');
-                                totalImg = totalImg - 1;
-                                if(totalImg==0) {
-                                    setImage = '';
-                                } else {
-                                    setImage = totalImg;
-                                }
-                                $("#totalImage").val(setImage);
-                            } else {
-                                //txt = "You pressed Cancel!";
-                            }
-                            //document.getElementById("demo").innerHTML = txt;
-                        }
-
-                        /*set current active page*/
-                        if(window.location.hash) {
-                              var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
-                              $("ul.nav-tabs li").removeClass('active');
-                              $("ul.nav-tabs li." + hash).addClass('active');
-
-                              $(".tab-content .tab-pane").removeClass('active');
-                              $(".tab-content #" + hash).addClass('active');
-                          } else {
-                              // No hash found
-                          }
-                        function unique(list) {
-                            var result = [];
-                            $.each(list, function(i, e) {
-                                if ($.inArray(e, result) == -1) result.push(e);
-                            });
-                            return result;
-                        }
-                        $(function(){
-                            jQuery(".btnAddProduct").click(function(){
-                                var category = jQuery("#tags").val();
-                                var productTitle = jQuery("input[name='productTitle']").val();
-                                var productPrice = jQuery("input[name='productPrice']").val();
-                                var desc = jQuery("textarea[name='desc']").val();
-                                var contactLocation = jQuery("input[name='contactLocation']").val();
-                                var proImage = $("#totalImage").val();
+                  </div>
+{{HTML::script('/frontend/autocomplete/scripts/jquery-1.8.2.min.js')}}
+<script>
+var homePage = "{{Config::get('app.url')}}";
+var errorArr =[];
+var errorOnID=[];
+var totalImg = "{{$totalImage}}";
+var limitUpload = 8;
+$(function(){
+    jQuery(".btnAddProduct").click(function(){
+        var category = jQuery("#tags").val();
+        var productTitle = jQuery("input[name='productTitle']").val();
+        var productPrice = jQuery("input[name='productPrice']").val();
+        var desc = jQuery("textarea[name='desc']").val();
+        var contactLocation = jQuery("input[name='contactLocation']").val();
+        var proImage = $("#totalImage").val();
 
 
-                                var mCate = "{{trans('product.category')}}";
-                                var pTitle = "{{trans('product.product_title')}}";
-                                var pPrice = "{{trans('product.price')}}";
-                                var pDescription = "{{trans('product.description')}}";
-                                var pContactLocation = "{{trans('product.location')}}";
-                                var pImage = "{{trans('product.tab_pro_picture')}}";
-                                var idTag = 'productTag';
-                                var productTag = 'productTag';
-                                var productInfor = 'productInfor';
-                                var contactInfo = 'contactInfo';
-                                var proImgDiv = 'pictures';
+        var mCate = "{{trans('product.category')}}";
+        var pTitle = "{{trans('product.product_title')}}";
+        var pPrice = "{{trans('product.price')}}";
+        var pDescription = "{{trans('product.description')}}";
+        var pContactLocation = "{{trans('product.location')}}";
+        var pImage = "{{trans('product.tab_pro_picture')}}";
+        var idTag = 'productTag';
+        var productTag = 'productTag';
+        var productInfor = 'productInfor';
+        var contactInfo = 'contactInfo';
+        var proImgDiv = 'pictures';
 
-                                if(!proImage || proImage==0) {
-                                    errorArr.push(pImage);
-                                    errorOnID.push(proImgDiv);
-                                } else {
-                                    errorArr = jQuery.grep(errorArr, function(value) {
-                                      return value != pImage;
-                                    });
-                                    errorOnID = jQuery.grep(errorOnID, function(value) {
-                                      return value != pImage;
-                                    });
-                                }
+        if(!proImage || proImage==0) {
+            errorArr.push(pImage);
+            errorOnID.push(proImgDiv);
+        } else {
+            errorArr = jQuery.grep(errorArr, function(value) {
+              return value != pImage;
+            });
+            errorOnID = jQuery.grep(errorOnID, function(value) {
+              return value != pImage;
+            });
+        }
 
-                                if(!category) {
-                                    errorArr.push(mCate);
-                                    errorOnID.push(idTag);
-                                } else {
-                                    errorArr = jQuery.grep(errorArr, function(value) {
-                                      return value != mCate;
-                                    });
-                                    errorOnID = jQuery.grep(errorOnID, function(value) {
-                                      return value != productTag;
-                                    });
-                                }
+        if(!category) {
+            errorArr.push(mCate);
+            errorOnID.push(idTag);
+        } else {
+            errorArr = jQuery.grep(errorArr, function(value) {
+              return value != mCate;
+            });
+            errorOnID = jQuery.grep(errorOnID, function(value) {
+              return value != productTag;
+            });
+        }
 
-                                if(!productTitle) {
-                                    errorArr.push(pTitle);
-                                    errorOnID.push(productInfor);
-                                } else {
-                                    errorArr = jQuery.grep(errorArr, function(value) {
-                                      return value != pTitle;
-                                    });
-                                    errorOnID = jQuery.grep(errorOnID, function(value) {
-                                      return value != productInfor;
-                                    });
-                                }
+        if(!productTitle) {
+            errorArr.push(pTitle);
+            errorOnID.push(productInfor);
+        } else {
+            errorArr = jQuery.grep(errorArr, function(value) {
+              return value != pTitle;
+            });
+            errorOnID = jQuery.grep(errorOnID, function(value) {
+              return value != productInfor;
+            });
+        }
 
-                                if(!productPrice) {
-                                    errorArr.push(pPrice);
-                                    errorOnID.push(productInfor);
-                                } else {
-                                    errorArr = jQuery.grep(errorArr, function(value) {
-                                      return value != pPrice;
-                                    });
-                                    errorOnID = jQuery.grep(errorOnID, function(value) {
-                                      return value != productInfor;
-                                    });
-                                }
+        if(!productPrice) {
+            errorArr.push(pPrice);
+            errorOnID.push(productInfor);
+        } else {
+            errorArr = jQuery.grep(errorArr, function(value) {
+              return value != pPrice;
+            });
+            errorOnID = jQuery.grep(errorOnID, function(value) {
+              return value != productInfor;
+            });
+        }
 
-                                if(!desc) {
-                                    errorArr.push(pDescription);
-                                    errorOnID.push(productInfor);
-                                } else {
-                                    errorArr = jQuery.grep(errorArr, function(value) {
-                                      return value != pDescription;
-                                    });
-                                    errorOnID = jQuery.grep(errorOnID, function(value) {
-                                      return value != productInfor;
-                                    });
-                                }
+        if(!desc) {
+            errorArr.push(pDescription);
+            errorOnID.push(productInfor);
+        } else {
+            errorArr = jQuery.grep(errorArr, function(value) {
+              return value != pDescription;
+            });
+            errorOnID = jQuery.grep(errorOnID, function(value) {
+              return value != productInfor;
+            });
+        }
 
-                                if(!contactLocation) {
-                                    errorArr.push(pContactLocation);
-                                } else {
-                                    errorArr = jQuery.grep(errorArr, function(value) {
-                                      return value != pContactLocation;
-                                    });
-                                    errorOnID = jQuery.grep(errorOnID, function(value) {
-                                      return value != contactInfo;
-                                    });
-                                }
-                                var getTextUnigue = unique(errorArr);
-                                var getUnigue = unique(errorOnID);
-                                if(getTextUnigue.length>0) {
-                                    var errorS = '<ul>';
-                                    for (var i = 0; i < getTextUnigue.length; ++i) {
-                                        errorS += '<li>' + getTextUnigue[i] + '</li>';
-                                    }
-                                    errorS += '</ul>';
-                                    var htmlDiv = '<div class="alert alert-danger"><strong>Oh snap! you got error on:</strong>'+errorS+'</div>';
-                                    jQuery("#errorMessage").html(htmlDiv);
-                                } else {
-                                    jQuery("#errorMessage").html('');
-                                }
-                            });
+        if(!contactLocation) {
+            errorArr.push(pContactLocation);
+        } else {
+            errorArr = jQuery.grep(errorArr, function(value) {
+              return value != pContactLocation;
+            });
+            errorOnID = jQuery.grep(errorOnID, function(value) {
+              return value != contactInfo;
+            });
+        }
+        var getTextUnigue = unique(errorArr);
+        var getUnigue = unique(errorOnID);
+        if(getTextUnigue.length>0) {
+            var errorS = '<ul>';
+            for (var i = 0; i < getTextUnigue.length; ++i) {
+                errorS += '<li>' + getTextUnigue[i] + '</li>';
+            }
+            errorS += '</ul>';
+            var htmlDiv = '<div class="alert alert-danger"><strong>Oh snap! you got error on:</strong>'+errorS+'</div>';
+            jQuery("#errorMessage").html(htmlDiv);
+        } else {
+            jQuery("#errorMessage").html('');
+        }
+    });
 
-                        	$("a[role='tab']").click(function(e){
-                        		pageurl = $(this).attr('href');
-                        		$("ul.nav-tabs li").removeClass('active');
-                                $(this).parent().addClass('active');
-                                $(".tab-content .tab-pane").removeClass('active');
-                                $(".tab-content " + pageurl).addClass('active');
-                        		if(pageurl!=window.location){
-                        			window.history.pushState({path:pageurl},'',pageurl);
-                        		}
-                        		return false;
-                        	});
+	$("a[role='tab']").click(function(e){
+		pageurl = $(this).attr('href');
+		$("ul.nav-tabs li").removeClass('active');
+        $(this).parent().addClass('active');
+        $(".tab-content .tab-pane").removeClass('active');
+        $(".tab-content " + pageurl).addClass('active');
+		if(pageurl!=window.location){
+			window.history.pushState({path:pageurl},'',pageurl);
+		}
+		return false;
+	});
 
 
-                        	$("#multiUpload").dropzone(
-   								 {
-   									 url: "{{Config::get('app.url')}}member/ajaxupload?page=imgproduct&id={{$product->id}}",
-   									 dataType: "json",
-   									 success: function(data){
-   										 var x = JSON.parse(data.xhr.responseText);
-   										 if(x.message == 'uploadSuccess') {
-   											 var imgFile = imgReult(x.file);
-   											 $('#imgResult').append(imgFile);
-                                             if(totalImg==0) {
-                                                setImage = '';
-                                            } else {
-                                                setImage = totalImg;
-                                            }
-                                            $("#totalImage").val(setImage);
-   										 }
-   								            //$('#result').html(data.status +':' + data.message);
-   								      },
-   								      error:function(){
-   								          //$("#result").html('There was an error updating the settings');
-   								      },
-   								      maxFiles: limitUpload,
-   								      maxfilesexceeded: function(file) {
-   								    	  alert("No more files please!");
-   								          //this.removeAllFiles();
-   								          //this.addFile(file);
-   								      },
-   								   init: function() {
-   								      this.on("addedfile", function(file) {
-										if(limitUpload > totalImg) {
-											totalImg = totalImg + 1;
-										} else {
-											alert("Accept only 8 files only, No more files please!");
-	   								        // Create the remove button
-	   								        // Capture the Dropzone instance as closure.
-	   								        var _this = this;
-
-	   								        // Listen to the click event
-	   								        removeButton.addEventListener("click", function(e) {
-	   								          // Make sure the button click doesn't submit the form:
-	   								          e.preventDefault();
-	   								          e.stopPropagation();
-	   								        });
-										}
-   								      });
-   								    }
-   								      /**/
-   								 }
-   							);
-                        });
-
-                        function is_active_tab (id) {
-    					  	$('.pro-tab li').removeClass('active');
-    					  	$("." + id).addClass('active');
-    					  }
-
-    					  function imgReult(file) {
-    						  var newImg = file.trim();
-    						  var res = newImg.split(".");
-    						  var bodyImg = '<tr id="image-id-'+res[0]+'">'+
-              					'<td>'+
-    			                          '<img src="{{Config::get('app.url')}}image/phpthumb/'+file+'?p=product&h=100&w=100" class="img-rounded" width="100" alt="test">'+
-    			  					'</td>'+
-    			                      '<td>'+file+
-    			                          '<input id="file-id-'+res+'" type="hidden" name="hiddenFiles[]" value="'+file+'">'+
-    			                      '</td>'+
-    			  					'<td>'+
-    										'<a onclick="removeImg(&#39;'+res[0]+'&#39;);" href="javascript:;">Delete</a>'+
-    			  					'</td>'+
-    			  				'</tr>';
-    			  				return bodyImg;
-    					  }
-
-    					  function getsub(id,byLevel) {
-        					  var nextLevel = byLevel + 1;
-        					  $("#cat-sub-"+byLevel+" .list-group-item").removeClass('active');
-        					  $("#cat-list-" + id).addClass('active');
-        					  if(id) {
-        						  $.ajax({
-        							    url: homePage + "products/ajax?p=getprocat&id="+id + "&level=" + nextLevel,
-        							    type: "GET",
-        							    dataType: "json",
-        							    timeout: 3600,
-        							    success: function(response) {
-            							    if(response.html != '') {
-            							    	$("#cat-sub-"+byLevel+" .list-group-item").removeClass('has-sub');
-            							    	$("#cat-list-" + id).addClass('has-sub');
-                							    $("#cat-sub-" + response.level).html(response.html);
-
-                							    /*empty low level*/
-                							    if(nextLevel == 2) {
-                							    	$("#cat-sub-3").html('');
-                							    	$("#cat-sub-4").html('');
-                							    	$("#cat-sub-5").html('');
-                							    	$("#cat-sub-6").html('');
-                							    }
-                							    if(nextLevel == 3) {
-                							    	$("#cat-sub-4").html('');
-                							    	$("#cat-sub-5").html('');
-                							    	$("#cat-sub-6").html('');
-                							    }
-                							    if(nextLevel == 4) {
-                							    	$("#cat-sub-5").html('');
-                							    	$("#cat-sub-6").html('');
-                							    }
-                							    if(nextLevel == 5) {
-                							    	$("#cat-sub-6").html('');
-                							    }
-
-            							    }
-
-            							    /*add to tag*/
-            							    var tagHmtl = [];
-            							    $('#category-list .active').each(function (index, element) {
-                							    var num = index + 1;
-                							    var text = $('#category-list #cat-sub-'+num+' .active').text();
-                							    var id = $('#category-list #cat-sub-'+num+' .active').attr('data-id');
-                							    tagHmtl.push(id);
-            							    });
-            							    $("#tags").val(tagHmtl);
-            							    /*End add to tag*/
-            							},
-        							    error: function(x, t, m) {
-        							        if(t==="timeout") {
-        							            alert("got timeout");
-        							        } else {
-        							            alert(t);
-        							        }
-        							    }
-        							});
-        					  }
-    					  }
-                    </script>
-
-                        </div>
+	$("#multiUpload").dropzone(
+			 {
+				 url: "{{Config::get('app.url')}}member/ajaxupload?page=imgproduct&id={{$product->id}}",
+				 dataType: "json",
+				 success: function(data){
+					 var x = JSON.parse(data.xhr.responseText);
+					 if(x.message == 'uploadSuccess') {
+						 var imgFile = imgReult(x.file);
+						 $('#imgResult').append(imgFile);
+	                     if(totalImg==0) {
+	                        setImage = '';
+	                    } else {
+	                        setImage = totalImg;
+	                    }
+	                    $("#totalImage").val(setImage);
+					 }
+			            //$('#result').html(data.status +':' + data.message);
+			      },
+			      error:function(){
+			          //$("#result").html('There was an error updating the settings');
+			      },
+			      maxFiles: limitUpload,
+			      maxfilesexceeded: function(file) {
+			    	  alert("No more files please!");
+			          //this.removeAllFiles();
+			          //this.addFile(file);
+			      },
+			   init: function() {
+			    	this.on("addedfile", function(file) {
+					if(limitUpload > totalImg) {
+						totalImg++;
+					} else {
+						alert("Accept only 8 files only, No more files please!");
+				        // Create the remove button
+				        // Capture the Dropzone instance as closure.
+				        var _this = this;
+				        // Listen to the click event
+				        removeButton.addEventListener("click", function(e) {
+				          // Make sure the button click doesn't submit the form:
+				          e.preventDefault();
+				          e.stopPropagation();
+				        });
+					}
+			      });
+			    }
+			      /**/
+			 }
+		);
+});
+  </script>
 
 		{{Form::close()}}
 	</div>
-    {{HTML::script('backend/js/jquery-ui.js')}}
-    {{HTML::script('frontend/js/bootstrap-datepicker.min.js')}}
-    {{HTML::script('frontend/js/bootstrap-toggle.js')}}
-    {{HTML::script('backend/js/custom.js')}}
-    <script>
-     if(jQuery("*").hasClass("product_datepicker")){
-         jQuery('.product_datepicker').datepicker({
-           format: "yyyy-mm-dd",
-            todayBtn: true,
-            clearBtn: true,
-            orientation: "top auto",
-            calendarWeeks: true,
-            autoclose: true,
-            todayHighlight: true,
-            toggleActive: true
-        });
-
-    }
-    </script>
-
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
